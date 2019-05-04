@@ -1,3 +1,11 @@
+# tfepy
+
+_A Pyton Client for Terraform Enterprise._
+
+README to be fleshed out after completing more of the following endpoints. 
+
+TODO: raise exceptions rather than just log errors. More code comments. Pep8 linting.
+
 - [ ] Accounts
 - [ ] Configuration Versions
 - [ ] OAuth Clients
