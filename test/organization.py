@@ -1,6 +1,6 @@
 import unittest
 import os
-import json
+
 from tfepy.api import TFE
 
 TOKEN = os.getenv("TFE_TOKEN", None)
@@ -12,7 +12,7 @@ class TestTFEOrganzations(unittest.TestCase):
         self._api = TFE(TOKEN)
         self._test_email = "neil@hashicorp.com"
         self._test_org_name = "pytfe-unittest"
-        self._create_payload = json.dumps({
+        self._create_payload = {
             "data": {
                 "type": "organizations",
                 "attributes": {
@@ -20,7 +20,7 @@ class TestTFEOrganzations(unittest.TestCase):
                     "email": self._test_email
                 }
             }
-        })
+        }
 
     def test_orgs_ls(self):
         self._api.organizations.create(self._create_payload)
@@ -44,14 +44,14 @@ class TestTFEOrganzations(unittest.TestCase):
         new_org = self._api.organizations.create(self._create_payload)
         self.assertEqual(new_org["data"]["attributes"]["email"], self._test_email)
 
-        update_payload = json.dumps({
+        update_payload = {
             "data": {
                 "type": "organizations",
                 "attributes": {
                     "email": updated_email
                 }
             }
-        })
+        }
         updated_org = self._api.organizations.update(self._test_org_name, update_payload)
         self._api.organizations.destroy(self._test_org_name)
         self.assertEqual(updated_org["data"]["attributes"]["email"], updated_email)
