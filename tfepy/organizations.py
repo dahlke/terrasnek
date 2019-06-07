@@ -7,12 +7,12 @@ class TFEOrganizations(TFEEndpoint):
     
     def __init__(self, base_url, headers):
         super().__init__(base_url, headers)
-        self._base_url = f"{base_url}/organizations"
+        self._orgs_base_url = f"{base_url}/organizations"
 
     def create(self, payload):
         # POST /organizations
         results = None
-        r = requests.post(self._base_url, data=json.dumps(payload), headers=self._headers)
+        r = requests.post(self._orgs_base_url, data=json.dumps(payload), headers=self._headers)
 
         if r.status_code == 201:
             results = json.loads(r.content)
@@ -24,7 +24,7 @@ class TFEOrganizations(TFEEndpoint):
 
     def destroy(self, organization_name):
         # DELETE /organizations/:organization_name
-        url = f"{self._base_url}/{organization_name}"
+        url = f"{self._orgs_base_url}/{organization_name}"
         r = requests.delete(url, headers=self._headers)
 
         if r.status_code == 204:
@@ -37,7 +37,7 @@ class TFEOrganizations(TFEEndpoint):
     def entitlements(self, organization_name):
         # GET /organizations/:organization_name/entitlement-set
         results = None
-        url = f"{self._base_url}/{organization_name}/entitlement-set"
+        url = f"{self._orgs_base_url}/{organization_name}/entitlement-set"
         r = requests.get(url, headers=self._headers)
 
         if r.status_code == 200:
@@ -52,7 +52,7 @@ class TFEOrganizations(TFEEndpoint):
         # GET /organizations
         results = None
         # TODO: include query parameters
-        r = requests.get(self._base_url, headers=self._headers)
+        r = requests.get(self._orgs_base_url, headers=self._headers)
 
         if r.status_code == 200:
             results = json.loads(r.content)
@@ -65,7 +65,7 @@ class TFEOrganizations(TFEEndpoint):
     def show(self, organization_name):
         # GET /organizations/:organization_name
         results = None
-        url = f"{self._base_url}/{organization_name}"
+        url = f"{self._orgs_base_url}/{organization_name}"
         r = requests.get(url, headers=self._headers)
 
         if r.status_code == 200:
@@ -79,7 +79,7 @@ class TFEOrganizations(TFEEndpoint):
     def update(self, organization_name, payload):
         # PATCH /organizations/:organization_name
         results = None
-        url = f"{self._base_url}/{organization_name}"
+        url = f"{self._orgs_base_url}/{organization_name}"
         r = requests.patch(url, data=json.dumps(payload), headers=self._headers)
 
         if r.status_code == 200:

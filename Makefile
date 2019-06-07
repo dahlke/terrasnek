@@ -8,6 +8,10 @@ CWD := $(shell pwd)
 todo:
 	@ag "TODO" --ignore Makefile
 
+.PHONY: note
+note:
+	@ag "NOTE" --ignore Makefile
+
 .PHONY: test
 test:
 	python3 -m unittest test/*.py

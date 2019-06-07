@@ -7,7 +7,6 @@ class TFEWorkspaces(TFEEndpoint):
     
     def __init__(self, base_url, organization_name, headers):
         super().__init__(base_url, headers)
-        self._base_url = base_url
         self._organization_name = organization_name
         self._ws_base_url = f"{base_url}/workspaces"
         self._org_base_url = f"{base_url}/organizations/{organization_name}/workspaces"
@@ -38,7 +37,6 @@ class TFEWorkspaces(TFEEndpoint):
 
         if r.status_code == 204:
             self._logger.info(f"Workspace {workspace_id} destroyed.")
-            pass
         else:
             err = json.loads(r.content.decode("utf-8"))
             self._logger.error(err)
