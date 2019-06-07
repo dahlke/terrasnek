@@ -1,45 +1,20 @@
 import unittest
 import os
+from .base import TestTFEBaseTestCase
 
 from tfepy.api import TFE
 
-TOKEN = os.getenv("TFE_TOKEN", None)
 
-class TestTFEWorkspaces(unittest.TestCase):
+class TestTFEWorkspaces(TestTFEBaseTestCase):
 
     @classmethod
     def setUpClass(self):
-        self._api = TFE(TOKEN)
-        self._test_email = "neil@hashicorp.com"
-        self._test_org_name = "pytfe-unittest"
-        self._create_without_vcs_payload = {
-            "data": {
-                "attributes": {
-                    "name": "unittest"
-                },
-                "type": "workspaces"
-            }
-        }
-
-
-        self._api.organizations.create({
-            "data": {
-                "type": "organizations",
-                "attributes": {
-                        "name": self._test_org_name,
-                        "email": self._test_email
-                }
-            }
-        })
-        self._api.set_organization(self._test_org_name)
-
-    @classmethod
-    def tearDownClass(self):
-        self._api.organizations.destroy(self._test_org_name)
+        super(TestTFEWorkspaces, self).setUpClass()
+        self._api.set_organization(self._test_org_name_paid)
 
     def test_workspaces_create(self):
         # TODO: How to manage VCS OAuth and create w/ VCS payload?
-        ws = self._api.workspaces.create(self._create_without_vcs_payload)
+        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 1)
 
@@ -49,7 +24,7 @@ class TestTFEWorkspaces(unittest.TestCase):
     
     def test_destroy(self):
         # Create a workspace
-        ws = self._api.workspaces.create(self._create_without_vcs_payload)
+        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 1)
 
@@ -60,7 +35,7 @@ class TestTFEWorkspaces(unittest.TestCase):
         self.assertEqual(len(workspaces), 0)
 
         # Create another workspace
-        ws = self._api.workspaces.create(self._create_without_vcs_payload)
+        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 1)
 
@@ -76,7 +51,7 @@ class TestTFEWorkspaces(unittest.TestCase):
     
     def test_workspaces_lock_unlock(self):
         # Create a workspace and make sure it's not locked
-        ws = self._api.workspaces.create(self._create_without_vcs_payload)
+        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
         ws_id = ws["data"]["id"]
         self.assertFalse(ws["data"]["attributes"]["locked"])
 
@@ -103,7 +78,7 @@ class TestTFEWorkspaces(unittest.TestCase):
     
     def test_workspaces_show(self):
         # Create a workspace
-        ws = self._api.workspaces.create(self._create_without_vcs_payload)
+        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 1)
 
@@ -124,7 +99,7 @@ class TestTFEWorkspaces(unittest.TestCase):
 
     def test_workspaces_update(self):
         # Create a workspace
-        ws = self._api.workspaces.create(self._create_without_vcs_payload)
+        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 1)
 
