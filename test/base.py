@@ -69,6 +69,16 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
+        self._config_version_create_payload = {
+            "data": {
+                "type": "configuration-versions",
+                "attributes": {
+                    "auto-queue-runs": True
+                }
+            }
+        }
+
+
         """
         # NOTE: It's not possible to create a user with the API yet.
 
