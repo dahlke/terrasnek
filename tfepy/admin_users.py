@@ -13,13 +13,7 @@ class TFEAdminUsers(TFEEndpoint):
     def destroy(self, user_id):
         # DELETE /admin/users/:id
         url = f"{self._base_url}/{user_id}"
-        r = requests.delete(url, headers=self._headers)
-
-        if r.status_code == 204:
-            self._logger.info(f"User {user_id} destroyed.")
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._destroy(url)
 
     def disable_two_factor(self, user_id):
         # POST /admin/users/:id/actions/disable_two_factor
@@ -62,21 +56,12 @@ class TFEAdminUsers(TFEEndpoint):
     
     def ls(self, query=None):
         # GET /admin/users
-        results = None
-
         # TODO: handle the rest of the potential parameters
         url = self._base_url
         if query != None:
             url += f"?q={query}"
 
-        r = requests.get(url, headers=self._headers)
-        if r.status_code == 200:
-            results = json.loads(r.content)
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._ls(url)
 
     def revoke_admin(self, user_id):
         # POST /admin/users/:id/actions/revoke_admin

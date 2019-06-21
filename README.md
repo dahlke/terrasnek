@@ -4,15 +4,20 @@ _A Python Client for the Terraform Enterprise API._
 
 [Project Asana Board](https://app.asana.com/0/1128022822619695/1128022822619711)
 
+### Endpoints
+
 - [ ] Accounts
+- [ ] Applies
 - [ ] Configuration Versions
+- [ ] Notification Configurations
 - [X] OAuth Clients
 - [X] OAuth Tokens
 - [X] Organizations
-- [ ] Organization Tokens
+- [ ] Plan Exports
+- [ ] Plans
 - [ ] Policies
-- [ ] Policy Sets
 - [ ] Policy Checks
+- [ ] Policy Sets
 - [ ] Registry Modules
 - [ ] Runs
 - [ ] SSH Keys
@@ -21,9 +26,13 @@ _A Python Client for the Terraform Enterprise API._
 - [X] Team Memberships
 - [ ] Team Tokens
 - [X] Teams
-- [ ] Variables
-- [X] Workspaces (everything but SSH assign/unassign)
+- [ ] User Tokens
 - [X] Users (show endpoint doesn't work)
+- [X] Variables
+- [X] Workspaces (everything but SSH assign/unassign)
+
+### Admin Endpoints
+
 - [X] Admin Users
 - [X] Admin Organizations
 - [ ] Admin Settings

@@ -19,38 +19,19 @@ class TFEWorkspaces(TFEEndpoint):
 
     def create(self, payload):
         # POST /organizations/:organization_name/workspaces
-        results = None
-        r = requests.post(self._org_base_url, json.dumps(payload), headers=self._headers)
+        return self._create(self._org_base_url, payload)
 
-        if r.status_code == 201:
-            results = json.loads(r.content)
+    def destroy(self, workspace_id=None, workspace_name=None):
+        if workspace_name is not None:
+            # GET /organizations/:organization_name/workspaces/:name
+            url = f"{self._org_base_url}/{workspace_name}"
+        elif workspace_id is not None:
+            # DELETE /workspaces/:workspace_id
+            url = f"{self._ws_base_url}/{workspace_id}"
         else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.error("Arguments workspace_name or workspace_id must be defined")
 
-        return results
-
-    def destroy_by_id(self, workspace_id):
-        # DELETE /workspaces/:workspace_id
-        url = f"{self._ws_base_url}/{workspace_id}"
-        r = requests.delete(url, headers=self._headers)
-
-        if r.status_code == 204:
-            self._logger.info(f"Workspace {workspace_id} destroyed.")
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-    def destroy_by_name(self, workspace_name):
-        # DELETE /organizations/:organization_name/workspaces/:name
-        url = f"{self._org_base_url}/{workspace_name}"
-        r = requests.delete(url, headers=self._headers)
-
-        if r.status_code == 204:
-            pass
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._destroy(url)
 
     def force_unlock(self, workspace_id):
         # POST /workspaces/:workspace_id/actions/force-unlock
@@ -82,43 +63,19 @@ class TFEWorkspaces(TFEEndpoint):
 
     def ls(self):
         # GET /organizations/:organization_name/workspaces
-        results = None
-        r = requests.get(self._org_base_url, headers=self._headers)
+        return self._ls(self._org_base_url)
 
-        if r.status_code == 200:
-            results = json.loads(r.content)
+    def show(self, workspace_name=None, workspace_id=None):
+        if workspace_name is not None:
+            # GET /organizations/:organization_name/workspaces/:name
+            url = f"{self._org_base_url}/{workspace_name}"
+        elif workspace_id is not None:
+            # GET /workspaces/:workspace_id
+            url = f"{self._ws_base_url}/{workspace_id}"
         else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.error("Arguments workspace_name or workspace_id must be defined")
 
-        return results
-
-    def show_by_id(self, workspace_id):
-        # GET /workspaces/:workspace_id
-        results = None
-        url = f"{self._ws_base_url}/{workspace_id}"
-        r = requests.get(url, headers=self._headers)
-
-        if r.status_code == 200:
-            results = json.loads(r.content)
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
-
-    def show_by_name(self, workspace_name):
-        # GET /organizations/:organization_name/workspaces/:name
-        url = f"{self._org_base_url}/{workspace_name}"
-        r = requests.get(url, headers=self._headers)
-
-        if r.status_code == 200:
-            results = json.loads(r.content)
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._show(url)
 
     def unassign_ssh_key(self, workspace_id):
         # PATCH /workspaces/:workspace_id/relationships/ssh-key
@@ -142,14 +99,5 @@ class TFEWorkspaces(TFEEndpoint):
 
     def update(self, workspace_id, payload):
         # PATCH /workspaces/:workspace_id
-        results = None
         url = f"{self._ws_base_url}/{workspace_id}"
-        r = requests.patch(url, data=json.dumps(payload), headers=self._headers)
-
-        if r.status_code == 200:
-            results = json.loads(r.content)
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._update(url, payload)

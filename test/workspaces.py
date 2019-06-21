@@ -13,7 +13,7 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 1)
 
-        self._api.workspaces.destroy_by_name(ws["data"]["attributes"]["name"])
+        self._api.workspaces.destroy(workspace_name=ws["data"]["attributes"]["name"])
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 0)
     
@@ -25,7 +25,7 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
 
         # Destroy it with it's name
         ws_name = ws["data"]["attributes"]["name"]
-        self._api.workspaces.destroy_by_name(ws_name)
+        self._api.workspaces.destroy(workspace_name=ws_name)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 0)
 
@@ -36,7 +36,7 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
 
         # Destroy it with it's ID
         ws_id = ws["data"]["id"]
-        self._api.workspaces.destroy_by_id(ws_id)
+        self._api.workspaces.destroy(workspace_id=ws_id)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 0)
     
@@ -63,7 +63,7 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
         self.assertFalse(ws_forced["data"]["attributes"]["locked"])
 
         # Clean up the workspace
-        self._api.workspaces.destroy_by_id(ws_id)
+        self._api.workspaces.destroy(workspace_id=ws_id)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 0)
     
@@ -75,16 +75,16 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
 
         # Get that workspace's ID, retrieve it's data and compare IDs
         ws_id = ws["data"]["id"]
-        ws_shown_by_id = self._api.workspaces.show_by_id(ws_id)
+        ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)
         self.assertEqual(ws_id, ws_shown_by_id["data"]["id"])
 
         # Get that workspace's name, retrieve it's data and compare names
         ws_name = ws["data"]["attributes"]["name"]
-        ws_shown_by_name = self._api.workspaces.show_by_name(ws_name)
+        ws_shown_by_name = self._api.workspaces.show(workspace_name=ws_name)
         self.assertEqual(ws_name, ws_shown_by_name["data"]["attributes"]["name"])
 
         # Clean up the workspace
-        self._api.workspaces.destroy_by_id(ws_id)
+        self._api.workspaces.destroy(workspace_id=ws_id)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 0)
 
@@ -109,6 +109,6 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
         self.assertEqual(updated_name, ws_updated["data"]["attributes"]["name"])
 
         # Clean up the workspace
-        self._api.workspaces.destroy_by_id(ws_id)
+        self._api.workspaces.destroy(workspace_id=ws_id)
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 0)
