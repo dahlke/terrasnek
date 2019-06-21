@@ -16,7 +16,7 @@ class TestTFEBaseTestCase(unittest.TestCase):
         self._test_email = TEST_EMAIL
         self._test_team_name = TEST_TEAM_NAME
 
-        # TODO: rename this to be more explicitly ephemeral, and the other stable and not to be deleted
+        # TODO: rename this to be more explicitly for ephemeral testing, and the other stable and not to be deleted
         self._test_org_name = TEST_ORG_NAME
         self._test_org_name_paid = TEST_ORG_NAME_PAID
 
@@ -55,7 +55,7 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
-        self._oauth_client_create_payoad = {
+        self._oauth_client_create_payload = {
             "data": {
                 "type": "oauth-clients",
                 "attributes": {

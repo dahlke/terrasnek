@@ -9,7 +9,7 @@ class TestTFEOAuthClients(TestTFEBaseTestCase):
 
     def test_oauth_clients_lifecycle(self):
         # Create a test OAuth client
-        oauth_client = self._api.oauth_clients.create(self._oauth_client_create_payoad)
+        oauth_client = self._api.oauth_clients.create(self._oauth_client_create_payload)
         oauth_clients = self._api.oauth_clients.ls()["data"]
         self.assertEqual(len(oauth_clients), 1)
 

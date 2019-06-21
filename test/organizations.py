@@ -4,7 +4,7 @@ from .base import TestTFEBaseTestCase
 
 from tfepy.api import TFE
 
-class TestTFEOrganzations(TestTFEBaseTestCase):
+class TestTFEOrganizations(TestTFEBaseTestCase):
 
     def test_orgs_ls(self):
         self._api.organizations.create(self._org_create_payload)

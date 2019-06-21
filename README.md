@@ -1,10 +1,8 @@
 # tfepy
 
-_A Pyton Client for Terraform Enterprise._
+_A Python Client for the Terraform Enterprise API._
 
-README to be fleshed out after completing more of the following endpoints. 
-
-TODO: https://app.asana.com/0/1128022822619695/1128022822619711
+[Project Asana Board](https://app.asana.com/0/1128022822619695/1128022822619711)
 
 - [ ] Accounts
 - [ ] Configuration Versions
@@ -24,7 +22,7 @@ TODO: https://app.asana.com/0/1128022822619695/1128022822619711
 - [ ] Team Tokens
 - [X] Teams
 - [ ] Variables
-- [/] Workspaces
+- [X] Workspaces (everything but SSH assign/unassign)
 - [X] Users (show endpoint doesn't work)
 - [X] Admin Users
 - [X] Admin Organizations
