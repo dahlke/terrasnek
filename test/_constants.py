@@ -1,15 +1,18 @@
 import os
 
-TFE_SAAS_URL = "https://app.terraform.io"
-TOKEN = os.getenv("TFE_TOKEN", None)
+TFE_URL = os.getenv("TFE_URL", None)
+TFE_TOKEN = os.getenv("TFE_TOKEN", None)
+
+GH_TOKEN = os.getenv("GH_TOKEN", None)
+GH_SECRET = os.getenv("GH_SECRET", None)
+
+TEST_EMAIL = os.getenv("TEST_EMAIL", None)
+TEST_ORG_NAME = os.getenv("TEST_ORG_NAME", None)
+TEST_ORG_NAME_PAID = os.getenv("TEST_ORG_NAME_PAID", None)
+TEST_USERNAME = os.getenv("TEST_USERNAME", None)
+TEST_TEAM_NAME = os.getenv("TEST_TEAM_NAME", None)
 
 HEADERS = {
-    "Authorization": f"Bearer {TOKEN}",
+    "Authorization": f"Bearer {TFE_TOKEN}",
     "Content-Type": "application/vnd.api+json"
 }
-
-TEST_EMAIL = "neil@hashicorp.com"
-TEST_ORG_NAME = "terrasnek_unittest_org"
-TEST_ORG_NAME_PAID = "terrasnek_unittest_org_paid"
-TEST_USERNAME = "terrasnek_unittest"
-TEST_TEAM_NAME = "terrasnek_unittest_team"
