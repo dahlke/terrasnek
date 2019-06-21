@@ -6,11 +6,6 @@ from tfepy.api import TFE
 
 class TestTFETeams(TestTFEBaseTestCase):
 
-    @classmethod
-    def setUpClass(self):
-        super(TestTFETeams, self).setUpClass()
-        self._api.set_organization(self._test_org_name_paid)
-
     def test_team_lifecycle(self):
         teams = self._api.teams.ls()["data"]
         self.assertEqual(len(teams), 1)

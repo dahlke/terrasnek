@@ -7,11 +7,6 @@ from tfepy.api import TFE
 
 class TestTFEWorkspaces(TestTFEBaseTestCase):
 
-    @classmethod
-    def setUpClass(self):
-        super(TestTFEWorkspaces, self).setUpClass()
-        self._api.set_organization(self._test_org_name_paid)
-
     def test_workspaces_create(self):
         # TODO: How to manage VCS OAuth and create w/ VCS payload?
         ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
@@ -42,10 +37,6 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
         # Destroy it with it's ID
         ws_id = ws["data"]["id"]
         self._api.workspaces.destroy_by_id(ws_id)
-        workspaces = self._api.workspaces.ls()["data"]
-        self.assertEqual(len(workspaces), 0)
-    
-    def test_workspaces_ls(self):
         workspaces = self._api.workspaces.ls()["data"]
         self.assertEqual(len(workspaces), 0)
     

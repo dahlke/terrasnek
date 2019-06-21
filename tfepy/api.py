@@ -1,3 +1,4 @@
+from .oauth_clients import TFEOAuthClients
 from .organizations import TFEOrganizations
 from .workspaces import TFEWorkspaces
 from .users import TFEUsers
@@ -8,6 +9,7 @@ from .team_access import TFETeamAccess
 from .admin_users import TFEAdminUsers
 from .admin_organizations import TFEAdminOrganizations
 
+# TODO
 TFE_SAAS_URL = "https://app.terraform.io"
 
 class TFE():
@@ -36,6 +38,8 @@ class TFE():
         self.admin_organizations = TFEAdminOrganizations(self._instance_url, self._headers)
         self.admin_users = None
 
+        self.oauth_clients = None
+
     
     def set_organization(self, organization_name):
         self._current_organization = organization_name
@@ -43,8 +47,10 @@ class TFE():
         self.workspaces = TFEWorkspaces(self._instance_url, self._current_organization, self._headers)
         self.users = TFEUsers(self._instance_url, self._current_organization, self._headers)
 
-        self.admin_users = TFEAdminUsers(self._instance_url, self._current_organization, self._headers)
-        
         self.teams = TFETeams(self._instance_url, self._current_organization, self._headers)
         self.team_memberships = TFETeamMemberships(self._instance_url, self._current_organization, self._headers)
         self.team_access = TFETeamAccess(self._instance_url, self._current_organization, self._headers)
+
+        self.admin_users = TFEAdminUsers(self._instance_url, self._current_organization, self._headers)
+        
+        self.oauth_clients = TFEOAuthClients(self._instance_url, self._current_organization, self._headers)

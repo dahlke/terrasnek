@@ -6,11 +6,6 @@ from tfepy.api import TFE
 
 class TestTFEUsers(TestTFEBaseTestCase):
 
-    @classmethod
-    def setUpClass(self):
-        super(TestTFEUsers, self).setUpClass()
-        self._api.set_organization(self._test_org_name_paid)
-
     def test_destroy_users(self):
         # No test since a new user can't be created with the API. 
         pass
