@@ -16,53 +16,19 @@ class TFEOAuthClients(TFEEndpoint):
 
     def show(self, id):
         # GET /oauth-clients/:id
-        results = None
         url = f"{self._oauth_clients_base_url}/{id}"
-        r = requests.get(url, headers=self._headers)
-
-        if r.status_code == 200:
-            results = json.loads(r.content)
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._show(url)
     
     def create(self, payload):
         # POST /organizations/:organization_name/oauth-clients
-        results = None
-        r = requests.post(self._org_base_url, json.dumps(payload), headers=self._headers)
-
-        if r.status_code == 201:
-            results = json.loads(r.content)
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._create(self._org_base_url, payload)
     
     def update(self, id, payload):
         # PATCH /oauth-clients/:id
-        results = None
         url = f"{self._oauth_clients_base_url}/{id}"
-        r = requests.patch(url, data=json.dumps(payload), headers=self._headers)
-
-        if r.status_code == 200:
-            results = json.loads(r.content)
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._update(url, payload)
 
     def destroy(self, id):
         # DELETE /oauth-clients/:id
         url = f"{self._oauth_clients_base_url}/{id}"
-        r = requests.delete(url, headers=self._headers)
-
-        if r.status_code == 204:
-            self._logger.info(f"OAuth client {id} destroyed.")
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
+        return self._destroy(url)

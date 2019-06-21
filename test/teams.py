@@ -77,15 +77,15 @@ class TestTFETeams(TestTFEBaseTestCase):
 
         access = self._api.team_access.add_team_access(team_access_create_payload)
         access_id = access["data"]["id"]
-        shown_access = self._api.team_access.show_team_access(access_id)
+        shown_access = self._api.team_access.show(access_id)
         self.assertEqual(shown_access["data"]["id"], access_id)
 
         self._api.team_access.remove_team_access(access_id)
-        shown_access = self._api.team_access.show_team_access(access_id)
+        shown_access = self._api.team_access.show(access_id)
         self.assertEqual(shown_access, None)
 
         # Delete the test workspace
-        self._api.workspaces.destroy_by_name(ws["data"]["attributes"]["name"])
+        self._api.workspaces.destroy(workspace_name=ws["data"]["attributes"]["name"])
 
         # Delete the test team
         self._api.teams.destroy(team_id)

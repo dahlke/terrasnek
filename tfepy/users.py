@@ -12,14 +12,5 @@ class TFEUsers(TFEEndpoint):
     
     def show(self, user_id):
         # GET /users/:user_id
-        results = None
         url = f"{self._users_base_url}/{user_id}"
-        r = requests.get(url, headers=self._headers)
-
-        if r.status_code == 200:
-            results = json.loads(r.content)
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._show(url)

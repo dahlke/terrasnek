@@ -17,7 +17,7 @@ class TestTFEVariables(TestTFEBaseTestCase):
 
     @classmethod
     def tearDownClass(self):
-        self._api.workspaces.destroy_by_name(self._ws["data"]["attributes"]["name"])
+        self._api.workspaces.destroy(workspace_name=self._ws["data"]["attributes"]["name"])
 
     def test_variables_lifecycle(self):
         ws_id = self._ws["data"]["id"]
