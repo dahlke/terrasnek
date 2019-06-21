@@ -10,6 +10,7 @@ class TestTFEBaseTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
+        # TODO: some validation on the inputs / env vars
         self._api = TFE(TFE_TOKEN)
         self._test_username = TEST_USERNAME
         self._test_email = TEST_EMAIL

@@ -1,4 +1,6 @@
 from .oauth_clients import TFEOAuthClients
+from .oauth_tokens import TFEOAuthTokens
+
 from .organizations import TFEOrganizations
 from .workspaces import TFEWorkspaces
 from .users import TFEUsers
@@ -39,6 +41,7 @@ class TFE():
         self.admin_users = None
 
         self.oauth_clients = None
+        self.oauth_tokens = None
 
     
     def set_organization(self, organization_name):
@@ -54,3 +57,4 @@ class TFE():
         self.admin_users = TFEAdminUsers(self._instance_url, self._current_organization, self._headers)
         
         self.oauth_clients = TFEOAuthClients(self._instance_url, self._current_organization, self._headers)
+        self.oauth_tokens = TFEOAuthTokens(self._instance_url, self._current_organization, self._headers)
