@@ -23,26 +23,7 @@ class TestTFEVariables(TestTFEBaseTestCase):
         ws_id = self._ws["data"]["id"]
         ws_name = self._ws["data"]["attributes"]["name"]
 
-        create_variable_payload = {
-            "data": {
-                "type": "vars",
-                "attributes": {
-                    "key": self._variable_test_key,
-                    "value": self._variable_test_value,
-                    "category": "terraform",
-                    "hcl": False,
-                    "sensitive": False
-                },
-                "relationships": {
-                    "workspace": {
-                        "data": {
-                            "id": ws_id, 
-                            "type": "workspaces"
-                        }
-                    }
-                }
-            }
-        }
+        create_variable_payload = self._get_create_variable_payload(self._variable_test_key, self._variable_test_value, ws_id)
 
         # Create the variable and assert the key/value pair is the same as defined
         variable = self._api.variables.create(create_variable_payload)["data"]

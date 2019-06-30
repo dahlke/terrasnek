@@ -27,7 +27,7 @@ class TFEEndpoint():
         r = requests.delete(url, headers=self._headers)
 
         if r.status_code == 204:
-            self._logger.info(f"OAuth client {id} destroyed.")
+            pass
         else:
             err = json.loads(r.content.decode("utf-8"))
             self._logger.error(err)

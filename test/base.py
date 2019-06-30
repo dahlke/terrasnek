@@ -1,10 +1,11 @@
 import unittest
 from ._constants import \
     TFE_URL, TFE_TOKEN, HEADERS, TEST_EMAIL, TEST_ORG_NAME, \
-        TEST_ORG_NAME_PAID, TEST_USERNAME, TEST_TEAM_NAME, \
-            GH_TOKEN, GH_SECRET
+    TEST_ORG_NAME_PAID, TEST_USERNAME, TEST_TEAM_NAME, \
+    GH_TOKEN, GH_SECRET
 
 from tfepy.api import TFE
+
 
 class TestTFEBaseTestCase(unittest.TestCase):
 
@@ -64,7 +65,7 @@ class TestTFEBaseTestCase(unittest.TestCase):
                     "http-url": "https://github.com",
                     "api-url": "https://api.github.com",
                     "secret": GH_SECRET,
-                    "oauth-token-string": GH_TOKEN 
+                    "oauth-token-string": GH_TOKEN
                 }
             }
         }
@@ -73,26 +74,73 @@ class TestTFEBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "configuration-versions",
                 "attributes": {
-                    "auto-queue-runs": True
+                    "auto-queue-runs": False
                 }
             }
         }
 
+        # TODO: make this an env var
+        self._config_version_upload_tarball_path = "./test/terrasnek_unittest_config_version.tar.gz"
+        
 
-        """
-        # NOTE: It's not possible to create a user with the API yet.
-
-        self._user_create_payload = {
+    @classmethod
+    def _get_create_ws_with_vcs_payload(self, oauth_token_id):
+        # TODO
+        return {
             "data": {
-                "type": "teams",
                 "attributes": {
-                    "name": "team-creation-test",
-                    "organization-access": {
-                        "manage-workspaces": True,
-                        "manage-policies": True,
-                        "manage-vcs-settings": True
+                    "name": "terrasnek_unittest",
+                    "terraform_version": "0.11.1",
+                    "working-directory": "",
+                    "vcs-repo": {
+                        "identifier": "dahlke/tfe-demo",
+                        "oauth-token-id": oauth_token_id,
+                        "branch": "",
+                        "working-directory": "terrasnek-unittest",
+                        "default-branch": True
+                    }
+                },
+                "type": "workspaces"
+            }
+        }
+
+    def _get_create_variable_payload(self, k, v, workspace_id):
+        return {
+            "data": {
+                "type": "vars",
+                "attributes": {
+                    "key": k,
+                    "value": v,
+                    "category": "terraform",
+                    "hcl": False,
+                    "sensitive": False
+                },
+                "relationships": {
+                    "workspace": {
+                        "data": {
+                            "id": workspace_id,
+                            "type": "workspaces"
+                        }
                     }
                 }
             }
         }
-        """
+
+    def _get_create_run_payload(self, workspace_id):
+        return {
+            "data": {
+                "attributes": {
+                    "is-destroy": False,
+                    "message": "test"
+                },
+                "type": "runs",
+                "relationships": {
+                    "workspace": {
+                        "data": {
+                            "type": "workspaces",
+                            "id": workspace_id
+                        }
+                    }
+                }
+            }
+        }

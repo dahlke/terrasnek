@@ -25,9 +25,21 @@ class TFEConfigVersions(TFEEndpoint):
         url = f"{self._ws_base_url}/{workspace_id}/configuration-versions"
         return self._create(url, payload)
 
-    """    
-    # As of now, this will remain unimplemented. 
+    def upload(self, path_to_tarball, id):
+        # PUT {derived_config_version_upload_url}
+        results = None
+        # TODO: Validate the path to tarball a bit
+        upload_url = self.show(id)["data"]["attributes"]["upload-url"]
 
-    def upload(self):
-        self._logger.error("Upload Configuration versions has not been implemented.")
-    """    
+        # TODO: Exception and error handling
+        r = None
+        with open(path_to_tarball, 'rb') as data:
+            r = requests.put(upload_url, data=data, headers=self._headers)
+        
+        if r.status_code == 200:
+            pass
+        else:
+            err = json.loads(r.content.decode("utf-8"))
+            self._logger.error(err)
+
+        return results
