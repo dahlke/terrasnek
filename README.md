@@ -8,7 +8,7 @@ _A Python Client for the Terraform Enterprise API._
 
 - [ ] Accounts
 - [ ] Applies
-- [ ] Configuration Versions
+- [X] Configuration Versions
 - [ ] Notification Configurations
 - [X] OAuth Clients
 - [X] OAuth Tokens
@@ -19,7 +19,7 @@ _A Python Client for the Terraform Enterprise API._
 - [ ] Policy Checks
 - [ ] Policy Sets
 - [ ] Registry Modules
-- [ ] Runs
+- [X] Runs
 - [ ] SSH Keys
 - [ ] State Versions
 - [X] Team Access
