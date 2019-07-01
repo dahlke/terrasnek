@@ -13,7 +13,7 @@ _A Python Client for the Terraform Enterprise API._
 - [X] OAuth Clients
 - [X] OAuth Tokens
 - [X] Organizations
-- [ ] Plan Exports
+- [X] Plan Exports
 - [X] Plans
 - [ ] Policies
 - [ ] Policy Checks
@@ -21,7 +21,7 @@ _A Python Client for the Terraform Enterprise API._
 - [ ] Registry Modules
 - [X] Runs
 - [ ] SSH Keys
-- [ ] State Versions
+- [X] State Versions
 - [ ] State Version Outputs
 - [X] Team Access
 - [X] Team Memberships

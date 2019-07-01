@@ -7,6 +7,8 @@ from .variables import TFEVariables
 from .config_versions import TFEConfigVersions
 from .runs import TFERuns
 from .plans import TFEPlans
+from .plan_exports import TFEPlanExports
+from .state_versions import TFEStateVersions
 from .applies import TFEApplies
 from .users import TFEUsers
 from .teams import TFETeams
@@ -42,6 +44,8 @@ class TFE():
         self.runs = None
         self.applies = None
         self.plans = None
+        self.plan_exports = None
+        self.state_versions = None
 
         self.teams = None
         self.team_memberships = None
@@ -62,8 +66,10 @@ class TFE():
         self.variables = TFEVariables(self._instance_url, self._current_organization, self._headers)
         self.config_versions = TFEConfigVersions(self._instance_url, self._current_organization, self._headers)
         self.runs = TFERuns(self._instance_url, self._current_organization, self._headers)
-        self.plans = TFEPlans(self._instance_url, self._current_organization, self._headers)
         self.applies = TFEApplies(self._instance_url, self._current_organization, self._headers)
+        self.plans = TFEPlans(self._instance_url, self._current_organization, self._headers)
+        self.plan_exports = TFEPlanExports(self._instance_url, self._current_organization, self._headers)
+        self.state_versions = TFEStateVersions(self._instance_url, self._current_organization, self._headers)
 
         self.teams = TFETeams(self._instance_url, self._current_organization, self._headers)
         self.team_memberships = TFETeamMemberships(self._instance_url, self._current_organization, self._headers)
