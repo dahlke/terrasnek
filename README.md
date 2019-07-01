@@ -7,14 +7,14 @@ _A Python Client for the Terraform Enterprise API._
 ### Endpoints
 
 - [ ] Accounts
-- [ ] Applies
+- [X] Applies
 - [X] Configuration Versions
 - [ ] Notification Configurations
 - [X] OAuth Clients
 - [X] OAuth Tokens
 - [X] Organizations
 - [ ] Plan Exports
-- [ ] Plans
+- [X] Plans
 - [ ] Policies
 - [ ] Policy Checks
 - [ ] Policy Sets
@@ -22,6 +22,7 @@ _A Python Client for the Terraform Enterprise API._
 - [X] Runs
 - [ ] SSH Keys
 - [ ] State Versions
+- [ ] State Version Outputs
 - [X] Team Access
 - [X] Team Memberships
 - [ ] Team Tokens

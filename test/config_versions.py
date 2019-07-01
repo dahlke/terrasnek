@@ -34,3 +34,5 @@ class TestTFEConfigVersions(TestTFEBaseTestCase):
         self._api.config_versions.upload(self._config_version_upload_tarball_path, cv_id)
         config_versions = self._api.config_versions.ls(self._ws_id)["data"]
         self.assertEqual(config_versions[0]["attributes"]["status"], "uploaded")
+    
+    # TODO: test force_cancel / force_execute once policy endpoints are implemented
