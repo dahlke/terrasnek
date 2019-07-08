@@ -2,7 +2,7 @@ import unittest
 import os
 from .base import TestTFEBaseTestCase
 
-from tfepy.api import TFE
+from terrasnek.api import TFE
 
 class TestTFEOrganizations(TestTFEBaseTestCase):
 
@@ -24,7 +24,7 @@ class TestTFEOrganizations(TestTFEBaseTestCase):
         self.assertEqual(new_org["data"]["id"], self._test_org_name)
 
     def test_orgs_update(self):
-        updated_email = "neil+pytfe-unittest@hashicorp.com"
+        updated_email = "neil+terrasnek-unittest@hashicorp.com"
         new_org = self._api.organizations.create(self._org_create_payload)
         self.assertEqual(new_org["data"]["attributes"]["email"], self._test_email)
 

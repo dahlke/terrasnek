@@ -2,7 +2,7 @@ import unittest
 import os
 from .base import TestTFEBaseTestCase
 
-from tfepy.api import TFE
+from terrasnek.api import TFE
 
 
 class TestTFEVariables(TestTFEBaseTestCase):

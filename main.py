@@ -1,4 +1,4 @@
-from tfepy.api import TFE
+from terrasnek.api import TFE
 import os
 
 TFE_TOKEN = os.getenv("TFE_TOKEN", None)

@@ -8,7 +8,7 @@ from ._constants import \
     TEST_ORG_NAME_PAID, TEST_USERNAME, TEST_TEAM_NAME, \
     GH_TOKEN, GH_SECRET
 
-from tfepy.api import TFE
+from terrasnek.api import TFE
 
 
 class TestTFEBaseTestCase(unittest.TestCase):
