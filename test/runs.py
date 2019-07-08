@@ -4,7 +4,7 @@ import os
 import time
 from .base import TestTFEBaseTestCase
 
-from tfepy.api import TFE
+from terrasnek.api import TFE
 
 class TestTFERuns(TestTFEBaseTestCase):
 

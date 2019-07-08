@@ -1,4 +1,4 @@
-# tfepy
+# terrasnek
 
 _A Python Client for the Terraform Enterprise API._
 
