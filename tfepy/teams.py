@@ -18,13 +18,7 @@ class TFETeams(TFEEndpoint):
     def destroy(self, team_id):
         # DELETE /teams/:team_id
         url = f"{self._teams_base_url}/{team_id}"
-        r = requests.delete(url, headers=self._headers)
-
-        if r.status_code == 204:
-            self._logger.info(f"Team {team_id} destroyed.")
-        else:
-            err = json.loads(r.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._destroy(url)
 
     def ls(self):
         # GET organizations/:organization_name/teams

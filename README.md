@@ -22,12 +22,12 @@ _A Python Client for the Terraform Enterprise API._
 - [X] Runs
 - [ ] SSH Keys
 - [X] State Versions
-- [ ] State Version Outputs
+- [X] State Version Outputs
 - [X] Team Access
 - [X] Team Memberships
-- [ ] Team Tokens
+- [X] Team Tokens
 - [X] Teams
-- [ ] User Tokens
+- [X] User Tokens
 - [X] Users (show endpoint doesn't work)
 - [X] Variables
 - [X] Workspaces (everything but SSH assign/unassign)
