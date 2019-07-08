@@ -33,13 +33,12 @@ class TestTFEStateVersions(TestTFEBaseTestCase):
     def tearDownClass(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
-        # TODO: ensire oauth_client destruction
+        # TODO: ensure oauth_client destruction
 
     def test_run_and_apply(self):
         state_versions = self._api.state_versions.ls(self._ws_name)["data"]
         self.assertEqual(len(state_versions), 0)
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
-        print("locking")
 
         create_state_version_payload = self._get_create_state_version_payload()
         self._api.state_versions.create(self._ws_id, create_state_version_payload)
@@ -56,3 +55,10 @@ class TestTFEStateVersions(TestTFEBaseTestCase):
 
         shown_state_version = self._api.state_versions.show(sv_id)["data"]
         self.assertEqual(sv_id, shown_state_version["id"])
+
+        state_version_outputs = shown_state_version["relationships"]["outputs"]["data"]
+        self.assertEqual(len(state_version_outputs), 3)
+
+        state_version_output_id = state_version_outputs[0]["id"]
+        shown_state_version_output = self._api.state_version_outputs.show(state_version_output_id)["data"]
+        self.assertEqual(state_version_output_id, shown_state_version_output["id"])
