@@ -86,6 +86,16 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
+        # TODO: standardize on functions
+        self._user_token_create_payload = {
+            "data": {
+                "type": "authentication-tokens",
+                "attributes": {
+                    "description": "api"
+                }
+            }
+        }
+
         # TODO: make these env vars?
         self._test_state_path = "./test/testdata/terrasnek_unittest.tfstate"
         self._config_version_upload_tarball_path = "./test/testdata/terrasnek_unittest_config_version.tar.gz"

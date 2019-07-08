@@ -12,9 +12,11 @@ from .state_versions import TFEStateVersions
 from .state_version_outputs import TFEStateVersionOutputs
 from .applies import TFEApplies
 from .users import TFEUsers
+from .user_tokens import TFEUserTokens
 from .teams import TFETeams
 from .team_memberships import TFETeamMemberships
 from .team_access import TFETeamAccess
+from .team_tokens import TFETeamTokens
 
 from .admin_users import TFEAdminUsers
 from .admin_organizations import TFEAdminOrganizations
@@ -40,6 +42,7 @@ class TFE():
         self.organizations = TFEOrganizations(self._instance_url, self._headers)
         self.workspaces = None
         self.users = None
+        self.user_tokens = None
         self.variables = None
         self.config_versions = None
         self.runs = None
@@ -52,6 +55,7 @@ class TFE():
         self.teams = None
         self.team_memberships = None
         self.team_access = None
+        self.team_tokens = None
 
         self.admin_organizations = TFEAdminOrganizations(self._instance_url, self._headers)
         self.admin_users = None
@@ -65,6 +69,7 @@ class TFE():
 
         self.workspaces = TFEWorkspaces(self._instance_url, self._current_organization, self._headers)
         self.users = TFEUsers(self._instance_url, self._current_organization, self._headers)
+        self.user_tokens = TFEUserTokens(self._instance_url, self._current_organization, self._headers)
         self.variables = TFEVariables(self._instance_url, self._current_organization, self._headers)
         self.config_versions = TFEConfigVersions(self._instance_url, self._current_organization, self._headers)
         self.runs = TFERuns(self._instance_url, self._current_organization, self._headers)
@@ -77,6 +82,7 @@ class TFE():
         self.teams = TFETeams(self._instance_url, self._current_organization, self._headers)
         self.team_memberships = TFETeamMemberships(self._instance_url, self._current_organization, self._headers)
         self.team_access = TFETeamAccess(self._instance_url, self._current_organization, self._headers)
+        self.team_tokens = TFETeamTokens(self._instance_url, self._current_organization, self._headers)
 
         self.admin_users = TFEAdminUsers(self._instance_url, self._current_organization, self._headers)
         
