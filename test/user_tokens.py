@@ -8,7 +8,7 @@ class TestTFEUserTokens(TestTFEBaseTestCase):
 
 
     def test_user_token_lifecycle(self):
-        users = self._api.admin_users.ls(query=self._test_username)["data"]
+        users = self._api.admin_users.lst(query=self._test_username)["data"]
         self.assertNotEqual(len(users), 0)
         user_id = users[0]['id']
         # TODO: fix this once the User API is patched.
@@ -20,11 +20,11 @@ class TestTFEUserTokens(TestTFEBaseTestCase):
         # shown_token = self._api.user_tokens.show(created_token_id)
         # print("shown", shown_token)
 
-        # listed_tokens = self._api.user_tokens.ls(user_id)
+        # listed_tokens = self._api.user_tokens.lst(user_id)
         # print("listed", listed_tokens)
 
         # self._api.user_tokens.destroy(created_token_id)
         # print("destroyed")
 
-        # listed_tokens = self._api.user_tokens.ls(user_id)
+        # listed_tokens = self._api.user_tokens.lst(user_id)
         # print("listed", listed_tokens)

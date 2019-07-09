@@ -146,6 +146,3 @@ class TestTFERuns(TestTFEBaseTestCase):
 
         cancelled_run = self._api.runs.show(run_id)["data"]
         self.assertNotEqual(cancelled_run["attributes"]["canceled-at"], None)
-
-    def test_run_with_created_state_version(self):
-        pass

@@ -7,7 +7,7 @@ from terrasnek.api import TFE
 class TestTFEUsers(TestTFEBaseTestCase):
 
     def test_destroy_users(self):
-        # No test since a new user can't be created with the API. 
+        # No test since a new user can't be created with the API.
         pass
 
     def test_disable_two_factor_users(self):
@@ -15,7 +15,7 @@ class TestTFEUsers(TestTFEBaseTestCase):
         pass
 
     def test_list_show_users(self):
-        users = self._api.admin_users.ls(query=self._test_username)["data"]
+        users = self._api.admin_users.lst(query=self._test_username)["data"]
         self.assertNotEqual(len(users), 0)
 
         # NOTE: The endpoint for the normal Users API does not work.
@@ -23,7 +23,7 @@ class TestTFEUsers(TestTFEBaseTestCase):
         # user = self._api.users.show(user_id)
 
     def test_suspend_unsuspend_user(self):
-        test_user_id = self._api.admin_users.ls(query=self._test_username)["data"][0]["id"]
+        test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
 
         suspended_user = self._api.admin_users.suspend(test_user_id)["data"]
         self.assertTrue(suspended_user["attributes"]["is-suspended"])
@@ -36,7 +36,7 @@ class TestTFEUsers(TestTFEBaseTestCase):
         pass
 
     def test_grant_revoke_admin_user(self):
-        test_user_id = self._api.admin_users.ls(query=self._test_username)["data"][0]["id"]
+        test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
 
         granted_admin_user = self._api.admin_users.grant_admin(test_user_id)["data"]
         self.assertTrue(granted_admin_user["attributes"]["is-admin"])

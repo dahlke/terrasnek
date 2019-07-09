@@ -1,32 +1,42 @@
-import requests
+"""
+Module for Terraform Enterprise API Endpoint: Workspaces.
+"""
+
 import json
+import requests
 
 from .endpoint import TFEEndpoint
 
 class TFEWorkspaces(TFEEndpoint):
-    
+    """
+    Workspaces represent running infrastructure managed by Terraform.
+
+    https://www.terraform.io/docs/enterprise/api/workspaces.html
+    """
+
     def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, headers)
-        self._organization_name = organization_name
+        super().__init__(base_url, organization_name, headers)
         self._ws_base_url = f"{base_url}/workspaces"
         self._org_base_url = f"{base_url}/organizations/{organization_name}/workspaces"
-    
-    def assign_ssh_key(self, workspace_id):
-        # PATCH /workspaces/:workspace_id/relationships/ssh-key
-        url = f"{self._ws_base_url}/{workspace_id}/relationships/ssh-key"
-        # TODO: requires SSH key endpoint
-        self._logger.error("Assign SSH Key is not yet implemented.")
+        # TODO: Assign and Unassign SSH key, requires SSH key endpoint
 
     def create(self, payload):
-        # POST /organizations/:organization_name/workspaces
+        """
+        POST /organizations/:organization_name/workspaces
+        """
         return self._create(self._org_base_url, payload)
 
     def destroy(self, workspace_id=None, workspace_name=None):
+        """
+        GET /organizations/:organization_name/workspaces/:name
+        DELETE /workspaces/:workspace_id
+
+        A workspace can be deleted via two endpoints, which behave identically. One refers to a
+        workspace by its ID, and the other by its name and organization.
+        """
         if workspace_name is not None:
-            # GET /organizations/:organization_name/workspaces/:name
             url = f"{self._org_base_url}/{workspace_name}"
         elif workspace_id is not None:
-            # DELETE /workspaces/:workspace_id
             url = f"{self._ws_base_url}/{workspace_id}"
         else:
             self._logger.error("Arguments workspace_name or workspace_id must be defined")
@@ -34,70 +44,91 @@ class TFEWorkspaces(TFEEndpoint):
         return self._destroy(url)
 
     def force_unlock(self, workspace_id):
-        # POST /workspaces/:workspace_id/actions/force-unlock
+        """
+        POST /workspaces/:workspace_id/actions/force-unlock
+
+        This endpoint force unlocks a workspace. Only users with admin access are authorized to
+        force unlock a workspace.
+        """
         results = None
         url = f"{self._ws_base_url}/{workspace_id}/actions/force-unlock"
-        r = requests.post(url, headers=self._headers)
+        req = requests.post(url, headers=self._headers)
 
-        if r.status_code == 200:
-            results = json.loads(r.content)
+        if req.status_code == 200:
+            results = json.loads(req.content)
         else:
-            err = json.loads(r.content.decode("utf-8"))
+            err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
         return results
 
     def lock(self, workspace_id, payload):
-        # POST /workspaces/:workspace_id/actions/lock
+        """
+        POST /workspaces/:workspace_id/actions/lock
+
+        This endpoint locks a workspace.
+        """
         results = None
         url = f"{self._ws_base_url}/{workspace_id}/actions/lock"
-        r = requests.post(url, json.dumps(payload), headers=self._headers)
+        req = requests.post(url, json.dumps(payload), headers=self._headers)
 
-        if r.status_code == 200:
-            results = json.loads(r.content)
+        if req.status_code == 200:
+            results = json.loads(req.content)
         else:
-            err = json.loads(r.content.decode("utf-8"))
+            err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
         return results
 
-    def ls(self):
-        # GET /organizations/:organization_name/workspaces
+    def lst(self):
+        """
+        GET /organizations/:organization_name/workspaces
+
+        This endpoint lists workspaces in the organization.
+        """
         return self._ls(self._org_base_url)
 
     def show(self, workspace_name=None, workspace_id=None):
+        """
+        GET /organizations/:organization_name/workspaces/:name
+        GET /workspaces/:workspace_id
+
+        Details on a workspace can be retrieved from two endpoints, which behave identically.
+        One refers to a workspace by its ID, and the other by its name and organization.
+        """
         if workspace_name is not None:
-            # GET /organizations/:organization_name/workspaces/:name
             url = f"{self._org_base_url}/{workspace_name}"
         elif workspace_id is not None:
-            # GET /workspaces/:workspace_id
             url = f"{self._ws_base_url}/{workspace_id}"
         else:
             self._logger.error("Arguments workspace_name or workspace_id must be defined")
 
         return self._show(url)
 
-    def unassign_ssh_key(self, workspace_id):
-        # PATCH /workspaces/:workspace_id/relationships/ssh-key
-        url = f"{self._ws_base_url}/{workspace_id}/relationships/ssh-key"
-        # TODO: requires SSH key endpoint
-        self._logger.error("Unassign SSH Key is not yet implemented.")
-
     def unlock(self, workspace_id):
-        # POST /workspaces/:workspace_id/actions/unlock
+        """
+        POST /workspaces/:workspace_id/actions/unlock
+
+        This endpoint unlocks a workspace.
+        """
         results = None
         url = f"{self._ws_base_url}/{workspace_id}/actions/unlock"
-        r = requests.post(url, headers=self._headers)
+        req = requests.post(url, headers=self._headers)
 
-        if r.status_code == 200:
-            results = json.loads(r.content)
+        if req.status_code == 200:
+            results = json.loads(req.content)
         else:
-            err = json.loads(r.content.decode("utf-8"))
+            err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
         return results
 
     def update(self, workspace_id, payload):
-        # PATCH /workspaces/:workspace_id
+        """
+        PATCH /workspaces/:workspace_id
+
+        A workspace can be updated via two endpoints, which behave identically. One refers to a
+        workspace by its ID, and the other by its name and organization.
+        """
         url = f"{self._ws_base_url}/{workspace_id}"
         return self._update(url, payload)

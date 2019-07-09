@@ -2,41 +2,20 @@
 
 _A Python Client for the Terraform Enterprise API._
 
-[Project Asana Board](https://app.asana.com/0/1128022822619695/1128022822619711)
+### Usage Example:
 
-### Endpoints
+For more details on using each endpoint, checkout the [`test`](./test) directory.
 
-- [ ] Accounts
-- [X] Applies
-- [X] Configuration Versions
-- [ ] Notification Configurations
-- [X] OAuth Clients
-- [X] OAuth Tokens
-- [X] Organizations
-- [X] Plan Exports
-- [X] Plans
-- [ ] Policies
-- [ ] Policy Checks
-- [ ] Policy Sets
-- [ ] Registry Modules
-- [X] Runs
-- [ ] SSH Keys
-- [X] State Versions
-- [X] State Version Outputs
-- [X] Team Access
-- [X] Team Memberships
-- [X] Team Tokens
-- [X] Teams
-- [X] User Tokens
-- [X] Users (show endpoint doesn't work)
-- [X] Variables
-- [X] Workspaces (everything but SSH assign/unassign)
+```
+from terrasnek.api import TFE
+import os
 
-### Admin Endpoints
+TFE_TOKEN = os.getenv("TFE_TOKEN", None)
 
-- [X] Admin Users
-- [X] Admin Organizations
-- [ ] Admin Settings
-- [ ] Admin Runs
-- [ ] Admin Workspaces
-- [ ] Admin Terraform Versions
+if __name__ == "__main__":
+    api = TFE(TFE_TOKEN)
+    api.set_organization("YOUR_ORGANIZATION")
+```
+
+
+_[Project Asana Board](https://app.asana.com/0/1128022822619695/1128022822619711)_
