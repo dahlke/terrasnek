@@ -36,7 +36,7 @@ class TestTFEStateVersions(TestTFEBaseTestCase):
         # TODO: ensure oauth_client destruction
 
     def test_run_and_apply(self):
-        state_versions = self._api.state_versions.ls(self._ws_name)["data"]
+        state_versions = self._api.state_versions.lst(self._ws_name)["data"]
         self.assertEqual(len(state_versions), 0)
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
 
@@ -44,7 +44,7 @@ class TestTFEStateVersions(TestTFEBaseTestCase):
         self._api.state_versions.create(self._ws_id, create_state_version_payload)
         self._api.workspaces.unlock(self._ws_id)
 
-        state_versions = self._api.state_versions.ls(self._ws_name)["data"]
+        state_versions = self._api.state_versions.lst(self._ws_name)["data"]
         self.assertNotEqual(len(state_versions), 0)
 
         state_version = state_versions[0]

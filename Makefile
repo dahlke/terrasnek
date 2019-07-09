@@ -4,10 +4,6 @@ CWD := $(shell pwd)
 ##########################
 # DEV HELPERS
 ##########################
-.PHONY: todo
-todo:
-	@ag "TODO" --ignore Makefile
-
 .PHONY: note
 note:
 	@ag "NOTE" --ignore Makefile
@@ -15,3 +11,7 @@ note:
 .PHONY: test
 test:
 	python3 -m unittest test/*.py
+
+.PHONY: lint
+lint:
+	pylint terrasnek

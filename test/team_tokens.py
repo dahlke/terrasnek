@@ -21,5 +21,5 @@ class TestTFETeamTokens(TestTFEBaseTestCase):
         created_token = self._api.team_tokens.create(self._team_id)["data"]
         self.assertIsNotNone(created_token["id"])
 
-        # Then destroy it. There is no lookup so there's nothing to test here. 
+        # Then destroy it. There is no lookup so there's nothing to test here.
         self._api.team_tokens.destroy(self._team_id)

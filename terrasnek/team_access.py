@@ -1,44 +1,62 @@
-import requests
+"""
+Module for Terraform Enterprise API Endpoint: Team Access.
+"""
+
 import json
+import requests
 
 from .endpoint import TFEEndpoint
 
 class TFETeamAccess(TFEEndpoint):
-    
+    """
+    The team access APIs are used to associate a team to permissions on a workspace.
+    A single team-workspace resource contains the relationship between the Team and Workspace,
+    including the privileges the team has on the workspace.
+
+    https://www.terraform.io/docs/enterprise/api/team-access.html
+    """
+
     def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, headers)
-        self._organization_name = organization_name
+        super().__init__(base_url, organization_name, headers)
         self._base_url = f"{base_url}/team-workspaces"
 
     def add_team_access(self, payload):
-        # POST /team-workspaces
+        """
+        POST /team-workspaces
+        """
         results = None
-        r = requests.post(self._base_url, json.dumps(payload), headers=self._headers)
+        req = requests.post(self._base_url, json.dumps(payload), headers=self._headers)
 
-        if r.status_code == 201:
-            results = json.loads(r.content)
+        if req.status_code == 201:
+            results = json.loads(req.content)
         else:
-            err = json.loads(r.content.decode("utf-8"))
+            err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
         return results
 
-    def ls(self):
-        # GET /team-workspaces
+    def lst(self):
+        """
+        GET /team-workspaces
+        """
         return self._ls(self._base_url)
 
     def remove_team_access(self, access_id):
-        # DELETE /team-workspaces/:id
+        """
+        DELETE /team-workspaces/:id
+        """
         url = f"{self._base_url}/{access_id}"
-        r = requests.delete(url, headers=self._headers)
+        req = requests.delete(url, headers=self._headers)
 
-        if r.status_code == 204:
-            self._logger.info(f"Workspace access {access_id} removed.")
+        if req.status_code == 204:
+            self._logger.info("Team access removed.")
         else:
-            err = json.loads(r.content.decode("utf-8"))
+            err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
     def show(self, access_id):
-        # GET /team-workspaces/:id
+        """
+        GET /team-workspaces/:id
+        """
         url = f"{self._base_url}/{access_id}"
         return self._show(url)

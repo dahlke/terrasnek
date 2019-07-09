@@ -8,7 +8,7 @@ class TestTFEOrganizations(TestTFEBaseTestCase):
 
     def test_orgs_ls(self):
         self._api.organizations.create(self._org_create_payload)
-        orgs = self._api.organizations.ls()["data"]
+        orgs = self._api.organizations.lst()["data"]
         self.assertNotEqual(len(orgs), 0, msg="No organizations found for TFE token.")
         self._api.organizations.destroy(self._test_org_name)
 
@@ -17,7 +17,7 @@ class TestTFEOrganizations(TestTFEBaseTestCase):
         org = self._api.organizations.show(self._test_org_name)
         self.assertEqual(org["data"]["id"], self._test_org_name)
         self._api.organizations.destroy(self._test_org_name)
-    
+
     def test_orgs_create(self):
         new_org = self._api.organizations.create(self._org_create_payload)
         self._api.organizations.destroy(self._test_org_name)
@@ -60,7 +60,7 @@ class TestTFEOrganizations(TestTFEBaseTestCase):
         # Need to use the non-admin to create for some reason
         self._api.organizations.create(self._org_create_payload)
 
-        orgs = self._api.admin_organizations.ls()["data"]
+        orgs = self._api.admin_organizations.lst()["data"]
         self.assertNotEqual(len(orgs), 0, msg="No organizations found for TFE token.")
 
         org = self._api.admin_organizations.show(self._test_org_name)

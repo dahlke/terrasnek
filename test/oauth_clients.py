@@ -10,7 +10,7 @@ class TestTFEOAuthClients(TestTFEBaseTestCase):
     def test_oauth_clients_lifecycle(self):
         # Create a test OAuth client
         oauth_client = self._api.oauth_clients.create(self._oauth_client_create_payload)
-        oauth_clients = self._api.oauth_clients.ls()["data"]
+        oauth_clients = self._api.oauth_clients.lst()["data"]
         self.assertEqual(len(oauth_clients), 1)
 
         # Confirm we can show that OAuth client with it's ID
@@ -20,5 +20,5 @@ class TestTFEOAuthClients(TestTFEBaseTestCase):
 
         # Destroy the test OAuth client
         self._api.oauth_clients.destroy(oauth_client_id)
-        oauth_clients = self._api.oauth_clients.ls()["data"]
+        oauth_clients = self._api.oauth_clients.lst()["data"]
         self.assertEqual(len(oauth_clients), 0)

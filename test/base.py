@@ -100,7 +100,7 @@ class TestTFEBaseTestCase(unittest.TestCase):
         self._test_state_path = "./test/testdata/terrasnek_unittest.tfstate"
         self._config_version_upload_tarball_path = "./test/testdata/terrasnek_unittest_config_version.tar.gz"
         self._plan_export_tarball_target_path = "/tmp/terrasnek_unittest.tar.gz"
-        
+
 
     @classmethod
     def _get_create_ws_with_vcs_payload(self, oauth_token_id):

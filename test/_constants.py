@@ -1,3 +1,7 @@
+"""
+Constants for default values in the TFE API implementation testing.
+"""
+
 import os
 import sys
 

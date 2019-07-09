@@ -1,31 +1,49 @@
-import requests
-import json
+"""
+Module for Terraform Enterprise API Endpoint: OAuth Tokens.
+"""
 
 from .endpoint import TFEEndpoint
 
 class TFEOAuthTokens(TFEEndpoint):
-    
+    """
+    The oauth-token object represents a VCS configuration which includes the OAuth
+    connection and the associated OAuth token. This object is used when creating a
+    workspace to identify which VCS connection to use.
+
+    https://www.terraform.io/docs/enterprise/api/oauth-tokens.html
+    """
+
     def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, headers)
+        super().__init__(base_url, organization_name, headers)
         self._oauth_clients_base_url = f"{base_url}/oauth-clients"
         self._oauth_tokens_base_url = f"{base_url}/oauth-tokens"
-    
-    def ls(self, oauth_client_id):
-        # GET /oauth-clients/:oauth_client_id/oauth-tokens
+
+    def lst(self, oauth_client_id):
+        """
+        GET /oauth-clients/:oauth_client_id/oauth-tokens
+
+        List all the OAuth Tokens for a given OAuth Client
+        """
         url = f"{self._oauth_clients_base_url}/{oauth_client_id}/oauth-tokens"
         return self._ls(url)
 
-    def show(self, id):
-        # GET /oauth-tokens/:id
-        url = f"{self._oauth_tokens_base_url}/{id}"
+    def show(self, token_id):
+        """
+        GET /oauth-tokens/:token_id
+        """
+        url = f"{self._oauth_tokens_base_url}/{token_id}"
         return self._show(url)
-    
-    def update(self, id, payload):
-        # PATCH /oauth-tokens/:id
-        url = f"{self._oauth_tokens_base_url}/{id}"
+
+    def update(self, token_id, payload):
+        """
+        PATCH /oauth-tokens/:token_id
+        """
+        url = f"{self._oauth_tokens_base_url}/{token_id}"
         return self._update(url, payload)
 
-    def destroy(self, id):
-        # DELETE /oauth-tokens/:id
-        url = f"{self._oauth_tokens_base_url}/{id}"
+    def destroy(self, token_id):
+        """
+        DELETE /oauth-tokens/:token_id
+        """
+        url = f"{self._oauth_tokens_base_url}/{token_id}"
         return self._destroy(url)
