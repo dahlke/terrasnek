@@ -1,12 +1,14 @@
-import unittest
 import logging
 import hashlib
 import base64
+import unittest
+import os
+import binascii
 
 from ._constants import \
-    TFE_URL, TFE_TOKEN, HEADERS, TEST_EMAIL, TEST_ORG_NAME, \
+    TFE_HOSTNAME, TFE_TOKEN, HEADERS, TEST_EMAIL, TEST_ORG_NAME, \
     TEST_ORG_NAME_PAID, TEST_USERNAME, TEST_TEAM_NAME, \
-    GH_TOKEN, GH_SECRET
+    GITHUB_TOKEN, GITHUB_SECRET
 
 from terrasnek.api import TFE
 
@@ -28,9 +30,19 @@ class TestTFEBaseTestCase(unittest.TestCase):
         self._test_org_name = TEST_ORG_NAME
         self._test_org_name_paid = TEST_ORG_NAME_PAID
 
+        # TODO: make these env vars?
+        self._test_state_path = "./test/testdata/terraform/terrasnek_unittest.tfstate"
+        self._config_version_upload_tarball_path = "./test/testdata/terraform/terrasnek_unittest_config_version.tar.gz"
+        self._plan_export_tarball_target_path = "/tmp/terrasnek_unittest.tar.gz"
+
         self._api.set_organization(self._test_org_name_paid)
 
-        self._org_create_payload = {
+    def _name_with_random(self, name):
+        random_hex = binascii.b2a_hex(os.urandom(8)).decode("ascii")
+        return f"terrasnek-unittest-test-{name}-{random_hex}"
+
+    def _get_org_create_payload(self):
+        return {
             "data": {
                 "type": "organizations",
                 "attributes": {
@@ -40,7 +52,8 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
-        self._team_create_payload = {
+    def _get_team_create_payload(self):
+        return {
             "data": {
                 "type": "organizations",
                 "attributes": {
@@ -54,30 +67,25 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
-        self._ws_create_without_vcs_payload = {
-            "data": {
-                "type": "workspaces",
-                "attributes": {
-                    "name": "unittest"
-                }
-            }
-        }
+    def _get_oauth_client_create_payload(self, name):
+        name = self._name_with_random(name)
 
-        self._oauth_client_create_payload = {
+        return {
             "data": {
                 "type": "oauth-clients",
                 "attributes": {
-                    "name": "python_unittest_test",
+                    "name": name,
                     "service-provider": "github",
                     "http-url": "https://github.com",
                     "api-url": "https://api.github.com",
-                    "secret": GH_SECRET,
-                    "oauth-token-string": GH_TOKEN
+                    "secret": GITHUB_SECRET,
+                    "oauth-token-string": GITHUB_TOKEN
                 }
             }
         }
 
-        self._config_version_create_payload = {
+    def _get_config_version_create_payload(self):
+        return {
             "data": {
                 "type": "configuration-versions",
                 "attributes": {
@@ -86,8 +94,8 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
-        # TODO: standardize on functions
-        self._user_token_create_payload = {
+    def _get_user_token_create_payload(self):
+        return {
             "data": {
                 "type": "authentication-tokens",
                 "attributes": {
@@ -96,56 +104,38 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
-        # TODO: make these env vars?
-        self._test_state_path = "./test/testdata/terrasnek_unittest.tfstate"
-        self._config_version_upload_tarball_path = "./test/testdata/terrasnek_unittest_config_version.tar.gz"
-        self._plan_export_tarball_target_path = "/tmp/terrasnek_unittest.tar.gz"
+    def _get_ws_with_vcs_create_payload(self, name, oauth_token_id):
+        name = self._name_with_random(name)
 
-
-    @classmethod
-    def _get_create_ws_with_vcs_payload(self, oauth_token_id):
-        # TODO
         return {
             "data": {
                 "attributes": {
-                    "name": "terrasnek_unittest",
+                    "name": name,
                     "terraform_version": "0.11.1",
-                    "working-directory": "",
+                    "working-directory": "test/testdata/terraform/src",
                     "vcs-repo": {
-                        "identifier": "dahlke/tfe-demo",
+                        "identifier": "dahlke/terrasnek",
                         "oauth-token-id": oauth_token_id,
-                        "branch": "",
-                        "working-directory": "terrasnek-unittest",
-                        "default-branch": True
+                        "branch": "test-fix-and-optimize"
                     }
                 },
                 "type": "workspaces"
             }
         }
 
-    def _get_create_variable_payload(self, k, v, workspace_id):
+    def _get_ws_without_vcs_create_payload(self, name):
+        name = self._name_with_random(name)
+
         return {
             "data": {
-                "type": "vars",
+                "type": "workspaces",
                 "attributes": {
-                    "key": k,
-                    "value": v,
-                    "category": "terraform",
-                    "hcl": False,
-                    "sensitive": False
-                },
-                "relationships": {
-                    "workspace": {
-                        "data": {
-                            "id": workspace_id,
-                            "type": "workspaces"
-                        }
-                    }
+                    "name": name
                 }
             }
         }
 
-    def _get_create_run_payload(self, workspace_id):
+    def _get_run_create_payload(self, workspace_id):
         return {
             "data": {
                 "attributes": {
@@ -164,7 +154,29 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_create_plan_export_payload(self, plan_id):
+    def _get_variable_create_payload(self, key, value, workspace_id):
+        return {
+            "data": {
+                "type": "vars",
+                "attributes": {
+                    "key": key,
+                    "value": value,
+                    "category": "terraform",
+                    "hcl": False,
+                    "sensitive": False
+                },
+                "relationships": {
+                    "workspace": {
+                        "data": {
+                            "id": workspace_id,
+                            "type": "workspaces"
+                        }
+                    }
+                }
+            }
+        }
+
+    def _get_plan_export_create_payload(self, plan_id):
         return {
             "data": {
                 "type": "plan-exports",
@@ -182,10 +194,9 @@ class TestTFEBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_create_state_version_payload(self):
+    def _get_state_version_create_payload(self):
         # Go Example: https://github.com/hashicorp/go-tfe/blob/4ca75c88c51753c622df5bf4446e69eff6c885d6/state_version_test.go#L105
         raw_state_bytes = None
-
 
         with open(self._test_state_path, "rb") as f:
             raw_state_bytes = f.read()

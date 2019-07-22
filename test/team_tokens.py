@@ -1,19 +1,12 @@
-import unittest
-import os
 from .base import TestTFEBaseTestCase
-
-from terrasnek.api import TFE
 
 class TestTFETeamTokens(TestTFEBaseTestCase):
 
-    @classmethod
-    def setUpClass(self):
-        super(TestTFETeamTokens, self).setUpClass()
-        self._team = self._api.teams.create(self._team_create_payload)["data"]
+    def setUp(self):
+        self._team = self._api.teams.create(self._get_team_create_payload())["data"]
         self._team_id = self._team["id"]
 
-    @classmethod
-    def tearDownClass(self):
+    def tearDown(self):
         self._api.teams.destroy(self._team_id)
 
     def test_team_token_lifecycle(self):
