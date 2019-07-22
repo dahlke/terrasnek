@@ -35,19 +35,20 @@ class TFEEndpoint():
 
     def _destroy(self, url):
         """
-        Implementation the common destroy resource pattern for the TFE API.
+        Implementation of the common destroy resource pattern for the TFE API.
         """
         req = requests.delete(url, headers=self._headers)
 
-        if req.status_code == 204:
-            self._logger.destroy(f"Terraform Enterprise with URL [{url}] destroyed.")
+        valid_status_codes = [200, 204]
+        if req.status_code in valid_status_codes:
+            self._logger.debug(f"Terraform Enterprise resource at URL [{url}] destroyed.")
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
     def _ls(self, url):
         """
-        Implementation the common list resources pattern for the TFE API.
+        Implementation of the common list resources pattern for the TFE API.
         """
         results = None
         req = requests.get(url, headers=self._headers)
@@ -63,7 +64,7 @@ class TFEEndpoint():
 
     def _show(self, url):
         """
-        Implementation the common show resource pattern for the TFE API.
+        Implementation of the common show resource pattern for the TFE API.
         """
         results = None
         req = requests.get(url, headers=self._headers)
@@ -78,7 +79,7 @@ class TFEEndpoint():
 
     def _update(self, url, payload):
         """
-        Implementation the common update resource pattern for the TFE API.
+        Implementation of the common update resource pattern for the TFE API.
         """
         req = requests.patch(url, data=json.dumps(payload), headers=self._headers)
 

@@ -18,4 +18,23 @@ if __name__ == "__main__":
 ```
 
 
+## Contributing
+
+### Building Test Data
+
+```
+cd test/testdata/terraform/
+
+tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
+```
+
+### Running Tests
+
+```
+source test/secrets/secrets.sh
+tar -zcvf terrasnek_unittest_config_version.tar.gz .
+```
+
+
+
 _[Project Asana Board](https://app.asana.com/0/1128022822619695/1128022822619711)_

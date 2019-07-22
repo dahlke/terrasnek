@@ -9,42 +9,40 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
 
     def test_workspaces_create(self):
         # TODO: How to manage VCS OAuth and create w/ VCS payload?
-        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
+        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
         workspaces = self._api.workspaces.lst()["data"]
         self.assertEqual(len(workspaces), 1)
 
-        self._api.workspaces.destroy(workspace_name=ws["data"]["attributes"]["name"])
+        self._api.workspaces.destroy(workspace_name=workspace["data"]["attributes"]["name"])
         workspaces = self._api.workspaces.lst()["data"]
         self.assertEqual(len(workspaces), 0)
 
     def test_destroy(self):
         # Create a workspace
-        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 1)
+        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
 
         # Destroy it with it's name
-        ws_name = ws["data"]["attributes"]["name"]
+        ws_name = workspace["data"]["attributes"]["name"]
         self._api.workspaces.destroy(workspace_name=ws_name)
         workspaces = self._api.workspaces.lst()["data"]
         self.assertEqual(len(workspaces), 0)
 
         # Create another workspace
-        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
+        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
         workspaces = self._api.workspaces.lst()["data"]
         self.assertEqual(len(workspaces), 1)
 
         # Destroy it with it's ID
-        ws_id = ws["data"]["id"]
+        ws_id = workspace["data"]["id"]
+        num_workspaces_before = len(self._api.workspaces.lst()["data"])
         self._api.workspaces.destroy(workspace_id=ws_id)
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 0)
+        num_workspaces_after = len(self._api.workspaces.lst()["data"])
+        self.assertNotEqual(num_workspaces_before, num_workspaces_after)
 
     def test_workspaces_lock_unlock(self):
         # Create a workspace and make sure it's not locked
-        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
-        ws_id = ws["data"]["id"]
-        self.assertFalse(ws["data"]["attributes"]["locked"])
+        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
+        ws_id = workspace["data"]["id"]
 
         # Lock the workspace and confirm it's locked
         ws_locked = self._api.workspaces.lock(ws_id, {"reason": "Unit testing."})
@@ -56,7 +54,7 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
 
         # Relock the workspace and confirm it's locked
         ws_relocked = self._api.workspaces.lock(ws_id, {"reason": "Unit testing."})
-        self.assertTrue(ws_locked["data"]["attributes"]["locked"])
+        self.assertTrue(ws_relocked["data"]["attributes"]["locked"])
 
         # Force an unlock and confirm its unlocked
         ws_forced = self._api.workspaces.force_unlock(ws_id)
@@ -64,38 +62,30 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
 
         # Clean up the workspace
         self._api.workspaces.destroy(workspace_id=ws_id)
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 0)
 
     def test_workspaces_show(self):
         # Create a workspace
-        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 1)
+        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
 
         # Get that workspace's ID, retrieve it's data and compare IDs
-        ws_id = ws["data"]["id"]
+        ws_id = workspace["data"]["id"]
         ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)
         self.assertEqual(ws_id, ws_shown_by_id["data"]["id"])
 
         # Get that workspace's name, retrieve it's data and compare names
-        ws_name = ws["data"]["attributes"]["name"]
+        ws_name = workspace["data"]["attributes"]["name"]
         ws_shown_by_name = self._api.workspaces.show(workspace_name=ws_name)
         self.assertEqual(ws_name, ws_shown_by_name["data"]["attributes"]["name"])
 
         # Clean up the workspace
         self._api.workspaces.destroy(workspace_id=ws_id)
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 0)
 
     def test_workspaces_update(self):
         # Create a workspace
-        ws = self._api.workspaces.create(self._ws_create_without_vcs_payload)
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 1)
+        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
 
         # Get that workspace's ID, and update it's name
-        ws_id = ws["data"]["id"]
+        ws_id = workspace["data"]["id"]
         updated_name = "unittest-update"
         update_payload = {
             "data": {
@@ -110,5 +100,3 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
 
         # Clean up the workspace
         self._api.workspaces.destroy(workspace_id=ws_id)
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 0)

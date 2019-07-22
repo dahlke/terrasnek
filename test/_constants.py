@@ -5,11 +5,11 @@ Constants for default values in the TFE API implementation testing.
 import os
 import sys
 
-TFE_URL = os.getenv("TFE_URL", None)
+TFE_HOSTNAME = os.getenv("TFE_HOSTNAME", None)
 TFE_TOKEN = os.getenv("TFE_TOKEN", None)
 
-GH_TOKEN = os.getenv("GH_TOKEN", None)
-GH_SECRET = os.getenv("GH_SECRET", None)
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
+GITHUB_SECRET = os.getenv("GITHUB_SECRET", None)
 
 TEST_EMAIL = os.getenv("TEST_EMAIL", None)
 TEST_ORG_NAME = os.getenv("TEST_ORG_NAME", None)
@@ -18,17 +18,17 @@ TEST_USERNAME = os.getenv("TEST_USERNAME", None)
 TEST_TEAM_NAME = os.getenv("TEST_TEAM_NAME", None)
 
 # TODO: Handle this all much more cleanly
-if TFE_URL is None:
-    sys.exit("Environment variable TFE_URL must be set.")
+if TFE_HOSTNAME is None:
+    sys.exit("Environment variable TFE_HOSTNAME must be set.")
 
 if TFE_TOKEN is None:
     sys.exit("Environment variable TFE_TOKEN must be set.")
 
-if GH_TOKEN is None:
-    sys.exit("Environment variable GH_TOKEN must be set.")
+if GITHUB_TOKEN is None:
+    sys.exit("Environment variable GITHUB_TOKEN must be set.")
 
-if GH_SECRET is None:
-    sys.exit("Environment variable GH_SECRET must be set.")
+if GITHUB_SECRET is None:
+    sys.exit("Environment variable GITHUB_SECRET must be set.")
 
 if TEST_EMAIL is None:
     sys.exit("Environment variable TEST_EMAIL must be set.")

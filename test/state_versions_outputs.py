@@ -1,17 +1,16 @@
 from .base import TestTFEBaseTestCase
 
-
-class TestTFEStateVersions(TestTFEBaseTestCase):
+class TestTFEStateVersionOutputs(TestTFEBaseTestCase):
 
     def setUp(self):
-        unittest_name = "state-versions"
+        unittest_name = "state-version-outputs"
         oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
         self._oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = self._oauth_client["data"]["id"]
 
         self._oauth_token_id = self._oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
         _ws_create_with_vcs_payload = self._get_ws_with_vcs_create_payload(
-            "state-versions",
+            "state-version-outputs",
             self._oauth_token_id)
 
         self._ws = self._api.workspaces.create(_ws_create_with_vcs_payload)
@@ -31,7 +30,6 @@ class TestTFEStateVersions(TestTFEBaseTestCase):
 
     def test_run_and_apply(self):
         state_versions = self._api.state_versions.lst(self._ws_name)["data"]
-        self.assertEqual(len(state_versions), 0)
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
 
         create_state_version_payload = self._get_state_version_create_payload()
@@ -39,13 +37,12 @@ class TestTFEStateVersions(TestTFEBaseTestCase):
         self._api.workspaces.unlock(self._ws_id)
 
         state_versions = self._api.state_versions.lst(self._ws_name)["data"]
-        self.assertNotEqual(len(state_versions), 0)
 
         state_version = state_versions[0]
         sv_id = state_version["id"]
-        current_state_version = self._api.state_versions.get_current(self._ws_id)[
-            "data"]
-        self.assertEqual(sv_id, current_state_version["id"])
 
         shown_state_version = self._api.state_versions.show(sv_id)["data"]
-        self.assertEqual(sv_id, shown_state_version["id"])
+        state_version_outputs = shown_state_version["relationships"]["outputs"]["data"]
+        state_version_output_id = state_version_outputs[0]["id"]
+        shown_state_version_output = self._api.state_version_outputs.show(state_version_output_id)["data"]
+        self.assertEqual(state_version_output_id, shown_state_version_output["id"])

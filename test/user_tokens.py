@@ -8,10 +8,10 @@ class TestTFEUserTokens(TestTFEBaseTestCase):
 
 
     def test_user_token_lifecycle(self):
+        # TODO: fix this once the User API is patched.
         users = self._api.admin_users.lst(query=self._test_username)["data"]
         self.assertNotEqual(len(users), 0)
         user_id = users[0]['id']
-        # TODO: fix this once the User API is patched.
 
         # created_token = self._api.user_tokens.create(user_id, self._user_token_create_payload)["data"]
         # created_token_id = created_token["id"]

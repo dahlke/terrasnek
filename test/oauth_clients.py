@@ -1,24 +1,30 @@
-import unittest
-import os
 from .base import TestTFEBaseTestCase
-
-from terrasnek.api import TFE
 
 
 class TestTFEOAuthClients(TestTFEBaseTestCase):
 
     def test_oauth_clients_lifecycle(self):
         # Create a test OAuth client
-        oauth_client = self._api.oauth_clients.create(self._oauth_client_create_payload)
-        oauth_clients = self._api.oauth_clients.lst()["data"]
-        self.assertEqual(len(oauth_clients), 1)
+        unittest_name = "oauth-clients"
 
-        # Confirm we can show that OAuth client with it's ID
+        oauth_clients = self._api.oauth_clients.lst()["data"]
+        num_clients_before_add = len(oauth_clients)
+
+        oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
+        oauth_client = self._api.oauth_clients.create(oauth_client_payload)
+
+        # List the OAuth clients and confirm there is one.
+        oauth_clients = self._api.oauth_clients.lst()["data"]
+        num_clients_after_add = len(oauth_clients)
+        self.assertNotEqual(num_clients_after_add, num_clients_before_add)
+
+        # Confirm we can show that OAuth client with it's ID and it matches the created
         oauth_client_id = oauth_clients[0]["id"]
         oauth_client = self._api.oauth_clients.show(oauth_client_id)["data"]
         self.assertEqual(oauth_client["id"], oauth_client_id)
 
-        # Destroy the test OAuth client
+        # Destroy the test OAuth client and confirm there are none left
         self._api.oauth_clients.destroy(oauth_client_id)
         oauth_clients = self._api.oauth_clients.lst()["data"]
-        self.assertEqual(len(oauth_clients), 0)
+        num_clients_after_delete = len(oauth_clients)
+        self.assertNotEqual(num_clients_after_add, num_clients_after_delete)
