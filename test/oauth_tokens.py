@@ -1,20 +1,34 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: OAuth Tokens.
+"""
+
 from .base import TestTFEBaseTestCase
 
 
 class TestTFEOAuthTokens(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: OAuth Tokens.
+    """
 
     def setUp(self):
         unittest_name = "oauth-tokens"
-        oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
-        self._oauth_client = self._api.oauth_clients.create(oauth_client_payload)["data"]
+        oauth_client_payload = self._get_oauth_client_create_payload(
+            unittest_name)
+        self._oauth_client = self._api.oauth_clients.create(oauth_client_payload)[
+            "data"]
         self._oauth_client_id = self._oauth_client["id"]
 
     def tearDown(self):
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_oauth_tokens_lifecycle(self):
+    def test_oauth_tokens_endpoints(self):
+        """
+        Test the OAuth Tokens API endpoints: list, show.
+        """
+
         # List all the tokens and make sure there is one associate to your client
-        oauth_tokens = self._api.oauth_tokens.lst(self._oauth_client_id)["data"]
+        oauth_tokens = self._api.oauth_tokens.lst(
+            self._oauth_client_id)["data"]
         self.assertEqual(len(oauth_tokens), 1)
 
         # Make sure the OAuth client parent is as expected

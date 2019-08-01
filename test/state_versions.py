@@ -1,15 +1,26 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: State Versions.
+"""
+
 from .base import TestTFEBaseTestCase
 
 
 class TestTFEStateVersions(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: State Versions.
+    """
 
     def setUp(self):
         unittest_name = "state-versions"
-        oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
-        self._oauth_client = self._api.oauth_clients.create(oauth_client_payload)
+        oauth_client_payload = self._get_oauth_client_create_payload(
+            unittest_name)
+        self._oauth_client = self._api.oauth_clients.create(
+            oauth_client_payload)
         self._oauth_client_id = self._oauth_client["data"]["id"]
 
-        self._oauth_token_id = self._oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
+        self._oauth_token_id = \
+            self._oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
+
         _ws_create_with_vcs_payload = self._get_ws_with_vcs_create_payload(
             "state-versions",
             self._oauth_token_id)
@@ -29,13 +40,17 @@ class TestTFEStateVersions(TestTFEBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_run_and_apply(self):
+    def test_state_version_endpoints(self):
+        """
+        Test the State Version API endpoints: list, create, show.
+        """
         state_versions = self._api.state_versions.lst(self._ws_name)["data"]
         self.assertEqual(len(state_versions), 0)
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
 
         create_state_version_payload = self._get_state_version_create_payload()
-        self._api.state_versions.create(self._ws_id, create_state_version_payload)
+        self._api.state_versions.create(
+            self._ws_id, create_state_version_payload)
         self._api.workspaces.unlock(self._ws_id)
 
         state_versions = self._api.state_versions.lst(self._ws_name)["data"]

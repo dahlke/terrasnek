@@ -1,20 +1,34 @@
-import unittest
-import os
+"""
+Module for testing the Terraform Enterprise API Endpoint: Users.
+"""
+
 from .base import TestTFEBaseTestCase
 
-from terrasnek.api import TFE
 
 class TestTFEUsers(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: Users.
+    """
 
     def test_destroy_users(self):
-        # No test since a new user can't be created with the API.
-        pass
+        """
+        Test the OAuth Tokens API endpoints: destroy.
+        """
+
+        # TODO: No test since a new user can't be created with the API.
 
     def test_disable_two_factor_users(self):
-        # No test since it can't be re-enabled with the API.
-        pass
+        """
+        Test the OAuth Tokens API endpoints: disable_two_factor.
+        """
+
+        # TODO: No test since it can't be re-enabled with the API.
 
     def test_list_show_users(self):
+        """
+        Test the OAuth Tokens API endpoint: show.
+        """
+
         users = self._api.admin_users.lst(query=self._test_username)["data"]
         self.assertNotEqual(len(users), 0)
 
@@ -23,6 +37,10 @@ class TestTFEUsers(TestTFEBaseTestCase):
         # user = self._api.users.show(user_id)
 
     def test_suspend_unsuspend_user(self):
+        """
+        Test the OAuth Tokens API endpoints: suspend, unsuspend.
+        """
+
         test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
 
         suspended_user = self._api.admin_users.suspend(test_user_id)["data"]
@@ -32,10 +50,16 @@ class TestTFEUsers(TestTFEBaseTestCase):
         self.assertFalse(unsuspended_user["attributes"]["is-suspended"])
 
     def test_impersonate_unimpersonate_user(self):
+        """
+        Test the OAuth Tokens API endpoints: impersonate, unimpersonate.
+        """
         # TODO
-        pass
 
     def test_grant_revoke_admin_user(self):
+        """
+        Test the OAuth Tokens API endpoints: grant, revoke.
+        """
+
         test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
 
         granted_admin_user = self._api.admin_users.grant_admin(test_user_id)["data"]
