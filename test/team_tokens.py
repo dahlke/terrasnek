@@ -1,15 +1,28 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: Team Tokens.
+"""
+
 from .base import TestTFEBaseTestCase
 
+
 class TestTFETeamTokens(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: Team Tokens.
+    """
 
     def setUp(self):
-        self._team = self._api.teams.create(self._get_team_create_payload())["data"]
+        self._team = self._api.teams.create(
+            self._get_team_create_payload())["data"]
         self._team_id = self._team["id"]
 
     def tearDown(self):
         self._api.teams.destroy(self._team_id)
 
     def test_team_token_lifecycle(self):
+        """
+        Test the Team Tokens API endpoints: create, destroy.
+        """
+
         # Create a test token and make sure we get an ID back
         created_token = self._api.team_tokens.create(self._team_id)["data"]
         self.assertIsNotNone(created_token["id"])

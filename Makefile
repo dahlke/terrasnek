@@ -14,4 +14,4 @@ test:
 
 .PHONY: lint
 lint:
-	pylint terrasnek
+	pylint terrasnek test

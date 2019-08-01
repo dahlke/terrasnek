@@ -1,9 +1,17 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: Plans.
+"""
+
 import time
 
 from .base import TestTFEBaseTestCase
 
 
 class TestTFEPlans(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: Plans.
+    """
+
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's ID
@@ -35,6 +43,10 @@ class TestTFEPlans(TestTFEBaseTestCase):
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
     def test_plan(self):
+        """
+        Test the Plans API endpoint: show.
+        """
+
         # Create a run and wait for the created run to complete it's plan
         created_run = self._api.runs.show(self._run_id)["data"]
         created_plan_id = created_run["relationships"]["plan"]["data"]["id"]

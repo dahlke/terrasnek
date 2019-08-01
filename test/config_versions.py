@@ -1,9 +1,16 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: Config Versions.
+"""
+
 import time
 
 from .base import TestTFEBaseTestCase
 
 
 class TestTFEConfigVersions(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: Config Versions.
+    """
 
     def setUp(self):
         self._ws = self._api.workspaces.create(
@@ -14,6 +21,10 @@ class TestTFEConfigVersions(TestTFEBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
 
     def test_config_version_lifecycle(self):
+        """
+        Test the Config Version API endpoints: create, list, show, upload.
+        """
+
         # Create a new config version
         config_version = self._api.config_versions.create(
             self._ws_id, self._get_config_version_create_payload())["data"]
@@ -42,9 +53,12 @@ class TestTFEConfigVersions(TestTFEBaseTestCase):
         # Upload the .tf code and confirm it's been uploaded
         self._api.config_versions.upload(
             self._config_version_upload_tarball_path, cv_id)
+
+        # Give the file time to upload successfully
+        time.sleep(3)
+
         config_versions = self._api.config_versions.lst(self._ws_id)["data"]
         self.assertEqual(config_versions[0]
                          ["attributes"]["status"], "uploaded")
 
         # TODO: test force_cancel / force_execute once Policy endpoints are implemented
-

@@ -24,7 +24,6 @@ if __name__ == "__main__":
 
 ```
 cd test/testdata/terraform/
-
 tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 ```
 
@@ -32,8 +31,19 @@ tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 
 ```
 source test/secrets/secrets.sh
-tar -zcvf terrasnek_unittest_config_version.tar.gz .
+python3 -m unittest test/*.py
 ```
+
+##### Example Test Output
+```
+.............................
+----------------------------------------------------------------------
+Ran 29 tests in 230.332s
+
+OK
+
+```
+
 
 
 

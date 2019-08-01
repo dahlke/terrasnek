@@ -1,9 +1,16 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: Applies.
+"""
+
 import time
 
 from .base import TestTFEBaseTestCase
 
 
 class TestTFEApplies(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: Applies.
+    """
 
     def setUp(self):
         unittest_name = "applies"
@@ -35,6 +42,10 @@ class TestTFEApplies(TestTFEBaseTestCase):
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
     def test_apply(self):
+        """
+        Test the Applies API endpoint: show.
+        """
+
         # Create a run and wait for the created run to complete it's plan
         created_run = self._api.runs.show(self._run_id)["data"]
         while not created_run["attributes"]["actions"]["is-confirmable"]:
@@ -53,6 +64,10 @@ class TestTFEApplies(TestTFEBaseTestCase):
             applied_run = self._api.runs.show(self._run_id)["data"]
             time.sleep(1)
         self._logger.debug("Apply kicked off.")
-
         self.assertNotEqual(
             applied_run["attributes"]["status-timestamps"]["applying-at"], None)
+
+        apply_id = applied_run["relationships"]["apply"]["data"]["id"]
+        shown_apply = self._api.applies.show(apply_id)["data"]
+        shown_apply_id = shown_apply["id"]
+        self.assertEqual(apply_id, shown_apply_id)
