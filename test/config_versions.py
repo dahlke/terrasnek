@@ -42,9 +42,12 @@ class TestTFEConfigVersions(TestTFEBaseTestCase):
         # Upload the .tf code and confirm it's been uploaded
         self._api.config_versions.upload(
             self._config_version_upload_tarball_path, cv_id)
+
+        # Give the file time to upload successfully
+        time.sleep(3)
+
         config_versions = self._api.config_versions.lst(self._ws_id)["data"]
         self.assertEqual(config_versions[0]
                          ["attributes"]["status"], "uploaded")
 
         # TODO: test force_cancel / force_execute once Policy endpoints are implemented
-

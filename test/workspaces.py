@@ -9,23 +9,26 @@ class TestTFEWorkspaces(TestTFEBaseTestCase):
 
     def test_workspaces_create(self):
         # TODO: How to manage VCS OAuth and create w/ VCS payload?
+        num_workspaces_before_create = len(self._api.workspaces.lst()["data"])
         workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
         workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 1)
+        num_workspaces_after_create = len(self._api.workspaces.lst()["data"])
+        self.assertEqual(num_workspaces_before_create, num_workspaces_after_create)
 
         self._api.workspaces.destroy(workspace_name=workspace["data"]["attributes"]["name"])
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 0)
+        num_workspaces_after_destroy = len(self._api.workspaces.lst()["data"])
+        self.assertEqual(num_workspaces_after_create, num_workspaces_after_destroy)
 
     def test_destroy(self):
         # Create a workspace
         workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
+        num_workspaces_before = len(self._api.workspaces.lst()["data"])
 
         # Destroy it with it's name
         ws_name = workspace["data"]["attributes"]["name"]
         self._api.workspaces.destroy(workspace_name=ws_name)
-        workspaces = self._api.workspaces.lst()["data"]
-        self.assertEqual(len(workspaces), 0)
+        num_workspaces_after = len(self._api.workspaces.lst()["data"])
+        self.assertEqual(num_workspaces_before, num_workspaces_after)
 
         # Create another workspace
         workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("workspaces"))
