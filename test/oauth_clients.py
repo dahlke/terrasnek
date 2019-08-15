@@ -1,9 +1,20 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: OAuth Clients.
+"""
+
 from .base import TestTFEBaseTestCase
 
 
 class TestTFEOAuthClients(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: OAuth Clients.
+    """
 
     def test_oauth_clients_lifecycle(self):
+        """
+        Test the OAuth Clients API endpoints: list, create, show, destroy.
+        """
+
         # Create a test OAuth client
         unittest_name = "oauth-clients"
 

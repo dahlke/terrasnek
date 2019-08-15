@@ -1,9 +1,16 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: Config Versions.
+"""
+
 import time
 
 from .base import TestTFEBaseTestCase
 
 
 class TestTFEConfigVersions(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: Config Versions.
+    """
 
     def setUp(self):
         self._ws = self._api.workspaces.create(
@@ -14,6 +21,10 @@ class TestTFEConfigVersions(TestTFEBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
 
     def test_config_version_lifecycle(self):
+        """
+        Test the Config Version API endpoints: create, list, show, upload.
+        """
+
         # Create a new config version
         config_version = self._api.config_versions.create(
             self._ws_id, self._get_config_version_create_payload())["data"]
