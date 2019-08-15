@@ -1,3 +1,7 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: Plan Exports.
+"""
+
 import time
 import os
 
@@ -5,16 +9,21 @@ from .base import TestTFEBaseTestCase
 
 
 class TestTFEPlanExports(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: Plan Exports.
+    """
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's ID
         unittest_name = "plan-exports"
-        oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
+        oauth_client_payload = self._get_oauth_client_create_payload(
+            unittest_name)
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = oauth_client["data"]["id"]
 
         oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
-        _ws_payload = self._get_ws_with_vcs_create_payload("plan-exports", oauth_token_id)
+        _ws_payload = self._get_ws_with_vcs_create_payload(
+            "plan-exports", oauth_token_id)
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
 
@@ -22,8 +31,10 @@ class TestTFEPlanExports(TestTFEBaseTestCase):
         time.sleep(3)
 
         variable_payloads = [
-            self._get_variable_create_payload("email", self._test_email, self._ws_id),
-            self._get_variable_create_payload("org_name", "terrasnek_unittest", self._ws_id)
+            self._get_variable_create_payload(
+                "email", self._test_email, self._ws_id),
+            self._get_variable_create_payload(
+                "org_name", "terrasnek_unittest", self._ws_id)
         ]
         for payload in variable_payloads:
             self._api.variables.create(payload)
@@ -36,7 +47,11 @@ class TestTFEPlanExports(TestTFEBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_plan(self):
+    def test_plan_exports(self):
+        """
+        Test the Plan Exports API endpoints: show, create, download.
+        """
+
         # Create a run and wait for the created run to complete it's plan
         created_run = self._api.runs.show(self._run_id)["data"]
         created_plan_id = created_run["relationships"]["plan"]["data"]["id"]

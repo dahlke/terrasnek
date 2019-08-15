@@ -1,13 +1,23 @@
+"""
+Module for testing the Terraform Enterprise API Endpoint: Team Access.
+"""
+
 from .base import TestTFEBaseTestCase
 
+
 class TestTFETeamAccess(TestTFEBaseTestCase):
+    """
+    Class for testing the Terraform Enterprise API Endpoint: Team Access.
+    """
 
     def setUp(self):
-        self._team = self._api.teams.create(self._get_team_create_payload())["data"]
+        self._team = self._api.teams.create(
+            self._get_team_create_payload())["data"]
         self._team_id = self._team["id"]
 
         # Create a test workspace
-        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload("team-access"))["data"]
+        workspace = self._api.workspaces.create(
+            self._get_ws_without_vcs_create_payload("team-access"))["data"]
         self._ws_id = workspace["id"]
         self._ws_name = workspace["attributes"]["name"]
         # Create a test team
@@ -17,6 +27,10 @@ class TestTFETeamAccess(TestTFEBaseTestCase):
         self._api.teams.destroy(self._team_id)
 
     def test_team_access(self):
+        """
+        Test the Team Access API endpoints: list, add, remove.
+        """
+
         team_access_create_payload = {
             "data": {
                 "type": "team-workspaces",
@@ -42,7 +56,8 @@ class TestTFETeamAccess(TestTFEBaseTestCase):
         workspace_accesses = self._api.team_access.lst()["data"]
         self.assertNotEqual(len(workspace_accesses), 0)
 
-        access = self._api.team_access.add_team_access(team_access_create_payload)
+        access = self._api.team_access.add_team_access(
+            team_access_create_payload)
         access_id = access["data"]["id"]
         shown_access = self._api.team_access.show(access_id)
         self.assertEqual(shown_access["data"]["id"], access_id)
