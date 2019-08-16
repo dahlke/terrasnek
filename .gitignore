@@ -2,3 +2,5 @@ venv/
 .vscode/
 __pycache__/
 test/secrets/secrets.sh
+htmlcov/
+.coverage/

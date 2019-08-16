@@ -173,7 +173,7 @@ class TestTFEBaseTestCase(unittest.TestCase):
                     "vcs-repo": {
                         "identifier": "dahlke/terrasnek",
                         "oauth-token-id": oauth_token_id,
-                        "branch": "test-fix-and-optimize"
+                        "branch": "master"
                     }
                 },
                 "type": "workspaces"

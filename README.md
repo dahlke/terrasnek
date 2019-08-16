@@ -1,5 +1,8 @@
 # terrasnek
 
+![Python unittest Code Coverage](coverage.svg)
+
+
 _A Python Client for the Terraform Enterprise API._
 
 ### Usage Example:
