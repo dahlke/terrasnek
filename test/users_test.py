@@ -58,12 +58,14 @@ class TestTFEUsers(TestTFEBaseTestCase):
     def test_grant_revoke_admin_user(self):
         """
         Test the OAuth Tokens API endpoints: grant, revoke.
+
+        NOTE: These are sensitive endpoints and won't call them in our tests.
         """
 
-        test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
+        # test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
 
-        granted_admin_user = self._api.admin_users.grant_admin(test_user_id)["data"]
-        self.assertTrue(granted_admin_user["attributes"]["is-admin"])
+        # granted_admin_user = self._api.admin_users.grant_admin(test_user_id)["data"]
+        # self.assertTrue(granted_admin_user["attributes"]["is-admin"])
 
-        revoked_admin_user = self._api.admin_users.revoke_admin(test_user_id)["data"]
-        self.assertFalse(revoked_admin_user["attributes"]["is-admin"])
+        # revoked_admin_user = self._api.admin_users.revoke_admin(test_user_id)["data"]
+        # self.assertFalse(revoked_admin_user["attributes"]["is-admin"])
