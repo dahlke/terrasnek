@@ -4,6 +4,10 @@ CWD := $(shell pwd)
 ##########################
 # DEV HELPERS
 ##########################
+.PHONY: todo
+todo:
+	@ag "TODO" --ignore Makefile
+
 .PHONY: note
 note:
 	@ag "NOTE" --ignore Makefile
@@ -25,3 +29,15 @@ lint-lib:
 .PHONY: lint-tests
 lint-tests:
 	pylint terrasnek test
+
+.PHONY: pip-package
+pip-package:
+	python3 setup.py sdist bdist_wheel;
+
+.PHONY: pip-publish
+pip-publish: pip-package
+	python3 -m twine upload --repository-url https://pypi.org/ dist/*
+
+.PHONY: pip-test-publish
+pip-test-publish: pip-package
+	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
