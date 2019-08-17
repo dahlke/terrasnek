@@ -8,8 +8,8 @@ CWD := $(shell pwd)
 note:
 	@ag "NOTE" --ignore Makefile
 
-.PHONY: remote-test
-remote-test:
+.PHONY: test
+test:
 	python3 -m unittest test/*.py
 
 .PHONY: coverage
@@ -17,10 +17,6 @@ coverage:
 	coverage run -m unittest test/*_test.py; \
 	coverage report -m; \
 	coverage-badge -o coverage.svg
-
-# .PHONY: coverage
-# coverage:
-	# coverage run -m unittest test/*.py
 
 .PHONY: lint-lib
 lint-lib:
