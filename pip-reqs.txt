@@ -2,3 +2,6 @@ requests==2.21.0
 pylint==2.3.1
 coverage==4.5.4
 coverage-badge==1.0.1
+twine==1.13.0
+wheel==0.33.4
+setuptools==41.1.0
