@@ -37,6 +37,7 @@ class TestTFEApplies(TestTFEBaseTestCase):
         self._run = self._api.runs.create(create_run_payload)["data"]
         self._run_id = self._run["id"]
 
+
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
