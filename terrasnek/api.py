@@ -69,9 +69,9 @@ class TFE():
         self.team_access = None
         self.team_tokens = None
 
+        self.admin_users = None
         self.admin_organizations = TFEAdminOrganizations(
             self._instance_url, None, self._headers)
-        self.admin_users = None
 
         self.oauth_clients = None
         self.oauth_tokens = None
