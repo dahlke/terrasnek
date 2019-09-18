@@ -27,6 +27,7 @@ Currently the following endpoints are supported:
 - [ ] [Account](https://www.terraform.io/docs/enterprise/api/account.html)
 - [x] [Applies](https://www.terraform.io/docs/cloud/api/applies.html)
 - [x] [Configuration Versions](https://www.terraform.io/docs/enterprise/api/configuration-versions.html)
+- [ ] [Cost Estimates](https://www.terraform.io/docs/cloud/api/cost-estimates.html)
 - [ ] [Notification Configurations](terraform.io/docs/cloud/api/notification-configurations.html)
 - [x] [OAuth Clients](https://www.terraform.io/docs/enterprise/api/oauth-clients.html)
 - [x] [OAuth Tokens](https://www.terraform.io/docs/enterprise/api/oauth-tokens.html)
