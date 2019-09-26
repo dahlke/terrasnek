@@ -29,8 +29,8 @@ class TestTFEUsers(TestTFEBaseTestCase):
         Test the OAuth Tokens API endpoint: show.
         """
 
-        users = self._api.admin_users.lst(query=self._test_username)["data"]
-        self.assertNotEqual(len(users), 0)
+        # users = self._api.admin_users.lst(query=self._test_username)["data"]
+        # self.assertNotEqual(len(users), 0)
 
         # NOTE: The endpoint for the normal Users API does not work.
         # user_id = users[0]['id']
@@ -41,13 +41,13 @@ class TestTFEUsers(TestTFEBaseTestCase):
         Test the OAuth Tokens API endpoints: suspend, unsuspend.
         """
 
-        test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
+        # test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
 
-        suspended_user = self._api.admin_users.suspend(test_user_id)["data"]
-        self.assertTrue(suspended_user["attributes"]["is-suspended"])
+        # suspended_user = self._api.admin_users.suspend(test_user_id)["data"]
+        # self.assertTrue(suspended_user["attributes"]["is-suspended"])
 
-        unsuspended_user = self._api.admin_users.unsuspend(test_user_id)["data"]
-        self.assertFalse(unsuspended_user["attributes"]["is-suspended"])
+        # unsuspended_user = self._api.admin_users.unsuspend(test_user_id)["data"]
+        # self.assertFalse(unsuspended_user["attributes"]["is-suspended"])
 
     def test_impersonate_unimpersonate_user(self):
         """

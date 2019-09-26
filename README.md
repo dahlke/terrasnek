@@ -75,9 +75,18 @@ cd test/testdata/terraform/
 tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 ```
 
-#### Run a single unit test
+#### Running Specific Tests
+
 ```
+source test/secrets/secrets.sh
 python3 -m unittest test/applies_test.py
+```
+
+#### Running All Tests
+
+```
+source test/secrets/secrets.sh
+make coverage
 ```
 
 #### Running the Tests with Coverage Info

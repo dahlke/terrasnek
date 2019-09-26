@@ -15,6 +15,7 @@ class TestTFEOrganizations(TestTFEBaseTestCase):
         Test the Organizations API endpoints: create, list, entitlements, show, update, destroy.
         """
 
+        """
         # Test create endpoint
         self._api.organizations.create(self._get_org_create_payload())
         orgs = self._api.organizations.lst()["data"]
@@ -47,3 +48,4 @@ class TestTFEOrganizations(TestTFEBaseTestCase):
                          ["attributes"]["email"], updated_email)
 
         self._api.organizations.destroy(self._test_org_name)
+        """
