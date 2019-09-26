@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  live_test:
+    docker:
+      - image: circleci/python:3.6.1
+    working_directory: ~/terrasnek
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip3 install -r pip-reqs.txt
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - live_test

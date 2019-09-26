@@ -16,8 +16,8 @@ class TestTFEUserTokens(TestTFEBaseTestCase):
         """
 
         # TODO: fix this once the User API is patched.
-        users = self._api.admin_users.lst(query=self._test_username)["data"]
-        self.assertNotEqual(len(users), 0)
+        # users = self._api.admin_users.lst(query=self._test_username)["data"]
+        # self.assertNotEqual(len(users), 0)
         # user_id = users[0]['id']
 
         # created_token = \
