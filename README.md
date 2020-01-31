@@ -42,7 +42,7 @@ Currently the following endpoints are supported:
 - [x] [Runs](https://www.terraform.io/docs/enterprise/api/run.html)
 - [ ] [SSH Keys](https://www.terraform.io/docs/enterprise/api/ssh-keys.html)
 - [x] [State Versions](https://www.terraform.io/docs/enterprise/api/state-versions.html)
-- [x] [State Version Outputs](https://www.terraform.io/docs/cloud/api/user-tokens.html)
+- [x] [State Version Outputs](https://www.terraform.io/docs/cloud/api/state-version-outputs.html)
 - [x] [Team Access](https://www.terraform.io/docs/enterprise/api/team-access.html)
 - [x] [Team Memberships](https://www.terraform.io/docs/enterprise/api/team-members.html)
 - [x] [Team Tokens](https://www.terraform.io/docs/enterprise/api/team-tokens.html)
