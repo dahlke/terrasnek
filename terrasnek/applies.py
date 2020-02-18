@@ -2,13 +2,13 @@
 Module for Terraform Enterprise API Endpoint: Applies.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEApplies(TFEEndpoint):
+class TFCApplies(TFCEndpoint):
     """
     An apply represents the results of applying a Terraform Run's execution plan.
 
-    https://www.terraform.io/docs/enterprise/api/applies.html
+    https://www.terraform.io/docs/cloud/api/applies.html
     """
 
     def __init__(self, base_url, organization_name, headers):

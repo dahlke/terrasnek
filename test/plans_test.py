@@ -4,10 +4,10 @@ Module for testing the Terraform Enterprise API Endpoint: Plans.
 
 import time
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEPlans(TestTFEBaseTestCase):
+class TestTFCPlans(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: Plans.
     """

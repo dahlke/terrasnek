@@ -4,10 +4,10 @@ Module for testing the Terraform Enterprise API Endpoint: Applies.
 
 import time
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEApplies(TestTFEBaseTestCase):
+class TestTFCApplies(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: Applies.
     """

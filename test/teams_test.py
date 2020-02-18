@@ -2,10 +2,10 @@
 Module for testing the Terraform Enterprise API Endpoint: Teams.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFETeams(TestTFEBaseTestCase):
+class TestTFCTeams(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: Teams.
     """

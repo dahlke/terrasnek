@@ -5,13 +5,13 @@ Module for Terraform Enterprise API Endpoint: Workspaces.
 import json
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEWorkspaces(TFEEndpoint):
+class TFCWorkspaces(TFCEndpoint):
     """
     Workspaces represent running infrastructure managed by Terraform.
 
-    https://www.terraform.io/docs/enterprise/api/workspaces.html
+    https://www.terraform.io/docs/cloud/api/workspaces.html
     """
 
     def __init__(self, base_url, organization_name, headers):

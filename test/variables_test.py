@@ -2,10 +2,10 @@
 Module for testing the Terraform Enterprise API Endpoint: Variables.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEVariables(TestTFEBaseTestCase):
+class TestTFCVariables(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: Variables.
     """

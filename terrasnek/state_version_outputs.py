@@ -2,15 +2,15 @@
 Module for Terraform Enterprise API Endpoint: State Version Outputs.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEStateVersionOutputs(TFEEndpoint):
+class TFCStateVersionOutputs(TFCEndpoint):
     """
     State version outputs are the output values from a Terraform state file. They include the
     name and value of the output, as well as a sensitive boolean if the value should be hidden
     by default in UIs.
 
-    https://www.terraform.io/docs/enterprise/api/state-version-outputs.html
+    https://www.terraform.io/docs/cloud/api/state-version-outputs.html
     """
 
     def __init__(self, base_url, organization_name, headers):

@@ -5,13 +5,13 @@ Module for Terraform Enterprise API Endpoint: Organizations.
 import json
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEOrganizations(TFEEndpoint):
+class TFCOrganizations(TFCEndpoint):
     """
     The Organizations API is used to list, show, create, update, and destroy organizations.
 
-    https://www.terraform.io/docs/enterprise/api/organizations.html
+    https://www.terraform.io/docs/cloud/api/organizations.html
     """
 
     def __init__(self, base_url, organization_name, headers):

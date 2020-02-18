@@ -5,14 +5,14 @@ Module for Terraform Enterprise API Endpoint: Admin Users.
 import json
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
 
-class TFEAdminUsers(TFEEndpoint):
+class TFCAdminUsers(TFCEndpoint):
     """
     The Users Admin API contains endpoints to help site administrators manage user accounts.
 
-    https://www.terraform.io/docs/enterprise/api/admin/users.html
+    https://www.terraform.io/docs/cloud/api/admin/users.html
     """
 
     def __init__(self, base_url, organization_name, headers):

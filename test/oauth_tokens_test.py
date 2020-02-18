@@ -2,10 +2,10 @@
 Module for testing the Terraform Enterprise API Endpoint: OAuth Tokens.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEOAuthTokens(TestTFEBaseTestCase):
+class TestTFCOAuthTokens(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: OAuth Tokens.
     """

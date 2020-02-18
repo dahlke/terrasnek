@@ -5,9 +5,9 @@ Module for Terraform Enterprise API Endpoint: Runs.
 import json
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFERuns(TFEEndpoint):
+class TFCRuns(TFCEndpoint):
     """
     Performing a run on a new configuration is a multi-step process.
 
@@ -19,7 +19,7 @@ class TFERuns(TFEEndpoint):
     Alternatively, you can create a run with a pre-existing configuration version, even one from
     another workspace. This is useful for promoting known good code from one workspace to another.
 
-    https://www.terraform.io/docs/enterprise/api/run.html
+    https://www.terraform.io/docs/cloud/api/run.html
     """
 
     def __init__(self, base_url, organization_name, headers):
