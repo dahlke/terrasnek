@@ -63,6 +63,7 @@ Currently the following endpoints are supported:
 ### Contributing to `terrasnek`
 
 #### Linting the Code
+
 ```
 make lint
 ```
@@ -74,9 +75,21 @@ cd test/testdata/terraform/
 tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 ```
 
+#### Run a single unit test
+```
+python3 -m unittest test/applies_test.py
+```
+
 #### Running the Tests with Coverage Info
 
 ```
 source test/secrets/secrets.sh
 make coverage
+```
+
+#### Publishing to PyPi
+
+```
+make pip-package
+make pip-publish
 ```
