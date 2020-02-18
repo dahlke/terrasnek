@@ -2,10 +2,10 @@
 Module for testing the Terraform Enterprise API Endpoint: Users.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEUsers(TestTFEBaseTestCase):
+class TestTFCUsers(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: Users.
     """

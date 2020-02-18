@@ -5,15 +5,15 @@ Module for Terraform Enterprise API Endpoint: Team Access.
 import json
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFETeamAccess(TFEEndpoint):
+class TFCTeamAccess(TFCEndpoint):
     """
     The team access APIs are used to associate a team to permissions on a workspace.
     A single team-workspace resource contains the relationship between the Team and Workspace,
     including the privileges the team has on the workspace.
 
-    https://www.terraform.io/docs/enterprise/api/team-access.html
+    https://www.terraform.io/docs/cloud/api/team-access.html
     """
 
     def __init__(self, base_url, organization_name, headers):

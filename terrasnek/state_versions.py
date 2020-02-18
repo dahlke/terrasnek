@@ -5,11 +5,11 @@ Module for Terraform Enterprise API Endpoint: State Versions.
 import json
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEStateVersions(TFEEndpoint):
+class TFCStateVersions(TFCEndpoint):
     """
-    https://www.terraform.io/docs/enterprise/api/state-versions.html
+    https://www.terraform.io/docs/cloud/api/state-versions.html
     """
 
     def __init__(self, base_url, organization_name, headers):
@@ -24,7 +24,7 @@ class TFEStateVersions(TFEEndpoint):
         Creates a state version and sets it as the current state version for the given workspace.
         The workspace must be locked by the user creating a state version. The workspace may be
         locked with the API or with the UI. This is most useful for migrating existing state from
-        open source Terraform into a new TFE workspace.
+        open source Terraform into a new TFC workspace.
         """
         url = f"{self._workspace_base_url}/{workspace_id}/state-versions"
         return self._create(url, payload)

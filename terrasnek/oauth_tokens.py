@@ -2,15 +2,15 @@
 Module for Terraform Enterprise API Endpoint: OAuth Tokens.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEOAuthTokens(TFEEndpoint):
+class TFCOAuthTokens(TFCEndpoint):
     """
     The oauth-token object represents a VCS configuration which includes the OAuth
     connection and the associated OAuth token. This object is used when creating a
     workspace to identify which VCS connection to use.
 
-    https://www.terraform.io/docs/enterprise/api/oauth-tokens.html
+    https://www.terraform.io/docs/cloud/api/oauth-tokens.html
     """
 
     def __init__(self, base_url, organization_name, headers):

@@ -2,10 +2,10 @@
 Module for testing the Terraform Enterprise API Endpoint: Workspaces.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEWorkspaces(TestTFEBaseTestCase):
+class TestTFCWorkspaces(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: Workspaces.
     """

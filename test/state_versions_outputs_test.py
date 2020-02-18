@@ -2,10 +2,10 @@
 Module for testing the Terraform Enterprise API Endpoint: State Version Outputs.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEStateVersionOutputs(TestTFEBaseTestCase):
+class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: State Version Outputs.
     """

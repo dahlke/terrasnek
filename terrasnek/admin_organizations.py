@@ -2,13 +2,13 @@
 Module for Terraform Enterprise API Endpoint: Admin Organizations.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEAdminOrganizations(TFEEndpoint):
+class TFCAdminOrganizations(TFCEndpoint):
     """
     The Organizations Admin API contains endpoints to help site administrators manage organizations.
 
-    https://www.terraform.io/docs/enterprise/api/admin/organizations.html
+    https://www.terraform.io/docs/cloud/api/admin/organizations.html
     """
 
     def __init__(self, base_url, organization_name, headers):

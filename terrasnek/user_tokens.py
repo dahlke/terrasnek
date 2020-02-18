@@ -2,11 +2,11 @@
 Module for Terraform Enterprise API Endpoint: User Tokens.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEUserTokens(TFEEndpoint):
+class TFCUserTokens(TFCEndpoint):
     """
-    https://www.terraform.io/docs/enterprise/api/user-tokens.html
+    https://www.terraform.io/docs/cloud/api/user-tokens.html
     """
 
     def __init__(self, base_url, organization_name, headers):

@@ -2,10 +2,10 @@
 Module for testing the Terraform Enterprise API Endpoint: Organizations.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEOrganizations(TestTFEBaseTestCase):
+class TestTFCOrganizations(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Enterprise API Endpoint: Organizations.
     """
@@ -19,7 +19,7 @@ class TestTFEOrganizations(TestTFEBaseTestCase):
         self._api.organizations.create(self._get_org_create_payload())
         orgs = self._api.organizations.lst()["data"]
         self.assertNotEqual(
-            len(orgs), 0, msg="No organizations found for TFE token.")
+            len(orgs), 0, msg="No organizations found for TFC token.")
 
         # Test entitlements endpoint
         ent = self._api.organizations.entitlements(self._test_org_name)
