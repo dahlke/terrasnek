@@ -1,8 +1,9 @@
 """
-Module for Terraform Enterprise API Endpoint: Plans.
+Module for Terraform Cloud API Endpoint: Plans.
 """
 
 from .endpoint import TFCEndpoint
+
 
 class TFCPlans(TFCEndpoint):
     """
