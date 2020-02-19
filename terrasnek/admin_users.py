@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Admin Users.
+Module for Terraform Cloud API Endpoint: Admin Users.
 """
 
 import json
@@ -23,7 +23,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         DELETE /admin/users/:id
 
-        This endpoint deletes a user's account from Terraform Enterprise. To prevent unowned
+        This endpoint deletes a user's account from Terraform Cloud. To prevent unowned
         organizations, a user cannot be deleted if they are the sole owner of any organizations.
         The organizations must be given a new owner or deleted first.
         """
@@ -73,7 +73,7 @@ class TFCAdminUsers(TFCEndpoint):
         POST /admin/users/:id/actions/impersonate
 
         Impersonation allows an admin to begin a new session as another user in the system; for
-        more information, see Impersonating a User in the Private Terraform Enterprise
+        more information, see Impersonating a User in the Private Terraform Cloud
         administration section. This endpoint does not respond with a body, but the response
         does include a Set-Cookie header to persist a new session.
         """
@@ -90,7 +90,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         GET /admin/users
 
-        This endpoint lists all user accounts in the Terraform Enterprise installation.
+        This endpoint lists all user accounts in the Terraform Cloud installation.
 
         # TODO: handle the rest of the potential parameters
         """

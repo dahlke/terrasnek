@@ -1,5 +1,5 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Users.
+Module for testing the Terraform Cloud API Endpoint: Users.
 """
 
 from .base import TestTFCBaseTestCase
@@ -7,7 +7,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCUsers(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Users.
+    Class for testing the Terraform Cloud API Endpoint: Users.
     """
 
     def test_destroy_users(self):

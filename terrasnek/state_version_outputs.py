@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: State Version Outputs.
+Module for Terraform Cloud API Endpoint: State Version Outputs.
 """
 
 from .endpoint import TFCEndpoint

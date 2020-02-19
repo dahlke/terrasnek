@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Team Memberships.
+Module for Terraform Cloud API Endpoint: Team Memberships.
 """
 
 import json

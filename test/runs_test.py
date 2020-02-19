@@ -1,5 +1,5 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Runs.
+Module for testing the Terraform Cloud API Endpoint: Runs.
 """
 
 import time
@@ -9,7 +9,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCRuns(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Runs.
+    Class for testing the Terraform Cloud API Endpoint: Runs.
     """
 
     def setUp(self):

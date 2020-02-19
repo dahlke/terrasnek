@@ -41,7 +41,7 @@ class TFCEndpoint():
 
         valid_status_codes = [200, 204]
         if req.status_code in valid_status_codes:
-            self._logger.debug(f"Terraform Enterprise resource at URL [{url}] destroyed.")
+            self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)

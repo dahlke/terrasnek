@@ -1,5 +1,5 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Config Versions.
+Module for testing the Terraform Cloud API Endpoint: Config Versions.
 """
 
 import time
@@ -9,7 +9,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCConfigVersions(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Config Versions.
+    Class for testing the Terraform Cloud API Endpoint: Config Versions.
     """
 
     def setUp(self):

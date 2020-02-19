@@ -1,5 +1,5 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Plans.
+Module for testing the Terraform Cloud API Endpoint: Plans.
 """
 
 import time
@@ -9,7 +9,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCPlans(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Plans.
+    Class for testing the Terraform Cloud API Endpoint: Plans.
     """
 
 

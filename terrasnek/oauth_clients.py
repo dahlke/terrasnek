@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: OAuth Clients.
+Module for Terraform Cloud API Endpoint: OAuth Clients.
 """
 
 from .endpoint import TFCEndpoint

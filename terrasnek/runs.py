@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Runs.
+Module for Terraform Cloud API Endpoint: Runs.
 """
 
 import json

@@ -1,12 +1,12 @@
 """
-Module for Terraform Enterprise API Endpoint: Users.
+Module for Terraform Cloud API Endpoint: Users.
 """
 
 from .endpoint import TFCEndpoint
 
 class TFCUsers(TFCEndpoint):
     """
-    Terraform Enterprise (TFC)'s user objects do not contain any identifying information about a
+    Terraform Cloud (TFC)'s user objects do not contain any identifying information about a
     user, other than their TFC username and avatar image; they are intended for displaying names
     and avatars in contexts that refer to a user by ID, like lists of team members or the details
     of a run. Most of these contexts can already include user objects via an ?include parameter,

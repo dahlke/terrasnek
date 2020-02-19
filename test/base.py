@@ -1,5 +1,5 @@
 """
-Base module for all of the Terraform Enterprise API modules.
+Base module for all of the Terraform Cloud API modules.
 
 Contains many of the defaults and payload generators.
 """

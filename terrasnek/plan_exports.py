@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Plan Exports.
+Module for Terraform Cloud API Endpoint: Plan Exports.
 """
 
 import requests

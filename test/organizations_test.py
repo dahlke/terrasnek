@@ -1,5 +1,5 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Organizations.
+Module for testing the Terraform Cloud API Endpoint: Organizations.
 """
 
 from .base import TestTFCBaseTestCase
@@ -7,7 +7,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCOrganizations(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Organizations.
+    Class for testing the Terraform Cloud API Endpoint: Organizations.
     """
 
     def test_orgs_lifecycle(self):
