@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Admin Organizations.
+Module for Terraform Cloud API Endpoint: Admin Organizations.
 """
 
 from .endpoint import TFCEndpoint
@@ -26,7 +26,7 @@ class TFCAdminOrganizations(TFCEndpoint):
         """
         GET /admin/organizations
 
-        This endpoint lists all organizations in the Terraform Enterprise installation.
+        This endpoint lists all organizations in the Terraform Cloud installation.
         """
         return self._ls(self._orgs_base_url)
 

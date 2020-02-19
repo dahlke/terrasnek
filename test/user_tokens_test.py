@@ -1,5 +1,5 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: User Tokens.
+Module for testing the Terraform Cloud API Endpoint: User Tokens.
 """
 
 from .base import TestTFCBaseTestCase
@@ -7,7 +7,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCUserTokens(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: User Tokens.
+    Class for testing the Terraform Cloud API Endpoint: User Tokens.
     """
 
     def test_user_token_lifecycle(self):

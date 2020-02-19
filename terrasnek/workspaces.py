@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Workspaces.
+Module for Terraform Cloud API Endpoint: Workspaces.
 """
 
 import json

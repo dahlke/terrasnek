@@ -1,5 +1,5 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Workspaces.
+Module for testing the Terraform Cloud API Endpoint: Workspaces.
 """
 
 from .base import TestTFCBaseTestCase
@@ -7,7 +7,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCWorkspaces(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Workspaces.
+    Class for testing the Terraform Cloud API Endpoint: Workspaces.
     """
 
     def test_workspaces_create(self):

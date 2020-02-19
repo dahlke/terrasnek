@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Config Versions.
+Module for Terraform Cloud API Endpoint: Config Versions.
 """
 
 import json

@@ -2,7 +2,7 @@
 
 ![Python unittest Code Coverage](coverage.svg)
 
-_A Python Client for the [Terraform Cloud / Terraform Enterprise API](https://www.terraform.io/docs/cloud/api/index.html)._
+_A Python Client for the [Terraform Cloud / Terraform Cloud API](https://www.terraform.io/docs/cloud/api/index.html)._
 
 
 ### Using `terrasnek`

@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: User Tokens.
+Module for Terraform Cloud API Endpoint: User Tokens.
 """
 
 from .endpoint import TFCEndpoint

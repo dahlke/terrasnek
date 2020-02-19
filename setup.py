@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.1",
     author="Neil Dahlke",
     author_email="neil.dahlke+terrasnek@gmail.com",
-    description="A Python client for the Terraform Enterprise API",
+    description="A Python client for the Terraform Cloud API",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/dahlke/terrasnek",

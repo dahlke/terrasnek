@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Team Tokens.
+Module for Terraform Cloud API Endpoint: Team Tokens.
 """
 
 from .endpoint import TFCEndpoint

@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: State Versions.
+Module for Terraform Cloud API Endpoint: State Versions.
 """
 
 import json

@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Applies.
+Module for Terraform Cloud API Endpoint: Applies.
 """
 
 from .endpoint import TFCEndpoint

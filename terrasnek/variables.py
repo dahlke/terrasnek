@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Variables.
+Module for Terraform Cloud API Endpoint: Variables.
 """
 
 from .endpoint import TFCEndpoint

@@ -1,5 +1,5 @@
 """
-Module for Terraform Enterprise API Endpoint: Organizations.
+Module for Terraform Cloud API Endpoint: Organizations.
 """
 
 import json

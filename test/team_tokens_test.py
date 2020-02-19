@@ -1,5 +1,5 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Team Tokens.
+Module for testing the Terraform Cloud API Endpoint: Team Tokens.
 """
 
 from .base import TestTFCBaseTestCase
@@ -7,7 +7,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCTeamTokens(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Team Tokens.
+    Class for testing the Terraform Cloud API Endpoint: Team Tokens.
     """
 
     def setUp(self):
