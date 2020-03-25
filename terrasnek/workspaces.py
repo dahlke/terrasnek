@@ -4,6 +4,7 @@ Module for Terraform Cloud API Endpoint: Workspaces.
 
 import json
 import requests
+from urllib import parse
 
 from .endpoint import TFCEndpoint
 
@@ -80,13 +81,24 @@ class TFCWorkspaces(TFCEndpoint):
 
         return results
 
-    def lst(self):
+    def lst(self, page_number=None, page_size=None):
         """
         GET /organizations/:organization_name/workspaces
 
         This endpoint lists workspaces in the organization.
         """
-        return self._ls(self._org_base_url)
+        url = f"{self._org_base_url}"
+
+        filters = {}
+        if page_number is not None:
+            filters["page[number]"] = page_number
+
+        if page_size is not None:
+            filters["page[size]"] = page_size
+
+        if filters:
+            url += "?" + parse.urlencode(filters)
+        return self._ls(url)
 
     def show(self, workspace_name=None, workspace_id=None):
         """
