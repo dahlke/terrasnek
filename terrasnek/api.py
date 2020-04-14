@@ -1,46 +1,46 @@
 """
-Module for container class of all TFE endpoints and high level exceptions around
+Module for container class of all TFC endpoints and high level exceptions around
 API access.
 """
 
-from._constants import TFE_SAAS_URL
+from._constants import TFC_SAAS_URL
 
-from .oauth_clients import TFEOAuthClients
-from .oauth_tokens import TFEOAuthTokens
+from .oauth_clients import TFCOAuthClients
+from .oauth_tokens import TFCOAuthTokens
 
-from .organizations import TFEOrganizations
-from .workspaces import TFEWorkspaces
-from .variables import TFEVariables
-from .config_versions import TFEConfigVersions
-from .runs import TFERuns
-from .plans import TFEPlans
-from .plan_exports import TFEPlanExports
-from .state_versions import TFEStateVersions
-from .state_version_outputs import TFEStateVersionOutputs
-from .applies import TFEApplies
-from .users import TFEUsers
-from .user_tokens import TFEUserTokens
-from .teams import TFETeams
-from .team_memberships import TFETeamMemberships
-from .team_access import TFETeamAccess
-from .team_tokens import TFETeamTokens
+from .organizations import TFCOrganizations
+from .workspaces import TFCWorkspaces
+from .variables import TFCVariables
+from .config_versions import TFCConfigVersions
+from .runs import TFCRuns
+from .plans import TFCPlans
+from .plan_exports import TFCPlanExports
+from .state_versions import TFCStateVersions
+from .state_version_outputs import TFCStateVersionOutputs
+from .applies import TFCApplies
+from .users import TFCUsers
+from .user_tokens import TFCUserTokens
+from .teams import TFCTeams
+from .team_memberships import TFCTeamMemberships
+from .team_access import TFCTeamAccess
+from .team_tokens import TFCTeamTokens
 
-from .admin_users import TFEAdminUsers
-from .admin_organizations import TFEAdminOrganizations
-
-
-class InvalidTFETokenException(Exception):
-    """Cannot instantiate TFE Api class without a valid TFE_TOKEN."""
+from .admin_users import TFCAdminUsers
+from .admin_organizations import TFCAdminOrganizations
 
 
-class TFE():
+class InvalidTFCTokenException(Exception):
+    """Cannot instantiate TFC Api class without a valid TFC_TOKEN."""
+
+
+class TFC():
     """
-    Super class for access to all TFE Endpoints.
+    Super class for access to all TFC Endpoints.
     """
 
-    def __init__(self, api_token, url=TFE_SAAS_URL):
+    def __init__(self, api_token, url=TFC_SAAS_URL):
         if api_token is None:
-            raise InvalidTFETokenException
+            raise InvalidTFCTokenException
 
         self._instance_url = f"{url}/api/v2"
         self._token = api_token
@@ -50,7 +50,7 @@ class TFE():
             "Content-Type": "application/vnd.api+json"
         }
 
-        self.organizations = TFEOrganizations(
+        self.organizations = TFCOrganizations(
             self._instance_url, None, self._headers)
         self.workspaces = None
         self.users = None
@@ -70,7 +70,7 @@ class TFE():
         self.team_tokens = None
 
         self.admin_users = None
-        self.admin_organizations = TFEAdminOrganizations(
+        self.admin_organizations = TFCAdminOrganizations(
             self._instance_url, None, self._headers)
 
         self.oauth_clients = None
@@ -83,42 +83,42 @@ class TFE():
         """
         self._current_organization = organization_name
 
-        self.workspaces = TFEWorkspaces(
+        self.workspaces = TFCWorkspaces(
             self._instance_url, self._current_organization, self._headers)
-        self.users = TFEUsers(self._instance_url,
+        self.users = TFCUsers(self._instance_url,
                               self._current_organization, self._headers)
-        self.user_tokens = TFEUserTokens(
+        self.user_tokens = TFCUserTokens(
             self._instance_url, self._current_organization, self._headers)
-        self.variables = TFEVariables(
+        self.variables = TFCVariables(
             self._instance_url, self._current_organization, self._headers)
-        self.config_versions = TFEConfigVersions(
+        self.config_versions = TFCConfigVersions(
             self._instance_url, self._current_organization, self._headers)
-        self.runs = TFERuns(self._instance_url,
+        self.runs = TFCRuns(self._instance_url,
                             self._current_organization, self._headers)
-        self.applies = TFEApplies(
+        self.applies = TFCApplies(
             self._instance_url, self._current_organization, self._headers)
-        self.plans = TFEPlans(self._instance_url,
+        self.plans = TFCPlans(self._instance_url,
                               self._current_organization, self._headers)
-        self.plan_exports = TFEPlanExports(
+        self.plan_exports = TFCPlanExports(
             self._instance_url, self._current_organization, self._headers)
-        self.state_versions = TFEStateVersions(
+        self.state_versions = TFCStateVersions(
             self._instance_url, self._current_organization, self._headers)
-        self.state_version_outputs = TFEStateVersionOutputs(
+        self.state_version_outputs = TFCStateVersionOutputs(
             self._instance_url, self._current_organization, self._headers)
 
-        self.teams = TFETeams(self._instance_url,
+        self.teams = TFCTeams(self._instance_url,
                               self._current_organization, self._headers)
-        self.team_memberships = TFETeamMemberships(
+        self.team_memberships = TFCTeamMemberships(
             self._instance_url, self._current_organization, self._headers)
-        self.team_access = TFETeamAccess(
+        self.team_access = TFCTeamAccess(
             self._instance_url, self._current_organization, self._headers)
-        self.team_tokens = TFETeamTokens(
-            self._instance_url, self._current_organization, self._headers)
-
-        self.admin_users = TFEAdminUsers(
+        self.team_tokens = TFCTeamTokens(
             self._instance_url, self._current_organization, self._headers)
 
-        self.oauth_clients = TFEOAuthClients(
+        self.admin_users = TFCAdminUsers(
             self._instance_url, self._current_organization, self._headers)
-        self.oauth_tokens = TFEOAuthTokens(
+
+        self.oauth_clients = TFCOAuthClients(
+            self._instance_url, self._current_organization, self._headers)
+        self.oauth_tokens = TFCOAuthTokens(
             self._instance_url, self._current_organization, self._headers)

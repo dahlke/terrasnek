@@ -36,7 +36,7 @@ pip-package:
 
 .PHONY: pip-publish
 pip-publish: pip-package
-	python3 -m twine upload --repository-url https://pypi.org/ dist/*
+	python3 -m twine upload dist/*
 
 .PHONY: pip-test-publish
 pip-test-publish: pip-package

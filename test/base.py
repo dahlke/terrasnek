@@ -1,5 +1,5 @@
 """
-Base module for all of the Terraform Enterprise API modules.
+Base module for all of the Terraform Cloud API modules.
 
 Contains many of the defaults and payload generators.
 """
@@ -11,15 +11,15 @@ import unittest
 import os
 import binascii
 
-from terrasnek.api import TFE
+from terrasnek.api import TFC
 
 from ._constants import \
-    TFE_TOKEN, TEST_EMAIL, TEST_ORG_NAME, \
+    TFC_TOKEN, TEST_EMAIL, TEST_ORG_NAME, \
     TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET
 
 
-class TestTFEBaseTestCase(unittest.TestCase):
+class TestTFCBaseTestCase(unittest.TestCase):
     """
     Base class for providing common test utilities across API endpoints.
     """
@@ -29,7 +29,7 @@ class TestTFEBaseTestCase(unittest.TestCase):
         cls._logger = logging.getLogger(cls.__class__.__name__)
         cls._logger.setLevel(logging.INFO)
 
-        cls._api = TFE(TFE_TOKEN)
+        cls._api = TFC(TFC_TOKEN)
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME

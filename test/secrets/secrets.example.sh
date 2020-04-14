@@ -1,5 +1,5 @@
-export TFE_HOSTNAME="https://app.terraform.io"
-export TFE_TOKEN="<YOUR_TFE_TOKEN>"
+export TFC_HOSTNAME="https://app.terraform.io"
+export TFC_TOKEN="<YOUR_TFC_TOKEN>"
 
 export GITHUB_TOKEN=""
 export GITHUB_SECRET=""

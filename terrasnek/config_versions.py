@@ -1,19 +1,19 @@
 """
-Module for Terraform Enterprise API Endpoint: Config Versions.
+Module for Terraform Cloud API Endpoint: Config Versions.
 """
 
 import json
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEConfigVersions(TFEEndpoint):
+class TFCConfigVersions(TFCEndpoint):
     """
     A configuration version (configuration-version) is a resource used to reference the
     uploaded configuration files. It is associated with the run to use the uploaded configuration
     files for performing the plan and apply.
 
-    https://www.terraform.io/docs/enterprise/api/configuration-versions.html
+    https://www.terraform.io/docs/cloud/api/configuration-versions.html
     """
 
     def __init__(self, base_url, organization_name, headers):

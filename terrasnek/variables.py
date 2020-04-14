@@ -1,14 +1,14 @@
 """
-Module for Terraform Enterprise API Endpoint: Variables.
+Module for Terraform Cloud API Endpoint: Variables.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEVariables(TFEEndpoint):
+class TFCVariables(TFCEndpoint):
     """
     This set of APIs covers create, update, list and delete operations on variables.
 
-    https://www.terraform.io/docs/enterprise/api/variables.html
+    https://www.terraform.io/docs/cloud/api/variables.html
     """
     def __init__(self, base_url, organization_name, headers):
         super().__init__(base_url, organization_name, headers)

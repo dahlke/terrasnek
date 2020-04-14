@@ -1,18 +1,18 @@
 """
-Module for Terraform Enterprise API Endpoint: Team Memberships.
+Module for Terraform Cloud API Endpoint: Team Memberships.
 """
 
 import json
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFETeamMemberships(TFEEndpoint):
+class TFCTeamMemberships(TFCEndpoint):
     """
     The Team Membership API is used to add or remove users from teams. The Team API is
     used to create or destroy teams.
 
-    https://www.terraform.io/docs/enterprise/api/team-members.html
+    https://www.terraform.io/docs/cloud/api/team-members.html
     """
 
     def __init__(self, base_url, organization_name, headers):

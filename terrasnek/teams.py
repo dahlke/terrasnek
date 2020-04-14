@@ -1,17 +1,17 @@
 """
-Module for Terraform Enterprise API Endpoint: Teams.
+Module for Terraform Cloud API Endpoint: Teams.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFETeams(TFEEndpoint):
+class TFCTeams(TFCEndpoint):
     """
     The Teams API is used to create, edit, and destroy teams as well as manage a team's
     organization-level permissions. The Team Membership API is used to add or remove users
     from a team. Use the Team Access API to associate a team with privileges on an
     individual workspace.
 
-    https://www.terraform.io/docs/enterprise/api/teams.html
+    https://www.terraform.io/docs/cloud/api/teams.html
     """
 
     def __init__(self, base_url, organization_name, headers):

@@ -1,13 +1,13 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Variables.
+Module for testing the Terraform Cloud API Endpoint: Variables.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEVariables(TestTFEBaseTestCase):
+class TestTFCVariables(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Variables.
+    Class for testing the Terraform Cloud API Endpoint: Variables.
     """
 
     def setUp(self):

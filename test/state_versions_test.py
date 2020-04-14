@@ -1,13 +1,13 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: State Versions.
+Module for testing the Terraform Cloud API Endpoint: State Versions.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEStateVersions(TestTFEBaseTestCase):
+class TestTFCStateVersions(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: State Versions.
+    Class for testing the Terraform Cloud API Endpoint: State Versions.
     """
 
     def setUp(self):

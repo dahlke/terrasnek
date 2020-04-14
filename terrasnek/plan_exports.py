@@ -1,18 +1,18 @@
 """
-Module for Terraform Enterprise API Endpoint: Plan Exports.
+Module for Terraform Cloud API Endpoint: Plan Exports.
 """
 
 import requests
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEPlanExports(TFEEndpoint):
+class TFCPlanExports(TFCEndpoint):
     """
     Plan exports allow users to download data exported from the plan of a Run in a Terraform
     workspace. Currently, the only supported format for exporting plan data is to generate mock
     data for Sentinel.
 
-    https://www.terraform.io/docs/enterprise/api/plan-exports.html
+    https://www.terraform.io/docs/cloud/api/plan-exports.html
     """
 
     def __init__(self, base_url, organization_name, headers):
