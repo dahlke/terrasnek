@@ -19,6 +19,7 @@ from ._constants import \
     GITHUB_TOKEN, GITHUB_SECRET, \
     SSL_VERIFY, TEST_PASSWORD
 
+DEFAULT_VCS_WORKING_DIR = "tfe"
 
 class TestTFCBaseTestCase(unittest.TestCase):
     """
@@ -144,17 +145,18 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_ws_with_vcs_create_payload(self, name, oauth_token_id):
+    def _get_ws_with_vcs_create_payload(self, name, oauth_token_id, working_dir=DEFAULT_VCS_WORKING_DIR):
         name = self._name_with_random(name)
 
+        # NB: Needs to be TF > v0.12 for Cost Estimation to work
         return {
             "data": {
                 "attributes": {
                     "name": name,
-                    "terraform_version": "0.11.1",
-                    "working-directory": "test/testdata/terraform/src/tfe",
+                    "terraform_version": "0.12.24",
+                    "working-directory": working_dir,
                     "vcs-repo": {
-                        "identifier": "dahlke/terrasnek",
+                        "identifier": "dahlke/terrasnek-unittest-config",
                         "oauth-token-id": oauth_token_id,
                         "branch": "master"
                     }

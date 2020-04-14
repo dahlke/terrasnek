@@ -22,6 +22,7 @@ from .org_tokens import TFCOrgTokens
 from .workspaces import TFCWorkspaces
 from .variables import TFCVariables
 from .config_versions import TFCConfigVersions
+from .cost_estimates import TFCCostEstimates
 from .runs import TFCRuns
 from .plans import TFCPlans
 from .plan_exports import TFCPlanExports
@@ -104,33 +105,34 @@ class TFC():
             self._headers,
             self._verify)
 
+        self.admin_users = None
         self.account = None
+        self.applies = None
+        self.config_versions = None
+        self.cost_estimates = None
+        self.notification_configs = None
+        self.oauth_clients = None
+        self.oauth_tokens = None
         self.org_memberships = None
         self.org_tokens = None
-        self.workspaces = None
-        self.users = None
-        self.user_tokens = None
-        self.variables = None
-        self.config_versions = None
-        self.runs = None
-        self.applies = None
         self.plans = None
         self.plan_exports = None
-        self.state_versions = None
-        self.state_version_outputs = None
-        self.ssh_keys = None
         self.policies = None
         self.policy_sets = None
         self.policy_set_params = None
-        self.notification_configs = None
         self.run_triggers = None
-        self.oauth_clients = None
-        self.oauth_tokens = None
+        self.runs = None
+        self.state_versions = None
+        self.state_version_outputs = None
+        self.ssh_keys = None
         self.teams = None
         self.team_memberships = None
         self.team_access = None
         self.team_tokens = None
-        self.admin_users = None
+        self.users = None
+        self.user_tokens = None
+        self.variables = None
+        self.workspaces = None
 
     def set_org(self, org_name):
         """
@@ -182,6 +184,12 @@ class TFC():
             self._verify)
 
         self.config_versions = TFCConfigVersions(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
+
+        self.cost_estimates = TFCCostEstimates(
             self._instance_url,
             self._current_org,
             self._headers,

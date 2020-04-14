@@ -7,6 +7,10 @@ import sys
 
 TFC_HOSTNAME = os.getenv("TFC_HOSTNAME", None)
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
+
 SSL_VERIFY_RAW = os.getenv("SSL_VERIFY", "")
 SSL_VERIFY = False if SSL_VERIFY_RAW.lower() == "false" else True
 
@@ -24,6 +28,12 @@ if TFC_HOSTNAME is None:
 
 if TFC_TOKEN is None:
     sys.exit("Environment variable TFC_TOKEN must be set.")
+
+if AWS_ACCESS_KEY_ID is None:
+    sys.exit("Environment variable AWS_ACCESS_KEY_ID must be set.")
+
+if AWS_SECRET_ACCESS_KEY is None:
+    sys.exit("Environment variable AWS_SECRET_ACCESS_KEY must be set.")
 
 if GITHUB_TOKEN is None:
     sys.exit("Environment variable GITHUB_TOKEN must be set.")
@@ -45,4 +55,3 @@ if TEST_TEAM_NAME is None:
 
 if TEST_PASSWORD is None:
     sys.exit("Environment variable TEST_PASSWORD must be set.")
-

@@ -61,7 +61,7 @@ if __name__ == "__main__":
 - [x] [Account](https://www.terraform.io/docs/cloud/api/account.html)
 - [x] [Applies](https://www.terraform.io/docs/cloud/api/applies.html)
 - [x] [Configuration Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)
-- [ ] [Cost Estimates](https://www.terraform.io/docs/cloud/api/cost-estimates.html)
+- [x] [Cost Estimates](https://www.terraform.io/docs/cloud/api/cost-estimates.html)
 - [x] [Notification Configurations](https://www.terraform.io/docs/cloud/api/notification-configurations.html)
 - [x] [OAuth Clients](https://www.terraform.io/docs/cloud/api/oauth-clients.html)
 - [x] [OAuth Tokens](https://www.terraform.io/docs/cloud/api/oauth-tokens.html)
@@ -154,6 +154,11 @@ Due to those limitations, this library does not currently test the full
 suite of tests in CircleCI. It is recommended that you run the tests
 locally before submitting pull requests, or at the very least, verify
 all of the tests that touch code you are contributing.
+
+If you are running against a Terraform Enterprise instance, be sure to
+have enabled Cost Estimates as well a create a user that can be used
+for team and organization memberships tests, a this cannot be done
+from the API currently.
 
 ###### Running Specific Tests
 

@@ -46,7 +46,9 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
                     "enabled": True,
                     "aws-enabled": True,
                     "aws-access-key-id": "foo",
-                    "aws-secret-key": "bar"
+                    "aws-secret-key": "bar",
+                    "azure-enabled": False,
+                    "gcp-enabled": False
                 }
             }
         }
