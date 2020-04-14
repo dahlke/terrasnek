@@ -1,15 +1,15 @@
 """
-Module for Terraform Enterprise API Endpoint: Team Tokens.
+Module for Terraform Cloud API Endpoint: Team Tokens.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFETeamTokens(TFEEndpoint):
+class TFCTeamTokens(TFCEndpoint):
     """
     Each team can have a special service account API token that is not associated with a
     specific user.
 
-    https://www.terraform.io/docs/enterprise/api/team-tokens.html
+    https://www.terraform.io/docs/cloud/api/team-tokens.html
     """
 
     def __init__(self, base_url, organization_name, headers):

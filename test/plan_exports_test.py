@@ -1,16 +1,16 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Plan Exports.
+Module for testing the Terraform Cloud API Endpoint: Plan Exports.
 """
 
 import time
 import os
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEPlanExports(TestTFEBaseTestCase):
+class TestTFCPlanExports(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Plan Exports.
+    Class for testing the Terraform Cloud API Endpoint: Plan Exports.
     """
 
     def setUp(self):

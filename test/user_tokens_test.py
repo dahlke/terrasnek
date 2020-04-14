@@ -1,13 +1,13 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: User Tokens.
+Module for testing the Terraform Cloud API Endpoint: User Tokens.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFEUserTokens(TestTFEBaseTestCase):
+class TestTFCUserTokens(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: User Tokens.
+    Class for testing the Terraform Cloud API Endpoint: User Tokens.
     """
 
     def test_user_token_lifecycle(self):
@@ -16,8 +16,8 @@ class TestTFEUserTokens(TestTFEBaseTestCase):
         """
 
         # TODO: fix this once the User API is patched.
-        users = self._api.admin_users.lst(query=self._test_username)["data"]
-        self.assertNotEqual(len(users), 0)
+        # users = self._api.admin_users.lst(query=self._test_username)["data"]
+        # self.assertNotEqual(len(users), 0)
         # user_id = users[0]['id']
 
         # created_token = \

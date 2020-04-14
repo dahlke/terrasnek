@@ -1,14 +1,14 @@
 """
-Module for Terraform Enterprise API Endpoint: OAuth Clients.
+Module for Terraform Cloud API Endpoint: OAuth Clients.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEOAuthClients(TFEEndpoint):
+class TFCOAuthClients(TFCEndpoint):
     """
     An OAuth Client represents the connection between an organization and a VCS provider.
 
-    https://www.terraform.io/docs/enterprise/api/oauth-clients.html
+    https://www.terraform.io/docs/cloud/api/oauth-clients.html
     """
 
     def __init__(self, base_url, organization_name, headers):

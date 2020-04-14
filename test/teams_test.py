@@ -1,13 +1,13 @@
 """
-Module for testing the Terraform Enterprise API Endpoint: Teams.
+Module for testing the Terraform Cloud API Endpoint: Teams.
 """
 
-from .base import TestTFEBaseTestCase
+from .base import TestTFCBaseTestCase
 
 
-class TestTFETeams(TestTFEBaseTestCase):
+class TestTFCTeams(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Enterprise API Endpoint: Teams.
+    Class for testing the Terraform Cloud API Endpoint: Teams.
     """
 
     def test_team_lifecycle(self):

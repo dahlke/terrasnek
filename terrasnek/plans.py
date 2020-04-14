@@ -1,14 +1,15 @@
 """
-Module for Terraform Enterprise API Endpoint: Plans.
+Module for Terraform Cloud API Endpoint: Plans.
 """
 
-from .endpoint import TFEEndpoint
+from .endpoint import TFCEndpoint
 
-class TFEPlans(TFEEndpoint):
+
+class TFCPlans(TFCEndpoint):
     """
     A plan represents the execution plan of a Run in a Terraform workspace.
 
-    https://www.terraform.io/docs/enterprise/api/plans.html
+    https://www.terraform.io/docs/cloud/api/plans.html
     """
 
     def __init__(self, base_url, organization_name, headers):

@@ -1,5 +1,5 @@
 """
-Constants for default values on the TFE API endpoints
+Constants for default values on the TFC API endpoints
 """
 
-TFE_SAAS_URL = "https://app.terraform.io"
+TFC_SAAS_URL = "https://app.terraform.io"
