@@ -46,7 +46,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
     @staticmethod
     def _name_with_random(name):
         random_hex = binascii.b2a_hex(os.urandom(8)).decode("ascii")
-        return f"terrasnek-unittest-test-{name}-{random_hex}"
+        return f"terrasnek-test-{name}-{random_hex}"
 
     @ staticmethod
     def _get_config_version_create_payload():
@@ -197,6 +197,26 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "name": name,
                     "email": self._test_email
                 }
+            }
+        }
+
+    def _get_org_membership_invite_payload(self, team_id):
+        return {
+            "data": {
+                "attributes": {
+                    "email": self._test_email,
+                },
+                "relationships": {
+                    "teams": {
+                        "data": [
+                            {
+                                "type": "teams",
+                                "id": team_id
+                            }
+                        ]
+                    },
+                },
+                "type": "organization-memberships"
             }
         }
 
