@@ -10,6 +10,7 @@ from .oauth_tokens import TFCOAuthTokens
 
 from .organizations import TFCOrganizations
 from .organization_memberships import TFCOrganizationMemberships
+from .organization_tokens import TFCOrganizationTokens
 from .workspaces import TFCWorkspaces
 from .variables import TFCVariables
 from .config_versions import TFCConfigVersions
@@ -54,6 +55,7 @@ class TFC():
         self.organizations = TFCOrganizations(
             self._instance_url, None, self._headers)
         self.organization_memberships = None
+        self.organization_tokens = None
         self.workspaces = None
         self.users = None
         self.user_tokens = None
@@ -85,7 +87,10 @@ class TFC():
         """
         self._current_organization = organization_name
 
+        # TODO: there is a better way initialize these all the same way.
         self.organization_memberships = TFCOrganizationMemberships(
+            self._instance_url, self._current_organization, self._headers)
+        self.organization_tokens = TFCOrganizationTokens(
             self._instance_url, self._current_organization, self._headers)
         self.workspaces = TFCWorkspaces(
             self._instance_url, self._current_organization, self._headers)
