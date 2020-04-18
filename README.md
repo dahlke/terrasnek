@@ -32,7 +32,7 @@ Currently the following endpoints are supported:
 - [x] [OAuth Clients](https://www.terraform.io/docs/cloud/api/oauth-clients.html)
 - [x] [OAuth Tokens](https://www.terraform.io/docs/cloud/api/oauth-tokens.html)
 - [x] [Organizations](https://www.terraform.io/docs/cloud/api/organizations.html)
-- [ ] [Organization Memberships](https://www.terraform.io/docs/cloud/api/organization-memberships.html)
+- [x] [Organization Memberships](https://www.terraform.io/docs/cloud/api/organization-memberships.html)
 - [ ] [Organization Tokens](https://www.terraform.io/docs/cloud/api/organization-tokens.html)
 - [x] [Plan Exports](https://www.terraform.io/docs/cloud/api/plan-exports.html)
 - [x] [Plans](https://www.terraform.io/docs/cloud/api/plans.html)
