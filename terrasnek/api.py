@@ -21,6 +21,7 @@ from .state_versions import TFCStateVersions
 from .state_version_outputs import TFCStateVersionOutputs
 from .ssh_keys import TFCSSHKeys
 from .notification_configurations import TFCNotificationConfigurations
+from .run_triggers import TFCRunTriggers
 from .applies import TFCApplies
 from .users import TFCUsers
 from .user_tokens import TFCUserTokens
@@ -71,6 +72,7 @@ class TFC():
         self.state_version_outputs = None
         self.ssh_keys = None
         self.notification_configurations = None
+        self.run_triggers = None
 
         self.teams = None
         self.team_memberships = None
@@ -121,6 +123,8 @@ class TFC():
         self.ssh_keys = TFCSSHKeys(
             self._instance_url, self._current_organization, self._headers)
         self.notification_configurations = TFCNotificationConfigurations(
+            self._instance_url, self._current_organization, self._headers)
+        self.run_triggers = TFCRunTriggers(
             self._instance_url, self._current_organization, self._headers)
         self.teams = TFCTeams(self._instance_url,
                               self._current_organization, self._headers)

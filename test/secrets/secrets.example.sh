@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export TFC_HOSTNAME="https://app.terraform.io"
 export TFC_TOKEN="<YOUR_TFC_TOKEN>"
 

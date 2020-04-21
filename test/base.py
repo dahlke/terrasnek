@@ -288,3 +288,19 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 }
             }
         }
+
+    def _get_run_trigger_create_payload(self, target_workspace_id):
+        name = self._name_with_random("run-trig")
+
+        return {
+            "data": {
+                "relationships": {
+                "sourceable": {
+                    "data": {
+                        "id": target_workspace_id,
+                        "type": "workspaces"
+                        }
+                    }
+                }
+            }
+        }

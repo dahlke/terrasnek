@@ -43,7 +43,7 @@ Currently the following endpoints are supported:
 - [ ] [Policy Set Parameters](terraform.io/docs/cloud/api/policy-set-params.html)
 - [ ] [Registry Modules](https://www.terraform.io/docs/cloud/api/modules.html)
 - [x] [Runs](https://www.terraform.io/docs/cloud/api/run.html)
-- [ ] [Run Triggers](https://www.terraform.io/docs/cloud/api/run-triggers.html)
+- [x] [Run Triggers](https://www.terraform.io/docs/cloud/api/run-triggers.html)
 - [x] [SSH Keys](https://www.terraform.io/docs/cloud/api/ssh-keys.html)
 - [x] [State Versions](https://www.terraform.io/docs/cloud/api/state-versions.html)
 - [x] [State Version Outputs](https://www.terraform.io/docs/cloud/api/state-version-outputs.html)
