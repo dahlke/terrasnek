@@ -202,6 +202,29 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
+    def _get_notification_configuration_create_payload(self):
+        name = self._name_with_random("noti-conf")
+
+        return {
+            "data": {
+                "type": "notification-configurations",
+                "attributes": {
+                    "destination-type": "generic",
+                    "enabled": True,
+                    "name": name,
+                    "url": "https://httpstat.us/200",
+                    "triggers": [
+                        "run:applying",
+                        "run:completed",
+                        "run:created",
+                        "run:errored",
+                        "run:needs_attention",
+                        "run:planning"
+                    ]
+                }
+            }
+        }
+
     def _get_org_create_payload(self):
         name = self._name_with_random("org")
         return {

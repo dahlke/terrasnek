@@ -29,7 +29,7 @@ Currently the following endpoints are supported:
 - [x] [Applies](https://www.terraform.io/docs/cloud/api/applies.html)
 - [x] [Configuration Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)
 - [ ] [Cost Estimates](https://www.terraform.io/docs/cloud/api/cost-estimates.html)
-- [ ] [Notification Configurations](https://www.terraform.io/docs/cloud/api/notification-configurations.html)
+- [x] [Notification Configurations](https://www.terraform.io/docs/cloud/api/notification-configurations.html)
 - [x] [OAuth Clients](https://www.terraform.io/docs/cloud/api/oauth-clients.html)
 - [x] [OAuth Tokens](https://www.terraform.io/docs/cloud/api/oauth-tokens.html)
 - [x] [Organizations](https://www.terraform.io/docs/cloud/api/organizations.html)
@@ -82,6 +82,10 @@ tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 
 #### Running Specific Tests
 
+The test suite takes a long time to execute fully, since there is a lot of async work, and waiting
+for plans, applies, etc. In the scenario you want to just test a new implementation or change,
+use the below.
+
 ```
 source test/secrets/secrets.sh
 python3 -m unittest test/applies_test.py
@@ -108,3 +112,6 @@ make pip-package
 make pip-publish
 ```
 
+---
+
+_Note: This repo is not officially maintained by HashiCorp._

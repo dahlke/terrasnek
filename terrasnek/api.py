@@ -20,6 +20,7 @@ from .plan_exports import TFCPlanExports
 from .state_versions import TFCStateVersions
 from .state_version_outputs import TFCStateVersionOutputs
 from .ssh_keys import TFCSSHKeys
+from .notification_configurations import TFCNotificationConfigurations
 from .applies import TFCApplies
 from .users import TFCUsers
 from .user_tokens import TFCUserTokens
@@ -69,6 +70,7 @@ class TFC():
         self.state_versions = None
         self.state_version_outputs = None
         self.ssh_keys = None
+        self.notification_configurations = None
 
         self.teams = None
         self.team_memberships = None
@@ -118,7 +120,8 @@ class TFC():
             self._instance_url, self._current_organization, self._headers)
         self.ssh_keys = TFCSSHKeys(
             self._instance_url, self._current_organization, self._headers)
-
+        self.notification_configurations = TFCNotificationConfigurations(
+            self._instance_url, self._current_organization, self._headers)
         self.teams = TFCTeams(self._instance_url,
                               self._current_organization, self._headers)
         self.team_memberships = TFCTeamMemberships(
@@ -127,11 +130,12 @@ class TFC():
             self._instance_url, self._current_organization, self._headers)
         self.team_tokens = TFCTeamTokens(
             self._instance_url, self._current_organization, self._headers)
-
-        self.admin_users = TFCAdminUsers(
-            self._instance_url, self._current_organization, self._headers)
-
         self.oauth_clients = TFCOAuthClients(
             self._instance_url, self._current_organization, self._headers)
         self.oauth_tokens = TFCOAuthTokens(
             self._instance_url, self._current_organization, self._headers)
+
+        # Admin Endpoints
+        self.admin_users = TFCAdminUsers(
+            self._instance_url, self._current_organization, self._headers)
+
