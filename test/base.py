@@ -132,6 +132,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
+
     def _get_state_version_create_payload(self):
         # Go Example:
         # https://github.com/hashicorp/go-tfe/blob/4ca75c88c51753c622df5bf4446e69eff6c885d6/state_version_test.go#L105
@@ -184,6 +185,19 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 "type": "workspaces",
                 "attributes": {
                     "name": name
+                }
+            }
+        }
+
+    def _get_ssh_key_create_payload(self):
+        name = self._name_with_random("ssh-key")
+
+        return {
+            "data": {
+                "type": "ssh-keys",
+                "attributes": {
+                    "name": name,
+                    "value": "-----BEGIN RSA PRIVATE KEY-----\nfoo..."
                 }
             }
         }

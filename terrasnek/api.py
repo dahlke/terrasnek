@@ -19,6 +19,7 @@ from .plans import TFCPlans
 from .plan_exports import TFCPlanExports
 from .state_versions import TFCStateVersions
 from .state_version_outputs import TFCStateVersionOutputs
+from .ssh_keys import TFCSSHKeys
 from .applies import TFCApplies
 from .users import TFCUsers
 from .user_tokens import TFCUserTokens
@@ -67,6 +68,7 @@ class TFC():
         self.plan_exports = None
         self.state_versions = None
         self.state_version_outputs = None
+        self.ssh_keys = None
 
         self.teams = None
         self.team_memberships = None
@@ -113,6 +115,8 @@ class TFC():
         self.state_versions = TFCStateVersions(
             self._instance_url, self._current_organization, self._headers)
         self.state_version_outputs = TFCStateVersionOutputs(
+            self._instance_url, self._current_organization, self._headers)
+        self.ssh_keys = TFCSSHKeys(
             self._instance_url, self._current_organization, self._headers)
 
         self.teams = TFCTeams(self._instance_url,
