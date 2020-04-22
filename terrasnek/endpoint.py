@@ -81,6 +81,7 @@ class TFCEndpoint():
         """
         Implementation of the common update resource pattern for the TFC API.
         """
+        results = None
         req = requests.patch(url, data=json.dumps(payload), headers=self._headers)
 
         if req.status_code == 200:

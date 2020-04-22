@@ -59,6 +59,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
+
     @staticmethod
     def _get_user_token_create_payload():
         return {
@@ -202,6 +203,31 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
+    def _get_policy_create_payload(self):
+        name = self._name_with_random("policy")
+
+        # https://www.terraform.io/docs/cloud/api/policies.html#sample-payload
+        return {
+            "data": {
+                "attributes": {
+                    "enforce": [
+                        {
+                            "path": "terransek-example-policy.sentinel",
+                            "mode": "hard-mandatory"
+                        }
+                    ],
+                    "name": name,
+                    "description": "terrasnek example policy"
+                    },
+                    "relationships": {
+                    "policy-sets": {
+                        "data": []
+                    }
+                },
+                "type": "policies"
+            }
+        }
+
     def _get_notification_configuration_create_payload(self):
         name = self._name_with_random("noti-conf")
 
@@ -290,8 +316,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
         }
 
     def _get_run_trigger_create_payload(self, target_workspace_id):
-        name = self._name_with_random("run-trig")
-
         return {
             "data": {
                 "relationships": {
