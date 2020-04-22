@@ -37,7 +37,7 @@ Currently the following endpoints are supported:
 - [x] [Organization Tokens](https://www.terraform.io/docs/cloud/api/organization-tokens.html)
 - [x] [Plan Exports](https://www.terraform.io/docs/cloud/api/plan-exports.html)
 - [x] [Plans](https://www.terraform.io/docs/cloud/api/plans.html)
-- [ ] [Policies](https://www.terraform.io/docs/cloud/api/policies.html)
+- [x] [Policies](https://www.terraform.io/docs/cloud/api/policies.html)
 - [ ] [Policy Checks](https://www.terraform.io/docs/cloud/api/policy-checks.html)
 - [ ] [Policy Sets](https://www.terraform.io/docs/cloud/api/policy-sets.html)
 - [ ] [Policy Set Parameters](terraform.io/docs/cloud/api/policy-set-params.html)
