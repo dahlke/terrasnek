@@ -22,6 +22,7 @@ from .state_version_outputs import TFCStateVersionOutputs
 from .ssh_keys import TFCSSHKeys
 from .policies import TFCPolicies
 from .policy_sets import TFCPolicySets
+from .policy_set_params import TFCPolicySetParams
 from .notification_configurations import TFCNotificationConfigurations
 from .run_triggers import TFCRunTriggers
 from .applies import TFCApplies
@@ -75,6 +76,7 @@ class TFC():
         self.ssh_keys = None
         self.policies = None
         self.policy_sets = None
+        self.policy_set_params = None
         self.notification_configurations = None
         self.run_triggers = None
 
@@ -129,6 +131,8 @@ class TFC():
         self.policies = TFCPolicies(
             self._instance_url, self._current_organization, self._headers)
         self.policy_sets = TFCPolicySets(
+            self._instance_url, self._current_organization, self._headers)
+        self.policy_set_params = TFCPolicySetParams(
             self._instance_url, self._current_organization, self._headers)
         self.notification_configurations = TFCNotificationConfigurations(
             self._instance_url, self._current_organization, self._headers)

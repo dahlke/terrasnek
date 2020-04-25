@@ -251,6 +251,19 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
+    def _get_policy_set_param_create_payload(self):
+        return {
+            "data": {
+                "type": "vars",
+                "attributes": {
+                    "key": "terrasnek",
+                    "value": "unittest",
+                    "category": "policy-set",
+                    "sensitive": False
+                }
+            }
+        }
+
     def _get_notification_configuration_create_payload(self):
         name = self._name_with_random("noti-conf")
 
