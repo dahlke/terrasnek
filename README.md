@@ -39,7 +39,7 @@ Currently the following endpoints are supported:
 - [x] [Plans](https://www.terraform.io/docs/cloud/api/plans.html)
 - [x] [Policies](https://www.terraform.io/docs/cloud/api/policies.html)
 - [ ] [Policy Checks](https://www.terraform.io/docs/cloud/api/policy-checks.html)
-- [ ] [Policy Sets](https://www.terraform.io/docs/cloud/api/policy-sets.html)
+- [x] [Policy Sets](https://www.terraform.io/docs/cloud/api/policy-sets.html)
 - [ ] [Policy Set Parameters](terraform.io/docs/cloud/api/policy-set-params.html)
 - [ ] [Registry Modules](https://www.terraform.io/docs/cloud/api/modules.html)
 - [x] [Runs](https://www.terraform.io/docs/cloud/api/run.html)
