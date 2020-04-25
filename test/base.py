@@ -228,6 +228,29 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
+    def _get_policy_set_create_payload(self):
+        name = self._name_with_random("pol-set")
+
+        # https://www.terraform.io/docs/cloud/api/policies.html#sample-payload
+        return {
+            "data": {
+                "type": "policy-sets",
+                "attributes": {
+                    "name": name,
+                    "description": "terrasnek unittest",
+                    "global": False
+                },
+                "relationships": {
+                    "policies": {
+                        "data": []
+                    },
+                    "workspaces": {
+                        "data": []
+                    }
+                }
+            }
+        }
+
     def _get_notification_configuration_create_payload(self):
         name = self._name_with_random("noti-conf")
 
