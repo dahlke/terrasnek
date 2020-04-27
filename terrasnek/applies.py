@@ -11,8 +11,8 @@ class TFCApplies(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/applies.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/applies"
 
     def show(self, apply_id):

@@ -16,8 +16,8 @@ class TFCConfigVersions(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/configuration-versions.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._ws_base_url = f"{base_url}/workspaces"
         self._config_version_base_url = f"{base_url}/configuration-versions"
 
@@ -65,19 +65,10 @@ class TFCConfigVersions(TFCEndpoint):
         """
         PUT {derived_config_version_upload_url}
         """
-        results = None
         # TODO: Validate the path to tarball a bit
-        upload_url = self.show(config_version_id)["data"]["attributes"]["upload-url"]
+        url = self.show(config_version_id)["data"]["attributes"]["upload-url"]
+        data = None
+        with open(path_to_tarball, 'rb') as data_bytes:
+            data = data_bytes.read()
 
-        # TODO: Exception and error handling
-        req = None
-        with open(path_to_tarball, 'rb') as data:
-            req = requests.put(upload_url, data=data, headers=self._headers)
-
-        if req.status_code == 200:
-            self._logger.debug("Config version successfully uploaded.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._put(url, data=data)

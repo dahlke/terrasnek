@@ -18,8 +18,8 @@ class TFCNotificationConfigurations(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/notification-configurations.html
     """
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/notification-configurations"
         self._ws_base_url = f"{base_url}/workspaces"
 
@@ -56,17 +56,7 @@ class TFCNotificationConfigurations(TFCEndpoint):
         POST /notification-configurations/:notification-configuration-id/actions/verify
         """
         url = f"{self._base_url}/{notification_configuration_id}/actions/verify"
-        results = None
-        req = requests.post(url, '', headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
-
+        return self._post(url)
 
     def destroy(self, notification_configuration_id):
         """

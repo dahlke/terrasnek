@@ -46,12 +46,13 @@ class TFC():
     Super class for access to all TFC Endpoints.
     """
 
-    def __init__(self, api_token, url=TFC_SAAS_URL):
+    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True):
         if api_token is None:
             raise InvalidTFCTokenException
 
         self._instance_url = f"{url}/api/v2"
         self._token = api_token
+        self._verify = verify
         self._current_organization = None
         self._headers = {
             "Authorization": f"Bearer {api_token}",
@@ -59,7 +60,10 @@ class TFC():
         }
 
         self.organizations = TFCOrganizations(
-            self._instance_url, None, self._headers)
+            self._instance_url,
+            None,
+            self._headers,
+            self._verify)
         self.organization_memberships = None
         self.organization_tokens = None
         self.workspaces = None
@@ -79,18 +83,20 @@ class TFC():
         self.policy_set_params = None
         self.notification_configurations = None
         self.run_triggers = None
-
+        self.oauth_clients = None
+        self.oauth_tokens = None
         self.teams = None
         self.team_memberships = None
         self.team_access = None
         self.team_tokens = None
 
-        self.admin_users = None
         self.admin_organizations = TFCAdminOrganizations(
-            self._instance_url, None, self._headers)
+            self._instance_url,
+            None,
+            self._headers,
+            self._verify)
+        self.admin_users = None
 
-        self.oauth_clients = None
-        self.oauth_tokens = None
 
     def set_organization(self, organization_name):
         """
@@ -101,57 +107,159 @@ class TFC():
 
         # TODO: there is a better way initialize these all the same way.
         self.organization_memberships = TFCOrganizationMemberships(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.organization_tokens = TFCOrganizationTokens(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.workspaces = TFCWorkspaces(
-            self._instance_url, self._current_organization, self._headers)
-        self.users = TFCUsers(self._instance_url,
-                              self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
+        self.users = TFCUsers(
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.user_tokens = TFCUserTokens(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.variables = TFCVariables(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.config_versions = TFCConfigVersions(
-            self._instance_url, self._current_organization, self._headers)
-        self.runs = TFCRuns(self._instance_url,
-                            self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
+        self.runs = TFCRuns(
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.applies = TFCApplies(
-            self._instance_url, self._current_organization, self._headers)
-        self.plans = TFCPlans(self._instance_url,
-                              self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
+        self.plans = TFCPlans(
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.plan_exports = TFCPlanExports(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.state_versions = TFCStateVersions(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.state_version_outputs = TFCStateVersionOutputs(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.ssh_keys = TFCSSHKeys(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.policies = TFCPolicies(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.policy_sets = TFCPolicySets(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.policy_set_params = TFCPolicySetParams(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.notification_configurations = TFCNotificationConfigurations(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.run_triggers = TFCRunTriggers(
-            self._instance_url, self._current_organization, self._headers)
-        self.teams = TFCTeams(self._instance_url,
-                              self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
+        self.teams = TFCTeams(
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.team_memberships = TFCTeamMemberships(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.team_access = TFCTeamAccess(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.team_tokens = TFCTeamTokens(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.oauth_clients = TFCOAuthClients(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
+
         self.oauth_tokens = TFCOAuthTokens(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
 
         # Admin Endpoints
         self.admin_users = TFCAdminUsers(
-            self._instance_url, self._current_organization, self._headers)
+            self._instance_url,
+            self._current_organization,
+            self._headers,
+            self._verify)
 

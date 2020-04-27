@@ -8,8 +8,8 @@ class TFCRunTriggers(TFCEndpoint):
     """
     https://www.terraform.io/docs/cloud/api/run-triggers.html
     """
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/run-triggers"
         self._ws_base_url = f"{base_url}/workspaces"
 

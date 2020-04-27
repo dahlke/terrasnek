@@ -22,8 +22,8 @@ class TFCRuns(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/run.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._ws_base_url = f"{base_url}/workspaces"
         self._runs_base_url = f"{base_url}/runs"
 
@@ -84,13 +84,7 @@ class TFCRuns(TFCEndpoint):
         not return any object in the response body.
         """
         url = f"{self._runs_base_url}/{run_id}/actions/apply"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 202:
-            self._logger.debug("Run successfully applied.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._post(url)
 
     def discard(self, run_id):
         """
@@ -107,13 +101,7 @@ class TFCRuns(TFCEndpoint):
         return any object in the response body.
         """
         url = f"{self._runs_base_url}/{run_id}/actions/discard"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 202:
-            self._logger.debug("Run successfully discarded.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._post(url)
 
     def cancel(self, run_id):
         """
@@ -131,13 +119,7 @@ class TFCRuns(TFCEndpoint):
         return any object in the response body.
         """
         url = f"{self._runs_base_url}/{run_id}/actions/cancel"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 202:
-            self._logger.debug("Run successfully canceled.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._post(url)
 
     def force_cancel(self, run_id):
         """
@@ -159,13 +141,7 @@ class TFCRuns(TFCEndpoint):
         object in the response body.
         """
         url = f"{self._runs_base_url}/{run_id}/actions/force-cancel"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 202:
-            self._logger.debug("Run successfully force canceled.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._post(url)
 
     def force_execute(self, run_id):
         """
@@ -184,10 +160,4 @@ class TFCRuns(TFCEndpoint):
         object in the response body.
         """
         url = f"{self._runs_base_url}/{run_id}/actions/force-execute"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 202:
-            self._logger.debug("Run successfully force executed.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._post(url)

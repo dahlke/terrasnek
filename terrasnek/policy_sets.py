@@ -23,8 +23,8 @@ class TFCPolicySets(TFCEndpoint):
         https://www.terraform.io/docs/cloud/api/policy-sets.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/policy-sets"
         self._org_base_url = f"{base_url}/organizations/{organization_name}/policy-sets"
 
@@ -65,68 +65,29 @@ class TFCPolicySets(TFCEndpoint):
         """
         POST /policy-sets/:id/relationships/policies
         """
-        results = None
         url = f"{self._base_url}/{policy_set_id}/relationships/policies"
-        req = requests.post(url, data=json.dumps(payload), headers=self._headers)
-
-        if req.status_code == 204:
-            pass
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url, data=payload)
 
     def remove_policies_from_set(self, policy_id, payload):
         """
         DELETE /policy-sets/:id/relationships/policies
         """
-        results = None
         url = f"{self._base_url}/{policy_id}/relationships/policies"
-        req = requests.delete(url, data=json.dumps(payload), headers=self._headers)
-
-        if req.status_code == 204:
-            pass
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
-
+        return self._post(url, data=payload)
 
     def attach_policy_set_to_workspaces(self, policy_id, payload):
         """
         POST /policy-sets/:id/relationships/workspaces
         """
-        results = None
         url = f"{self._base_url}/{policy_id}/relationships/workspaces"
-        req = requests.post(url, data=json.dumps(payload), headers=self._headers)
-
-        if req.status_code == 204:
-            pass
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
-
+        return self._post(url, data=payload)
 
     def detach_policy_set_from_workspaces(self, policy_id, payload):
         """
         POST /policy-sets/:id/relationships/workspaces
         """
-        results = None
         url = f"{self._base_url}/{policy_id}/relationships/workspaces"
-        req = requests.delete(url, data=json.dumps(payload), headers=self._headers)
-
-        if req.status_code == 204:
-            pass
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
-
+        return self._delete(url, data=payload)
 
     def create_policy_set_version(self):
         """
@@ -139,7 +100,6 @@ class TFCPolicySets(TFCEndpoint):
         """
         # TODO
         pass
-
 
     def show_policy_set_version(self, policy_set_id):
         """

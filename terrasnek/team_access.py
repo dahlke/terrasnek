@@ -16,24 +16,15 @@ class TFCTeamAccess(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/team-access.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/team-workspaces"
 
     def add_team_access(self, payload):
         """
         POST /team-workspaces
         """
-        results = None
-        req = requests.post(self._base_url, json.dumps(payload), headers=self._headers)
-
-        if req.status_code == 201:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(self._base_url, data=payload)
 
     def lst(self):
         """
@@ -46,13 +37,7 @@ class TFCTeamAccess(TFCEndpoint):
         DELETE /team-workspaces/:id
         """
         url = f"{self._base_url}/{access_id}"
-        req = requests.delete(url, headers=self._headers)
-
-        if req.status_code == 204:
-            self._logger.info("Team access removed.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._delete(url)
 
     def show(self, access_id):
         """

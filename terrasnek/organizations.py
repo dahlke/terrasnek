@@ -14,8 +14,8 @@ class TFCOrganizations(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/organizations.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._org_base_url = f"{base_url}/organizations"
 
     def create(self, payload):
@@ -39,7 +39,7 @@ class TFCOrganizations(TFCEndpoint):
         """
         results = None
         url = f"{self._org_base_url}/{organization_name}/entitlement-set"
-        req = requests.get(url, headers=self._headers)
+        req = self._get(url, headers=self._headers)
 
         if req.status_code == 200:
             results = json.loads(req.content)

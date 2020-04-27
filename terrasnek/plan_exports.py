@@ -15,8 +15,8 @@ class TFCPlanExports(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/plan-exports.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/plan-exports"
 
     def create(self, payload):
@@ -51,7 +51,7 @@ class TFCPlanExports(TFCEndpoint):
         to save the temporary URL.
         """
         url = f"{self._base_url}/{plan_export_id}/download"
-        req = requests.get(url, headers=self._headers)
+        req = self._get(url, headers=self._headers)
         with open(target_path, 'wb') as target_file:
             target_file.write(req.content)
 

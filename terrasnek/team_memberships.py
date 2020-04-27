@@ -15,8 +15,8 @@ class TFCTeamMemberships(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/team-members.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/teams"
 
     def add_a_user_to_team(self, team_id, payload):
@@ -26,14 +26,7 @@ class TFCTeamMemberships(TFCEndpoint):
         This method adds multiple users to a team. Both users and teams must already exist.
         """
         url = f"{self._base_url}/{team_id}/relationships/users"
-        req = requests.post(url, json.dumps(payload), headers=self._headers)
-
-        # NOTE: payload needs username, not user id
-        if req.status_code == 204:
-            self._logger.info("Users added to team.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._post(url, data=payload)
 
     def remove_a_user_from_team(self, team_id, payload):
         """
@@ -43,10 +36,4 @@ class TFCTeamMemberships(TFCEndpoint):
         This DOES NOT delete the user; it only removes them from this team.
         """
         url = f"{self._base_url}/{team_id}/relationships/users"
-        req = requests.delete(url, data=json.dumps(payload), headers=self._headers)
-
-        if req.status_code == 204:
-            self._logger.info("User deleted from team.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._delete(url, data=payload)

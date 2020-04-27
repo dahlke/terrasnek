@@ -14,8 +14,8 @@ class TFCWorkspaces(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/workspaces.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._ws_base_url = f"{base_url}/workspaces"
         self._org_base_url = f"{base_url}/organizations/{organization_name}/workspaces"
         # TODO: Assign and Unassign SSH key, requires SSH key endpoint
@@ -50,17 +50,8 @@ class TFCWorkspaces(TFCEndpoint):
         This endpoint force unlocks a workspace. Only users with admin access are authorized to
         force unlock a workspace.
         """
-        results = None
         url = f"{self._ws_base_url}/{workspace_id}/actions/force-unlock"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url)
 
     def lock(self, workspace_id, payload):
         """
@@ -68,17 +59,8 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint locks a workspace.
         """
-        results = None
         url = f"{self._ws_base_url}/{workspace_id}/actions/lock"
-        req = requests.post(url, json.dumps(payload), headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url, data=payload)
 
     def lst(self):
         """
@@ -111,17 +93,8 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint unlocks a workspace.
         """
-        results = None
         url = f"{self._ws_base_url}/{workspace_id}/actions/unlock"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url)
 
     def update(self, workspace_id, payload):
         """

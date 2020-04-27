@@ -9,8 +9,8 @@ class TFCUserTokens(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/user-tokens.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._users_base_url = f"{base_url}/users"
         self._tokens_base_url = f"{base_url}/authentication-tokens"
 

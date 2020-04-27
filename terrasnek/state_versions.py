@@ -12,8 +12,8 @@ class TFCStateVersions(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/state-versions.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._state_version_base_url = f"{base_url}/state-versions"
         self._workspace_base_url = f"{base_url}/workspaces"
 
@@ -38,7 +38,7 @@ class TFCStateVersions(TFCEndpoint):
         """
         results = None
         url = f"{self._workspace_base_url}/{workspace_id}/current-state-version"
-        req = requests.get(url, headers=self._headers)
+        req = self._get(url, headers=self._headers)
 
         if req.status_code == 200:
             results = json.loads(req.content)

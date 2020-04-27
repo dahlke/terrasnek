@@ -16,8 +16,8 @@ class TFCOrganizationMemberships(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/organization-memberships.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/organization-memberships"
         self._org_base_url = f"{base_url}/organizations/{organization_name}/organization-memberships"
 

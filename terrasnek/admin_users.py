@@ -15,8 +15,8 @@ class TFCAdminUsers(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/admin/users.html
     """
 
-    def __init__(self, base_url, organization_name, headers):
-        super().__init__(base_url, organization_name, headers)
+    def __init__(self, base_url, organization_name, headers, verify):
+        super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/admin/users"
 
     def destroy(self, user_id):
@@ -41,32 +41,15 @@ class TFCAdminUsers(TFCEndpoint):
         """
         results = None
         url = f"{self._base_url}/{user_id}/actions/disable_two_factor"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url)
 
     def grant_admin(self, user_id):
         """
         POST /admin/users/:id/actions/grant_admin
 
         """
-        results = None
         url = f"{self._base_url}/{user_id}/actions/grant_admin"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url)
 
     def impersonate(self, user_id):
         """
@@ -78,13 +61,7 @@ class TFCAdminUsers(TFCEndpoint):
         does include a Set-Cookie header to persist a new session.
         """
         url = f"{self._base_url}/{user_id}/actions/impersonate"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 204:
-            self._logger.info(f"Begin impersonating user: {user_id}.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._post(url)
 
     def lst(self, query=None):
         """
@@ -104,17 +81,8 @@ class TFCAdminUsers(TFCEndpoint):
         """
         POST /admin/users/:id/actions/revoke_admin
         """
-        results = None
         url = f"{self._base_url}/{user_id}/actions/revoke_admin"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url)
 
     def suspend(self, user_id):
         """
@@ -123,17 +91,8 @@ class TFCAdminUsers(TFCEndpoint):
         This endpoint suspends a user's account, preventing them from authenticating
         and accessing resources.
         """
-        results = None
         url = f"{self._base_url}/{user_id}/actions/suspend"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url)
 
     def unimpersonate(self, user_id):
         """
@@ -148,13 +107,7 @@ class TFCAdminUsers(TFCEndpoint):
         this endpoint will have no effect unless the client is able to persist and use cookies.
         """
         url = f"{self._base_url}/{user_id}/actions/unimpersonate"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 204:
-            self._logger.info(f"Stop impersonating user: {user_id}.")
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+        return self._post(url)
 
     def unsuspend(self, user_id):
         """
@@ -163,14 +116,5 @@ class TFCAdminUsers(TFCEndpoint):
         This endpoint re-activates a suspended user's account, allowing them to
         resume authenticating and accessing resources.
         """
-        results = None
         url = f"{self._base_url}/{user_id}/actions/unsuspend"
-        req = requests.post(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._post(url)
