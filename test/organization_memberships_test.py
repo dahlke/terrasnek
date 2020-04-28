@@ -10,29 +10,19 @@ class TestTFCOrganizationMemberships(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Organization Memberships.
     """
 
-    def setUp(self):
-        # TODO: figure out how to make these not spammy or burdensome
-        org_create_payload = self._get_org_create_payload()
-        self._created_org = self._api.organizations.create(org_create_payload)
-        self._created_org_name = org_create_payload["data"]["attributes"]["name"]
-        self._created_org_id = self._created_org["data"]["id"]
-
-    def tearDown(self):
-        self._api.organizations.destroy(self._created_org_name)
+    # TODO: create a user with the admin API here if possible.
 
     def test_org_memberships_lifecycle(self):
         """
         Test the Organization Memberships API endpoints: invite, lst_for_org,
         lst_for_user, show, remove.
         """
-
         # Get the existing org memberships for the logged in user
         orgs_for_user = self._api.organization_memberships.lst_for_user()
         num_org_memberships = len(orgs_for_user["data"])
-        self.assertEqual(num_org_memberships, 2)
+        self.assertEqual(num_org_memberships, 1)
 
-        # Get teams for created org
-        self._api.set_organization(self._created_org_id)
+        # Get teams for the base org
         teams = self._api.teams.lst()
         owners_team = teams["data"][0]
         owners_team_id = owners_team["id"]

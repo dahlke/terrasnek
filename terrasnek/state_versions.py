@@ -36,17 +36,8 @@ class TFCStateVersions(TFCEndpoint):
         Fetches the current state version for the given workspace. This state version will be
         the input state when running terraform operations.
         """
-        results = None
         url = f"{self._workspace_base_url}/{workspace_id}/current-state-version"
-        req = self._get(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
-
-        return results
+        return self._get(url)
 
     def lst(self, workspace_name, page_number=None, page_size=None):
         """

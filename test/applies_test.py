@@ -27,8 +27,12 @@ class TestTFCApplies(TestTFCBaseTestCase):
         time.sleep(3)
 
         variable_payloads = [
-            self._get_variable_create_payload("email", self._test_email, self._ws_id),
-            self._get_variable_create_payload("org_name", "terrasnek_unittest", self._ws_id)
+            self._get_variable_create_payload(
+                "email", self._test_email, self._ws_id),
+            self._get_variable_create_payload(
+                "org_name", "terrasnek_unittest", self._ws_id),
+            self._get_variable_create_payload(
+                "TFE_TOKEN", self._test_api_token, self._ws_id, category="env", sensitive=True)
         ]
         for payload in variable_payloads:
             self._api.variables.create(payload)
@@ -48,6 +52,7 @@ class TestTFCApplies(TestTFCBaseTestCase):
         """
 
         # Create a run and wait for the created run to complete it's plan
+        # TODO: make these tests time out
         created_run = self._api.runs.show(self._run_id)["data"]
         while not created_run["attributes"]["actions"]["is-confirmable"]:
             self._logger.debug("Waiting on plan to execute...")

@@ -7,6 +7,8 @@ import sys
 
 TFC_HOSTNAME = os.getenv("TFC_HOSTNAME", None)
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
+TFC_VERIFY_RAW = os.getenv("TFC_VERIFY", "")
+TFC_VERIFY = False if TFC_VERIFY_RAW.lower() == "false" else True
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
 GITHUB_SECRET = os.getenv("GITHUB_SECRET", None)

@@ -39,7 +39,6 @@ class TFCAdminUsers(TFCEndpoint):
         authentication, completing a security verification process is recommended to ensure
     the request is legitimate.
         """
-        results = None
         url = f"{self._base_url}/{user_id}/actions/disable_two_factor"
         return self._post(url)
 

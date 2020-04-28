@@ -73,7 +73,7 @@ class TFCPolicySets(TFCEndpoint):
         DELETE /policy-sets/:id/relationships/policies
         """
         url = f"{self._base_url}/{policy_id}/relationships/policies"
-        return self._post(url, data=payload)
+        return self._delete(url, data=payload)
 
     def attach_policy_set_to_workspaces(self, policy_id, payload):
         """

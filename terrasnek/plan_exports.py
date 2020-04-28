@@ -51,9 +51,9 @@ class TFCPlanExports(TFCEndpoint):
         to save the temporary URL.
         """
         url = f"{self._base_url}/{plan_export_id}/download"
-        req = self._get(url, headers=self._headers)
+        results = self._get(url, return_raw=True)
         with open(target_path, 'wb') as target_file:
-            target_file.write(req.content)
+            target_file.write(results)
 
     def destroy(self, plan_export_id):
         """

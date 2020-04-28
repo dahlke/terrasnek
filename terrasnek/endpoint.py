@@ -38,13 +38,15 @@ class TFCEndpoint():
 
         return results
 
-    def _get(self, url):
+    def _get(self, url, return_raw=False):
         results = None
         req = requests.get(url, headers=self._headers, verify=self._verify)
 
-        if req.status_code == HTTP_OK:
+        if req.status_code == HTTP_OK and not return_raw:
             results = json.loads(req.content)
             self._logger.debug(f"GET to {url} successful")
+        elif req.status_code == HTTP_OK and return_raw:
+            results = req.content
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)

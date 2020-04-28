@@ -14,9 +14,9 @@ import binascii
 from terrasnek.api import TFC
 
 from ._constants import \
-    TFC_TOKEN, TEST_EMAIL, TEST_ORG_NAME, \
-    TEST_USERNAME, TEST_TEAM_NAME, \
-    GITHUB_TOKEN, GITHUB_SECRET
+    TFC_TOKEN, TFC_HOSTNAME, TEST_EMAIL, \
+    TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
+    GITHUB_TOKEN, GITHUB_SECRET, TFC_VERIFY
 
 
 class TestTFCBaseTestCase(unittest.TestCase):
@@ -28,12 +28,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
     def setUpClass(cls):
         cls._logger = logging.getLogger(cls.__class__.__name__)
         cls._logger.setLevel(logging.INFO)
-
-        cls._api = TFC(TFC_TOKEN)
+        cls._api = TFC(TFC_TOKEN, url=TFC_HOSTNAME, verify=TFC_VERIFY)
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME
         cls._test_org_name = TEST_ORG_NAME
+        cls._test_api_token = TEST_ORG_NAME
 
         # TODO: make these env vars?
         cls._test_state_path = "./test/testdata/terraform/terrasnek_unittest.tfstate"
@@ -92,16 +92,16 @@ class TestTFCBaseTestCase(unittest.TestCase):
         }
 
     @staticmethod
-    def _get_variable_create_payload(key, value, workspace_id):
+    def _get_variable_create_payload(key, value, workspace_id, category="terraform", sensitive=False):
         return {
             "data": {
                 "type": "vars",
                 "attributes": {
                     "key": key,
                     "value": value,
-                    "category": "terraform",
+                    "category": category,
                     "hcl": False,
-                    "sensitive": False
+                    "sensitive": sensitive
                 },
                 "relationships": {
                     "workspace": {

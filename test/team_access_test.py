@@ -11,16 +11,24 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
     """
 
     def setUp(self):
+        # Create a test team
         self._team = self._api.teams.create(
             self._get_team_create_payload())["data"]
         self._team_id = self._team["id"]
+
+        # Invite a test user to this org, remove after
+        invite_payload = self._get_org_membership_invite_payload(self._team_id)
+        invite = self._api.organization_memberships.invite(invite_payload)
+        self._org_membership_id = invite["data"]["id"]
+
 
         # Create a test workspace
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload("team-access"))["data"]
         self._ws_id = workspace["id"]
         self._ws_name = workspace["attributes"]["name"]
-        # Create a test team
+
+        self._api.organization_memberships.remove(self._org_membership_id)
 
     def tearDown(self):
         self._api.workspaces.destroy(workspace_name=self._ws_name)
@@ -54,7 +62,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
             }
         }
         workspace_accesses = self._api.team_access.lst()["data"]
-        self.assertNotEqual(len(workspace_accesses), 0)
+        self.assertEqual(len(workspace_accesses), 0)
 
         access = self._api.team_access.add_team_access(
             team_access_create_payload)

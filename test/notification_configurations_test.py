@@ -14,7 +14,7 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
     """
 
     def setUp(self):
-        unittest_name = "applies"
+        unittest_name = "not-cng"
 
         # Create an OAuth client for the test and extract it's ID
         oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
