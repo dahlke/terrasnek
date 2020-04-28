@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: State Versions.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCStateVersions(TFCEndpoint):

@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Organizations.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCOrganizations(TFCEndpoint):
@@ -37,17 +34,8 @@ class TFCOrganizations(TFCEndpoint):
 
         This endpoint shows the entitlements for an organization.
         """
-        results = None
         url = f"{self._org_base_url}/{organization_name}/entitlement-set"
-        req = self._get(url, headers=self._headers)
-
-        if req.status_code == 200:
-            results = json.loads(req.content)
-        else:
-            err = json.loads(req.content.decode("utf-8"))["errors"][0]
-            self._logger.error(err)
-
-        return results
+        return self._get(url)
 
     def lst(self):
         """

@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Organization Tokens.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCOrganizationTokens(TFCEndpoint):

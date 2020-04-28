@@ -4,27 +4,34 @@
 
 _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/cloud/api/index.html)._
 
+---
+
+### Requirements
+
+To make full usage of all the tools and commands here, you should have `pylint`,
+`python3` and `ag` installed.
+
 
 ### Using `terrasnek`
 
-For more details on using each endpoint, checkout the [`test`](./test) directory.
+For more details on using each endpoint, check out the [`test`](./test) directory.
 
 ```
 from terrasnek.api import TFC
 import os
 
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
+TFC_URL = os.getenv("TFC_TOKEN", None)  # ex: https://app.terraform.io
+SSL_VERIFY = os.getenv("SSL_VERIFY", None)  # set to True if you want to use HTTP or insecure HTTPS
 
 if __name__ == "__main__":
-    api = TFC(TFC_TOKEN)
+    api = TFC(TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY)
     api.set_organization("YOUR_ORGANIZATION")
 ```
 
-#### Contributing to `terrasnek`
+##### Supported Endpoints
 
-Currently the following endpoints are supported:
-
-##### Standard Endpoints
+###### Standard Endpoints
 - [ ] [Account](https://www.terraform.io/docs/cloud/api/account.html)
 - [x] [Applies](https://www.terraform.io/docs/cloud/api/applies.html)
 - [x] [Configuration Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)
@@ -56,7 +63,7 @@ Currently the following endpoints are supported:
 - [x] [Variables](https://www.terraform.io/docs/cloud/api/variables.html)
 - [x] [Workspaces](https://www.terraform.io/docs/cloud/api/workspaces.html)
 
-##### Admin Endpoints
+###### Admin Endpoints
 - [x] [Admin Organizations](https://www.terraform.io/docs/cloud/api/admin/organizations.html)
 - [ ] [Admin Runs](https://www.terraform.io/docs/cloud/api/admin/runs.html)
 - [ ] [Admin Settings](https://www.terraform.io/docs/cloud/api/admin/settings.html)
@@ -69,8 +76,14 @@ Currently the following endpoints are supported:
 
 #### Linting the Code
 
+###### Lint Library Code
 ```
-make lint
+make lint-lib
+```
+
+###### Lint Test Code
+```
+make lint-tests
 ```
 
 #### Building Test Data
@@ -80,7 +93,14 @@ cd test/testdata/terraform/
 tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 ```
 
-#### Running Specific Tests
+#### Testing
+
+It is recommended that when running the entire suite of tests, you use a
+sandbox Terraform Enterprise instance. This will allow you to test the
+Admin Endpoints without any worry of error, and you will not have any
+run limits.
+
+###### Running Specific Tests
 
 The test suite takes a long time to execute fully, since there is a lot of async work, and waiting
 for plans, applies, etc. In the scenario you want to just test a new implementation or change,
@@ -91,14 +111,14 @@ source test/secrets/secrets.sh
 python3 -m unittest test/applies_test.py
 ```
 
-#### Running All Tests
+###### Running All Tests
 
 ```
 source test/secrets/secrets.sh
-make coverage
+make test
 ```
 
-#### Running the Tests with Coverage Info
+###### Running the Tests with Coverage Info
 
 ```
 source test/secrets/secrets.sh
@@ -107,9 +127,17 @@ make coverage
 
 #### Publishing to PyPi
 
+You will be prompted for your PyPi credentials.
+
+###### Production
 ```
-make pip-package
 make pip-publish
+```
+
+###### Test
+
+```
+make pip-test-publish
 ```
 
 ---

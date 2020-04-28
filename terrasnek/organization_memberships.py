@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Organization Memberships.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCOrganizationMemberships(TFCEndpoint):
@@ -19,7 +16,8 @@ class TFCOrganizationMemberships(TFCEndpoint):
     def __init__(self, base_url, organization_name, headers, verify):
         super().__init__(base_url, organization_name, headers, verify)
         self._base_url = f"{base_url}/organization-memberships"
-        self._org_base_url = f"{base_url}/organizations/{organization_name}/organization-memberships"
+        self._org_base_url = \
+            f"{base_url}/organizations/{organization_name}/organization-memberships"
 
     def invite(self, payload):
         """

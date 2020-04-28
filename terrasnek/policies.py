@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Policies.
 """
 
-import requests
-import json
-
 from .endpoint import TFCEndpoint
 
 class TFCPolicies(TFCEndpoint):

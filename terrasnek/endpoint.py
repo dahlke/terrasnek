@@ -28,7 +28,8 @@ class TFCEndpoint():
 
     def _delete(self, url, data=None):
         results = None
-        req = requests.delete(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
+        req = requests.delete(\
+            url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
         if req.status_code == HTTP_NO_CONTENT:
             pass

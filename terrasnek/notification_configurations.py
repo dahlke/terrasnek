@@ -2,11 +2,7 @@
 Module for Terraform Cloud API Endpoint: Notification Configurations.
 """
 
-import requests
-import json
-
 from .endpoint import TFCEndpoint
-
 
 class TFCNotificationConfigurations(TFCEndpoint):
     """

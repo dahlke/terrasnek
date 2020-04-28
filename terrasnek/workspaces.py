@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Workspaces.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCWorkspaces(TFCEndpoint):

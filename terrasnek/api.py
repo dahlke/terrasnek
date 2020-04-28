@@ -262,4 +262,3 @@ class TFC():
             self._current_organization,
             self._headers,
             self._verify)
-

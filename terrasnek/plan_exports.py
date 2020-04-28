@@ -2,8 +2,6 @@
 Module for Terraform Cloud API Endpoint: Plan Exports.
 """
 
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCPlanExports(TFCEndpoint):

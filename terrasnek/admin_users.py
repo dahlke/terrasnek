@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Admin Users.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 

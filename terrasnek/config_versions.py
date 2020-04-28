@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Config Versions.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCConfigVersions(TFCEndpoint):

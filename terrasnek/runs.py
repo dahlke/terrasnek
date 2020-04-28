@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Runs.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCRuns(TFCEndpoint):

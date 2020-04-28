@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Policy Sets.
 """
 
-import requests
-import json
-
 from .endpoint import TFCEndpoint
 
 class TFCPolicySets(TFCEndpoint):
@@ -99,11 +96,9 @@ class TFCPolicySets(TFCEndpoint):
         POST /policy-sets/:id/versions
         """
         # TODO
-        pass
 
     def show_policy_set_version(self, policy_set_id):
         """
         GET /policy-sets/:id
         """
         # TODO
-        pass

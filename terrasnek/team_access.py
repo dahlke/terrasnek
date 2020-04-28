@@ -2,9 +2,6 @@
 Module for Terraform Cloud API Endpoint: Team Access.
 """
 
-import json
-import requests
-
 from .endpoint import TFCEndpoint
 
 class TFCTeamAccess(TFCEndpoint):
