@@ -24,7 +24,7 @@ class TFCRuns(TFCEndpoint):
         self._ws_base_url = f"{base_url}/workspaces"
         self._runs_base_url = f"{base_url}/runs"
 
-    def lst(self, workspace_id, page_number=None, page_size=None):
+    def lst(self, workspace_id, page=None, page_size=None):
         """
         GET /workspaces/:workspace_id/runs
 
@@ -32,18 +32,7 @@ class TFCRuns(TFCEndpoint):
         percent-encode.
         """
         url = f"{self._ws_base_url}/{workspace_id}/runs"
-
-        filters = []
-        if page_number is not None:
-            filters.append(f"page[number]={page_number}")
-
-        if page_size is not None:
-            filters.append(f"page[size]={page_size}")
-
-        if filters:
-            url += "?" + "&".join(filters)
-
-        return self._ls(url)
+        return self._ls(url, page=page, page_size=page_size)
 
     def show(self, run_id):
         """

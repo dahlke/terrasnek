@@ -32,8 +32,16 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         Test the Run Triggers API endpoints: create, list, update, destroy.
         """
 
+        # TODO: use constants for the value
+        test_filters = [
+            {
+                "keys": ["run-trigger", "type"],
+                "value": "inbound"
+            }
+        ]
+
         # List the triggers and confirm there are none
-        triggers_resp = self._api.run_triggers.lst(self._target_ws_id, "inbound")
+        triggers_resp = self._api.run_triggers.lst(self._target_ws_id, filters=test_filters)
         triggers = triggers_resp["data"]
         self.assertEqual(len(triggers), 0)
 
@@ -43,7 +51,7 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         created_trigger_id = created_trigger_resp["data"]["id"]
 
         # List the triggers again and confirm there is one
-        triggers_resp = self._api.run_triggers.lst(self._target_ws_id, "inbound")
+        triggers_resp = self._api.run_triggers.lst(self._target_ws_id, filters=test_filters)
         triggers = triggers_resp["data"]
         self.assertEqual(len(triggers), 1)
 
@@ -55,6 +63,6 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
 
         # Destroy the run trigger, confirm that we have zero run triggers again
         self._api.run_triggers.destroy(created_trigger_id)
-        triggers_resp = self._api.run_triggers.lst(self._target_ws_id, "inbound")
+        triggers_resp = self._api.run_triggers.lst(self._target_ws_id, filters=test_filters)
         triggers = triggers_resp["data"]
         self.assertEqual(len(triggers), 0)

@@ -25,6 +25,7 @@ class TFCConfigVersions(TFCEndpoint):
         This endpoint supports pagination with standard URL query parameters; remember to
         percent-encode.
         """
+        # TODO: use the _lst function
         url = f"{self._ws_base_url}/{workspace_id}/configuration-versions"
 
         filters = []

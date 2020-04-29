@@ -59,13 +59,13 @@ class TFCWorkspaces(TFCEndpoint):
         url = f"{self._ws_base_url}/{workspace_id}/actions/lock"
         return self._post(url, data=payload)
 
-    def lst(self):
+    def lst(self, page=None, page_size=None):
         """
         GET /organizations/:organization_name/workspaces
 
         This endpoint lists workspaces in the organization.
         """
-        return self._ls(self._org_base_url)
+        return self._ls(self._org_base_url, page=page, page_size=page_size)
 
     def show(self, workspace_name=None, workspace_id=None):
         """

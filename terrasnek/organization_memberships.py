@@ -27,13 +27,17 @@ class TFCOrganizationMemberships(TFCEndpoint):
         """
         return self._create(self._org_base_url, payload)
 
-    def lst_for_org(self):
+    def lst_for_org(self, q=None, filters=None, page=None, page_size=None):
         """
         GET /organizations/:organization_name/organization-memberships
 
         This endpoint retrieves all the users in the active organization.
+
+        PARAMS:
+            https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters
         """
-        return self._ls(self._org_base_url)
+        return self._ls(\
+            self._org_base_url, q=q, filters=filters, page=page, page_size=page_size)
 
     def lst_for_user(self):
         """

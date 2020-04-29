@@ -25,9 +25,12 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         create_resp = self._api.policies.create(create_payload)
         created_policy = create_resp["data"]
         created_policy_id = created_policy["id"]
+        created_policy_name = created_policy["attributes"]["name"]
 
-        # Check that we now have one policy
-        policies_resp = self._api.policies.lst()
+        # List all the policies, search the policy we just created so
+        # we can test out the list params
+        policies_resp = self._api.policies.lst(\
+            page=0, page_size=50, search=created_policy_name)
         policies = policies_resp["data"]
         self.assertEqual(len(policies), 1)
 

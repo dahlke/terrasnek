@@ -37,7 +37,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         # Create a workspace
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload("workspaces"))
-        num_workspaces_before = len(self._api.workspaces.lst()["data"])
+        num_workspaces_before = len(self._api.workspaces.lst(page=0, page_size=50)["data"])
 
         # Destroy it with it's name
         ws_name = workspace["data"]["attributes"]["name"]

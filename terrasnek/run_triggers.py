@@ -20,13 +20,12 @@ class TFCRunTriggers(TFCEndpoint):
         url = f"{self._ws_base_url}/{workspace_id}/run-triggers"
         return self._create(url, payload)
 
-    def lst(self, workspace_id, run_trigger_type):
+    def lst(self, workspace_id, filters=None, page_size=None):
         """
         GET /workspaces/:workspace_id/run-triggers
         """
         url = f"{self._ws_base_url}/{workspace_id}/run-triggers"
-        url += f"?filter[run-trigger][type]={run_trigger_type}"
-        return self._ls(url)
+        return self._ls(url, filters=filters, page_size=page_size)
 
     def show(self, run_trigger_id):
         """

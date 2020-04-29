@@ -3,6 +3,8 @@ Module for container class of all TFC endpoints and high level exceptions around
 API access.
 """
 
+import urllib3
+
 from._constants import TFC_SAAS_URL
 
 from .oauth_clients import TFCOAuthClients
@@ -37,6 +39,7 @@ from .admin_users import TFCAdminUsers
 from .admin_organizations import TFCAdminOrganizations
 
 
+
 class InvalidTFCTokenException(Exception):
     """Cannot instantiate TFC Api class without a valid TFC_TOKEN."""
 
@@ -46,13 +49,17 @@ class TFC():
     Super class for access to all TFC Endpoints.
     """
 
-    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True):
+    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True, suppress_insecure_warning=False):
         if api_token is None:
             raise InvalidTFCTokenException
 
         self._instance_url = f"{url}/api/v2"
         self._token = api_token
         self._verify = verify
+
+        if self._verify is False and suppress_insecure_warning is True:
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
         self._current_organization = None
         self._headers = {
             "Authorization": f"Bearer {api_token}",

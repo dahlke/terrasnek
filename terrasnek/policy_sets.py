@@ -31,11 +31,15 @@ class TFCPolicySets(TFCEndpoint):
         """
         return self._create(self._org_base_url, payload)
 
-    def lst(self):
+    def lst(self, filters=None, include=None, page=None, page_size=None, search=None):
         """
         GET /organizations/:organization_name/policy-sets
+
+        PARAMS:
+            https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets
         """
-        return self._ls(self._org_base_url)
+        return self._ls(\
+            self._org_base_url, filters=filters, include=include, page=page, page_size=page_size, search=search)
 
     def show(self, policy_set_id):
         """

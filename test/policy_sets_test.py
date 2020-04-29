@@ -45,9 +45,19 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         create_resp = self._api.policy_sets.create(create_payload)
         created_policy_set = create_resp["data"]
         created_policy_set_id = created_policy_set["id"]
+        created_policy_set_name = created_policy_set["attributes"]["name"]
 
-        # Check that we now have one policy set
-        sets_resp = self._api.policy_sets.lst()
+        # Check that we now have one policy set, use the query options to ensure
+        # that they work.
+        test_filters = [
+            {
+                "keys": ["versioned"],
+                "value": False
+            }
+        ]
+        # TODO: include and search params should be a constant
+        sets_resp = self._api.policy_sets.lst(\
+            filters=test_filters, page=0, page_size=50, include="policies", search=created_policy_set_name)
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 1)
 

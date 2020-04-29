@@ -49,7 +49,6 @@ class TestTFCRuns(TestTFCBaseTestCase):
         Test the Runs API endpoints: create, show, apply.
         """
 
-        # TODO: test list
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)
         run = self._api.runs.create(create_run_payload)["data"]
@@ -69,6 +68,11 @@ class TestTFCRuns(TestTFCBaseTestCase):
                          ["actions"]["is-confirmable"], True)
         self.assertRaises(
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["applying-at"])
+
+        # TODO: test list params
+        # List the runs, using the correct parameters
+        all_runs = self._api.runs.lst()
+        print(all_runs)
 
         # Apply the plan
         self._api.runs.apply(run_id)

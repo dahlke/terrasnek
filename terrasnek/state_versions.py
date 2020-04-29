@@ -36,7 +36,7 @@ class TFCStateVersions(TFCEndpoint):
         url = f"{self._workspace_base_url}/{workspace_id}/current-state-version"
         return self._get(url)
 
-    def lst(self, workspace_name, page_number=None, page_size=None):
+    def lst(self, workspace_name, filters=None, page=None, page_size=None):
         """
         GET /state-versions
 
@@ -44,19 +44,7 @@ class TFCStateVersions(TFCEndpoint):
         percent-encode.
         """
         url = f"{self._state_version_base_url}"
-        url += f"?filter[organization][name]={self._organization_name}"
-        url += f"&filter[workspace][name]={workspace_name}"
-
-        filters = []
-        if page_number is not None:
-            filters.append(f"page[number]={page_number}")
-
-        if page_size is not None:
-            filters.append(f"page[size]={page_size}")
-
-        if filters:
-            url += "&".join(filters)
-        return self._ls(url)
+        return self._ls(url, filters=filters, page=page, page_size=page_size)
 
     def show(self, state_version_id):
         """

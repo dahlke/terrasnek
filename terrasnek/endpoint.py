@@ -122,10 +122,44 @@ class TFCEndpoint():
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
-    def _ls(self, url):
+    def _ls(self, \
+        url, q=None, filters=None, page=None, page_size=None, search=None, include=None):
         """
         Implementation of the common list resources pattern for the TFC API.
         """
+        q_options = []
+
+        if q is not None:
+            q_options.append(f"q={q}")
+
+        if filters is not None:
+            for fil in filters:
+                filter_string = "filter"
+                for k in fil["keys"]:
+                    filter_string += f"[{k}]"
+                filter_string += f"={fil['value']}"
+                q_options.append(filter_string)
+
+        if page is not None:
+            q_options.append(f"page[number]={page}")
+
+        if page_size is not None:
+            q_options.append(f"page[size]={page_size}")
+
+        if search is not None:
+            q_options.append(f"page[name]={page_size}")
+
+        if include is not None:
+            q_options.append(f"include={include}")
+
+        if search is not None:
+            q_options.append(f"search[name]={search}")
+
+        if len(q_options) > 0:
+            url += "?" + "&".join(q_options)
+
+        print("UPDATED URL", url)
+
         return self._get(url)
 
     def _show(self, url):

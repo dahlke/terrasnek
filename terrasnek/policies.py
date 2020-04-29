@@ -27,11 +27,15 @@ class TFCPolicies(TFCEndpoint):
         """
         return self._create(self._org_base_url, payload)
 
-    def lst(self):
+    def lst(self, page=None, page_size=None, search=None):
         """
         GET /organizations/:organization_name/policies
+
+        PARAMS:
+            https://www.terraform.io/docs/cloud/api/policies.html#query-parameters
         """
-        return self._ls(self._org_base_url)
+        return self._ls(\
+            self._org_base_url, page=page, page_size=page_size, search=search)
 
     def show(self, policy_id):
         """
