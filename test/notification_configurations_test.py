@@ -45,7 +45,25 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
         self.assertEqual(len(noti_configs), 0)
 
         # Add one notification configuration
-        payload = self._get_notification_configuration_create_payload()
+        payload = {
+            "data": {
+                "type": "notification-configurations",
+                "attributes": {
+                    "destination-type": "generic",
+                    "enabled": True,
+                    "name": "terrasnek_unittest",
+                    "url": "https://httpstat.us/200",
+                    "triggers": [
+                        "run:applying",
+                        "run:completed",
+                        "run:created",
+                        "run:errored",
+                        "run:needs_attention",
+                        "run:planning"
+                    ]
+                }
+            }
+        }
         create_resp = self._api.notification_configurations.create(self._ws_id, payload)
         created_noti_config = create_resp["data"]
         created_noti_config_id = created_noti_config["id"]

@@ -253,42 +253,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_policy_set_param_create_payload(self):
-        return {
-            "data": {
-                "type": "vars",
-                "attributes": {
-                    "key": "terrasnek",
-                    "value": "unittest",
-                    "category": "policy-set",
-                    "sensitive": False
-                }
-            }
-        }
-
-    def _get_notification_configuration_create_payload(self):
-        name = self._name_with_random("noti-conf")
-
-        return {
-            "data": {
-                "type": "notification-configurations",
-                "attributes": {
-                    "destination-type": "generic",
-                    "enabled": True,
-                    "name": name,
-                    "url": "https://httpstat.us/200",
-                    "triggers": [
-                        "run:applying",
-                        "run:completed",
-                        "run:created",
-                        "run:errored",
-                        "run:needs_attention",
-                        "run:planning"
-                    ]
-                }
-            }
-        }
-
     def _get_org_create_payload(self):
         name = self._name_with_random("org")
         return {
@@ -349,20 +313,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "api-url": "https://api.github.com",
                     "secret": GITHUB_SECRET,
                     "oauth-token-string": GITHUB_TOKEN
-                }
-            }
-        }
-
-    def _get_run_trigger_create_payload(self, target_workspace_id):
-        return {
-            "data": {
-                "relationships": {
-                "sourceable": {
-                    "data": {
-                        "id": target_workspace_id,
-                        "type": "workspaces"
-                        }
-                    }
                 }
             }
         }

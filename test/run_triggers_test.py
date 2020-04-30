@@ -46,7 +46,19 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         self.assertEqual(len(triggers), 0)
 
         # Create a trigger
-        create_payload = self._get_run_trigger_create_payload(self._source_ws_id)
+        create_payload = {
+            "data": {
+                "relationships": {
+                "sourceable": {
+                    "data": {
+                        "id": self._source_ws_id,
+                        "type": "workspaces"
+                        }
+                    }
+                }
+            }
+        }
+
         created_trigger_resp = self._api.run_triggers.create(self._target_ws_id, create_payload)
         created_trigger_id = created_trigger_resp["data"]["id"]
 

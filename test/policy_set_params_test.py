@@ -32,7 +32,17 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
         self.assertEqual(len(params), 0)
 
         # Create a variable and confirm it was added to the policy set
-        create_payload = self._get_policy_set_param_create_payload()
+        create_payload = {
+            "data": {
+                "type": "vars",
+                "attributes": {
+                    "key": "terrasnek",
+                    "value": "unittest",
+                    "category": "policy-set",
+                    "sensitive": False
+                }
+            }
+        }
         create_resp = self._api.policy_set_params.create(self._created_policy_set_id, create_payload)
         created_param_id = create_resp["data"]["id"]
 
