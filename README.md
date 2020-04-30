@@ -143,11 +143,10 @@ _Note: When you run all of the tests, you will have to create a user (that
 matches your `TEST_USER` in `secrets.sh`) manually ahead of executing the tests
 if you don't have an existing user in the system already. Currently not possible
 to create users with the API, and some of the tests involve adding a user to
-teams and organizations._
-
-_Note: Not all endpoints are available in the free Terraform Cloud offering.
-In order for you to test or use all of the endpoints, you'll need the proper
-packages for Terraform Cloud or your own private Terraform Enterprise instance._
+teams and organizations. Not all endpoints are available in the free Terraform Cloud
+offering. In order for you to test or use all of the endpoints, you'll need
+the proper packages for Terraform Cloud or your own private Terraform
+Enterprise instance._
 
 ```
 source test/secrets/secrets.sh
@@ -162,8 +161,6 @@ make coverage
 ```
 
 #### Publishing to PyPi
-
-You will be prompted for your PyPi credentials.
 
 ###### Production
 ```
