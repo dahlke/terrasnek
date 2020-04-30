@@ -20,6 +20,7 @@ test:
 coverage:
 	coverage run -m unittest test/*_test.py; \
 	coverage report -m; \
+	rm coverage.svg; \
 	coverage-badge -o coverage.svg
 
 .PHONY: lint-lib

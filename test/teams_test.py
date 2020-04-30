@@ -21,11 +21,11 @@ class TestTFCTeams(TestTFCBaseTestCase):
         new_team = self._api.teams.create(
             self._get_team_create_payload())["data"]
         new_team_id = new_team["id"]
-        self.assertEqual(new_team["attributes"]["name"], self._test_team_name)
+        teams = self._api.teams.list()["data"]
+        self.assertEqual(len(teams), 2)
 
         shown_team = self._api.teams.show(new_team_id)["data"]
-        self.assertEqual(shown_team["attributes"]
-                         ["name"], self._test_team_name)
+        self.assertEqual(shown_team["id"], new_team_id)
 
         self._api.teams.destroy(new_team_id)
         teams = self._api.teams.list()["data"]

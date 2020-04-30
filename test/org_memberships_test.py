@@ -27,11 +27,9 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
 
         # Get teams for the base org
         teams = self._api.teams.list()
-        owners_team = teams["data"][0]
-        owners_team_id = owners_team["id"]
 
         # Invite a user
-        invite_payload = self._get_org_membership_invite_payload(owners_team_id)
+        invite_payload = self._get_org_membership_invite_payload()
         invite = self._api.org_memberships.invite(invite_payload)
         invited_user_email = invite["data"]["attributes"]["email"]
         self.assertEqual(invited_user_email, self._test_email)

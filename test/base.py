@@ -265,7 +265,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_org_membership_invite_payload(self, team_id):
+    def _get_org_membership_invite_payload(self):
         return {
             "data": {
                 "attributes": {
@@ -273,12 +273,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 },
                 "relationships": {
                     "teams": {
-                        "data": [
-                            {
-                                "type": "teams",
-                                "id": team_id
-                            }
-                        ]
+                        "data": []
                     },
                 },
                 "type": "organization-memberships"
@@ -286,11 +281,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
         }
 
     def _get_team_create_payload(self):
+        name = self._name_with_random("team")
         return {
             "data": {
                 "type": "organizations",
                 "attributes": {
-                    "name": self._test_team_name,
+                    "name": name,
                     "organization-access": {
                         "manage-workspaces": True,
                         "manage-policies": True,

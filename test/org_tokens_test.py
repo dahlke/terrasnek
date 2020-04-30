@@ -24,7 +24,7 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         """
         Test the Org Tokens API endpoints: create, destroy.
         """
-        self._api.set_organization(self._created_org_id)
+        self._api.set_org(self._created_org_id)
 
         # Create the token
         created_token_resp = self._api.org_tokens.create()
