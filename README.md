@@ -121,6 +121,11 @@ sandbox Terraform Enterprise instance. This will allow you to test the
 Admin Endpoints without any worry of error, and you will not have any
 run limits.
 
+Due to those limitations, this library does not currently test the full
+suite of tests in CircleCI. It is recommended that you run the tests
+locally before submitting pull requests, or at the very least, verify
+all of the tests that touch code you are contributing.
+
 ###### Running Specific Tests
 
 The test suite takes a long time to execute fully, since there is a lot of async work, and waiting
