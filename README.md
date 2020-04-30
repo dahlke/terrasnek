@@ -12,11 +12,26 @@ _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/clo
 
 ---
 
+
+### Overview
+The goal of this project is to support all endpoints available in the Terraform
+Cloud API. It's possible that some of these endpoints won't work if you're
+working against an older version of
+[Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
+
+_Note: Terraform Enterprise is the self-hosted distribution of Terraform Cloud.
+It offers enterprises a private instance of the Terraform Cloud application,
+with no resource limits and with additional enterprise-grade architectural
+features like audit logging and SAML single sign-on._
+
 ### Requirements
 
-To make full usage of all the tools and commands here, you should have `pylint`,
-`python3`, `coverage` and `ag` installed.
-
+To make full usage of all the tools and commands here, you should have installed:
+- `python3`
+- `make`
+- `pylint`
+- `coverage`
+- `ag`
 
 ### Using `terrasnek`
 
