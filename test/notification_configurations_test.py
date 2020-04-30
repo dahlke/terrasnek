@@ -35,12 +35,12 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
 
     def test_notifications_configuration_lifecycle(self):
         """
-        Test the Notification Configurations API endpoints: create, lst, show,
+        Test the Notification Configurations API endpoints: create, list, show,
         update, verify, destroy.
         """
 
         # Show that there are no configuration notifications for the workspace
-        noti_config_resp = self._api.notification_configurations.lst(self._ws_id)
+        noti_config_resp = self._api.notification_configurations.list(self._ws_id)
         noti_configs = noti_config_resp["data"]
         self.assertEqual(len(noti_configs), 0)
 
@@ -51,7 +51,7 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
         created_noti_config_id = created_noti_config["id"]
 
         # Check that there is now one notification configuration added
-        noti_config_resp = self._api.notification_configurations.lst(self._ws_id)
+        noti_config_resp = self._api.notification_configurations.list(self._ws_id)
         noti_configs = noti_config_resp["data"]
         self.assertEqual(len(noti_configs), 1)
 
@@ -85,6 +85,6 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
 
         # Destroy the notification configuraiton, and show the workspace has zero again
         self._api.notification_configurations.destroy(created_noti_config_id)
-        noti_config_resp = self._api.notification_configurations.lst(self._ws_id)
+        noti_config_resp = self._api.notification_configurations.list(self._ws_id)
         noti_configs = noti_config_resp["data"]
         self.assertEqual(len(noti_configs), 0)

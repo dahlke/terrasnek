@@ -12,11 +12,11 @@ class TestTFCSSHKeys(TestTFCBaseTestCase):
 
     def test_ssh_keys_lifecycle(self):
         """
-        Test the SSH Keys API endpoints: create, lst, show,
+        Test the SSH Keys API endpoints: create, list, show,
         update, destroy.
         """
 
-        ssh_keys_resp = self._api.ssh_keys.lst()
+        ssh_keys_resp = self._api.ssh_keys.list()
         ssh_keys = ssh_keys_resp["data"]
         self.assertEqual(len(ssh_keys), 0)
 
@@ -27,7 +27,7 @@ class TestTFCSSHKeys(TestTFCBaseTestCase):
         created_key_id = created_key["id"]
 
         # Check that we now have one key
-        ssh_keys_resp = self._api.ssh_keys.lst()
+        ssh_keys_resp = self._api.ssh_keys.list()
         ssh_keys = ssh_keys_resp["data"]
         self.assertEqual(len(ssh_keys), 1)
 
@@ -55,6 +55,6 @@ class TestTFCSSHKeys(TestTFCBaseTestCase):
         self._api.ssh_keys.destroy(created_key_id)
 
         # Check that we now have zero keys again
-        ssh_keys_resp = self._api.ssh_keys.lst()
+        ssh_keys_resp = self._api.ssh_keys.list()
         ssh_keys = ssh_keys_resp["data"]
         self.assertEqual(len(ssh_keys), 0)

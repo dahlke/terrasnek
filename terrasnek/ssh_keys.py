@@ -24,22 +24,22 @@ class TFCSSHKeys(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/ssh-keys.html
     """
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/ssh-keys"
-        self._org_base_url = f"{base_url}/organizations/{organization_name}/ssh-keys"
+        self._org_base_url = f"{base_url}/organizations/{org_name}/ssh-keys"
 
     def create(self, payload):
         """
-        POST /organizations/:organization_name/ssh-keys
+        POST /organizations/:org_name/ssh-keys
         """
         return self._create(self._org_base_url, payload)
 
-    def lst(self):
+    def list(self):
         """
-        GET /organizations/:organization_name/ssh-keys
+        GET /organizations/:org_name/ssh-keys
         """
-        return self._ls(self._org_base_url)
+        return self._list(self._org_base_url)
 
     def show(self, ssh_key_id):
         """

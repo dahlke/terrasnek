@@ -29,7 +29,7 @@ class TestTFCUsers(TestTFCBaseTestCase):
         Test the OAuth Tokens API endpoint: show.
         """
 
-        # users = self._api.admin_users.lst(query=self._test_username)["data"]
+        # users = self._api.admin_users.list(query=self._test_username)["data"]
         # self.assertNotEqual(len(users), 0)
 
         # NOTE: The endpoint for the normal Users API does not work.
@@ -41,7 +41,7 @@ class TestTFCUsers(TestTFCBaseTestCase):
         Test the OAuth Tokens API endpoints: suspend, unsuspend.
         """
 
-        # test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
+        # test_user_id = self._api.admin_users.list(query=self._test_username)["data"][0]["id"]
 
         # suspended_user = self._api.admin_users.suspend(test_user_id)["data"]
         # self.assertTrue(suspended_user["attributes"]["is-suspended"])
@@ -62,7 +62,7 @@ class TestTFCUsers(TestTFCBaseTestCase):
         NOTE: These are sensitive endpoints and won't call them in our tests.
         """
 
-        # test_user_id = self._api.admin_users.lst(query=self._test_username)["data"][0]["id"]
+        # test_user_id = self._api.admin_users.list(query=self._test_username)["data"][0]["id"]
 
         # granted_admin_user = self._api.admin_users.grant_admin(test_user_id)["data"]
         # self.assertTrue(granted_admin_user["attributes"]["is-admin"])

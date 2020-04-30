@@ -9,8 +9,8 @@ class TFCUserTokens(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/user-tokens.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._users_base_url = f"{base_url}/users"
         self._tokens_base_url = f"{base_url}/authentication-tokens"
 
@@ -31,7 +31,7 @@ class TFCUserTokens(TFCEndpoint):
         url = f"{self._tokens_base_url}/{token_id}"
         self._destroy(url)
 
-    def lst(self, user_id):
+    def list(self, user_id):
         """
         GET /users/:user_id/authentication-tokens
 
@@ -42,7 +42,7 @@ class TFCUserTokens(TFCEndpoint):
         cannot be recovered later.
         """
         url = f"{self._users_base_url}/{user_id}/authentication-tokens"
-        return self._ls(url)
+        return self._list(url)
 
     def show(self, token_id):
         """

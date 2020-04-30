@@ -13,8 +13,8 @@ class TFCTeamAccess(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/team-access.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/team-workspaces"
 
     def add_team_access(self, payload):
@@ -23,11 +23,11 @@ class TFCTeamAccess(TFCEndpoint):
         """
         return self._post(self._base_url, data=payload)
 
-    def lst(self):
+    def list(self):
         """
         GET /team-workspaces
         """
-        return self._ls(self._base_url)
+        return self._list(self._base_url)
 
     def remove_team_access(self, access_id):
         """

@@ -13,19 +13,19 @@ class TFCConfigVersions(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/configuration-versions.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._ws_base_url = f"{base_url}/workspaces"
         self._config_version_base_url = f"{base_url}/configuration-versions"
 
-    def lst(self, workspace_id, page_number=None, page_size=None):
+    def list(self, workspace_id, page_number=None, page_size=None):
         """
         GET /workspaces/:workspace_id/configuration-versions
 
         This endpoint supports pagination with standard URL query parameters; remember to
         percent-encode.
         """
-        # TODO: use the _lst function
+        # TODO: use the _list function
         url = f"{self._ws_base_url}/{workspace_id}/configuration-versions"
 
         filters = []
@@ -38,7 +38,7 @@ class TFCConfigVersions(TFCEndpoint):
         if filters:
             url += "?" + "&".join(filters)
 
-        return self._ls(url)
+        return self._list(url)
 
     def show(self, config_version_id):
         """

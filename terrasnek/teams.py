@@ -14,14 +14,14 @@ class TFCTeams(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/teams.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._teams_base_url = f"{base_url}/teams"
-        self._org_base_url = f"{base_url}/organizations/{organization_name}/teams"
+        self._org_base_url = f"{base_url}/organizations/{org_name}/teams"
 
     def create(self, payload):
         """
-        POST /organizations/:organization_name/teams
+        POST /organizations/:org_name/teams
         """
         return self._create(self._org_base_url, payload)
 
@@ -32,11 +32,11 @@ class TFCTeams(TFCEndpoint):
         url = f"{self._teams_base_url}/{team_id}"
         return self._destroy(url)
 
-    def lst(self):
+    def list(self):
         """
-        GET organizations/:organization_name/teams
+        GET organizations/:org_name/teams
         """
-        return self._ls(self._org_base_url)
+        return self._list(self._org_base_url)
 
     def show(self, team_id):
         """

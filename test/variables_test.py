@@ -39,7 +39,7 @@ class TestTFCVariables(TestTFCBaseTestCase):
 
         # List the variables and make sure they match the updated payload
         original_variable_id = variable["id"]
-        variables = self._api.variables.lst(self._ws_name)["data"]
+        variables = self._api.variables.list(self._ws_name)["data"]
         self.assertEqual(original_variable_id, variables[0]["id"])
 
         # Now change the value of that variable
@@ -64,5 +64,5 @@ class TestTFCVariables(TestTFCBaseTestCase):
 
         # Delete the variable and confirm it's gone
         self._api.variables.destroy(original_variable_id)
-        variables = self._api.variables.lst(self._ws_name)["data"]
+        variables = self._api.variables.list(self._ws_name)["data"]
         self.assertEqual(len(variables), 0)

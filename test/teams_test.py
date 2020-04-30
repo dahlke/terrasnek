@@ -15,7 +15,7 @@ class TestTFCTeams(TestTFCBaseTestCase):
         Test the Teams API endpoints: list, create, show, destroy.
         """
 
-        teams = self._api.teams.lst()["data"]
+        teams = self._api.teams.list()["data"]
         self.assertEqual(len(teams), 1)
 
         new_team = self._api.teams.create(
@@ -28,5 +28,5 @@ class TestTFCTeams(TestTFCBaseTestCase):
                          ["name"], self._test_team_name)
 
         self._api.teams.destroy(new_team_id)
-        teams = self._api.teams.lst()["data"]
+        teams = self._api.teams.list()["data"]
         self.assertEqual(len(teams), 1)

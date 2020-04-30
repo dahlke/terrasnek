@@ -1,6 +1,12 @@
 # terrasnek
 
+[![CircleCI](https://circleci.com/gh/dahlke/terrasnek.svg?style=svg)](https://circleci.com/gh/dahlke/terrasnek)
 ![Python unittest Code Coverage](coverage.svg)
+[![PyPI version](https://badge.fury.io/py/terrasnek.svg)](https://badge.fury.io/py/terrasnek)
+[![GitHub issues](https://img.shields.io/github/issues/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/issues)
+[![GitHub license](https://img.shields.io/github/license/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/blob/master/LICENSE)
+
+
 
 _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/cloud/api/index.html)._
 
@@ -9,7 +15,7 @@ _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/clo
 ### Requirements
 
 To make full usage of all the tools and commands here, you should have `pylint`,
-`python3` and `ag` installed.
+`python3`, `coverage` and `ag` installed.
 
 
 ### Using `terrasnek`
@@ -26,7 +32,7 @@ SSL_VERIFY = os.getenv("SSL_VERIFY", None)  # set to True if you want to use HTT
 
 if __name__ == "__main__":
     api = TFC(TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY)
-    api.set_organization("YOUR_ORGANIZATION")
+    api.set_org("YOUR_ORGANIZATION")
 ```
 
 ##### Supported Endpoints
@@ -39,9 +45,9 @@ if __name__ == "__main__":
 - [x] [Notification Configurations](https://www.terraform.io/docs/cloud/api/notification-configurations.html)
 - [x] [OAuth Clients](https://www.terraform.io/docs/cloud/api/oauth-clients.html)
 - [x] [OAuth Tokens](https://www.terraform.io/docs/cloud/api/oauth-tokens.html)
-- [x] [Organizations](https://www.terraform.io/docs/cloud/api/organizations.html)
-- [x] [Organization Memberships](https://www.terraform.io/docs/cloud/api/organization-memberships.html)
-- [x] [Organization Tokens](https://www.terraform.io/docs/cloud/api/organization-tokens.html)
+- [x] [Orgs](https://www.terraform.io/docs/cloud/api/organizations.html)
+- [x] [Org Memberships](https://www.terraform.io/docs/cloud/api/organization-memberships.html)
+- [x] [Org Tokens](https://www.terraform.io/docs/cloud/api/organization-tokens.html)
 - [x] [Plan Exports](https://www.terraform.io/docs/cloud/api/plan-exports.html)
 - [x] [Plans](https://www.terraform.io/docs/cloud/api/plans.html)
 - [x] [Policies](https://www.terraform.io/docs/cloud/api/policies.html)
@@ -64,7 +70,7 @@ if __name__ == "__main__":
 - [x] [Workspaces](https://www.terraform.io/docs/cloud/api/workspaces.html)
 
 ###### Admin Endpoints
-- [x] [Admin Organizations](https://www.terraform.io/docs/cloud/api/admin/organizations.html)
+- [x] [Admin Orgs](https://www.terraform.io/docs/cloud/api/admin/organizations.html)
 - [ ] [Admin Runs](https://www.terraform.io/docs/cloud/api/admin/runs.html)
 - [ ] [Admin Settings](https://www.terraform.io/docs/cloud/api/admin/settings.html)
 - [ ] [Admin Terraform Versions](https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html)

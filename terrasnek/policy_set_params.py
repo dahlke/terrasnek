@@ -10,8 +10,8 @@ class TFCPolicySetParams(TFCEndpoint):
         https://www.terraform.io/docs/cloud/api/policy-set-params.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/policy-sets"
 
     def create(self, policy_set_id, payload):
@@ -21,12 +21,12 @@ class TFCPolicySetParams(TFCEndpoint):
         url = f"{self._base_url}/{policy_set_id}/parameters"
         return self._create(url, payload)
 
-    def lst(self, policy_set_id):
+    def list(self, policy_set_id):
         """
         GET /policy-sets/:policy_set_id/parameters
         """
         url = f"{self._base_url}/{policy_set_id}/parameters"
-        return self._ls(url)
+        return self._list(url)
 
     def update(self, policy_set_id, parameter_id, payload):
         """

@@ -13,28 +13,28 @@ class TFCPolicies(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/policies.html
     """
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/policies"
-        self._org_base_url = f"{base_url}/organizations/{organization_name}/policies"
+        self._org_base_url = f"{base_url}/organizations/{org_name}/policies"
 
     def create(self, payload):
         """
         This creates a new policy object for the organization, but does not upload
         the actual policy code
 
-        POST /organizations/:organization_name/policies
+        POST /organizations/:org_name/policies
         """
         return self._create(self._org_base_url, payload)
 
-    def lst(self, page=None, page_size=None, search=None):
+    def list(self, page=None, page_size=None, search=None):
         """
-        GET /organizations/:organization_name/policies
+        GET /organizations/:org_name/policies
 
         PARAMS:
             https://www.terraform.io/docs/cloud/api/policies.html#query-parameters
         """
-        return self._ls(\
+        return self._list(\
             self._org_base_url, page=page, page_size=page_size, search=search)
 
     def show(self, policy_id):

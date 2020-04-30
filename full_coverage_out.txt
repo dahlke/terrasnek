@@ -16,10 +16,10 @@ Traceback (most recent call last):
 AttributeError: 'dict' object has no attribute 'status_code'
 
 ======================================================================
-FAIL: test_org_memberships_lifecycle (test.organization_memberships_test.TestTFCOrganizationMemberships)
+FAIL: test_org_memberships_lifecycle (test.org_memberships_test.TestTFCOrgMemberships)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/Users/neil/src/github.com/dahlke/terrasnek/test/organization_memberships_test.py", line 24, in test_org_memberships_lifecycle
+  File "/Users/neil/src/github.com/dahlke/terrasnek/test/org_memberships_test.py", line 24, in test_org_memberships_lifecycle
     self.assertEqual(num_org_memberships, 2)
 AssertionError: 1 != 2
 
@@ -31,7 +31,7 @@ Name                                       Stmts   Miss  Cover   Missing
 ------------------------------------------------------------------------
 terrasnek/__init__.py                          1      0   100%
 terrasnek/_constants.py                        1      0   100%
-terrasnek/admin_organizations.py              13      5    62%   22-23, 31, 37-38
+terrasnek/admin_orgs.py              13      5    62%   22-23, 31, 37-38
 terrasnek/admin_users.py                      37     21    43%   30-31, 42-44, 51-52, 63-64, 74-78, 84-85, 94-95, 109-110, 119-120
 terrasnek/api.py                              95      1    99%   51
 terrasnek/applies.py                           8      0   100%
@@ -40,8 +40,8 @@ terrasnek/endpoint.py                         82     12    85%   36-37, 51-52, 6
 terrasnek/notification_configurations.py      26      0   100%
 terrasnek/oauth_clients.py                    19      2    89%   53-54
 terrasnek/oauth_tokens.py                     18      4    78%   41-42, 48-49
-terrasnek/organization_memberships.py         21      7    67%   30-31, 39, 56-57, 66-67
-terrasnek/organization_tokens.py              12      0   100%
+terrasnek/org_memberships.py         21      7    67%   30-31, 39, 56-57, 66-67
+terrasnek/org_tokens.py              12      0   100%
 terrasnek/organizations.py                    29     13    55%   40-50, 56, 62-63, 69-70
 terrasnek/plan_exports.py                     19      2    89%   65-66
 terrasnek/plans.py                             8      0   100%
@@ -69,8 +69,8 @@ test/config_versions_test.py                  22      0   100%
 test/notification_configurations_test.py      45      0   100%
 test/oauth_clients_test.py                    18      0   100%
 test/oauth_tokens_test.py                     17      0   100%
-test/organization_memberships_test.py         25     19    24%   27-53
-test/organization_tokens_test.py              16      0   100%
+test/org_memberships_test.py         25     19    24%   27-53
+test/org_tokens_test.py              16      0   100%
 test/organizations_test.py                     4      0   100%
 test/plan_exports_test.py                     42      1    98%   81
 test/plans_test.py                            33      0   100%

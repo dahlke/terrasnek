@@ -15,8 +15,8 @@ class TFCUsers(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/users.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._users_base_url = f"{base_url}/users"
 
     def show(self, user_id):

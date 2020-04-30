@@ -11,19 +11,19 @@ class TFCOAuthClients(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/oauth-clients.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
-        self._org_base_url = f"{base_url}/organizations/{organization_name}/oauth-clients"
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
+        self._org_base_url = f"{base_url}/organizations/{org_name}/oauth-clients"
         self._oauth_clients_base_url = f"{base_url}/oauth-clients"
 
-    def lst(self):
+    def list(self):
         """
-        GET /organizations/:organization_name/oauth-clients
+        GET /organizations/:org_name/oauth-clients
 
         This endpoint allows you to list VCS connections between an organization and a VCS
         provider (GitHub, Bitbucket, or GitLab) for use when creating or setting up workspaces.
         """
-        return self._ls(self._org_base_url)
+        return self._list(self._org_base_url)
 
     def show(self, client_id):
         """
@@ -34,7 +34,7 @@ class TFCOAuthClients(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /organizations/:organization_name/oauth-clients
+        POST /organizations/:org_name/oauth-clients
 
         This endpoint allows you to create a VCS connection between an organization and a VCS
         provider (GitHub or GitLab) for use when creating or setting up workspaces. By using

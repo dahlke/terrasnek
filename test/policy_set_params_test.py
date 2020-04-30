@@ -22,12 +22,12 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
 
     def test_policy_sets_lifecycle(self):
         """
-        Test the Policy Set Params API endpoints: create, lst, update,
+        Test the Policy Set Params API endpoints: create, list, update,
         destroy.
         """
 
         # Make sure we have no params to start
-        params_resp = self._api.policy_set_params.lst(self._created_policy_set_id)
+        params_resp = self._api.policy_set_params.list(self._created_policy_set_id)
         params = params_resp["data"]
         self.assertEqual(len(params), 0)
 
@@ -36,7 +36,7 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
         create_resp = self._api.policy_set_params.create(self._created_policy_set_id, create_payload)
         created_param_id = create_resp["data"]["id"]
 
-        params_resp = self._api.policy_set_params.lst(self._created_policy_set_id)
+        params_resp = self._api.policy_set_params.list(self._created_policy_set_id)
         params = params_resp["data"]
         self.assertEqual(len(params), 1)
 
@@ -60,6 +60,6 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
 
         # Delete the variable and confirm there is only 1 left
         self._api.policy_set_params.destroy(self._created_policy_set_id, created_param_id)
-        params_resp = self._api.policy_set_params.lst(self._created_policy_set_id)
+        params_resp = self._api.policy_set_params.list(self._created_policy_set_id)
         params = params_resp["data"]
         self.assertEqual(len(params), 0)

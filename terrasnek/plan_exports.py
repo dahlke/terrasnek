@@ -13,8 +13,8 @@ class TFCPlanExports(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/plan-exports.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/plan-exports"
 
     def create(self, payload):

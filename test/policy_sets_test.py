@@ -31,12 +31,12 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
 
     def test_policy_sets_lifecycle(self):
         """
-        Test the Policy Set API endpoints: create, lst, show,
+        Test the Policy Set API endpoints: create, list, show,
         update, destroy, add_policies_to_set, remove_policies_from_set,
         attach_policy_set_to_workspaces, detach_policy_set_from_workspaces
         """
 
-        sets_resp = self._api.policy_sets.lst()
+        sets_resp = self._api.policy_sets.list()
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 0)
 
@@ -56,7 +56,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
             }
         ]
         # TODO: include and search params should be a constant
-        sets_resp = self._api.policy_sets.lst(\
+        sets_resp = self._api.policy_sets.list(\
             filters=test_filters, page=0, page_size=50, include="policies", search=created_policy_set_name)
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 1)
@@ -114,7 +114,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         self._api.policy_sets.destroy(created_policy_set_id)
 
         # Check that we now have zero policy sets again
-        sets_resp = self._api.policy_sets.lst()
+        sets_resp = self._api.policy_sets.list()
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 0)
 

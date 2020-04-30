@@ -20,25 +20,25 @@ class TFCPolicySets(TFCEndpoint):
         https://www.terraform.io/docs/cloud/api/policy-sets.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/policy-sets"
-        self._org_base_url = f"{base_url}/organizations/{organization_name}/policy-sets"
+        self._org_base_url = f"{base_url}/organizations/{org_name}/policy-sets"
 
     def create(self, payload):
         """
-        POST /organizations/:organization_name/policy-sets
+        POST /organizations/:org_name/policy-sets
         """
         return self._create(self._org_base_url, payload)
 
-    def lst(self, filters=None, include=None, page=None, page_size=None, search=None):
+    def list(self, filters=None, include=None, page=None, page_size=None, search=None):
         """
-        GET /organizations/:organization_name/policy-sets
+        GET /organizations/:org_name/policy-sets
 
         PARAMS:
             https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets
         """
-        return self._ls(\
+        return self._list(\
             self._org_base_url, filters=filters, include=include, page=page, page_size=page_size, search=search)
 
     def show(self, policy_set_id):

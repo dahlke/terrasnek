@@ -27,7 +27,7 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
         """
 
         # List all the tokens and make sure there is one associate to your client
-        oauth_tokens = self._api.oauth_tokens.lst(
+        oauth_tokens = self._api.oauth_tokens.list(
             self._oauth_client_id)["data"]
         self.assertEqual(len(oauth_tokens), 1)
 

@@ -13,19 +13,19 @@ class TFCOAuthTokens(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/oauth-tokens.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._oauth_clients_base_url = f"{base_url}/oauth-clients"
         self._oauth_tokens_base_url = f"{base_url}/oauth-tokens"
 
-    def lst(self, oauth_client_id):
+    def list(self, oauth_client_id):
         """
         GET /oauth-clients/:oauth_client_id/oauth-tokens
 
         List all the OAuth Tokens for a given OAuth Client
         """
         url = f"{self._oauth_clients_base_url}/{oauth_client_id}/oauth-tokens"
-        return self._ls(url)
+        return self._list(url)
 
     def show(self, token_id):
         """

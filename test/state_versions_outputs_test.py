@@ -43,8 +43,17 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
         """
         Test the State Version API endpoints: list, create, show.
         """
-
-        state_versions = self._api.state_versions.lst(self._ws_name)["data"]
+        test_filters = [
+            {
+                "keys": ["workspace", "name"],
+                "value": self._ws_name
+            },
+            {
+                "keys": ["organization", "name"],
+                "value": self._test_org_name
+            }
+        ]
+        state_versions = self._api.state_versions.list(self._ws_name, filters=test_filters, page=0, page_size=50)["data"]
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
 
         create_state_version_payload = self._get_state_version_create_payload()
@@ -52,8 +61,7 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
             self._ws_id, create_state_version_payload)
         self._api.workspaces.unlock(self._ws_id)
 
-        state_versions = self._api.state_versions.lst(self._ws_name)["data"]
-
+        state_versions = self._api.state_versions.list(self._ws_name, filters=test_filters, page=0, page_size=50)["data"]
         state_version = state_versions[0]
         sv_id = state_version["id"]
 

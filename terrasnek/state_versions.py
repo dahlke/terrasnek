@@ -9,8 +9,8 @@ class TFCStateVersions(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/state-versions.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._state_version_base_url = f"{base_url}/state-versions"
         self._workspace_base_url = f"{base_url}/workspaces"
 
@@ -36,7 +36,7 @@ class TFCStateVersions(TFCEndpoint):
         url = f"{self._workspace_base_url}/{workspace_id}/current-state-version"
         return self._get(url)
 
-    def lst(self, workspace_name, filters=None, page=None, page_size=None):
+    def list(self, workspace_name, filters=None, page=None, page_size=None):
         """
         GET /state-versions
 
@@ -44,7 +44,7 @@ class TFCStateVersions(TFCEndpoint):
         percent-encode.
         """
         url = f"{self._state_version_base_url}"
-        return self._ls(url, filters=filters, page=page, page_size=page_size)
+        return self._list(url, filters=filters, page=page, page_size=page_size)
 
     def show(self, state_version_id):
         """

@@ -10,11 +10,11 @@ variable "org_name" {
   type = "string"
 }
 
-resource "tfe_organization" "org" {
+resource "tfe_org" "org" {
   email = "${var.email}"
   name = "${var.org_name}"
 }
 
 output "org_id" {
-  value = "${tfe_organization.org.id}"
+  value = "${tfe_org.org.id}"
 }

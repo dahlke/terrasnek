@@ -19,12 +19,12 @@ class TFCRuns(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/run.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._ws_base_url = f"{base_url}/workspaces"
         self._runs_base_url = f"{base_url}/runs"
 
-    def lst(self, workspace_id, page=None, page_size=None):
+    def list(self, workspace_id, page=None, page_size=None):
         """
         GET /workspaces/:workspace_id/runs
 
@@ -32,7 +32,7 @@ class TFCRuns(TFCEndpoint):
         percent-encode.
         """
         url = f"{self._ws_base_url}/{workspace_id}/runs"
-        return self._ls(url, page=page, page_size=page_size)
+        return self._list(url, page=page, page_size=page_size)
 
     def show(self, run_id):
         """

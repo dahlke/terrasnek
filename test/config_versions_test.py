@@ -30,7 +30,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
             self._ws_id, self._get_config_version_create_payload())["data"]
 
         # List all of the config versions for the workspace
-        config_versions = self._api.config_versions.lst(self._ws_id)["data"]
+        config_versions = self._api.config_versions.list(self._ws_id)["data"]
         cv_id = config_version["id"]
 
         # Confirm there is only one config version (the one we uploaded)
@@ -57,7 +57,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         # Give the file time to upload successfully
         time.sleep(3)
 
-        config_versions = self._api.config_versions.lst(self._ws_id)["data"]
+        config_versions = self._api.config_versions.list(self._ws_id)["data"]
         self.assertEqual(config_versions[0]
                          ["attributes"]["status"], "uploaded")
 

@@ -18,7 +18,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
 
         # Invite a test user to this org, remove after
         invite_payload = self._get_org_membership_invite_payload(self._team_id)
-        invite = self._api.organization_memberships.invite(invite_payload)
+        invite = self._api.org_memberships.invite(invite_payload)
         self._org_membership_id = invite["data"]["id"]
 
 
@@ -28,7 +28,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
         self._ws_id = workspace["id"]
         self._ws_name = workspace["attributes"]["name"]
 
-        self._api.organization_memberships.remove(self._org_membership_id)
+        self._api.org_memberships.remove(self._org_membership_id)
 
     def tearDown(self):
         self._api.workspaces.destroy(workspace_name=self._ws_name)
@@ -61,7 +61,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
                 }
             }
         }
-        workspace_accesses = self._api.team_access.lst()["data"]
+        workspace_accesses = self._api.team_access.list()["data"]
         self.assertEqual(len(workspace_accesses), 0)
 
         access = self._api.team_access.add_team_access(
@@ -70,7 +70,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
         shown_access = self._api.team_access.show(access_id)
         self.assertEqual(shown_access["data"]["id"], access_id)
 
-        len_after_adding = len(self._api.team_access.lst()["data"])
+        len_after_adding = len(self._api.team_access.list()["data"])
         self._api.team_access.remove_team_access(access_id)
-        len_after_removing = self._api.team_access.lst()["data"]
+        len_after_removing = self._api.team_access.list()["data"]
         self.assertNotEqual(len_after_adding, len_after_removing)

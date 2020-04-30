@@ -16,7 +16,8 @@ from terrasnek.api import TFC
 from ._constants import \
     TFC_TOKEN, TFC_HOSTNAME, TEST_EMAIL, \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
-    GITHUB_TOKEN, GITHUB_SECRET, TFC_VERIFY
+    GITHUB_TOKEN, GITHUB_SECRET, \
+    TFC_VERIFY
 
 
 class TestTFCBaseTestCase(unittest.TestCase):
@@ -28,7 +29,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
     def setUpClass(cls):
         cls._logger = logging.getLogger(cls.__class__.__name__)
         cls._logger.setLevel(logging.INFO)
-        cls._api = TFC(TFC_TOKEN, url=TFC_HOSTNAME, verify=TFC_VERIFY)
+        cls._api = TFC(\
+            TFC_TOKEN, url=TFC_HOSTNAME, verify=TFC_VERIFY)
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME
@@ -41,7 +43,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "./test/testdata/terraform/terrasnek_unittest_config_version.tar.gz"
         cls._plan_export_tarball_target_path = "/tmp/terrasnek_unittest.tar.gz"
 
-        cls._api.set_organization(cls._test_org_name)
+        cls._api.set_org(cls._test_org_name)
 
     @staticmethod
     def _name_with_random(name):

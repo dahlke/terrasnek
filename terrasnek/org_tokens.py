@@ -1,24 +1,24 @@
 """
-Module for Terraform Cloud API Endpoint: Organization Tokens.
+Module for Terraform Cloud API Endpoint: Org Tokens.
 """
 
 from .endpoint import TFCEndpoint
 
-class TFCOrganizationTokens(TFCEndpoint):
+class TFCOrgTokens(TFCEndpoint):
     """
-    The Organization Tokens API is used to generate and revoke Organization
+    The Org Tokens API is used to generate and revoke Org
     tokens. Each organization can only have one token.
 
     https://www.terraform.io/docs/cloud/api/organization-tokens.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
-        self._base_url = f"{base_url}/organizations/{organization_name}/authentication-token"
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
+        self._base_url = f"{base_url}/organizations/{org_name}/authentication-token"
 
     def create(self):
         """
-        POST /organizations/:organization_name/authentication-token
+        POST /organizations/:org_name/authentication-token
 
         This endpoint creates an org token for the active org.
         """

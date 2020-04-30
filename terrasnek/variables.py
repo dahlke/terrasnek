@@ -10,8 +10,8 @@ class TFCVariables(TFCEndpoint):
 
     https://www.terraform.io/docs/cloud/api/variables.html
     """
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/vars"
 
     def create(self, payload):
@@ -20,16 +20,16 @@ class TFCVariables(TFCEndpoint):
         """
         return self._create(self._base_url, payload)
 
-    def lst(self, workspace_name=None):
+    def list(self, workspace_name=None):
         """
         GET /vars
         """
-        url = f"{self._base_url}?filter[organization][name]={self._organization_name}"
+        url = f"{self._base_url}?filter[organization][name]={self._org_name}"
 
         if workspace_name is not None:
             url += f"&filter[workspace][name]={workspace_name}"
 
-        return self._ls(url)
+        return self._list(url)
 
     def update(self, variable_id, payload):
         """

@@ -18,10 +18,10 @@ class TFCEndpoint():
     Base class providing common CRUD operation implementations across all TFC Endpoints.
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
+    def __init__(self, base_url, org_name, headers, verify):
         self._base_url = base_url
         self._headers = headers
-        self._organization_name = organization_name
+        self._org_name = org_name
         self._verify = verify
         self._logger = logging.getLogger(self.__class__.__name__)
         self._logger.setLevel(logging.INFO)
@@ -122,7 +122,7 @@ class TFCEndpoint():
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
-    def _ls(self, \
+    def _list(self, \
         url, q=None, filters=None, page=None, page_size=None, search=None, include=None):
         """
         Implementation of the common list resources pattern for the TFC API.
@@ -157,8 +157,6 @@ class TFCEndpoint():
 
         if len(q_options) > 0:
             url += "?" + "&".join(q_options)
-
-        print("UPDATED URL", url)
 
         return self._get(url)
 

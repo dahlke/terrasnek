@@ -12,8 +12,8 @@ class TFCAdminUsers(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/admin/users.html
     """
 
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/admin/users"
 
     def destroy(self, user_id):
@@ -59,7 +59,7 @@ class TFCAdminUsers(TFCEndpoint):
         url = f"{self._base_url}/{user_id}/actions/impersonate"
         return self._post(url)
 
-    def lst(self, query=None):
+    def list(self, query=None):
         """
         GET /admin/users
 
@@ -71,7 +71,7 @@ class TFCAdminUsers(TFCEndpoint):
         if query is not None:
             url += f"?q={query}"
 
-        return self._ls(url)
+        return self._list(url)
 
     def revoke_admin(self, user_id):
         """

@@ -69,10 +69,8 @@ class TestTFCRuns(TestTFCBaseTestCase):
         self.assertRaises(
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["applying-at"])
 
-        # TODO: test list params
         # List the runs, using the correct parameters
-        all_runs = self._api.runs.lst()
-        print(all_runs)
+        all_runs = self._api.runs.list(self._ws_id, page=0, page_size=50)
 
         # Apply the plan
         self._api.runs.apply(run_id)

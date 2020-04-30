@@ -14,8 +14,8 @@ class TFCNotificationConfigurations(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/notification-configurations.html
     """
-    def __init__(self, base_url, organization_name, headers, verify):
-        super().__init__(base_url, organization_name, headers, verify)
+    def __init__(self, base_url, org_name, headers, verify):
+        super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/notification-configurations"
         self._ws_base_url = f"{base_url}/workspaces"
 
@@ -26,12 +26,12 @@ class TFCNotificationConfigurations(TFCEndpoint):
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
         return self._create(url, payload)
 
-    def lst(self, workspace_id):
+    def list(self, workspace_id):
         """
         GET /workspaces/:workspace_id/notification-configurations
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
-        return self._ls(url)
+        return self._list(url)
 
     def show(self, notification_configuration_id):
         """

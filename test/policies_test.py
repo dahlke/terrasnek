@@ -12,11 +12,11 @@ class TestTFCPolicies(TestTFCBaseTestCase):
 
     def test_policies_lifecycle(self):
         """
-        Test the Policies API endpoints: create, lst, show,
+        Test the Policies API endpoints: create, list, show,
         update, upload, destroy.
         """
 
-        policies_resp = self._api.policies.lst()
+        policies_resp = self._api.policies.list()
         policies = policies_resp["data"]
         self.assertEqual(len(policies), 0)
 
@@ -29,7 +29,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
 
         # List all the policies, search the policy we just created so
         # we can test out the list params
-        policies_resp = self._api.policies.lst(\
+        policies_resp = self._api.policies.list(\
             page=0, page_size=50, search=created_policy_name)
         policies = policies_resp["data"]
         self.assertEqual(len(policies), 1)
@@ -68,6 +68,6 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         self._api.policies.destroy(created_policy_id)
 
         # Check that we now have zero policies again
-        policies_resp = self._api.policies.lst()
+        policies_resp = self._api.policies.list()
         policies = policies_resp["data"]
         self.assertEqual(len(policies), 0)

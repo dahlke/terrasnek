@@ -16,16 +16,16 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         """
 
         # TODO: How to manage VCS OAuth and create w/ VCS payload?
-        num_workspaces_before_create = len(self._api.workspaces.lst()["data"])
+        num_workspaces_before_create = len(self._api.workspaces.list()["data"])
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload("workspaces"))
-        num_workspaces_after_create = len(self._api.workspaces.lst()["data"])
+        num_workspaces_after_create = len(self._api.workspaces.list()["data"])
         self.assertNotEqual(num_workspaces_before_create,
                             num_workspaces_after_create)
 
         self._api.workspaces.destroy(
             workspace_name=workspace["data"]["attributes"]["name"])
-        num_workspaces_after_destroy = len(self._api.workspaces.lst()["data"])
+        num_workspaces_after_destroy = len(self._api.workspaces.list()["data"])
         self.assertNotEqual(num_workspaces_after_create,
                             num_workspaces_after_destroy)
 
@@ -37,12 +37,12 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         # Create a workspace
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload("workspaces"))
-        num_workspaces_before = len(self._api.workspaces.lst(page=0, page_size=50)["data"])
+        num_workspaces_before = len(self._api.workspaces.list(page=0, page_size=50)["data"])
 
         # Destroy it with it's name
         ws_name = workspace["data"]["attributes"]["name"]
         self._api.workspaces.destroy(workspace_name=ws_name)
-        num_workspaces_after = len(self._api.workspaces.lst()["data"])
+        num_workspaces_after = len(self._api.workspaces.list()["data"])
         self.assertNotEqual(num_workspaces_before, num_workspaces_after)
 
         # Create another workspace
@@ -51,9 +51,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         # Destroy it with it's ID
         ws_id = workspace["data"]["id"]
-        num_workspaces_before = len(self._api.workspaces.lst()["data"])
+        num_workspaces_before = len(self._api.workspaces.list()["data"])
         self._api.workspaces.destroy(workspace_id=ws_id)
-        num_workspaces_after = len(self._api.workspaces.lst()["data"])
+        num_workspaces_after = len(self._api.workspaces.list()["data"])
         self.assertNotEqual(num_workspaces_before, num_workspaces_after)
 
     def test_workspaces_lock_unlock(self):
