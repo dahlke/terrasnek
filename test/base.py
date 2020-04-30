@@ -169,7 +169,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 "attributes": {
                     "name": name,
                     "terraform_version": "0.11.1",
-                    "working-directory": "test/testdata/terraform/src",
+                    "working-directory": "test/testdata/terraform/src/tfe",
                     "vcs-repo": {
                         "identifier": "dahlke/terrasnek",
                         "oauth-token-id": oauth_token_id,
