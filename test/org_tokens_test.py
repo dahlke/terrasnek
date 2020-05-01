@@ -11,7 +11,6 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
     """
 
     def setUp(self):
-        # TODO: figure out how to make these not spammy or burdensome
         org_create_payload = self._get_org_create_payload()
         self._created_org = self._api.orgs.create(org_create_payload)
         self._created_org_name = org_create_payload["data"]["attributes"]["name"]

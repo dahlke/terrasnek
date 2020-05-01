@@ -70,7 +70,8 @@ class TestTFCRuns(TestTFCBaseTestCase):
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["applying-at"])
 
         # List the runs, using the correct parameters
-        all_runs = self._api.runs.list(self._ws_id, page=0, page_size=50)
+        all_runs = self._api.runs.list(self._ws_id, page=0, page_size=50)["data"]
+        self.assertEqual(len(all_runs), 1)
 
         # Apply the plan
         self._api.runs.apply(run_id)

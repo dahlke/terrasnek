@@ -7,12 +7,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/issues)
 [![GitHub license](https://img.shields.io/github/license/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/blob/master/LICENSE)
 
-
-
 _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/cloud/api/index.html)._
 
 ---
-
 
 ### Overview
 The goal of this project is to support all endpoints available in the Terraform

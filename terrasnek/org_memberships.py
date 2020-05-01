@@ -27,7 +27,7 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         return self._create(self._org_base_url, payload)
 
-    def list_for_org(self, q=None, filters=None, page=None, page_size=None):
+    def list_for_org(self, query=None, filters=None, page=None, page_size=None):
         """
         GET /organizations/:org_name/organization-memberships
 
@@ -37,7 +37,7 @@ class TFCOrgMemberships(TFCEndpoint):
             https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters
         """
         return self._list(\
-            self._org_base_url, q=q, filters=filters, page=page, page_size=page_size)
+            self._org_base_url, query=query, filters=filters, page=page, page_size=page_size)
 
     def list_for_user(self):
         """

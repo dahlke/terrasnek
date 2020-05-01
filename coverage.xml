@@ -334,7 +334,7 @@
 						<line hits="1" number="173"/>
 					</lines>
 				</class>
-				<class branch-rate="0" complexity="0" filename="terrasnek/notification_configurations.py" line-rate="1" name="notification_configurations.py">
+				<class branch-rate="0" complexity="0" filename="terrasnek/notification_configs.py" line-rate="1" name="notification_configs.py">
 					<methods/>
 					<lines>
 						<line hits="1" number="5"/>
@@ -1084,7 +1084,7 @@
 						<line hits="1" number="61"/>
 					</lines>
 				</class>
-				<class branch-rate="0" complexity="0" filename="test/notification_configurations_test.py" line-rate="1" name="notification_configurations_test.py">
+				<class branch-rate="0" complexity="0" filename="test/notification_configs_test.py" line-rate="1" name="notification_configs_test.py">
 					<methods/>
 					<lines>
 						<line hits="1" number="5"/>

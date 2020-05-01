@@ -6,12 +6,8 @@ import json
 import logging
 import requests
 
+from._constants import HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT
 
-# TODO: put these in the constants file, update all the instances of these values.
-HTTP_OK = 200
-HTTP_CREATED = 201
-HTTP_ACCEPTED = 202
-HTTP_NO_CONTENT = 204
 
 class TFCEndpoint():
     """
@@ -70,7 +66,6 @@ class TFCEndpoint():
         results = None
         req = requests.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
-        # TODO: handle each error code differently
         if req.status_code in [HTTP_OK, HTTP_CREATED]:
             results = json.loads(req.content)
             self._logger.debug(f"POST to {url} successful")
@@ -92,7 +87,6 @@ class TFCEndpoint():
 
         req = requests.put(url, data=data, headers=headers, verify=self._verify)
 
-        # TODO: Exception and error handling
         if req.status_code == HTTP_OK:
             if octet:
                 results = json.loads(req.content)
@@ -122,15 +116,15 @@ class TFCEndpoint():
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 
-    def _list(self, \
-        url, q=None, filters=None, page=None, page_size=None, search=None, include=None):
+    def _list(self, url, query=None, filters=None, \
+        page=None, page_size=None, search=None, include=None):
         """
         Implementation of the common list resources pattern for the TFC API.
         """
         q_options = []
 
-        if q is not None:
-            q_options.append(f"q={q}")
+        if query is not None:
+            q_options.append(f"q={query}")
 
         if filters is not None:
             for fil in filters:
@@ -155,7 +149,7 @@ class TFCEndpoint():
         if search is not None:
             q_options.append(f"search[name]={search}")
 
-        if len(q_options) > 0:
+        if q_options:
             url += "?" + "&".join(q_options)
 
         return self._get(url)

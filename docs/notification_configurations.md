@@ -1,6 +1,6 @@
 # Notification Configurations
 
 ```eval_rst
-.. autoclass:: terrasnek.notification_configurations.TFCNotificationConfigurations
+.. autoclass:: terrasnek.notification_configs.TFCNotificationConfigurations
    :members:
 ```

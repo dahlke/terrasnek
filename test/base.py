@@ -37,7 +37,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._test_org_name = TEST_ORG_NAME
         cls._test_api_token = TEST_ORG_NAME
 
-        # TODO: make these env vars?
         cls._test_state_path = "./test/testdata/terraform/terrasnek_unittest.tfstate"
         cls._config_version_upload_tarball_path = \
             "./test/testdata/terraform/terrasnek_unittest_config_version.tar.gz"
@@ -94,7 +93,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
         }
 
     @staticmethod
-    def _get_variable_create_payload(key, value, workspace_id, category="terraform", sensitive=False):
+    def _get_variable_create_payload(\
+        key, value, workspace_id, category="terraform", sensitive=False):
         return {
             "data": {
                 "type": "vars",
@@ -220,8 +220,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     ],
                     "name": name,
                     "description": "terrasnek example policy"
-                    },
-                    "relationships": {
+                },
+                "relationships": {
                     "policy-sets": {
                         "data": []
                     }

@@ -49,10 +49,10 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         create_payload = {
             "data": {
                 "relationships": {
-                "sourceable": {
-                    "data": {
-                        "id": self._source_ws_id,
-                        "type": "workspaces"
+                    "sourceable": {
+                        "data": {
+                            "id": self._source_ws_id,
+                            "type": "workspaces"
                         }
                     }
                 }

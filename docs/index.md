@@ -39,7 +39,7 @@ Contents
 * [Applies](applies.md)
 * [Configuration Versions](config_versions.md)
 * [Cost Estimates](cost_estimates.md)
-* [Notification Configurations](notification_configurations.md)
+* [Notification Configurations](notification_configs.md)
 * [OAuth Clients](oauth_clients.md)
 * [OAuth Tokens](oauth_tokens.md)
 * [Orgs](orgs.md)

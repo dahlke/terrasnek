@@ -57,7 +57,8 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         ]
         # TODO: include and search params should be a constant
         sets_resp = self._api.policy_sets.list(\
-            filters=test_filters, page=0, page_size=50, include="policies", search=created_policy_set_name)
+            filters=test_filters, page=0, page_size=50, \
+            include="policies", search=created_policy_set_name)
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 1)
 
@@ -79,7 +80,9 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         # Add the policy we created in the set up to the policy set
         add_remove_policy_payload = {
             "data": [
-                { "id": self._policy_id, "type": "policies" },
+                {
+                    "id": self._policy_id, "type": "policies"
+                },
             ]
         }
         self._api.policy_sets.add_policies_to_set(created_policy_set_id, add_remove_policy_payload)
@@ -90,22 +93,29 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         # Attach the policy set to the workspace we created, confirm it's attached
         attach_detach_to_workspace_payload = {
             "data": [
-                { "id": self._ws_id, "type": "workspaces" },
+                {
+                    "id": self._ws_id, "type": "workspaces"
+                },
             ]
         }
-        self._api.policy_sets.attach_policy_set_to_workspaces(created_policy_set_id, attach_detach_to_workspace_payload)
+        self._api.policy_sets.attach_policy_set_to_workspaces(\
+            created_policy_set_id, attach_detach_to_workspace_payload)
         shown_policy_set_resp = self._api.policy_sets.show(created_policy_set_id)
-        shown_workspaces_attached_to = shown_policy_set_resp["data"]["relationships"]["workspaces"]["data"]
+        shown_workspaces_attached_to = \
+            shown_policy_set_resp["data"]["relationships"]["workspaces"]["data"]
         self.assertEqual(len(shown_workspaces_attached_to), 1)
 
         # Detach the policy set from the workspace we created, confirm it's not attached
-        self._api.policy_sets.detach_policy_set_from_workspaces(created_policy_set_id, attach_detach_to_workspace_payload)
+        self._api.policy_sets.detach_policy_set_from_workspaces(\
+            created_policy_set_id, attach_detach_to_workspace_payload)
         shown_policy_set_resp = self._api.policy_sets.show(created_policy_set_id)
-        shown_workspaces_attached_to = shown_policy_set_resp["data"]["relationships"]["workspaces"]["data"]
+        shown_workspaces_attached_to = \
+            shown_policy_set_resp["data"]["relationships"]["workspaces"]["data"]
         self.assertEqual(len(shown_workspaces_attached_to), 0)
 
         # Remove the policy from the set and confirm it has been removed
-        self._api.policy_sets.remove_policies_from_set(created_policy_set_id, add_remove_policy_payload)
+        self._api.policy_sets.remove_policies_from_set(\
+            created_policy_set_id, add_remove_policy_payload)
         shown_policy_set_resp = self._api.policy_sets.show(created_policy_set_id)
         shown_policies_in_set = shown_policy_set_resp["data"]["relationships"]["policies"]["data"]
         self.assertEqual(len(shown_policies_in_set), 0)
@@ -125,4 +135,3 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         show_policy_set_version.
         """
         # TODO
-        pass

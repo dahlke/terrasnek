@@ -25,9 +25,6 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         # as my personal user is already in 2 orgs
         # self.assertEqual(num_org_memberships, 2)
 
-        # Get teams for the base org
-        teams = self._api.teams.list()
-
         # Invite a user
         invite_payload = self._get_org_membership_invite_payload()
         invite = self._api.org_memberships.invite(invite_payload)
@@ -50,13 +47,13 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         ]
         truncated_test_username = self._test_username[:5]
         users_for_org = self._api.org_memberships.list_for_org(\
-            q=truncated_test_username, filters=test_filters, page=0, page_size=50)
+            query=truncated_test_username, filters=test_filters, page=0, page_size=50)
         num_users_in_org = len(users_for_org["data"])
         self.assertEqual(num_users_in_org, 1)
 
 
         # Remove the user
-        removal = self._api.org_memberships.remove(org_membership_id)
+        self._api.org_memberships.remove(org_membership_id)
         users_for_org = self._api.org_memberships.list_for_org()
         num_users_in_org = len(users_for_org["data"])
         self.assertEqual(num_users_in_org, 1)

@@ -36,7 +36,7 @@ class TFCStateVersions(TFCEndpoint):
         url = f"{self._workspace_base_url}/{workspace_id}/current-state-version"
         return self._get(url)
 
-    def list(self, workspace_name, filters=None, page=None, page_size=None):
+    def list(self, filters=None, page=None, page_size=None):
         """
         GET /state-versions
 

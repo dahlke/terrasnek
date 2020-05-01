@@ -39,7 +39,9 @@ class TFCPolicySets(TFCEndpoint):
             https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets
         """
         return self._list(\
-            self._org_base_url, filters=filters, include=include, page=page, page_size=page_size, search=search)
+            self._org_base_url, \
+            filters=filters, include=include, \
+            page=page, page_size=page_size, search=search)
 
     def show(self, policy_set_id):
         """

@@ -43,7 +43,8 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
                 }
             }
         }
-        create_resp = self._api.policy_set_params.create(self._created_policy_set_id, create_payload)
+        create_resp = self._api.policy_set_params.create(\
+            self._created_policy_set_id, create_payload)
         created_param_id = create_resp["data"]["id"]
 
         params_resp = self._api.policy_set_params.list(self._created_policy_set_id)
@@ -64,7 +65,8 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
                 "type": "vars"
             }
         }
-        update_resp = self._api.policy_set_params.update(self._created_policy_set_id, created_param_id, update_payload)
+        update_resp = self._api.policy_set_params.update(\
+            self._created_policy_set_id, created_param_id, update_payload)
         updated_value = update_resp["data"]["attributes"]["value"]
         self.assertEqual(updated_value, value_to_update_to)
 

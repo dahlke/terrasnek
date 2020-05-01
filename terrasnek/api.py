@@ -5,14 +5,9 @@ API access.
 
 import urllib3
 
-# Suppress insecure TLS warnings
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
 from._constants import TFC_SAAS_URL
-
 from .oauth_clients import TFCOAuthClients
 from .oauth_tokens import TFCOAuthTokens
-
 from .orgs import TFCOrgs
 from .org_memberships import TFCOrgMemberships
 from .org_tokens import TFCOrgTokens
@@ -28,7 +23,7 @@ from .ssh_keys import TFCSSHKeys
 from .policies import TFCPolicies
 from .policy_sets import TFCPolicySets
 from .policy_set_params import TFCPolicySetParams
-from .notification_configurations import TFCNotificationConfigurations
+from .notification_configs import TFCNotificationConfigurations
 from .run_triggers import TFCRunTriggers
 from .applies import TFCApplies
 from .users import TFCUsers
@@ -37,10 +32,11 @@ from .teams import TFCTeams
 from .team_memberships import TFCTeamMemberships
 from .team_access import TFCTeamAccess
 from .team_tokens import TFCTeamTokens
-
 from .admin_users import TFCAdminUsers
 from .admin_orgs import TFCAdminOrgs
 
+# Suppress insecure TLS warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class InvalidTFCTokenException(Exception):
@@ -71,6 +67,13 @@ class TFC():
             None,
             self._headers,
             self._verify)
+
+        self.admin_orgs = TFCAdminOrgs(
+            self._instance_url,
+            None,
+            self._headers,
+            self._verify)
+
         self.org_memberships = None
         self.org_tokens = None
         self.workspaces = None
@@ -88,7 +91,7 @@ class TFC():
         self.policies = None
         self.policy_sets = None
         self.policy_set_params = None
-        self.notification_configurations = None
+        self.notification_configs = None
         self.run_triggers = None
         self.oauth_clients = None
         self.oauth_tokens = None
@@ -96,14 +99,7 @@ class TFC():
         self.team_memberships = None
         self.team_access = None
         self.team_tokens = None
-
-        self.admin_orgs = TFCAdminOrgs(
-            self._instance_url,
-            None,
-            self._headers,
-            self._verify)
         self.admin_users = None
-
 
     def set_org(self, org_name):
         """
@@ -112,7 +108,6 @@ class TFC():
         """
         self._current_org = org_name
 
-        # TODO: there is a better way initialize these all the same way.
         self.org_memberships = TFCOrgMemberships(
             self._instance_url,
             self._current_org,
@@ -215,7 +210,7 @@ class TFC():
             self._headers,
             self._verify)
 
-        self.notification_configurations = TFCNotificationConfigurations(
+        self.notification_configs = TFCNotificationConfigurations(
             self._instance_url,
             self._current_org,
             self._headers,
@@ -263,7 +258,6 @@ class TFC():
             self._headers,
             self._verify)
 
-        # Admin Endpoints
         self.admin_users = TFCAdminUsers(
             self._instance_url,
             self._current_org,
