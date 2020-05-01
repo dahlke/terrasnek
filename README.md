@@ -174,6 +174,11 @@ export CODECOV_TOKEN="<TOKEN>"
 bash <(curl -s https://codecov.io/bash)
 ```
 
+#### Building the Documentation
+```
+make docs
+```
+
 #### Publishing to PyPi
 
 ###### Production
