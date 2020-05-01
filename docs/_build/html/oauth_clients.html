@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>OAuth Clients &#8212; terrasnek 0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OAuth Tokens" href="oauth_tokens.html" />
+    <link rel="prev" title="Notification Configurations" href="notification_configurations.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="oauth-clients">
+<h1>OAuth Clients<a class="headerlink" href="#oauth-clients" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="terrasnek.oauth_clients.TFCOAuthClients">
+<em class="property">class </em><code class="sig-prename descclassname">terrasnek.oauth_clients.</code><code class="sig-name descname">TFCOAuthClients</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base_url</span></em>, <em class="sig-param"><span class="n">org_name</span></em>, <em class="sig-param"><span class="n">headers</span></em>, <em class="sig-param"><span class="n">verify</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.oauth_clients.TFCOAuthClients" title="Permalink to this definition">¶</a></dt>
+<dd><p>An OAuth Client represents the connection between an organization and a VCS provider.</p>
+<p><a class="reference external" href="https://www.terraform.io/docs/cloud/api/oauth-clients.html">https://www.terraform.io/docs/cloud/api/oauth-clients.html</a></p>
+<dl class="py method">
+<dt id="terrasnek.oauth_clients.TFCOAuthClients.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.oauth_clients.TFCOAuthClients.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>POST /organizations/:org_name/oauth-clients</p>
+<p>This endpoint allows you to create a VCS connection between an organization and a VCS
+provider (GitHub or GitLab) for use when creating or setting up workspaces. By using
+this API endpoint, you can provide a pre-generated OAuth token string instead of going
+through the process of creating a GitHub or GitLab OAuth Application.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.oauth_clients.TFCOAuthClients.destroy">
+<code class="sig-name descname">destroy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">client_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.oauth_clients.TFCOAuthClients.destroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>DELETE /oauth-clients/:client_id</p>
+<p>This endpoint allows you to remove an existing connection between an organization and a
+VCS provider (GitHub, Bitbucket, or GitLab).</p>
+<p>Note: Removing the OAuth Client will unlink workspaces that use this connection
+from their repositories, and these workspaces will need to be manually linked to
+another repository.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.oauth_clients.TFCOAuthClients.list">
+<code class="sig-name descname">list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.oauth_clients.TFCOAuthClients.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>GET /organizations/:org_name/oauth-clients</p>
+<p>This endpoint allows you to list VCS connections between an organization and a VCS
+provider (GitHub, Bitbucket, or GitLab) for use when creating or setting up workspaces.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.oauth_clients.TFCOAuthClients.show">
+<code class="sig-name descname">show</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">client_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.oauth_clients.TFCOAuthClients.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>GET /oauth-clients/:client_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.oauth_clients.TFCOAuthClients.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">client_id</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.oauth_clients.TFCOAuthClients.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>PATCH /oauth-clients/:client_id</p>
+<p>Use caution when changing attributes with this endpoint; editing an OAuth client that
+workspaces are currently using can have unexpected effects.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">terrasnek</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="account.html">Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applies.html">Applies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config_versions.html">Configuration Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cost_estimates.html">Cost Estimates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notification_configurations.html">Notification Configurations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OAuth Clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth_tokens.html">OAuth Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orgs.html">Orgs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="org_memberships.html">Org Memberships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="org_tokens.html">Org Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan_exports.html">Plan Exports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plans.html">Plans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policies.html">Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policy_checks.html">Policy Checks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policy_sets.html">Policy Sets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policy_set_parameters.html">Policy Set Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry_modules.html">Registry Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runs.html">Runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_triggers.html">Run Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_keys.html">SSH Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="state_versions.html">State Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="state_version_outputs.html">State Version Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_access.html">Team Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_memberships.html">Team Memberships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_tokens.html">Team Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teams.html">Teams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_tokens.html">User Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workspaces.html">Workspaces</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="notification_configurations.html" title="previous chapter">Notification Configurations</a></li>
+      <li>Next: <a href="oauth_tokens.html" title="next chapter">OAuth Tokens</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neil Dahlke.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/oauth_clients.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -27,15 +27,18 @@ features like audit logging and SAML single sign-on._
 ### Requirements
 
 To make full usage of all the tools and commands here, you should have installed:
+
 - `python3`
 - `make`
 - `pylint`
 - `coverage`
 - `ag`
 
+All Python requirements are outlined in `pip-reqs.txt`.
+
 ### Using `terrasnek`
 
-For more details on using each endpoint, check out the [`test`](./test) directory.
+For more details on using each endpoint, check out the docs. TODO.
 
 ```
 from terrasnek.api import TFC

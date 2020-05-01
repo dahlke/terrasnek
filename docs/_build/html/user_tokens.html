@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>User Tokens &#8212; terrasnek 0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Users" href="users.html" />
+    <link rel="prev" title="Teams" href="teams.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="user-tokens">
+<h1>User Tokens<a class="headerlink" href="#user-tokens" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="terrasnek.user_tokens.TFCUserTokens">
+<em class="property">class </em><code class="sig-prename descclassname">terrasnek.user_tokens.</code><code class="sig-name descname">TFCUserTokens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base_url</span></em>, <em class="sig-param"><span class="n">org_name</span></em>, <em class="sig-param"><span class="n">headers</span></em>, <em class="sig-param"><span class="n">verify</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.user_tokens.TFCUserTokens" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://www.terraform.io/docs/cloud/api/user-tokens.html">https://www.terraform.io/docs/cloud/api/user-tokens.html</a></p>
+<dl class="py method">
+<dt id="terrasnek.user_tokens.TFCUserTokens.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.user_tokens.TFCUserTokens.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>POST /users/:user_id/authentication-tokens</p>
+<p>This endpoint returns the secret text of the created authentication token. A token
+is only shown upon creation, and cannot be recovered later.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.user_tokens.TFCUserTokens.destroy">
+<code class="sig-name descname">destroy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.user_tokens.TFCUserTokens.destroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>DELETE /authentication-tokens/:token_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.user_tokens.TFCUserTokens.list">
+<code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.user_tokens.TFCUserTokens.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>GET /users/:user_id/authentication-tokens</p>
+<p>Use the Account API to find your own user ID.</p>
+<p>The objects returned by this endpoint only contain metadata, and do not include the
+secret text of any authentication tokens. A token is only shown upon creation, and
+cannot be recovered later.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.user_tokens.TFCUserTokens.show">
+<code class="sig-name descname">show</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.user_tokens.TFCUserTokens.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>GET /authentication-tokens/:token_id</p>
+<p>The objects returned by this endpoint only contain metadata, and do not include the
+secret text of any authentication tokens. A token is only shown upon creation, and
+cannot be recovered later.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">terrasnek</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="account.html">Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applies.html">Applies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config_versions.html">Configuration Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cost_estimates.html">Cost Estimates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notification_configurations.html">Notification Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth_clients.html">OAuth Clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth_tokens.html">OAuth Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orgs.html">Orgs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="org_memberships.html">Org Memberships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="org_tokens.html">Org Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan_exports.html">Plan Exports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plans.html">Plans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policies.html">Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policy_checks.html">Policy Checks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policy_sets.html">Policy Sets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policy_set_parameters.html">Policy Set Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry_modules.html">Registry Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runs.html">Runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_triggers.html">Run Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_keys.html">SSH Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="state_versions.html">State Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="state_version_outputs.html">State Version Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_access.html">Team Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_memberships.html">Team Memberships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_tokens.html">Team Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teams.html">Teams</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workspaces.html">Workspaces</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="teams.html" title="previous chapter">Teams</a></li>
+      <li>Next: <a href="users.html" title="next chapter">Users</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neil Dahlke.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/user_tokens.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

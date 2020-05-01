@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Endpoints &#8212; terrasnek 0.0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="endpoints">
+<h1>Endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-terrasnek.api"></span><p>Module for container class of all TFC endpoints and high level exceptions around
+API access.</p>
+<dl class="py exception">
+<dt id="terrasnek.api.InvalidTFCTokenException">
+<em class="property">exception </em><code class="sig-prename descclassname">terrasnek.api.</code><code class="sig-name descname">InvalidTFCTokenException</code><a class="headerlink" href="#terrasnek.api.InvalidTFCTokenException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cannot instantiate TFC Api class without a valid TFC_TOKEN.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="terrasnek.api.TFC">
+<em class="property">class </em><code class="sig-prename descclassname">terrasnek.api.</code><code class="sig-name descname">TFC</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">api_token</span></em>, <em class="sig-param"><span class="n">url</span><span class="o">=</span><span class="default_value">'https://app.terraform.io'</span></em>, <em class="sig-param"><span class="n">verify</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.api.TFC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Super class for access to all TFC Endpoints.</p>
+<dl class="py method">
+<dt id="terrasnek.api.TFC.set_org">
+<code class="sig-name descname">set_org</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">org_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.api.TFC.set_org" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the organization to use for org specific endpoints.
+This method must be called for their respective endpoints to work.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">terrasnek</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neil Dahlke.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/endpoints/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

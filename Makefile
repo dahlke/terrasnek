@@ -31,6 +31,10 @@ lint-lib:
 lint-tests:
 	pylint terrasnek test
 
+.PHONY: docs
+docs:
+	cd docs/ && make html
+
 .PHONY: pip-package
 pip-package:
 	python3 setup.py sdist bdist_wheel;

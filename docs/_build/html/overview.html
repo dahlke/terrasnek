@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Overview &#8212; terrasnek 0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <p># terrasnek</p>
+<p>[![CircleCI](<a class="reference external" href="https://circleci.com/gh/dahlke/terrasnek.svg?style=svg)](https://circleci.com/gh/dahlke/terrasnek">https://circleci.com/gh/dahlke/terrasnek.svg?style=svg)](https://circleci.com/gh/dahlke/terrasnek</a>)
+![Python unittest Code Coverage](coverage.svg)
+[![PyPI version](<a class="reference external" href="https://badge.fury.io/py/terrasnek.svg)](https://badge.fury.io/py/terrasnek">https://badge.fury.io/py/terrasnek.svg)](https://badge.fury.io/py/terrasnek</a>)
+[![GitHub issues](<a class="reference external" href="https://img.shields.io/github/issues/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/issues">https://img.shields.io/github/issues/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/issues</a>)
+[![GitHub license](<a class="reference external" href="https://img.shields.io/github/license/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/blob/master/LICENSE">https://img.shields.io/github/license/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/blob/master/LICENSE</a>)</p>
+<p>_A Python Client for the [Terraform Cloud API](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/index.html)._">https://www.terraform.io/docs/cloud/api/index.html)._</a></p>
+<p>—</p>
+<p>### Overview
+The goal of this project is to support all endpoints available in the Terraform
+Cloud API. It’s possible that some of these endpoints won’t work if you’re
+working against an older version of
+[Terraform Enterprise](<a class="reference external" href="https://www.terraform.io/docs/enterprise/index.html">https://www.terraform.io/docs/enterprise/index.html</a>).</p>
+<p>_Note: Terraform Enterprise is the self-hosted distribution of Terraform Cloud.
+It offers enterprises a private instance of the Terraform Cloud application,
+with no resource limits and with additional enterprise-grade architectural
+features like audit logging and SAML single sign-on._</p>
+<p>### Requirements</p>
+<p>To make full usage of all the tools and commands here, you should have installed:
+- <cite>python3</cite>
+- <cite>make</cite>
+- <cite>pylint</cite>
+- <cite>coverage</cite>
+- <cite>ag</cite></p>
+<p>### Using <cite>terrasnek</cite></p>
+<p>For more details on using each endpoint, check out the docs. TODO.</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+from terrasnek.api import TFC
+import os</p>
+<p>TFC_TOKEN = os.getenv(“TFC_TOKEN”, None)
+TFC_URL = os.getenv(“TFC_TOKEN”, None)  # ex: <a class="reference external" href="https://app.terraform.io">https://app.terraform.io</a>
+SSL_VERIFY = os.getenv(“SSL_VERIFY”, None)  # set to True if you want to use HTTP or insecure HTTPS</p>
+<dl class="simple">
+<dt>if __name__ == “__main__”:</dt><dd><p>api = TFC(TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY)
+api.set_org(“YOUR_ORGANIZATION”)</p>
+</dd>
+</dl>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>##### Supported Endpoints</p>
+<p>###### Standard Endpoints
+- [ ] [Account](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/account.html">https://www.terraform.io/docs/cloud/api/account.html</a>)
+- [x] [Applies](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/applies.html">https://www.terraform.io/docs/cloud/api/applies.html</a>)
+- [x] [Configuration Versions](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/configuration-versions.html">https://www.terraform.io/docs/cloud/api/configuration-versions.html</a>)
+- [ ] [Cost Estimates](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/cost-estimates.html">https://www.terraform.io/docs/cloud/api/cost-estimates.html</a>)
+- [x] [Notification Configurations](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/notification-configurations.html">https://www.terraform.io/docs/cloud/api/notification-configurations.html</a>)
+- [x] [OAuth Clients](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/oauth-clients.html">https://www.terraform.io/docs/cloud/api/oauth-clients.html</a>)
+- [x] [OAuth Tokens](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/oauth-tokens.html">https://www.terraform.io/docs/cloud/api/oauth-tokens.html</a>)
+- [x] [Orgs](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/organizations.html">https://www.terraform.io/docs/cloud/api/organizations.html</a>)
+- [x] [Org Memberships](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/organization-memberships.html">https://www.terraform.io/docs/cloud/api/organization-memberships.html</a>)
+- [x] [Org Tokens](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/organization-tokens.html">https://www.terraform.io/docs/cloud/api/organization-tokens.html</a>)
+- [x] [Plan Exports](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/plan-exports.html">https://www.terraform.io/docs/cloud/api/plan-exports.html</a>)
+- [x] [Plans](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/plans.html">https://www.terraform.io/docs/cloud/api/plans.html</a>)
+- [x] [Policies](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/policies.html">https://www.terraform.io/docs/cloud/api/policies.html</a>)
+- [ ] [Policy Checks](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/policy-checks.html">https://www.terraform.io/docs/cloud/api/policy-checks.html</a>)
+- [x] [Policy Sets](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/policy-sets.html">https://www.terraform.io/docs/cloud/api/policy-sets.html</a>)
+- [x] [Policy Set Parameters](<a class="reference external" href="http://www.terraform.io/docs/cloud/api/policy-set-params.html">http://www.terraform.io/docs/cloud/api/policy-set-params.html</a>)
+- [ ] [Registry Modules](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/modules.html">https://www.terraform.io/docs/cloud/api/modules.html</a>)
+- [x] [Runs](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/run.html">https://www.terraform.io/docs/cloud/api/run.html</a>)
+- [x] [Run Triggers](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/run-triggers.html">https://www.terraform.io/docs/cloud/api/run-triggers.html</a>)
+- [x] [SSH Keys](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/ssh-keys.html">https://www.terraform.io/docs/cloud/api/ssh-keys.html</a>)
+- [x] [State Versions](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/state-versions.html">https://www.terraform.io/docs/cloud/api/state-versions.html</a>)
+- [x] [State Version Outputs](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/state-version-outputs.html">https://www.terraform.io/docs/cloud/api/state-version-outputs.html</a>)
+- [x] [Team Access](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/team-access.html">https://www.terraform.io/docs/cloud/api/team-access.html</a>)
+- [x] [Team Memberships](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/team-members.html">https://www.terraform.io/docs/cloud/api/team-members.html</a>)
+- [x] [Team Tokens](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/team-tokens.html">https://www.terraform.io/docs/cloud/api/team-tokens.html</a>)
+- [x] [Teams](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/teams.html">https://www.terraform.io/docs/cloud/api/teams.html</a>)
+- [x] [User Tokens](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/user-tokens.html">https://www.terraform.io/docs/cloud/api/user-tokens.html</a>)
+- [x] [Users](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/users.html">https://www.terraform.io/docs/cloud/api/users.html</a>)
+- [x] [Variables](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/variables.html">https://www.terraform.io/docs/cloud/api/variables.html</a>)
+- [x] [Workspaces](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/workspaces.html">https://www.terraform.io/docs/cloud/api/workspaces.html</a>)</p>
+<p>###### Admin Endpoints
+- [x] [Admin Orgs](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/admin/organizations.html">https://www.terraform.io/docs/cloud/api/admin/organizations.html</a>)
+- [ ] [Admin Runs](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/admin/runs.html">https://www.terraform.io/docs/cloud/api/admin/runs.html</a>)
+- [ ] [Admin Settings](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/admin/settings.html">https://www.terraform.io/docs/cloud/api/admin/settings.html</a>)
+- [ ] [Admin Terraform Versions](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html">https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html</a>)
+- [x] [Admin Users](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/admin/users.html">https://www.terraform.io/docs/cloud/api/admin/users.html</a>)
+- [ ] [Admin Workspaces](<a class="reference external" href="https://www.terraform.io/docs/cloud/api/admin/workspaces.html">https://www.terraform.io/docs/cloud/api/admin/workspaces.html</a>)</p>
+<p>### Contributing to <cite>terrasnek</cite></p>
+<p>#### Linting the Code</p>
+<p>###### Lint Library Code
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">make</span> <span class="pre">lint-lib</span>
+<span class="pre">`</span></code></p>
+<p>###### Lint Test Code
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">make</span> <span class="pre">lint-tests</span>
+<span class="pre">`</span></code></p>
+<p>#### Building Test Data</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">cd</span> <span class="pre">test/testdata/terraform/</span>
+<span class="pre">tar</span> <span class="pre">-zcvf</span> <span class="pre">terrasnek_unittest_config_version.tar.gz</span> <span class="pre">src/*</span>
+<span class="pre">`</span></code></p>
+<p>#### Testing</p>
+<p>It is recommended that when running the entire suite of tests, you use a
+sandbox Terraform Enterprise instance. This will allow you to test the
+Admin Endpoints without any worry of error, and you will not have any
+run limits.</p>
+<p>Due to those limitations, this library does not currently test the full
+suite of tests in CircleCI. It is recommended that you run the tests
+locally before submitting pull requests, or at the very least, verify
+all of the tests that touch code you are contributing.</p>
+<p>###### Running Specific Tests</p>
+<p>The test suite takes a long time to execute fully, since there is a lot of async work, and waiting
+for plans, applies, etc. In the scenario you want to just test a new implementation or change,
+use the below.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">source</span> <span class="pre">test/secrets/secrets.sh</span>
+<span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">test/applies_test.py</span>
+<span class="pre">`</span></code></p>
+<p>###### Running All Tests</p>
+<p>_Note: When you run all of the tests, you will have to create a user (that
+matches your <cite>TEST_USER</cite> in <cite>secrets.sh</cite>) manually ahead of executing the tests
+if you don’t have an existing user in the system already. Currently not possible
+to create users with the API, and some of the tests involve adding a user to
+teams and organizations. Not all endpoints are available in the free Terraform Cloud
+offering. In order for you to test or use all of the endpoints, you’ll need
+the proper packages for Terraform Cloud or your own private Terraform
+Enterprise instance._</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">source</span> <span class="pre">test/secrets/secrets.sh</span>
+<span class="pre">make</span> <span class="pre">test</span>
+<span class="pre">`</span></code></p>
+<p>###### Running the Tests with Coverage Info</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">source</span> <span class="pre">test/secrets/secrets.sh</span>
+<span class="pre">make</span> <span class="pre">coverage</span>
+<span class="pre">`</span></code></p>
+<p>#### Publishing to PyPi</p>
+<p>###### Production
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">make</span> <span class="pre">pip-publish</span>
+<span class="pre">`</span></code></p>
+<p>###### Test</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">make</span> <span class="pre">pip-test-publish</span>
+<span class="pre">`</span></code></p>
+<p>—</p>
+<p>_Note: This repo is not officially maintained by HashiCorp._</p>
+<div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>The goal of this project is to support all endpoints available in the Terraform Cloud API. It’s possible that some of these endpoints won’t work if you’re working against an older version of <a href="#id7"><span class="problematic" id="id8">`</span></a>Terraform Enterprise`&lt;<a class="reference external" href="https://www.terraform.io/docs/enterprise/index.html">https://www.terraform.io/docs/enterprise/index.html</a>&gt;.</p>
+<p>Note: Terraform Enterprise is the self-hosted distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installing-terrasnek">
+<h3>Installing <cite>terrasnek</cite><a class="headerlink" href="#installing-terrasnek" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">terrasnek</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neil Dahlke.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/overview.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

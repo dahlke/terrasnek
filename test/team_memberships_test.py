@@ -1,7 +1,6 @@
 """
 Module for testing the Terraform Cloud API Endpoint: Team Memberships.
 """
-import time
 
 from .base import TestTFCBaseTestCase
 

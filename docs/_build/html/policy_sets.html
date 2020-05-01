@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Policy Sets &#8212; terrasnek 0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Policy Set Parameters" href="policy_set_parameters.html" />
+    <link rel="prev" title="Policy Checks" href="policy_checks.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="policy-sets">
+<h1>Policy Sets<a class="headerlink" href="#policy-sets" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="terrasnek.policy_sets.TFCPolicySets">
+<em class="property">class </em><code class="sig-prename descclassname">terrasnek.policy_sets.</code><code class="sig-name descname">TFCPolicySets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base_url</span></em>, <em class="sig-param"><span class="n">org_name</span></em>, <em class="sig-param"><span class="n">headers</span></em>, <em class="sig-param"><span class="n">verify</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Policy sets are groups of policies that are applied together to related
+workspaces. By using policy sets, you can group your policies by
+attributes such as environment or region. Individual policies within a
+policy set will only be checked for workspaces that the policy set
+is attached to.</p>
+<p>Policy sets can group indidual policies created via the policies API,
+or act as versioned sets which are either sourced from a version control
+system (such as GitHub) or uploaded as a whole via the policy set
+versions API.</p>
+<p><a class="reference external" href="https://www.terraform.io/docs/cloud/api/policy-sets.html">https://www.terraform.io/docs/cloud/api/policy-sets.html</a></p>
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.add_policies_to_set">
+<code class="sig-name descname">add_policies_to_set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy_set_id</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.add_policies_to_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>POST /policy-sets/:id/relationships/policies</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.attach_policy_set_to_workspaces">
+<code class="sig-name descname">attach_policy_set_to_workspaces</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy_id</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.attach_policy_set_to_workspaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>POST /policy-sets/:id/relationships/workspaces</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>POST /organizations/:org_name/policy-sets</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.create_policy_set_version">
+<code class="sig-name descname">create_policy_set_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.create_policy_set_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>For versioned policy sets which have no VCS repository attached,
+versions of policy code may be uploaded directly to the API by
+creating a new policy set version and, in a subsequent request,
+uploading a tarball (tar.gz) of data to it.</p>
+<p>POST /policy-sets/:id/versions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.destroy">
+<code class="sig-name descname">destroy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy_set_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.destroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>DELETE /policies/:policy_set_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.detach_policy_set_from_workspaces">
+<code class="sig-name descname">detach_policy_set_from_workspaces</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy_id</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.detach_policy_set_from_workspaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>POST /policy-sets/:id/relationships/workspaces</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.list">
+<code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">include</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">page</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">page_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">search</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>GET /organizations/:org_name/policy-sets</p>
+<dl class="simple">
+<dt>PARAMS:</dt><dd><p><a class="reference external" href="https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets">https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.remove_policies_from_set">
+<code class="sig-name descname">remove_policies_from_set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy_id</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.remove_policies_from_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>DELETE /policy-sets/:id/relationships/policies</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.show">
+<code class="sig-name descname">show</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy_set_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>GET /policy-sets/:id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.show_policy_set_version">
+<code class="sig-name descname">show_policy_set_version</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy_set_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.show_policy_set_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>GET /policy-sets/:id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="terrasnek.policy_sets.TFCPolicySets.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">policy_set_id</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#terrasnek.policy_sets.TFCPolicySets.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>PATCH /policy-sets/:id</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">terrasnek</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="account.html">Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applies.html">Applies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config_versions.html">Configuration Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cost_estimates.html">Cost Estimates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notification_configurations.html">Notification Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth_clients.html">OAuth Clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth_tokens.html">OAuth Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orgs.html">Orgs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="org_memberships.html">Org Memberships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="org_tokens.html">Org Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan_exports.html">Plan Exports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plans.html">Plans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policies.html">Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policy_checks.html">Policy Checks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Policy Sets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policy_set_parameters.html">Policy Set Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry_modules.html">Registry Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runs.html">Runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_triggers.html">Run Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_keys.html">SSH Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="state_versions.html">State Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="state_version_outputs.html">State Version Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_access.html">Team Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_memberships.html">Team Memberships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team_tokens.html">Team Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teams.html">Teams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_tokens.html">User Tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workspaces.html">Workspaces</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="policy_checks.html" title="previous chapter">Policy Checks</a></li>
+      <li>Next: <a href="policy_set_parameters.html" title="next chapter">Policy Set Parameters</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neil Dahlke.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/policy_sets.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

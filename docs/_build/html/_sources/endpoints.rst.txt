@@ -1,0 +1,9 @@
+Endpoints
+==============
+
+.. contents::
+   :local:
+   :depth: 1
+
+.. automodule:: terrasnek.api
+    :members:
