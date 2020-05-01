@@ -1,2 +1,0 @@
-.. automodule:: terrasnek.api
-    :members:

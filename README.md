@@ -39,7 +39,10 @@ All Python requirements are outlined in `pip-reqs.txt`.
 
 ### Using `terrasnek`
 
-For more details on using each endpoint, check out the [docs](https://terrasnek.readthedocs.io/en/latest/) or the [`test`](./test) directory.
+For more details on using each endpoint, check out the
+[docs](https://terrasnek.readthedocs.io/en/latest/) or the [`test`](./test)
+directory. I also wrote a [blog post](https://medium.com/hashicorp-engineering/migrating-a-lot-of-state-with-python-and-the-terraform-cloud-api-997ec798cd11)
+showing how this library can be used.
 
 ```
 from terrasnek.api import TFC
@@ -50,7 +53,7 @@ TFC_URL = os.getenv("TFC_URL", None)  # ex: https://app.terraform.io
 SSL_VERIFY = os.getenv("SSL_VERIFY", None)  # set to True if you want to use HTTP or insecure HTTPS
 
 if __name__ == "__main__":
-    api = TFC(TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY)
+    api = TFC(TFC_TOKEN, url=TFC_URL, ssl_verify=SSL_VERIFY)
     api.set_org("YOUR_ORGANIZATION")
 ```
 
