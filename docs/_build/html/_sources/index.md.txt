@@ -50,7 +50,7 @@ Contents
 * [Policies](policies.md)
 * [Policy Checks](policy_checks.md)
 * [Policy Sets](policy_sets.md)
-* [Policy Set Parameters](policy_set_parameters.md)
+* [Policy Set Params](policy_set_params.md)
 * [Registry Modules](registry_modules.md)
 * [Runs](runs.md)
 * [Run Triggers](run_triggers.md)
