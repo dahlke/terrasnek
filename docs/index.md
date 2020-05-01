@@ -15,7 +15,7 @@ Recommended Env Var Usage:
 import os
 
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
-TFC_URL = os.getenv("TFC_TOKEN", None)  # ex: https://app.terraform.io
+TFC_URL = os.getenv("TFC_URL", None)  # ex: https://app.terraform.io
 ```
 
 Using TLS:

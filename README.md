@@ -45,7 +45,7 @@ from terrasnek.api import TFC
 import os
 
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
-TFC_URL = os.getenv("TFC_TOKEN", None)  # ex: https://app.terraform.io
+TFC_URL = os.getenv("TFC_URL", None)  # ex: https://app.terraform.io
 SSL_VERIFY = os.getenv("SSL_VERIFY", None)  # set to True if you want to use HTTP or insecure HTTPS
 
 if __name__ == "__main__":
