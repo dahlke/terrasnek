@@ -31,6 +31,7 @@ class TFCNotificationConfigurations(TFCEndpoint):
         GET /workspaces/:workspace_id/notification-configurations
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
+        print(url)
         return self._list(url)
 
     def show(self, notification_configuration_id):

@@ -4,6 +4,7 @@ __pycache__/
 test/secrets/secrets.sh
 htmlcov/
 .coverage/
+docs/_build/
 
 *.egg-info
 dist/

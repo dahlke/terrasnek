@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/dahlke/terrasnek.svg?style=svg)](https://circleci.com/gh/dahlke/terrasnek)
 ![Python unittest Code Coverage](coverage.svg)
+[![codecov](https://codecov.io/gh/dahlke/terrasnek/branch/master/graph/badge.svg)](https://codecov.io/gh/dahlke/terrasnek)
 [![PyPI version](https://badge.fury.io/py/terrasnek.svg)](https://badge.fury.io/py/terrasnek)
 [![Documentation Status](https://readthedocs.org/projects/terrasnek/badge/)](https://terrasnek.readthedocs.io/en/latest/?badge=latest)
 [![GitHub issues](https://img.shields.io/github/issues/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/issues)
@@ -165,6 +166,12 @@ make test
 ```
 source test/secrets/secrets.sh
 make coverage
+```
+
+###### Uploading Coverage Stats to CodeCov.io
+```
+export CODECOV_TOKEN="<TOKEN>"
+bash <(curl -s https://codecov.io/bash)
 ```
 
 #### Publishing to PyPi

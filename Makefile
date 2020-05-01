@@ -19,9 +19,7 @@ test:
 .PHONY: coverage
 coverage:
 	coverage run -m unittest test/*_test.py; \
-	coverage report -m; \
-	rm coverage.svg; \
-	coverage-badge -o coverage.svg
+	coverage report -m;
 
 .PHONY: lint-lib
 lint-lib:
@@ -34,6 +32,10 @@ lint-tests:
 .PHONY: docs
 docs:
 	cd docs/ && make html
+
+.PHONY: codecov
+codecov:
+	bash <(curl -s https://codecov.io/bash)
 
 .PHONY: pip-package
 pip-package:
