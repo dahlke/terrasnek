@@ -39,7 +39,7 @@ All Python requirements are outlined in `pip-reqs.txt`.
 
 ### Using `terrasnek`
 
-For more details on using each endpoint, check out the docs. TODO.
+For more details on using each endpoint, check out the [docs](https://terrasnek.readthedocs.io/en/latest/) or the [`test`](./test) directory.
 
 ```
 from terrasnek.api import TFC
