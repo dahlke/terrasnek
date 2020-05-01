@@ -50,6 +50,7 @@ source_suffix = {
     '.md': 'markdown',
 }
 
+master_doc = "index"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -58,6 +59,7 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
+
 
 
 # -- Options for HTML output -------------------------------------------------
