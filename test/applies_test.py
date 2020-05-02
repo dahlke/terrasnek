@@ -23,8 +23,6 @@ class TestTFCApplies(TestTFCBaseTestCase):
         ws_payload = self._get_ws_with_vcs_create_payload(unittest_name, oauth_token_id)
         workspace = self._api.workspaces.create(ws_payload)["data"]
         self._ws_id = workspace["id"]
-        # Allow some time for the workspace to be created
-        time.sleep(3)
 
         variable_payloads = [
             self._get_variable_create_payload(
@@ -52,7 +50,6 @@ class TestTFCApplies(TestTFCBaseTestCase):
         """
 
         # Create a run and wait for the created run to complete it's plan
-        # TODO: make these tests time out
         created_run = self._api.runs.show(self._run_id)["data"]
         while not created_run["attributes"]["actions"]["is-confirmable"]:
             self._logger.debug("Waiting on plan to execute...")

@@ -26,9 +26,6 @@ class TestTFCRuns(TestTFCBaseTestCase):
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
 
-        # Allow some time for the workspace to be created
-        time.sleep(3)
-
         variable_payloads = [
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),
@@ -75,12 +72,13 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
         # Apply the plan
         self._api.runs.apply(run_id)
-        self._logger.debug("Sleeping while plan applies...")
-        time.sleep(10)
-        self._logger.debug("Done sleeping.")
-        applied_run = self._api.runs.show(run_id)["data"]
-        self.assertNotEqual(
-            applied_run["attributes"]["status-timestamps"]["applying-at"], None)
+
+        status_timestamps = self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
+        while "applying-at" not in status_timestamps:
+            time.sleep(1)
+            status_timestamps = \
+                self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
+        self.assertNotEqual(status_timestamps["applying-at"], None)
 
     def test_run_and_discard(self):
         """
@@ -95,6 +93,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
         created_run = self._api.runs.show(run_id)["data"]
         self.assertRaises(
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["discarded-at"])
+
         while not created_run["attributes"]["actions"]["is-confirmable"]:
             self._logger.debug("Waiting on plan to execute...")
             time.sleep(1)
@@ -103,13 +102,12 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
         # Discard the run
         self._api.runs.discard(run_id)
-        self._logger.debug("Sleeping while run discards...")
-        time.sleep(3)
-        self._logger.debug("Done sleeping.")
-
-        discarded_run = self._api.runs.show(run_id)["data"]
-        self.assertNotEqual(
-            discarded_run["attributes"]["status-timestamps"]["discarded-at"], None)
+        status_timestamps = self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
+        while "discarded-at" not in status_timestamps:
+            time.sleep(1)
+            status_timestamps = \
+                self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
+        self.assertNotEqual(status_timestamps["discarded-at"], None)
 
     def test_run_and_cancel(self):
         """
@@ -129,11 +127,11 @@ class TestTFCRuns(TestTFCBaseTestCase):
         time.sleep(1)
         self._logger.debug("Done sleeping.")
 
-        # Discard the run
+        # Cancel the run
         self._api.runs.cancel(run_id)
-        self._logger.debug("Sleeping while run cancels...")
-        time.sleep(10)
-        self._logger.debug("Done sleeping.")
-
-        cancelled_run = self._api.runs.show(run_id)["data"]
-        self.assertNotEqual(cancelled_run["attributes"]["canceled-at"], None)
+        status_timestamps = self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
+        while "force-canceled-at" not in status_timestamps:
+            time.sleep(1)
+            status_timestamps = \
+                self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
+        self.assertNotEqual(status_timestamps["force-canceled-at"], None)

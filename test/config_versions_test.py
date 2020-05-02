@@ -38,9 +38,6 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         # Confirm the first listed config version matches the ID of the one we created
         self.assertEqual(config_versions[0]["id"], cv_id)
 
-        # Give the config version some time to sync
-        time.sleep(3)
-
         # Confirm it's status is "pending" as well
         self.assertEqual(config_versions[0]["attributes"]["status"], "pending")
 
@@ -53,9 +50,6 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         # Upload the .tf code and confirm it's been uploaded
         self._api.config_versions.upload(
             self._config_version_upload_tarball_path, cv_id)
-
-        # Give the file time to upload successfully
-        time.sleep(3)
 
         config_versions = self._api.config_versions.list(self._ws_id)["data"]
         self.assertEqual(config_versions[0]

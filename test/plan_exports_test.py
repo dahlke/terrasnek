@@ -27,9 +27,6 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
 
-        # Give the workspace some time to create
-        time.sleep(3)
-
         variable_payloads = [
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),

@@ -26,9 +26,6 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
         workspace = self._api.workspaces.create(ws_payload)["data"]
         self._ws_id = workspace["id"]
 
-        # Allow some time for the workspace to be created
-        time.sleep(3)
-
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
