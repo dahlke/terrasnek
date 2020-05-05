@@ -62,8 +62,23 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
             time.sleep(1)
         self._logger.debug("Plan successful.")
 
-        plan_export = self._api.plan_exports.create(
-            self._get_plan_export_create_payload(created_plan_id))["data"]
+        create_plan_export_payload = {
+            "data": {
+                "type": "plan-exports",
+                "attributes": {
+                    "data-type": "sentinel-mock-bundle-v0"
+                },
+                "relationships": {
+                    "plan": {
+                        "data": {
+                            "id": created_plan_id,
+                            "type": "plans"
+                        }
+                    }
+                }
+            }
+        }
+        plan_export = self._api.plan_exports.create(create_plan_export_payload)["data"]
         self.assertEqual(
             created_plan_id, plan_export["relationships"]["plan"]["data"]["id"])
 

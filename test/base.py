@@ -17,12 +17,14 @@ from ._constants import \
     TFC_TOKEN, TFC_HOSTNAME, TEST_EMAIL, \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET, \
-    TFC_VERIFY
+    SSL_VERIFY
 
 
 class TestTFCBaseTestCase(unittest.TestCase):
     """
-    Base class for providing common test utilities across API endpoints.
+    Base class for providing common test utilities across API endpoints. It
+    includes helpers to generate create payloads for common endpoints used in
+    many tests.
     """
 
     @classmethod
@@ -30,7 +32,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger = logging.getLogger(cls.__class__.__name__)
         cls._logger.setLevel(logging.INFO)
         cls._api = TFC(\
-            TFC_TOKEN, url=TFC_HOSTNAME, verify=TFC_VERIFY)
+            TFC_TOKEN, url=TFC_HOSTNAME, verify=SSL_VERIFY)
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME
@@ -115,26 +117,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 }
             }
         }
-
-    @staticmethod
-    def _get_plan_export_create_payload(plan_id):
-        return {
-            "data": {
-                "type": "plan-exports",
-                "attributes": {
-                    "data-type": "sentinel-mock-bundle-v0"
-                },
-                "relationships": {
-                    "plan": {
-                        "data": {
-                            "id": plan_id,
-                            "type": "plans"
-                        }
-                    }
-                }
-            }
-        }
-
 
     def _get_state_version_create_payload(self):
         # Go Example:
