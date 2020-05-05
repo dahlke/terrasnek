@@ -99,6 +99,18 @@ if __name__ == "__main__":
 
 ### Contributing to `terrasnek`
 
+Before contributing to `terrasnek` or publishing to PyPi, there are a few must-dos.
+
+- Each endpoint must have it's own implementation file, it's own test file, and corresponding doc file.
+- The Python code (implementation and test) must be linted.
+- The documentation must be rebuilt with any changes you added.
+- Before merging to master, it must run the full test suite and generate test coverage.
+- The test coverage must be uploaded to CodeCov.
+
+The instructions for doing each of these can be found below. This process is not automated
+for now due to some of the limitations of the free Terraform Cloud offering. In the
+future, if some of the limitations are lifted, these checks will be automated in CircleCI.
+
 #### Linting the Code
 
 ###### Lint Library Code
