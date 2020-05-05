@@ -4,6 +4,7 @@ Module for testing the Terraform Cloud API Endpoint: Policy Sets.
 
 from .base import TestTFCBaseTestCase
 
+POLICY_SETS_LIST_INCLUDE = "policies"
 
 class TestTFCPolicySets(TestTFCBaseTestCase):
     """
@@ -55,10 +56,9 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
                 "value": False
             }
         ]
-        # TODO: include and search params should be a constant
         sets_resp = self._api.policy_sets.list(\
             filters=test_filters, page=0, page_size=50, \
-            include="policies", search=created_policy_set_name)
+            include=POLICY_SETS_LIST_INCLUDE, search=created_policy_set_name)
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 1)
 

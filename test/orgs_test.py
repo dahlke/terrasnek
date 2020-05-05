@@ -14,19 +14,17 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         """
         Test the Orgs API endpoints: create, list, entitlements, show, update, destroy.
         """
-
-        # TODO: figure out how to make these not spammy or burdensome to the application
-        """
         # Test create endpoint
-        self._api.orgs.create(self._get_org_create_payload())
+        created_org = self._api.orgs.create(self._get_org_create_payload())["data"]
+        created_org_name = created_org["attributes"]["name"]
         orgs = self._api.orgs.list()["data"]
         self.assertNotEqual(
             len(orgs), 0, msg="No organizations found for TFC token.")
 
         # Test entitlements endpoint
-        ent = self._api.orgs.entitlements(self._test_org_name)
-        self.assertEqual(ent["data"]["type"], "entitlement-sets")
-        self.assertTrue(ent["data"]["attributes"]["state-storage"])
+        ent = self._api.orgs.entitlements(self._test_org_name)["data"]
+        self.assertEqual(ent["type"], "entitlement-sets")
+        self.assertTrue(ent["attributes"]["state-storage"])
 
         # Test show endpoint
         org = self._api.orgs.show(self._test_org_name)
@@ -48,5 +46,4 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         self.assertEqual(updated_org["data"]
                          ["attributes"]["email"], updated_email)
 
-        self._api.orgs.destroy(self._test_org_name)
-        """
+        self._api.orgs.destroy(created_org_name)

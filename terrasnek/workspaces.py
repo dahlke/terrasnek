@@ -15,7 +15,6 @@ class TFCWorkspaces(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._ws_base_url = f"{base_url}/workspaces"
         self._org_base_url = f"{base_url}/organizations/{org_name}/workspaces"
-        # TODO: Assign and Unassign SSH key, requires SSH key endpoint
 
     def create(self, payload):
         """
@@ -102,3 +101,23 @@ class TFCWorkspaces(TFCEndpoint):
         """
         url = f"{self._ws_base_url}/{workspace_id}"
         return self._update(url, payload)
+
+
+    def assign_ssh_key(self, workspace_id, data):
+        """
+        PATCH /workspaces/:workspace_id/relationships/ssh-key
+
+        This endpoint assigns an SSH key to a workspace.
+        """
+        url = f"{self._ws_base_url}/{workspace_id}/relationships/ssh-key"
+        self._patch(url, data=data)
+
+    def unassign_ssh_key(self, workspace_id, data):
+        """
+        PATCH /workspaces/:workspace_id/relationships/ssh-key
+
+        This endpoint unassigns the currently assigned SSH key from a
+        workspace.
+        """
+        url = f"{self._ws_base_url}/{workspace_id}/relationships/ssh-key"
+        self._patch(url, data=data)

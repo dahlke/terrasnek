@@ -10,61 +10,30 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Workspaces.
     """
 
-    def test_workspaces_create(self):
+    def setUp(self):
+        # Add an SSH Key to TFC
+        create_payload = self._get_ssh_key_create_payload()
+        create_resp = self._api.ssh_keys.create(create_payload)
+        created_key = create_resp["data"]
+        self._created_key_id = created_key["id"]
+
+    def tearDown(self):
+        self._api.ssh_keys.destroy(self._created_key_id)
+
+    def test_workspaces_lifecycle(self):
         """
-        Test the Workspaces API endpoints: create.
+        Test the Workspaces API endpoints: create, destroy, show, lock,
+        unlock, update, assign_ssh_key, unassign_ssh_key.
         """
 
-        # TODO: How to manage VCS OAuth and create w/ VCS payload?
+        # Get the number of existing workspaces, then create one and compare them
         num_workspaces_before_create = len(self._api.workspaces.list()["data"])
         workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("workspaces"))
+            self._get_ws_without_vcs_create_payload("ws"))
+        ws_id = workspace["data"]["id"]
         num_workspaces_after_create = len(self._api.workspaces.list()["data"])
         self.assertNotEqual(num_workspaces_before_create,
                             num_workspaces_after_create)
-
-        self._api.workspaces.destroy(
-            workspace_name=workspace["data"]["attributes"]["name"])
-        num_workspaces_after_destroy = len(self._api.workspaces.list()["data"])
-        self.assertNotEqual(num_workspaces_after_create,
-                            num_workspaces_after_destroy)
-
-    def test_destroy(self):
-        """
-        Test the Workspaces API endpoint: destroy.
-        """
-
-        # Create a workspace
-        workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("workspaces"))
-        num_workspaces_before = len(self._api.workspaces.list(page=0, page_size=50)["data"])
-
-        # Destroy it with it's name
-        ws_name = workspace["data"]["attributes"]["name"]
-        self._api.workspaces.destroy(workspace_name=ws_name)
-        num_workspaces_after = len(self._api.workspaces.list()["data"])
-        self.assertNotEqual(num_workspaces_before, num_workspaces_after)
-
-        # Create another workspace
-        workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("workspaces"))
-
-        # Destroy it with it's ID
-        ws_id = workspace["data"]["id"]
-        num_workspaces_before = len(self._api.workspaces.list()["data"])
-        self._api.workspaces.destroy(workspace_id=ws_id)
-        num_workspaces_after = len(self._api.workspaces.list()["data"])
-        self.assertNotEqual(num_workspaces_before, num_workspaces_after)
-
-    def test_workspaces_lock_unlock(self):
-        """
-        Test the Workspaces API endpoints: lock and unlock.
-        """
-
-        # Create a workspace and make sure it's not locked
-        workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("workspaces"))
-        ws_id = workspace["data"]["id"]
 
         # Lock the workspace and confirm it's locked
         ws_locked = self._api.workspaces.lock(
@@ -84,43 +53,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         ws_forced = self._api.workspaces.force_unlock(ws_id)
         self.assertFalse(ws_forced["data"]["attributes"]["locked"])
 
-        # Clean up the workspace
-        self._api.workspaces.destroy(workspace_id=ws_id)
-
-    def test_workspaces_show(self):
-        """
-        Test the Workspaces API endpoint: show.
-        """
-
-        # Create a workspace
-        workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("workspaces"))
-
-        # Get that workspace's ID, retrieve it's data and compare IDs
-        ws_id = workspace["data"]["id"]
-        ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)
-        self.assertEqual(ws_id, ws_shown_by_id["data"]["id"])
-
-        # Get that workspace's name, retrieve it's data and compare names
-        ws_name = workspace["data"]["attributes"]["name"]
-        ws_shown_by_name = self._api.workspaces.show(workspace_name=ws_name)
-        self.assertEqual(
-            ws_name, ws_shown_by_name["data"]["attributes"]["name"])
-
-        # Clean up the workspace
-        self._api.workspaces.destroy(workspace_id=ws_id)
-
-    def test_workspaces_update(self):
-        """
-        Test the Workspaces API endpoint: update.
-        """
-
-        # Create a workspace
-        workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("workspaces"))
-
-        # Get that workspace's ID, and update it's name
-        ws_id = workspace["data"]["id"]
+        # Update the workspace, check that the updates took effect
         updated_name = "unittest-update"
         update_payload = {
             "data": {
@@ -134,5 +67,38 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         self.assertEqual(
             updated_name, ws_updated["data"]["attributes"]["name"])
 
-        # Clean up the workspace
-        self._api.workspaces.destroy(workspace_id=ws_id)
+        # Assign an SSH key and confirm it's added
+        assign_payload ={
+            "data": {
+                "attributes": {
+                "id": self._created_key_id
+                },
+                "type": "workspaces"
+            }
+        }
+        self._api.workspaces.assign_ssh_key(ws_id, assign_payload)
+
+        # Show by ID, and make sure we get the right payload back. Also check for the
+        # the newly assigned SSH key
+        ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)["data"]
+        self.assertEqual(ws_id, ws_shown_by_id["id"])
+        self.assertTrue("ssh-key" in ws_shown_by_id["relationships"])
+
+        # Unassign the SSH key and confirm it's removed
+        unassign_payload ={
+            "data": {
+                "attributes": {
+                "id": None
+                },
+                "type": "workspaces"
+            }
+        }
+        self._api.workspaces.unassign_ssh_key(ws_id, unassign_payload)
+        ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)["data"]
+        self.assertTrue("ssh-key" not in ws_shown_by_id["relationships"])
+
+        self._api.workspaces.destroy(
+            workspace_name=updated_name)
+        num_workspaces_after_destroy = len(self._api.workspaces.list()["data"])
+        self.assertNotEqual(num_workspaces_after_create,
+                            num_workspaces_after_destroy)

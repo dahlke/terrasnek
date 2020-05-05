@@ -52,7 +52,7 @@ class TFCEndpoint():
 
     def _patch(self, url, data=None):
         results = None
-        req = requests.patch(url, data=data, headers=self._headers, verify=self._verify)
+        req = requests.patch(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
         if req.status_code == HTTP_OK:
             results = json.loads(req.content)
@@ -164,4 +164,4 @@ class TFCEndpoint():
         """
         Implementation of the common update resource pattern for the TFC API.
         """
-        return self._patch(url, data=json.dumps(payload))
+        return self._patch(url, data=payload)

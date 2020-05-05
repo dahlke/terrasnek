@@ -4,6 +4,7 @@ Module for testing the Terraform Cloud API Endpoint: Run Triggers.
 
 from .base import TestTFCBaseTestCase
 
+RUN_TRIGGER_TYPE = "inbound"
 
 class TestTFCRunTriggers(TestTFCBaseTestCase):
     """
@@ -36,7 +37,7 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         test_filters = [
             {
                 "keys": ["run-trigger", "type"],
-                "value": "inbound"
+                "value": RUN_TRIGGER_TYPE
             }
         ]
 

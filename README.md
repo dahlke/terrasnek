@@ -16,6 +16,7 @@ The goal of this project is to support all endpoints available in the Terraform
 Cloud API. It's possible that some of these endpoints won't work if you're
 working against an older version of
 [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
+This has been tested against TFE `v202002-2 (419)`.
 
 _Note: Terraform Enterprise is the self-hosted distribution of Terraform Cloud.
 It offers enterprises a private instance of the Terraform Cloud application,
