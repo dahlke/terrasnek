@@ -36,13 +36,17 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
             ]
         }
 
-        # TODO: these don't work unless the user accepts them in the interim
         self._api.team_memberships.add_a_user_to_team(
             self._owners_team_id, membership_payload)
+
+        # TODO: Both of the following asserts will not work unless the user
+        # accepts the request.
+
         # shown_team = self._api.teams.show(self._owners_team_id)["data"]
         # self.assertEqual(len(shown_team["relationships"]["users"]["data"]), 3)
 
         self._api.team_memberships.remove_a_user_from_team(
             self._owners_team_id, membership_payload)
+
         # shown_team = self._api.teams.show(self._owners_team_id)["data"]
         # self.assertEqual(len(shown_team["relationships"]["users"]["data"]), 0)

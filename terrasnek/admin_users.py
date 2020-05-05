@@ -59,19 +59,14 @@ class TFCAdminUsers(TFCEndpoint):
         url = f"{self._base_url}/{user_id}/actions/impersonate"
         return self._post(url)
 
-    def list(self, query=None):
+    def list(self, query=None, filters=None, page=None, page_size=None):
         """
         GET /admin/users
 
         This endpoint lists all user accounts in the Terraform Cloud installation.
-
-        # TODO: handle the rest of the potential parameters
         """
-        url = self._base_url
-        if query is not None:
-            url += f"?q={query}"
-
-        return self._list(url)
+        return self._list(\
+            self._base_url, query=query, filters=filters, page=page, page_size=page_size)
 
     def revoke_admin(self, user_id):
         """

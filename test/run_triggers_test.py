@@ -33,7 +33,6 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         Test the Run Triggers API endpoints: create, list, update, destroy.
         """
 
-        # TODO: use constants for the value
         test_filters = [
             {
                 "keys": ["run-trigger", "type"],
