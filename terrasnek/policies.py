@@ -20,10 +20,10 @@ class TFCPolicies(TFCEndpoint):
 
     def create(self, payload):
         """
+        POST /organizations/:org_name/policies
+
         This creates a new policy object for the organization, but does not upload
         the actual policy code
-
-        POST /organizations/:org_name/policies
         """
         return self._create(self._org_base_url, payload)
 
@@ -47,6 +47,9 @@ class TFCPolicies(TFCEndpoint):
     def update(self, policy_id, payload):
         """
         PATCH /policies/:policy_id
+
+        This endpoint can update the enforcement mode of an existing policy. To
+        update the policy code itself, use the upload endpoint.
         """
         url = f"{self._base_url}/{policy_id}"
         return self._update(url, payload)
@@ -54,6 +57,8 @@ class TFCPolicies(TFCEndpoint):
     def upload(self, policy_id, payload):
         """
         PUT /policies/:policy_id/upload
+
+        This endpoint uploads code to an existing Sentinel policy.
         """
         url = f"{self._base_url}/{policy_id}/upload"
         return self._put(url, octet=True, data=payload)
