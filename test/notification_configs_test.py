@@ -4,8 +4,6 @@ Module for testing the Terraform Cloud API Endpoint: Notification Configurations
 
 from .base import TestTFCBaseTestCase
 
-import time
-
 
 class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
     """

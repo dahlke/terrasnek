@@ -10,13 +10,16 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Org Memberships.
     """
 
-    # TODO: create a user with the admin API here if possible.
 
     def test_org_memberships_lifecycle(self):
         """
         Test the Org Memberships API endpoints: invite, list_for_org,
         list_for_user, show, remove.
         """
+
+        # TODO: User needs to be created ahead of time, and it can't be done with
+        # the API currently.
+
         # Get the existing org memberships for the logged in user
         orgs_for_user = self._api.org_memberships.list_for_user()
         num_org_memberships = len(orgs_for_user["data"])

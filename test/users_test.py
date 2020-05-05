@@ -60,6 +60,9 @@ class TestTFCUsers(TestTFCBaseTestCase):
         Test the OAuth Tokens API endpoints: grant, revoke.
 
         NOTE: These are sensitive endpoints and won't call them in our tests.
+
+        NOTE: At the very list, I should have the endpoint class itself check
+        if it's against TFC and kill the requests.
         """
 
         # test_user_id = self._api.admin_users.list(query=self._test_username)["data"][0]["id"]

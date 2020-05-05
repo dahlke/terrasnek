@@ -2,8 +2,6 @@
 Module for testing the Terraform Cloud API Endpoint: Config Versions.
 """
 
-import time
-
 from .base import TestTFCBaseTestCase
 
 

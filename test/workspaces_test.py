@@ -68,10 +68,10 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
             updated_name, ws_updated["data"]["attributes"]["name"])
 
         # Assign an SSH key and confirm it's added
-        assign_payload ={
+        assign_payload = {
             "data": {
                 "attributes": {
-                "id": self._created_key_id
+                    "id": self._created_key_id
                 },
                 "type": "workspaces"
             }
@@ -85,10 +85,10 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         self.assertTrue("ssh-key" in ws_shown_by_id["relationships"])
 
         # Unassign the SSH key and confirm it's removed
-        unassign_payload ={
+        unassign_payload = {
             "data": {
                 "attributes": {
-                "id": None
+                    "id": None
                 },
                 "type": "workspaces"
             }
