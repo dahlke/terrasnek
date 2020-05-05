@@ -17,7 +17,7 @@ from ._constants import \
     TFC_TOKEN, TFC_HOSTNAME, TEST_EMAIL, \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET, \
-    SSL_VERIFY
+    SSL_VERIFY, TEST_PASSWORD
 
 
 class TestTFCBaseTestCase(unittest.TestCase):
@@ -37,7 +37,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME
         cls._test_org_name = TEST_ORG_NAME
-        cls._test_api_token = TEST_ORG_NAME
+        cls._test_api_token = TFC_TOKEN
+        cls._test_password = TEST_PASSWORD
 
         cls._test_state_path = "./test/testdata/terraform/terrasnek_unittest.tfstate"
         cls._config_version_upload_tarball_path = \

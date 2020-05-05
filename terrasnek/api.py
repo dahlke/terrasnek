@@ -6,6 +6,7 @@ API access.
 import urllib3
 
 from._constants import TFC_SAAS_URL
+from .account import TFCAccount
 from .oauth_clients import TFCOAuthClients
 from .oauth_tokens import TFCOAuthTokens
 from .orgs import TFCOrgs
@@ -74,6 +75,7 @@ class TFC():
             self._headers,
             self._verify)
 
+        self.account = None
         self.org_memberships = None
         self.org_tokens = None
         self.workspaces = None
@@ -107,6 +109,12 @@ class TFC():
         This method must be called for their respective endpoints to work.
         """
         self._current_org = org_name
+
+        self.account = TFCAccount(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
 
         self.org_memberships = TFCOrgMemberships(
             self._instance_url,

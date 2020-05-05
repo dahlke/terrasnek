@@ -17,6 +17,7 @@ TEST_EMAIL = os.getenv("TEST_EMAIL", None)
 TEST_ORG_NAME = os.getenv("TEST_ORG_NAME", None)
 TEST_USERNAME = os.getenv("TEST_USERNAME", None)
 TEST_TEAM_NAME = os.getenv("TEST_TEAM_NAME", None)
+TEST_PASSWORD = os.getenv("TEST_PASSWORD", None)
 
 if TFC_HOSTNAME is None:
     sys.exit("Environment variable TFC_HOSTNAME must be set.")
@@ -41,3 +42,7 @@ if TEST_USERNAME is None:
 
 if TEST_TEAM_NAME is None:
     sys.exit("Environment variable TEST_TEAM_NAME must be set.")
+
+if TEST_PASSWORD is None:
+    sys.exit("Environment variable TEST_PASSWORD must be set.")
+

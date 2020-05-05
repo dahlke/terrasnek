@@ -5,7 +5,7 @@ Module for testing the Terraform Cloud API Endpoint: Org Tokens.
 from .base import TestTFCBaseTestCase
 
 
-class TestTFCOrgMemberships(TestTFCBaseTestCase):
+class TestTFCOrgTokens(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Cloud API Endpoint: Org Tokens.
     """
