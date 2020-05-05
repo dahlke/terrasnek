@@ -6,9 +6,9 @@ from .endpoint import TFCEndpoint
 
 class TFCConfigVersions(TFCEndpoint):
     """
-    A configuration version (configuration-version) is a resource used to reference the
-    uploaded configuration files. It is associated with the run to use the uploaded configuration
-    files for performing the plan and apply.
+    A configuration version a resource used to reference the uploaded
+    configuration files. It is associated with the run to use the uploaded
+    configuration files for performing the plan and apply.
 
     https://www.terraform.io/docs/cloud/api/configuration-versions.html
     """

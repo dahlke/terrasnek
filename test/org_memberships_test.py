@@ -24,15 +24,12 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         orgs_for_user = self._api.org_memberships.list_for_user()
         num_org_memberships = len(orgs_for_user["data"])
         self.assertEqual(num_org_memberships, 1)
-        # TODO: need to change the user that I run the tests with in TFC,
-        # as my personal user is already in 2 orgs
-        # self.assertEqual(num_org_memberships, 2)
 
         # Invite a user
         invite_payload = self._get_org_membership_invite_payload()
         invite = self._api.org_memberships.invite(invite_payload)
-        invited_user_email = invite["data"]["attributes"]["email"]
-        self.assertEqual(invited_user_email, self._test_email)
+        invited_username = invite["included"][0]["attributes"]["username"]
+        self.assertEqual(invited_username, self._test_username)
 
         # Show a user's org membership using the org membership ID
         org_membership_id = invite["data"]["id"]
