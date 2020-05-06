@@ -36,6 +36,7 @@ Contents
 --------
 
 * [Account](account.md)
+* [Admin Orgs](admin_orgs.md)
 * [Applies](applies.md)
 * [Configuration Versions](config_versions.md)
 * [Cost Estimates](cost_estimates.md)

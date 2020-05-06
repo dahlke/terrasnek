@@ -16,7 +16,7 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
         self._created_org_name = org_create_payload["data"]["attributes"]["name"]
         self._created_org_id = self._created_org["data"]["id"]
 
-    def test_org_tokens_lifecycle(self):
+    def test_admin_orgs(self):
         """
         Test the Admin Orgs API endpoints: list, show, destroy.
         """
