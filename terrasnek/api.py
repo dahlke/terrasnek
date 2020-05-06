@@ -6,6 +6,9 @@ API access.
 import urllib3
 
 from._constants import TFC_SAAS_URL
+from .admin_users import TFCAdminUsers
+from .admin_orgs import TFCAdminOrgs
+from .admin_settings import TFCAdminSettings
 from .account import TFCAccount
 from .oauth_clients import TFCOAuthClients
 from .oauth_tokens import TFCOAuthTokens
@@ -33,8 +36,6 @@ from .teams import TFCTeams
 from .team_memberships import TFCTeamMemberships
 from .team_access import TFCTeamAccess
 from .team_tokens import TFCTeamTokens
-from .admin_users import TFCAdminUsers
-from .admin_orgs import TFCAdminOrgs
 
 # Suppress insecure TLS warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -75,6 +76,12 @@ class TFC():
             self._headers,
             self._verify)
 
+        self.admin_settings = TFCAdminSettings(
+            self._instance_url,
+            None,
+            self._headers,
+            self._verify)
+
         self.account = None
         self.org_memberships = None
         self.org_tokens = None
@@ -106,7 +113,7 @@ class TFC():
     def set_org(self, org_name):
         """
         Sets the organization to use for org specific endpoints.
-        This method must be called for their respective endpoints to work.
+        This method must be called for any non-admin endpoint to work.
         """
         self._current_org = org_name
 

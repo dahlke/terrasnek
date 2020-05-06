@@ -30,7 +30,6 @@ class TFCAccount(TFCEndpoint):
         """
         url = f"{self._base_url}/update"
         return self._patch(url, data)
-        pass
 
     def change_password(self, data):
         """

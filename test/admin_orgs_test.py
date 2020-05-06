@@ -7,7 +7,7 @@ from .base import TestTFCBaseTestCase
 
 class TestTFCAdminOrgs(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Cloud API Endpoint: Admin Orgs
+    Class for testing the Terraform Cloud API Endpoint: Admin Orgs.
     """
 
     def setUp(self):
