@@ -1,21 +1,20 @@
 """
-Module for testing the Terraform Cloud API Endpoint: Plans.
+Module for testing the Terraform Cloud API Endpoint: Admin Runs.
 """
-
-import time
 
 from .base import TestTFCBaseTestCase
 
+import time
 
-class TestTFCPlans(TestTFCBaseTestCase):
-    """
-    Class for testing the Terraform Cloud API Endpoint: Plans.
-    """
 
+class TestTFCAdminRuns(TestTFCBaseTestCase):
+    """
+    Class for testing the Terraform Cloud API Endpoint: Admin Runs.
+    """
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's ID
-        unittest_name = "plans"
+        unittest_name = "admin-runs"
         oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = oauth_client["data"]["id"]
@@ -42,23 +41,31 @@ class TestTFCPlans(TestTFCBaseTestCase):
 
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
-        self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_plan(self):
+    def test_admin_runs(self):
         """
-        Test the Plans API endpoint: show.
+        Test the Admin Workspaces API endpoints: list, show, destroy.
         """
+        all_runs = self._api.admin_runs.list()["data"]
 
-        # Create a run and wait for the created run to complete it's plan
-        created_run = self._api.runs.show(self._run_id)["data"]
-        created_plan_id = created_run["relationships"]["plan"]["data"]["id"]
+        found_run = False
+        for run in all_runs:
+            run_id = run["id"]
+            if run_id == self._run_id:
+                found_run = True
+                break
+        self.assertTrue(found_run)
 
-        while not created_run["attributes"]["actions"]["is-confirmable"]:
-            self._logger.debug("Waiting on plan to execute...")
-            created_run = self._api.runs.show(self._run_id)["data"]
-            self._logger.debug("Waiting for created run to finish planning...")
+        # Wait for it to plan
+        self._logger.debug("Sleeping while plan half-executes...")
+        time.sleep(1)
+        self._logger.debug("Done sleeping.")
+
+        # Force Cancel
+        self._api.admin_runs.force_cancel(self._run_id)
+        status_timestamps = self._api.runs.show(self._run_id)["data"]["attributes"]["status-timestamps"]
+        while "force-canceled-at" not in status_timestamps:
             time.sleep(1)
-        self._logger.debug("Plan successful.")
-
-        plan = self._api.plans.show(created_plan_id)["data"]
-        self.assertEqual(created_plan_id, plan["id"])
+            status_timestamps = \
+                self._api.runs.show(self._run_id)["data"]["attributes"]["status-timestamps"]
+        self.assertNotEqual(status_timestamps["force-canceled-at"], None)

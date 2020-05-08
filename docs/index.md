@@ -36,6 +36,7 @@ Contents
 --------
 
 * [Account](account.md)
+* [Admin Runs](admin_runs.md)
 * [Admin Orgs](admin_orgs.md)
 * [Admin Settings](admin_settings.md)
 * [Admin Workspaces](admin_workspaces.md)

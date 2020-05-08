@@ -27,8 +27,9 @@ class TFCAdminWorkspaces(TFCEndpoint):
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
-        return self._list(self._base_url, \
-            filters=filters, page=page, page_size=page_size, search=search)
+        return self._list(\
+            self._base_url, filters=filters, \
+            page=page, page_size=page_size, search=search, sort=sort)
 
     def show(self, ws_id):
         """

@@ -7,6 +7,7 @@ import urllib3
 
 from._constants import TFC_SAAS_URL
 from .admin_users import TFCAdminUsers
+from .admin_runs import TFCAdminRuns
 from .admin_orgs import TFCAdminOrgs
 from .admin_workspaces import TFCAdminWorkspaces
 from .admin_settings import TFCAdminSettings
@@ -66,6 +67,12 @@ class TFC():
         }
 
         self.orgs = TFCOrgs(
+            self._instance_url,
+            None,
+            self._headers,
+            self._verify)
+
+        self.admin_runs = TFCAdminRuns(
             self._instance_url,
             None,
             self._headers,
