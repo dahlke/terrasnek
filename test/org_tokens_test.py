@@ -19,7 +19,7 @@ class TestTFCOrgTokens(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.orgs.destroy(self._created_org_name)
 
-    def test_org_tokens_lifecycle(self):
+    def test_org_tokens(self):
         """
         Test the Org Tokens API endpoints: create, destroy.
         """

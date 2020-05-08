@@ -28,7 +28,7 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         self._api.workspaces.destroy(
             workspace_name=self._target_ws_name)
 
-    def test_run_triggers_lifecycle(self):
+    def test_run_triggers(self):
         """
         Test the Run Triggers API endpoints: create, list, update, destroy.
         """

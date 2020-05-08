@@ -28,7 +28,7 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_notifications_configuration_lifecycle(self):
+    def test_notifications_configuration(self):
         """
         Test the Notification Configurations API endpoints: create, list, show,
         update, verify, destroy.

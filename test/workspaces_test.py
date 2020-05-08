@@ -20,7 +20,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.ssh_keys.destroy(self._created_key_id)
 
-    def test_workspaces_lifecycle(self):
+    def test_workspaces(self):
         """
         Test the Workspaces API endpoints: create, destroy, show, lock,
         unlock, update, assign_ssh_key, unassign_ssh_key.

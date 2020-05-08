@@ -20,7 +20,7 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
         # Destroy the workspace and policy we created
         self._api.policy_sets.destroy(self._created_policy_set_id)
 
-    def test_policy_sets_lifecycle(self):
+    def test_policy_sets(self):
         """
         Test the Policy Set Params API endpoints: create, list, update,
         destroy.

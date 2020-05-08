@@ -22,7 +22,7 @@ class TestTFCVariables(TestTFCBaseTestCase):
         self._api.workspaces.destroy(
             workspace_name=self._ws["data"]["attributes"]["name"])
 
-    def test_variables_lifecycle(self):
+    def test_variables(self):
         """
         Test the Variables API endpoints: create, list, update, destroy.
         """

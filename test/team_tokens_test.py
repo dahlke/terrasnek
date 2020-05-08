@@ -18,7 +18,7 @@ class TestTFCTeamTokens(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.teams.destroy(self._team_id)
 
-    def test_team_token_lifecycle(self):
+    def test_team_token(self):
         """
         Test the Team Tokens API endpoints: create, destroy.
         """

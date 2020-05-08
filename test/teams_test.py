@@ -10,7 +10,7 @@ class TestTFCTeams(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Teams.
     """
 
-    def test_team_lifecycle(self):
+    def test_team(self):
         """
         Test the Teams API endpoints: list, create, show, destroy.
         """
