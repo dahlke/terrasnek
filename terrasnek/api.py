@@ -6,12 +6,14 @@ API access.
 import urllib3
 
 from._constants import TFC_SAAS_URL
-from .admin_users import TFCAdminUsers
-from .admin_runs import TFCAdminRuns
-from .admin_orgs import TFCAdminOrgs
-from .admin_workspaces import TFCAdminWorkspaces
-from .admin_settings import TFCAdminSettings
 from .account import TFCAccount
+from .admin_orgs import TFCAdminOrgs
+from .admin_runs import TFCAdminRuns
+from .admin_settings import TFCAdminSettings
+from .admin_terraform_versions import TFCAdminTerraformVersions
+from .admin_users import TFCAdminUsers
+from .admin_workspaces import TFCAdminWorkspaces
+from .applies import TFCApplies
 from .oauth_clients import TFCOAuthClients
 from .oauth_tokens import TFCOAuthTokens
 from .orgs import TFCOrgs
@@ -31,13 +33,12 @@ from .policy_sets import TFCPolicySets
 from .policy_set_params import TFCPolicySetParams
 from .notification_configs import TFCNotificationConfigurations
 from .run_triggers import TFCRunTriggers
-from .applies import TFCApplies
+from .teams import TFCTeams
+from .team_access import TFCTeamAccess
+from .team_memberships import TFCTeamMemberships
+from .team_tokens import TFCTeamTokens
 from .users import TFCUsers
 from .user_tokens import TFCUserTokens
-from .teams import TFCTeams
-from .team_memberships import TFCTeamMemberships
-from .team_access import TFCTeamAccess
-from .team_tokens import TFCTeamTokens
 
 # Suppress insecure TLS warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -89,6 +90,13 @@ class TFC():
             None,
             self._headers,
             self._verify)
+
+        self.admin_terraform_versions = TFCAdminTerraformVersions(
+            self._instance_url,
+            None,
+            self._headers,
+            self._verify)
+
 
         self.admin_workspaces = TFCAdminWorkspaces(
             self._instance_url,
