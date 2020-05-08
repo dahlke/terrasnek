@@ -38,6 +38,7 @@ Contents
 * [Account](account.md)
 * [Admin Orgs](admin_orgs.md)
 * [Admin Settings](admin_settings.md)
+* [Admin Workspaces](admin_workspaces.md)
 * [Applies](applies.md)
 * [Configuration Versions](config_versions.md)
 * [Cost Estimates](cost_estimates.md)

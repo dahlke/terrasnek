@@ -95,7 +95,7 @@ if __name__ == "__main__":
 - [x] [Admin Settings](https://www.terraform.io/docs/cloud/api/admin/settings.html)
 - [ ] [Admin Terraform Versions](https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html)
 - [x] [Admin Users](https://www.terraform.io/docs/cloud/api/admin/users.html)
-- [ ] [Admin Workspaces](https://www.terraform.io/docs/cloud/api/admin/workspaces.html)
+- [x] [Admin Workspaces](https://www.terraform.io/docs/cloud/api/admin/workspaces.html)
 
 
 ### Contributing to `terrasnek`

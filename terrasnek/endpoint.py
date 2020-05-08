@@ -117,7 +117,7 @@ class TFCEndpoint():
             self._logger.error(err)
 
     def _list(self, url, query=None, filters=None, \
-        page=None, page_size=None, search=None, include=None):
+        page=None, page_size=None, search=None, include=None, sort=None):
         """
         Implementation of the common list resources pattern for the TFC API.
         """
@@ -145,6 +145,9 @@ class TFCEndpoint():
 
         if include is not None:
             q_options.append(f"include={include}")
+
+        if sort is not None:
+            q_options.append(f"sort={sort}")
 
         if search is not None:
             q_options.append(f"search[name]={search}")

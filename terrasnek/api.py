@@ -8,6 +8,7 @@ import urllib3
 from._constants import TFC_SAAS_URL
 from .admin_users import TFCAdminUsers
 from .admin_orgs import TFCAdminOrgs
+from .admin_workspaces import TFCAdminWorkspaces
 from .admin_settings import TFCAdminSettings
 from .account import TFCAccount
 from .oauth_clients import TFCOAuthClients
@@ -77,6 +78,12 @@ class TFC():
             self._verify)
 
         self.admin_settings = TFCAdminSettings(
+            self._instance_url,
+            None,
+            self._headers,
+            self._verify)
+
+        self.admin_workspaces = TFCAdminWorkspaces(
             self._instance_url,
             None,
             self._headers,
