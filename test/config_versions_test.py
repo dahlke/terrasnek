@@ -10,11 +10,10 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Config Versions.
     """
 
-    _unittest_name = "config-versions"
+    _unittest_name = "cnf-ver"
 
     def setUp(self):
-        self._ws = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("config-versions"))
+        self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())
         self._ws_id = self._ws["data"]["id"]
 
     def tearDown(self):

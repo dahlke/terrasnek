@@ -10,7 +10,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Policies.
     """
 
-    _unittest_name = "policies"
+    _unittest_name = "pol"
 
     def test_policies(self):
         """

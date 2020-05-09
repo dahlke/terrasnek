@@ -10,7 +10,7 @@ class TestTFCUserTokens(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: User Tokens.
     """
 
-    _unittest_name = "user-tokens"
+    _unittest_name = "user-tok"
 
     def test_user_token(self):
         """

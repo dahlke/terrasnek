@@ -10,7 +10,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Team Access.
     """
 
-    _unittest_name = "team-access"
+    _unittest_name = "team-acc"
 
     def setUp(self):
         # Create a test team
@@ -25,16 +25,14 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
 
 
         # Create a test workspace
-        workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("team-access"))["data"]
+        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())["data"]
         self._ws_id = workspace["id"]
         self._ws_name = workspace["attributes"]["name"]
-
-        self._api.org_memberships.remove(self._org_membership_id)
 
     def tearDown(self):
         self._api.workspaces.destroy(workspace_name=self._ws_name)
         self._api.teams.destroy(self._team_id)
+        self._api.org_memberships.remove(self._org_membership_id)
 
     def test_team_access(self):
         """

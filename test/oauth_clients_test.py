@@ -10,7 +10,7 @@ class TestTFCOAuthClients(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: OAuth Clients.
     """
 
-    _unittest_name = "oauth-clients"
+    _unittest_name = "oa-clients"
 
     def test_oauth_clients(self):
         """

@@ -15,8 +15,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
 
     def setUp(self):
         # Set up a workspace to attach a policy set to
-        self._ws = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("pol-set"))
+        self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())
         self._ws_id = self._ws["data"]["id"]
         self._ws_name = self._ws["data"]["attributes"]["name"]
 

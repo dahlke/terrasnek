@@ -12,7 +12,7 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Admin Runs.
     """
 
-    _unittest_name = "admin-runs"
+    _unittest_name = "adm-run"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's ID
@@ -36,6 +36,8 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
         for payload in variable_payloads:
             self._api.variables.create(payload)
 
+        # Sleep for 1 second to give the WS time to create
+        time.sleep(1)
         create_run_payload = self._get_run_create_payload(self._ws_id)
         self._run = self._api.runs.create(create_run_payload)["data"]
         self._run_id = self._run["id"]

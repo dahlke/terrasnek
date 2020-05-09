@@ -10,7 +10,7 @@ class TestTFCVariables(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Variables.
     """
 
-    _unittest_name = "variables"
+    _unittest_name = "vars"
 
     def setUp(self):
         self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())

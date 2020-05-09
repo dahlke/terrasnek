@@ -10,7 +10,7 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: State Versions.
     """
 
-    _unittest_name = "state-versions"
+    _unittest_name = "state-ver"
 
     def setUp(self):
         oauth_client_payload = self._get_oauth_client_create_payload()
@@ -21,9 +21,7 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         self._oauth_token_id = \
             self._oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
 
-        _ws_create_with_vcs_payload = self._get_ws_with_vcs_create_payload(
-            "state-versions",
-            self._oauth_token_id)
+        _ws_create_with_vcs_payload = self._get_ws_with_vcs_create_payload(self._oauth_token_id)
 
         self._ws = self._api.workspaces.create(_ws_create_with_vcs_payload)
         self._ws_id = self._ws["data"]["id"]

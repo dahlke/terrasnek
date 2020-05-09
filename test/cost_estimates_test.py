@@ -13,7 +13,7 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Cost Estimates.
     """
 
-    _unittest_name = "cost-est"
+    _unittest_name = "cst-est"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's ID

@@ -10,7 +10,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Workspaces.
     """
 
-    _unittest_name = "workspaces"
+    _unittest_name = "ws"
 
     def setUp(self):
         # Add an SSH Key to TFC
@@ -31,7 +31,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         # Get the number of existing workspaces, then create one and compare them
         num_workspaces_before_create = len(self._api.workspaces.list()["data"])
         workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload("ws"))
+            self._get_ws_without_vcs_create_payload())
         ws_id = workspace["data"]["id"]
         num_workspaces_after_create = len(self._api.workspaces.list()["data"])
         self.assertNotEqual(num_workspaces_before_create,

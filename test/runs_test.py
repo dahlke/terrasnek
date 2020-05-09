@@ -45,6 +45,9 @@ class TestTFCRuns(TestTFCBaseTestCase):
         Test the Runs API endpoints: create, show, apply.
         """
 
+        # Give the worksapce a little time to create
+        time.sleep(1)
+
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)
         run = self._api.runs.create(create_run_payload)["data"]
@@ -83,6 +86,9 @@ class TestTFCRuns(TestTFCBaseTestCase):
         """
         Test the Runs API endpoint: discard.
         """
+
+        # Give the worksapce a little time to create
+        time.sleep(1)
 
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)

@@ -10,7 +10,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Account.
     """
 
-    _unittest_name = "account"
+    _unittest_name = "acc"
 
     def test_account_methods(self):
         """
@@ -23,7 +23,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
         original_email = shown_account["attributes"]["email"]
         original_username = shown_account["attributes"]["username"]
 
-        email_name = self._name_with_random("terrasnek")
+        email_name = self._name_with_random()
         email_to_update_to = f"{email_name}@gmail.com"
         update_payload = {
             "data": {
@@ -53,7 +53,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
         self.assertEqual(updated_email, original_email)
 
         # Update the password and confirm the request didn't fail
-        password_to_update_to = self._name_with_random("terrasnek")
+        password_to_update_to = self._name_with_random()
         change_password_payload = {
             "data": {
                 "type": "users",

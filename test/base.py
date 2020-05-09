@@ -48,8 +48,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         cls._api.set_org(cls._test_org_name)
 
-    @staticmethod
-    def _name_with_random(ran_str_len=8):
+    def _name_with_random(self, ran_str_len=8):
         random_hex = binascii.b2a_hex(os.urandom(ran_str_len)).decode("ascii")
         return f"terrasnek-test-{self._unittest_name}-{random_hex}"
 
