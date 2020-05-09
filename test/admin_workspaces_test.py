@@ -10,6 +10,8 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Admin Workspaces.
     """
 
+    _unittest_name = "admin-workspaces"
+
     def setUp(self):
         self._ws = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload("admin-ws"))["data"]

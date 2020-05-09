@@ -12,16 +12,16 @@ class TestTFCPlans(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Plans.
     """
 
+    _unittest_name = "plans"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's ID
-        unittest_name = "plans"
-        oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
+        oauth_client_payload = self._get_oauth_client_create_payload()
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = oauth_client["data"]["id"]
 
         oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
-        _ws_payload = self._get_ws_with_vcs_create_payload(unittest_name, oauth_token_id)
+        _ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
 

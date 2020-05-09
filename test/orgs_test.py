@@ -10,6 +10,8 @@ class TestTFCOrgs(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Orgs.
     """
 
+    _unittest_name = "orgs"
+
     def test_orgs(self):
         """
         Test the Orgs API endpoints: create, list, entitlements, show, update, destroy.

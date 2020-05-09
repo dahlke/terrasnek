@@ -10,6 +10,8 @@ class TestTFCOrgTokens(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Org Tokens.
     """
 
+    _unittest_name = "org-tokens"
+
     def setUp(self):
         org_create_payload = self._get_org_create_payload()
         self._created_org = self._api.orgs.create(org_create_payload)

@@ -10,6 +10,8 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Team Memberships.
     """
 
+    _unittest_name = "team-memberships"
+
     def setUp(self):
         # Invite a user to the owners team, then we'll invite them to the newly created team
         teams = self._api.teams.list()

@@ -10,6 +10,8 @@ class TestTFCUsers(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Users.
     """
 
+    _unittest_name = "users"
+
     def test_destroy_users(self):
         """
         Test the OAuth Tokens API endpoints: destroy.

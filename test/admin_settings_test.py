@@ -12,6 +12,8 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Admin Settings.
     """
 
+    _unittest_name = "admin-settings"
+
     def test_admin_settings_general(self):
         """
         Test the Admin Settings API endpoints: list_general, update_general.
@@ -83,7 +85,13 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
         updated_saml = self._api.admin_settings.update_saml(update_payload)["data"]
         self.assertTrue(updated_saml["attributes"]["enabled"])
 
+
         # TODO: revoke_previous_saml_idp_cert
+
+        # Disable SAML after running the test
+        update_payload["data"]["attributes"]["enabled"] = False
+        updated_saml = self._api.admin_settings.update_saml(update_payload)["data"]
+        self.assertFalse(updated_saml["attributes"]["enabled"])
 
     def test_admin_settings_smtp(self):
         """

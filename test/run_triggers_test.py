@@ -11,6 +11,8 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Run Triggers.
     """
 
+    _unittest_name = "run-triggers"
+
     def setUp(self):
         self._source_ws = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload("run-trig"))

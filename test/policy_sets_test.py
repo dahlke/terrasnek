@@ -11,6 +11,8 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Policy Sets.
     """
 
+    _unittest_name = "pol-sets"
+
     def setUp(self):
         # Set up a workspace to attach a policy set to
         self._ws = self._api.workspaces.create(

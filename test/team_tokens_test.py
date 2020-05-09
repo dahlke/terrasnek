@@ -10,6 +10,8 @@ class TestTFCTeamTokens(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Team Tokens.
     """
 
+    _unittest_name = "team-tokens"
+
     def setUp(self):
         self._team = self._api.teams.create(
             self._get_team_create_payload())["data"]

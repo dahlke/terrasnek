@@ -10,6 +10,8 @@ class TestTFCAccount(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Account.
     """
 
+    _unittest_name = "account"
+
     def test_account_methods(self):
         """
         Test the Account API endpoints: show, update, change password.

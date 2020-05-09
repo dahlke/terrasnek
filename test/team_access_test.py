@@ -10,6 +10,8 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Team Access.
     """
 
+    _unittest_name = "team-access"
+
     def setUp(self):
         # Create a test team
         self._team = self._api.teams.create(

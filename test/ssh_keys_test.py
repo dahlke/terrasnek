@@ -10,6 +10,8 @@ class TestTFCSSHKeys(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: SSH Keys.
     """
 
+    _unittest_name = "ssh-keys"
+
     def test_ssh_keys(self):
         """
         Test the SSH Keys API endpoints: create, list, show,

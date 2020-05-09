@@ -10,6 +10,8 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Policy Set Params.
     """
 
+    _unittest_name = "pol-set-params"
+
     def setUp(self):
         create_payload = self._get_policy_set_create_payload()
         create_resp = self._api.policy_sets.create(create_payload)

@@ -10,6 +10,7 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Org Memberships.
     """
 
+    _unittest_name = "org-mem"
 
     def test_org_memberships(self):
         """

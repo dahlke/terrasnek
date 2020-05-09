@@ -10,6 +10,8 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Admin Terraform Versions.
     """
 
+    _unittest_name = "tf-ver"
+
     def test_admin_terraform_versions(self):
         """
         Test the Admin Terraform Versions API endpoints: created, show, updated,

@@ -10,6 +10,8 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Workspaces.
     """
 
+    _unittest_name = "workspaces"
+
     def setUp(self):
         # Add an SSH Key to TFC
         create_payload = self._get_ssh_key_create_payload()

@@ -11,16 +11,16 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
     Configurations.
     """
 
-    def setUp(self):
-        unittest_name = "not-cng"
+    _unittest_name = "not-cng"
 
+    def setUp(self):
         # Create an OAuth client for the test and extract it's ID
-        oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
+        oauth_client_payload = self._get_oauth_client_create_payload()
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = oauth_client["data"]["id"]
 
         oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
-        ws_payload = self._get_ws_with_vcs_create_payload(unittest_name, oauth_token_id)
+        ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
         workspace = self._api.workspaces.create(ws_payload)["data"]
         self._ws_id = workspace["id"]
 

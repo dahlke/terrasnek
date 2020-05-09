@@ -10,6 +10,8 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: Admin Orgs.
     """
 
+    _unittest_name = "admin-orgs"
+
     def setUp(self):
         org_create_payload = self._get_org_create_payload()
         self._created_org = self._api.orgs.create(org_create_payload)

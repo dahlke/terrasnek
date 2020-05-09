@@ -10,18 +10,19 @@ class TestTFCOAuthClients(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: OAuth Clients.
     """
 
+    _unittest_name = "oauth-clients"
+
     def test_oauth_clients(self):
         """
         Test the OAuth Clients API endpoints: list, create, show, destroy.
         """
 
         # Create a test OAuth client
-        unittest_name = "oauth-clients"
 
         oauth_clients = self._api.oauth_clients.list()["data"]
         num_clients_before_add = len(oauth_clients)
 
-        oauth_client_payload = self._get_oauth_client_create_payload(unittest_name)
+        oauth_client_payload = self._get_oauth_client_create_payload()
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
 
         # List the OAuth clients and confirm there is one.

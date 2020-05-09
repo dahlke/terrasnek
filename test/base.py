@@ -49,12 +49,11 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._api.set_org(cls._test_org_name)
 
     @staticmethod
-    def _name_with_random(name, ran_str_len=8):
+    def _name_with_random(ran_str_len=8):
         random_hex = binascii.b2a_hex(os.urandom(ran_str_len)).decode("ascii")
-        return f"terrasnek-test-{name}-{random_hex}"
+        return f"terrasnek-test-{self._unittest_name}-{random_hex}"
 
-    @ staticmethod
-    def _get_config_version_create_payload():
+    def _get_config_version_create_payload(self):
         return {
             "data": {
                 "type": "configuration-versions",
@@ -64,9 +63,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-
-    @staticmethod
-    def _get_user_token_create_payload():
+    def _get_user_token_create_payload(self):
         return {
             "data": {
                 "type": "authentication-tokens",
@@ -76,8 +73,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    @staticmethod
-    def _get_run_create_payload(workspace_id):
+    def _get_run_create_payload(self, workspace_id):
         return {
             "data": {
                 "attributes": {
@@ -96,9 +92,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    @staticmethod
     def _get_variable_create_payload(\
-        key, value, workspace_id, category="terraform", sensitive=False):
+        self, key, value, workspace_id, category="terraform", sensitive=False):
         return {
             "data": {
                 "type": "vars",
@@ -145,14 +140,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_ws_with_vcs_create_payload(self, name, oauth_token_id, working_dir=DEFAULT_VCS_WORKING_DIR):
-        name = self._name_with_random(name)
-
+    def _get_ws_with_vcs_create_payload(self, oauth_token_id, working_dir=DEFAULT_VCS_WORKING_DIR):
         # NB: Needs to be TF > v0.12 for Cost Estimation to work
         return {
             "data": {
                 "attributes": {
-                    "name": name,
+                    "name": self._name_with_random(),
                     "terraform_version": "0.12.24",
                     "working-directory": working_dir,
                     "vcs-repo": {
@@ -165,34 +158,28 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_ws_without_vcs_create_payload(self, name):
-        name = self._name_with_random(name)
-
+    def _get_ws_without_vcs_create_payload(self):
         return {
             "data": {
                 "type": "workspaces",
                 "attributes": {
-                    "name": name
+                    "name": self._name_with_random()
                 }
             }
         }
 
     def _get_ssh_key_create_payload(self):
-        name = self._name_with_random("ssh-key")
-
         return {
             "data": {
                 "type": "ssh-keys",
                 "attributes": {
-                    "name": name,
+                    "name": self._name_with_random(),
                     "value": "-----BEGIN RSA PRIVATE KEY-----\nfoo..."
                 }
             }
         }
 
     def _get_policy_create_payload(self):
-        name = self._name_with_random("policy")
-
         # https://www.terraform.io/docs/cloud/api/policies.html#sample-payload
         return {
             "data": {
@@ -203,7 +190,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                             "mode": "hard-mandatory"
                         }
                     ],
-                    "name": name,
+                    "name": self._name_with_random(),
                     "description": "terrasnek example policy"
                 },
                 "relationships": {
@@ -216,14 +203,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
         }
 
     def _get_policy_set_create_payload(self):
-        name = self._name_with_random("pol-set")
-
         # https://www.terraform.io/docs/cloud/api/policies.html#sample-payload
         return {
             "data": {
                 "type": "policy-sets",
                 "attributes": {
-                    "name": name,
+                    "name": self._name_with_random(),
                     "description": "terrasnek unittest",
                     "global": False
                 },
@@ -239,12 +224,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
         }
 
     def _get_org_create_payload(self):
-        name = self._name_with_random("org")
+        # https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload
         return {
             "data": {
                 "type": "organizations",
                 "attributes": {
-                    "name": name,
+                    "name": self._name_with_random(),
                     "email": self._test_email
                 }
             }
@@ -266,12 +251,11 @@ class TestTFCBaseTestCase(unittest.TestCase):
         }
 
     def _get_team_create_payload(self):
-        name = self._name_with_random("team")
         return {
             "data": {
                 "type": "organizations",
                 "attributes": {
-                    "name": name,
+                    "name": self._name_with_random(),
                     "organization-access": {
                         "manage-workspaces": True,
                         "manage-policies": True,
@@ -281,14 +265,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_oauth_client_create_payload(self, name):
-        name = self._name_with_random(name)
-
+    def _get_oauth_client_create_payload(self):
         return {
             "data": {
                 "type": "oauth-clients",
                 "attributes": {
-                    "name": name,
+                    "name": self._name_with_random(),
                     "service-provider": "github",
                     "http-url": "https://github.com",
                     "api-url": "https://api.github.com",

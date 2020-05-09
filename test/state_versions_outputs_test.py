@@ -10,10 +10,10 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
     Class for testing the Terraform Cloud API Endpoint: State Version Outputs.
     """
 
+    _unittest_name = "state-version-outputs"
+
     def setUp(self):
-        unittest_name = "state-version-outputs"
-        oauth_client_payload = self._get_oauth_client_create_payload(
-            unittest_name)
+        oauth_client_payload = self._get_oauth_client_create_payload()
         self._oauth_client = self._api.oauth_clients.create(
             oauth_client_payload)
         self._oauth_client_id = self._oauth_client["data"]["id"]
