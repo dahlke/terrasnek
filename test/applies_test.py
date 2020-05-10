@@ -15,16 +15,18 @@ class TestTFCApplies(TestTFCBaseTestCase):
     _unittest_name = "applies"
 
     def setUp(self):
-        # Create an OAuth client for the test and extract it's ID
+        # Create an OAuth client for the test and extract it's the token ID
         oauth_client_payload = self._get_oauth_client_create_payload()
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = oauth_client["data"]["id"]
-
         oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
+
+        # Create a workspace using that token ID, save the workspace ID
         ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
         workspace = self._api.workspaces.create(ws_payload)["data"]
         self._ws_id = workspace["id"]
 
+        # Configure the required variables on the workspace
         variable_payloads = [
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),
@@ -36,6 +38,10 @@ class TestTFCApplies(TestTFCBaseTestCase):
         for payload in variable_payloads:
             self._api.variables.create(payload)
 
+        # Sleep for 1 second to give the WS time to create
+        time.sleep(1)
+
+        # Start the run, store the run ID
         create_run_payload = self._get_run_create_payload(self._ws_id)
         self._run = self._api.runs.create(create_run_payload)["data"]
         self._run_id = self._run["id"]
@@ -47,7 +53,7 @@ class TestTFCApplies(TestTFCBaseTestCase):
 
     def test_apply(self):
         """
-        Test the Applies API endpoint: show.
+        Test the Applies API endpoint: ``show``.
         """
 
         # Create a run and wait for the created run to complete it's plan
@@ -71,6 +77,7 @@ class TestTFCApplies(TestTFCBaseTestCase):
         self.assertNotEqual(
             applied_run["attributes"]["status-timestamps"]["applying-at"], None)
 
+        # Show the apply, confirm it returns the same value as the run attributes
         apply_id = applied_run["relationships"]["apply"]["data"]["id"]
         shown_apply = self._api.applies.show(apply_id)["data"]
         shown_apply_id = shown_apply["id"]

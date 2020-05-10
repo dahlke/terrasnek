@@ -14,8 +14,8 @@ class TestTFCSSHKeys(TestTFCBaseTestCase):
 
     def test_ssh_keys(self):
         """
-        Test the SSH Keys API endpoints: create, list, show,
-        update, destroy.
+        Test the SSH Keys API endpoints: ``create``, ``list``, ``show``,
+        ``update``, ``destroy``.
         """
 
         ssh_keys_resp = self._api.ssh_keys.list()

@@ -58,7 +58,8 @@ all of the tests that touch code you are contributing.
 If you are running against a Terraform Enterprise instance, be sure to
 have enabled Cost Estimates as well a create a user that can be used
 for team and organization memberships tests, a this cannot be done
-from the API currently.
+from the API currently. That user's username and email must match those
+provided in your `secrets.sh` file.
 
 ###### Running Specific Tests
 

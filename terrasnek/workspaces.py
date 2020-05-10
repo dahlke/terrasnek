@@ -18,18 +18,19 @@ class TFCWorkspaces(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /organizations/:org_name/workspaces
+        ``POST /organizations/:org_name/workspaces``
         """
         return self._create(self._org_base_url, payload)
 
     def destroy(self, workspace_id=None, workspace_name=None):
         """
-        GET /organizations/:org_name/workspaces/:name
-        DELETE /workspaces/:workspace_id
+        ``GET /organizations/:org_name/workspaces/:name``
+        ``DELETE /workspaces/:workspace_id``
 
         A workspace can be deleted via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
         """
+        # TODO: implement both endpoints, test both
         if workspace_name is not None:
             url = f"{self._org_base_url}/{workspace_name}"
         elif workspace_id is not None:
@@ -41,7 +42,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def force_unlock(self, workspace_id):
         """
-        POST /workspaces/:workspace_id/actions/force-unlock
+        ``POST /workspaces/:workspace_id/actions/force-unlock``
 
         This endpoint force unlocks a workspace. Only users with admin access are authorized to
         force unlock a workspace.
@@ -51,7 +52,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def lock(self, workspace_id, payload):
         """
-        POST /workspaces/:workspace_id/actions/lock
+        ``POST /workspaces/:workspace_id/actions/lock``
 
         This endpoint locks a workspace.
         """
@@ -60,7 +61,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def list(self, page=None, page_size=None):
         """
-        GET /organizations/:org_name/workspaces
+        ``GET /organizations/:org_name/workspaces``
 
         This endpoint lists workspaces in the organization.
         """
@@ -68,12 +69,13 @@ class TFCWorkspaces(TFCEndpoint):
 
     def show(self, workspace_name=None, workspace_id=None):
         """
-        GET /organizations/:org_name/workspaces/:name
-        GET /workspaces/:workspace_id
+        ``GET /organizations/:org_name/workspaces/:name``
+        ``GET /workspaces/:workspace_id``
 
         Details on a workspace can be retrieved from two endpoints, which behave identically.
         One refers to a workspace by its ID, and the other by its name and organization.
         """
+        # TODO: implement both endpoints, test both
         if workspace_name is not None:
             url = f"{self._org_base_url}/{workspace_name}"
         elif workspace_id is not None:
@@ -85,7 +87,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def unlock(self, workspace_id):
         """
-        POST /workspaces/:workspace_id/actions/unlock
+        ``POST /workspaces/:workspace_id/actions/unlock``
 
         This endpoint unlocks a workspace.
         """
@@ -94,7 +96,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def update(self, workspace_id, payload):
         """
-        PATCH /workspaces/:workspace_id
+        ``PATCH /workspaces/:workspace_id``
 
         A workspace can be updated via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
@@ -105,7 +107,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def assign_ssh_key(self, workspace_id, data):
         """
-        PATCH /workspaces/:workspace_id/relationships/ssh-key
+        ``PATCH /workspaces/:workspace_id/relationships/ssh-key``
 
         This endpoint assigns an SSH key to a workspace.
         """
@@ -114,7 +116,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def unassign_ssh_key(self, workspace_id, data):
         """
-        PATCH /workspaces/:workspace_id/relationships/ssh-key
+        ``PATCH /workspaces/:workspace_id/relationships/ssh-key``
 
         This endpoint unassigns the currently assigned SSH key from a
         workspace.

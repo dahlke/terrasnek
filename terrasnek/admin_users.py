@@ -18,7 +18,7 @@ class TFCAdminUsers(TFCEndpoint):
 
     def destroy(self, user_id):
         """
-        DELETE /admin/users/:id
+        ``DELETE /admin/users/:id``
 
         This endpoint deletes a user's account from Terraform Cloud. To prevent unowned
         organizations, a user cannot be deleted if they are the sole owner of any organizations.
@@ -29,7 +29,7 @@ class TFCAdminUsers(TFCEndpoint):
 
     def disable_two_factor(self, user_id):
         """
-        POST /admin/users/:id/actions/disable_two_factor
+        ``POST /admin/users/:id/actions/disable_two_factor``
 
         This endpoint disables a user's two-factor authentication in the situation where they
         have lost access to their device and recovery codes. Before disabling a user's two-factor
@@ -41,7 +41,7 @@ class TFCAdminUsers(TFCEndpoint):
 
     def grant_admin(self, user_id):
         """
-        POST /admin/users/:id/actions/grant_admin
+        ``POST /admin/users/:id/actions/grant_admin``
 
         """
         url = f"{self._base_url}/{user_id}/actions/grant_admin"
@@ -49,19 +49,19 @@ class TFCAdminUsers(TFCEndpoint):
 
     def impersonate(self, user_id):
         """
-        POST /admin/users/:id/actions/impersonate
+        ``POST /admin/users/:id/actions/impersonate``
 
         Impersonation allows an admin to begin a new session as another user in the system; for
         more information, see Impersonating a User in the Private Terraform Cloud
         administration section. This endpoint does not respond with a body, but the response
-        does include a Set-Cookie header to persist a new session.
+        does include a ``Set-Cookie`` header to persist a new session.
         """
         url = f"{self._base_url}/{user_id}/actions/impersonate"
         return self._post(url)
 
     def list(self, query=None, filters=None, page=None, page_size=None):
         """
-        GET /admin/users
+        ``GET /admin/users``
 
         This endpoint lists all user accounts in the Terraform Cloud installation.
         """
@@ -70,14 +70,14 @@ class TFCAdminUsers(TFCEndpoint):
 
     def revoke_admin(self, user_id):
         """
-        POST /admin/users/:id/actions/revoke_admin
+        ``POST /admin/users/:id/actions/revoke_admin``
         """
         url = f"{self._base_url}/{user_id}/actions/revoke_admin"
         return self._post(url)
 
     def suspend(self, user_id):
         """
-        POST /admin/users/:id/actions/suspend
+        ``POST /admin/users/:id/actions/suspend``
 
         This endpoint suspends a user's account, preventing them from authenticating
         and accessing resources.
@@ -87,7 +87,7 @@ class TFCAdminUsers(TFCEndpoint):
 
     def unimpersonate(self, user_id):
         """
-        POST /admin/users/:id/actions/unimpersonate
+        ``POST /admin/users/:id/actions/unimpersonate``
 
         When an admin has used the above endpoint to begin an impersonation session, they
         can make a request to this endpoint, using the cookie provided originally, in order
@@ -102,7 +102,7 @@ class TFCAdminUsers(TFCEndpoint):
 
     def unsuspend(self, user_id):
         """
-        POST /admin/users/:id/actions/unsuspend
+        ``POST /admin/users/:id/actions/unsuspend``
 
         This endpoint re-activates a suspended user's account, allowing them to
         resume authenticating and accessing resources.

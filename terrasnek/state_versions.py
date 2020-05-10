@@ -16,7 +16,7 @@ class TFCStateVersions(TFCEndpoint):
 
     def create(self, workspace_id, payload):
         """
-        POST /workspaces/:workspace_id/state-versions
+        ``POST /workspaces/:workspace_id/state-versions``
 
         Creates a state version and sets it as the current state version for the given workspace.
         The workspace must be locked by the user creating a state version. The workspace may be
@@ -28,7 +28,7 @@ class TFCStateVersions(TFCEndpoint):
 
     def get_current(self, workspace_id):
         """
-        GET /workspaces/:workspace_id/current-state-version
+        ``GET /workspaces/:workspace_id/current-state-version``
 
         Fetches the current state version for the given workspace. This state version will be
         the input state when running terraform operations.
@@ -38,7 +38,7 @@ class TFCStateVersions(TFCEndpoint):
 
     def list(self, filters=None, page=None, page_size=None):
         """
-        GET /state-versions
+        ``GET /state-versions``
 
         This endpoint supports pagination with standard URL query parameters; remember to
         percent-encode.
@@ -48,7 +48,7 @@ class TFCStateVersions(TFCEndpoint):
 
     def show(self, state_version_id):
         """
-        GET /state-versions/:state_version_id
+        ``GET /state-versions/:state_version_id``
         """
         url = f"{self._state_version_base_url}/{state_version_id}"
         return self._show(url)

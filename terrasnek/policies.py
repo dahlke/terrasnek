@@ -20,7 +20,7 @@ class TFCPolicies(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /organizations/:org_name/policies
+        ``POST /organizations/:org_name/policies``
 
         This creates a new policy object for the organization, but does not upload
         the actual policy code
@@ -29,7 +29,7 @@ class TFCPolicies(TFCEndpoint):
 
     def list(self, page=None, page_size=None, search=None):
         """
-        GET /organizations/:org_name/policies
+        ``GET /organizations/:org_name/policies``
 
         PARAMS:
             https://www.terraform.io/docs/cloud/api/policies.html#query-parameters
@@ -39,14 +39,14 @@ class TFCPolicies(TFCEndpoint):
 
     def show(self, policy_id):
         """
-        GET /policies/:policy_id
+        ``GET /policies/:policy_id``
         """
         url = f"{self._base_url}/{policy_id}"
         return self._show(url)
 
     def update(self, policy_id, payload):
         """
-        PATCH /policies/:policy_id
+        ``PATCH /policies/:policy_id``
 
         This endpoint can update the enforcement mode of an existing policy. To
         update the policy code itself, use the upload endpoint.
@@ -56,7 +56,7 @@ class TFCPolicies(TFCEndpoint):
 
     def upload(self, policy_id, payload):
         """
-        PUT /policies/:policy_id/upload
+        ``PUT /policies/:policy_id/upload``
 
         This endpoint uploads code to an existing Sentinel policy.
         """
@@ -65,7 +65,7 @@ class TFCPolicies(TFCEndpoint):
 
     def destroy(self, policy_id):
         """
-        DELETE /policies/:policy_id
+        ``DELETE /policies/:policy_id``
         """
         url = f"{self._base_url}/{policy_id}"
         return self._destroy(url)

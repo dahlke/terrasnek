@@ -16,7 +16,7 @@ class TFCUserTokens(TFCEndpoint):
 
     def create(self, user_id, payload):
         """
-        POST /users/:user_id/authentication-tokens
+        ``POST /users/:user_id/authentication-tokens``
 
         This endpoint returns the secret text of the created authentication token. A token
         is only shown upon creation, and cannot be recovered later.
@@ -26,14 +26,14 @@ class TFCUserTokens(TFCEndpoint):
 
     def destroy(self, token_id):
         """
-        DELETE /authentication-tokens/:token_id
+        ``DELETE /authentication-tokens/:token_id``
         """
         url = f"{self._tokens_base_url}/{token_id}"
         self._destroy(url)
 
     def list(self, user_id):
         """
-        GET /users/:user_id/authentication-tokens
+        ``GET /users/:user_id/authentication-tokens``
 
         Use the Account API to find your own user ID.
 
@@ -46,7 +46,7 @@ class TFCUserTokens(TFCEndpoint):
 
     def show(self, token_id):
         """
-        GET /authentication-tokens/:token_id
+        ``GET /authentication-tokens/:token_id``
 
         The objects returned by this endpoint only contain metadata, and do not include the
         secret text of any authentication tokens. A token is only shown upon creation, and

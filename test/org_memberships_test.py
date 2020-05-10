@@ -14,8 +14,8 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
 
     def test_org_memberships(self):
         """
-        Test the Org Memberships API endpoints: invite, list_for_org,
-        list_for_user, show, remove.
+        Test the Org Memberships API endpoints: ``invite``, ``list_for_org``,
+        ``list_for_user``, ``show``, ``remove``.
         """
 
         # TODO: User needs to be created ahead of time, and it can't be done with
@@ -52,8 +52,8 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         num_users_in_org = len(users_for_org["data"])
         self.assertEqual(num_users_in_org, 1)
 
-
-        # Remove the user
+        # Remove the user, confirm they are gone
+        # TODO: look for usernames, not numbers
         self._api.org_memberships.remove(org_membership_id)
         users_for_org = self._api.org_memberships.list_for_org()
         num_users_in_org = len(users_for_org["data"])

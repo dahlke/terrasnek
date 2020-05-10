@@ -18,7 +18,7 @@ class TFCOrgTokens(TFCEndpoint):
 
     def create(self):
         """
-        POST /organizations/:org_name/authentication-token
+        ``POST /organizations/:org_name/authentication-token``
 
         This endpoint creates an org token for the active org.
         """
@@ -26,7 +26,7 @@ class TFCOrgTokens(TFCEndpoint):
 
     def destroy(self):
         """
-        DELETE /organizations/:organization/authentication-token
+        ``DELETE /organizations/:organization/authentication-token``
 
         This endpoint deletes the org token for the active org.
         """

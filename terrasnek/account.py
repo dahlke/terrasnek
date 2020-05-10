@@ -19,21 +19,23 @@ class TFCAccount(TFCEndpoint):
 
     def show(self):
         """
-        GET /account/details
+        ``GET /account/details``
         """
         url = f"{self._base_url}/details"
         return self._show(url)
 
     def update(self, data):
         """
-        PATCH /account/update
+        ``PATCH /account/update``
+
+        Your username and email address can be updated with this endpoint.
         """
         url = f"{self._base_url}/update"
         return self._patch(url, data)
 
     def change_password(self, data):
         """
-        PATCH /account/password
+        ``PATCH /account/password``
         """
         url = f"{self._base_url}/password"
         return self._patch(url, data)

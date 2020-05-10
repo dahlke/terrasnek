@@ -18,7 +18,7 @@ class TFCPlans(TFCEndpoint):
 
     def show(self, plan_id):
         """
-        GET /plans/:plan_id
+        ``GET /plans/:plan_id``
 
         There is no endpoint to list plans. You can find the ID for a plan
         in the relationships.plan property of a run object.

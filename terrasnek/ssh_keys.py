@@ -24,6 +24,7 @@ class TFCSSHKeys(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/ssh-keys.html
     """
+
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/ssh-keys"
@@ -31,33 +32,33 @@ class TFCSSHKeys(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /organizations/:org_name/ssh-keys
+        ``POST /organizations/:org_name/ssh-keys``
         """
         return self._create(self._org_base_url, payload)
 
     def list(self):
         """
-        GET /organizations/:org_name/ssh-keys
+        ``GET /organizations/:org_name/ssh-keys``
         """
         return self._list(self._org_base_url)
 
     def show(self, ssh_key_id):
         """
-        GET /ssh-keys/:ssh_key_id
+        ``GET /ssh-keys/:ssh_key_id``
         """
         url = f"{self._base_url}/{ssh_key_id}"
         return self._show(url)
 
     def update(self, ssh_key_id, payload):
         """
-        PATCH /ssh-keys/:ssh_key_id
+        ``PATCH /ssh-keys/:ssh_key_id``
         """
         url = f"{self._base_url}/{ssh_key_id}"
         return self._update(url, payload)
 
     def destroy(self, ssh_key_id):
         """
-        DELETE /ssh-keys/:ssh_key_id
+        ``DELETE /ssh-keys/:ssh_key_id``
         """
         url = f"{self._base_url}/{ssh_key_id}"
         return self._destroy(url)

@@ -30,7 +30,7 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
 
     def test_run_triggers(self):
         """
-        Test the Run Triggers API endpoints: create, list, update, destroy.
+        Test the Run Triggers API endpoints: ``create``, ``list``, ``update``, ``destroy``.
         """
 
         test_filters = [
@@ -58,7 +58,6 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
                 }
             }
         }
-
         created_trigger_resp = self._api.run_triggers.create(self._target_ws_id, create_payload)
         created_trigger_id = created_trigger_resp["data"]["id"]
 

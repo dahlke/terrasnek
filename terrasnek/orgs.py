@@ -17,20 +17,20 @@ class TFCOrgs(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /organizations
+        ``POST /organizations``
         """
         return self._create(self._org_base_url, payload)
 
     def destroy(self, org_name):
         """
-        DELETE /organizations/:org_name
+        ``DELETE /organizations/:org_name``
         """
         url = f"{self._org_base_url}/{org_name}"
         return self._destroy(url)
 
     def entitlements(self, org_name):
         """
-        GET /organizations/:org_name/entitlement-set
+        ``GET /organizations/:org_name/entitlement-set``
 
         This endpoint shows the entitlements for an organization.
         """
@@ -39,20 +39,20 @@ class TFCOrgs(TFCEndpoint):
 
     def list(self):
         """
-        GET /organizations
+        ``GET /organizations``
         """
         return self._list(self._org_base_url)
 
     def show(self, org_name):
         """
-        GET /organizations/:org_name
+        ``GET /organizations/:org_name``
         """
         url = f"{self._org_base_url}/{org_name}"
         return self._show(url)
 
     def update(self, org_name, payload):
         """
-        PATCH /organizations/:org_name
+        ``PATCH /organizations/:org_name``
         """
         url = f"{self._org_base_url}/{org_name}"
         return self._update(url, payload)

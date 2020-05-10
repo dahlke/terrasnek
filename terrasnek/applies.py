@@ -17,7 +17,7 @@ class TFCApplies(TFCEndpoint):
 
     def show(self, apply_id):
         """
-        GET /applies/:apply_id
+        ``GET /applies/:apply_id``
 
         There is no endpoint to list applies. You can find the ID for an apply in
         the relationships.apply property of a run object.

@@ -21,7 +21,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
 
     def test_config_version(self):
         """
-        Test the Config Version API endpoints: create, list, show, upload.
+        Test the Config Version API endpoints: ``create``, ``list``, ``show``, ``upload``.
         """
 
         # Create a new config version
@@ -34,6 +34,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
 
         # Confirm there is only one config version (the one we uploaded)
         self.assertEqual(len(config_versions), 1)
+
         # Confirm the first listed config version matches the ID of the one we created
         self.assertEqual(config_versions[0]["id"], cv_id)
 
@@ -49,9 +50,6 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         # Upload the .tf code and confirm it's been uploaded
         self._api.config_versions.upload(
             self._config_version_upload_tarball_path, cv_id)
-
         config_versions = self._api.config_versions.list(self._ws_id)["data"]
         self.assertEqual(config_versions[0]
                          ["attributes"]["status"], "uploaded")
-
-        # TODO: test force_cancel / force_execute once Policy endpoints are implemented

@@ -23,7 +23,7 @@ class TFCAdminWorkspaces(TFCEndpoint):
     def list(self, \
         filters=None, page=None, page_size=None, sort=None, search=None):
         """
-        GET /admin/workspaces
+        ``GET /admin/workspaces``
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
@@ -33,14 +33,14 @@ class TFCAdminWorkspaces(TFCEndpoint):
 
     def show(self, ws_id):
         """
-        GET /admin/workspaces/:ws_id
+        ``GET /admin/workspaces/:ws_id``
         """
         url = f"{self._base_url}/{ws_id}"
         return self._show(url)
 
     def destroy(self, ws_id):
         """
-        DELETE /admin/workspaces/:ws_id
+        ``DELETE /admin/workspaces/:ws_id``
         """
         url = f"{self._base_url}/{ws_id}"
         return self._destroy(url)

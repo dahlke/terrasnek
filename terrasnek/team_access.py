@@ -19,26 +19,26 @@ class TFCTeamAccess(TFCEndpoint):
 
     def add_team_access(self, payload):
         """
-        POST /team-workspaces
+        ``POST /team-workspaces``
         """
         return self._post(self._base_url, data=payload)
 
     def list(self):
         """
-        GET /team-workspaces
+        ``GET /team-workspaces``
         """
         return self._list(self._base_url)
 
     def remove_team_access(self, access_id):
         """
-        DELETE /team-workspaces/:id
+        ``DELETE /team-workspaces/:id``
         """
         url = f"{self._base_url}/{access_id}"
         return self._delete(url)
 
     def show(self, access_id):
         """
-        GET /team-workspaces/:id
+        ``GET /team-workspaces/:id``
         """
         url = f"{self._base_url}/{access_id}"
         return self._show(url)

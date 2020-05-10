@@ -4,7 +4,6 @@ Module for testing the Terraform Cloud API Endpoint: Policy Sets.
 
 from .base import TestTFCBaseTestCase
 
-POLICY_SETS_LIST_INCLUDE = "policies"
 
 class TestTFCPolicySets(TestTFCBaseTestCase):
     """
@@ -33,11 +32,11 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
 
     def test_policy_sets(self):
         """
-        Test the Policy Set API endpoints: create, list, show,
-        update, destroy, add_policies_to_set, remove_policies_from_set,
-        attach_policy_set_to_workspaces, detach_policy_set_from_workspaces
+        Test the Policy Set API endpoints: ``create``, ``list``, ``show``,
+        ``update``, ``destroy``, ``add_policies_to_set``, ``remove_policies_from_set``,
+        ``attach_policy_set_to_workspaces``, ``detach_policy_set_from_workspaces``.
         """
-
+        # List all the policy sets, confirm there are none
         sets_resp = self._api.policy_sets.list()
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 0)
@@ -59,11 +58,11 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         ]
         sets_resp = self._api.policy_sets.list(\
             filters=test_filters, page=0, page_size=50, \
-            include=POLICY_SETS_LIST_INCLUDE, search=created_policy_set_name)
+            include="policies", search=created_policy_set_name)
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 1)
 
-        # Update the policy set
+        # Update the policy set, confirm the update took place
         desc_to_update_to = "foo"
         update_payload = {
             "data": {
@@ -121,10 +120,8 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         shown_policies_in_set = shown_policy_set_resp["data"]["relationships"]["policies"]["data"]
         self.assertEqual(len(shown_policies_in_set), 0)
 
-        # Delete the policy set
+        # Delete the policy set, confirm it's been deleted
         self._api.policy_sets.destroy(created_policy_set_id)
-
-        # Check that we now have zero policy sets again
         sets_resp = self._api.policy_sets.list()
         policy_sets = sets_resp["data"]
         self.assertEqual(len(policy_sets), 0)
@@ -132,7 +129,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
 
     def test_policy_sets_versions(self):
         """
-        Test the Policy Set API endpoints: create_policy_set_version,
-        show_policy_set_version.
+        Test the Policy Set API endpoints: ``create_policy_set_version``,
+        ``show_policy_set_version``.
         """
         # TODO

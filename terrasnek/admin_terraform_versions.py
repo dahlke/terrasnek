@@ -19,7 +19,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
     def list(self, page=None, page_size=None):
         """
-        GET /admin/terraform-versions
+        ``GET /admin/terraform-versions``
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
@@ -27,27 +27,27 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
     def create(self, data):
         """
-        POST /admin/terraform-versions
+        ``POST /admin/terraform-versions``
         """
         return self._post(self._base_url, data=data)
 
     def show(self, version_id):
         """
-        GET /admin/terraform-versions/:version_id
+        ``GET /admin/terraform-versions/:version_id``
         """
         url = f"{self._base_url}/{version_id}"
         return self._show(url)
 
     def update(self, version_id, data):
         """
-        PATCH /admin/terraform-versions/:id
+        ``PATCH /admin/terraform-versions/:id``
         """
         url = f"{self._base_url}/{version_id}"
         return self._patch(url, data)
 
     def destroy(self, version_id):
         """
-        DELETE /admin/terraform-versions/:version_id
+        ``DELETE /admin/terraform-versions/:version_id``
         """
         url = f"{self._base_url}/{version_id}"
         return self._destroy(url)

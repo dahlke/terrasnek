@@ -14,10 +14,10 @@ class TestTFCUserTokens(TestTFCBaseTestCase):
 
     def test_user_token(self):
         """
-        Test the User Token API endpoints: list, create, show, destroy.
+        Test the User Token API endpoints: ``list``, ``create``, ``show``, ``destroy``.
         """
 
-        # TODO: fix this once the User API is patched.
+        # TODO: fix this once the User API is patched, then add comments and docs.
         # users = self._api.admin_users.list(query=self._test_username)["data"]
         # self.assertNotEqual(len(users), 0)
         # user_id = users[0]['id']

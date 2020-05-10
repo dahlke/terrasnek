@@ -19,7 +19,7 @@ class TFCPlanExports(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /plan-exports
+        ``POST /plan-exports``
 
         This endpoint exports data from a plan in the specified format. The export process
         is asynchronous, and the resulting data becomes downloadable when its status is
@@ -31,7 +31,7 @@ class TFCPlanExports(TFCEndpoint):
 
     def show(self, plan_export_id):
         """
-        GET /plan-exports/:plan_export_id
+        ``GET /plan-exports/:plan_export_id``
 
         There is no endpoint to list plan exports. You can find IDs for plan exports in the
         relationships.exports property of a plan object.
@@ -41,7 +41,7 @@ class TFCPlanExports(TFCEndpoint):
 
     def download(self, plan_export_id, target_path="/tmp/terrasnek.planexport.tar.gz"):
         """
-        GET /plan-exports/:plan_export_id/download
+        ``GET /plan-exports/:plan_export_id/download``
 
         This endpoint generates a temporary URL to the location of the exported plan data in
         a .tar.gz archive, and then redirects to that link. If using a client that can follow
@@ -55,7 +55,7 @@ class TFCPlanExports(TFCEndpoint):
 
     def destroy(self, plan_export_id):
         """
-        DELETE /plan-exports/:plan_export_id
+        ``DELETE /plan-exports/:plan_export_id``
 
         Plan exports expire after being available for one hour, but they can be deleted
         manually as well.

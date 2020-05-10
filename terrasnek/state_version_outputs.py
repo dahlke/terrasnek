@@ -19,7 +19,7 @@ class TFCStateVersionOutputs(TFCEndpoint):
 
     def show(self, state_version_output_id):
         """
-        GET /state-version-outputs/:state_version_output_id
+        ``GET /state-version-outputs/:state_version_output_id``
 
         State version output IDs must be obtained from a state version object. When requesting a
         state version, you can optionally add ?include=outputs to include full details for all of

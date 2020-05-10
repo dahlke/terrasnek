@@ -27,13 +27,13 @@ class TFCPolicySets(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /organizations/:org_name/policy-sets
+        ``POST /organizations/:org_name/policy-sets``
         """
         return self._create(self._org_base_url, payload)
 
     def list(self, filters=None, include=None, page=None, page_size=None, search=None):
         """
-        GET /organizations/:org_name/policy-sets
+        ``GET /organizations/:org_name/policy-sets``
 
         PARAMS:
             https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets
@@ -45,66 +45,66 @@ class TFCPolicySets(TFCEndpoint):
 
     def show(self, policy_set_id):
         """
-        GET /policy-sets/:id
+        ``GET /policy-sets/:id``
         """
         url = f"{self._base_url}/{policy_set_id}"
         return self._show(url)
 
     def update(self, policy_set_id, payload):
         """
-        PATCH /policy-sets/:id
+        ``PATCH /policy-sets/:id``
         """
         url = f"{self._base_url}/{policy_set_id}"
         return self._update(url, payload)
 
     def destroy(self, policy_set_id):
         """
-        DELETE /policies/:policy_set_id
+        ``DELETE /policies/:policy_set_id``
         """
         url = f"{self._base_url}/{policy_set_id}"
         return self._destroy(url)
 
     def add_policies_to_set(self, policy_set_id, payload):
         """
-        POST /policy-sets/:id/relationships/policies
+        ``POST /policy-sets/:id/relationships/policies``
         """
         url = f"{self._base_url}/{policy_set_id}/relationships/policies"
         return self._post(url, data=payload)
 
     def remove_policies_from_set(self, policy_id, payload):
         """
-        DELETE /policy-sets/:id/relationships/policies
+        ``DELETE /policy-sets/:id/relationships/policies``
         """
         url = f"{self._base_url}/{policy_id}/relationships/policies"
         return self._delete(url, data=payload)
 
     def attach_policy_set_to_workspaces(self, policy_id, payload):
         """
-        POST /policy-sets/:id/relationships/workspaces
+        ``POST /policy-sets/:id/relationships/workspaces``
         """
         url = f"{self._base_url}/{policy_id}/relationships/workspaces"
         return self._post(url, data=payload)
 
     def detach_policy_set_from_workspaces(self, policy_id, payload):
         """
-        POST /policy-sets/:id/relationships/workspaces
+        ``POST /policy-sets/:id/relationships/workspaces``
         """
         url = f"{self._base_url}/{policy_id}/relationships/workspaces"
         return self._delete(url, data=payload)
 
     def create_policy_set_version(self):
         """
+        ``POST /policy-sets/:id/versions``
+
         For versioned policy sets which have no VCS repository attached,
         versions of policy code may be uploaded directly to the API by
         creating a new policy set version and, in a subsequent request,
         uploading a tarball (tar.gz) of data to it.
-
-        POST /policy-sets/:id/versions
         """
         # TODO
 
     def show_policy_set_version(self, policy_set_id):
         """
-        GET /policy-sets/:id
+        ``GET /policy-sets/:id``
         """
         # TODO

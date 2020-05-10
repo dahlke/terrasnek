@@ -21,14 +21,14 @@ class TFCAdminOrgs(TFCEndpoint):
 
     def destroy(self, org_name):
         """
-        DELETE /admin/organizations/:org_name
+        ``DELETE /admin/organizations/:org_name``
         """
         url = f"{self._base_url}/{org_name}"
         return self._destroy(url)
 
     def list(self):
         """
-        GET /admin/organizations
+        ``GET /admin/organizations``
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
@@ -36,7 +36,7 @@ class TFCAdminOrgs(TFCEndpoint):
 
     def show(self, org_name):
         """
-        GET /admin/organizations/:org_name
+        ``GET /admin/organizations/:org_name``
         """
         url = f"{self._base_url}/{org_name}"
         return self._show(url)

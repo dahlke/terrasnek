@@ -14,14 +14,12 @@ class TestTFCOAuthClients(TestTFCBaseTestCase):
 
     def test_oauth_clients(self):
         """
-        Test the OAuth Clients API endpoints: list, create, show, destroy.
+        Test the OAuth Clients API endpoints: ``list``, ``create``, ``show``, ``destroy``.
         """
 
         # Create a test OAuth client
-
         oauth_clients = self._api.oauth_clients.list()["data"]
         num_clients_before_add = len(oauth_clients)
-
         oauth_client_payload = self._get_oauth_client_create_payload()
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
 

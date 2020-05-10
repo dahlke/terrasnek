@@ -18,7 +18,7 @@ class TFCCostEstimates(TFCEndpoint):
 
     def show(self, id):
         """
-        GET /cost-estimates/:id
+        ``GET /cost-estimates/:id``
         """
         url = f"{self._base_url}/{id}"
         return self._show(url)

@@ -20,7 +20,7 @@ class TFCOAuthTokens(TFCEndpoint):
 
     def list(self, oauth_client_id):
         """
-        GET /oauth-clients/:oauth_client_id/oauth-tokens
+        ``GET /oauth-clients/:oauth_client_id/oauth-tokens``
 
         List all the OAuth Tokens for a given OAuth Client
         """
@@ -29,21 +29,21 @@ class TFCOAuthTokens(TFCEndpoint):
 
     def show(self, token_id):
         """
-        GET /oauth-tokens/:token_id
+        ``GET /oauth-tokens/:token_id``
         """
         url = f"{self._oauth_tokens_base_url}/{token_id}"
         return self._show(url)
 
     def update(self, token_id, payload):
         """
-        PATCH /oauth-tokens/:token_id
+        ``PATCH /oauth-tokens/:token_id``
         """
         url = f"{self._oauth_tokens_base_url}/{token_id}"
         return self._update(url, payload)
 
     def destroy(self, token_id):
         """
-        DELETE /oauth-tokens/:token_id
+        ``DELETE /oauth-tokens/:token_id``
         """
         url = f"{self._oauth_tokens_base_url}/{token_id}"
         return self._destroy(url)

@@ -21,7 +21,7 @@ class TFCOrgMemberships(TFCEndpoint):
 
     def invite(self, payload):
         """
-        POST /organizations/:org_name/organization-memberships
+        ``POST /organizations/:org_name/organization-memberships``
 
         This endpoint invites a user to join an organization.
         """
@@ -29,7 +29,7 @@ class TFCOrgMemberships(TFCEndpoint):
 
     def list_for_org(self, query=None, filters=None, page=None, page_size=None):
         """
-        GET /organizations/:org_name/organization-memberships
+        ``GET /organizations/:org_name/organization-memberships``
 
         This endpoint retrieves all the users in the active organization.
 
@@ -41,7 +41,7 @@ class TFCOrgMemberships(TFCEndpoint):
 
     def list_for_user(self):
         """
-        GET /organization-memberships
+        ``GET /organization-memberships``
 
         This endpoint retrieves all the organizations for the active user.
         """
@@ -49,7 +49,7 @@ class TFCOrgMemberships(TFCEndpoint):
 
     def show(self, org_membership_id):
         """
-        GET /organization-memberships/:org_membership_id
+        ``GET /organization-memberships/:org_membership_id``
 
         This endpoint shows organization membership details for the
         specified organization membership ID.
@@ -59,7 +59,7 @@ class TFCOrgMemberships(TFCEndpoint):
 
     def remove(self, org_membership_id):
         """
-        DELETE /organization-memberships/:org_membership_id
+        ``DELETE /organization-memberships/:org_membership_id``
 
         This endpoint removes a user from an organization using the
         specified organization membership ID.

@@ -18,7 +18,7 @@ class TFCOAuthClients(TFCEndpoint):
 
     def list(self):
         """
-        GET /organizations/:org_name/oauth-clients
+        ``GET /organizations/:org_name/oauth-clients``
 
         This endpoint allows you to list VCS connections between an organization and a VCS
         provider (GitHub, Bitbucket, or GitLab) for use when creating or setting up workspaces.
@@ -27,14 +27,14 @@ class TFCOAuthClients(TFCEndpoint):
 
     def show(self, client_id):
         """
-        GET /oauth-clients/:client_id
+        ``GET /oauth-clients/:client_id``
         """
         url = f"{self._oauth_clients_base_url}/{client_id}"
         return self._show(url)
 
     def create(self, payload):
         """
-        POST /organizations/:org_name/oauth-clients
+        ``POST /organizations/:org_name/oauth-clients``
 
         This endpoint allows you to create a VCS connection between an organization and a VCS
         provider (GitHub or GitLab) for use when creating or setting up workspaces. By using
@@ -45,7 +45,7 @@ class TFCOAuthClients(TFCEndpoint):
 
     def update(self, client_id, payload):
         """
-        PATCH /oauth-clients/:client_id
+        ``PATCH /oauth-clients/:client_id``
 
         Use caution when changing attributes with this endpoint; editing an OAuth client that
         workspaces are currently using can have unexpected effects.
@@ -55,7 +55,7 @@ class TFCOAuthClients(TFCEndpoint):
 
     def destroy(self, client_id):
         """
-        DELETE /oauth-clients/:client_id
+        ``DELETE /oauth-clients/:client_id``
 
         This endpoint allows you to remove an existing connection between an organization and a
         VCS provider (GitHub, Bitbucket, or GitLab).

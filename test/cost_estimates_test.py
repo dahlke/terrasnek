@@ -16,16 +16,19 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
     _unittest_name = "cst-est"
 
     def setUp(self):
-        # Create an OAuth client for the test and extract it's ID
+        # Create an OAuth client for the test and extract it's the token ID
+        # Store the OAuth client ID to remove it at the end.
         oauth_client_payload = self._get_oauth_client_create_payload()
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = oauth_client["data"]["id"]
-
         oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
+
+        # Create a workspace using that token ID, save the workspace ID
         _ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id, working_dir="aws")
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
 
+        # Configure the required variables on the workspace
         variable_payloads = [
             self._get_variable_create_payload(
                 "AWS_ACCESS_KEY_ID", AWS_ACCESS_KEY_ID, self._ws_id, category="env", sensitive=True),
@@ -35,6 +38,10 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
         for payload in variable_payloads:
             self._api.variables.create(payload)
 
+        # Sleep for 1 second to give the WS time to create
+        time.sleep(1)
+
+        # Enable cost estimation, and configure the AWS credentials for it at the admin level
         update_payload = {
             "data": {
                 "attributes": {
@@ -47,6 +54,7 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
         }
         self._api.admin_settings.update_cost_estimation(update_payload)["data"]
 
+        # Enable cost estimation on the org level
         update_payload = {
             "data": {
                 "attributes": {
@@ -62,12 +70,8 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
 
     def test_show(self):
         """
-        Test the Cost Estimates API endpoints: show.
+        Test the Cost Estimates API endpoints: ``show``.
         """
-        # Wait a second for the workspace to create, otherwise we could get an
-        # invalid run parameters error.
-        time.sleep(1)
-
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)
         run = self._api.runs.create(create_run_payload)["data"]

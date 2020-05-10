@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Terraform Cloud / Enterprise Config
+# Terraform Creds
 export TFC_HOSTNAME="https://app.terraform.io"
-export TFC_TOKEN="<YOUR_TFC_TOKEN>"
+export TFC_TOKEN=""
 
-# AWS Credentials
+# AWS Credentials, used for Cost Estimation tests
 export AWS_ACCESS_KEY_ID=""
 export AWS_SECRET_ACCESS_KEY=""
 
@@ -12,7 +12,13 @@ export AWS_SECRET_ACCESS_KEY=""
 export GITHUB_TOKEN=""
 export GITHUB_SECRET=""
 
-# Testing Constants
+# Twilio Secrets for Admin Settings Testing
+# TODO
+
+# SMTP Secrets for Admin Settings Testing
+# TODO
+
+# Constants used for creation and testing
 export TEST_EMAIL=""
 export TEST_ORG_NAME=""
 export TEST_USERNAME=""
@@ -20,4 +26,4 @@ export TEST_TEAM_NAME=""
 export TEST_PASSWORD=""
 
 # SSL config
-export SSL_VERIFY="true"
+export SSL_VERIFY="false"

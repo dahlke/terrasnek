@@ -14,21 +14,21 @@ class TestTFCUsers(TestTFCBaseTestCase):
 
     def test_destroy_users(self):
         """
-        Test the OAuth Tokens API endpoints: destroy.
+        Test the OAuth Tokens API endpoints: ``destroy``.
         """
 
         # TODO: No test since a new user can't be created with the API.
 
     def test_disable_two_factor_users(self):
         """
-        Test the OAuth Tokens API endpoints: disable_two_factor.
+        Test the OAuth Tokens API endpoints: ``disable_two_factor``.
         """
 
         # TODO: No test since it can't be re-enabled with the API.
 
     def test_list_show_users(self):
         """
-        Test the OAuth Tokens API endpoint: show.
+        Test the OAuth Tokens API endpoint: ``show``.
         """
 
         # users = self._api.admin_users.list(query=self._test_username)["data"]

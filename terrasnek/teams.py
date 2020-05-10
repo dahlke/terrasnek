@@ -21,26 +21,26 @@ class TFCTeams(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /organizations/:org_name/teams
+        ``POST /organizations/:org_name/teams``
         """
         return self._create(self._org_base_url, payload)
 
     def destroy(self, team_id):
         """
-        DELETE /teams/:team_id
+        ``DELETE /teams/:team_id``
         """
         url = f"{self._teams_base_url}/{team_id}"
         return self._destroy(url)
 
     def list(self):
         """
-        GET organizations/:org_name/teams
+        ``GET organizations/:org_name/teams``
         """
         return self._list(self._org_base_url)
 
     def show(self, team_id):
         """
-        GET /teams/:team_id
+        ``GET /teams/:team_id``
         """
         url = f"{self._teams_base_url}/{team_id}"
         return self._show(url)

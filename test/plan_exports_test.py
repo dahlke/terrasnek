@@ -16,16 +16,19 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
     _unittest_name = "plan-exp"
 
     def setUp(self):
-        # Create an OAuth client for the test and extract it's ID
+        # Create an OAuth client for the test and extract it's the token ID
+        # Store the OAuth client ID to remove it at the end.
         oauth_client_payload = self._get_oauth_client_create_payload()
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = oauth_client["data"]["id"]
-
         oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
+
+        # Create a workspace using that token ID, save the workspace ID
         _ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
 
+        # Configure the required variables on the workspace
         variable_payloads = [
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),
@@ -37,6 +40,10 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
         for payload in variable_payloads:
             self._api.variables.create(payload)
 
+        # Sleep for 1 second to give the WS time to create
+        time.sleep(1)
+
+        # Start the run, store the run ID
         create_run_payload = self._get_run_create_payload(self._ws_id)
         self._run = self._api.runs.create(create_run_payload)["data"]
         self._run_id = self._run["id"]
@@ -47,13 +54,13 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
 
     def test_plan_exports(self):
         """
-        Test the Plan Exports API endpoints: show, create, download.
+        Test the Plan Exports API endpoints: ``show``, ``create``, ``download``.
         """
-
         # Create a run and wait for the created run to complete it's plan
         created_run = self._api.runs.show(self._run_id)["data"]
         created_plan_id = created_run["relationships"]["plan"]["data"]["id"]
 
+        # Wait for the run to plan
         while not created_run["attributes"]["actions"]["is-confirmable"]:
             self._logger.debug("Waiting on plan to execute...")
             created_run = self._api.runs.show(self._run_id)["data"]
@@ -61,6 +68,7 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
             time.sleep(1)
         self._logger.debug("Plan successful.")
 
+        # Export the plan, confirm the plan_id matches that in the exported plan
         create_plan_export_payload = {
             "data": {
                 "type": "plan-exports",

@@ -18,7 +18,7 @@ class TFCTeamTokens(TFCEndpoint):
 
     def create(self, team_id):
         """
-        POST /teams/:team_id/authentication-token
+        ``POST /teams/:team_id/authentication-token``
 
         Generates a new team token and overrides existing token if one exists.
         """
@@ -29,7 +29,7 @@ class TFCTeamTokens(TFCEndpoint):
 
     def destroy(self, team_id):
         """
-        DELETE /teams/:team_id/authentication-token
+        ``DELETE /teams/:team_id/authentication-token``
         """
         url = f"{self._base_url}/{team_id}/authentication-token"
         return self._destroy(url)

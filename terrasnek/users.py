@@ -21,7 +21,7 @@ class TFCUsers(TFCEndpoint):
 
     def show(self, user_id):
         """
-        GET /users/:user_id
+        ``GET /users/:user_id``
 
         Shows details for a given user.
         """

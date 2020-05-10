@@ -21,42 +21,42 @@ class TFCNotificationConfigurations(TFCEndpoint):
 
     def create(self, workspace_id, payload):
         """
-        POST /workspaces/:workspace_id/notification-configurations
+        ``POST /workspaces/:workspace_id/notification-configurations``
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
         return self._create(url, payload)
 
     def list(self, workspace_id):
         """
-        GET /workspaces/:workspace_id/notification-configurations
+        ``GET /workspaces/:workspace_id/notification-configurations``
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
         return self._list(url)
 
     def show(self, notification_config_id):
         """
-        GET /notification-configurations/:notification-configuration-id
+        ``GET /notification-configurations/:notification-configuration-id``
         """
         url = f"{self._base_url}/{notification_config_id}"
         return self._show(url)
 
     def update(self, notification_config_id, payload):
         """
-        PATCH /notification-configurations/:notification-configuration-id
+        ``PATCH /notification-configurations/:notification-configuration-id``
         """
         url = f"{self._base_url}/{notification_config_id}"
         return self._update(url, payload)
 
     def verify(self, notification_config_id):
         """
-        POST /notification-configurations/:notification-configuration-id/actions/verify
+        ``POST /notification-configurations/:notification-configuration-id/actions/verify``
         """
         url = f"{self._base_url}/{notification_config_id}/actions/verify"
         return self._post(url)
 
     def destroy(self, notification_config_id):
         """
-        DELETE /notification-configurations/:notification-configuration-id
+        ``DELETE /notification-configurations/:notification-configuration-id``
         """
         url = f"{self._base_url}/{notification_config_id}"
         return self._destroy(url)

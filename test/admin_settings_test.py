@@ -16,11 +16,13 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_general(self):
         """
-        Test the Admin Settings API endpoints: list_general, update_general.
+        Test the Admin Settings API endpoints: ``list_general``, ``update_general``.
         """
+        # List all the general settings, verify the response type
         all_general = self._api.admin_settings.list_general()["data"]
         self.assertEqual("general-settings", all_general["type"])
 
+        # Update the rate limit to a random number, verify it worked.
         updated_rate_limit = random.randint(45, 60)
         update_payload = {
             "data": {
@@ -35,13 +37,15 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_cost_estimation(self):
         """
-        Test the Admin Settings API endpoints: list_cost_estimation,
-        update_cost_estimation.
+        Test the Admin Settings API endpoints: ``list_cost_estimation``,
+        ``update_cost_estimation``.
         """
-
+        # List all the cost estimation settings, verify the response type
         all_cost_est = self._api.admin_settings.list_cost_estimation()["data"]
         self.assertEqual("cost-estimation-settings", all_cost_est["type"])
 
+        # Update the cost estimation settings to enable cost estimation,
+        # verify that it's been enabled
         update_payload = {
             "data": {
                 "attributes": {
@@ -60,12 +64,14 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_saml(self):
         """
-        Test the Admin Settings API endpoints: list_saml, update_saml,
-        revoke_previous_saml_idp_cert.
+        Test the Admin Settings API endpoints: ``list_saml``, ``update_saml``,
+        ``revoke_previous_saml_idp_cert``.
         """
+        # List all the SAML settings, verify the response type
         all_saml = self._api.admin_settings.list_saml()["data"]
         self.assertEqual("saml-settings", all_saml["type"])
 
+        # Update the SAML settings to enable SAML, confirm it's enabled
         update_payload = {
             "data": {
                 "attributes": {
@@ -85,18 +91,19 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
         updated_saml = self._api.admin_settings.update_saml(update_payload)["data"]
         self.assertTrue(updated_saml["attributes"]["enabled"])
 
-
         # TODO: revoke_previous_saml_idp_cert
 
-        # Disable SAML after running the test
+        # Disable SAML after running the test so that it's easier to log in with
+        # username and password.
         update_payload["data"]["attributes"]["enabled"] = False
         updated_saml = self._api.admin_settings.update_saml(update_payload)["data"]
         self.assertFalse(updated_saml["attributes"]["enabled"])
 
     def test_admin_settings_smtp(self):
         """
-        Test the Admin Settings API endpoints: list_smtp, update_smtp.
+        Test the Admin Settings API endpoints: ``list_smtp``, ``update_smtp``.
         """
+        # List all the SMTP settings, verify the response type
         all_smtp = self._api.admin_settings.list_smtp()["data"]
         self.assertEqual("smtp-settings", all_smtp["type"])
 
@@ -124,9 +131,10 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_twilio(self):
         """
-        Test the Admin Settings API endpoints: list_twilio, update_twilio,
-        verify_twilio.
+        Test the Admin Settings API endpoints: ``list_twilio``, ``update_twilio``,
+        ``verify_twilio``.
         """
+        # List all the Twilio settings, verify the response type
         all_twilio = self._api.admin_settings.list_twilio()["data"]
         self.assertEqual("twilio-settings", all_twilio["type"])
 
@@ -161,9 +169,10 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_customization(self):
         """
-        Test the Admin Settings API endpoints: list_customization,
-        update_customization.
+        Test the Admin Settings API endpoints: ``list_customization``,
+        ``update_customization``.
         """
+        # List all the customization settings, verify the response type
         all_customization = self._api.admin_settings.list_customization()["data"]
         self.assertEqual("customization-settings", all_customization["type"])
 

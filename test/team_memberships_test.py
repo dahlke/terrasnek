@@ -27,9 +27,9 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
 
     def test_team_memberships(self):
         """
-        Test the Team Memberships API endpoints: add, show, remove.
+        Test the Team Memberships API endpoints: ``add``, ``show``, ``remove``.
         """
-
+        # Add the testing user to the team, confirm they have been added
         membership_payload = {
             "data": [
                 {
@@ -38,13 +38,14 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
                 }
             ]
         }
-
         self._api.team_memberships.add_a_user_to_team(
             self._team_id, membership_payload)
 
         # TODO: Both of the following asserts will not work unless the user
         # accepts the request.
 
+        # Show the team memberships, confirm it's the length we expect
+        # TODO: look for the user, not just the number of team members
         # shown_team = self._api.teams.show(self._owners_team_id)["data"]
         # self.assertEqual(len(shown_team["relationships"]["users"]["data"]), 3)
 

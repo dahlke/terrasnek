@@ -12,25 +12,28 @@ class TestTFCAccount(TestTFCBaseTestCase):
 
     _unittest_name = "acc"
 
-    def test_account_methods(self):
+    def test_account(self):
         """
-        Test the Account API endpoints: show, update, change password.
+        Test the Account API endpoints: ``show``, ``update``, ``change_password``.
         """
 
         # Show the account and confirm we get a valid response
         shown_account = self._api.account.show()["data"]
         self.assertTrue("id" in shown_account)
+
+        # Store the original username and email for later usage
         original_email = shown_account["attributes"]["email"]
         original_username = shown_account["attributes"]["username"]
 
+        # Generate a new email to change on the account, confirm the update
         email_name = self._name_with_random()
         email_to_update_to = f"{email_name}@gmail.com"
         update_payload = {
             "data": {
                 "type": "users",
                 "attributes": {
-                "email": email_to_update_to,
-                "username": original_username
+                    "email": email_to_update_to,
+                    "username": original_username
                 }
             }
         }
@@ -43,8 +46,8 @@ class TestTFCAccount(TestTFCBaseTestCase):
             "data": {
                 "type": "users",
                 "attributes": {
-                "email": original_email,
-                "username": original_username
+                    "email": original_email,
+                    "username": original_username
                 }
             }
         }
@@ -58,9 +61,9 @@ class TestTFCAccount(TestTFCBaseTestCase):
             "data": {
                 "type": "users",
                 "attributes": {
-                "current_password": self._test_password,
-                "password": password_to_update_to,
-                "password_confirmation": password_to_update_to
+                    "current_password": self._test_password,
+                    "password": password_to_update_to,
+                    "password_confirmation": password_to_update_to
                 }
             }
         }
@@ -72,9 +75,9 @@ class TestTFCAccount(TestTFCBaseTestCase):
             "data": {
                 "type": "users",
                 "attributes": {
-                "current_password": password_to_update_to,
-                "password": self._test_password,
-                "password_confirmation": self._test_password
+                    "current_password": password_to_update_to,
+                    "password": self._test_password,
+                    "password_confirmation": self._test_password
                 }
             }
         }

@@ -14,12 +14,14 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
     _unittest_name = "not-cng"
 
     def setUp(self):
-        # Create an OAuth client for the test and extract it's ID
+        # Create an OAuth client for the test and extract it's the token ID
+        # Store the OAuth client ID to remove it at the end.
         oauth_client_payload = self._get_oauth_client_create_payload()
         oauth_client = self._api.oauth_clients.create(oauth_client_payload)
         self._oauth_client_id = oauth_client["data"]["id"]
-
         oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
+
+        # Create a workspace using that token ID, save the workspace ID
         ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
         workspace = self._api.workspaces.create(ws_payload)["data"]
         self._ws_id = workspace["id"]
@@ -30,8 +32,8 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
 
     def test_notifications_configuration(self):
         """
-        Test the Notification Configurations API endpoints: create, list, show,
-        update, verify, destroy.
+        Test the Notification Configurations API endpoints: ``create``, ``list``, ``show``,
+        ``update``, ``verify``, ``destroy``.
         """
 
         # Show that there are no configuration notifications for the workspace
@@ -40,6 +42,7 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
         self.assertEqual(len(noti_configs), 0)
 
         # Add one notification configuration
+        # TODO: use a random name for the notification config
         payload = {
             "data": {
                 "type": "notification-configurations",

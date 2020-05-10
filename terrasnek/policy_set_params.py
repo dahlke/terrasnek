@@ -16,28 +16,28 @@ class TFCPolicySetParams(TFCEndpoint):
 
     def create(self, policy_set_id, payload):
         """
-        POST /policy-sets/:policy_set_id/parameters
+        ``POST /policy-sets/:policy_set_id/parameters``
         """
         url = f"{self._base_url}/{policy_set_id}/parameters"
         return self._create(url, payload)
 
     def list(self, policy_set_id):
         """
-        GET /policy-sets/:policy_set_id/parameters
+        ``GET /policy-sets/:policy_set_id/parameters``
         """
         url = f"{self._base_url}/{policy_set_id}/parameters"
         return self._list(url)
 
     def update(self, policy_set_id, parameter_id, payload):
         """
-        PATCH /policy-sets/:policy_set_id/parameters/:parameter_id
+        ``PATCH /policy-sets/:policy_set_id/parameters/:parameter_id``
         """
         url = f"{self._base_url}/{policy_set_id}/parameters/{parameter_id}"
         return self._update(url, payload)
 
     def destroy(self, policy_set_id, parameter_id):
         """
-        DELETE /policy-sets/:policy_set_id/parameters/:parameter_id
+        ``DELETE /policy-sets/:policy_set_id/parameters/:parameter_id``
         """
         url = f"{self._base_url}/{policy_set_id}/parameters/{parameter_id}"
         return self._destroy(url)

@@ -23,7 +23,7 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
 
     def test_oauth_tokens_endpoints(self):
         """
-        Test the OAuth Tokens API endpoints: list, show.
+        Test the OAuth Tokens API endpoints: ``list``, ``show``, ``update``, ``destroy``.
         """
 
         # List all the tokens and make sure there is one associate to your client
@@ -39,3 +39,5 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
         oauth_token_id = oauth_tokens[0]["id"]
         shown_oauth_token = self._api.oauth_tokens.show(oauth_token_id)
         self.assertEqual(oauth_token_id, shown_oauth_token["data"]["id"])
+
+        # TODO: add tests for update / destroy

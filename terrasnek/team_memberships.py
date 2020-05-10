@@ -18,7 +18,7 @@ class TFCTeamMemberships(TFCEndpoint):
 
     def add_a_user_to_team(self, team_id, payload):
         """
-        POST /teams/:team_id/relationships/users
+        ``POST /teams/:team_id/relationships/users``
 
         This method adds multiple users to a team. Both users and teams must already exist.
         """
@@ -27,7 +27,7 @@ class TFCTeamMemberships(TFCEndpoint):
 
     def remove_a_user_from_team(self, team_id, payload):
         """
-        DELETE /teams/:team_id/relationships/users
+        ``DELETE /teams/:team_id/relationships/users``
 
         This method removes multiple users from a team. Both users and teams must already exist.
         This DOES NOT delete the user; it only removes them from this team.

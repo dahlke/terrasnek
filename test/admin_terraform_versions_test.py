@@ -14,13 +14,14 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
 
     def test_admin_terraform_versions(self):
         """
-        Test the Admin Terraform Versions API endpoints: created, show, updated,
-        list, destroy.
+        Test the Admin Terraform Versions API endpoints: ``created``, ``show``, ``update``,
+        ``list``, ``destroy``.
         """
-        # TODO: comments here
+        # List all the TF versions, verify the response type
         all_tf_versions = self._api.admin_terraform_versions.list()["data"]
         self.assertTrue("terraform-versions", all_tf_versions[0]["type"])
 
+        # Create a fake version and confirm it was created correctly
         version_to_create = "0.1.300"
         create_payload = {
             "data": {
@@ -39,6 +40,7 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
         created_tf_version_id = created_tf_version["id"]
         self.assertEqual(version_to_create, created_tf_version["attributes"]["version"])
 
+        # Update the newly created version to be a beta version, confirm the change
         beta_to_update_to = True
         update_payload = {
             "data": {
@@ -51,9 +53,11 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
         updated_tf_version = self._api.admin_terraform_versions.update(created_tf_version_id, update_payload)["data"]
         self.assertEqual(beta_to_update_to, updated_tf_version["attributes"]["beta"])
 
+        # Show the TF version, confirm the version number
         shown_tf_version = self._api.admin_terraform_versions.show(created_tf_version_id)["data"]
         self.assertEqual(version_to_create, updated_tf_version["attributes"]["version"])
 
+        # Destroy the TF version, confirm it's gone
         self._api.admin_terraform_versions.destroy(created_tf_version_id)
         all_tf_versions = self._api.admin_terraform_versions.list()["data"]
         found_created_version = False

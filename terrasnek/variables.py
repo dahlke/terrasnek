@@ -16,13 +16,13 @@ class TFCVariables(TFCEndpoint):
 
     def create(self, payload):
         """
-        POST /vars
+        ``POST /vars``
         """
         return self._create(self._base_url, payload)
 
     def list(self, workspace_name=None):
         """
-        GET /vars
+        ``GET /vars``
         """
         url = f"{self._base_url}?filter[organization][name]={self._org_name}"
 
@@ -33,14 +33,14 @@ class TFCVariables(TFCEndpoint):
 
     def update(self, variable_id, payload):
         """
-        PATCH /vars/:variable_id
+        ``PATCH /vars/:variable_id``
         """
         url = f"{self._base_url}/{variable_id}"
         return self._update(url, payload)
 
     def destroy(self, variable_id):
         """
-        DELETE /vars/:variable_id
+        ``DELETE /vars/:variable_id``
         """
         url = f"{self._base_url}/{variable_id}"
         return self._destroy(url)

@@ -13,19 +13,22 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
     _unittest_name = "state-ver-out"
 
     def setUp(self):
+        # Create an OAuth client for the test and extract it's the token ID
+        # Store the OAuth client ID to remove it at the end.
         oauth_client_payload = self._get_oauth_client_create_payload()
         self._oauth_client = self._api.oauth_clients.create(
             oauth_client_payload)
         self._oauth_client_id = self._oauth_client["data"]["id"]
-
-        self._oauth_token_id = \
+        oauth_token_id = \
             self._oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
-        _ws_create_with_vcs_payload = self._get_ws_with_vcs_create_payload(self._oauth_token_id)
 
-        self._ws = self._api.workspaces.create(_ws_create_with_vcs_payload)
+        # Create a workspace using that token ID, save the workspace ID
+        _ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
+        self._ws = self._api.workspaces.create(_ws_payload)
         self._ws_id = self._ws["data"]["id"]
         self._ws_name = self._ws["data"]["attributes"]["name"]
 
+        # Create an example config version for the unittest
         self._config_version = self._api.config_versions.create(
             self._ws_id, self._get_config_version_create_payload())["data"]
         self._config_version_upload_url = self._config_version["attributes"]["upload-url"]
@@ -39,32 +42,23 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
 
     def test_run_and_apply(self):
         """
-        Test the State Version API endpoints: list, create, show.
+        Test the State Version API endpoints: ``list``, ``create``, ``show``.
         """
-        test_filters = [
-            {
-                "keys": ["workspace", "name"],
-                "value": self._ws_name
-            },
-            {
-                "keys": ["organization", "name"],
-                "value": self._test_org_name
-            }
-        ]
-        state_versions = self._api.state_versions.list(\
-            filters=test_filters, page=0, page_size=50)["data"]
+        # Create a sample state version
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
-
         create_state_version_payload = self._get_state_version_create_payload()
         self._api.state_versions.create(
             self._ws_id, create_state_version_payload)
         self._api.workspaces.unlock(self._ws_id)
 
+        # Get the state version ID
+        # TODO: this can be simplified by extracting the ID from the create response
         state_versions = self._api.state_versions.list(\
             filters=test_filters, page=0, page_size=50)["data"]
         state_version = state_versions[0]
         sv_id = state_version["id"]
 
+        # Get the state version outputs ID, get the outputs, confirm they match the expected IDs
         shown_state_version = self._api.state_versions.show(sv_id)["data"]
         state_version_outputs = shown_state_version["relationships"]["outputs"]["data"]
         state_version_output_id = state_version_outputs[0]["id"]
