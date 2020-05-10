@@ -41,8 +41,6 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
         self.assertEqual(len(all_noti_configs), 0)
 
         # Add one notification configuration
-        # TODO: use a random name for the notification config
-
         not_cnf_name = self._name_with_random()
         payload = {
             "data": {

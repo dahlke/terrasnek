@@ -17,8 +17,8 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID
         # Store the OAuth client ID to remove it at the end.
-        oauth_client_payload = self._get_oauth_client_create_payload()
-        oauth_client = self._api.oauth_clients.create(oauth_client_payload)["data"]
+        oauth_client = self._api.oauth_clients.create(\
+            self._get_oauth_client_create_payload())["data"]
         self._oauth_client_id = oauth_client["id"]
         oauth_token_id = oauth_client["relationships"]["oauth-tokens"]["data"][0]["id"]
 

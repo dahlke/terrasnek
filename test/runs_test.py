@@ -72,8 +72,12 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
         # List the runs, using the correct parameters, confirm it has been created
         all_runs = self._api.runs.list(self._ws_id, page=0, page_size=50)["data"]
-        # TODO: don't check length, check for IDs
-        self.assertEqual(len(all_runs), 1)
+        found_run = False
+        for run in all_runs:
+            if run["id"] == run_id:
+                found_run = True
+                break
+        self.assertTrue(found_run)
 
         # Apply the plan
         self._api.runs.apply(run_id)

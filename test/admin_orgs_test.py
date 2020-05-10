@@ -14,10 +14,9 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
 
     def setUp(self):
         # Create a temp org to manipulate in the test
-        org_create_payload = self._get_org_create_payload()
-        self._created_org = self._api.orgs.create(org_create_payload)
-        self._created_org_name = org_create_payload["data"]["attributes"]["name"]
-        self._created_org_id = self._created_org["data"]["id"]
+        created_org = self._api.orgs.create(self._get_org_create_payload())["data"]
+        self._created_org_name = created_org["attributes"]["name"]
+        self._created_org_id = created_org["id"]
 
     def test_admin_orgs(self):
         """

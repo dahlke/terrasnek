@@ -16,18 +16,21 @@ class TestTFCTeams(TestTFCBaseTestCase):
         """
         Test the Teams API endpoints: ``list``, ``create``, ``show``, ``destroy``.
         """
-        # List all the teams, confirm that there is only one team
-        # TODO: check the response type instead
+        # List all the teams, confirm that the response type
         teams = self._api.teams.list()["data"]
-        self.assertEqual(len(teams), 1)
+        self.assertEqual("teams", teams[0]["type"])
 
         # Create a new team, confirm that it has been created
         new_team = self._api.teams.create(
             self._get_team_create_payload())["data"]
         new_team_id = new_team["id"]
-        teams = self._api.teams.list()["data"]
-        # TODO: look for the newly created team instead of checking length
-        self.assertEqual(len(teams), 2)
+        all_teams = self._api.teams.list()["data"]
+        found_team = False
+        for team in all_teams:
+            if team["id"] == new_team_id:
+                found_team = True
+                break
+        self.assertTrue(found_team)
 
         # Show the newly created team, assert that the response matches the ID we fed in.
         shown_team = self._api.teams.show(new_team_id)["data"]
@@ -35,6 +38,10 @@ class TestTFCTeams(TestTFCBaseTestCase):
 
         # Destroy the team, confirm it's gone
         self._api.teams.destroy(new_team_id)
-        teams = self._api.teams.list()["data"]
-        # TODO: Look for the team by ID instead of looking at the length
-        self.assertEqual(len(teams), 1)
+        all_teams = self._api.teams.list()["data"]
+        found_team = False
+        for team in all_teams:
+            if team["id"] == new_team_id:
+                found_team = True
+                break
+        self.assertFalse(found_team)

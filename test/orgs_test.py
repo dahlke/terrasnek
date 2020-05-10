@@ -19,10 +19,11 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         """
         # Create an org, confirm it was created.
         created_org = self._api.orgs.create(self._get_org_create_payload())["data"]
+        created_org_id = created_org["id"]
         created_org_name = created_org["attributes"]["name"]
-        orgs = self._api.orgs.list()["data"]
+        all_orgs = self._api.orgs.list()["data"]
         self.assertNotEqual(
-            len(orgs), 0, msg="No organizations found for TFC token.")
+            len(all_orgs), 0, msg="No organizations found for TFC token.")
 
         # List entitlements, confirm expected response
         ent = self._api.orgs.entitlements(self._test_org_name)["data"]
@@ -34,21 +35,27 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         self.assertEqual(org["data"]["id"], self._test_org_name)
 
         # Change the email address for the org, confirm the change.
-        # TODO: make this a random name
-        updated_email = "neil+terrasnek-unittest@hashicorp.com"
+        email_name = self._name_with_random()
+        email_to_update_to = f"{email_name}@gmail.com"
         update_org_payload = {
             "data": {
                 "type": "organizations",
                 "attributes": {
-                    "email": updated_email
+                    "email": email_to_update_to
                 }
             }
         }
         updated_org = self._api.orgs.update(
             self._test_org_name, update_org_payload)
         self.assertEqual(updated_org["data"]
-                         ["attributes"]["email"], updated_email)
+                         ["attributes"]["email"], email_to_update_to)
 
         # Destroy the org, confirm it's gone
         self._api.orgs.destroy(created_org_name)
-        # TODO: assert that it's gone
+        all_orgs = self._api.orgs.list()["data"]
+        found_org = False
+        for org in all_orgs:
+            if org["id"] == created_org_id:
+                found_org = True
+                break
+        self.assertFalse(found_org)

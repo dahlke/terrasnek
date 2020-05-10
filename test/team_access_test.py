@@ -37,11 +37,6 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
         """
         Test the Team Access API endpoints: ``list``, ``add``, ``remove``.
         """
-        # List the team-access to workspaces, confirm there are none
-        workspace_accesses = self._api.team_access.list()["data"]
-        # TODO: try not to do this based on length (look for the created WS)
-        self.assertEqual(len(workspace_accesses), 0)
-
         # Create new Team access, confirm it has been created
         team_access_create_payload = {
             "data": {
@@ -74,8 +69,11 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
         self.assertEqual(shown_access["data"]["id"], access_id)
 
         # Remove the team access, confirm it's gone
-        len_after_adding = len(self._api.team_access.list()["data"])
         self._api.team_access.remove_team_access(access_id)
-        # TODO: once again, do not do this based on length.
-        len_after_removing = self._api.team_access.list()["data"]
-        self.assertNotEqual(len_after_adding, len_after_removing)
+        all_team_access = self._api.workspaces.list()["data"]
+        found_team_access = False
+        for team_access in all_team_access:
+            if team_access["id"] == access_id:
+                found_team_access = True
+                break
+        self.assertFalse(found_team_access)

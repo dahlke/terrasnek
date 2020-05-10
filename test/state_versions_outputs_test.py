@@ -47,12 +47,11 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
         # Create a sample state version
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
         create_state_version_payload = self._get_state_version_create_payload()
-        self._api.state_versions.create(
-            self._ws_id, create_state_version_payload)
+        self._api.state_versions.create(self._ws_id, create_state_version_payload)
         self._api.workspaces.unlock(self._ws_id)
 
-        # Get the state version ID
-        # TODO: this can be simplified by extracting the ID from the create response
+        # Get the state version ID, using list instead of extracting from the create
+        # response to make the test shorter (less calls).
         test_filters = [
             {
                 "keys": ["workspace", "name"],

@@ -14,8 +14,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
     def setUp(self):
         # Add an SSH Key to TFC
-        create_payload = self._get_ssh_key_create_payload()
-        created_key = self._api.ssh_keys.create(create_payload)["data"]
+        created_key = self._api.ssh_keys.create(self._get_ssh_key_create_payload())["data"]
         self._created_key_id = created_key["id"]
 
     def tearDown(self):
@@ -23,23 +22,25 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
     def test_workspaces(self):
         """
-        Test the Workspaces API endpoints: create, destroy, show, lock,
-        unlock, update, assign_ssh_key, unassign_ssh_key.
+        Test the Workspaces API endpoints: ``create``, ``destroy``, ``show``, ``lock``,
+        ``unlock``, ``update``, ``assign_ssh_key``, ``unassign_ssh_key``.
         """
-
         # Get the number of existing workspaces, then create one and compare them
-        num_workspaces_before_create = len(self._api.workspaces.list()["data"])
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload())["data"]
         ws_id = workspace["id"]
-        # TODO: check for the workspace ID, not the length
-        self.assertNotEqual(\
-            num_workspaces_before_create, len(self._api.workspaces.list()["data"]))
+        all_ws = self._api.workspaces.list()["data"]
+        found_ws = False
+        for workspace in all_ws:
+            if workspace["id"] == ws_id:
+                found_ws = True
+                break
+        self.assertTrue(found_ws)
 
         # Lock the workspace and confirm it's locked
         ws_locked = self._api.workspaces.lock(
-            ws_id, {"reason": "Unit testing."})
-        self.assertTrue(ws_locked["data"]["attributes"]["locked"])
+            ws_id, {"reason": "Unit testing."})["data"]
+        self.assertTrue(ws_locked["attributes"]["locked"])
 
         # Unlock the workspace and confirm it's unlocked
         ws_unlocked = self._api.workspaces.unlock(ws_id)
@@ -47,12 +48,12 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         # Relock the workspace and confirm it's locked
         ws_relocked = self._api.workspaces.lock(
-            ws_id, {"reason": "Unit testing."})
-        self.assertTrue(ws_relocked["data"]["attributes"]["locked"])
+            ws_id, {"reason": "Unit testing."})["data"]
+        self.assertTrue(ws_relocked["attributes"]["locked"])
 
         # Force an unlock and confirm its unlocked
-        ws_forced = self._api.workspaces.force_unlock(ws_id)
-        self.assertFalse(ws_forced["data"]["attributes"]["locked"])
+        ws_forced = self._api.workspaces.force_unlock(ws_id)["data"]
+        self.assertFalse(ws_forced["attributes"]["locked"])
 
         # Update the workspace, check that the updates took effect
         updated_name = "unittest-update"
@@ -100,5 +101,10 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         self._api.workspaces.destroy(
             workspace_name=updated_name)
-        self.assertNotEqual(\
-            num_workspaces_after_create, len(self._api.workspaces.list()["data"]))
+        all_ws = self._api.workspaces.list()["data"]
+        found_ws = False
+        for workspace in all_ws:
+            if workspace["id"] == ws_id:
+                found_ws = True
+                break
+        self.assertFalse(found_ws)

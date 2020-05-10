@@ -43,8 +43,9 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
                 }
             }
         }
-        created_param_id = self._api.policy_set_params.create(\
+        created_param = self._api.policy_set_params.create(\
             self._created_policy_set_id, create_payload)["data"]
+        created_param_id = created_param["id"]
         all_params = self._api.policy_set_params.list(self._created_policy_set_id)["data"]
         self.assertEqual(len(all_params), 1)
 
