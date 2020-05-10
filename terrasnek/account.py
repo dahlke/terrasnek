@@ -39,4 +39,3 @@ class TFCAccount(TFCEndpoint):
         """
         url = f"{self._base_url}/password"
         return self._patch(url, data)
-

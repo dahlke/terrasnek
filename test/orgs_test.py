@@ -14,7 +14,8 @@ class TestTFCOrgs(TestTFCBaseTestCase):
 
     def test_orgs(self):
         """
-        Test the Orgs API endpoints: ``create``, ``list``, ``entitlements``, ``show``, ``update``, ``destroy``.
+        Test the Orgs API endpoints: ``create``, ``list``, ``entitlements``, ``show``,
+        ``update``, ``destroy``.
         """
         # Create an org, confirm it was created.
         created_org = self._api.orgs.create(self._get_org_create_payload())["data"]

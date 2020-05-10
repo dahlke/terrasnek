@@ -2,9 +2,9 @@
 Module for testing the Terraform Cloud API Endpoint: Admin Runs.
 """
 
-from .base import TestTFCBaseTestCase
-
 import time
+
+from .base import TestTFCBaseTestCase
 
 
 class TestTFCAdminRuns(TestTFCBaseTestCase):
@@ -73,7 +73,8 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
 
         # Force cancel the run and confirm that it has been cancelled
         self._api.admin_runs.force_cancel(self._run_id)
-        status_timestamps = self._api.runs.show(self._run_id)["data"]["attributes"]["status-timestamps"]
+        status_timestamps = \
+            self._api.runs.show(self._run_id)["data"]["attributes"]["status-timestamps"]
         while "force-canceled-at" not in status_timestamps:
             # Wait a second while we wait for the force cancel to go through
             time.sleep(1)

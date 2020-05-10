@@ -31,9 +31,11 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
         # Configure the required variables on the workspace
         variable_payloads = [
             self._get_variable_create_payload(
-                "AWS_ACCESS_KEY_ID", AWS_ACCESS_KEY_ID, self._ws_id, category="env", sensitive=True),
+                "AWS_ACCESS_KEY_ID", AWS_ACCESS_KEY_ID, \
+                self._ws_id, category="env", sensitive=True),
             self._get_variable_create_payload(
-                "AWS_SECRET_ACCESS_KEY", AWS_SECRET_ACCESS_KEY, self._ws_id, category="env", sensitive=True)
+                "AWS_SECRET_ACCESS_KEY", AWS_SECRET_ACCESS_KEY, \
+                self._ws_id, category="env", sensitive=True)
         ]
         for payload in variable_payloads:
             self._api.variables.create(payload)

@@ -29,10 +29,11 @@ class TestTFCOrgTokens(TestTFCBaseTestCase):
         self._api.set_org(self._created_org_id)
 
         # Create the token, confirm it was created
-        created_token_resp = self._api.org_tokens.create()
-        created_token_id = created_token_resp["data"]["id"]
+        created_token = self._api.org_tokens.create()["data"]
+        created_token_id = created_token["id"]
         self.assertNotEqual(created_token_id, None)
 
         # Remove the token, confirm it was removed
+        # TODO: this is a bad test
         removed_token_resp = self._api.org_tokens.destroy()
         self.assertEqual(removed_token_resp, None)

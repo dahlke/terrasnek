@@ -28,6 +28,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
     many tests.
     """
 
+    _unittest_name = "base"
+
     @classmethod
     def setUpClass(cls):
         cls._logger = logging.getLogger(cls.__class__.__name__)
@@ -52,7 +54,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
         random_hex = binascii.b2a_hex(os.urandom(ran_str_len)).decode("ascii")
         return f"terrasnek-test-{self._unittest_name}-{random_hex}"
 
-    def _get_config_version_create_payload(self):
+    @staticmethod
+    def _get_config_version_create_payload():
         return {
             "data": {
                 "type": "configuration-versions",
@@ -62,7 +65,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_user_token_create_payload(self):
+    @staticmethod
+    def _get_user_token_create_payload():
         return {
             "data": {
                 "type": "authentication-tokens",
@@ -72,7 +76,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_run_create_payload(self, workspace_id):
+    @staticmethod
+    def _get_run_create_payload(workspace_id):
         return {
             "data": {
                 "attributes": {
@@ -91,8 +96,9 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
+    @staticmethod
     def _get_variable_create_payload(\
-        self, key, value, workspace_id, category="terraform", sensitive=False):
+        key, value, workspace_id, category="terraform", sensitive=False):
         return {
             "data": {
                 "type": "vars",

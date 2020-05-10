@@ -16,9 +16,9 @@ class TFCCostEstimates(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/cost-estimates"
 
-    def show(self, id):
+    def show(self, cost_est_id):
         """
-        ``GET /cost-estimates/:id``
+        ``GET /cost-estimates/:cost_est_id``
         """
-        url = f"{self._base_url}/{id}"
+        url = f"{self._base_url}/{cost_est_id}"
         return self._show(url)

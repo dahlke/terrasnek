@@ -41,9 +41,8 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         ]
 
         # List the triggers and confirm there are none
-        triggers_resp = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)
-        triggers = triggers_resp["data"]
-        self.assertEqual(len(triggers), 0)
+        all_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
+        self.assertEqual(len(all_triggers), 0)
 
         # Create a trigger
         create_payload = {
@@ -58,22 +57,19 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
                 }
             }
         }
-        created_trigger_resp = self._api.run_triggers.create(self._target_ws_id, create_payload)
-        created_trigger_id = created_trigger_resp["data"]["id"]
+        created_trigger = self._api.run_triggers.create(self._target_ws_id, create_payload)["data"]
+        created_trigger_id = created_trigger["id"]
 
         # List the triggers again and confirm there is one
-        triggers_resp = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)
-        triggers = triggers_resp["data"]
-        self.assertEqual(len(triggers), 1)
+        all_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
+        self.assertEqual(len(all_triggers), 1)
 
         # Show the run trigger by id, compare to our created ID
-        shown_trigger_resp = self._api.run_triggers.show(created_trigger_id)
-        shown_trigger = shown_trigger_resp["data"]
+        shown_trigger = self._api.run_triggers.show(created_trigger_id)["data"]
         shown_trigger_id = shown_trigger["id"]
         self.assertEqual(shown_trigger_id, created_trigger_id)
 
         # Destroy the run trigger, confirm that we have zero run triggers again
         self._api.run_triggers.destroy(created_trigger_id)
-        triggers_resp = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)
-        triggers = triggers_resp["data"]
-        self.assertEqual(len(triggers), 0)
+        all_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
+        self.assertEqual(len(all_triggers), 0)

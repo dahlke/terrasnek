@@ -15,8 +15,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
     def setUp(self):
         # Add an SSH Key to TFC
         create_payload = self._get_ssh_key_create_payload()
-        create_resp = self._api.ssh_keys.create(create_payload)
-        created_key = create_resp["data"]
+        created_key = self._api.ssh_keys.create(create_payload)["data"]
         self._created_key_id = created_key["id"]
 
     def tearDown(self):
@@ -31,11 +30,11 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         # Get the number of existing workspaces, then create one and compare them
         num_workspaces_before_create = len(self._api.workspaces.list()["data"])
         workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload())
-        ws_id = workspace["data"]["id"]
-        num_workspaces_after_create = len(self._api.workspaces.list()["data"])
-        self.assertNotEqual(num_workspaces_before_create,
-                            num_workspaces_after_create)
+            self._get_ws_without_vcs_create_payload())["data"]
+        ws_id = workspace["id"]
+        # TODO: check for the workspace ID, not the length
+        self.assertNotEqual(\
+            num_workspaces_before_create, len(self._api.workspaces.list()["data"]))
 
         # Lock the workspace and confirm it's locked
         ws_locked = self._api.workspaces.lock(
@@ -65,9 +64,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
                 }
             }
         }
-        ws_updated = self._api.workspaces.update(ws_id, update_payload)
+        ws_updated = self._api.workspaces.update(ws_id, update_payload)["data"]
         self.assertEqual(
-            updated_name, ws_updated["data"]["attributes"]["name"])
+            updated_name, ws_updated["attributes"]["name"])
 
         # Assign an SSH key and confirm it's added
         assign_payload = {
@@ -101,6 +100,5 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         self._api.workspaces.destroy(
             workspace_name=updated_name)
-        num_workspaces_after_destroy = len(self._api.workspaces.list()["data"])
-        self.assertNotEqual(num_workspaces_after_create,
-                            num_workspaces_after_destroy)
+        self.assertNotEqual(\
+            num_workspaces_after_create, len(self._api.workspaces.list()["data"]))

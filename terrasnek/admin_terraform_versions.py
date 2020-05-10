@@ -23,7 +23,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
-        return self._list( self._base_url, page=page, page_size=page_size)
+        return self._list(self._base_url, page=page, page_size=page_size)
 
     def create(self, data):
         """

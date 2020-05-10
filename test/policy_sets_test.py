@@ -14,14 +14,12 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
 
     def setUp(self):
         # Set up a workspace to attach a policy set to
-        self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())
-        self._ws_id = self._ws["data"]["id"]
-        self._ws_name = self._ws["data"]["attributes"]["name"]
+        workspace = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())["data"]
+        self._ws_id = workspace["id"]
+        self._ws_name = workspace["attributes"]["name"]
 
         # Set up a policy to add and remove from the set
-        create_payload = self._get_policy_create_payload()
-        create_resp = self._api.policies.create(create_payload)
-        policy = create_resp["data"]
+        policy = self._api.policies.create(self._get_policy_create_payload())["data"]
         self._policy_id = policy["id"]
 
     def tearDown(self):
@@ -37,14 +35,11 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         ``attach_policy_set_to_workspaces``, ``detach_policy_set_from_workspaces``.
         """
         # List all the policy sets, confirm there are none
-        sets_resp = self._api.policy_sets.list()
-        policy_sets = sets_resp["data"]
-        self.assertEqual(len(policy_sets), 0)
+        all_policy_sets = self._api.policy_sets.list()["data"]
+        self.assertEqual(len(all_policy_sets), 0)
 
         # Add a policy set to TFC
-        create_payload = self._get_policy_set_create_payload()
-        create_resp = self._api.policy_sets.create(create_payload)
-        created_policy_set = create_resp["data"]
+        created_policy_set = self._api.policy_sets.create(self._get_policy_create_payload())["data"]
         created_policy_set_id = created_policy_set["id"]
         created_policy_set_name = created_policy_set["attributes"]["name"]
 
@@ -56,11 +51,10 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
                 "value": False
             }
         ]
-        sets_resp = self._api.policy_sets.list(\
+        all_policy_sets = self._api.policy_sets.list(\
             filters=test_filters, page=0, page_size=50, \
-            include="policies", search=created_policy_set_name)
-        policy_sets = sets_resp["data"]
-        self.assertEqual(len(policy_sets), 1)
+            include="policies", search=created_policy_set_name)["data"]
+        self.assertEqual(len(all_policy_sets), 1)
 
         # Update the policy set, confirm the update took place
         desc_to_update_to = "foo"
@@ -72,10 +66,9 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
                 "type": "policy-sets"
             }
         }
-        update_resp = self._api.policy_sets.update(created_policy_set_id, update_payload)
-        updated_policy_set = update_resp["data"]
-        updated_desc = updated_policy_set["attributes"]["description"]
-        self.assertEqual(desc_to_update_to, updated_desc)
+        updated_policy_set = self._api.policy_sets.update( \
+            created_policy_set_id, update_payload)["data"]
+        self.assertEqual(desc_to_update_to, updated_policy_set["attributes"]["description"])
 
         # Add the policy we created in the set up to the policy set
         add_remove_policy_payload = {
@@ -86,8 +79,8 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
             ]
         }
         self._api.policy_sets.add_policies_to_set(created_policy_set_id, add_remove_policy_payload)
-        shown_policy_set_resp = self._api.policy_sets.show(created_policy_set_id)
-        shown_policies_in_set = shown_policy_set_resp["data"]["relationships"]["policies"]["data"]
+        shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
+        shown_policies_in_set = shown_policy_set["relationships"]["policies"]["data"]
         self.assertEqual(len(shown_policies_in_set), 1)
 
         # Attach the policy set to the workspace we created, confirm it's attached
@@ -100,31 +93,28 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         }
         self._api.policy_sets.attach_policy_set_to_workspaces(\
             created_policy_set_id, attach_detach_to_workspace_payload)
-        shown_policy_set_resp = self._api.policy_sets.show(created_policy_set_id)
+        shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
         shown_workspaces_attached_to = \
-            shown_policy_set_resp["data"]["relationships"]["workspaces"]["data"]
+            shown_policy_set["relationships"]["workspaces"]["data"]
         self.assertEqual(len(shown_workspaces_attached_to), 1)
 
         # Detach the policy set from the workspace we created, confirm it's not attached
         self._api.policy_sets.detach_policy_set_from_workspaces(\
             created_policy_set_id, attach_detach_to_workspace_payload)
-        shown_policy_set_resp = self._api.policy_sets.show(created_policy_set_id)
-        shown_workspaces_attached_to = \
-            shown_policy_set_resp["data"]["relationships"]["workspaces"]["data"]
-        self.assertEqual(len(shown_workspaces_attached_to), 0)
+        shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
+        self.assertEqual(len(shown_policy_set["relationships"]["workspaces"]["data"]), 0)
 
         # Remove the policy from the set and confirm it has been removed
         self._api.policy_sets.remove_policies_from_set(\
             created_policy_set_id, add_remove_policy_payload)
-        shown_policy_set_resp = self._api.policy_sets.show(created_policy_set_id)
-        shown_policies_in_set = shown_policy_set_resp["data"]["relationships"]["policies"]["data"]
+        shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
+        shown_policies_in_set = shown_policy_set["relationships"]["policies"]["data"]
         self.assertEqual(len(shown_policies_in_set), 0)
 
         # Delete the policy set, confirm it's been deleted
         self._api.policy_sets.destroy(created_policy_set_id)
-        sets_resp = self._api.policy_sets.list()
-        policy_sets = sets_resp["data"]
-        self.assertEqual(len(policy_sets), 0)
+        all_policy_sets = self._api.policy_sets.list()["data"]
+        self.assertEqual(len(all_policy_sets), 0)
 
 
     def test_policy_sets_versions(self):

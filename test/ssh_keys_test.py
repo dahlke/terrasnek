@@ -5,6 +5,8 @@ Module for testing the Terraform Cloud API Endpoint: SSH Keys.
 from .base import TestTFCBaseTestCase
 
 
+SSH_KEY_NAME_TO_UPDATE_TO = "foo"
+
 class TestTFCSSHKeys(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Cloud API Endpoint: SSH Keys.
@@ -18,45 +20,36 @@ class TestTFCSSHKeys(TestTFCBaseTestCase):
         ``update``, ``destroy``.
         """
 
-        ssh_keys_resp = self._api.ssh_keys.list()
-        ssh_keys = ssh_keys_resp["data"]
-        self.assertEqual(len(ssh_keys), 0)
+        all_ssh_keys = self._api.ssh_keys.list()["data"]
+        self.assertEqual(len(all_ssh_keys), 0)
 
         # Add an SSH Key to TFC
         create_payload = self._get_ssh_key_create_payload()
-        create_resp = self._api.ssh_keys.create(create_payload)
-        created_key = create_resp["data"]
+        created_key = self._api.ssh_keys.create(create_payload)["data"]
         created_key_id = created_key["id"]
 
         # Check that we now have one key
-        ssh_keys_resp = self._api.ssh_keys.list()
-        ssh_keys = ssh_keys_resp["data"]
-        self.assertEqual(len(ssh_keys), 1)
+        all_ssh_keys = self._api.ssh_keys.list()["data"]
+        self.assertEqual(len(all_ssh_keys), 1)
 
         # Show the key we just created
-        shown_resp = self._api.ssh_keys.show(created_key_id)
-        shown_key = shown_resp["data"]
+        shown_key = self._api.ssh_keys.show(created_key_id)["data"]
         shown_key_id = shown_key["id"]
         self.assertEqual(shown_key_id, created_key_id)
 
         # Update the key we just showed
-        name_to_update_to = "foo"
         update_payload = {
             "data": {
                 "attributes": {
-                    "name": name_to_update_to
+                    "name": SSH_KEY_NAME_TO_UPDATE_TO
                 }
             }
         }
-        update_resp = self._api.ssh_keys.update(created_key_id, update_payload)
-        updated_key = update_resp["data"]
+        updated_key = self._api.ssh_keys.update(created_key_id, update_payload)["data"]
         updated_key_name = updated_key["attributes"]["name"]
-        self.assertEqual(name_to_update_to, updated_key_name)
+        self.assertEqual(SSH_KEY_NAME_TO_UPDATE_TO, updated_key_name)
 
-        # Delete the key we just updated
+        # Delete the key we just updated, confirm it's gone
         self._api.ssh_keys.destroy(created_key_id)
-
-        # Check that we now have zero keys again
-        ssh_keys_resp = self._api.ssh_keys.list()
-        ssh_keys = ssh_keys_resp["data"]
-        self.assertEqual(len(ssh_keys), 0)
+        all_ssh_keys = self._api.ssh_keys.list()["data"]
+        self.assertEqual(len(all_ssh_keys), 0)

@@ -25,8 +25,8 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
         # TODO: test the parameters
         all_ws = self._api.admin_workspaces.list()["data"]
         found_ws = False
-        for ws in all_ws:
-            ws_id = ws["id"]
+        for workspace in all_ws:
+            ws_id = workspace["id"]
             if ws_id == self._created_ws_id:
                 found_ws = True
                 break
@@ -40,8 +40,8 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
         self._api.admin_workspaces.destroy(self._created_ws_id)
         all_ws = self._api.admin_workspaces.list()["data"]
         found_ws = False
-        for ws in all_ws:
-            ws_id = ws["id"]
+        for workspace in all_ws:
+            ws_id = workspace["id"]
             if ws_id == self._created_ws_id:
                 found_ws = True
                 break

@@ -2,9 +2,9 @@
 Module for testing the Terraform Cloud API Endpoint: Admin Settings.
 """
 
-from .base import TestTFCBaseTestCase
-
 import random
+
+from .base import TestTFCBaseTestCase
 
 
 class TestTFCAdminSettings(TestTFCBaseTestCase):
@@ -107,6 +107,9 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
         all_smtp = self._api.admin_settings.list_smtp()["data"]
         self.assertEqual("smtp-settings", all_smtp["type"])
 
+        """
+        TODO: complete once an SMTP test server is in place
+
         update_payload = {
             "data": {
                 "attributes": {
@@ -122,12 +125,9 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
             }
         }
 
-        # TODO: When a request to this endpoint is submitted, a test message will be
-        # sent to the specified test-email-address. If the test message delivery fails,
-        # the API will return an error code indicating the reason for the failure.
-
-        # updated_smtp = self._api.admin_settings.update_smtp(update_payload)["data"]
-        # self.assertTrue(updated_smtp["attributes"]["enabled"])
+        updated_smtp = self._api.admin_settings.update_smtp(update_payload)["data"]
+        self.assertTrue(updated_smtp["attributes"]["enabled"])
+        """
 
     def test_admin_settings_twilio(self):
         """
@@ -185,5 +185,7 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
                 }
             }
         }
-        updated_customization = self._api.admin_settings.update_customization(update_payload)["data"]
-        self.assertEqual(email_to_update_to, updated_customization["attributes"]["support-email-address"])
+        updated_customization = \
+            self._api.admin_settings.update_customization(update_payload)["data"]
+        self.assertEqual(\
+            email_to_update_to, updated_customization["attributes"]["support-email-address"])

@@ -53,6 +53,16 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
 
         # Get the state version ID
         # TODO: this can be simplified by extracting the ID from the create response
+        test_filters = [
+            {
+                "keys": ["workspace", "name"],
+                "value": self._ws_name
+            },
+            {
+                "keys": ["organization", "name"],
+                "value": self._test_org_name
+            }
+        ]
         state_versions = self._api.state_versions.list(\
             filters=test_filters, page=0, page_size=50)["data"]
         state_version = state_versions[0]

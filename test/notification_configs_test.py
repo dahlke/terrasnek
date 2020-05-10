@@ -37,43 +37,36 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
         """
 
         # Show that there are no configuration notifications for the workspace
-        noti_config_resp = self._api.notification_configs.list(self._ws_id)
-        noti_configs = noti_config_resp["data"]
-        self.assertEqual(len(noti_configs), 0)
+        all_noti_configs = self._api.notification_configs.list(self._ws_id)["data"]
+        self.assertEqual(len(all_noti_configs), 0)
 
         # Add one notification configuration
         # TODO: use a random name for the notification config
+
+        not_cnf_name = self._name_with_random()
         payload = {
             "data": {
                 "type": "notification-configurations",
                 "attributes": {
                     "destination-type": "generic",
                     "enabled": True,
-                    "name": "terrasnek_unittest",
+                    "name": not_cnf_name,
                     "url": "https://httpstat.us/200",
                     "triggers": [
-                        "run:applying",
-                        "run:completed",
-                        "run:created",
-                        "run:errored",
-                        "run:needs_attention",
-                        "run:planning"
+                        "run:applying"
                     ]
                 }
             }
         }
-        create_resp = self._api.notification_configs.create(self._ws_id, payload)
-        created_noti_config = create_resp["data"]
+        created_noti_config = self._api.notification_configs.create(self._ws_id, payload)["data"]
         created_noti_config_id = created_noti_config["id"]
 
         # Check that there is now one notification configuration added
-        noti_config_resp = self._api.notification_configs.list(self._ws_id)
-        noti_configs = noti_config_resp["data"]
-        self.assertEqual(len(noti_configs), 1)
+        all_noti_configs = self._api.notification_configs.list(self._ws_id)["data"]
+        self.assertEqual(len(all_noti_configs), 1)
 
         # Show the notification configuration we just created, compare the IDs
-        shown_resp = self._api.notification_configs.show(created_noti_config_id)
-        shown_noti_config = shown_resp["data"]
+        shown_noti_config = self._api.notification_configs.show(created_noti_config_id)["data"]
         shown_noti_config_id = shown_noti_config["id"]
         self.assertEqual(shown_noti_config_id, created_noti_config_id)
 
@@ -88,19 +81,17 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
                 }
             }
         }
-        update_resp = self._api.notification_configs.update(created_noti_config_id, update_payload)
-        updated_noti_config = update_resp["data"]
+        updated_noti_config = \
+            self._api.notification_configs.update(created_noti_config_id, update_payload)["data"]
         updated_noti_name = updated_noti_config["attributes"]["name"]
         self.assertEqual(updated_noti_name, name_to_update_to)
 
         # Check that we can verify the notification configuration endpoint
-        verify_resp = self._api.notification_configs.verify(created_noti_config_id)
-        verified_noti_config = verify_resp["data"]
+        verified_noti_config = self._api.notification_configs.verify(created_noti_config_id)["data"]
         verified_noti_config_name = verified_noti_config["attributes"]["name"]
         self.assertEqual(name_to_update_to, verified_noti_config_name)
 
         # Destroy the notification configuraiton, and show the workspace has zero again
         self._api.notification_configs.destroy(created_noti_config_id)
-        noti_config_resp = self._api.notification_configs.list(self._ws_id)
-        noti_configs = noti_config_resp["data"]
-        self.assertEqual(len(noti_configs), 0)
+        all_noti_configs = self._api.notification_configs.list(self._ws_id)["data"]
+        self.assertEqual(len(all_noti_configs), 0)

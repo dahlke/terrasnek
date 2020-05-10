@@ -4,6 +4,8 @@ Module for testing the Terraform Cloud API Endpoint: Admin Terraform Versions.
 
 from .base import TestTFCBaseTestCase
 
+TF_RELEASE_URL = "https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip"
+TF_RELEASE_SHA = "84ccfb8e13b5fce63051294f787885b76a1fedef6bdbecf51c5e586c9e20c9b7"
 
 class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
     """
@@ -19,7 +21,7 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
         """
         # List all the TF versions, verify the response type
         all_tf_versions = self._api.admin_terraform_versions.list()["data"]
-        self.assertTrue("terraform-versions", all_tf_versions[0]["type"])
+        self.assertEqual("terraform-versions", all_tf_versions[0]["type"])
 
         # Create a fake version and confirm it was created correctly
         version_to_create = "0.1.300"
@@ -28,8 +30,8 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
                 "type": "terraform-versions",
                 "attributes": {
                     "version": version_to_create,
-                    "url": "https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip",
-                    "sha": "84ccfb8e13b5fce63051294f787885b76a1fedef6bdbecf51c5e586c9e20c9b7",
+                    "url": TF_RELEASE_URL,
+                    "sha": TF_RELEASE_SHA,
                     "official": False,
                     "enabled": True,
                     "beta": False
@@ -50,12 +52,13 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
                 }
             }
         }
-        updated_tf_version = self._api.admin_terraform_versions.update(created_tf_version_id, update_payload)["data"]
+        updated_tf_version = \
+            self._api.admin_terraform_versions.update(created_tf_version_id, update_payload)["data"]
         self.assertEqual(beta_to_update_to, updated_tf_version["attributes"]["beta"])
 
         # Show the TF version, confirm the version number
         shown_tf_version = self._api.admin_terraform_versions.show(created_tf_version_id)["data"]
-        self.assertEqual(version_to_create, updated_tf_version["attributes"]["version"])
+        self.assertEqual(version_to_create, shown_tf_version["attributes"]["version"])
 
         # Destroy the TF version, confirm it's gone
         self._api.admin_terraform_versions.destroy(created_tf_version_id)
