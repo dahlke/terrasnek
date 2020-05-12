@@ -59,7 +59,8 @@ if __name__ == "__main__":
 <details>
   <summary>Supported Endpoints</summary>
 
-    * [x] [Account](https://www.terraform.io/docs/cloud/api/account.html)
+    - [x] [Account](https://www.terraform.io/docs/cloud/api/account.html)
+
     * [x] [Applies](https://www.terraform.io/docs/cloud/api/applies.html)
     * [x] [Configuration Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)
     * [x] [Cost Estimates](https://www.terraform.io/docs/cloud/api/cost-estimates.html)
