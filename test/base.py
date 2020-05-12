@@ -194,7 +194,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "enforce": [
                         {
                             "path": "terransek-example-policy.sentinel",
-                            "mode": "hard-mandatory"
+                            "mode": "soft-mandatory"
                         }
                     ],
                     "name": self._name_with_random(),
@@ -209,7 +209,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_policy_set_create_payload(self):
+    def _get_policy_set_create_payload(self, oauth_token_id):
         # https://www.terraform.io/docs/cloud/api/policies.html#sample-payload
         return {
             "data": {
@@ -217,7 +217,14 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 "attributes": {
                     "name": self._name_with_random(),
                     "description": "terrasnek unittest",
-                    "global": False
+                    "global": False,
+                    "policies-path": "sentinel/",
+                    "vcs-repo": {
+                        "branch": "master",
+                        "identifier": "dahlke/terrasnek-unittest-config",
+                        "ingress-submodules": False,
+                        "oauth-token-id": oauth_token_id
+                    }
                 },
                 "relationships": {
                     "policies": {

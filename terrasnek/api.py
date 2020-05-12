@@ -24,9 +24,12 @@ from .org_tokens import TFCOrgTokens
 from .plans import TFCPlans
 from .plan_exports import TFCPlanExports
 from .policies import TFCPolicies
+from .policy_checks import TFCPolicyChecks
 from .policy_sets import TFCPolicySets
 from .policy_set_params import TFCPolicySetParams
 from .notification_configs import TFCNotificationConfigurations
+from .policy_checks import TFCPolicyChecks
+from .policy_checks import TFCPolicyChecks
 from .runs import TFCRuns
 from .run_triggers import TFCRunTriggers
 from .state_versions import TFCStateVersions
@@ -118,6 +121,7 @@ class TFC():
         self.plans = None
         self.plan_exports = None
         self.policies = None
+        self.policy_checks = None
         self.policy_sets = None
         self.policy_set_params = None
         self.run_triggers = None
@@ -238,6 +242,12 @@ class TFC():
             self._verify)
 
         self.policies = TFCPolicies(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
+
+        self.policy_checks = TFCPolicyChecks(
             self._instance_url,
             self._current_org,
             self._headers,

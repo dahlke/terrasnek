@@ -72,6 +72,7 @@ if __name__ == "__main__":
     * [x] [Plan Exports](https://www.terraform.io/docs/cloud/api/plan-exports.html)
     * [x] [Plans](https://www.terraform.io/docs/cloud/api/plans.html)
     * [x] [Policies](https://www.terraform.io/docs/cloud/api/policies.html)
+    * [x] [Policy Checks](https://www.terraform.io/docs/cloud/api/policy-checks.html)
     * [x] [Policy Sets](https://www.terraform.io/docs/cloud/api/policy-sets.html)
     * [x] [Policy Set Parameters](http://www.terraform.io/docs/cloud/api/policy-set-params.html)
     * [x] [Runs](https://www.terraform.io/docs/cloud/api/run.html)
@@ -97,8 +98,6 @@ if __name__ == "__main__":
 
 <details>
   <summary>Unsupported Endpoints</summary>
-
-    * [ ] [Policy Checks](https://www.terraform.io/docs/cloud/api/policy-checks.html)
     * [ ] [Registry Modules](https://www.terraform.io/docs/cloud/api/modules.html)
 </details>
 

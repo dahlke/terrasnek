@@ -13,14 +13,20 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
     _unittest_name = "pol-set-params"
 
     def setUp(self):
+        oauth_client = self._api.oauth_clients.create(\
+            self._get_oauth_client_create_payload())["data"]
+        self._oauth_client_id = oauth_client["id"]
+        oauth_token_id = oauth_client["relationships"]["oauth-tokens"]["data"][0]["id"]
+
         # Create a temp policy set to manipulate in the test, store the ID
         created_policy_set = self._api.policy_sets.create(\
-            self._get_policy_set_create_payload())["data"]
+            self._get_policy_set_create_payload(oauth_token_id))["data"]
         self._created_policy_set_id = created_policy_set["id"]
 
     def tearDown(self):
         # Destroy the workspace and policy we created
         self._api.policy_sets.destroy(self._created_policy_set_id)
+        self._api.oauth_clients.destroy(self._oauth_client_id)
 
     def test_policy_sets(self):
         """
