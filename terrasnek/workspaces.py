@@ -30,7 +30,6 @@ class TFCWorkspaces(TFCEndpoint):
         A workspace can be deleted via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
         """
-        # TODO: implement both endpoints, test both
         if workspace_name is not None:
             url = f"{self._org_base_url}/{workspace_name}"
         elif workspace_id is not None:
@@ -75,7 +74,6 @@ class TFCWorkspaces(TFCEndpoint):
         Details on a workspace can be retrieved from two endpoints, which behave identically.
         One refers to a workspace by its ID, and the other by its name and organization.
         """
-        # TODO: implement both endpoints, test both
         if workspace_name is not None:
             url = f"{self._org_base_url}/{workspace_name}"
         elif workspace_id is not None:

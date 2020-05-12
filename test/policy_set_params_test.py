@@ -14,8 +14,8 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
 
     def setUp(self):
         # Create a temp policy set to manipulate in the test, store the ID
-        create_payload = self._get_policy_set_create_payload()
-        created_policy_set = self._api.policy_sets.create(create_payload)["data"]
+        created_policy_set = self._api.policy_sets.create(\
+            self._get_policy_set_create_payload())["data"]
         self._created_policy_set_id = created_policy_set["id"]
 
     def tearDown(self):

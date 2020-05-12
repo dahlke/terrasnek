@@ -46,6 +46,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._test_state_path = "./test/testdata/terraform/terrasnek_unittest.tfstate"
         cls._config_version_upload_tarball_path = \
             "./test/testdata/terraform/terrasnek_unittest_config_version.tar.gz"
+        cls._policy_set_upload_tarball_path = \
+            "./test/testdata/sentinel/terrasnek_unittest_sentinel.tar.gz"
         cls._plan_export_tarball_target_path = "/tmp/terrasnek_unittest.tar.gz"
 
         cls._api.set_org(cls._test_org_name)

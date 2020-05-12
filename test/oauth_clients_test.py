@@ -20,8 +20,7 @@ class TestTFCOAuthClients(TestTFCBaseTestCase):
         # Create a test OAuth client
         oauth_clients = self._api.oauth_clients.list()["data"]
         num_clients_before_add = len(oauth_clients)
-        oauth_client_payload = self._get_oauth_client_create_payload()
-        oauth_client = self._api.oauth_clients.create(oauth_client_payload)
+        oauth_client = self._api.oauth_clients.create(self._get_oauth_client_create_payload())
 
         # List the OAuth clients and confirm there is one.
         oauth_clients = self._api.oauth_clients.list()["data"]

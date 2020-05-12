@@ -11,8 +11,7 @@ TFC_TOKEN = os.getenv("TFC_TOKEN", None)
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
 
-SSL_VERIFY_RAW = os.getenv("SSL_VERIFY", "")
-SSL_VERIFY = False if SSL_VERIFY_RAW.lower() == "false" else True
+SSL_VERIFY = os.getenv("SSL_VERIFY", "").lower() != "false"
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
 GITHUB_SECRET = os.getenv("GITHUB_SECRET", None)

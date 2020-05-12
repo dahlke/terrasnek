@@ -18,7 +18,7 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         ``list_for_user``, ``show``, ``remove``.
         """
 
-        # TODO: User needs to be created ahead of time, and it can't be done with
+        # NOTE: User needs to be created ahead of time, and it can't be done with
         # the API currently.
 
         # Get the existing org memberships for the logged in user
@@ -50,11 +50,12 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         users_for_org = self._api.org_memberships.list_for_org(\
             query=truncated_test_username, filters=test_filters, page=0, page_size=50)
         num_users_in_org = len(users_for_org["data"])
+        # Only one cause we are filtering on the test username (inactive users)
         self.assertEqual(num_users_in_org, 1)
 
-        # Remove the user, confirm they are gone
-        # TODO: look for usernames, not numbers
+        # Remove the user, confirm that the user is gone when we filter on the username
         self._api.org_memberships.remove(org_membership_id)
-        users_for_org = self._api.org_memberships.list_for_org()
+        users_for_org = self._api.org_memberships.list_for_org(\
+            query=truncated_test_username, filters=test_filters, page=0, page_size=50)
         num_users_in_org = len(users_for_org["data"])
-        self.assertEqual(num_users_in_org, 1)
+        self.assertEqual(num_users_in_org, 0)

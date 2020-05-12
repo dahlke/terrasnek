@@ -54,7 +54,8 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
                 }
             }
         }
-        self._api.admin_settings.update_cost_estimation(update_payload)["data"]
+        updated_admin_cost_est_settings = self._api.admin_settings.update_cost_estimation(update_payload)["data"]
+        self.assertTrue(updated_admin_cost_est_settings["attributes"]["enabled"])
 
         # Enable cost estimation on the org level
         update_payload = {

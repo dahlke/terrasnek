@@ -29,7 +29,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload())["data"]
         ws_id = workspace["id"]
-        all_ws = self._api.workspaces.list()["data"]
+        all_ws = self._api.workspaces.list(page=0, page_size=50)["data"]
         found_ws = False
         for workspace in all_ws:
             if workspace["id"] == ws_id:
@@ -56,7 +56,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         self.assertFalse(ws_forced["attributes"]["locked"])
 
         # Update the workspace, check that the updates took effect
-        updated_name = "unittest-update"
+        updated_name = self._name_with_random()
         update_payload = {
             "data": {
                 "type": "workspaces",

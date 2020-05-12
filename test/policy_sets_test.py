@@ -122,4 +122,15 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         Test the Policy Set API endpoints: ``create_policy_set_version``,
         ``show_policy_set_version``.
         """
-        # TODO: implement test
+        created_policy_set = self._api.policy_sets.create(self._get_policy_create_payload())["data"]
+        created_policy_set_id = created_policy_set["id"]
+
+        pol_set_version = self._api.policy_sets.create_policy_set_version(\
+            created_policy_set_id)["data"]
+        pol_set_version_id = pol_set_version["id"]
+        self._api.policy_sets.upload(
+            self._policy_set_upload_tarball_path, pol_set_version_id)
+        shown_pol_set_version = self._api.policy_sets.show_policy_set_version(\
+            pol_set_version["id"])["data"]
+        self.assertEqual("ready", shown_pol_set_version["attributes"]["status"])
+        self._api.policy_sets.destroy(created_policy_set_id)

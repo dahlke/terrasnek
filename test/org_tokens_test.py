@@ -14,10 +14,9 @@ class TestTFCOrgTokens(TestTFCBaseTestCase):
 
     def setUp(self):
         # Create a temp org to manipulate in the test.
-        org_create_payload = self._get_org_create_payload()
-        self._created_org = self._api.orgs.create(org_create_payload)
-        self._created_org_name = org_create_payload["data"]["attributes"]["name"]
-        self._created_org_id = self._created_org["data"]["id"]
+        created_org = self._api.orgs.create(self._get_org_create_payload())["data"]
+        self._created_org_name = created_org["attributes"]["name"]
+        self._created_org_id = created_org["id"]
 
     def tearDown(self):
         self._api.orgs.destroy(self._created_org_name)
@@ -33,7 +32,7 @@ class TestTFCOrgTokens(TestTFCBaseTestCase):
         created_token_id = created_token["id"]
         self.assertNotEqual(created_token_id, None)
 
-        # Remove the token, confirm it was removed
-        # TODO: this is a bad test
+        # Remove the token, confirm it the request worked (no response)
+        # since we don't have a way to look for them otherwise.
         removed_token_resp = self._api.org_tokens.destroy()
         self.assertEqual(removed_token_resp, None)

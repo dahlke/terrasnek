@@ -107,27 +107,7 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
         all_smtp = self._api.admin_settings.list_smtp()["data"]
         self.assertEqual("smtp-settings", all_smtp["type"])
 
-        """
-        TODO: complete once an SMTP test server is in place
-
-        update_payload = {
-            "data": {
-                "attributes": {
-                    "enabled": True,
-                    "host": "example.com",
-                    "port": 25,
-                    "sender": "sample_user@example.com",
-                    "auth": "login",
-                    "username": "sample_user",
-                    "password": "sample_password",
-                    "test-email-address": "test@example.com"
-                }
-            }
-        }
-
-        updated_smtp = self._api.admin_settings.update_smtp(update_payload)["data"]
-        self.assertTrue(updated_smtp["attributes"]["enabled"])
-        """
+        # TODO: need to use a real SMTP server to finish this test.
 
     def test_admin_settings_twilio(self):
         """
@@ -138,34 +118,7 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
         all_twilio = self._api.admin_settings.list_twilio()["data"]
         self.assertEqual("twilio-settings", all_twilio["type"])
 
-        """
-        # TODO: need to use a real twilio account to verify against here.
-
-        update_payload = {
-            "data": {
-                "attributes": {
-                    "enabled": True,
-                    "account-sid": "12345abcd",
-                    "auth-token": "sample_token",
-                    "from-number": "555-555-5555"
-                }
-            }
-        }
-
-        updated_twilio = self._api.admin_settings.update_twilio(update_payload)["data"]
-        print(updated_twilio)
-        self.assertTrue(updated_twilio["attributes"]["enabled"])
-
-        verify_payload = {
-            "data": {
-                "attributes": {
-                "test-number": "555-555-0000"
-                }
-            }
-        }
-        verified_twilio = self._api.admin_settings.verify_twilio(verify_payload)
-        print(verified_twilio)
-        """
+        # TODO: need to use a real twilio account to finish this test.
 
     def test_admin_settings_customization(self):
         """

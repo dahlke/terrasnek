@@ -13,9 +13,8 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
     _unittest_name = "oa-tokens"
 
     def setUp(self):
-        oauth_client_payload = self._get_oauth_client_create_payload()
-        self._oauth_client = self._api.oauth_clients.create(oauth_client_payload)[
-            "data"]
+        self._oauth_client = self._api.oauth_clients.create(\
+            self._get_oauth_client_create_payload())["data"]
         self._oauth_client_id = self._oauth_client["id"]
 
     def tearDown(self):
@@ -40,4 +39,21 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
         shown_oauth_token = self._api.oauth_tokens.show(oauth_token_id)
         self.assertEqual(oauth_token_id, shown_oauth_token["data"]["id"])
 
-        # TODO: add tests for update / destroy
+        # Create an empty update payload (it requires a real Git SSH key), so publish
+        # an update and verify the response type is what we expect
+        update_payload = {
+            "data": {
+                "id": oauth_token_id,
+                "type": "oauth-tokens",
+                "attributes": {
+                }
+            }
+        }
+        updated_oauth_token = self._api.oauth_tokens.update(oauth_token_id, update_payload)["data"]
+        self.assertEqual("oauth-tokens", updated_oauth_token["type"])
+
+        # Delete the OAuth token and confirm we have none left
+        self._api.oauth_tokens.destroy(oauth_token_id)
+        oauth_tokens = self._api.oauth_tokens.list(
+            self._oauth_client_id)["data"]
+        self.assertEqual(len(oauth_tokens), 0)

@@ -16,25 +16,35 @@ class TestTFCUserTokens(TestTFCBaseTestCase):
         """
         Test the User Token API endpoints: ``list``, ``create``, ``show``, ``destroy``.
         """
+        logged_in_user = self._api.account.show()["data"]
+        logged_in_user_id = logged_in_user["id"]
 
-        # TODO: fix this once the User API is patched, then add comments and docs.
-        # users = self._api.admin_users.list(query=self._test_username)["data"]
-        # self.assertNotEqual(len(users), 0)
-        # user_id = users[0]['id']
+        desc_to_update_to = self._name_with_random()
+        create_payload = {
+            "data": {
+                "type": "authentication-tokens",
+                "attributes": {
+                    "description": desc_to_update_to
+                }
+            }
+        }
+        created_token = self._api.user_tokens.create(logged_in_user_id, create_payload)["data"]
+        created_token_id = created_token["id"]
 
-        # created_token = \
-        #   self._api.user_tokens.create(user_id, self._user_token_create_payload)["data"]
-        # created_token_id = created_token["id"]
-        # print("created", created_token)
+        tokens = self._api.user_tokens.list(logged_in_user_id)["data"]
+        found_token = False
+        for token in tokens:
+            if token["id"] == created_token_id:
+                found_token = True
+                break
+        self.assertTrue(found_token)
 
-        # shown_token = self._api.user_tokens.show(created_token_id)
-        # print("shown", shown_token)
+        self._api.user_tokens.destroy(created_token_id)
 
-        # listed_tokens = self._api.user_tokens.list(user_id)
-        # print("listed", listed_tokens)
-
-        # self._api.user_tokens.destroy(created_token_id)
-        # print("destroyed")
-
-        # listed_tokens = self._api.user_tokens.list(user_id)
-        # print("listed", listed_tokens)
+        tokens = self._api.user_tokens.list(logged_in_user_id)["data"]
+        found_token = False
+        for token in tokens:
+            if token["id"] == created_token_id:
+                found_token = True
+                break
+        self.assertFalse(found_token)

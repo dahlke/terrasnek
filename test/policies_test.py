@@ -22,8 +22,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         self.assertEqual(len(all_policies), 0)
 
         # Add a policy to TFC
-        create_payload = self._get_policy_create_payload()
-        created_policy = self._api.policies.create(create_payload)["data"]
+        created_policy = self._api.policies.create(self._get_policy_create_payload())["data"]
         created_policy_id = created_policy["id"]
         created_policy_name = created_policy["attributes"]["name"]
 

@@ -16,9 +16,7 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
         self._team = self._api.teams.create(
             self._get_team_create_payload())["data"]
         self._team_id = self._team["id"]
-        # TODO: allow passing vars to the invite payload function
-        invite_payload = self._get_org_membership_invite_payload()
-        invite = self._api.org_memberships.invite(invite_payload)
+        invite = self._api.org_memberships.invite(self._get_org_membership_invite_payload())
         self._org_membership_id = invite["data"]["id"]
 
     def tearDown(self):
@@ -27,30 +25,31 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
 
     def test_team_memberships(self):
         """
-        Test the Team Memberships API endpoints: ``add``, ``show``, ``remove``.
+        Test the Team Memberships API endpoints: ``add_user_to_team``, `remove_user_from_team`.
         """
-        # Add the testing user to the team, confirm they have been added
+        logged_in_user = self._api.account.show()["data"]
+        logged_in_username = logged_in_user["attributes"]["username"]
+
+        # Add our user to the team, confirm they have been added
         membership_payload = {
             "data": [
                 {
                     "type": "users",
-                    "id": self._test_username
+                    "id": logged_in_username
                 }
             ]
         }
-        self._api.team_memberships.add_a_user_to_team(
+        self._api.team_memberships.add_user_to_team(
             self._team_id, membership_payload)
 
-        # TODO: Both of the following asserts will not work unless the user
-        # accepts the request.
+        # Show the team memberships, confirm that only one user is in the teeam
+        # since we just created it.
+        shown_team = self._api.teams.show(self._team_id)["data"]
+        self.assertEqual(len(shown_team["relationships"]["users"]["data"]), 1)
 
-        # Show the team memberships, confirm it's the length we expect
-        # TODO: look for the user, not just the number of team members
-        # shown_team = self._api.teams.show(self._owners_team_id)["data"]
-        # self.assertEqual(len(shown_team["relationships"]["users"]["data"]), 3)
-
-        self._api.team_memberships.remove_a_user_from_team(
+        # Remove the user from the team, and confirm there are no users
+        # left in the team.
+        self._api.team_memberships.remove_user_from_team(
             self._team_id, membership_payload)
-
-        # shown_team = self._api.teams.show(self._owners_team_id)["data"]
-        # self.assertEqual(len(shown_team["relationships"]["users"]["data"]), 0)
+        shown_team = self._api.teams.show(self._team_id)["data"]
+        self.assertEqual(len(shown_team["relationships"]["users"]["data"]), 0)

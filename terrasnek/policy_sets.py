@@ -23,6 +23,7 @@ class TFCPolicySets(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/policy-sets"
+        self._pol_set_version_base_url = f"{base_url}/policy-set-versions"
         self._org_base_url = f"{base_url}/organizations/{org_name}/policy-sets"
 
     def create(self, payload):
@@ -92,7 +93,7 @@ class TFCPolicySets(TFCEndpoint):
         url = f"{self._base_url}/{policy_id}/relationships/workspaces"
         return self._delete(url, data=payload)
 
-    def create_policy_set_version(self):
+    def create_policy_set_version(self, policy_set_id):
         """
         ``POST /policy-sets/:id/versions``
 
@@ -101,10 +102,23 @@ class TFCPolicySets(TFCEndpoint):
         creating a new policy set version and, in a subsequent request,
         uploading a tarball (tar.gz) of data to it.
         """
-        # TODO
+        url = f"{self._base_url}/{policy_set_id}/versions"
+        return self._post(url)
 
-    def show_policy_set_version(self, policy_set_id):
+    def show_policy_set_version(self, policy_set_version_id):
         """
-        ``GET /policy-sets/:id``
+        ``GET /policy-set-versions/:id``
         """
-        # TODO
+        url = f"{self._pol_set_version_base_url}/{policy_set_version_id}"
+        return self._get(url)
+
+    def upload(self, path_to_tarball, policy_set_version_id):
+        """
+        ``PUT {derived_policy_set_upload_url}``
+        """
+        url = self.show_policy_set_version(policy_set_version_id)["data"]["links"]["upload"]
+        data = None
+        with open(path_to_tarball, 'rb') as data_bytes:
+            data = data_bytes.read()
+
+        return self._put(url, data=data)

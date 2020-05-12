@@ -24,8 +24,7 @@ class TestTFCSSHKeys(TestTFCBaseTestCase):
         self.assertEqual(len(all_ssh_keys), 0)
 
         # Add an SSH Key to TFC
-        create_payload = self._get_ssh_key_create_payload()
-        created_key = self._api.ssh_keys.create(create_payload)["data"]
+        created_key = self._api.ssh_keys.create(self._get_ssh_key_create_payload())["data"]
         created_key_id = created_key["id"]
 
         # Check that we now have one key

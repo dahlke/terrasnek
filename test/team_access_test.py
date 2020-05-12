@@ -19,8 +19,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
         self._team_id = self._team["id"]
 
         # Invite a test user to this org, will be removed after
-        invite_payload = self._get_org_membership_invite_payload()
-        invite = self._api.org_memberships.invite(invite_payload)
+        invite = self._api.org_memberships.invite(self._get_org_membership_invite_payload())
         self._org_membership_id = invite["data"]["id"]
 
         # Create a test workspace

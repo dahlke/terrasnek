@@ -16,7 +16,7 @@ class TFCTeamMemberships(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/teams"
 
-    def add_a_user_to_team(self, team_id, payload):
+    def add_user_to_team(self, team_id, payload):
         """
         ``POST /teams/:team_id/relationships/users``
 
@@ -25,7 +25,7 @@ class TFCTeamMemberships(TFCEndpoint):
         url = f"{self._base_url}/{team_id}/relationships/users"
         return self._post(url, data=payload)
 
-    def remove_a_user_from_team(self, team_id, payload):
+    def remove_user_from_team(self, team_id, payload):
         """
         ``DELETE /teams/:team_id/relationships/users``
 

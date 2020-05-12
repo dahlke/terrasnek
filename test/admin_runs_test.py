@@ -55,9 +55,9 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
         """
         Test the Admin Runs API endpoints: ``list`` and ``force_cancel``.
         """
-        # TODO: add params
         # List all the runs confirm the one we created in the setup is there
-        all_runs = self._api.admin_runs.list()["data"]
+        all_runs = self._api.admin_runs.list(\
+            query=self._run_id, filters=[], page=0, page_size=50)["data"]
         found_run = False
         for run in all_runs:
             run_id = run["id"]
