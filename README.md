@@ -58,6 +58,7 @@ if __name__ == "__main__":
 ##### Endpoints
 <details>
   <summary>Supported Endpoints</summary>
+
     * [x] [Account](https://www.terraform.io/docs/cloud/api/account.html)
     * [x] [Applies](https://www.terraform.io/docs/cloud/api/applies.html)
     * [x] [Configuration Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)
@@ -96,6 +97,7 @@ if __name__ == "__main__":
 
 <details>
   <summary>Unsupported Endpoints</summary>
+
     * [ ] [Policy Checks](https://www.terraform.io/docs/cloud/api/policy-checks.html)
     * [ ] [Registry Modules](https://www.terraform.io/docs/cloud/api/modules.html)
 </details>
