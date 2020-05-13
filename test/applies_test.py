@@ -73,8 +73,7 @@ class TestTFCApplies(TestTFCBaseTestCase):
             applied_run = self._api.runs.show(self._run_id)["data"]
             time.sleep(1)
         self._logger.debug("Apply kicked off.")
-        self.assertNotEqual(
-            applied_run["attributes"]["status-timestamps"]["applying-at"], None)
+        self.assertIsNotNone(applied_run["attributes"]["status-timestamps"]["applying-at"])
 
         # Show the apply, confirm it returns the same value as the run attributes
         apply_id = applied_run["relationships"]["apply"]["data"]["id"]

@@ -84,7 +84,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         # the newly assigned SSH key
         ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)["data"]
         self.assertEqual(ws_id, ws_shown_by_id["id"])
-        self.assertTrue("ssh-key" in ws_shown_by_id["relationships"])
+        self.assertIn("ssh-key", ws_shown_by_id["relationships"])
 
         # Unassign the SSH key and confirm it's removed
         unassign_payload = {
@@ -97,7 +97,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         }
         self._api.workspaces.unassign_ssh_key(ws_id, unassign_payload)
         ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)["data"]
-        self.assertTrue("ssh-key" not in ws_shown_by_id["relationships"])
+        self.assertNotIn("ssh-key", ws_shown_by_id["relationships"])
 
         self._api.workspaces.destroy(
             workspace_name=updated_name)

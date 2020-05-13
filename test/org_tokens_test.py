@@ -30,9 +30,9 @@ class TestTFCOrgTokens(TestTFCBaseTestCase):
         # Create the token, confirm it was created
         created_token = self._api.org_tokens.create()["data"]
         created_token_id = created_token["id"]
-        self.assertNotEqual(created_token_id, None)
+        self.assertIsNotNone(created_token_id)
 
         # Remove the token, confirm it the request worked (no response)
         # since we don't have a way to look for them otherwise.
         removed_token_resp = self._api.org_tokens.destroy()
-        self.assertEqual(removed_token_resp, None)
+        self.assertIsNone(removed_token_resp)

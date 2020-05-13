@@ -25,7 +25,7 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
         Test the OAuth Tokens API endpoints: ``list``, ``show``, ``update``, ``destroy``.
         """
 
-        # List all the tokens and make sure there is one associate to your client
+        # List all the tokens and make sure there is one associated to your client
         oauth_tokens = self._api.oauth_tokens.list(
             self._oauth_client_id)["data"]
         self.assertEqual(len(oauth_tokens), 1)
@@ -52,8 +52,15 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
         updated_oauth_token = self._api.oauth_tokens.update(oauth_token_id, update_payload)["data"]
         self.assertEqual("oauth-tokens", updated_oauth_token["type"])
 
-        # Delete the OAuth token and confirm we have none left
+        # Delete the OAuth token and confirm it's no longer present
         self._api.oauth_tokens.destroy(oauth_token_id)
         oauth_tokens = self._api.oauth_tokens.list(
             self._oauth_client_id)["data"]
-        self.assertEqual(len(oauth_tokens), 0)
+
+        found_ot = False
+        for ot in oauth_tokens:
+            if oauth_token_id == ot["id"]:
+                found_ot = True
+                break
+        self.assertFalse(found_ot)
+

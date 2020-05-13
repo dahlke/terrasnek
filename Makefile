@@ -21,12 +21,8 @@ coverage:
 	coverage run -m unittest test/*_test.py; \
 	coverage report -m;
 
-.PHONY: lint-lib
-lint-lib:
-	pylint terrasnek terrasnek
-
-.PHONY: lint-tests
-lint-tests:
+.PHONY: lint
+lint:
 	pylint terrasnek test
 
 .PHONY: docs

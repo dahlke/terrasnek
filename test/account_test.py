@@ -19,7 +19,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
 
         # Show the account and confirm we get a valid response
         shown_account = self._api.account.show()["data"]
-        self.assertTrue("id" in shown_account)
+        self.assertIn("id", shown_account)
 
         # Store the original username and email for later usage
         original_email = shown_account["attributes"]["email"]
@@ -68,7 +68,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
             }
         }
         changed_account = self._api.account.change_password(change_password_payload)["data"]
-        self.assertTrue("id" in changed_account)
+        self.assertIn("id", changed_account)
 
         # Change the password back to the initial one to make this easier
         change_password_payload = {
@@ -82,4 +82,4 @@ class TestTFCAccount(TestTFCBaseTestCase):
             }
         }
         changed_account = self._api.account.change_password(change_password_payload)["data"]
-        self.assertTrue("id" in changed_account)
+        self.assertIn("id", changed_account)

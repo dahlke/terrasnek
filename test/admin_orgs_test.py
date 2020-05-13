@@ -34,7 +34,7 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
 
         # Show the created org, confirm it matches the created org's ID
         shown_org = self._api.admin_orgs.show(self._created_org_name)["data"]
-        self.assertTrue(self._created_org_id, shown_org["id"])
+        self.assertEqual(self._created_org_id, shown_org["id"])
 
         # Destroy the org that we created, verify it's gone.
         self._api.admin_orgs.destroy(self._created_org_name)

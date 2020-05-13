@@ -35,7 +35,7 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
 
         # Show the workspace by the ID, confirm we get the expected ID back
         shown_ws = self._api.admin_workspaces.show(self._created_ws_id)["data"]
-        self.assertTrue(self._created_ws_id, shown_ws["id"])
+        self.assertEqual(self._created_ws_id, shown_ws["id"])
 
         # Destroy the workspace that we created, verify it's gone
         self._api.admin_workspaces.destroy(self._created_ws_id)

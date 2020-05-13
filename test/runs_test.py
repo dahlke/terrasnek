@@ -64,7 +64,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
         self.assertEqual(created_run["relationships"]["workspace"]["data"]["id"],
                          create_run_payload["data"]["relationships"]["workspace"]["data"]["id"])
-        self.assertEqual(created_run["attributes"]
+        self.assertTrue(created_run["attributes"]
                          ["actions"]["is-confirmable"], True)
         self.assertRaises(
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["applying-at"])
@@ -87,7 +87,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
             time.sleep(1)
             status_timestamps = \
                 self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
-        self.assertNotEqual(status_timestamps["applying-at"], None)
+        self.assertIsNotNone(status_timestamps["applying-at"])
 
     def test_run_and_discard(self):
         """
@@ -119,7 +119,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
             time.sleep(1)
             status_timestamps = \
                 self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
-        self.assertNotEqual(status_timestamps["discarded-at"], None)
+        self.assertIsNotNone(status_timestamps["discarded-at"])
 
     def test_run_and_cancel(self):
         """
@@ -132,7 +132,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
         # Show the created run, make sure it hasn't yet been cancelled
         created_run = self._api.runs.show(run_id)["data"]
-        self.assertEqual(created_run["attributes"]["canceled-at"], None)
+        self.assertIsNone(created_run["attributes"]["canceled-at"])
 
         # Wait for it to plan
         self._logger.debug("Sleeping while plan half-executes...")
@@ -146,4 +146,4 @@ class TestTFCRuns(TestTFCBaseTestCase):
             time.sleep(1)
             status_timestamps = \
                 self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
-        self.assertNotEqual(status_timestamps["force-canceled-at"], None)
+        self.assertIsNotNone(status_timestamps["force-canceled-at"])

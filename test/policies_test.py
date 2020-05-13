@@ -18,6 +18,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         ``update``, ``upload``, ``destroy``.
         """
 
+        # Confirm we have no policies.
         all_policies = self._api.policies.list()["data"]
         self.assertEqual(len(all_policies), 0)
 
@@ -30,7 +31,13 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         # we can test out the list params
         all_policies = self._api.policies.list(\
             page=0, page_size=50, search=created_policy_name)["data"]
-        self.assertEqual(len(all_policies), 1)
+
+        found_pol = False
+        for pol in all_policies:
+            if created_policy_id == pol["id"]:
+                found_pol = True
+                break
+        self.assertTrue(found_pol)
 
         # Upload the policy
         policy_payload = "main = rule { true }"
@@ -44,7 +51,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         self.assertEqual(shown_policy_id, created_policy_id)
 
         # And make sure our upload took effect
-        self.assertTrue("upload" in shown_policy["links"])
+        self.assertIn("upload", shown_policy["links"])
 
         # Update the policy
         desc_to_update_to = "foo"

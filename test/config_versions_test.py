@@ -27,19 +27,21 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         # Create a new config version
         config_version = self._api.config_versions.create(
             self._ws_id, self._get_config_version_create_payload())["data"]
-
-        # List all of the config versions for the workspace
-        config_versions = self._api.config_versions.list(self._ws_id)["data"]
         cv_id = config_version["id"]
 
-        # Confirm there is only one config version (the one we uploaded)
-        self.assertEqual(len(config_versions), 1)
+        # List all of the config versions for the workspace
+        all_config_versions = self._api.config_versions.list(self._ws_id)["data"]
 
-        # Confirm the first listed config version matches the ID of the one we created
-        self.assertEqual(config_versions[0]["id"], cv_id)
+        # Confirm we found the newly created config version
+        found_cv = False
+        for cv in all_config_versions:
+            if cv_id == cv["id"]:
+                found_cv = True
+                break
+        self.assertTrue(found_cv)
 
-        # Confirm it's status is "pending" as well
-        self.assertEqual(config_versions[0]["attributes"]["status"], "pending")
+        # Confirm the config version status is "pending" as well
+        self.assertEqual(all_config_versions[0]["attributes"]["status"], "pending")
 
         # Test the show method on that same config version ID
         shown_config_version = self._api.config_versions.show(cv_id)["data"]

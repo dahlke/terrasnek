@@ -80,4 +80,4 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
             time.sleep(1)
             status_timestamps = \
                 self._api.runs.show(self._run_id)["data"]["attributes"]["status-timestamps"]
-        self.assertNotEqual(status_timestamps["force-canceled-at"], None)
+        self.assertIsNotNone(status_timestamps["force-canceled-at"])
