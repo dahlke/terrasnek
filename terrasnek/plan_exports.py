@@ -13,9 +13,9 @@ class TFCPlanExports(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/plan-exports.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/plan-exports"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/plan-exports"
 
     def required_entitlements(self):
         return []
@@ -30,7 +30,7 @@ class TFCPlanExports(TFCEndpoint):
         is up, a new export can be created.
         """
 
-        return self._create(self._base_url, payload)
+        return self._create(self._api_v2_base_url, payload)
 
     def show(self, plan_export_id):
         """
@@ -39,7 +39,7 @@ class TFCPlanExports(TFCEndpoint):
         There is no endpoint to list plan exports. You can find IDs for plan exports in the
         relationships.exports property of a plan object.
         """
-        url = f"{self._base_url}/{plan_export_id}"
+        url = f"{self._api_v2_base_url}/{plan_export_id}"
         return self._show(url)
 
     def download(self, plan_export_id, target_path="/tmp/terrasnek.planexport.tar.gz"):
@@ -51,7 +51,7 @@ class TFCPlanExports(TFCEndpoint):
         redirects, you can use this endpoint to save the .tar.gz archive locally without needing
         to save the temporary URL.
         """
-        url = f"{self._base_url}/{plan_export_id}/download"
+        url = f"{self._api_v2_base_url}/{plan_export_id}/download"
         results = self._get(url, return_raw=True)
         with open(target_path, 'wb') as target_file:
             target_file.write(results)
@@ -63,5 +63,5 @@ class TFCPlanExports(TFCEndpoint):
         Plan exports expire after being available for one hour, but they can be deleted
         manually as well.
         """
-        url = f"{self._base_url}/{plan_export_id}"
+        url = f"{self._api_v2_base_url}/{plan_export_id}"
         return self._destroy(url)

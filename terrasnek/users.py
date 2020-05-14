@@ -15,9 +15,9 @@ class TFCUsers(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/users.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._users_base_url = f"{base_url}/users"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._users_api_v2_base_url = f"{self._api_v2_base_url}/users"
 
     def required_entitlements(self):
         return []
@@ -28,5 +28,5 @@ class TFCUsers(TFCEndpoint):
 
         Shows details for a given user.
         """
-        url = f"{self._users_base_url}/{user_id}"
+        url = f"{self._users_api_v2_base_url}/{user_id}"
         return self._show(url)

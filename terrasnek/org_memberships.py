@@ -13,11 +13,11 @@ class TFCOrgMemberships(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/organization-memberships.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/organization-memberships"
-        self._org_base_url = \
-            f"{base_url}/organizations/{org_name}/organization-memberships"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/organization-memberships"
+        self._org_api_v2_base_url = \
+            f"{self._api_v2_base_url}/organizations/{org_name}/organization-memberships"
 
     def required_entitlements(self):
         return []
@@ -28,7 +28,7 @@ class TFCOrgMemberships(TFCEndpoint):
 
         This endpoint invites a user to join an organization.
         """
-        return self._create(self._org_base_url, payload)
+        return self._create(self._org_api_v2_base_url, payload)
 
     def list_for_org(self, query=None, filters=None, page=None, page_size=None):
         """
@@ -40,7 +40,7 @@ class TFCOrgMemberships(TFCEndpoint):
             https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters
         """
         return self._list(\
-            self._org_base_url, query=query, filters=filters, page=page, page_size=page_size)
+            self._org_api_v2_base_url, query=query, filters=filters, page=page, page_size=page_size)
 
     def list_for_user(self):
         """
@@ -48,7 +48,7 @@ class TFCOrgMemberships(TFCEndpoint):
 
         This endpoint retrieves all the organizations for the active user.
         """
-        return self._list(self._base_url)
+        return self._list(self._api_v2_base_url)
 
     def show(self, org_membership_id):
         """
@@ -57,7 +57,7 @@ class TFCOrgMemberships(TFCEndpoint):
         This endpoint shows organization membership details for the
         specified organization membership ID.
         """
-        url = f"{self._base_url}/{org_membership_id}"
+        url = f"{self._api_v2_base_url}/{org_membership_id}"
         return self._show(url)
 
     def remove(self, org_membership_id):
@@ -67,5 +67,5 @@ class TFCOrgMemberships(TFCEndpoint):
         This endpoint removes a user from an organization using the
         specified organization membership ID.
         """
-        url = f"{self._base_url}/{org_membership_id}"
+        url = f"{self._api_v2_base_url}/{org_membership_id}"
         return self._destroy(url)

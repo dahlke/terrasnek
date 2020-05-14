@@ -12,9 +12,9 @@ class TFCPlans(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/plans.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/plans"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/plans"
 
     def required_entitlements(self):
         return [Entitlements.OPERATIONS]
@@ -26,5 +26,5 @@ class TFCPlans(TFCEndpoint):
         There is no endpoint to list plans. You can find the ID for a plan
         in the relationships.plan property of a run object.
         """
-        url = f"{self._base_url}/{plan_id}"
+        url = f"{self._api_v2_base_url}/{plan_id}"
         return self._show(url)

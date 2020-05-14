@@ -16,9 +16,9 @@ class TFCAdminWorkspaces(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/admin/workspaces.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/admin/workspaces"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/admin/workspaces"
 
     def required_entitlements(self):
         return []
@@ -31,19 +31,19 @@ class TFCAdminWorkspaces(TFCEndpoint):
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
         return self._list(\
-            self._base_url, filters=filters, \
+            self._api_v2_base_url, filters=filters, \
             page=page, page_size=page_size, search=search, sort=sort)
 
     def show(self, ws_id):
         """
         ``GET /admin/workspaces/:ws_id``
         """
-        url = f"{self._base_url}/{ws_id}"
+        url = f"{self._api_v2_base_url}/{ws_id}"
         return self._show(url)
 
     def destroy(self, ws_id):
         """
         ``DELETE /admin/workspaces/:ws_id``
         """
-        url = f"{self._base_url}/{ws_id}"
+        url = f"{self._api_v2_base_url}/{ws_id}"
         return self._destroy(url)

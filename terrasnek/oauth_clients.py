@@ -12,10 +12,10 @@ class TFCOAuthClients(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/oauth-clients.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._org_base_url = f"{base_url}/organizations/{org_name}/oauth-clients"
-        self._oauth_clients_base_url = f"{base_url}/oauth-clients"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/oauth-clients"
+        self._oauth_clients_api_v2_base_url = f"{self._api_v2_base_url}/oauth-clients"
 
     def required_entitlements(self):
         return [Entitlements.VCS_INTEGRATIONS]
@@ -27,13 +27,13 @@ class TFCOAuthClients(TFCEndpoint):
         This endpoint allows you to list VCS connections between an organization and a VCS
         provider (GitHub, Bitbucket, or GitLab) for use when creating or setting up workspaces.
         """
-        return self._list(self._org_base_url)
+        return self._list(self._org_api_v2_base_url)
 
     def show(self, client_id):
         """
         ``GET /oauth-clients/:client_id``
         """
-        url = f"{self._oauth_clients_base_url}/{client_id}"
+        url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"
         return self._show(url)
 
     def create(self, payload):
@@ -45,7 +45,7 @@ class TFCOAuthClients(TFCEndpoint):
         this API endpoint, you can provide a pre-generated OAuth token string instead of going
         through the process of creating a GitHub or GitLab OAuth Application.
         """
-        return self._create(self._org_base_url, payload)
+        return self._create(self._org_api_v2_base_url, payload)
 
     def update(self, client_id, payload):
         """
@@ -54,7 +54,7 @@ class TFCOAuthClients(TFCEndpoint):
         Use caution when changing attributes with this endpoint; editing an OAuth client that
         workspaces are currently using can have unexpected effects.
         """
-        url = f"{self._oauth_clients_base_url}/{client_id}"
+        url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"
         return self._update(url, payload)
 
     def destroy(self, client_id):
@@ -68,5 +68,5 @@ class TFCOAuthClients(TFCEndpoint):
         from their repositories, and these workspaces will need to be manually linked to
         another repository.
         """
-        url = f"{self._oauth_clients_base_url}/{client_id}"
+        url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"
         return self._destroy(url)

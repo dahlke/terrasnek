@@ -21,11 +21,11 @@ class TFCPolicySets(TFCEndpoint):
         https://www.terraform.io/docs/cloud/api/policy-sets.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/policy-sets"
-        self._pol_set_version_base_url = f"{base_url}/policy-set-versions"
-        self._org_base_url = f"{base_url}/organizations/{org_name}/policy-sets"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/policy-sets"
+        self._pol_set_version_api_v2_base_url = f"{self._api_v2_base_url}/policy-set-versions"
+        self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/policy-sets"
 
     def required_entitlements(self):
         return [Entitlements.SENTINEL]
@@ -34,7 +34,7 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``POST /organizations/:org_name/policy-sets``
         """
-        return self._create(self._org_base_url, payload)
+        return self._create(self._org_api_v2_base_url, payload)
 
     def list(self, filters=None, include=None, page=None, page_size=None, search=None):
         """
@@ -44,7 +44,7 @@ class TFCPolicySets(TFCEndpoint):
             https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets
         """
         return self._list(\
-            self._org_base_url, \
+            self._org_api_v2_base_url, \
             filters=filters, include=include, \
             page=page, page_size=page_size, search=search)
 
@@ -52,49 +52,49 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``GET /policy-sets/:id``
         """
-        url = f"{self._base_url}/{policy_set_id}"
+        url = f"{self._api_v2_base_url}/{policy_set_id}"
         return self._show(url)
 
     def update(self, policy_set_id, payload):
         """
         ``PATCH /policy-sets/:id``
         """
-        url = f"{self._base_url}/{policy_set_id}"
+        url = f"{self._api_v2_base_url}/{policy_set_id}"
         return self._update(url, payload)
 
     def destroy(self, policy_set_id):
         """
         ``DELETE /policies/:policy_set_id``
         """
-        url = f"{self._base_url}/{policy_set_id}"
+        url = f"{self._api_v2_base_url}/{policy_set_id}"
         return self._destroy(url)
 
     def add_policies_to_set(self, policy_set_id, payload):
         """
         ``POST /policy-sets/:id/relationships/policies``
         """
-        url = f"{self._base_url}/{policy_set_id}/relationships/policies"
+        url = f"{self._api_v2_base_url}/{policy_set_id}/relationships/policies"
         return self._post(url, data=payload)
 
     def remove_policies_from_set(self, policy_id, payload):
         """
         ``DELETE /policy-sets/:id/relationships/policies``
         """
-        url = f"{self._base_url}/{policy_id}/relationships/policies"
+        url = f"{self._api_v2_base_url}/{policy_id}/relationships/policies"
         return self._delete(url, data=payload)
 
     def attach_policy_set_to_workspaces(self, policy_id, payload):
         """
         ``POST /policy-sets/:id/relationships/workspaces``
         """
-        url = f"{self._base_url}/{policy_id}/relationships/workspaces"
+        url = f"{self._api_v2_base_url}/{policy_id}/relationships/workspaces"
         return self._post(url, data=payload)
 
     def detach_policy_set_from_workspaces(self, policy_id, payload):
         """
         ``POST /policy-sets/:id/relationships/workspaces``
         """
-        url = f"{self._base_url}/{policy_id}/relationships/workspaces"
+        url = f"{self._api_v2_base_url}/{policy_id}/relationships/workspaces"
         return self._delete(url, data=payload)
 
     def create_policy_set_version(self, policy_set_id):
@@ -106,14 +106,14 @@ class TFCPolicySets(TFCEndpoint):
         creating a new policy set version and, in a subsequent request,
         uploading a tarball (tar.gz) of data to it.
         """
-        url = f"{self._base_url}/{policy_set_id}/versions"
+        url = f"{self._api_v2_base_url}/{policy_set_id}/versions"
         return self._post(url)
 
     def show_policy_set_version(self, policy_set_version_id):
         """
         ``GET /policy-set-versions/:id``
         """
-        url = f"{self._pol_set_version_base_url}/{policy_set_version_id}"
+        url = f"{self._pol_set_version_api_v2_base_url}/{policy_set_version_id}"
         return self._get(url)
 
     def upload(self, path_to_tarball, policy_set_version_id):

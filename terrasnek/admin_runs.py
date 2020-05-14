@@ -16,9 +16,9 @@ class TFCAdminRuns(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/admin/runs.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/admin/runs"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/admin/runs"
 
     def required_entitlements(self):
         return []
@@ -29,7 +29,7 @@ class TFCAdminRuns(TFCEndpoint):
 
         This endpoint lists all runs in the Terraform Cloud installation.
         """
-        return self._list(self._base_url, \
+        return self._list(self._api_v2_base_url, \
             query=query, filters=filters, page=page, page_size=page_size)
 
     def force_cancel(self, run_id, data=None):
@@ -42,5 +42,5 @@ class TFCAdminRuns(TFCEndpoint):
         of lost state data if a progressing apply is force-canceled. Healthy
         runs can be requested for cancellation by end-users.
         """
-        url = f"{self._base_url}/{run_id}/actions/force-cancel"
+        url = f"{self._api_v2_base_url}/{run_id}/actions/force-cancel"
         return self._post(url, data=data)

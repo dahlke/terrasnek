@@ -11,10 +11,10 @@ class TFCWorkspaces(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/workspaces.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._ws_base_url = f"{base_url}/workspaces"
-        self._org_base_url = f"{base_url}/organizations/{org_name}/workspaces"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
+        self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/workspaces"
 
     def required_entitlements(self):
         return []
@@ -23,7 +23,7 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /organizations/:org_name/workspaces``
         """
-        return self._create(self._org_base_url, payload)
+        return self._create(self._org_api_v2_base_url, payload)
 
     def destroy(self, workspace_id=None, workspace_name=None):
         """
@@ -34,9 +34,9 @@ class TFCWorkspaces(TFCEndpoint):
         workspace by its ID, and the other by its name and organization.
         """
         if workspace_name is not None:
-            url = f"{self._org_base_url}/{workspace_name}"
+            url = f"{self._org_api_v2_base_url}/{workspace_name}"
         elif workspace_id is not None:
-            url = f"{self._ws_base_url}/{workspace_id}"
+            url = f"{self._ws_api_v2_base_url}/{workspace_id}"
         else:
             self._logger.error("Arguments workspace_name or workspace_id must be defined")
 
@@ -49,7 +49,7 @@ class TFCWorkspaces(TFCEndpoint):
         This endpoint force unlocks a workspace. Only users with admin access are authorized to
         force unlock a workspace.
         """
-        url = f"{self._ws_base_url}/{workspace_id}/actions/force-unlock"
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/force-unlock"
         return self._post(url)
 
     def lock(self, workspace_id, payload):
@@ -58,7 +58,7 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint locks a workspace.
         """
-        url = f"{self._ws_base_url}/{workspace_id}/actions/lock"
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/lock"
         return self._post(url, data=payload)
 
     def list(self, page=None, page_size=None):
@@ -67,7 +67,7 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint lists workspaces in the organization.
         """
-        return self._list(self._org_base_url, page=page, page_size=page_size)
+        return self._list(self._org_api_v2_base_url, page=page, page_size=page_size)
 
     def show(self, workspace_name=None, workspace_id=None):
         """
@@ -78,9 +78,9 @@ class TFCWorkspaces(TFCEndpoint):
         One refers to a workspace by its ID, and the other by its name and organization.
         """
         if workspace_name is not None:
-            url = f"{self._org_base_url}/{workspace_name}"
+            url = f"{self._org_api_v2_base_url}/{workspace_name}"
         elif workspace_id is not None:
-            url = f"{self._ws_base_url}/{workspace_id}"
+            url = f"{self._ws_api_v2_base_url}/{workspace_id}"
         else:
             self._logger.error("Arguments workspace_name or workspace_id must be defined")
 
@@ -92,7 +92,7 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint unlocks a workspace.
         """
-        url = f"{self._ws_base_url}/{workspace_id}/actions/unlock"
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/unlock"
         return self._post(url)
 
     def update(self, workspace_id, payload):
@@ -102,7 +102,7 @@ class TFCWorkspaces(TFCEndpoint):
         A workspace can be updated via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
         """
-        url = f"{self._ws_base_url}/{workspace_id}"
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}"
         return self._update(url, payload)
 
 
@@ -112,7 +112,7 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint assigns an SSH key to a workspace.
         """
-        url = f"{self._ws_base_url}/{workspace_id}/relationships/ssh-key"
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
         self._patch(url, data=data)
 
     def unassign_ssh_key(self, workspace_id, data):
@@ -122,5 +122,5 @@ class TFCWorkspaces(TFCEndpoint):
         This endpoint unassigns the currently assigned SSH key from a
         workspace.
         """
-        url = f"{self._ws_base_url}/{workspace_id}/relationships/ssh-key"
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
         self._patch(url, data=data)

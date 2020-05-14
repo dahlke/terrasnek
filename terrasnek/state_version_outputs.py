@@ -14,9 +14,9 @@ class TFCStateVersionOutputs(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/state-version-outputs.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/state-version-outputs"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/state-version-outputs"
 
     def required_entitlements(self):
         return [Entitlements.STATE_STORAGE]
@@ -29,5 +29,5 @@ class TFCStateVersionOutputs(TFCEndpoint):
         state version, you can optionally add ?include=outputs to include full details for all of
         that state version's outputs.
         """
-        url = f"{self._base_url}/{state_version_output_id}"
+        url = f"{self._api_v2_base_url}/{state_version_output_id}"
         return self._show(url)

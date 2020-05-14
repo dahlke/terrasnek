@@ -13,9 +13,9 @@ class TFCAccount(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/account.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/account"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/account"
 
     def required_entitlements(self):
         return []
@@ -24,7 +24,7 @@ class TFCAccount(TFCEndpoint):
         """
         ``GET /account/details``
         """
-        url = f"{self._base_url}/details"
+        url = f"{self._api_v2_base_url}/details"
         return self._show(url)
 
     def update(self, data):
@@ -33,12 +33,12 @@ class TFCAccount(TFCEndpoint):
 
         Your username and email address can be updated with this endpoint.
         """
-        url = f"{self._base_url}/update"
+        url = f"{self._api_v2_base_url}/update"
         return self._patch(url, data)
 
     def change_password(self, data):
         """
         ``PATCH /account/password``
         """
-        url = f"{self._base_url}/password"
+        url = f"{self._api_v2_base_url}/password"
         return self._patch(url, data)

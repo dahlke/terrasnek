@@ -9,10 +9,10 @@ class TFCUserTokens(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/user-tokens.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._users_base_url = f"{base_url}/users"
-        self._tokens_base_url = f"{base_url}/authentication-tokens"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._users_api_v2_base_url = f"{self._api_v2_base_url}/users"
+        self._tokens_api_v2_base_url = f"{self._api_v2_base_url}/authentication-tokens"
 
     def required_entitlements(self):
         return []
@@ -24,14 +24,14 @@ class TFCUserTokens(TFCEndpoint):
         This endpoint returns the secret text of the created authentication token. A token
         is only shown upon creation, and cannot be recovered later.
         """
-        url = f"{self._users_base_url}/{user_id}/authentication-tokens"
+        url = f"{self._users_api_v2_base_url}/{user_id}/authentication-tokens"
         return self._create(url, payload)
 
     def destroy(self, token_id):
         """
         ``DELETE /authentication-tokens/:token_id``
         """
-        url = f"{self._tokens_base_url}/{token_id}"
+        url = f"{self._tokens_api_v2_base_url}/{token_id}"
         self._destroy(url)
 
     def list(self, user_id):
@@ -44,7 +44,7 @@ class TFCUserTokens(TFCEndpoint):
         secret text of any authentication tokens. A token is only shown upon creation, and
         cannot be recovered later.
         """
-        url = f"{self._users_base_url}/{user_id}/authentication-tokens"
+        url = f"{self._users_api_v2_base_url}/{user_id}/authentication-tokens"
         return self._list(url)
 
     def show(self, token_id):
@@ -55,5 +55,5 @@ class TFCUserTokens(TFCEndpoint):
         secret text of any authentication tokens. A token is only shown upon creation, and
         cannot be recovered later.
         """
-        url = f"{self._tokens_base_url}/{token_id}"
+        url = f"{self._tokens_api_v2_base_url}/{token_id}"
         return self._show(url)

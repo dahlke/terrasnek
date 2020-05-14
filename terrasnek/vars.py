@@ -11,9 +11,9 @@ class TFCVars(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/variables.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/vars"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/vars"
 
     def required_entitlements(self):
         return []
@@ -22,13 +22,13 @@ class TFCVars(TFCEndpoint):
         """
         ``POST /vars``
         """
-        return self._create(self._base_url, payload)
+        return self._create(self._api_v2_base_url, payload)
 
     def list(self, workspace_name=None):
         """
         ``GET /vars``
         """
-        url = f"{self._base_url}?filter[organization][name]={self._org_name}"
+        url = f"{self._api_v2_base_url}?filter[organization][name]={self._org_name}"
 
         if workspace_name is not None:
             url += f"&filter[workspace][name]={workspace_name}"
@@ -39,12 +39,12 @@ class TFCVars(TFCEndpoint):
         """
         ``PATCH /vars/:variable_id``
         """
-        url = f"{self._base_url}/{variable_id}"
+        url = f"{self._api_v2_base_url}/{variable_id}"
         return self._update(url, payload)
 
     def destroy(self, variable_id):
         """
         ``DELETE /vars/:variable_id``
         """
-        url = f"{self._base_url}/{variable_id}"
+        url = f"{self._api_v2_base_url}/{variable_id}"
         return self._destroy(url)

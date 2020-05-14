@@ -15,9 +15,9 @@ class TFCAdminOrgs(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/admin/organizations.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/admin/organizations"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/admin/organizations"
 
     def required_entitlements(self):
         return []
@@ -26,7 +26,7 @@ class TFCAdminOrgs(TFCEndpoint):
         """
         ``DELETE /admin/organizations/:org_name``
         """
-        url = f"{self._base_url}/{org_name}"
+        url = f"{self._api_v2_base_url}/{org_name}"
         return self._destroy(url)
 
     def list(self):
@@ -35,11 +35,11 @@ class TFCAdminOrgs(TFCEndpoint):
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
-        return self._list(self._base_url)
+        return self._list(self._api_v2_base_url)
 
     def show(self, org_name):
         """
         ``GET /admin/organizations/:org_name``
         """
-        url = f"{self._base_url}/{org_name}"
+        url = f"{self._api_v2_base_url}/{org_name}"
         return self._show(url)

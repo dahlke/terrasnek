@@ -12,9 +12,9 @@ class TFCOrgTokens(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/organization-tokens.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/organizations/{org_name}/authentication-token"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/authentication-token"
 
     def required_entitlements(self):
         return []
@@ -25,7 +25,7 @@ class TFCOrgTokens(TFCEndpoint):
 
         This endpoint creates an org token for the active org.
         """
-        return self._create(self._base_url, None)
+        return self._create(self._api_v2_base_url, None)
 
     def destroy(self):
         """
@@ -33,5 +33,5 @@ class TFCOrgTokens(TFCEndpoint):
 
         This endpoint deletes the org token for the active org.
         """
-        url = f"{self._base_url}"
+        url = f"{self._api_v2_base_url}"
         return self._destroy(url)

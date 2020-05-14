@@ -20,10 +20,10 @@ class TFCRuns(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/run.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._ws_base_url = f"{base_url}/workspaces"
-        self._runs_base_url = f"{base_url}/runs"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
+        self._runs_api_v2_base_url = f"{self._api_v2_base_url}/runs"
 
     def required_entitlements(self):
         return [Entitlements.OPERATIONS]
@@ -35,7 +35,7 @@ class TFCRuns(TFCEndpoint):
         This endpoint supports pagination with standard URL query parameters; remember to
         percent-encode.
         """
-        url = f"{self._ws_base_url}/{workspace_id}/runs"
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"
         return self._list(url, page=page, page_size=page_size)
 
     def show(self, run_id):
@@ -44,7 +44,7 @@ class TFCRuns(TFCEndpoint):
 
         This endpoint is used for showing details of a specific run.
         """
-        url = f"{self._runs_base_url}/{run_id}"
+        url = f"{self._runs_api_v2_base_url}/{run_id}"
         return self._show(url)
 
     def create(self, payload):
@@ -55,7 +55,7 @@ class TFCRuns(TFCEndpoint):
         current variables. You can specify a configuration version when creating a run; if
         you don’t provide one, the run defaults to the workspace’s most recently used version.
         """
-        return self._create(self._runs_base_url, payload)
+        return self._create(self._runs_api_v2_base_url, payload)
 
     def apply(self, run_id):
         """
@@ -73,7 +73,7 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, the endpoint does
         not return any object in the response body.
         """
-        url = f"{self._runs_base_url}/{run_id}/actions/apply"
+        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/apply"
         return self._post(url)
 
     def discard(self, run_id):
@@ -90,7 +90,7 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, it does not
         return any object in the response body.
         """
-        url = f"{self._runs_base_url}/{run_id}/actions/discard"
+        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/discard"
         return self._post(url)
 
     def cancel(self, run_id):
@@ -108,7 +108,7 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, it does not
         return any object in the response body.
         """
-        url = f"{self._runs_base_url}/{run_id}/actions/cancel"
+        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/cancel"
         return self._post(url)
 
     def force_cancel(self, run_id):
@@ -130,7 +130,7 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, it does not return any
         object in the response body.
         """
-        url = f"{self._runs_base_url}/{run_id}/actions/force-cancel"
+        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/force-cancel"
         return self._post(url)
 
     def force_execute(self, run_id):
@@ -149,5 +149,5 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, it does not return any
         object in the response body.
         """
-        url = f"{self._runs_base_url}/{run_id}/actions/force-execute"
+        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/force-execute"
         return self._post(url)

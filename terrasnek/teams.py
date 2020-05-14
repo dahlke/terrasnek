@@ -15,10 +15,10 @@ class TFCTeams(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/teams.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._teams_base_url = f"{base_url}/teams"
-        self._org_base_url = f"{base_url}/organizations/{org_name}/teams"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._teams_api_v2_base_url = f"{self._api_v2_base_url}/teams"
+        self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/teams"
 
     def required_entitlements(self):
         return [Entitlements.TEAMS]
@@ -27,24 +27,24 @@ class TFCTeams(TFCEndpoint):
         """
         ``POST /organizations/:org_name/teams``
         """
-        return self._create(self._org_base_url, payload)
+        return self._create(self._org_api_v2_base_url, payload)
 
     def destroy(self, team_id):
         """
         ``DELETE /teams/:team_id``
         """
-        url = f"{self._teams_base_url}/{team_id}"
+        url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._destroy(url)
 
     def list(self):
         """
         ``GET organizations/:org_name/teams``
         """
-        return self._list(self._org_base_url)
+        return self._list(self._org_api_v2_base_url)
 
     def show(self, team_id):
         """
         ``GET /teams/:team_id``
         """
-        url = f"{self._teams_base_url}/{team_id}"
+        url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._show(url)

@@ -13,9 +13,9 @@ class TFCTeamMemberships(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/team-members.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/teams"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/teams"
 
     def required_entitlements(self):
         return [Entitlements.TEAMS]
@@ -26,7 +26,7 @@ class TFCTeamMemberships(TFCEndpoint):
 
         This method adds multiple users to a team. Both users and teams must already exist.
         """
-        url = f"{self._base_url}/{team_id}/relationships/users"
+        url = f"{self._api_v2_base_url}/{team_id}/relationships/users"
         return self._post(url, data=payload)
 
     def remove_user_from_team(self, team_id, payload):
@@ -36,5 +36,5 @@ class TFCTeamMemberships(TFCEndpoint):
         This method removes multiple users from a team. Both users and teams must already exist.
         This DOES NOT delete the user; it only removes them from this team.
         """
-        url = f"{self._base_url}/{team_id}/relationships/users"
+        url = f"{self._api_v2_base_url}/{team_id}/relationships/users"
         return self._delete(url, data=payload)

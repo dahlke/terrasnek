@@ -13,9 +13,9 @@ class TFCTeamTokens(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/team-tokens.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/teams"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/teams"
 
     def required_entitlements(self):
         return [Entitlements.TEAMS]
@@ -26,7 +26,7 @@ class TFCTeamTokens(TFCEndpoint):
 
         Generates a new team token and overrides existing token if one exists.
         """
-        url = f"{self._base_url}/{team_id}/authentication-token"
+        url = f"{self._api_v2_base_url}/{team_id}/authentication-token"
         payload = {}
         return self._create(url, payload)
 
@@ -35,5 +35,5 @@ class TFCTeamTokens(TFCEndpoint):
         """
         ``DELETE /teams/:team_id/authentication-token``
         """
-        url = f"{self._base_url}/{team_id}/authentication-token"
+        url = f"{self._api_v2_base_url}/{team_id}/authentication-token"
         return self._destroy(url)

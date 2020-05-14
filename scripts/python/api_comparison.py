@@ -58,7 +58,7 @@ def get_endpoints_from_api_docs():
     """
     Scrape the Terraform Cloud API docs to get all of the published and documented
     endpoints. Clean the URL slugs to match the file naming convention for this project.
-    Return a map of the endpoint names and their URLs, as well as all of the methods for
+    Return a dict of the endpoint names and their URLs, as well as all of the methods for
     the endpoint.
 
     This method is the most brittle of everything here. If anything changes on the API

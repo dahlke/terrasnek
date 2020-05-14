@@ -4,8 +4,11 @@ API access.
 """
 
 import urllib3
+import requests
+import json
+import logging
 
-from._constants import TFC_SAAS_URL
+from._constants import TFC_SAAS_URL, HTTP_OK
 from .account import TFCAccount
 from .admin_orgs import TFCAdminOrgs
 from .admin_runs import TFCAdminRuns
@@ -28,8 +31,9 @@ from .policy_checks import TFCPolicyChecks
 from .policy_sets import TFCPolicySets
 from .policy_set_params import TFCPolicySetParams
 from .notification_configs import TFCNotificationConfigurations
-from .runs import TFCRuns
+from .registry_modules import TFCRegistryModules
 from .run_triggers import TFCRunTriggers
+from .runs import TFCRuns
 from .state_versions import TFCStateVersions
 from .state_version_outputs import TFCStateVersionOutputs
 from .ssh_keys import TFCSSHKeys
@@ -47,7 +51,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class InvalidTFCTokenException(Exception):
-    """Cannot instantiate TFC Api class without a valid TFC_TOKEN."""
+    """Cannot instantiate TFC API class without a valid TFC_TOKEN."""
 
 
 class TFC():
@@ -55,11 +59,63 @@ class TFC():
     Super class for access to all TFC Endpoints.
     """
 
+    """
+    This dict specifies which class should be used for each attribute of this API class,
+    which simplifies the initialization of each endpoint since they share the same initialization
+    values.
+    """
+    _class_for_attr_dict = {
+        "org-not-required": {
+            "admin_orgs": TFCAdminOrgs,
+            "admin_runs": TFCAdminRuns,
+            "admin_settings": TFCAdminSettings,
+            "admin_terraform_versions": TFCAdminTerraformVersions,
+            "admin_users": TFCAdminUsers,
+            "admin_workspaces": TFCAdminWorkspaces,
+            "orgs": TFCOrgs
+        },
+        "org-required": {
+            "account": TFCAccount,
+            "applies": TFCApplies,
+            "config_versions": TFCConfigVersions,
+            "cost_estimates": TFCCostEstimates,
+            "oauth_clients": TFCOAuthClients,
+            "oauth_tokens": TFCOAuthTokens,
+            "org_memberships": TFCOrgMemberships,
+            "org_tokens": TFCOrgTokens,
+            "plans": TFCPlans,
+            "plan_exports": TFCPlanExports,
+            "policies": TFCPolicies,
+            "policy_checks": TFCPolicyChecks,
+            "policy_sets": TFCPolicySets,
+            "policy_set_params": TFCPolicySetParams,
+            "notification_configs": TFCNotificationConfigurations,
+            "registry_modules": TFCRegistryModules,
+            "run_triggers": TFCRunTriggers,
+            "runs": TFCRuns,
+            "state_versions": TFCStateVersions,
+            "state_version_outputs": TFCStateVersionOutputs,
+            "ssh_keys": TFCSSHKeys,
+            "teams": TFCTeams,
+            "team_access": TFCTeamAccess,
+            "team_memberships": TFCTeamMemberships,
+            "team_tokens": TFCTeamTokens,
+            "users": TFCUsers,
+            "user_tokens": TFCUserTokens,
+            "vars": TFCVars,
+            "workspaces": TFCWorkspaces
+        }
+    }
+
     def __init__(self, api_token, url=TFC_SAAS_URL, verify=True):
+        # TODO: add logging about initialization and such
         if api_token is None:
             raise InvalidTFCTokenException
 
-        self._instance_url = f"{url}/api/v2"
+        self._logger = logging.getLogger(self.__class__.__name__)
+        self._logger.setLevel(logging.INFO)
+
+        self._instance_url = url
         self._token = api_token
         self._verify = verify
 
@@ -69,250 +125,60 @@ class TFC():
             "Content-Type": "application/vnd.api+json"
         }
 
-        self.orgs = TFCOrgs(
-            self._instance_url,
-            None,
-            self._headers,
-            self._verify)
+        self._well_known_paths = self.well_known_paths()
 
-        self.admin_runs = TFCAdminRuns(
-            self._instance_url,
-            None,
-            self._headers,
-            self._verify)
+        # Loop through all the endpoints that don't require an org and initialize them
+        for ep_name in self._class_for_attr_dict["org-not-required"]:
+            class_for_attr = self._class_for_attr_dict["org-not-required"][ep_name]
+            initialized_endpoint_class = class_for_attr(
+                self._instance_url,
+                None,
+                self._headers,
+                self._verify)
+            setattr(self, ep_name, initialized_endpoint_class)
 
-        self.admin_orgs = TFCAdminOrgs(
-            self._instance_url,
-            None,
-            self._headers,
-            self._verify)
+        # Loop through all the endpoints that do require an org and initialize them
+        for ep_name in self._class_for_attr_dict["org-required"]:
+            setattr(self, ep_name, None)
 
-        self.admin_settings = TFCAdminSettings(
-            self._instance_url,
-            None,
-            self._headers,
-            self._verify)
+    # TODO: move this somewhere else?
+    def _get(self, url, return_raw=False):
+        results = None
+        req = requests.get(url, headers=self._headers, verify=self._verify)
 
-        self.admin_terraform_versions = TFCAdminTerraformVersions(
-            self._instance_url,
-            None,
-            self._headers,
-            self._verify)
+        if req.status_code == HTTP_OK and not return_raw:
+            results = json.loads(req.content)
+            self._logger.debug(f"GET to {url} successful")
+        elif req.status_code == HTTP_OK and return_raw:
+            results = req.content
+        else:
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.error(err)
 
+        return results
 
-        self.admin_workspaces = TFCAdminWorkspaces(
-            self._instance_url,
-            None,
-            self._headers,
-            self._verify)
-
-        self.admin_users = None
-        self.account = None
-        self.applies = None
-        self.config_versions = None
-        self.cost_estimates = None
-        self.notification_configs = None
-        self.oauth_clients = None
-        self.oauth_tokens = None
-        self.org_memberships = None
-        self.org_tokens = None
-        self.plans = None
-        self.plan_exports = None
-        self.policies = None
-        self.policy_checks = None
-        self.policy_sets = None
-        self.policy_set_params = None
-        self.run_triggers = None
-        self.runs = None
-        self.state_versions = None
-        self.state_version_outputs = None
-        self.ssh_keys = None
-        self.teams = None
-        self.team_memberships = None
-        self.team_access = None
-        self.team_tokens = None
-        self.users = None
-        self.user_tokens = None
-        self.vars = None
-        self.workspaces = None
+    def well_known_paths(self):
+        """
+        Retrieve all the well known paths from the Terraform Cloud installation.
+        """
+        url = f"{self._instance_url}/.well-known/terraform.json"
+        return self._get(url)
 
     def set_org(self, org_name):
         """
         Sets the organization to use for org specific endpoints.
         This method must be called for any non-admin endpoint to work.
         """
+
+        # Update the current org attribute
         self._current_org = org_name
 
-        self.account = TFCAccount(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
+        for ep_name in self._class_for_attr_dict["org-required"]:
+            class_for_attr = self._class_for_attr_dict["org-required"][ep_name]
+            initialized_endpoint_class = class_for_attr(
+                self._instance_url,
+                self._current_org,
+                self._headers,
+                self._verify)
 
-        self.admin_users = TFCAdminUsers(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.applies = TFCApplies(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.config_versions = TFCConfigVersions(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.cost_estimates = TFCCostEstimates(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.notification_configs = TFCNotificationConfigurations(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.oauth_clients = TFCOAuthClients(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.oauth_tokens = TFCOAuthTokens(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.org_memberships = TFCOrgMemberships(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.org_tokens = TFCOrgTokens(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.plan_exports = TFCPlanExports(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.plans = TFCPlans(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.policies = TFCPolicies(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.policy_checks = TFCPolicyChecks(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.policy_sets = TFCPolicySets(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.policy_set_params = TFCPolicySetParams(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.runs = TFCRuns(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.run_triggers = TFCRunTriggers(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.ssh_keys = TFCSSHKeys(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.state_versions = TFCStateVersions(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.state_version_outputs = TFCStateVersionOutputs(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.teams = TFCTeams(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.team_memberships = TFCTeamMemberships(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.team_access = TFCTeamAccess(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.team_tokens = TFCTeamTokens(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.users = TFCUsers(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.user_tokens = TFCUserTokens(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.vars = TFCVars(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.workspaces = TFCWorkspaces(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
+            setattr(self, ep_name, initialized_endpoint_class)

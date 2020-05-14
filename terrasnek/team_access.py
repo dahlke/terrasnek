@@ -14,9 +14,9 @@ class TFCTeamAccess(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/team-access.html
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        super().__init__(base_url, org_name, headers, verify)
-        self._base_url = f"{base_url}/team-workspaces"
+    def __init__(self, instance_url, org_name, headers, verify):
+        super().__init__(instance_url, org_name, headers, verify)
+        self._api_v2_base_url = f"{self._api_v2_base_url}/team-workspaces"
 
     def required_entitlements(self):
         return [Entitlements.TEAMS]
@@ -25,24 +25,24 @@ class TFCTeamAccess(TFCEndpoint):
         """
         ``POST /team-workspaces``
         """
-        return self._post(self._base_url, data=payload)
+        return self._post(self._api_v2_base_url, data=payload)
 
     def list(self):
         """
         ``GET /team-workspaces``
         """
-        return self._list(self._base_url)
+        return self._list(self._api_v2_base_url)
 
     def remove_team_access(self, access_id):
         """
         ``DELETE /team-workspaces/:id``
         """
-        url = f"{self._base_url}/{access_id}"
+        url = f"{self._api_v2_base_url}/{access_id}"
         return self._delete(url)
 
     def show(self, access_id):
         """
         ``GET /team-workspaces/:id``
         """
-        url = f"{self._base_url}/{access_id}"
+        url = f"{self._api_v2_base_url}/{access_id}"
         return self._show(url)

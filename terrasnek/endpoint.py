@@ -16,13 +16,17 @@ class TFCEndpoint(ABC):
     Base class providing common CRUD operation implementations across all TFC Endpoints.
     """
 
-    def __init__(self, base_url, org_name, headers, verify):
-        self._base_url = base_url
+    def __init__(self, instance_url, org_name, headers, verify):
+        self._logger = logging.getLogger(self.__class__.__name__)
+        self._logger.setLevel(logging.INFO)
+
+        # TODO: make this take a hostname, and not the protocol, also take in the well known info
+        self._instance_url = instance_url
+        self._api_v2_base_url = f"{self._instance_url}/api/v2"
+        self._modules_v1_base_url = f"{self._instance_url}/api/registry/v1/modules"
         self._headers = headers
         self._org_name = org_name
         self._verify = verify
-        self._logger = logging.getLogger(self.__class__.__name__)
-        self._logger.setLevel(logging.INFO)
 
     @abstractmethod
     def required_entitlements(self):
@@ -31,6 +35,7 @@ class TFCEndpoint(ABC):
         """
         return []
 
+    # TODO: create an HTTP base class with all these functions
     def _delete(self, url, data=None):
         results = None
         req = requests.delete(\
@@ -126,10 +131,12 @@ class TFCEndpoint(ABC):
             self._logger.error(err)
 
     def _list(self, url, query=None, filters=None, \
-        page=None, page_size=None, search=None, include=None, sort=None):
+        page=None, page_size=None, search=None, include=None, sort=None,
+        offset=None, limit=None, provider=None, namespace=None, verified=None):
         """
         Implementation of the common list resources pattern for the TFC API.
         """
+
         q_options = []
 
         if query is not None:
@@ -160,6 +167,23 @@ class TFCEndpoint(ABC):
 
         if search is not None:
             q_options.append(f"search[name]={search}")
+
+        # V1 Modules API options
+        # TODO
+        if offset is not None:
+            pass
+
+        if limit is not None:
+            pass
+
+        if provider is not None:
+            pass
+
+        if namespace is not None:
+            pass
+
+        if verified is not None:
+            pass
 
         if q_options:
             url += "?" + "&".join(q_options)
