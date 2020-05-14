@@ -33,12 +33,12 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         all_config_versions = self._api.config_versions.list(self._ws_id)["data"]
 
         # Confirm we found the newly created config version
-        found_cv = False
-        for cv in all_config_versions:
-            if cv_id == cv["id"]:
-                found_cv = True
+        found_conf_ver = False
+        for conf_ver in all_config_versions:
+            if cv_id == conf_ver["id"]:
+                found_conf_ver = True
                 break
-        self.assertTrue(found_cv)
+        self.assertTrue(found_conf_ver)
 
         # Confirm the config version status is "pending" as well
         self.assertEqual(all_config_versions[0]["attributes"]["status"], "pending")

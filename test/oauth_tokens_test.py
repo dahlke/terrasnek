@@ -57,10 +57,9 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
         oauth_tokens = self._api.oauth_tokens.list(
             self._oauth_client_id)["data"]
 
-        found_ot = False
-        for ot in oauth_tokens:
-            if oauth_token_id == ot["id"]:
-                found_ot = True
+        found_token = False
+        for oauth_token in oauth_tokens:
+            if oauth_token_id == oauth_token["id"]:
+                found_token = True
                 break
-        self.assertFalse(found_ot)
-
+        self.assertFalse(found_token)

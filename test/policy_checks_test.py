@@ -56,7 +56,6 @@ class TestTFCPolicyChecks(TestTFCBaseTestCase):
         }
         self._api.policy_sets.attach_policy_set_to_workspaces(\
             self._created_policy_set_id, attach_to_workspace)
-        shown_policy_set = self._api.policy_sets.show(self._created_policy_set_id)["data"]
 
         # Wait a second to make sure the policy is attached before creating the run
         time.sleep(1)

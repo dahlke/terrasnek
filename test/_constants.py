@@ -13,6 +13,14 @@ AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
 
 SSL_VERIFY = os.getenv("SSL_VERIFY", "").lower() != "false"
 
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID", None)
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN", None)
+
+SMTP_HOST = os.getenv("SMTP_HOST", None)
+SMTP_PORT = os.getenv("SMTP_PORT", None)
+SMTP_USERNAME = os.getenv("SMTP_USERNAME", None)
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", None)
+
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
 GITHUB_SECRET = os.getenv("GITHUB_SECRET", None)
 
@@ -33,6 +41,24 @@ if AWS_ACCESS_KEY_ID is None:
 
 if AWS_SECRET_ACCESS_KEY is None:
     sys.exit("Environment variable AWS_SECRET_ACCESS_KEY must be set.")
+
+if TWILIO_ACCOUNT_SID is None:
+    sys.exit("Environment variable TWILIO_ACCOUNT_SID must be set.")
+
+if TWILIO_AUTH_TOKEN is None:
+    sys.exit("Environment variable TWILIO_AUTH_TOKEN must be set.")
+
+if SMTP_HOST is None:
+    sys.exit("Environment variable SMTP_HOST must be set.")
+
+if SMTP_PORT is None:
+    sys.exit("Environment variable SMTP_PORT must be set.")
+
+if SMTP_USERNAME is None:
+    sys.exit("Environment variable SMTP_USERNAME must be set.")
+
+if SMTP_PASSWORD is None:
+    sys.exit("Environment variable SMTP_PASSWORD must be set.")
 
 if GITHUB_TOKEN is None:
     sys.exit("Environment variable GITHUB_TOKEN must be set.")

@@ -64,8 +64,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
         self.assertEqual(created_run["relationships"]["workspace"]["data"]["id"],
                          create_run_payload["data"]["relationships"]["workspace"]["data"]["id"])
-        self.assertTrue(created_run["attributes"]
-                         ["actions"]["is-confirmable"], True)
+        self.assertTrue(created_run["attributes"]["actions"]["is-confirmable"], True)
         self.assertRaises(
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["applying-at"])
 
