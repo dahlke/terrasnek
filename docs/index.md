@@ -22,6 +22,8 @@ TFC_URL = os.getenv("TFC_URL", None)  # ex: https://app.terraform.io
 Using TLS:
 
 ```
+from terrasnek.api import TFC
+
 api = TFC(TFC_TOKEN, url=TFC_URL)
 api.set_org("YOUR_ORGANIZATION")
 ```
@@ -29,9 +31,68 @@ api.set_org("YOUR_ORGANIZATION")
 Insecure:
 
 ```
+from terrasnek.api import TFC
+
 api = TFC(TFC_TOKEN, url=TFC_URL, verify=False)
 api.set_org("YOUR_ORGANIZATION")
 ```
+
+### Examples
+
+#### Configure the API Class
+```
+import os
+from terrasnek.api import TFC
+
+TFC_TOKEN = os.getenv("TFC_TOKEN", None)
+TFC_URL = os.getenv("TFC_URL", None)  # ex: https://app.terraform.io
+
+api = TFC(TFC_TOKEN, url=TFC_URL)
+api.set_org("YOUR_ORGANIZATION")
+```
+
+#### Create a Workspace
+```
+create_workspace_payload = {
+    # https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload
+}
+
+created_workspace = api.workspaces.create(create_workspace_payload)
+created_workspace_id = created_workspace["data]["id"]
+```
+
+#### Add Variables to a Workspace
+```
+create_variable_payload = {
+    # https://www.terraform.io/docs/cloud/api/variables.html#sample-payload
+}
+
+api.variables.create(create_variable_payload)
+```
+
+#### Create a Run on a Workspace
+```
+create_run_payload = {
+    # https://www.terraform.io/docs/cloud/api/run.html#sample-payload
+}
+
+run = api.runs.create(create_run_payload)
+run_id = self._run["data"]["id"]
+```
+
+#### Override a Failed Policy Check
+```
+pol_checks = api.policy_checks.list(run_id)
+api.policy_checks.override(pol_checks["data"][0]["id"])
+```
+
+#### Apply a Run on a Workspace
+```
+applied_run = api.runs.apply(run_id)
+```
+
+_For more examples, see the `./test` directory in the repository._
+
 
 Contents
 --------
