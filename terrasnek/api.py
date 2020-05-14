@@ -28,8 +28,6 @@ from .policy_checks import TFCPolicyChecks
 from .policy_sets import TFCPolicySets
 from .policy_set_params import TFCPolicySetParams
 from .notification_configs import TFCNotificationConfigurations
-from .policy_checks import TFCPolicyChecks
-from .policy_checks import TFCPolicyChecks
 from .runs import TFCRuns
 from .run_triggers import TFCRunTriggers
 from .state_versions import TFCStateVersions
@@ -151,37 +149,13 @@ class TFC():
             self._headers,
             self._verify)
 
-        self.org_memberships = TFCOrgMemberships(
+        self.admin_users = TFCAdminUsers(
             self._instance_url,
             self._current_org,
             self._headers,
             self._verify)
 
-        self.org_tokens = TFCOrgTokens(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.workspaces = TFCWorkspaces(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.users = TFCUsers(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.user_tokens = TFCUserTokens(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.variables = TFCVariables(
+        self.applies = TFCApplies(
             self._instance_url,
             self._current_org,
             self._headers,
@@ -199,19 +173,31 @@ class TFC():
             self._headers,
             self._verify)
 
-        self.runs = TFCRuns(
+        self.notification_configs = TFCNotificationConfigurations(
             self._instance_url,
             self._current_org,
             self._headers,
             self._verify)
 
-        self.applies = TFCApplies(
+        self.oauth_clients = TFCOAuthClients(
             self._instance_url,
             self._current_org,
             self._headers,
             self._verify)
 
-        self.plans = TFCPlans(
+        self.oauth_tokens = TFCOAuthTokens(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
+
+        self.org_memberships = TFCOrgMemberships(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
+
+        self.org_tokens = TFCOrgTokens(
             self._instance_url,
             self._current_org,
             self._headers,
@@ -223,19 +209,7 @@ class TFC():
             self._headers,
             self._verify)
 
-        self.state_versions = TFCStateVersions(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.state_version_outputs = TFCStateVersionOutputs(
-            self._instance_url,
-            self._current_org,
-            self._headers,
-            self._verify)
-
-        self.ssh_keys = TFCSSHKeys(
+        self.plans = TFCPlans(
             self._instance_url,
             self._current_org,
             self._headers,
@@ -265,13 +239,31 @@ class TFC():
             self._headers,
             self._verify)
 
-        self.notification_configs = TFCNotificationConfigurations(
+        self.runs = TFCRuns(
             self._instance_url,
             self._current_org,
             self._headers,
             self._verify)
 
         self.run_triggers = TFCRunTriggers(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
+
+        self.ssh_keys = TFCSSHKeys(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
+
+        self.state_versions = TFCStateVersions(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
+
+        self.state_version_outputs = TFCStateVersionOutputs(
             self._instance_url,
             self._current_org,
             self._headers,
@@ -301,19 +293,25 @@ class TFC():
             self._headers,
             self._verify)
 
-        self.oauth_clients = TFCOAuthClients(
+        self.users = TFCUsers(
             self._instance_url,
             self._current_org,
             self._headers,
             self._verify)
 
-        self.oauth_tokens = TFCOAuthTokens(
+        self.user_tokens = TFCUserTokens(
             self._instance_url,
             self._current_org,
             self._headers,
             self._verify)
 
-        self.admin_users = TFCAdminUsers(
+        self.variables = TFCVariables(
+            self._instance_url,
+            self._current_org,
+            self._headers,
+            self._verify)
+
+        self.workspaces = TFCWorkspaces(
             self._instance_url,
             self._current_org,
             self._headers,

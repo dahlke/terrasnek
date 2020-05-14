@@ -58,8 +58,13 @@ if __name__ == "__main__":
 ##### Endpoints
 <details>
   <summary>Supported Endpoints</summary>
-
     * [x] [Account](https://www.terraform.io/docs/cloud/api/account.html)
+    * [x] [Admin Orgs](https://www.terraform.io/docs/cloud/api/admin/organizations.html)
+    * [x] [Admin Runs](https://www.terraform.io/docs/cloud/api/admin/runs.html)
+    * [x] [Admin Settings](https://www.terraform.io/docs/cloud/api/admin/settings.html)
+    * [x] [Admin Terraform Versions](https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html)
+    * [x] [Admin Users](https://www.terraform.io/docs/cloud/api/admin/users.html)
+    * [x] [Admin Workspaces](https://www.terraform.io/docs/cloud/api/admin/workspaces.html)
     * [x] [Applies](https://www.terraform.io/docs/cloud/api/applies.html)
     * [x] [Configuration Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)
     * [x] [Cost Estimates](https://www.terraform.io/docs/cloud/api/cost-estimates.html)
@@ -88,12 +93,6 @@ if __name__ == "__main__":
     * [x] [Users](https://www.terraform.io/docs/cloud/api/users.html)
     * [x] [Variables](https://www.terraform.io/docs/cloud/api/variables.html)
     * [x] [Workspaces](https://www.terraform.io/docs/cloud/api/workspaces.html)
-    * [x] [Admin Orgs](https://www.terraform.io/docs/cloud/api/admin/organizations.html)
-    * [x] [Admin Runs](https://www.terraform.io/docs/cloud/api/admin/runs.html)
-    * [x] [Admin Settings](https://www.terraform.io/docs/cloud/api/admin/settings.html)
-    * [x] [Admin Terraform Versions](https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html)
-    * [x] [Admin Users](https://www.terraform.io/docs/cloud/api/admin/users.html)
-    * [x] [Admin Workspaces](https://www.terraform.io/docs/cloud/api/admin/workspaces.html)
 </details>
 
 <details>
