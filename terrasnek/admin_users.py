@@ -34,7 +34,7 @@ class TFCAdminUsers(TFCEndpoint):
         This endpoint disables a user's two-factor authentication in the situation where they
         have lost access to their device and recovery codes. Before disabling a user's two-factor
         authentication, completing a security verification process is recommended to ensure
-    the request is legitimate.
+        the request is legitimate.
         """
         url = f"{self._base_url}/{user_id}/actions/disable_two_factor"
         return self._post(url)
