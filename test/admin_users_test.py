@@ -17,9 +17,11 @@ class TestTFCAdminUsers(TestTFCBaseTestCase):
         Test the Admin Users API endpoints: ``grant_admin``, ``list``,
         ``revoke_admin``, ``suspend``, ``unsuspend``.
 
-        Not tested, as they can't be reverted via the API: ``destroy``, ``disable_two_factor``.
+        NOTE: Not tested, as they can't be reverted via the API: ``destroy``,
+        ``disable_two_factor``.
 
-        Not tested, as it's not super valuable via the API: ``impersonate``, ``unimpersonate``.
+        NOTE: Not tested, as it's not super valuable via the API: ``impersonate``,
+        ``unimpersonate``.
         """
         # List all the users through the admin users API, but query for our test
         # user
