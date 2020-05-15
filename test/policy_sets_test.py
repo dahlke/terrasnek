@@ -11,6 +11,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
     """
 
     _unittest_name = "pol-sets"
+    _endpoint_being_tested = "policy_sets"
 
     def setUp(self):
         # Set up a workspace to attach a policy set to

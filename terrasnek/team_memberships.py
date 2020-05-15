@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Team Memberships.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements
 
 class TFCTeamMemberships(TFCEndpoint):
     """
@@ -15,6 +16,9 @@ class TFCTeamMemberships(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/teams"
+
+    def required_entitlements(self):
+        return [Entitlements.TEAMS]
 
     def add_user_to_team(self, team_id, payload):
         """

@@ -11,6 +11,7 @@ class TestTFCOrgTokens(TestTFCBaseTestCase):
     """
 
     _unittest_name = "org-tok"
+    _endpoint_being_tested = "org_tokens"
 
     def setUp(self):
         # Create a temp org to manipulate in the test.

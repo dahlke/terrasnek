@@ -11,6 +11,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
     """
 
     _unittest_name = "team-acc"
+    _endpoint_being_tested = "team_access"
 
     def setUp(self):
         # Create a test team

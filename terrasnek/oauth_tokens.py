@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: OAuth Tokens.
 """
 
 from .endpoint import TFCEndpoint
+from._constants import Entitlements
 
 class TFCOAuthTokens(TFCEndpoint):
     """
@@ -17,6 +18,9 @@ class TFCOAuthTokens(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._oauth_clients_base_url = f"{base_url}/oauth-clients"
         self._oauth_tokens_base_url = f"{base_url}/oauth-tokens"
+
+    def required_entitlements(self):
+        return [Entitlements.VCS_INTEGRATIONS]
 
     def list(self, oauth_client_id):
         """

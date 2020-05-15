@@ -19,6 +19,9 @@ class TFCAdminOrgs(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/admin/organizations"
 
+    def required_entitlements(self):
+        return []
+
     def destroy(self, org_name):
         """
         ``DELETE /admin/organizations/:org_name``

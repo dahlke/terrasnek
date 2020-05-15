@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: State Version Outputs.
 """
 
 from .endpoint import TFCEndpoint
+from._constants import Entitlements
 
 class TFCStateVersionOutputs(TFCEndpoint):
     """
@@ -16,6 +17,9 @@ class TFCStateVersionOutputs(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/state-version-outputs"
+
+    def required_entitlements(self):
+        return [Entitlements.STATE_STORAGE]
 
     def show(self, state_version_output_id):
         """

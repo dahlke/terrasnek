@@ -11,6 +11,7 @@ class TestTFCTeamTokens(TestTFCBaseTestCase):
     """
 
     _unittest_name = "team-tok"
+    _endpoint_being_tested = "team_tokens"
 
     def setUp(self):
         self._team = self._api.teams.create(

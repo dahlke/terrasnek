@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: OAuth Clients.
 """
 
 from .endpoint import TFCEndpoint
+from._constants import Entitlements
 
 class TFCOAuthClients(TFCEndpoint):
     """
@@ -15,6 +16,9 @@ class TFCOAuthClients(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._org_base_url = f"{base_url}/organizations/{org_name}/oauth-clients"
         self._oauth_clients_base_url = f"{base_url}/oauth-clients"
+
+    def required_entitlements(self):
+        return [Entitlements.VCS_INTEGRATIONS]
 
     def list(self):
         """

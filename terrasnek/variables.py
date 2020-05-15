@@ -10,9 +10,13 @@ class TFCVariables(TFCEndpoint):
 
     https://www.terraform.io/docs/cloud/api/variables.html
     """
+
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/vars"
+
+    def required_entitlements(self):
+        return []
 
     def create(self, payload):
         """

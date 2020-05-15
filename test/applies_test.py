@@ -13,6 +13,7 @@ class TestTFCApplies(TestTFCBaseTestCase):
     """
 
     _unittest_name = "applies"
+    _endpoint_being_tested = "applies"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID

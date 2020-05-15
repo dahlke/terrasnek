@@ -19,6 +19,9 @@ class TFCAdminSettings(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/admin"
 
+    def required_entitlements(self):
+        return []
+
     def list_general(self):
         """
         ``GET /api/v2/admin/general-settings``

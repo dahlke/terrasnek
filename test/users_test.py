@@ -11,6 +11,7 @@ class TestTFCUsers(TestTFCBaseTestCase):
     """
 
     _unittest_name = "users"
+    _endpoint_being_tested = "users"
 
     def test_users(self):
         """

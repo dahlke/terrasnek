@@ -11,6 +11,7 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
     """
 
     _unittest_name = "state-ver"
+    _endpoint_being_tested = "state_versions"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID

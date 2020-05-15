@@ -11,6 +11,7 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
     """
 
     _unittest_name = "adm-ws"
+    _endpoint_being_tested = "admin_workspaces"
 
     def setUp(self):
         # Create a sample workspace to manipulate in the test.

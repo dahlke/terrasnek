@@ -14,6 +14,7 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
     """
 
     _unittest_name = "plan-exp"
+    _endpoint_being_tested = "plan_exports"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID

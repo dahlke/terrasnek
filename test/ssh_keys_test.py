@@ -13,6 +13,7 @@ class TestTFCSSHKeys(TestTFCBaseTestCase):
     """
 
     _unittest_name = "ssh-keys"
+    _endpoint_being_tested = "ssh_keys"
 
     def test_ssh_keys(self):
         """

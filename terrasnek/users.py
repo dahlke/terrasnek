@@ -19,6 +19,9 @@ class TFCUsers(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._users_base_url = f"{base_url}/users"
 
+    def required_entitlements(self):
+        return []
+
     def show(self, user_id):
         """
         ``GET /users/:user_id``

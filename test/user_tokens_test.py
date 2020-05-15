@@ -11,6 +11,7 @@ class TestTFCUserTokens(TestTFCBaseTestCase):
     """
 
     _unittest_name = "user-tok"
+    _endpoint_being_tested = "user_tokens"
 
     def test_user_token(self):
         """

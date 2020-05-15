@@ -17,6 +17,9 @@ class TFCAccount(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/account"
 
+    def required_entitlements(self):
+        return []
+
     def show(self):
         """
         ``GET /account/details``

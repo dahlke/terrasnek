@@ -12,6 +12,7 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
     """
 
     _unittest_name = "run-trig"
+    _endpoint_being_tested = "run_triggers"
 
     def setUp(self):
         self._source_ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())

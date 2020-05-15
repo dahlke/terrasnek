@@ -4,7 +4,6 @@ Module for Terraform Cloud API Endpoint: Admin Users.
 
 from .endpoint import TFCEndpoint
 
-
 class TFCAdminUsers(TFCEndpoint):
     """
     The Users Admin API contains endpoints to help site administrators manage user accounts.
@@ -15,6 +14,9 @@ class TFCAdminUsers(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/admin/users"
+
+    def required_entitlements(self):
+        return []
 
     def destroy(self, user_id):
         """

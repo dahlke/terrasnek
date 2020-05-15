@@ -11,6 +11,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
     """
 
     _unittest_name = "acc"
+    _endpoint_being_tested = "account"
 
     def test_account(self):
         """

@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: Plans.
 """
 
 from .endpoint import TFCEndpoint
-
+from._constants import Entitlements
 
 class TFCPlans(TFCEndpoint):
     """
@@ -15,6 +15,9 @@ class TFCPlans(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/plans"
+
+    def required_entitlements(self):
+        return [Entitlements.OPERATIONS]
 
     def show(self, plan_id):
         """

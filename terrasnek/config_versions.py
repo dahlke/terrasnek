@@ -18,6 +18,9 @@ class TFCConfigVersions(TFCEndpoint):
         self._ws_base_url = f"{base_url}/workspaces"
         self._config_version_base_url = f"{base_url}/configuration-versions"
 
+    def required_entitlements(self):
+        return []
+
     def list(self, workspace_id, page=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/configuration-versions``

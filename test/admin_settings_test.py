@@ -13,6 +13,7 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
     """
 
     _unittest_name = "admin-settings"
+    _endpoint_being_tested = "admin_settings"
 
     def test_admin_settings_general(self):
         """

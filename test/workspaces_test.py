@@ -11,6 +11,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
     """
 
     _unittest_name = "ws"
+    _endpoint_being_tested = "workspaces"
 
     def setUp(self):
         # Add an SSH Key to TFC

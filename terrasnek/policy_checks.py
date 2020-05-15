@@ -2,8 +2,8 @@
 Module for Terraform Cloud API Endpoint: Policy Checks.
 """
 
-
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements
 
 class TFCPolicyChecks(TFCEndpoint):
     """
@@ -14,6 +14,9 @@ class TFCPolicyChecks(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/policy-checks"
         self._runs_base_url = f"{base_url}/runs"
+
+    def required_entitlements(self):
+        return [Entitlements.SENTINEL]
 
     def list(self, run_id):
         """

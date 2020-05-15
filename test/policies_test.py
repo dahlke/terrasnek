@@ -11,6 +11,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
     """
 
     _unittest_name = "pol"
+    _endpoint_being_tested = "policies"
 
     def test_policies(self):
         """

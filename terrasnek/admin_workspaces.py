@@ -20,6 +20,9 @@ class TFCAdminWorkspaces(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/admin/workspaces"
 
+    def required_entitlements(self):
+        return []
+
     def list(self, \
         filters=None, page=None, page_size=None, sort=None, search=None):
         """

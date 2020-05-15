@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Applies.
 """
 
 from .endpoint import TFCEndpoint
+from._constants import Entitlements
 
 class TFCApplies(TFCEndpoint):
     """
@@ -14,6 +15,9 @@ class TFCApplies(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/applies"
+
+    def required_entitlements(self):
+        return [Entitlements.OPERATIONS]
 
     def show(self, apply_id):
         """

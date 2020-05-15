@@ -25,6 +25,9 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         return self._list(self._base_url, page=page, page_size=page_size)
 
+    def required_entitlements(self):
+        return []
+
     def create(self, data):
         """
         ``POST /admin/terraform-versions``

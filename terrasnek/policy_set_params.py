@@ -2,8 +2,8 @@
 Module for Terraform Cloud API Endpoint: Policy Set Params.
 """
 
-
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements
 
 class TFCPolicySetParams(TFCEndpoint):
     """
@@ -13,6 +13,9 @@ class TFCPolicySetParams(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/policy-sets"
+
+    def required_entitlements(self):
+        return [Entitlements.SENTINEL]
 
     def create(self, policy_set_id, payload):
         """

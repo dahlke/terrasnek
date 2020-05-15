@@ -11,6 +11,7 @@ class TestTFCOAuthClients(TestTFCBaseTestCase):
     """
 
     _unittest_name = "oa-clients"
+    _endpoint_being_tested = "oauth_clients"
 
     def test_oauth_clients(self):
         """

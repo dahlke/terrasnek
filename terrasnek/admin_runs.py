@@ -20,6 +20,9 @@ class TFCAdminRuns(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/admin/runs"
 
+    def required_entitlements(self):
+        return []
+
     def list(self, query=None, filters=None, page=None, page_size=None):
         """
         ``GET /admin/runs``

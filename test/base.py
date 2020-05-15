@@ -19,6 +19,8 @@ from ._constants import \
     GITHUB_TOKEN, GITHUB_SECRET, \
     SSL_VERIFY, TEST_PASSWORD
 
+from terrasnek._constants import Entitlements
+
 DEFAULT_VCS_WORKING_DIR = "tfe"
 
 class TestTFCBaseTestCase(unittest.TestCase):
@@ -29,6 +31,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
     """
 
     _unittest_name = "base"
+    _endpoint_being_tested = None
 
     @classmethod
     def setUpClass(cls):
@@ -51,6 +54,36 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._plan_export_tarball_target_path = "/tmp/terrasnek_unittest.tar.gz"
 
         cls._api.set_org(cls._test_org_name)
+
+        # Check to see if this test can be run with the current entitlments
+        missing_entitlements = cls._get_missing_entitlements(cls._endpoint_being_tested)
+        if len(missing_entitlements) > 0:
+            raise unittest.SkipTest("Missing required Terraform Cloud Entitlments for test:", missing_entitlements)
+
+    @classmethod
+    def _get_missing_entitlements(cls, endpoint_attr_name):
+        # TODO: maybe move this into the endpoint base class and check before each API call so
+        # we can warn users early.
+        endpoint = getattr(cls._api, endpoint_attr_name)
+        required_entitlements = endpoint.required_entitlements()
+        current_entitlements = cls._api.orgs.entitlements(cls._test_org_name)["data"]["attributes"]
+
+        meets_all_requirements = True
+        missing_entitlements = []
+        for req_ent in required_entitlements:
+            meets_sub_requirement = False
+
+            for cur_ent in current_entitlements:
+                cur_ent = cur_ent.replace("-", "_").upper()
+
+                if Entitlements[cur_ent] == req_ent:
+                    print(Entitlements[cur_ent], req_ent)
+                    meets_sub_requirement = True
+
+            if not meets_sub_requirement:
+                missing_entitlements.append(req_ent)
+
+        return missing_entitlements
 
     def _name_with_random(self, ran_str_len=8):
         random_hex = binascii.b2a_hex(os.urandom(ran_str_len)).decode("ascii")

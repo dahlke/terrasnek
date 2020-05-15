@@ -16,6 +16,9 @@ class TFCWorkspaces(TFCEndpoint):
         self._ws_base_url = f"{base_url}/workspaces"
         self._org_base_url = f"{base_url}/organizations/{org_name}/workspaces"
 
+    def required_entitlements(self):
+        return []
+
     def create(self, payload):
         """
         ``POST /organizations/:org_name/workspaces``

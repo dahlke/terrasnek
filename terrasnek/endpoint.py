@@ -6,10 +6,11 @@ import json
 import logging
 import requests
 
+from abc import ABC, abstractmethod
 from._constants import HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT
 
 
-class TFCEndpoint():
+class TFCEndpoint(ABC):
     """
     Base class providing common CRUD operation implementations across all TFC Endpoints.
     """
@@ -21,6 +22,13 @@ class TFCEndpoint():
         self._verify = verify
         self._logger = logging.getLogger(self.__class__.__name__)
         self._logger.setLevel(logging.INFO)
+
+    @abstractmethod
+    def required_entitlements(self):
+        """
+        Terraform Cloud Entitlements required for endpoint to work.
+        """
+        return []
 
     def _delete(self, url, data=None):
         results = None

@@ -11,6 +11,7 @@ class TestTFCOrgs(TestTFCBaseTestCase):
     """
 
     _unittest_name = "orgs"
+    _endpoint_being_tested = "orgs"
 
     def test_orgs(self):
         """

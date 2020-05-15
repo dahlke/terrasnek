@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Team Access.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements
 
 class TFCTeamAccess(TFCEndpoint):
     """
@@ -16,6 +17,9 @@ class TFCTeamAccess(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/team-workspaces"
+
+    def required_entitlements(self):
+        return [Entitlements.TEAMS]
 
     def add_team_access(self, payload):
         """

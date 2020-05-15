@@ -12,6 +12,7 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
     """
 
     _unittest_name = "not-cng"
+    _endpoint_being_tested = "notification_configs"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID

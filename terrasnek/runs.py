@@ -3,15 +3,16 @@ Module for Terraform Cloud API Endpoint: Runs.
 """
 
 from .endpoint import TFCEndpoint
+from._constants import Entitlements
 
 class TFCRuns(TFCEndpoint):
     """
     Performing a run on a new configuration is a multi-step process.
 
-    Create a configuration version on the workspace.
-    Upload configuration files to the configuration version.
-    Create a run on the workspace; this is done automatically when a config file is uploaded.
-    Create and queue an apply on the run; if the run can't be auto-applied.
+    - Create a configuration version on the workspace.
+    - Upload configuration files to the configuration version.
+    - Create a run on the workspace; this is done automatically when a config file is uploaded.
+    - Create and queue an apply on the run; if the run can't be auto-applied.
 
     Alternatively, you can create a run with a pre-existing configuration version, even one from
     another workspace. This is useful for promoting known good code from one workspace to another.
@@ -23,6 +24,9 @@ class TFCRuns(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._ws_base_url = f"{base_url}/workspaces"
         self._runs_base_url = f"{base_url}/runs"
+
+    def required_entitlements(self):
+        return [Entitlements.OPERATIONS]
 
     def list(self, workspace_id, page=None, page_size=None):
         """

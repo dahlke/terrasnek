@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: State Versions.
 """
 
 from .endpoint import TFCEndpoint
+from._constants import Entitlements
 
 class TFCStateVersions(TFCEndpoint):
     """
@@ -13,6 +14,9 @@ class TFCStateVersions(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._state_version_base_url = f"{base_url}/state-versions"
         self._workspace_base_url = f"{base_url}/workspaces"
+
+    def required_entitlements(self):
+        return [Entitlements.STATE_STORAGE]
 
     def create(self, workspace_id, payload):
         """

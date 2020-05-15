@@ -13,6 +13,7 @@ class TestTFCPolicyChecks(TestTFCBaseTestCase):
     """
 
     _unittest_name = "pol-chk"
+    _endpoint_being_tested = "policy_checks"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID

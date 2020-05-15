@@ -11,6 +11,7 @@ class TestTFCAdminUsers(TestTFCBaseTestCase):
     """
 
     _unittest_name = "users"
+    _endpoint_being_tested = "users"
 
     def test_admin_users(self):
         """
@@ -23,6 +24,7 @@ class TestTFCAdminUsers(TestTFCBaseTestCase):
         NOTE: Not tested, as it's not super valuable via the API: ``impersonate``,
         ``unimpersonate``.
         """
+
         # List all the users through the admin users API, but query for our test
         # user
         listed_users = self._api.admin_users.list(query=self._test_username, page=0, page_size=50)["data"]

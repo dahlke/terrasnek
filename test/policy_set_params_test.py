@@ -11,6 +11,7 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
     """
 
     _unittest_name = "pol-set-params"
+    _endpoint_being_tested = "policy_set_params"
 
     def setUp(self):
         oauth_client = self._api.oauth_clients.create(\

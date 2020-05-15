@@ -11,6 +11,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
     """
 
     _unittest_name = "cnf-ver"
+    _endpoint_being_tested = "config_versions"
 
     def setUp(self):
         self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())

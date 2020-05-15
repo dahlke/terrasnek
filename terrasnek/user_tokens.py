@@ -14,6 +14,9 @@ class TFCUserTokens(TFCEndpoint):
         self._users_base_url = f"{base_url}/users"
         self._tokens_base_url = f"{base_url}/authentication-tokens"
 
+    def required_entitlements(self):
+        return []
+
     def create(self, user_id, payload):
         """
         ``POST /users/:user_id/authentication-tokens``

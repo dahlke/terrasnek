@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Teams.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements
 
 class TFCTeams(TFCEndpoint):
     """
@@ -18,6 +19,9 @@ class TFCTeams(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._teams_base_url = f"{base_url}/teams"
         self._org_base_url = f"{base_url}/organizations/{org_name}/teams"
+
+    def required_entitlements(self):
+        return [Entitlements.TEAMS]
 
     def create(self, payload):
         """

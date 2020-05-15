@@ -11,6 +11,7 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
     """
 
     _unittest_name = "org-mem"
+    _endpoint_being_tested = "org_memberships"
 
     def test_org_memberships(self):
         """

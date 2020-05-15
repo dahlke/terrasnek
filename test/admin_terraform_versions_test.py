@@ -13,6 +13,7 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
     """
 
     _unittest_name = "tf-ver"
+    _endpoint_being_tested = "admin_terraform_versions"
 
     def test_admin_terraform_versions(self):
         """

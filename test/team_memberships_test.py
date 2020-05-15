@@ -11,6 +11,7 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
     """
 
     _unittest_name = "team-mem"
+    _endpoint_being_tested = "team_memberships"
 
     def setUp(self):
         self._team = self._api.teams.create(

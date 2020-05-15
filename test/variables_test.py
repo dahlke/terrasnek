@@ -11,6 +11,7 @@ class TestTFCVariables(TestTFCBaseTestCase):
     """
 
     _unittest_name = "vars"
+    _endpoint_being_tested = "variables"
 
     def setUp(self):
         self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())

@@ -11,6 +11,7 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
     """
 
     _unittest_name = "oa-tokens"
+    _endpoint_being_tested = "oauth_tokens"
 
     def setUp(self):
         self._oauth_client = self._api.oauth_clients.create(\

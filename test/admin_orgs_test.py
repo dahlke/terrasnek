@@ -11,6 +11,7 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
     """
 
     _unittest_name = "adm-org"
+    _endpoint_being_tested = "admin_orgs"
 
     def setUp(self):
         # Create a temp org to manipulate in the test

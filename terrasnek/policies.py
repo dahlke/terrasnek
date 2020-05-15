@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Policies.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements
 
 class TFCPolicies(TFCEndpoint):
     """
@@ -17,6 +18,9 @@ class TFCPolicies(TFCEndpoint):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/policies"
         self._org_base_url = f"{base_url}/organizations/{org_name}/policies"
+
+    def required_entitlements(self):
+        return [Entitlements.SENTINEL]
 
     def create(self, payload):
         """

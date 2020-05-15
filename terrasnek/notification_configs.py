@@ -19,6 +19,9 @@ class TFCNotificationConfigurations(TFCEndpoint):
         self._base_url = f"{base_url}/notification-configurations"
         self._ws_base_url = f"{base_url}/workspaces"
 
+    def required_entitlements(self):
+        return []
+
     def create(self, workspace_id, payload):
         """
         ``POST /workspaces/:workspace_id/notification-configurations``

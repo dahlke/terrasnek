@@ -11,6 +11,7 @@ class TestTFCTeams(TestTFCBaseTestCase):
     """
 
     _unittest_name = "teams"
+    _endpoint_being_tested = "teams"
 
     def test_team(self):
         """

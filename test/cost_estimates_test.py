@@ -14,6 +14,7 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
     """
 
     _unittest_name = "cst-est"
+    _endpoint_being_tested = "cost_estimates"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID

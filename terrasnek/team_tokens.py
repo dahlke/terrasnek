@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Team Tokens.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements
 
 class TFCTeamTokens(TFCEndpoint):
     """
@@ -15,6 +16,9 @@ class TFCTeamTokens(TFCEndpoint):
     def __init__(self, base_url, org_name, headers, verify):
         super().__init__(base_url, org_name, headers, verify)
         self._base_url = f"{base_url}/teams"
+
+    def required_entitlements(self):
+        return [Entitlements.TEAMS]
 
     def create(self, team_id):
         """

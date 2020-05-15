@@ -13,6 +13,7 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
     """
 
     _unittest_name = "adm-run"
+    _endpoint_being_tested = "admin_runs"
 
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID
