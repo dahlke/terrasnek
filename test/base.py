@@ -57,8 +57,9 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         # Check to see if this test can be run with the current entitlments
         missing_entitlements = cls._get_missing_entitlements(cls._endpoint_being_tested)
-        if len(missing_entitlements) > 0:
-            raise unittest.SkipTest("Missing required Terraform Cloud Entitlments for test:", missing_entitlements)
+        # TODO: raise exceptions
+        if missing_entitlements:
+            raise unittest.SkipTest("Missing required Terraform Cloud Entitlments for test", cls._unittest_name, missing_entitlements)
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
@@ -68,16 +69,15 @@ class TestTFCBaseTestCase(unittest.TestCase):
         required_entitlements = endpoint.required_entitlements()
         current_entitlements = cls._api.orgs.entitlements(cls._test_org_name)["data"]["attributes"]
 
-        meets_all_requirements = True
         missing_entitlements = []
         for req_ent in required_entitlements:
             meets_sub_requirement = False
 
-            for cur_ent in current_entitlements:
-                cur_ent = cur_ent.replace("-", "_").upper()
+            for cur_ent_key in current_entitlements:
+                ent_enabled = current_entitlements[cur_ent_key]
+                cur_ent_key = cur_ent_key.replace("-", "_").upper()
 
-                if Entitlements[cur_ent] == req_ent:
-                    print(Entitlements[cur_ent], req_ent)
+                if Entitlements[cur_ent_key] == req_ent and ent_enabled:
                     meets_sub_requirement = True
 
             if not meets_sub_requirement:
