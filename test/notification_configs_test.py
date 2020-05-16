@@ -42,7 +42,7 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
 
 
         # Add one notification configuration
-        not_cnf_name = self._name_with_random()
+        not_cnf_name = self._unittest_random_name()
         payload = {
             "data": {
                 "type": "notification-configurations",

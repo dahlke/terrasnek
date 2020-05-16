@@ -36,7 +36,7 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         self.assertEqual(org["data"]["id"], self._test_org_name)
 
         # Change the email address for the org, confirm the change.
-        email_name = self._name_with_random()
+        email_name = self._unittest_random_name()
         email_to_update_to = f"{email_name}@gmail.com"
         update_org_payload = {
             "data": {

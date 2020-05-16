@@ -57,7 +57,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         self.assertFalse(ws_forced["attributes"]["locked"])
 
         # Update the workspace, check that the updates took effect
-        updated_name = self._name_with_random()
+        updated_name = self._unittest_random_name()
         update_payload = {
             "data": {
                 "type": "workspaces",

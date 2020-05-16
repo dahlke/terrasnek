@@ -27,11 +27,11 @@ features like audit logging and SAML single sign-on._
 
 To make full usage of all the tools and commands here, you should have installed:
 
-- `python3`
-- `make`
-- `pylint`
-- `coverage`
 - `ag`
+- [`coverage`](https://coverage.readthedocs.io/en/coverage-5.1/)
+- `make`
+- [`pylint`](https://www.pylint.org/)
+- `python3`
 
 All Python requirements are outlined in `pip-reqs.txt`.
 

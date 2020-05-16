@@ -42,7 +42,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME
-        cls._test_org_name = TEST_ORG_NAME
         cls._test_api_token = TFC_TOKEN
         cls._test_password = TEST_PASSWORD
 
@@ -53,13 +52,35 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "./test/testdata/sentinel/terrasnek_unittest_sentinel.tar.gz"
         cls._plan_export_tarball_target_path = "/tmp/terrasnek_unittest.tar.gz"
 
+        # If a test org is specified, use the specified org, otherwise create
+        # a new one to run the testing in.
+        if TEST_ORG_NAME:
+            cls._test_org_name = TEST_ORG_NAME
+        else:
+            cls._test_org_name = cls._random_name()
+            org_create_payload = {
+                "data": {
+                    "type": "organizations",
+                    "attributes": {
+                        "name": cls._test_org_name,
+                        "email": cls._test_email
+                    }
+                }
+            }
+            cls._test_org = cls._api.orgs.create(org_create_payload)
+
         cls._api.set_org(cls._test_org_name)
 
         # Check to see if this test can be run with the current entitlments
         missing_entitlements = cls._get_missing_entitlements(cls._endpoint_being_tested)
+
         # TODO: raise exceptions
         if missing_entitlements:
             raise unittest.SkipTest("Missing required Terraform Cloud Entitlments for test", cls._unittest_name, missing_entitlements)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._api.orgs.destroy(cls._test_org_name)
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
@@ -85,9 +106,15 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         return missing_entitlements
 
-    def _name_with_random(self, ran_str_len=8):
+    @classmethod
+    def _random_name(cls, ran_str_len=8):
         random_hex = binascii.b2a_hex(os.urandom(ran_str_len)).decode("ascii")
-        return f"terrasnek-test-{self._unittest_name}-{random_hex}"
+        return f"terrasnek-unittest-{random_hex}"
+
+    @classmethod
+    def _unittest_random_name(cls, ran_str_len=8):
+        random_hex = binascii.b2a_hex(os.urandom(ran_str_len)).decode("ascii")
+        return f"terrasnek-test-{cls._unittest_name}-{random_hex}"
 
     @staticmethod
     def _get_config_version_create_payload():
@@ -185,7 +212,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
         return {
             "data": {
                 "attributes": {
-                    "name": self._name_with_random(),
+                    "name": self._unittest_random_name(),
                     "terraform_version": "0.12.24",
                     "working-directory": working_dir,
                     "vcs-repo": {
@@ -203,7 +230,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "workspaces",
                 "attributes": {
-                    "name": self._name_with_random()
+                    "name": self._unittest_random_name()
                 }
             }
         }
@@ -213,7 +240,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "ssh-keys",
                 "attributes": {
-                    "name": self._name_with_random(),
+                    "name": self._unittest_random_name(),
                     "value": "-----BEGIN RSA PRIVATE KEY-----\nfoo..."
                 }
             }
@@ -230,7 +257,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                             "mode": "soft-mandatory"
                         }
                     ],
-                    "name": self._name_with_random(),
+                    "name": self._unittest_random_name(),
                     "description": "terrasnek example policy"
                 },
                 "relationships": {
@@ -248,7 +275,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "policy-sets",
                 "attributes": {
-                    "name": self._name_with_random(),
+                    "name": self._unittest_random_name(),
                     "description": "terrasnek unittest",
                     "global": False,
                     "policies-path": "sentinel/",
@@ -276,7 +303,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "organizations",
                 "attributes": {
-                    "name": self._name_with_random(),
+                    "name": self._unittest_random_name(),
                     "email": self._test_email
                 }
             }
@@ -302,7 +329,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "organizations",
                 "attributes": {
-                    "name": self._name_with_random(),
+                    "name": self._unittest_random_name(),
                     "organization-access": {
                         "manage-workspaces": True,
                         "manage-policies": True,
@@ -317,7 +344,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "oauth-clients",
                 "attributes": {
-                    "name": self._name_with_random(),
+                    "name": self._unittest_random_name(),
                     "service-provider": "github",
                     "http-url": "https://github.com",
                     "api-url": "https://api.github.com",

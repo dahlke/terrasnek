@@ -24,8 +24,10 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", None)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
 GITHUB_SECRET = os.getenv("GITHUB_SECRET", None)
 
-TEST_EMAIL = os.getenv("TEST_EMAIL", None)
+# NOTE: This is an optional env var
 TEST_ORG_NAME = os.getenv("TEST_ORG_NAME", None)
+
+TEST_EMAIL = os.getenv("TEST_EMAIL", None)
 TEST_USERNAME = os.getenv("TEST_USERNAME", None)
 TEST_TEAM_NAME = os.getenv("TEST_TEAM_NAME", None)
 TEST_PASSWORD = os.getenv("TEST_PASSWORD", None)
@@ -68,9 +70,6 @@ if GITHUB_SECRET is None:
 
 if TEST_EMAIL is None:
     sys.exit("Environment variable TEST_EMAIL must be set.")
-
-if TEST_ORG_NAME is None:
-    sys.exit("Environment variable TEST_ORG_NAME must be set.")
 
 if TEST_USERNAME is None:
     sys.exit("Environment variable TEST_USERNAME must be set.")

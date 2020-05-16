@@ -27,7 +27,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
         original_username = shown_account["attributes"]["username"]
 
         # Generate a new email to change on the account, confirm the update
-        email_name = self._name_with_random()
+        email_name = self._unittest_random_name()
         email_to_update_to = f"{email_name}@gmail.com"
         update_payload = {
             "data": {
@@ -57,7 +57,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
         self.assertEqual(updated_email, original_email)
 
         # Update the password and confirm the request didn't fail
-        password_to_update_to = self._name_with_random()
+        password_to_update_to = self._unittest_random_name()
         change_password_payload = {
             "data": {
                 "type": "users",

@@ -20,7 +20,7 @@ class TestTFCUserTokens(TestTFCBaseTestCase):
         logged_in_user = self._api.account.show()["data"]
         logged_in_user_id = logged_in_user["id"]
 
-        desc_to_update_to = self._name_with_random()
+        desc_to_update_to = self._unittest_random_name()
         create_payload = {
             "data": {
                 "type": "authentication-tokens",
