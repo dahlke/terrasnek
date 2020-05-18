@@ -27,7 +27,8 @@ class TestTFCAdminUsers(TestTFCBaseTestCase):
 
         # List all the users through the admin users API, but query for our test
         # user
-        listed_users = self._api.admin_users.list(query=self._test_username, page=0, page_size=50)["data"]
+        listed_users = self._api.admin_users.list(\
+            query=self._test_username, page=0, page_size=50)["data"]
         found_user = False
         for user in listed_users:
             if self._test_username == user["attributes"]["username"]:

@@ -24,6 +24,17 @@ make codecov
 make pip-publish
 ```
 
+
+### Helpful Git Hooks
+
+There are some pre-commit hooks that are useful since the same tests will be run in CircleCI. They are located in the `./hooks/pre-commit/` folder here. Symlink them to the git repo using:
+
+```
+cd .git/hooks
+ln -s -f ../../hooks/pre-commit ./pre-commit
+chmod +x ../../hooks/pre-commit ./pre-commit
+```
+
 #### Linting the Code
 
 ###### Lint Library Code

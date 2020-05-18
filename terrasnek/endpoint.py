@@ -2,11 +2,12 @@
 Module containing class for common endpoint implementations across all TFC Endpoints.
 """
 
+from abc import ABC, abstractmethod
+
 import json
 import logging
 import requests
 
-from abc import ABC, abstractmethod
 from._constants import HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT
 
 

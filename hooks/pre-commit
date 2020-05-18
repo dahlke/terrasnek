@@ -1,4 +1,5 @@
 #!/bin/bash
 
 make lint
+make check_endpoint_required
 make docs

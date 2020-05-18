@@ -100,6 +100,7 @@ Contents
 * [Account](account.md)
 * [Admin Runs](admin_runs.md)
 * [Admin Orgs](admin_orgs.md)
+* [Admin Users](admin_users.md)
 * [Admin Settings](admin_settings.md)
 * [Admin Terraform Versions](admin_terraform_versions.md)
 * [Admin Workspaces](admin_workspaces.md)

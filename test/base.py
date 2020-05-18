@@ -12,6 +12,7 @@ import os
 import binascii
 
 from terrasnek.api import TFC
+from terrasnek._constants import Entitlements
 
 from ._constants import \
     TFC_TOKEN, TFC_HOSTNAME, TEST_EMAIL, \
@@ -19,7 +20,6 @@ from ._constants import \
     GITHUB_TOKEN, GITHUB_SECRET, \
     SSL_VERIFY, TEST_PASSWORD
 
-from terrasnek._constants import Entitlements
 
 DEFAULT_VCS_WORKING_DIR = "tfe"
 
@@ -74,9 +74,10 @@ class TestTFCBaseTestCase(unittest.TestCase):
         # Check to see if this test can be run with the current entitlments
         missing_entitlements = cls._get_missing_entitlements(cls._endpoint_being_tested)
 
-        # TODO: raise exceptions
         if missing_entitlements:
-            raise unittest.SkipTest("Missing required Terraform Cloud Entitlments for test", cls._unittest_name, missing_entitlements)
+            raise unittest.SkipTest(\
+                "Missing required Terraform Cloud Entitlments for test", \
+                    cls._unittest_name, missing_entitlements)
 
     @classmethod
     def tearDownClass(cls):
@@ -84,8 +85,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
-        # TODO: maybe move this into the endpoint base class and check before each API call so
-        # we can warn users early.
         endpoint = getattr(cls._api, endpoint_attr_name)
         required_entitlements = endpoint.required_entitlements()
         current_entitlements = cls._api.orgs.entitlements(cls._test_org_name)["data"]["attributes"]

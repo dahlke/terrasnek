@@ -4,9 +4,6 @@ Constants for default values on the TFC API endpoints
 
 from enum import Enum
 
-# TODO move these to a shared util class, should the HTTP codfes be enums too?
-# Should enums have their own file?
-
 # Default Config Items
 TFC_SAAS_URL = "https://app.terraform.io"
 

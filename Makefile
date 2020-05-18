@@ -29,6 +29,10 @@ lint:
 docs:
 	cd docs/ && make html
 
+.PHONY: endpoint_required
+endpoint_required:
+	python3 scripts/python/check_endpoint_required_files.py
+
 .PHONY: codecov
 codecov:
 	bash <(curl -s https://codecov.io/bash)
