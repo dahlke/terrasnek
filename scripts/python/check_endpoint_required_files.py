@@ -1,9 +1,31 @@
 #!/bin/python3
 
 import os
+import requests
 
+from bs4 import BeautifulSoup
+
+TFC_API_BASE_URL = "https://www.terraform.io"
+TFC_API_PREFIX = "docs/cloud/api"
+
+def get_endpoints_from_api_docs():
+    req = requests.get(f"{TFC_API_BASE_URL}/{TFC_API_PREFIX}/index.html")
+    soup = BeautifulSoup(req.text, features="html.parser")
+    sidebar = soup.find(id="docs-sidebar")
+    endpoints = {}
+
+    for links in sidebar.find_all('a'):
+        api_path = links.get('href')
+        if TFC_API_PREFIX in api_path:
+            endpoint_name = api_path.split("/")[-1].replace(".html", "").replace("-", "_")
+            endpoints[endpoint_name] = {}
+            endpoints[endpoint_name]["url"] = f"{TFC_API_BASE_URL}/{api_path}"
+
+    return endpoints
 
 def main():
+    endpoints = get_endpoints_from_api_docs()
+
     endpoint_map = {}
     endpoints_filenames = os.listdir("./terrasnek/")
 
