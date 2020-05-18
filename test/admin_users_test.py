@@ -28,7 +28,12 @@ class TestTFCAdminUsers(TestTFCBaseTestCase):
         # List all the users through the admin users API, but query for our test
         # user
         listed_users = self._api.admin_users.list(query=self._test_username, page=0, page_size=50)["data"]
-        self.assertEqual(len(listed_users), 1)
+        found_user = False
+        for user in listed_users:
+            if self._test_username == user["attributes"]["username"]:
+                found_user = True
+                break
+        self.assertTrue(found_user)
 
         # Extract the test users's ID
         test_user_id = listed_users[0]["id"]
