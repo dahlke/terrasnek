@@ -1,5 +1,5 @@
 #!/bin/bash
 
 make lint
-make endpoint_check
+make api_comparison
 make docs

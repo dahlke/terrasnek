@@ -9,6 +9,7 @@ just quick lookups.
 import os
 import requests
 
+from tabulate import tabulate
 from bs4 import BeautifulSoup
 
 TFC_API_BASE_URL = "https://www.terraform.io"
@@ -154,6 +155,26 @@ def main():
 
         if needs:
             print(ep_name, "needs", ", ".join(needs), endpoint["url"])
+
+
+    headers = ["Endpoint Name", "Module Name", "Implemented", "Test", "Docs", "Spec"]
+    rows = []
+
+    for ep_name in endpoints:
+        endpoint = endpoints[ep_name]
+        rows.append([
+            ep_name.replace("_", " ").title(),
+            ep_name,
+            "implementation" in endpoint,
+            "test" in endpoint,
+            "docs" in endpoint,
+            endpoint["url"]
+        ])
+
+    with open("./API_COMPARISON.md", "w") as f:
+        table_data = tabulate(rows, headers=headers, tablefmt="github")
+        print(table_data)
+        f.write(table_data)
 
 if __name__ == "__main__":
     main()

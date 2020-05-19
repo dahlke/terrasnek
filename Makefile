@@ -29,9 +29,9 @@ lint:
 docs:
 	cd docs/ && make html
 
-.PHONY: endpoint_check
-endpoint_check:
-	python3 scripts/python/check_endpoint_required_files.py
+.PHONY: api_comparison
+api_comparison:
+	python3 scripts/python/api_comparison.py
 
 .PHONY: codecov
 codecov:
