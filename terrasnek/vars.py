@@ -4,7 +4,7 @@ Module for Terraform Cloud API Endpoint: Variables.
 
 from .endpoint import TFCEndpoint
 
-class TFCVariables(TFCEndpoint):
+class TFCVars(TFCEndpoint):
     """
     This set of APIs covers create, update, list and delete operations on variables.
 

@@ -39,7 +39,7 @@ from .team_memberships import TFCTeamMemberships
 from .team_tokens import TFCTeamTokens
 from .users import TFCUsers
 from .user_tokens import TFCUserTokens
-from .variables import TFCVariables
+from .vars import TFCVars
 from .workspaces import TFCWorkspaces
 
 # Suppress insecure TLS warnings
@@ -133,7 +133,7 @@ class TFC():
         self.team_tokens = None
         self.users = None
         self.user_tokens = None
-        self.variables = None
+        self.vars = None
         self.workspaces = None
 
     def set_org(self, org_name):
@@ -305,7 +305,7 @@ class TFC():
             self._headers,
             self._verify)
 
-        self.variables = TFCVariables(
+        self.vars = TFCVars(
             self._instance_url,
             self._current_org,
             self._headers,

@@ -67,7 +67,7 @@ create_variable_payload = {
     # https://www.terraform.io/docs/cloud/api/variables.html#sample-payload
 }
 
-api.variables.create(create_variable_payload)
+api.vars.create(create_variable_payload)
 ```
 
 #### Create a Run on a Workspace
@@ -131,5 +131,5 @@ Contents
 * [Teams](teams.md)
 * [User Tokens](user_tokens.md)
 * [Users](users.md)
-* [Variables](variables.md)
+* [Vars](vars.md)
 * [Workspaces](workspaces.md)

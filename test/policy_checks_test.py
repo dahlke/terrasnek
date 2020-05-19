@@ -36,7 +36,7 @@ class TestTFCPolicyChecks(TestTFCBaseTestCase):
                 "TFE_TOKEN", self._test_api_token, self._ws_id, category="env", sensitive=True)
         ]
         for payload in variable_payloads:
-            self._api.variables.create(payload)
+            self._api.vars.create(payload)
 
         # Sleep for 1 second to give the WS time to create
         time.sleep(1)

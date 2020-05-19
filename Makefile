@@ -29,8 +29,8 @@ lint:
 docs:
 	cd docs/ && make html
 
-.PHONY: endpoint_required
-endpoint_required:
+.PHONY: endpoint_check
+endpoint_check:
 	python3 scripts/python/check_endpoint_required_files.py
 
 .PHONY: codecov

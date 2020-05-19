@@ -39,7 +39,7 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
                 self._ws_id, category="env", sensitive=True)
         ]
         for payload in variable_payloads:
-            self._api.variables.create(payload)
+            self._api.vars.create(payload)
 
         # Sleep for 1 second to give the WS time to create
         time.sleep(1)
