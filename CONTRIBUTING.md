@@ -1,5 +1,16 @@
 # Contributing to `terrasnek`
 
+### Requirements
+
+To make full usage of all the tools and commands here, you should have installed:
+
+- `python3`
+
+All Python requirements are outlined in `pip-reqs.txt`.
+
+
+### Overview
+
 Before contributing to `terrasnek` or publishing to PyPi, there are a few must-dos.
 
 - Each endpoint must have it's own implementation file, it's own test file, and corresponding doc file.
@@ -58,7 +69,9 @@ tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 It is recommended that when running the entire suite of tests, you use a
 sandbox Terraform Enterprise instance. This will allow you to test the
 Admin Endpoints without any worry of error, and you will not have any
-run limits.
+run limits. It is currently required that you run the entire test suite
+with a [User Token](https://www.terraform.io/docs/cloud/users-teams-organizations/api-tokens.html#user-api-tokens)
+of an admin user.
 
 Due to those limitations, this library does not currently test the full
 suite of tests in CircleCI. It is recommended that you run the tests
