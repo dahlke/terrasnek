@@ -125,6 +125,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         """
         # Create a new policy set and policy set version, without being attached to VCS.
         created_policy_set = self._api.policy_sets.create(self._get_policy_create_payload())["data"]
+        created_policy_set_id = created_policy_set["id"]
         pol_set_version = self._api.policy_sets.create_policy_set_version(\
             created_policy_set_id)["data"]
         pol_set_version_id = pol_set_version["id"]
