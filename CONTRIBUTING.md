@@ -129,6 +129,11 @@ bash <(curl -s https://codecov.io/bash)
 make docs
 ```
 
+#### Comparing Parity to Terraform API Spec
+```
+make api_comparison
+```
+
 #### Publishing to PyPi
 
 ###### Production

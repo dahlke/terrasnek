@@ -56,9 +56,12 @@ if __name__ == "__main__":
     api.set_org("YOUR_ORGANIZATION")
 ```
 
-### Terraform Cloud API Spec Parity
+### `terrasnek` to Terraform Cloud API Spec Parity
 To see the feature parity between the Terraform Cloud API spec and the available methods in
-`terrasnek`, view the auto-generated [API_COMPARISON](API_COMPARISON.md) file.
+`terrasnek`, view the auto-generated [`API_COMPARISON.md`](API_COMPARISON.md) file.
+
+### `terrasnek` Common Use Case Examples
+See the [`terrasnek` documentation](https://terrasnek.readthedocs.io/en/latest/).
 
 ### Contributing to `terrasnek`
 
