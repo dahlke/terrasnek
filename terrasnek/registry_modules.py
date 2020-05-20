@@ -31,7 +31,8 @@ class TFCRegistryModules(TFCEndpoint):
         ``GET <base_url>/:namespace``
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}"
-        return self._list(url)
+        return self._list(\
+            url, offset=offset, limit=limit, provider=provider, verified=verified)
 
     def search(self, query, offset=None, limit=None, provider=None, verified=None):
         """
@@ -39,7 +40,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         url = f"{self._modules_v1_base_url}/search"
         return self._list(url, \
-            query=query, offset=offset, limit=limit, provider=provider,
+            query=query, offset=offset, limit=limit, provider=provider,\
             verified=verified)
 
     def list_versions(self, name, provider):

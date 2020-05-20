@@ -1,3 +1,6 @@
 # Registry Modules
 
-_Not yet implemented._
+```eval_rst
+.. autoclass:: terrasnek.registry_modules.TFCRegistryModules
+   :members:
+```

@@ -23,7 +23,8 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         oauth_client = self._api.oauth_clients.create(\
             self._get_oauth_client_create_payload())["data"]
         self._oauth_client_id = oauth_client["id"]
-        self._oauth_token_id = oauth_client["relationships"]["oauth-tokens"]["data"][0]["id"]
+        self._oauth_token_id = \
+            oauth_client["relationships"]["oauth-tokens"]["data"][0]["id"]
 
     def tearDown(self):
         self._api.oauth_clients.destroy(self._oauth_client_id)
@@ -36,7 +37,6 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         """
 
         # TODO: comments
-
         publish_payload = {
             "data": {
                 "attributes": {
@@ -50,7 +50,8 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             }
         }
 
-        published_module = self._api.registry_modules.publish_from_vcs(publish_payload)["data"]
+        published_module = \
+            self._api.registry_modules.publish_from_vcs(publish_payload)["data"]
         published_module_name = published_module["attributes"]["name"]
         self.assertEqual("registry-modules", published_module["type"])
 
@@ -78,7 +79,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
         # Search for the module by name, confirm we got it back in the results.
         search_modules_resp = self._api.registry_modules.search(published_module_name)
-        search_modules = listed_modules_resp["modules"]
+        search_modules = search_modules_resp["modules"]
         found_module = False
         for module in search_modules:
             if module["name"] == published_module_name:
@@ -87,24 +88,29 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         self.assertTrue(found_module)
 
         # TODO: make the "tfe" a constant
-        listed_versions_resp = self._api.registry_modules.list_versions(published_module_name, "tfe")
+        listed_versions_resp = \
+            self._api.registry_modules.list_versions(published_module_name, "tfe")
         self.assertIn("modules", listed_versions_resp)
         listed_version = listed_modules_resp["modules"][0]["version"]
 
         # List the latest version for all providers, compare to  the published module version
-        listed_latest_version_all_providers = self._api.registry_modules.list_versions(published_module_name, "tfe")
+        listed_latest_version_all_providers = \
+            self._api.registry_modules.list_versions(published_module_name, "tfe")
         latest_all_providers = listed_latest_version_all_providers["modules"][0]
         self.assertEqual(listed_version, latest_all_providers["versions"][0]["version"])
 
         # List the latest version for a specific provider, compare to  the published module version
-        listed_latest_version_specific_provider = self._api.registry_modules.list_versions(published_module_name, "tfe")
-        latest_specific_provider = listed_latest_version_all_providers["modules"][0]
+        listed_latest_version_specific_provider = \
+            self._api.registry_modules.list_versions(published_module_name, "tfe")
+        latest_specific_provider = listed_latest_version_specific_provider["modules"][0]
         self.assertEqual(listed_version, latest_specific_provider["versions"][0]["version"])
 
         # Get the module, compare to the published module name
-        gotten_module = self._api.registry_modules.get(published_module_name, "tfe", listed_version)
+        gotten_module = \
+            self._api.registry_modules.get(published_module_name, "tfe", listed_version)
         self.assertEqual(published_module_name, gotten_module["name"])
 
         self._api.registry_modules.destroy(published_module_name, "tfe", listed_version)
-        gotten_module = self._api.registry_modules.get(published_module_name, "tfe", listed_version)
+        gotten_module = \
+            self._api.registry_modules.get(published_module_name, "tfe", listed_version)
         self.assertIsNone(gotten_module)
