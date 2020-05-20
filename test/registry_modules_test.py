@@ -2,12 +2,14 @@
 Module for Terraform Cloud API Endpoint: Registry Modules.
 """
 
+import time
+
 from .base import TestTFCBaseTestCase
 
-import time
 
 # TODO: standardize and move to constants file
 MAX_ATTEMPTS = 30
+TFE_MODULE_PROVIDER_TYPE = "tfe"
 
 class TestTFCRegistryModules(TestTFCBaseTestCase):
     """
@@ -40,11 +42,11 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         publish_payload = {
             "data": {
                 "attributes": {
-                "vcs-repo": {
-                    "identifier": "dahlke/terraform-tfe-terrasnek-unittest",
-                    "oauth-token-id": self._oauth_token_id,
-                    "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest"
-                }
+                    "vcs-repo": {
+                        "identifier": "dahlke/terraform-tfe-terrasnek-unittest",
+                        "oauth-token-id": self._oauth_token_id,
+                        "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest"
+                    }
                 },
                 "type":"registry-modules"
             }
@@ -87,30 +89,38 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 break
         self.assertTrue(found_module)
 
-        # TODO: make the "tfe" a constant
+        # List the module versions, confirm that we got an expected response.
         listed_versions_resp = \
-            self._api.registry_modules.list_versions(published_module_name, "tfe")
+            self._api.registry_modules.list_versions(\
+                published_module_name, TFE_MODULE_PROVIDER_TYPE)
         self.assertIn("modules", listed_versions_resp)
         listed_version = listed_modules_resp["modules"][0]["version"]
 
-        # List the latest version for all providers, compare to  the published module version
+        # List the latest version for all providers, compare to the
+        # published module version
         listed_latest_version_all_providers = \
-            self._api.registry_modules.list_versions(published_module_name, "tfe")
+            self._api.registry_modules.list_versions(\
+                published_module_name, TFE_MODULE_PROVIDER_TYPE)
         latest_all_providers = listed_latest_version_all_providers["modules"][0]
         self.assertEqual(listed_version, latest_all_providers["versions"][0]["version"])
 
-        # List the latest version for a specific provider, compare to  the published module version
+        # List the latest version for a specific provider, compare to the
+        # published module version
         listed_latest_version_specific_provider = \
-            self._api.registry_modules.list_versions(published_module_name, "tfe")
+            self._api.registry_modules.list_versions(\
+                published_module_name, TFE_MODULE_PROVIDER_TYPE)
         latest_specific_provider = listed_latest_version_specific_provider["modules"][0]
         self.assertEqual(listed_version, latest_specific_provider["versions"][0]["version"])
 
         # Get the module, compare to the published module name
         gotten_module = \
-            self._api.registry_modules.get(published_module_name, "tfe", listed_version)
+            self._api.registry_modules.get(\
+                published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
         self.assertEqual(published_module_name, gotten_module["name"])
 
-        self._api.registry_modules.destroy(published_module_name, "tfe", listed_version)
+        self._api.registry_modules.destroy(\
+            published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
         gotten_module = \
-            self._api.registry_modules.get(published_module_name, "tfe", listed_version)
+            self._api.registry_modules.get(\
+                published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
         self.assertIsNone(gotten_module)

@@ -23,7 +23,6 @@ class TFCRegistryModules(TFCEndpoint):
         return [Entitlements.PRIVATE_MODULE_REGISTRY]
 
     # Public Registry API Endpoints
-    # TODO: use all parameters
     def list(self, offset=None, limit=None, provider=None, verified=None):
         """
         https://www.terraform.io/docs/registry/api.html#list-modules
@@ -116,10 +115,10 @@ class TFCRegistryModules(TFCEndpoint):
                 url += f"/{provider}"
                 if version:
                     url += f"/{version}"
-        print(url)
+
         return self._post(url)
 
-    # Deprecated Private Registry API Endpoints
+    # TODO: Deprecated Private Registry API Endpoints
     def create(self):
         """
         ``POST /organizations/:organization_name/registry-modules``
@@ -130,23 +129,21 @@ class TFCRegistryModules(TFCEndpoint):
         versions; instead, you must explicitly create and upload each new version
         with the Create a Module Version endpoint.
         """
-        pass
 
     def create_version(self):
         """
         ``POST /registry-modules/:organization_name/:name/:provider/versions``
 
-        DEPRECATED: Creates a new registry module version. This endpoint only applies to modules
-        without a VCS repository; VCS-linked modules automatically create new versions
-        for new tags. After creating the version, the module should be uploaded to
-        the returned upload link.
+        DEPRECATED: Creates a new registry module version. This endpoint only applies
+        to modules without a VCS repository; VCS-linked modules automatically create
+        new versions for new tags. After creating the version, the module should be
+        uploaded to the returned upload link.
         """
-        pass
 
     def upload_version(self):
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
-        DEPRECATED: The URL is provided in the upload links attribute in the registry-module-versions resource.
+        DEPRECATED: The URL is provided in the upload links attribute in the
+        registry-module-versions resource.
         """
-        pass

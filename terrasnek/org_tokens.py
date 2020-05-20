@@ -14,7 +14,8 @@ class TFCOrgTokens(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, verify):
         super().__init__(instance_url, org_name, headers, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/authentication-token"
+        self._api_v2_base_url = \
+            f"{self._api_v2_base_url}/organizations/{org_name}/authentication-token"
 
     def required_entitlements(self):
         return []

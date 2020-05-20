@@ -3,10 +3,10 @@ Module for container class of all TFC endpoints and high level exceptions around
 API access.
 """
 
-import urllib3
-import requests
 import json
 import logging
+import requests
+import urllib3
 
 from._constants import TFC_SAAS_URL, HTTP_OK
 from .account import TFCAccount
@@ -59,11 +59,9 @@ class TFC():
     Super class for access to all TFC Endpoints.
     """
 
-    """
-    This dict specifies which class should be used for each attribute of this API class,
-    which simplifies the initialization of each endpoint since they share the same initialization
-    values.
-    """
+    # This dict specifies which class should be used for each attribute of this API class,
+    # which simplifies the initialization of each endpoint since they share the same initialization
+    # values.
     _class_for_attr_dict = {
         "org-not-required": {
             "admin_orgs": TFCAdminOrgs,

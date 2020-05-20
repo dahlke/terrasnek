@@ -20,8 +20,9 @@ class TFCEndpoint(ABC):
         self._logger = logging.getLogger(self.__class__.__name__)
         self._logger.setLevel(logging.INFO)
 
-        # TODO: make this take a hostname, and not the protocol, also take in the well known info
-        self._instance_url = instance_url
+        # Remove the slack at the end if someone adds it.
+        self._instance_url = \
+            instance_url if instance_url[-1] != "/" else instance_url[:-1]
         self._api_v2_base_url = f"{self._instance_url}/api/v2"
         self._modules_v1_base_url = f"{self._instance_url}/api/registry/v1/modules"
         self._headers = headers
@@ -131,7 +132,7 @@ class TFCEndpoint(ABC):
             self._logger.error(err)
 
     def _list(self, url, query=None, filters=None, \
-        page=None, page_size=None, search=None, include=None, sort=None,
+        page=None, page_size=None, search=None, include=None, sort=None, \
         offset=None, limit=None, provider=None, namespace=None, verified=None):
         """
         Implementation of the common list resources pattern for the TFC API.
@@ -169,21 +170,20 @@ class TFCEndpoint(ABC):
             q_options.append(f"search[name]={search}")
 
         # V1 Modules API options
-        # TODO
         if offset is not None:
-            pass
+            q_options.append(f"offset={offset}")
 
         if limit is not None:
-            pass
+            q_options.append(f"limit={limit}")
 
         if provider is not None:
-            pass
+            q_options.append(f"provider={provider}")
 
         if namespace is not None:
-            pass
+            q_options.append(f"namespace={namespace}")
 
         if verified is not None:
-            pass
+            q_options.append(f"verified={verified}")
 
         if q_options:
             url += "?" + "&".join(q_options)

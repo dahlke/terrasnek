@@ -14,7 +14,8 @@ class TFCOAuthClients(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, verify):
         super().__init__(instance_url, org_name, headers, verify)
-        self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/oauth-clients"
+        self._org_api_v2_base_url = \
+            f"{self._api_v2_base_url}/organizations/{org_name}/oauth-clients"
         self._oauth_clients_api_v2_base_url = f"{self._api_v2_base_url}/oauth-clients"
 
     def required_entitlements(self):
