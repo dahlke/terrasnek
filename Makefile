@@ -21,6 +21,11 @@ coverage:
 	coverage run -m unittest test/*_test.py; \
 	coverage report -m;
 
+.PHONY: tfc_coverage
+tfc_coverage:
+	coverage run -m unittest test/*_test.py -o tfc_coverage.xml; \
+	coverage report -m;
+
 .PHONY: lint
 lint:
 	pylint terrasnek test
