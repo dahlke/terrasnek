@@ -6,7 +6,7 @@ import os
 import sys
 
 # Configurable Constants
-TFC_HOSTNAME = os.getenv("TFC_HOSTNAME", None)
+TFC_URL = os.getenv("TFC_URL", None)
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
@@ -33,8 +33,8 @@ TEST_USERNAME = os.getenv("TEST_USERNAME", None)
 TEST_TEAM_NAME = os.getenv("TEST_TEAM_NAME", None)
 TEST_PASSWORD = os.getenv("TEST_PASSWORD", None)
 
-if TFC_HOSTNAME is None:
-    sys.exit("Environment variable TFC_HOSTNAME must be set.")
+if TFC_URL is None:
+    sys.exit("Environment variable TFC_URL must be set.")
 
 if TFC_TOKEN is None:
     sys.exit("Environment variable TFC_TOKEN must be set.")

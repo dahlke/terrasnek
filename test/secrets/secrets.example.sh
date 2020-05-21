@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Terraform Cloud/Enterprise Creds
-export TFC_HOSTNAME=""
+export TFC_URL=""
 export TFC_TOKEN=""
 
 # SSL config

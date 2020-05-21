@@ -15,7 +15,7 @@ from terrasnek.api import TFC
 from terrasnek._constants import Entitlements
 
 from ._constants import \
-    TFC_TOKEN, TFC_HOSTNAME, TEST_EMAIL, \
+    TFC_TOKEN, TFC_URL, TEST_EMAIL, \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET, \
     SSL_VERIFY, TEST_PASSWORD
@@ -38,7 +38,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger = logging.getLogger(cls.__class__.__name__)
         cls._logger.setLevel(logging.INFO)
         cls._api = TFC(\
-            TFC_TOKEN, url=TFC_HOSTNAME, verify=SSL_VERIFY)
+            TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY)
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME
