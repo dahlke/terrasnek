@@ -23,8 +23,7 @@ class TFCEndpoint(ABC):
         # Remove the slack at the end if someone adds it.
         self._instance_url = \
             instance_url if instance_url[-1] != "/" else instance_url[:-1]
-
-        self._api_v2_base_url = f"{self._instance_url}{well_known_paths['tfe.v2']}"
+        self._api_v2_base_url = f"{self._instance_url}{well_known_paths['tfe.v2'][:-1]}"
         self._modules_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1']}"
         self._headers = headers
         self._org_name = org_name

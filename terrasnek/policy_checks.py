@@ -12,7 +12,7 @@ class TFCPolicyChecks(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/policy-checks"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/policy-checks"
         self._runs_api_v2_base_url = f"{self._api_v2_base_url}/runs"
 
     def required_entitlements(self):
@@ -31,5 +31,5 @@ class TFCPolicyChecks(TFCEndpoint):
         """
         ``POST /policy-checks/:policy_check_id/actions/override``
         """
-        url = f"{self._api_v2_base_url}/{policy_check_id}/actions/override"
+        url = f"{self._endpoint_base_url}/{policy_check_id}/actions/override"
         return self._post(url)

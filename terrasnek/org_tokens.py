@@ -14,7 +14,7 @@ class TFCOrgTokens(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = \
+        self._endpoint_base_url = \
             f"{self._api_v2_base_url}/organizations/{org_name}/authentication-token"
 
     def required_entitlements(self):
@@ -26,7 +26,7 @@ class TFCOrgTokens(TFCEndpoint):
 
         This endpoint creates an org token for the active org.
         """
-        return self._create(self._api_v2_base_url, None)
+        return self._create(self._endpoint_base_url, None)
 
     def destroy(self):
         """
@@ -34,5 +34,5 @@ class TFCOrgTokens(TFCEndpoint):
 
         This endpoint deletes the org token for the active org.
         """
-        url = f"{self._api_v2_base_url}"
+        url = f"{self._endpoint_base_url}"
         return self._destroy(url)

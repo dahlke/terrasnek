@@ -16,7 +16,7 @@ class TFCPolicies(TFCEndpoint):
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/policies"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/policies"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/policies"
 
     def required_entitlements(self):
@@ -45,7 +45,7 @@ class TFCPolicies(TFCEndpoint):
         """
         ``GET /policies/:policy_id``
         """
-        url = f"{self._api_v2_base_url}/{policy_id}"
+        url = f"{self._endpoint_base_url}/{policy_id}"
         return self._show(url)
 
     def update(self, policy_id, payload):
@@ -55,7 +55,7 @@ class TFCPolicies(TFCEndpoint):
         This endpoint can update the enforcement mode of an existing policy. To
         update the policy code itself, use the upload endpoint.
         """
-        url = f"{self._api_v2_base_url}/{policy_id}"
+        url = f"{self._endpoint_base_url}/{policy_id}"
         return self._update(url, payload)
 
     def upload(self, policy_id, payload):
@@ -64,12 +64,12 @@ class TFCPolicies(TFCEndpoint):
 
         This endpoint uploads code to an existing Sentinel policy.
         """
-        url = f"{self._api_v2_base_url}/{policy_id}/upload"
+        url = f"{self._endpoint_base_url}/{policy_id}/upload"
         return self._put(url, octet=True, data=payload)
 
     def destroy(self, policy_id):
         """
         ``DELETE /policies/:policy_id``
         """
-        url = f"{self._api_v2_base_url}/{policy_id}"
+        url = f"{self._endpoint_base_url}/{policy_id}"
         return self._destroy(url)

@@ -16,7 +16,7 @@ class TFCStateVersionOutputs(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/state-version-outputs"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/state-version-outputs"
 
     def required_entitlements(self):
         return [Entitlements.STATE_STORAGE]
@@ -29,5 +29,5 @@ class TFCStateVersionOutputs(TFCEndpoint):
         state version, you can optionally add ?include=outputs to include full details for all of
         that state version's outputs.
         """
-        url = f"{self._api_v2_base_url}/{state_version_output_id}"
+        url = f"{self._endpoint_base_url}/{state_version_output_id}"
         return self._show(url)

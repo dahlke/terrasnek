@@ -13,7 +13,7 @@ class TFCAdminUsers(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/admin/users"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/admin/users"
 
     def required_entitlements(self):
         return []
@@ -26,7 +26,7 @@ class TFCAdminUsers(TFCEndpoint):
         organizations, a user cannot be deleted if they are the sole owner of any organizations.
         The organizations must be given a new owner or deleted first.
         """
-        url = f"{self._api_v2_base_url}/{user_id}"
+        url = f"{self._endpoint_base_url}/{user_id}"
         return self._destroy(url)
 
     def disable_two_factor(self, user_id):
@@ -38,7 +38,7 @@ class TFCAdminUsers(TFCEndpoint):
         authentication, completing a security verification process is recommended to ensure
         the request is legitimate.
         """
-        url = f"{self._api_v2_base_url}/{user_id}/actions/disable_two_factor"
+        url = f"{self._endpoint_base_url}/{user_id}/actions/disable_two_factor"
         return self._post(url)
 
     def grant_admin(self, user_id):
@@ -46,7 +46,7 @@ class TFCAdminUsers(TFCEndpoint):
         ``POST /admin/users/:id/actions/grant_admin``
 
         """
-        url = f"{self._api_v2_base_url}/{user_id}/actions/grant_admin"
+        url = f"{self._endpoint_base_url}/{user_id}/actions/grant_admin"
         return self._post(url)
 
     def impersonate(self, user_id):
@@ -58,7 +58,7 @@ class TFCAdminUsers(TFCEndpoint):
         administration section. This endpoint does not respond with a body, but the response
         does include a ``Set-Cookie`` header to persist a new session.
         """
-        url = f"{self._api_v2_base_url}/{user_id}/actions/impersonate"
+        url = f"{self._endpoint_base_url}/{user_id}/actions/impersonate"
         return self._post(url)
 
     def list(self, query=None, filters=None, page=None, page_size=None):
@@ -67,14 +67,15 @@ class TFCAdminUsers(TFCEndpoint):
 
         This endpoint lists all user accounts in the Terraform Cloud installation.
         """
+        print(self._endpoint_base_url)
         return self._list(\
-            self._api_v2_base_url, query=query, filters=filters, page=page, page_size=page_size)
+            self._endpoint_base_url, query=query, filters=filters, page=page, page_size=page_size)
 
     def revoke_admin(self, user_id):
         """
         ``POST /admin/users/:id/actions/revoke_admin``
         """
-        url = f"{self._api_v2_base_url}/{user_id}/actions/revoke_admin"
+        url = f"{self._endpoint_base_url}/{user_id}/actions/revoke_admin"
         return self._post(url)
 
     def suspend(self, user_id):
@@ -84,7 +85,7 @@ class TFCAdminUsers(TFCEndpoint):
         This endpoint suspends a user's account, preventing them from authenticating
         and accessing resources.
         """
-        url = f"{self._api_v2_base_url}/{user_id}/actions/suspend"
+        url = f"{self._endpoint_base_url}/{user_id}/actions/suspend"
         return self._post(url)
 
     def unimpersonate(self, user_id):
@@ -99,7 +100,7 @@ class TFCAdminUsers(TFCEndpoint):
         Set-Cookie header to persist a new session as the original admin user. As such,
         this endpoint will have no effect unless the client is able to persist and use cookies.
         """
-        url = f"{self._api_v2_base_url}/{user_id}/actions/unimpersonate"
+        url = f"{self._endpoint_base_url}/{user_id}/actions/unimpersonate"
         return self._post(url)
 
     def unsuspend(self, user_id):
@@ -109,5 +110,5 @@ class TFCAdminUsers(TFCEndpoint):
         This endpoint re-activates a suspended user's account, allowing them to
         resume authenticating and accessing resources.
         """
-        url = f"{self._api_v2_base_url}/{user_id}/actions/unsuspend"
+        url = f"{self._endpoint_base_url}/{user_id}/actions/unsuspend"
         return self._post(url)

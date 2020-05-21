@@ -27,7 +27,7 @@ class TFCSSHKeys(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/ssh-keys"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/ssh-keys"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/ssh-keys"
 
     def required_entitlements(self):
@@ -49,19 +49,19 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``GET /ssh-keys/:ssh_key_id``
         """
-        url = f"{self._api_v2_base_url}/{ssh_key_id}"
+        url = f"{self._endpoint_base_url}/{ssh_key_id}"
         return self._show(url)
 
     def update(self, ssh_key_id, payload):
         """
         ``PATCH /ssh-keys/:ssh_key_id``
         """
-        url = f"{self._api_v2_base_url}/{ssh_key_id}"
+        url = f"{self._endpoint_base_url}/{ssh_key_id}"
         return self._update(url, payload)
 
     def destroy(self, ssh_key_id):
         """
         ``DELETE /ssh-keys/:ssh_key_id``
         """
-        url = f"{self._api_v2_base_url}/{ssh_key_id}"
+        url = f"{self._endpoint_base_url}/{ssh_key_id}"
         return self._destroy(url)

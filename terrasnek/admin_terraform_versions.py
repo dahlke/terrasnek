@@ -15,7 +15,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/admin/terraform-versions"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/admin/terraform-versions"
 
     def list(self, page=None, page_size=None):
         """
@@ -23,7 +23,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
-        return self._list(self._api_v2_base_url, page=page, page_size=page_size)
+        return self._list(self._endpoint_base_url, page=page, page_size=page_size)
 
     def required_entitlements(self):
         return []
@@ -32,25 +32,25 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         ``POST /admin/terraform-versions``
         """
-        return self._post(self._api_v2_base_url, data=data)
+        return self._post(self._endpoint_base_url, data=data)
 
     def show(self, version_id):
         """
         ``GET /admin/terraform-versions/:version_id``
         """
-        url = f"{self._api_v2_base_url}/{version_id}"
+        url = f"{self._endpoint_base_url}/{version_id}"
         return self._show(url)
 
     def update(self, version_id, data):
         """
         ``PATCH /admin/terraform-versions/:id``
         """
-        url = f"{self._api_v2_base_url}/{version_id}"
+        url = f"{self._endpoint_base_url}/{version_id}"
         return self._patch(url, data)
 
     def destroy(self, version_id):
         """
         ``DELETE /admin/terraform-versions/:version_id``
         """
-        url = f"{self._api_v2_base_url}/{version_id}"
+        url = f"{self._endpoint_base_url}/{version_id}"
         return self._destroy(url)

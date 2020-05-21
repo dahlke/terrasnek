@@ -10,7 +10,7 @@ class TFCRunTriggers(TFCEndpoint):
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/run-triggers"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/run-triggers"
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
 
     def required_entitlements(self):
@@ -34,12 +34,12 @@ class TFCRunTriggers(TFCEndpoint):
         """
         ``GET /run-triggers/:run_trigger_id``
         """
-        url = f"{self._api_v2_base_url}/{run_trigger_id}"
+        url = f"{self._endpoint_base_url}/{run_trigger_id}"
         return self._show(url)
 
     def destroy(self, run_trigger_id):
         """
         ``DELETE /run-triggers/:run_trigger_id``
         """
-        url = f"{self._api_v2_base_url}/{run_trigger_id}"
+        url = f"{self._endpoint_base_url}/{run_trigger_id}"
         return self._destroy(url)

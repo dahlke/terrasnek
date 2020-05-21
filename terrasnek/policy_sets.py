@@ -23,7 +23,7 @@ class TFCPolicySets(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/policy-sets"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/policy-sets"
         self._pol_set_version_api_v2_base_url = f"{self._api_v2_base_url}/policy-set-versions"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/policy-sets"
 
@@ -52,49 +52,49 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``GET /policy-sets/:id``
         """
-        url = f"{self._api_v2_base_url}/{policy_set_id}"
+        url = f"{self._endpoint_base_url}/{policy_set_id}"
         return self._show(url)
 
     def update(self, policy_set_id, payload):
         """
         ``PATCH /policy-sets/:id``
         """
-        url = f"{self._api_v2_base_url}/{policy_set_id}"
+        url = f"{self._endpoint_base_url}/{policy_set_id}"
         return self._update(url, payload)
 
     def destroy(self, policy_set_id):
         """
         ``DELETE /policies/:policy_set_id``
         """
-        url = f"{self._api_v2_base_url}/{policy_set_id}"
+        url = f"{self._endpoint_base_url}/{policy_set_id}"
         return self._destroy(url)
 
     def add_policies_to_set(self, policy_set_id, payload):
         """
         ``POST /policy-sets/:id/relationships/policies``
         """
-        url = f"{self._api_v2_base_url}/{policy_set_id}/relationships/policies"
+        url = f"{self._endpoint_base_url}/{policy_set_id}/relationships/policies"
         return self._post(url, data=payload)
 
     def remove_policies_from_set(self, policy_id, payload):
         """
         ``DELETE /policy-sets/:id/relationships/policies``
         """
-        url = f"{self._api_v2_base_url}/{policy_id}/relationships/policies"
+        url = f"{self._endpoint_base_url}/{policy_id}/relationships/policies"
         return self._delete(url, data=payload)
 
     def attach_policy_set_to_workspaces(self, policy_id, payload):
         """
         ``POST /policy-sets/:id/relationships/workspaces``
         """
-        url = f"{self._api_v2_base_url}/{policy_id}/relationships/workspaces"
+        url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
         return self._post(url, data=payload)
 
     def detach_policy_set_from_workspaces(self, policy_id, payload):
         """
         ``POST /policy-sets/:id/relationships/workspaces``
         """
-        url = f"{self._api_v2_base_url}/{policy_id}/relationships/workspaces"
+        url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
         return self._delete(url, data=payload)
 
     def create_policy_set_version(self, policy_set_id):
@@ -106,7 +106,7 @@ class TFCPolicySets(TFCEndpoint):
         creating a new policy set version and, in a subsequent request,
         uploading a tarball (tar.gz) of data to it.
         """
-        url = f"{self._api_v2_base_url}/{policy_set_id}/versions"
+        url = f"{self._endpoint_base_url}/{policy_set_id}/versions"
         return self._post(url)
 
     def show_policy_set_version(self, policy_set_version_id):

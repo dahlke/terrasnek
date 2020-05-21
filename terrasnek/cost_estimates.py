@@ -13,7 +13,7 @@ class TFCCostEstimates(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify)
-        self._api_v2_base_url = f"{self._api_v2_base_url}/cost-estimates"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/cost-estimates"
 
     def required_entitlements(self):
         return []
@@ -22,5 +22,5 @@ class TFCCostEstimates(TFCEndpoint):
         """
         ``GET /cost-estimates/:cost_est_id``
         """
-        url = f"{self._api_v2_base_url}/{cost_est_id}"
+        url = f"{self._endpoint_base_url}/{cost_est_id}"
         return self._show(url)
