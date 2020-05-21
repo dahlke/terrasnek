@@ -94,6 +94,12 @@ applied_run = api.runs.apply(run_id)
 _For more examples, see the `./test` directory in the repository._
 
 
+### `terrasnek` to Terraform Cloud API Spec Parity
+
+```eval_rst
+.. include:: api_comparison.rst
+```
+
 Contents
 --------
 

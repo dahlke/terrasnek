@@ -177,5 +177,9 @@ def main():
         print(table_data)
         f.write(table_data)
 
+    with open("./docs/api_comparison.rst", "w") as f:
+        table_data = tabulate(rows, headers=headers, tablefmt="rst")
+        f.write(table_data)
+
 if __name__ == "__main__":
     main()
