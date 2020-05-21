@@ -14,8 +14,8 @@ class TFCRegistryModules(TFCEndpoint):
     https://www.terraform.io/docs/registry/api.html
     """
 
-    def __init__(self, instance_url, org_name, headers, verify):
-        super().__init__(instance_url, org_name, headers, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
         self._private_api_v2_base_url = f"{self._api_v2_base_url}/registry-modules"
         self._modules_v1_base_url = f"{self._modules_v1_base_url}"
 
@@ -70,21 +70,20 @@ class TFCRegistryModules(TFCEndpoint):
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}"
         return self._get(url)
 
-    def download_source(self, name, provider, version):
+    def download_version_source(self, name, provider, version, target_path):
         """
         ``GET <base_url>/:namespace/:name/:provider/:version/download``
         """
-        # TODO
-        # url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}/download"
-        # return self._get(url)
+        url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}/download"
+        return self._download(url, target_path, header_with_url="X-Terraform-Get")
 
-    def download_latest(self, name, provider):
+    def download_latest_source(self, name, provider, target_path):
         """
         ``GET <base_url>/:namespace/:name/:provider/download``
         """
-        # TODO
-        # url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/download"
-        # return self._get(url)
+        url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/download"
+        return self._download(\
+            url, target_path, header_with_url="X-Terraform-Get", allow_redirects=True)
 
     # Private Registry API Endpoints
     def publish_from_vcs(self, payload):
@@ -118,7 +117,6 @@ class TFCRegistryModules(TFCEndpoint):
 
         return self._post(url)
 
-    # TODO: Deprecated Private Registry API Endpoints
     def create(self):
         """
         ``POST /organizations/:organization_name/registry-modules``
@@ -129,6 +127,7 @@ class TFCRegistryModules(TFCEndpoint):
         versions; instead, you must explicitly create and upload each new version
         with the Create a Module Version endpoint.
         """
+        # WONTFIX: Deprecated Private Registry API Endpoint
 
     def create_version(self):
         """
@@ -139,6 +138,7 @@ class TFCRegistryModules(TFCEndpoint):
         new versions for new tags. After creating the version, the module should be
         uploaded to the returned upload link.
         """
+        # WONTFIX: Deprecated Private Registry API Endpoint
 
     def upload_version(self):
         """
@@ -147,3 +147,4 @@ class TFCRegistryModules(TFCEndpoint):
         DEPRECATED: The URL is provided in the upload links attribute in the
         registry-module-versions resource.
         """
+        # WONTFIX: Deprecated Private Registry API Endpoint

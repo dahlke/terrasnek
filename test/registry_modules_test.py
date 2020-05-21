@@ -3,13 +3,11 @@ Module for Terraform Cloud API Endpoint: Registry Modules.
 """
 
 import time
+import os
 
 from .base import TestTFCBaseTestCase
+from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_ATTEMPTS
 
-
-# TODO: standardize and move to constants file
-MAX_ATTEMPTS = 30
-TFE_MODULE_PROVIDER_TYPE = "tfe"
 
 class TestTFCRegistryModules(TestTFCBaseTestCase):
     """
@@ -38,7 +36,8 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         ``list_latest_version_specific_provider``, ``get``.
         """
 
-        # TODO: comments
+        # Publish a module from the VCS provider, using the oauth token generated
+        # in the class setup. Assert that we got the expected response back.
         publish_payload = {
             "data": {
                 "attributes": {
@@ -51,7 +50,6 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 "type":"registry-modules"
             }
         }
-
         published_module = \
             self._api.registry_modules.publish_from_vcs(publish_payload)["data"]
         published_module_name = published_module["attributes"]["name"]
@@ -60,7 +58,6 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         # Give some time for the module to be created properly
         listed_modules_resp = self._api.registry_modules.list()
 
-        # TODO: standardize this timeout behavior
         attempt_num = 0
         while not listed_modules_resp:
             listed_modules_resp = self._api.registry_modules.list()
@@ -111,6 +108,26 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 published_module_name, TFE_MODULE_PROVIDER_TYPE)
         latest_specific_provider = listed_latest_version_specific_provider["modules"][0]
         self.assertEqual(listed_version, latest_specific_provider["versions"][0]["version"])
+
+        # Download the source for a specific version of the module, confirm the file
+        # was downloaded to the correct path (and then remove it).
+        self._api.registry_modules.download_version_source(\
+            published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version, \
+            self._module_version_source_tarball_target_path)
+        self.assertTrue(os.path.exists(self._module_version_source_tarball_target_path))
+        if os.path.exists(self._module_version_source_tarball_target_path):
+            os.remove(self._module_version_source_tarball_target_path)
+
+        # Download the source for the latest version of the module, confirm the file
+        # was downloaded to the correct path (and then remove it).
+        self._api.registry_modules.download_latest_source(\
+            published_module_name, TFE_MODULE_PROVIDER_TYPE, \
+            self._module_latest_source_tarball_target_path)
+        self.assertTrue(os.path.exists(self._module_latest_source_tarball_target_path))
+        if os.path.exists(self._module_latest_source_tarball_target_path):
+            os.remove(self._module_latest_source_tarball_target_path)
+
+        time.sleep(10)
 
         # Get the module, compare to the published module name
         gotten_module = \

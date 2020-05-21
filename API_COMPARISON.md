@@ -16,7 +16,7 @@
 | Policy Checks            | policy_checks            | True          | True   | True   | https://www.terraform.io/docs/cloud/api/policy-checks.html               |
 | Policy Sets              | policy_sets              | True          | True   | True   | https://www.terraform.io/docs/cloud/api/policy-sets.html                 |
 | Policy Set Params        | policy_set_params        | True          | True   | True   | https://www.terraform.io/docs/cloud/api/policy-set-params.html           |
-| Modules                  | modules                  | False         | False  | False  | https://www.terraform.io/docs/cloud/api/modules.html                     |
+| Registry Modules         | registry_modules         | True          | True   | True   | https://www.terraform.io/docs/cloud/api/modules.html                     |
 | Runs                     | runs                     | True          | True   | True   | https://www.terraform.io/docs/cloud/api/run.html                         |
 | Run Triggers             | run_triggers             | True          | True   | True   | https://www.terraform.io/docs/cloud/api/run-triggers.html                |
 | Ssh Keys                 | ssh_keys                 | True          | True   | True   | https://www.terraform.io/docs/cloud/api/ssh-keys.html                    |

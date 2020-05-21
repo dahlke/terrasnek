@@ -50,7 +50,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "./test/testdata/terraform/terrasnek_unittest_config_version.tar.gz"
         cls._policy_set_upload_tarball_path = \
             "./test/testdata/sentinel/terrasnek_unittest_sentinel.tar.gz"
-        cls._plan_export_tarball_target_path = "/tmp/terrasnek_unittest.tar.gz"
+        cls._plan_export_tarball_target_path = \
+            "/tmp/terrasnek_unittest_plan_export.tar.gz"
+        cls._module_version_source_tarball_target_path = \
+            "/tmp/terrasnek_unittest_module_version_export.tar.gz"
+        cls._module_latest_source_tarball_target_path = \
+            "/tmp/terrasnek_unittest_module_latest_export.tar.gz"
 
         # If a test org is specified, use the specified org, otherwise create
         # a new one to run the testing in.

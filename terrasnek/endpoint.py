@@ -16,15 +16,16 @@ class TFCEndpoint(ABC):
     Base class providing common CRUD operation implementations across all TFC Endpoints.
     """
 
-    def __init__(self, instance_url, org_name, headers, verify):
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
         self._logger = logging.getLogger(self.__class__.__name__)
         self._logger.setLevel(logging.INFO)
 
         # Remove the slack at the end if someone adds it.
         self._instance_url = \
             instance_url if instance_url[-1] != "/" else instance_url[:-1]
-        self._api_v2_base_url = f"{self._instance_url}/api/v2"
-        self._modules_v1_base_url = f"{self._instance_url}/api/registry/v1/modules"
+
+        self._api_v2_base_url = f"{self._instance_url}{well_known_paths['tfe.v2']}"
+        self._modules_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1']}"
         self._headers = headers
         self._org_name = org_name
         self._verify = verify
@@ -36,7 +37,6 @@ class TFCEndpoint(ABC):
         """
         return []
 
-    # TODO: create an HTTP base class with all these functions
     def _delete(self, url, data=None):
         results = None
         req = requests.delete(\
@@ -50,15 +50,23 @@ class TFCEndpoint(ABC):
 
         return results
 
-    def _get(self, url, return_raw=False):
+    def _get(self, url, return_raw=False, allow_redirects=False):
         results = None
-        req = requests.get(url, headers=self._headers, verify=self._verify)
+        req = requests.get(\
+            url, headers=self._headers, verify=self._verify, allow_redirects=allow_redirects)
 
         if req.status_code == HTTP_OK and not return_raw:
             results = json.loads(req.content)
             self._logger.debug(f"GET to {url} successful")
         elif req.status_code == HTTP_OK and return_raw:
             results = req.content
+        elif req.status_code == HTTP_NO_CONTENT:
+            results = req.headers
+        elif req.history:
+            # NOTE: If we got redirected, run the get on the new URL, and fix the
+            # URL to match the private module registry URL schema.
+            url = req.url.replace("/v1/modules/", "/api/registry/v1/modules/")
+            results = {"redirect-url": url}
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
@@ -201,3 +209,20 @@ class TFCEndpoint(ABC):
         Implementation of the common update resource pattern for the TFC API.
         """
         return self._patch(url, data=payload)
+
+    def _download(self, url, target_path, header_with_url=None, allow_redirects=False):
+        """
+        Implementation of a common download pattern from the TFC API.
+        """
+        results = None
+        if header_with_url is None:
+            results = self._get(url, return_raw=True, allow_redirects=allow_redirects)
+        else:
+            response = self._get(url, allow_redirects=allow_redirects)
+            if "redirect-url" in response:
+                response = self._get(response["redirect-url"])
+            download_url = response[header_with_url]
+            results = self._get(download_url, return_raw=True)
+
+        with open(target_path, 'wb') as target_file:
+            target_file.write(results)

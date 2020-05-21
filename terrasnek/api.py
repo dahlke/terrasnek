@@ -106,12 +106,13 @@ class TFC():
     }
 
     def __init__(self, api_token, url=TFC_SAAS_URL, verify=True):
-        # TODO: add logging about initialization and such
         if api_token is None:
             raise InvalidTFCTokenException
 
         self._logger = logging.getLogger(self.__class__.__name__)
         self._logger.setLevel(logging.INFO)
+
+        self._logger.debug("Initializing the TFC API class...")
 
         self._instance_url = url
         self._token = api_token
@@ -123,8 +124,11 @@ class TFC():
             "Content-Type": "application/vnd.api+json"
         }
 
+        self._logger.debug("Retrieving TFC API well known paths..")
         self._well_known_paths = self.well_known_paths()
+        self._logger.debug("TFC API well known paths retrieved.")
 
+        self._logger.debug("Initializing endpoints that don't require an org to be set...")
         # Loop through all the endpoints that don't require an org and initialize them
         for ep_name in self._class_for_attr_dict["org-not-required"]:
             class_for_attr = self._class_for_attr_dict["org-not-required"][ep_name]
@@ -132,23 +136,27 @@ class TFC():
                 self._instance_url,
                 None,
                 self._headers,
+                self._well_known_paths,
                 self._verify)
             setattr(self, ep_name, initialized_endpoint_class)
+        self._logger.debug("Initialized endpoints that don't require an org to be set.")
 
         # Loop through all the endpoints that do require an org and initialize them
         for ep_name in self._class_for_attr_dict["org-required"]:
             setattr(self, ep_name, None)
 
-    # TODO: move this somewhere else?
-    def _get(self, url, return_raw=False):
+        self._logger.debug("TFC API class initialized.")
+
+    def _get(self, url):
+        """
+        Simplified HTTP GET function for usage only with this API module.
+        """
         results = None
         req = requests.get(url, headers=self._headers, verify=self._verify)
 
-        if req.status_code == HTTP_OK and not return_raw:
+        if req.status_code == HTTP_OK:
             results = json.loads(req.content)
             self._logger.debug(f"GET to {url} successful")
-        elif req.status_code == HTTP_OK and return_raw:
-            results = req.content
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
@@ -168,6 +176,8 @@ class TFC():
         This method must be called for any non-admin endpoint to work.
         """
 
+        self._logger.debug("Initializing endpoints that do require an org to be set...")
+
         # Update the current org attribute
         self._current_org = org_name
 
@@ -177,6 +187,9 @@ class TFC():
                 self._instance_url,
                 self._current_org,
                 self._headers,
+                self._well_known_paths,
                 self._verify)
 
             setattr(self, ep_name, initialized_endpoint_class)
+
+        self._logger.debug("Initialized endpoints that do require an org to be set.")

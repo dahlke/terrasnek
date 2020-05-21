@@ -99,6 +99,6 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
         if os.path.exists(self._plan_export_tarball_target_path):
             os.remove(self._plan_export_tarball_target_path)
         self._api.plan_exports.download(
-            plan_export_id, target_path=self._plan_export_tarball_target_path)
+            plan_export_id, self._plan_export_tarball_target_path)
         self.assertTrue(os.path.exists(self._plan_export_tarball_target_path))
         os.remove(self._plan_export_tarball_target_path)

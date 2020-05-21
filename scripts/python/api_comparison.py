@@ -81,6 +81,7 @@ def get_endpoints_from_api_docs():
             endpoint_name = endpoint_name.replace("variables", "vars")
             endpoint_name = endpoint_name.replace("workspace_vars", "vars")
             endpoint_name = endpoint_name.replace("team_members", "team_memberships")
+            endpoint_name = endpoint_name.replace("modules", "registry_modules")
 
             if endpoint_name == "run":
                 endpoint_name = "runs"

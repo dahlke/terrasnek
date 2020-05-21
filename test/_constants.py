@@ -5,6 +5,7 @@ Constants for default values in the TFC API implementation testing.
 import os
 import sys
 
+# Configurable Constants
 TFC_HOSTNAME = os.getenv("TFC_HOSTNAME", None)
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
 
@@ -79,3 +80,8 @@ if TEST_TEAM_NAME is None:
 
 if TEST_PASSWORD is None:
     sys.exit("Environment variable TEST_PASSWORD must be set.")
+
+
+# Non-Configurable Constants
+TFE_MODULE_PROVIDER_TYPE = "tfe"
+MAX_ATTEMPTS = 30

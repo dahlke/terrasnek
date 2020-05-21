@@ -13,8 +13,8 @@ class TFCTeamTokens(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/team-tokens.html
     """
 
-    def __init__(self, instance_url, org_name, headers, verify):
-        super().__init__(instance_url, org_name, headers, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
         self._api_v2_base_url = f"{self._api_v2_base_url}/teams"
 
     def required_entitlements(self):

@@ -12,6 +12,10 @@ todo:
 note:
 	@ag "NOTE" --ignore Makefile
 
+.PHONY: wontfix
+wontfix:
+	@ag "WONTFIX" --ignore Makefile
+
 .PHONY: test
 test:
 	python3 -m unittest test/*.py

@@ -13,8 +13,8 @@ class TFCPlanExports(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/plan-exports.html
     """
 
-    def __init__(self, instance_url, org_name, headers, verify):
-        super().__init__(instance_url, org_name, headers, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
         self._api_v2_base_url = f"{self._api_v2_base_url}/plan-exports"
 
     def required_entitlements(self):
@@ -42,7 +42,7 @@ class TFCPlanExports(TFCEndpoint):
         url = f"{self._api_v2_base_url}/{plan_export_id}"
         return self._show(url)
 
-    def download(self, plan_export_id, target_path="/tmp/terrasnek.planexport.tar.gz"):
+    def download(self, plan_export_id, target_path):
         """
         ``GET /plan-exports/:plan_export_id/download``
 
@@ -52,7 +52,7 @@ class TFCPlanExports(TFCEndpoint):
         to save the temporary URL.
         """
         url = f"{self._api_v2_base_url}/{plan_export_id}/download"
-        results = self._get(url, return_raw=True)
+        results = self._get(url, return_raw=True, allow_redirects=True)
         with open(target_path, 'wb') as target_file:
             target_file.write(results)
 
