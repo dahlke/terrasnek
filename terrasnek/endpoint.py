@@ -226,3 +226,9 @@ class TFCEndpoint(ABC):
 
         with open(target_path, 'wb') as target_file:
             target_file.write(results)
+
+    def get_current_org(self):
+        """
+        Return the active org for this endpoint.
+        """
+        return self._org_name
