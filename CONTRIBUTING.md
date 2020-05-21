@@ -27,8 +27,7 @@ future, if some of the limitations are lifted, these checks will be automated in
 Here is a summary of the commands:
 
 ```
-make lint-lib
-make lint-tests
+make lint
 make docs
 make coverage
 make codecov

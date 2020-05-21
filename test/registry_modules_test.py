@@ -5,9 +5,9 @@ Module for Terraform Cloud API Endpoint: Registry Modules.
 import time
 import os
 
+from terrasnek.exceptions import TFCDeprecatedWontFix
 from .base import TestTFCBaseTestCase
 from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_ATTEMPTS
-
 
 class TestTFCRegistryModules(TestTFCBaseTestCase):
     """
@@ -127,8 +127,6 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         if os.path.exists(self._module_latest_source_tarball_target_path):
             os.remove(self._module_latest_source_tarball_target_path)
 
-        time.sleep(10)
-
         # Get the module, compare to the published module name
         gotten_module = \
             self._api.registry_modules.get(\
@@ -141,3 +139,12 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             self._api.registry_modules.get(\
                 published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
         self.assertIsNone(gotten_module)
+
+        with self.assertRaises(TFCDeprecatedWontFix):
+            self._api.registry_modules.create()
+
+        with self.assertRaises(TFCDeprecatedWontFix):
+            self._api.registry_modules.create_version()
+
+        with self.assertRaises(TFCDeprecatedWontFix):
+            self._api.registry_modules.upload_version()

@@ -4,6 +4,7 @@ Module for Terraform Cloud API Endpoint: Registry Modules.
 
 from .endpoint import TFCEndpoint
 from ._constants import Entitlements
+from .exceptions import TFCDeprecatedWontFix
 
 class TFCRegistryModules(TFCEndpoint):
     """
@@ -117,7 +118,8 @@ class TFCRegistryModules(TFCEndpoint):
 
         return self._post(url)
 
-    def create(self):
+    @staticmethod
+    def create():
         """
         ``POST /organizations/:organization_name/registry-modules``
 
@@ -127,9 +129,10 @@ class TFCRegistryModules(TFCEndpoint):
         versions; instead, you must explicitly create and upload each new version
         with the Create a Module Version endpoint.
         """
-        # WONTFIX: Deprecated Private Registry API Endpoint
+        raise TFCDeprecatedWontFix
 
-    def create_version(self):
+    @staticmethod
+    def create_version():
         """
         ``POST /registry-modules/:organization_name/:name/:provider/versions``
 
@@ -138,13 +141,14 @@ class TFCRegistryModules(TFCEndpoint):
         new versions for new tags. After creating the version, the module should be
         uploaded to the returned upload link.
         """
-        # WONTFIX: Deprecated Private Registry API Endpoint
+        raise TFCDeprecatedWontFix
 
-    def upload_version(self):
+    @staticmethod
+    def upload_version():
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
         DEPRECATED: The URL is provided in the upload links attribute in the
         registry-module-versions resource.
         """
-        # WONTFIX: Deprecated Private Registry API Endpoint
+        raise TFCDeprecatedWontFix
