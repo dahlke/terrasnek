@@ -67,7 +67,6 @@ class TFCAdminUsers(TFCEndpoint):
 
         This endpoint lists all user accounts in the Terraform Cloud installation.
         """
-        print(self._endpoint_base_url)
         return self._list(\
             self._endpoint_base_url, query=query, filters=filters, page=page, page_size=page_size)
 

@@ -27,7 +27,6 @@ class TFCAdminOrgs(TFCEndpoint):
         ``DELETE /admin/organizations/:org_name``
         """
         url = f"{self._endpoint_base_url}/{org_name}"
-        print(url)
         return self._destroy(url)
 
     def list(self):
