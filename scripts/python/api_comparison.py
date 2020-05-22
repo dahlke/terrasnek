@@ -174,7 +174,7 @@ def main():
 
     with open("./API_COMPARISON.md", "w") as f:
         table_data = tabulate(rows, headers=headers, tablefmt="github")
-        print(table_data)
+        # print(table_data)
         f.write(table_data)
 
     with open("./docs/api_comparison.rst", "w") as f:

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+make contributor_check
 make lint
 make api_comparison
 make docs
