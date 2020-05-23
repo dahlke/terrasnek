@@ -51,8 +51,8 @@ pip-package:
 
 .PHONY: pip-publish
 pip-publish: pip-package
-	python3 -m twine upload dist/*
+	python3 -m twine upload dist/* --verbose --skip-existing
 
 .PHONY: pip-test-publish
 pip-test-publish: pip-package
-	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/* --verbose --skip-existing
