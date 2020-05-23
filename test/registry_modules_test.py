@@ -4,10 +4,11 @@ Module for Terraform Cloud API Endpoint: Registry Modules.
 
 import time
 import os
+import timeout_decorator
 
 from terrasnek.exceptions import TFCDeprecatedWontFix
 from .base import TestTFCBaseTestCase
-from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_ATTEMPTS
+from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_TEST_TIMEOUT
 
 class TestTFCRegistryModules(TestTFCBaseTestCase):
     """
@@ -55,16 +56,16 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         published_module_name = published_module["attributes"]["name"]
         self.assertEqual("registry-modules", published_module["type"])
 
-        # Give some time for the module to be created properly
-        listed_modules_resp = self._api.registry_modules.list()
 
-        attempt_num = 0
-        while not listed_modules_resp:
+        # Test the listing of the modules, time out if it takes too long.
+        @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
+        def listed_modules_timeout():
             listed_modules_resp = self._api.registry_modules.list()
-            attempt_num += 1
-            if attempt_num >= MAX_ATTEMPTS:
-                break
-            time.sleep(1)
+            while not listed_modules_resp:
+                listed_modules_resp = self._api.registry_modules.list()
+                time.sleep(1)
+            return listed_modules_resp
+        listed_modules_resp = listed_modules_timeout()
 
         # List all the modules for this org, confirm we found the one we
         # published.

@@ -84,4 +84,5 @@ if TEST_PASSWORD is None:
 
 # Non-Configurable Constants
 TFE_MODULE_PROVIDER_TYPE = "tfe"
-MAX_ATTEMPTS = 30
+DEFAULT_VCS_WORKING_DIR = "tfe"
+MAX_TEST_TIMEOUT = 30

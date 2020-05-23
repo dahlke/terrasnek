@@ -60,13 +60,9 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
         created_run = self._api.runs.show(self._run_id)["data"]
         created_plan_id = created_run["relationships"]["plan"]["data"]["id"]
 
-        # Wait for the run to plan
-        while not created_run["attributes"]["actions"]["is-confirmable"]:
-            self._logger.debug("Waiting on plan to execute...")
-            created_run = self._api.runs.show(self._run_id)["data"]
-            self._logger.debug("Waiting for created run to finish planning...")
-            time.sleep(1)
-        self._logger.debug("Plan successful.")
+        # Timeout if the plan doesn't reach confirmable, this can happen
+        # if the run is queued.
+        created_run = self._created_run_timeout(self._run_id)
 
         # Export the plan, confirm the plan_id matches that in the exported plan
         create_plan_export_payload = {

@@ -56,14 +56,9 @@ class TestTFCApplies(TestTFCBaseTestCase):
         Test the Applies API endpoint: ``show``.
         """
 
-        # Create a run and wait for the created run to complete it's plan
-        created_run = self._api.runs.show(self._run_id)["data"]
-        while not created_run["attributes"]["actions"]["is-confirmable"]:
-            self._logger.debug("Waiting on plan to execute...")
-            created_run = self._api.runs.show(self._run_id)["data"]
-            self._logger.debug("Waiting for created run to finish planning...")
-            time.sleep(1)
-        self._logger.debug("Plan successful.")
+        # Timeout if the plan doesn't reach confirmable, this can happen
+        # if the run is queued.
+        self._created_run_timeout(self._run_id)
 
         # Apply the plan
         self._api.runs.apply(self._run_id)

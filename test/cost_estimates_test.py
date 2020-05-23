@@ -82,15 +82,11 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
         run = self._api.runs.create(create_run_payload)["data"]
         run_id = run["id"]
 
-        # Wait for it to plan
-        planned_run = self._api.runs.show(run_id)["data"]
-        while not planned_run["attributes"]["actions"]["is-confirmable"]:
-            self._logger.debug("Waiting on plan to execute...")
-            time.sleep(1)
-            planned_run = self._api.runs.show(run_id)["data"]
-        self._logger.debug("Plan successful.")
+        # Timeout if the plan doesn't reach confirmable, this can happen
+        # if the run is queued.
+        created_run = self._created_run_timeout(run_id)
 
         # Get the Cost Estimate ID from the plan, and confirm that we can show it
-        cost_estimate_id = planned_run["relationships"]["cost-estimate"]["data"]["id"]
+        cost_estimate_id = created_run["relationships"]["cost-estimate"]["data"]["id"]
         cost_estimate = self._api.cost_estimates.show(cost_estimate_id)["data"]
         self.assertEqual("cost-estimates", cost_estimate["type"])

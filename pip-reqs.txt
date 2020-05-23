@@ -9,3 +9,4 @@ sphinx==3.0.3
 recommonmark==0.6.0
 beautifulsoup4==4.9.1
 tabulate==0.8.7
+timeout-decorator==0.4.1

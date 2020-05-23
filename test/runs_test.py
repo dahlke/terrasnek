@@ -55,13 +55,9 @@ class TestTFCRuns(TestTFCBaseTestCase):
         run = self._api.runs.create(create_run_payload)["data"]
         run_id = run["id"]
 
-        # Wait for it to plan
-        created_run = self._api.runs.show(run_id)["data"]
-        while not created_run["attributes"]["actions"]["is-confirmable"]:
-            self._logger.debug("Waiting on plan to execute...")
-            time.sleep(1)
-            created_run = self._api.runs.show(run_id)["data"]
-        self._logger.debug("Plan successful.")
+        # Timeout if the plan doesn't reach confirmable, this can happen
+        # if the run is queued.
+        created_run = self._created_run_timeout(run_id)
 
         self.assertEqual(created_run["relationships"]["workspace"]["data"]["id"],
                          create_run_payload["data"]["relationships"]["workspace"]["data"]["id"])
@@ -106,11 +102,9 @@ class TestTFCRuns(TestTFCBaseTestCase):
         self.assertRaises(
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["discarded-at"])
 
-        while not created_run["attributes"]["actions"]["is-confirmable"]:
-            self._logger.debug("Waiting on plan to execute...")
-            time.sleep(1)
-            created_run = self._api.runs.show(run_id)["data"]
-        self._logger.debug("Plan successful.")
+        # Timeout if the plan doesn't reach confirmable, this can happen
+        # if the run is queued.
+        created_run = self._created_run_timeout(run_id)
 
         # Discard the run
         self._api.runs.discard(run_id)

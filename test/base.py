@@ -10,6 +10,8 @@ import base64
 import unittest
 import os
 import binascii
+import time
+import timeout_decorator
 
 from terrasnek.api import TFC
 from terrasnek._constants import Entitlements
@@ -18,10 +20,8 @@ from ._constants import \
     TFC_TOKEN, TFC_URL, TEST_EMAIL, \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET, \
-    SSL_VERIFY, TEST_PASSWORD
-
-
-DEFAULT_VCS_WORKING_DIR = "tfe"
+    SSL_VERIFY, TEST_PASSWORD, MAX_TEST_TIMEOUT, \
+    DEFAULT_VCS_WORKING_DIR
 
 class TestTFCBaseTestCase(unittest.TestCase):
     """
@@ -357,3 +357,20 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 }
             }
         }
+
+    @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
+    def _created_run_timeout(self, run_id):
+        """
+        While running the tests, it's possible that a run gets queued, which
+        would cause the test suite to stall indefinitely until the queue is cleared.
+        This function is meant to keep that to a minimum, and just fail the test
+        if we are waiting too long.
+        """
+        created_run = self._api.runs.show(run_id)["data"]
+        while not created_run["attributes"]["actions"]["is-confirmable"]:
+            self._logger.debug("Waiting on plan to execute...")
+            created_run = self._api.runs.show(run_id)["data"]
+            self._logger.debug("Waiting for created run to finish planning...")
+            time.sleep(1)
+        self._logger.debug("Plan successful.")
+        return created_run

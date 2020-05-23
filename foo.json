@@ -1,8 +1,0 @@
-************* Module test.admin_settings_test
-test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
-test/admin_settings_test.py:111:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
-test/admin_settings_test.py:122:2: W0511: TODO: need to use a real twilio account to finish this test. (fixme)
-
-------------------------------------------------------------------
-Your code has been rated at 9.99/10 (previous run: 9.99/10, +0.00)
-
