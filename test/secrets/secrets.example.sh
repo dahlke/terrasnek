@@ -31,3 +31,7 @@ export TEST_ORG_NAME=""
 export TEST_USERNAME=""
 export TEST_TEAM_NAME=""
 export TEST_PASSWORD=""
+
+# Variable used for uploading the above variables to CircleCI
+# It is not used at all in the library
+export CIRCLECI_TOKEN=""

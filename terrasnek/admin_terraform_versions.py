@@ -13,8 +13,8 @@ class TFCAdminTerraformVersions(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/admin/terraform-versions"
 
     def list(self, page=None, page_size=None):
@@ -36,7 +36,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
     def show(self, version_id):
         """
-        ``GET /admin/terraform-versions/:version_id``
+        ``GET /admin/terraform-versions/:id``
         """
         url = f"{self._endpoint_base_url}/{version_id}"
         return self._show(url)
@@ -50,7 +50,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
     def destroy(self, version_id):
         """
-        ``DELETE /admin/terraform-versions/:version_id``
+        ``DELETE /admin/terraform-versions/:id``
         """
         url = f"{self._endpoint_base_url}/{version_id}"
         return self._destroy(url)

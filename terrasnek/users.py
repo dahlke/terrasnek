@@ -15,8 +15,8 @@ class TFCUsers(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/users.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._users_api_v2_base_url = f"{self._api_v2_base_url}/users"
 
     def required_entitlements(self):

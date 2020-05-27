@@ -6,7 +6,8 @@ import time
 
 from .base import TestTFCBaseTestCase
 
-from ._constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+from ._constants import \
+    AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, TFC_SAAS_HOSTNAME
 
 class TestTFCCostEstimates(TestTFCBaseTestCase):
     """
@@ -44,20 +45,22 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
         # Sleep for 1 second to give the WS time to create
         time.sleep(1)
 
-        # Enable cost estimation, and configure the AWS credentials for it at the admin level
-        update_payload = {
-            "data": {
-                "attributes": {
-                    "enabled": True,
-                    "aws-enabled": True,
-                    "aws-access-key-id": AWS_ACCESS_KEY_ID,
-                    "aws-secret-key": AWS_SECRET_ACCESS_KEY
+        # Enable cost estimation if this is TFE
+        if TFC_SAAS_HOSTNAME not in self._tfc_url:
+            # Configure the AWS credentials for it at the admin level
+            update_payload = {
+                "data": {
+                    "attributes": {
+                        "enabled": True,
+                        "aws-enabled": True,
+                        "aws-access-key-id": AWS_ACCESS_KEY_ID,
+                        "aws-secret-key": AWS_SECRET_ACCESS_KEY
+                    }
                 }
             }
-        }
-        updated_admin_cost_est_settings = \
-            self._api.admin_settings.update_cost_estimation(update_payload)["data"]
-        self.assertTrue(updated_admin_cost_est_settings["attributes"]["enabled"])
+            updated_admin_cost_est_settings = \
+                self._api.admin_settings.update_cost_estimation(update_payload)["data"]
+            self.assertTrue(updated_admin_cost_est_settings["attributes"]["enabled"])
 
         # Enable cost estimation on the org level
         update_payload = {

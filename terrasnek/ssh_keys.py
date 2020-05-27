@@ -25,8 +25,8 @@ class TFCSSHKeys(TFCEndpoint):
         https://www.terraform.io/docs/cloud/api/ssh-keys.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/ssh-keys"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/ssh-keys"
 
@@ -35,13 +35,13 @@ class TFCSSHKeys(TFCEndpoint):
 
     def create(self, payload):
         """
-        ``POST /organizations/:org_name/ssh-keys``
+        ``POST /organizations/:organization_name/ssh-keys``
         """
         return self._create(self._org_api_v2_base_url, payload)
 
     def list(self):
         """
-        ``GET /organizations/:org_name/ssh-keys``
+        ``GET /organizations/:organization_name/ssh-keys``
         """
         return self._list(self._org_api_v2_base_url)
 

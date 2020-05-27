@@ -16,14 +16,15 @@ class TFCEndpoint(ABC):
     Base class providing common CRUD operation implementations across all TFC Endpoints.
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         self._logger = logging.getLogger(self.__class__.__name__)
-        self._logger.setLevel(logging.INFO)
+        self._logger.setLevel(log_level)
 
         # Remove the slack at the end if someone adds it.
         self._instance_url = \
             instance_url if instance_url[-1] != "/" else instance_url[:-1]
         self._api_v2_base_url = f"{self._instance_url}{well_known_paths['tfe.v2'][:-1]}"
+        self._meta_base_url = f"{self._instance_url}/api/meta"
         self._modules_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1']}"
         self._headers = headers
         self._org_name = org_name

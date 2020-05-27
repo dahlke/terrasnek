@@ -4,6 +4,8 @@ Module for testing the Terraform Cloud API Endpoint: Account.
 
 from .base import TestTFCBaseTestCase
 
+from ._constants import TFC_SAAS_HOSTNAME
+
 
 class TestTFCAccount(TestTFCBaseTestCase):
     """
@@ -39,7 +41,14 @@ class TestTFCAccount(TestTFCBaseTestCase):
             }
         }
         updated_account = self._api.account.update(update_payload)["data"]
-        updated_email = updated_account["attributes"]["email"]
+
+        # If it's TFC, we don't want to actually change the email, so we will
+        # check against the unconfirmed email.
+        if TFC_SAAS_HOSTNAME not in self._tfc_url:
+            updated_email = updated_account["attributes"]["email"]
+        else:
+            updated_email = updated_account["attributes"]["unconfirmed-email"]
+
         self.assertEqual(updated_email, email_to_update_to)
 
         # Set it back to the original email
@@ -56,31 +65,34 @@ class TestTFCAccount(TestTFCBaseTestCase):
         updated_email = updated_account["attributes"]["email"]
         self.assertEqual(updated_email, original_email)
 
-        # Update the password and confirm the request didn't fail
-        password_to_update_to = self._unittest_random_name()
-        change_password_payload = {
-            "data": {
-                "type": "users",
-                "attributes": {
-                    "current_password": self._test_password,
-                    "password": password_to_update_to,
-                    "password_confirmation": password_to_update_to
+        # Only fiddle around with the password for the account if it's not TFC,
+        # and is a TFE instance used only for testing.
+        if TFC_SAAS_HOSTNAME not in self._tfc_url:
+            # Update the password and confirm the request didn't fail
+            password_to_update_to = self._unittest_random_name()
+            change_password_payload = {
+                "data": {
+                    "type": "users",
+                    "attributes": {
+                        "current_password": self._test_password,
+                        "password": password_to_update_to,
+                        "password_confirmation": password_to_update_to
+                    }
                 }
             }
-        }
-        changed_account = self._api.account.change_password(change_password_payload)["data"]
-        self.assertIn("id", changed_account)
+            changed_account = self._api.account.change_password(change_password_payload)["data"]
+            self.assertIn("id", changed_account)
 
-        # Change the password back to the initial one to make this easier
-        change_password_payload = {
-            "data": {
-                "type": "users",
-                "attributes": {
-                    "current_password": password_to_update_to,
-                    "password": self._test_password,
-                    "password_confirmation": self._test_password
+            # Change the password back to the initial one to make this easier
+            change_password_payload = {
+                "data": {
+                    "type": "users",
+                    "attributes": {
+                        "current_password": password_to_update_to,
+                        "password": self._test_password,
+                        "password_confirmation": self._test_password
+                    }
                 }
             }
-        }
-        changed_account = self._api.account.change_password(change_password_payload)["data"]
-        self.assertIn("id", changed_account)
+            changed_account = self._api.account.change_password(change_password_payload)["data"]
+            self.assertIn("id", changed_account)

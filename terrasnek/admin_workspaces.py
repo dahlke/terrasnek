@@ -16,8 +16,8 @@ class TFCAdminWorkspaces(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/admin/workspaces.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/admin/workspaces"
 
     def required_entitlements(self):
@@ -36,14 +36,14 @@ class TFCAdminWorkspaces(TFCEndpoint):
 
     def show(self, ws_id):
         """
-        ``GET /admin/workspaces/:ws_id``
+        ``GET /admin/workspaces/:id``
         """
         url = f"{self._endpoint_base_url}/{ws_id}"
         return self._show(url)
 
     def destroy(self, ws_id):
         """
-        ``DELETE /admin/workspaces/:ws_id``
+        ``DELETE /admin/workspaces/:id``
         """
         url = f"{self._endpoint_base_url}/{ws_id}"
         return self._destroy(url)

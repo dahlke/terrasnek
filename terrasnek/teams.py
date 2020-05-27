@@ -15,8 +15,8 @@ class TFCTeams(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/teams.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._teams_api_v2_base_url = f"{self._api_v2_base_url}/teams"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/teams"
 
@@ -25,7 +25,7 @@ class TFCTeams(TFCEndpoint):
 
     def create(self, payload):
         """
-        ``POST /organizations/:org_name/teams``
+        ``POST /organizations/:organization_name/teams``
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -38,7 +38,7 @@ class TFCTeams(TFCEndpoint):
 
     def list(self):
         """
-        ``GET organizations/:org_name/teams``
+        ``GET organizations/:organization_name/teams``
         """
         return self._list(self._org_api_v2_base_url)
 
@@ -48,3 +48,10 @@ class TFCTeams(TFCEndpoint):
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._show(url)
+
+    def update(self, team_id, payload):
+        """
+        ``PATCH /teams/:team_id``
+        """
+        url = f"{self._teams_api_v2_base_url}/{team_id}"
+        return self._update(url, payload)

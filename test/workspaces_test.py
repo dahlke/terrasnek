@@ -66,7 +66,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
                 }
             }
         }
-        ws_updated = self._api.workspaces.update(ws_id, update_payload)["data"]
+        ws_updated = self._api.workspaces.update(update_payload, workspace_id=ws_id)["data"]
         self.assertEqual(
             updated_name, ws_updated["attributes"]["name"])
 
@@ -108,4 +108,5 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
             if workspace["id"] == ws_id:
                 found_ws = True
                 break
+
         self.assertFalse(found_ws)

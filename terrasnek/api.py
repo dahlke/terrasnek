@@ -8,7 +8,7 @@ import logging
 import requests
 import urllib3
 
-from._constants import TFC_SAAS_URL, HTTP_OK
+from._constants import TFC_SAAS_URL, HTTP_OK, LOG_LEVEL
 from .account import TFCAccount
 from .admin_orgs import TFCAdminOrgs
 from .admin_runs import TFCAdminRuns
@@ -19,6 +19,7 @@ from .admin_workspaces import TFCAdminWorkspaces
 from .applies import TFCApplies
 from .config_versions import TFCConfigVersions
 from .cost_estimates import TFCCostEstimates
+from .ip_ranges import TFCIPRanges
 from .oauth_clients import TFCOAuthClients
 from .oauth_tokens import TFCOAuthTokens
 from .orgs import TFCOrgs
@@ -44,6 +45,7 @@ from .team_tokens import TFCTeamTokens
 from .users import TFCUsers
 from .user_tokens import TFCUserTokens
 from .vars import TFCVars
+from .workspace_vars import TFCWorkspaceVars
 from .workspaces import TFCWorkspaces
 
 # Suppress insecure TLS warnings
@@ -70,6 +72,7 @@ class TFC():
             "admin_terraform_versions": TFCAdminTerraformVersions,
             "admin_users": TFCAdminUsers,
             "admin_workspaces": TFCAdminWorkspaces,
+            "ip_ranges": TFCIPRanges,
             "orgs": TFCOrgs
         },
         "org-required": {
@@ -101,16 +104,18 @@ class TFC():
             "users": TFCUsers,
             "user_tokens": TFCUserTokens,
             "vars": TFCVars,
+            "workspace_vars": TFCWorkspaceVars,
             "workspaces": TFCWorkspaces
         }
     }
 
-    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True):
+    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True, log_level=LOG_LEVEL):
         if api_token is None:
             raise InvalidTFCTokenException
 
         self._logger = logging.getLogger(self.__class__.__name__)
-        self._logger.setLevel(logging.INFO)
+        self._log_level = log_level
+        self._logger.setLevel(self._log_level)
 
         self._logger.debug("Initializing the TFC API class...")
 
@@ -137,7 +142,8 @@ class TFC():
                 None,
                 self._headers,
                 self._well_known_paths,
-                self._verify)
+                self._verify,
+                self._log_level)
             setattr(self, ep_name, initialized_endpoint_class)
         self._logger.debug("Initialized endpoints that don't require an org to be set.")
 
@@ -188,7 +194,8 @@ class TFC():
                 self._current_org,
                 self._headers,
                 self._well_known_paths,
-                self._verify)
+                self._verify,
+                self._log_level)
 
             setattr(self, ep_name, initialized_endpoint_class)
 

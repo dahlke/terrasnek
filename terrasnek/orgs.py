@@ -11,8 +11,8 @@ class TFCOrgs(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/organizations.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations"
 
     def required_entitlements(self):
@@ -26,14 +26,14 @@ class TFCOrgs(TFCEndpoint):
 
     def destroy(self, org_name):
         """
-        ``DELETE /organizations/:org_name``
+        ``DELETE /organizations/:organization_name``
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._destroy(url)
 
     def entitlements(self, org_name):
         """
-        ``GET /organizations/:org_name/entitlement-set``
+        ``GET /organizations/:organization_name/entitlement-set``
 
         This endpoint shows the entitlements for an organization.
         """
@@ -48,14 +48,14 @@ class TFCOrgs(TFCEndpoint):
 
     def show(self, org_name):
         """
-        ``GET /organizations/:org_name``
+        ``GET /organizations/:organization_name``
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._show(url)
 
     def update(self, org_name, payload):
         """
-        ``PATCH /organizations/:org_name``
+        ``PATCH /organizations/:organization_name``
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._update(url, payload)

@@ -134,6 +134,22 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
         self.assertEqual(published_module_name, gotten_module["name"])
 
+        # List all the provider versions for the module, confirm they are as expected.
+        expected_provider = "tfe"
+        latest_version_all_providers = \
+            self._api.registry_modules.list_latest_version_all_providers(published_module_name)
+        tfe_provider_data = latest_version_all_providers["modules"][0]
+        self.assertEqual(tfe_provider_data["version"], "0.0.1")
+        self.assertEqual(tfe_provider_data["provider"], expected_provider)
+
+        # Confirm the latest version for specific providers endpoint works as expected
+        latest_version_tfe_provider = \
+            self._api.registry_modules.list_latest_version_specific_provider(\
+                published_module_name, expected_provider)
+        self.assertEqual(latest_version_tfe_provider["version"], "0.0.1")
+        self.assertEqual(latest_version_tfe_provider["provider"], expected_provider)
+
+        # Deleted the published module, confirm that it's gone.
         self._api.registry_modules.destroy(\
             published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
         gotten_module = \

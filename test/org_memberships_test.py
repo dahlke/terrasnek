@@ -23,18 +23,21 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         # the API currently.
 
         # Get the existing org memberships for the logged in user
-        orgs_for_user = self._api.org_memberships.list_for_user()
-        num_org_memberships = len(orgs_for_user["data"])
-        self.assertEqual(num_org_memberships, 1)
+        orgs_for_user = self._api.org_memberships.list_for_user()["data"]
+        in_test_org = False
+        for org in orgs_for_user:
+            if self._test_org_name == org["relationships"]["organization"]["data"]["id"]:
+                in_test_org = True
+        self.assertTrue(in_test_org)
 
         # Invite a user
         invite_payload = self._get_org_membership_invite_payload()
-        invite = self._api.org_memberships.invite(invite_payload)
-        invited_username = invite["included"][0]["attributes"]["username"]
-        self.assertEqual(invited_username, self._test_username)
+        invite = self._api.org_memberships.invite(invite_payload)["data"]
+        invited_email = invite["attributes"]["email"]
+        self.assertEqual(invited_email, self._test_email)
 
-        # Show a user's org membership using the org membership ID
-        org_membership_id = invite["data"]["id"]
+        # Show a user'sc org membership using the org membership ID
+        org_membership_id = invite["id"]
         shown_membership = self._api.org_memberships.show(org_membership_id)
         shown_membership_id = shown_membership["data"]["id"]
         self.assertEqual(org_membership_id, shown_membership_id)

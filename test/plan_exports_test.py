@@ -98,3 +98,7 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
             plan_export_id, self._plan_export_tarball_target_path)
         self.assertTrue(os.path.exists(self._plan_export_tarball_target_path))
         os.remove(self._plan_export_tarball_target_path)
+
+        # Destroy the plan export and confirm it's gone.
+        self._api.plan_exports.destroy(plan_export_id)
+        self.assertIsNone(self._api.plan_exports.show(plan_export_id))

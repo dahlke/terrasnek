@@ -6,3 +6,7 @@ omit =
     /usr/*
     # omit this single file
     utils/tirefire.py
+    
+    # Omit the venv.
+    ~/src/github.com/dahlke/terrasnek/venv/*
+    .venv/*

@@ -12,8 +12,8 @@ class TFCApplies(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/applies.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/applies"
 
     def required_entitlements(self):
@@ -21,7 +21,7 @@ class TFCApplies(TFCEndpoint):
 
     def show(self, apply_id):
         """
-        ``GET /applies/:apply_id``
+        ``GET /applies/:id``
 
         There is no endpoint to list applies. You can find the ID for an apply in
         the relationships.apply property of a run object.

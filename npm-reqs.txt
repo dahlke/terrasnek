@@ -1,0 +1,2 @@
+npm install textlint --global
+npm install textlint-rule-no-todo --global

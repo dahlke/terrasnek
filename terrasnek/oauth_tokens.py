@@ -14,8 +14,8 @@ class TFCOAuthTokens(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/oauth-tokens.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._oauth_clients_api_v2_base_url = f"{self._api_v2_base_url}/oauth-clients"
         self._oauth_tokens_api_v2_base_url = f"{self._api_v2_base_url}/oauth-tokens"
 
@@ -33,21 +33,21 @@ class TFCOAuthTokens(TFCEndpoint):
 
     def show(self, token_id):
         """
-        ``GET /oauth-tokens/:token_id``
+        ``GET /oauth-tokens/:id``
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"
         return self._show(url)
 
     def update(self, token_id, payload):
         """
-        ``PATCH /oauth-tokens/:token_id``
+        ``PATCH /oauth-tokens/:id``
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"
         return self._update(url, payload)
 
     def destroy(self, token_id):
         """
-        ``DELETE /oauth-tokens/:token_id``
+        ``DELETE /oauth-tokens/:id``
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"
         return self._destroy(url)

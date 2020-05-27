@@ -35,7 +35,7 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
 
     def test_team_access(self):
         """
-        Test the Team Access API endpoints: ``list``, ``add``, ``remove``.
+        Test the Team Access API endpoints: ``list``, ``add``, ``remove``, ``update``.
         """
         # Create new Team access, confirm it has been created
         team_access_create_payload = {
@@ -67,6 +67,18 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
         # Show the newly created team access, confirm the ID matches to the created one
         shown_access = self._api.team_access.show(access_id)
         self.assertEqual(shown_access["data"]["id"], access_id)
+
+        # Update team access
+        update_payload = {
+            "data": {
+                "attributes": {
+                    "access": "custom",
+                    "state-versions": "none"
+                }
+            }
+        }
+        updated_access = self._api.team_access.update(access_id, update_payload)["data"]
+        self.assertEqual(updated_access["attributes"]["state-versions"], "none")
 
         # Remove the team access, confirm it's gone
         self._api.team_access.remove_team_access(access_id)

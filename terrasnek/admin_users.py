@@ -11,8 +11,8 @@ class TFCAdminUsers(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/admin/users.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/admin/users"
 
     def required_entitlements(self):
@@ -87,9 +87,10 @@ class TFCAdminUsers(TFCEndpoint):
         url = f"{self._endpoint_base_url}/{user_id}/actions/suspend"
         return self._post(url)
 
-    def unimpersonate(self, user_id):
+    def unimpersonate(self):
         """
-        ``POST /admin/users/:id/actions/unimpersonate``
+        ``POST /admin/users/actions/unimpersonate``
+
 
         When an admin has used the above endpoint to begin an impersonation session, they
         can make a request to this endpoint, using the cookie provided originally, in order
@@ -99,7 +100,7 @@ class TFCAdminUsers(TFCEndpoint):
         Set-Cookie header to persist a new session as the original admin user. As such,
         this endpoint will have no effect unless the client is able to persist and use cookies.
         """
-        url = f"{self._endpoint_base_url}/{user_id}/actions/unimpersonate"
+        url = f"{self._endpoint_base_url}/actions/unimpersonate"
         return self._post(url)
 
     def unsuspend(self, user_id):

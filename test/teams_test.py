@@ -37,6 +37,21 @@ class TestTFCTeams(TestTFCBaseTestCase):
         shown_team = self._api.teams.show(new_team_id)["data"]
         self.assertEqual(shown_team["id"], new_team_id)
 
+        # Update the team to have VCS management access, confirm the changes took effect.
+        update_payload = {
+            "data": {
+                "type": "teams",
+                "attributes": {
+                    "visibilty": "organization",
+                    "organization-access": {
+                        "manage-vcs-settings": True
+                    }
+                }
+            }
+        }
+        updated_team = self._api.teams.update(new_team_id, update_payload)["data"]
+        self.assertTrue(updated_team["attributes"]["organization-access"]["manage-vcs-settings"])
+
         # Destroy the team, confirm it's gone
         self._api.teams.destroy(new_team_id)
         all_teams = self._api.teams.list()["data"]

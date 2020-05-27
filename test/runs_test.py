@@ -117,7 +117,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
     def test_run_and_cancel(self):
         """
-        Test the Runs API endpoint: cancel.
+        Test the Runs API endpoint: ``cancel``.
         """
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)
@@ -141,3 +141,33 @@ class TestTFCRuns(TestTFCBaseTestCase):
             status_timestamps = \
                 self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
         self.assertIsNotNone(status_timestamps["force-canceled-at"])
+
+    def test_run_and_force_cancel(self):
+        """
+        Test the Runs API endpoint: ``force_cancel``.
+        """
+        # Create a run
+        create_run_payload = self._get_run_create_payload(self._ws_id)
+        run = self._api.runs.create(create_run_payload)["data"]
+        run_id = run["id"]
+
+        # Show the created run, make sure it hasn't yet been cancelled
+        created_run = self._api.runs.show(run_id)["data"]
+        self.assertIsNone(created_run["attributes"]["canceled-at"])
+
+        # Wait for it to plan
+        self._logger.debug("Sleeping while plan half-executes...")
+        time.sleep(1)
+        self._logger.debug("Done sleeping.")
+
+        # Cancel the run first, it has to be cancelled before it can be force cancelled
+        self._api.runs.cancel(run_id)
+
+        # Cancel the run, confirm it has been cancelled
+        self._api.runs.force_cancel(run_id)
+        run_attrs = self._api.runs.show(run_id)["data"]["attributes"]
+        while "force-cancel-available-at" not in run_attrs:
+            shown_run = self._api.runs.show(run_id)["data"]
+            run_attrs = shown_run["attributes"]
+            time.sleep(1)
+        self.assertIsNotNone(run_attrs["force-cancel-available-at"])

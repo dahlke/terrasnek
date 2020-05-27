@@ -65,7 +65,7 @@ class TestTFCApplies(TestTFCBaseTestCase):
         applied_run = self._api.runs.show(self._run_id)["data"]
 
         self._logger.debug("Waiting for apply to kick off...")
-        while applied_run["attributes"]["status-timestamps"]["applying-at"] is None:
+        while "applying-at" not in applied_run["attributes"]["status-timestamps"]:
             applied_run = self._api.runs.show(self._run_id)["data"]
             time.sleep(1)
         self._logger.debug("Apply kicked off.")

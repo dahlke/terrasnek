@@ -4,6 +4,12 @@ Constants for default values in the TFC API implementation testing.
 
 import os
 import sys
+import logging
+
+# Test Defaults
+API_LOG_LEVEL = logging.CRITICAL
+
+TFC_SAAS_HOSTNAME = "app.terraform.io"
 
 # Configurable Constants
 TFC_URL = os.getenv("TFC_URL", None)
@@ -85,4 +91,4 @@ if TEST_PASSWORD is None:
 # Non-Configurable Constants
 TFE_MODULE_PROVIDER_TYPE = "tfe"
 DEFAULT_VCS_WORKING_DIR = "tfe"
-MAX_TEST_TIMEOUT = 30
+MAX_TEST_TIMEOUT = 300

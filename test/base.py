@@ -21,7 +21,7 @@ from ._constants import \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET, \
     SSL_VERIFY, TEST_PASSWORD, MAX_TEST_TIMEOUT, \
-    DEFAULT_VCS_WORKING_DIR
+    DEFAULT_VCS_WORKING_DIR, TFC_SAAS_HOSTNAME, API_LOG_LEVEL
 
 class TestTFCBaseTestCase(unittest.TestCase):
     """
@@ -37,8 +37,10 @@ class TestTFCBaseTestCase(unittest.TestCase):
     def setUpClass(cls):
         cls._logger = logging.getLogger(cls.__class__.__name__)
         cls._logger.setLevel(logging.INFO)
+        cls._tfc_url = TFC_URL
+
         cls._api = TFC(\
-            TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY)
+            TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY, log_level=API_LOG_LEVEL)
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME
@@ -52,6 +54,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "./test/testdata/sentinel/terrasnek_unittest_sentinel.tar.gz"
         cls._plan_export_tarball_target_path = \
             "/tmp/terrasnek_unittest_plan_export.tar.gz"
+        cls._plan_json_tarball_target_path = \
+            "/tmp/terrasnek_unittest_plan_json.tar.gz"
         cls._module_version_source_tarball_target_path = \
             "/tmp/terrasnek_unittest_module_version_export.tar.gz"
         cls._module_latest_source_tarball_target_path = \
@@ -83,10 +87,16 @@ class TestTFCBaseTestCase(unittest.TestCase):
             raise unittest.SkipTest(\
                 "Missing required Terraform Cloud Entitlments for test", \
                     cls._unittest_name, missing_entitlements)
-
+        
+        if TFC_SAAS_HOSTNAME in TFC_URL and "admin" in cls._endpoint_being_tested:
+            raise unittest.SkipTest(\
+                "Skipping Admin Test since we're testing against Terraform Cloud.")
+                    
     @classmethod
     def tearDownClass(cls):
-        cls._api.orgs.destroy(cls._test_org_name)
+        # Only destroy the org if we auto generated it
+        if not TEST_ORG_NAME:
+            cls._api.orgs.destroy(cls._test_org_name)
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):

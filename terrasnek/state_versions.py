@@ -10,8 +10,8 @@ class TFCStateVersions(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/state-versions.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._state_version_api_v2_base_url = f"{self._api_v2_base_url}/state-versions"
         self._workspace_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
 

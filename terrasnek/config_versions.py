@@ -13,8 +13,8 @@ class TFCConfigVersions(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/configuration-versions.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
         self._config_version_api_v2_base_url = f"{self._api_v2_base_url}/configuration-versions"
 
@@ -30,7 +30,7 @@ class TFCConfigVersions(TFCEndpoint):
 
     def show(self, config_version_id):
         """
-        ``GET /configuration-versions/:configuration-config_version_id``
+        ``GET /configuration-versions/:configuration-id``
         """
         url = f"{self._config_version_api_v2_base_url}/{config_version_id}"
         return self._show(url)
@@ -49,10 +49,13 @@ class TFCConfigVersions(TFCEndpoint):
 
     def upload(self, path_to_tarball, config_version_id):
         """
-        ``PUT {derived_config_version_upload_url}``
+        ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
+
+        The above URL is derived.
         """
         url = self.show(config_version_id)["data"]["attributes"]["upload-url"]
         data = None
+
         with open(path_to_tarball, 'rb') as data_bytes:
             data = data_bytes.read()
 

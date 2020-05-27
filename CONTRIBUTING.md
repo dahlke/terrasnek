@@ -1,76 +1,85 @@
 # Contributing to `terrasnek`
 
-### Requirements
+## Requirements
 
 To make full usage of all the tools and commands here, you should have installed:
 
-- `python3`
+- [`python3`](https://www.python.org/downloads/)
+- [`ag`](https://github.com/ggreer/the_silver_searcher)
+- [`coverage`](https://coverage.readthedocs.io/en/coverage-5.1/)
+- [`make`](https://www.man7.org/linux/man-pages/man1/make.1.html)
+- [`pylint`](https://www.pylint.org/)
+- [`circleci`](https://circleci.com/docs/2.0/local-cli/#installation)
 
 All Python requirements are outlined in `pip-reqs.txt`.
 
-
-### Overview
+## Overview
 
 Before contributing to `terrasnek` or publishing to PyPi, there are a few must-dos.
 
-- Each endpoint must have it's own implementation file, it's own test file, and corresponding doc file.
+- Each endpoint must have it's own implementation file, it's own test file, and
+corresponding doc file.
 - The Python code (implementation and test) must be linted.
+- All Markdown edits _should_ be linted
+([markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+[rules](https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md)).
 - The documentation must be rebuilt with any changes you added.
-- Before merging to master, it must run the full test suite and generate test coverage, and all tests must pass.
+- Before merging to master, it must run the full test suite and generate test
+coverage, and all tests must pass.
 - The test coverage must be uploaded to CodeCov.
 
+View the auto-generated [`CONTRIBUTING_REQS.md`](CONTRIBUTING_REQS.md) file.
 
-The instructions for doing each of these can be found below. This process is not automated
-for now due to some of the limitations of the free Terraform Cloud offering. In the
-future, if some of the limitations are lifted, these checks will be automated in CircleCI.
+The instructions for doing each of these can be found below. This process is not
+automated for now due to some of the limitations of the free Terraform Cloud
+offering. In the future, if some of the limitations are lifted, these checks
+will be automated in CircleCI.
 
 Here is a summary of the commands:
 
-```
+```bash
 make lint
 make docs
-make coverage
+make tfe_coverage # or make tfc_coverage
 make codecov
 make pip-publish
 ```
 
 ### Helpful Git Hooks
 
-There are some pre-commit hooks that are useful since the same tests will be run in CircleCI. They are located in the `./hooks/pre-commit/` folder here. Symlink them to the git repo using:
+There are some pre-commit hooks that are useful since the same tests will be run
+in CircleCI. They are located in the `./hooks/pre-commit/` folder here. Symlink
+them to the git repo using:
 
-```
+```bash
 cd .git/hooks
 ln -s -f ../../hooks/pre-commit ./pre-commit
 chmod +x ../../hooks/pre-commit ./pre-commit
 ```
 
-#### Linting the Code
+### Linting the Code
 
-###### Lint Library Code
-```
+#### Lint Library Code
+
+```bash
 make lint-lib
 ```
 
-###### Lint Test Code
-```
+##### Lint Test Code
+
+```bash
 make lint-tests
 ```
 
-#### Building Test Data
-
-```
-cd test/testdata/terraform/
-tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
-```
-
-#### Testing
+### Testing
 
 It is recommended that when running the entire suite of tests, you use a
 sandbox Terraform Enterprise instance. This will allow you to test the
 Admin Endpoints without any worry of error, and you will not have any
 run limits. It is currently required that you run the entire test suite
 with a [User Token](https://www.terraform.io/docs/cloud/users-teams-organizations/api-tokens.html#user-api-tokens)
-of an admin user.
+of an admin user, in order to fully test all the endpoints. You can run 
+the test suite against Terraform Cloud, but tests will be skipped.
 
 Due to those limitations, this library does not currently test the full
 suite of tests in CircleCI. It is recommended that you run the tests
@@ -83,18 +92,25 @@ for team and organization memberships tests, a this cannot be done
 from the API currently. That user's username and email must match those
 provided in your `secrets.sh` file.
 
-###### Running Specific Tests
+#### Building Test Data
 
-The test suite takes a long time to execute fully, since there is a lot of async work, and waiting
-for plans, applies, etc. In the scenario you want to just test a new implementation or change,
-use the below.
-
+```bash
+cd test/testdata/terraform/
+tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 ```
+
+#### Running Specific Tests
+
+The test suite takes a long time to execute fully, since there is a lot of async
+work, and waiting for plans, applies, etc. In the scenario you want to just test
+a new implementation or change, use the below.
+
+```bash
 source test/secrets/secrets.sh
-python3 -m unittest test/applies_test.py
+python3 -m unittest test/orgs_test.py
 ```
 
-###### Running All Tests
+#### Running All Tests
 
 _Note: When you run all of the tests, you will have to create a user (that
 matches your `TEST_USER` in `secrets.sh`) manually ahead of executing the tests
@@ -105,43 +121,47 @@ offering. In order for you to test or use all of the endpoints, you'll need
 the proper packages for Terraform Cloud or your own private Terraform
 Enterprise instance._
 
-```
+```bash
 source test/secrets/secrets.sh
 make test
 ```
 
-###### Running the Tests with Coverage Info
+#### Running the Tests with Coverage Info
 
-```
+```bash
 source test/secrets/secrets.sh
 make coverage
 ```
 
-###### Uploading Coverage Stats to CodeCov.io
-```
+#### Uploading Coverage Stats to CodeCov.io
+
+```bash
 export CODECOV_TOKEN="<TOKEN>"
 bash <(curl -s https://codecov.io/bash)
 ```
 
 #### Building the Documentation
-```
+
+```bash
 make docs
 ```
 
 #### Comparing Parity to Terraform API Spec
-```
+
+```bash
 make api_comparison
 ```
 
 #### Publishing to PyPi
 
-###### Production
-```
+##### Production
+
+```bash
 make pip-publish
 ```
 
-###### Test
+##### Test
 
-```
+```bash
 make pip-test-publish
 ```

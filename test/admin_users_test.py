@@ -11,7 +11,7 @@ class TestTFCAdminUsers(TestTFCBaseTestCase):
     """
 
     _unittest_name = "users"
-    _endpoint_being_tested = "users"
+    _endpoint_being_tested = "admin_users"
 
     def test_admin_users(self):
         """

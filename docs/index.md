@@ -82,8 +82,8 @@ run_id = self._run["data"]["id"]
 
 #### Override a Failed Policy Check
 ```
-pol_checks = api.policy_checks.list(run_id)
-api.policy_checks.override(pol_checks["data"][0]["id"])
+pol_checks = api.pol_checks.list(run_id)
+api.pol_checks.override(pol_checks["data"][0]["id"])
 ```
 
 #### Apply a Run on a Workspace
@@ -94,10 +94,10 @@ applied_run = api.runs.apply(run_id)
 _For more examples, see the `./test` directory in the repository._
 
 
-### `terrasnek` to Terraform Cloud API Spec Parity
+### `terrasnek` to Terraform Cloud API Parity
 
 ```eval_rst
-.. include:: api_comparison.rst
+.. include:: api_parity_table.rst
 ```
 
 Contents
@@ -138,4 +138,5 @@ Contents
 * [User Tokens](user_tokens.md)
 * [Users](users.md)
 * [Vars](vars.md)
+* [Workspace Variables](workspace_vars.md)
 * [Workspaces](workspaces.md)

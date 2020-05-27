@@ -11,8 +11,8 @@ class TFCWorkspaces(TFCEndpoint):
     https://www.terraform.io/docs/cloud/api/workspaces.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/workspaces"
 
@@ -21,13 +21,13 @@ class TFCWorkspaces(TFCEndpoint):
 
     def create(self, payload):
         """
-        ``POST /organizations/:org_name/workspaces``
+        ``POST /organizations/:organization_name/workspaces``
         """
         return self._create(self._org_api_v2_base_url, payload)
 
     def destroy(self, workspace_id=None, workspace_name=None):
         """
-        ``GET /organizations/:org_name/workspaces/:name``
+        ``DELETE /organizations/:organization_name/workspaces/:name``
         ``DELETE /workspaces/:workspace_id``
 
         A workspace can be deleted via two endpoints, which behave identically. One refers to a
@@ -63,7 +63,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def list(self, page=None, page_size=None):
         """
-        ``GET /organizations/:org_name/workspaces``
+        ``GET /organizations/:organization_name/workspaces``
 
         This endpoint lists workspaces in the organization.
         """
@@ -71,7 +71,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def show(self, workspace_name=None, workspace_id=None):
         """
-        ``GET /organizations/:org_name/workspaces/:name``
+        ``GET /organizations/:organization_name/workspaces/:name``
         ``GET /workspaces/:workspace_id``
 
         Details on a workspace can be retrieved from two endpoints, which behave identically.
@@ -95,14 +95,20 @@ class TFCWorkspaces(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/unlock"
         return self._post(url)
 
-    def update(self, workspace_id, payload):
+    def update(self, payload, workspace_name=None, workspace_id=None):
         """
+        ``PATCH /organizations/:organization_name/workspaces/:name``
         ``PATCH /workspaces/:workspace_id``
 
         A workspace can be updated via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
         """
-        url = f"{self._ws_api_v2_base_url}/{workspace_id}"
+        if workspace_name is not None:
+            url = f"{self._org_api_v2_base_url}/{workspace_name}"
+        elif workspace_id is not None:
+            url = f"{self._ws_api_v2_base_url}/{workspace_id}"
+        else:
+            self._logger.error("Arguments workspace_name or workspace_id must be defined")
         return self._update(url, payload)
 
 

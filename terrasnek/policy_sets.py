@@ -21,8 +21,8 @@ class TFCPolicySets(TFCEndpoint):
         https://www.terraform.io/docs/cloud/api/policy-sets.html
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify)
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/policy-sets"
         self._pol_set_version_api_v2_base_url = f"{self._api_v2_base_url}/policy-set-versions"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/policy-sets"
@@ -32,13 +32,13 @@ class TFCPolicySets(TFCEndpoint):
 
     def create(self, payload):
         """
-        ``POST /organizations/:org_name/policy-sets``
+        ``POST /organizations/:organization_name/policy-sets``
         """
         return self._create(self._org_api_v2_base_url, payload)
 
     def list(self, filters=None, include=None, page=None, page_size=None, search=None):
         """
-        ``GET /organizations/:org_name/policy-sets``
+        ``GET /organizations/:organization_name/policy-sets``
 
         PARAMS:
             https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets
@@ -92,7 +92,7 @@ class TFCPolicySets(TFCEndpoint):
 
     def detach_policy_set_from_workspaces(self, policy_id, payload):
         """
-        ``POST /policy-sets/:id/relationships/workspaces``
+        ``DELETE /policy-sets/:id/relationships/workspaces``
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
         return self._delete(url, data=payload)

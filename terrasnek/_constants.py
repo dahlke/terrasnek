@@ -3,9 +3,11 @@ Constants for default values on the TFC API endpoints
 """
 
 from enum import Enum
+import logging
 
 # Default Config Items
 TFC_SAAS_URL = "https://app.terraform.io"
+LOG_LEVEL = logging.INFO
 
 # Common TFC API HTTP Codes
 HTTP_OK = 200
@@ -31,3 +33,6 @@ class Entitlements(Enum):
     VCS_INTEGRATIONS = "VCS_INTEGRATIONS"
     USER_LIMIT = "USER_LIMIT"
     SELF_SERVE_BILLING = "SELF_SERVE_BILLING"
+    AUDIT_LOGGING = "AUDIT_LOGGING"
+    PRIVATE_NETWORKING = "PRIVATE_NETWORKING"
+    SSO = "SSO"

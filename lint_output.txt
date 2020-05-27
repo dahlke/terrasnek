@@ -1,8 +1,16 @@
+************* Module test.registry_modules_test
+test/registry_modules_test.py:33:4: R0914: Too many local variables (22/20) (too-many-locals)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:111:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:122:2: W0511: TODO: need to use a real twilio account to finish this test. (fixme)
+************* Module test.plans_test
+test/plans_test.py:80:2: W0511: TODO: this endpoint does not yet work. (fixme)
+************* Module test.base
+test/base.py:90:0: C0303: Trailing whitespace (trailing-whitespace)
+test/base.py:94:0: C0303: Trailing whitespace (trailing-whitespace)
+test/base.py:91:55: E1135: Value 'cls._endpoint_being_tested' doesn't support membership test (unsupported-membership-test)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.99/10 (previous run: 9.99/10, +0.00)
+Your code has been rated at 9.95/10 (previous run: 9.94/10, +0.01)
 
