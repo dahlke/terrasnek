@@ -42,6 +42,7 @@ make lint
 make docs
 make tfe_coverage # or make tfc_coverage
 make codecov
+make pip-package
 make pip-publish
 ```
 
@@ -78,7 +79,7 @@ sandbox Terraform Enterprise instance. This will allow you to test the
 Admin Endpoints without any worry of error, and you will not have any
 run limits. It is currently required that you run the entire test suite
 with a [User Token](https://www.terraform.io/docs/cloud/users-teams-organizations/api-tokens.html#user-api-tokens)
-of an admin user, in order to fully test all the endpoints. You can run 
+of an admin user, in order to fully test all the endpoints. You can run
 the test suite against Terraform Cloud, but tests will be skipped.
 
 Due to those limitations, this library does not currently test the full
