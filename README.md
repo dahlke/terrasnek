@@ -20,6 +20,7 @@ working against an older version of
 [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
 
 **[Terraform Enterprise Release Notes](https://github.com/hashicorp/terraform-enterprise-release-notes)**
+**_This repo has been updated as of TFE version 202007-2._**
 
 _Note: Terraform Enterprise is the self-hosted distribution of Terraform Cloud.
 It offers enterprises a private instance of the Terraform Cloud application,
