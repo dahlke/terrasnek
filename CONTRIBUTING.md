@@ -41,7 +41,7 @@ Here is a summary of the commands:
 make lint
 make api_comparison
 make docs
-make tfe_coverage # or make tfc_coverage
+make coverage # the results of this depend on the endpoint you hit.
 make codecov
 make pip-package
 make pip-publish

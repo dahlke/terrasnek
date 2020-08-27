@@ -19,6 +19,7 @@ from .admin_workspaces import TFCAdminWorkspaces
 from .agents import TFCAgents
 from .agent_tokens import TFCAgentTokens
 from .applies import TFCApplies
+from .audit_trails import TFCAuditTrails
 from .config_versions import TFCConfigVersions
 from .cost_estimates import TFCCostEstimates
 from .ip_ranges import TFCIPRanges
@@ -74,6 +75,7 @@ class TFC():
             "admin_terraform_versions": TFCAdminTerraformVersions,
             "admin_users": TFCAdminUsers,
             "admin_workspaces": TFCAdminWorkspaces,
+            "audit_trails": TFCAuditTrails,
             "ip_ranges": TFCIPRanges,
             "orgs": TFCOrgs
         },
