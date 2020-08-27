@@ -141,7 +141,7 @@ class TFCEndpoint(ABC):
 
     def _list(self, url, query=None, filters=None, \
         page=None, page_size=None, search=None, include=None, sort=None, \
-        offset=None, limit=None, provider=None, namespace=None, verified=None,
+        offset=None, limit=None, provider=None, namespace=None, verified=None, \
         since=None):
         """
         Implementation of the common list resources pattern for the TFC API.

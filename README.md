@@ -19,6 +19,11 @@ Cloud API. It's possible that some of these endpoints won't work if you're
 working against an older version of
 [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
 
+_Note: This project is tested against Terraform Enterprise often, but the code coverage
+represented in this repo will always represent coverage against Terraform Cloud
+Business Tier (skipping all `admin_` modules), so the coverage percentage
+is higher than represented in the badge._
+
 **[Terraform Enterprise Release Notes](https://github.com/hashicorp/terraform-enterprise-release-notes)**
 **_This repo has been updated as of TFE version 202007-2._**
 

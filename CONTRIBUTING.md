@@ -42,9 +42,17 @@ make lint
 make api_comparison
 make docs
 make coverage # the results of this depend on the endpoint you hit.
-make codecov
+make contributor_check
+```
+
+Before merging to master and publishing a new version, update [`CHANGELOG.md`](./CHANGELOG.md),
+[`setup.py`](./setup.py) and [`docs/conf.py`](./docs/conf.py) for the new release
+version. Merge the changes to the master branch, then publish.
+
+```bash
 make pip-package
 make pip-publish
+make codecov
 ```
 
 ### Helpful Git Hooks
