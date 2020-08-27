@@ -7,8 +7,8 @@
 | [Admin Terraform Versions](https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html) | `admin_terraform_versions` | True                 | True       | True       |
 | [Admin Users](https://www.terraform.io/docs/cloud/api/admin/users.html)                           | `admin_users`              | True                 | True       | True       |
 | [Admin Workspaces](https://www.terraform.io/docs/cloud/api/admin/workspaces.html)                 | `admin_workspaces`         | True                 | True       | True       |
-| [Agent Tokens](https://www.terraform.io/docs/cloud/api/agent-tokens.html)                         | `agent_tokens`             | False                | False      | False      |
-| [Agents](https://www.terraform.io/docs/cloud/api/agents.html)                                     | `agents`                   | False                | False      | False      |
+| [Agent Tokens](https://www.terraform.io/docs/cloud/api/agent-tokens.html)                         | `agent_tokens`             | True                 | True       | False      |
+| [Agents](https://www.terraform.io/docs/cloud/api/agents.html)                                     | `agents`                   | True                 | True       | False      |
 | [Applies](https://www.terraform.io/docs/cloud/api/applies.html)                                   | `applies`                  | True                 | True       | True       |
 | [Audit Trails](https://www.terraform.io/docs/cloud/api/audit-trails.html)                         | `audit_trails`             | False                | False      | False      |
 | [Config Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)            | `config_versions`          | True                 | True       | True       |

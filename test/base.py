@@ -87,11 +87,11 @@ class TestTFCBaseTestCase(unittest.TestCase):
             raise unittest.SkipTest(\
                 "Missing required Terraform Cloud Entitlments for test", \
                     cls._unittest_name, missing_entitlements)
-        
+
         if TFC_SAAS_HOSTNAME in TFC_URL and "admin" in cls._endpoint_being_tested:
             raise unittest.SkipTest(\
                 "Skipping Admin Test since we're testing against Terraform Cloud.")
-                    
+
     @classmethod
     def tearDownClass(cls):
         # Only destroy the org if we auto generated it

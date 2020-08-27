@@ -16,6 +16,8 @@ from .admin_settings import TFCAdminSettings
 from .admin_terraform_versions import TFCAdminTerraformVersions
 from .admin_users import TFCAdminUsers
 from .admin_workspaces import TFCAdminWorkspaces
+from .agents import TFCAgents
+from .agent_tokens import TFCAgentTokens
 from .applies import TFCApplies
 from .config_versions import TFCConfigVersions
 from .cost_estimates import TFCCostEstimates
@@ -78,6 +80,8 @@ class TFC():
         "org-required": {
             "account": TFCAccount,
             "applies": TFCApplies,
+            "agents": TFCAgents,
+            "agent_tokens": TFCAgentTokens,
             "config_versions": TFCConfigVersions,
             "cost_estimates": TFCCostEstimates,
             "oauth_clients": TFCOAuthClients,

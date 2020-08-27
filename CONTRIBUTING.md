@@ -39,6 +39,7 @@ Here is a summary of the commands:
 
 ```bash
 make lint
+make api_comparison
 make docs
 make tfe_coverage # or make tfc_coverage
 make codecov
