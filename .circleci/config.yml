@@ -1,18 +1,20 @@
 version: 2
 jobs:
-  deployable_check:
+  prepare_deploy:
     docker:
       - image: eklhad/terrasnek-circleci:0.1
     working_directory: ~/terrasnek
     steps:
       - checkout
       - run:
-          name: check the code meets deployable standards
+          name: Lint the code, build the docs, run a full test suite and the contributor check.
           command: |
             make lint
+            make docs
+            make coverage
             make contributor_check
 workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - deployable_check
+      - prepare_deploy

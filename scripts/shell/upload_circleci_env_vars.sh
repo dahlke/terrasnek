@@ -17,6 +17,7 @@ curl -X POST --header "Content-Type: application/json" -d "{ \"name\": \"TEST_US
 curl -X POST --header "Content-Type: application/json" -d "{ \"name\": \"TEST_TEAM_NAME\", \"value\": \"$TEST_TEAM_NAME\" }" https://circleci.com/api/v1.1/project/gh/dahlke/terrasnek/envvar?circle-token=$CIRCLECI_TOKEN
 curl -X POST --header "Content-Type: application/json" -d "{ \"name\": \"TEST_PASSWORD\", \"value\": \"$TEST_PASSWORD\" }" https://circleci.com/api/v1.1/project/gh/dahlke/terrasnek/envvar?circle-token=$CIRCLECI_TOKEN
 curl -X POST --header "Content-Type: application/json" -d "{ \"name\": \"TEST_ORG_NAME\", \"value\": \"$TEST_ORG_NAME\" }" https://circleci.com/api/v1.1/project/gh/dahlke/terrasnek/envvar?circle-token=$CIRCLECI_TOKEN
+curl -X POST --header "Content-Type: application/json" -d "{ \"name\": \"CODECOV_TOKEN\", \"value\": \"$CODECOV_TOKEN\" }" https://circleci.com/api/v1.1/project/gh/dahlke/terrasnek/envvar?circle-token=$CIRCLECI_TOKEN
 
 # List all the variables to confirm everything took
 curl https://circleci.com/api/v1.1/project/gh/dahlke/terrasnek/envvar?circle-token=$CIRCLECI_TOKEN

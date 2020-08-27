@@ -41,8 +41,10 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                 break
         self.assertTrue(found_conf_ver)
 
-        # Confirm the config version status is "pending" as well
-        self.assertEqual(all_config_versions[0]["attributes"]["status"], "pending")
+        # Confirm the config version status is "pending" or "uploaded" as well
+        uploaded_or_pending = \
+            all_config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
+        self.assertTrue(uploaded_or_pending)
 
         # Test the show method on that same config version ID
         shown_config_version = self._api.config_versions.show(cv_id)["data"]
