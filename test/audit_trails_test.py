@@ -22,5 +22,4 @@ class TestTFCAuditTrails(TestTFCBaseTestCase):
         # we use across the API, so we'll just assert no response, which
         # means it completed successfully for now.
         audit_trails = self._api.audit_trails.list()
-        self.assertNone(audit_trails)
-
+        self.assertIsNone(audit_trails)

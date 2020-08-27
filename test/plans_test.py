@@ -76,12 +76,14 @@ class TestTFCPlans(TestTFCBaseTestCase):
         self._api.plans.download_json(self._plan_json_tarball_target_path, run_id=self._run_id)
         self.assertTrue(os.path.exists(self._plan_json_tarball_target_path))
         os.remove(self._plan_json_tarball_target_path)
+        self.assertFalse(os.path.exists(self._plan_json_tarball_target_path))
 
-        # TODO: this endpoint does not yet work.
-        # plan = self._api.plans.show(created_plan_id)["data"]
-        # f'https://app.terraform.io/{plan["links"]["json-output"]}'
-        # time.sleep(10)
-        # Download the plan JSON by plan ID, then assert the file exists, and remove it
-        # self._api.plans.download_json(self._plan_json_tarball_target_path, plan_id=plan["id"])
-        # self.assertTrue(os.path.exists(self._plan_json_tarball_target_path))
-        # os.remove(self._plan_json_tarball_target_path)
+        # Show the plan, assert that the Plan IDs match
+        shown_plan = self._api.plans.show(created_plan_id)["data"]
+        self.assertEqual(created_plan_id, shown_plan["id"])
+
+        # Download the plan JSON by run ID, then assert the file exists, and remove it
+        self._api.plans.download_json(self._plan_json_tarball_target_path, plan_id=plan["id"])
+        self.assertTrue(os.path.exists(self._plan_json_tarball_target_path))
+        os.remove(self._plan_json_tarball_target_path)
+        self.assertFalse(os.path.exists(self._plan_json_tarball_target_path))

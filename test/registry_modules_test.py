@@ -34,7 +34,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         """
         Test the Registry Modules API endpoint: ``publish_from_vcs``, ``list``,
         ``search``, ``list_versions``, ``list_latest_version_all_providers``,
-        ``list_latest_version_specific_provider``, ``get``.
+        ``list_latest_version_specific_provider``, ``get``, ``show``.
         """
 
         # Publish a module from the VCS provider, using the oauth token generated
@@ -148,6 +148,11 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 published_module_name, expected_provider)
         self.assertEqual(latest_version_tfe_provider["version"], "0.0.1")
         self.assertEqual(latest_version_tfe_provider["provider"], expected_provider)
+
+        shown_module = \
+            self._api.registry_modules.show(\
+                self._test_org_name, published_module_name, TFE_MODULE_PROVIDER_TYPE)["data"]
+        self.assertEqual(shown_module["attributes"]["name"], published_module_name)
 
         # Deleted the published module, confirm that it's gone.
         self._api.registry_modules.destroy(\

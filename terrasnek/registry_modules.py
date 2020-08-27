@@ -43,6 +43,13 @@ class TFCRegistryModules(TFCEndpoint):
             query=query, offset=offset, limit=limit, provider=provider,\
             verified=verified)
 
+    def show(self, org_name, module_name, provider):
+        """
+        ``GET /registry-modules/show/:organization_name/:name/:provider``
+        """
+        url = f"{self._private_api_v2_base_url}/show/{org_name}/{module_name}/{provider}"
+        return self._show(url)
+
     def list_versions(self, name, provider):
         """
         ``GET <base_url>/:namespace/:name/:provider/versions``

@@ -32,7 +32,7 @@ class TFCPlans(TFCEndpoint):
 
     def download_json(self, target_path, plan_id=None, run_id=None):
         """
-        ``GET [TODO: does not yet work] /plans/:id/json-output``
+        ``GET /plans/:id/json-output``
         ``GET /runs/:id/plan/json-output``
 
         Show the plan in JSON format, by either the plan ID itself, or through the run itself.

@@ -119,6 +119,7 @@ class TFCPolicySets(TFCEndpoint):
     def upload(self, path_to_tarball, policy_set_version_id):
         """
         ``PUT {derived_policy_set_upload_url}``
+        ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
         """
         url = self.show_policy_set_version(policy_set_version_id)["data"]["links"]["upload"]
         data = None

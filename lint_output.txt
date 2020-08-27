@@ -1,14 +1,21 @@
-************* Module test.agent_pools_test
-test/agent_pools_test.py:33:2: W0511: TODO: show_agent, list_agents require me to actually add some agents to test (fixme)
+************* Module terrasnek.endpoint
+terrasnek/endpoint.py:145:0: C0330: Wrong continued indentation (add 6 spaces).
+        since=None):
+        ^     | (bad-continuation)
+************* Module test.agents_test
+test/agents_test.py:33:2: W0511: TODO: show, list require me to actually add some agents to test (fixme)
+************* Module test.registry_modules_test
+test/registry_modules_test.py:152:8: W0612: Unused variable 'shown_module' (unused-variable)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:111:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:122:2: W0511: TODO: need to use a real twilio account to finish this test. (fixme)
-************* Module test.plans_test
-test/plans_test.py:80:2: W0511: TODO: this endpoint does not yet work. (fixme)
+************* Module test.audit_trails_test
+test/audit_trails_test.py:26:0: C0305: Trailing newlines (trailing-newlines)
+test/audit_trails_test.py:25:8: E1101: Instance of 'TestTFCAuditTrails' has no 'assertNone' member (no-member)
 ************* Module test.base
 test/base.py:91:55: E1135: Value 'cls._endpoint_being_tested' doesn't support membership test (unsupported-membership-test)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.96/10 (previous run: 9.95/10, +0.01)
+Your code has been rated at 9.93/10 (previous run: 9.96/10, -0.03)
 
