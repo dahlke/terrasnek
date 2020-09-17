@@ -9,3 +9,5 @@ docs/_build/
 *.egg-info
 dist/
 build/
+
+.DS_Store

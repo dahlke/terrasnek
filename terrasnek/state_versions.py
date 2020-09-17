@@ -44,8 +44,29 @@ class TFCStateVersions(TFCEndpoint):
         """
         ``GET /state-versions``
 
-        This endpoint supports pagination with standard URL query parameters; remember to
+        This endpoint supports pagination with standard URL Query parameter(s); remember to
         percent-encode.
+
+        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`_):
+            - ``filter[workspace][name]`` (Required)
+            - ``filter[organization][name]`` (Required)
+            - ``page`` (Optional)
+            - ``page_size`` (Optional)
+
+        Example filter(s):
+
+        .. code-block:: python
+
+            filters = [
+                {
+                    "keys": ["workspace", "name"],
+                    "value": "foo"
+                },
+                {
+                    "keys": ["organization", "name"],
+                    "value": "bar"
+                }
+            ]
         """
         url = f"{self._state_version_api_v2_base_url}"
         return self._list(url, filters=filters, page=page, page_size=page_size)

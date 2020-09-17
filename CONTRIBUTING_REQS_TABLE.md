@@ -7,13 +7,13 @@
 | [Admin Terraform Versions](https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html) | `admin_terraform_versions` | True                 | True       | True       |
 | [Admin Users](https://www.terraform.io/docs/cloud/api/admin/users.html)                           | `admin_users`              | True                 | True       | True       |
 | [Admin Workspaces](https://www.terraform.io/docs/cloud/api/admin/workspaces.html)                 | `admin_workspaces`         | True                 | True       | True       |
-| [Agent Tokens](https://www.terraform.io/docs/cloud/api/agent-tokens.html)                         | `agent_tokens`             | True                 | True       | False      |
-| [Agents](https://www.terraform.io/docs/cloud/api/agents.html)                                     | `agents`                   | True                 | True       | False      |
+| [Agent Tokens](https://www.terraform.io/docs/cloud/api/agent-tokens.html)                         | `agent_tokens`             | True                 | True       | True       |
+| [Agents](https://www.terraform.io/docs/cloud/api/agents.html)                                     | `agents`                   | True                 | True       | True       |
 | [Applies](https://www.terraform.io/docs/cloud/api/applies.html)                                   | `applies`                  | True                 | True       | True       |
-| [Audit Trails](https://www.terraform.io/docs/cloud/api/audit-trails.html)                         | `audit_trails`             | True                 | True       | False      |
+| [Audit Trails](https://www.terraform.io/docs/cloud/api/audit-trails.html)                         | `audit_trails`             | True                 | True       | True       |
 | [Config Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)            | `config_versions`          | True                 | True       | True       |
 | [Cost Estimates](https://www.terraform.io/docs/cloud/api/cost-estimates.html)                     | `cost_estimates`           | True                 | True       | True       |
-| [Ip Ranges](https://www.terraform.io/docs/cloud/api/ip-ranges.html)                               | `ip_ranges`                | True                 | True       | False      |
+| [Ip Ranges](https://www.terraform.io/docs/cloud/api/ip-ranges.html)                               | `ip_ranges`                | True                 | True       | True       |
 | [Notification Configs](https://www.terraform.io/docs/cloud/api/notification-configurations.html)  | `notification_configs`     | True                 | True       | True       |
 | [Oauth Clients](https://www.terraform.io/docs/cloud/api/oauth-clients.html)                       | `oauth_clients`            | True                 | True       | True       |
 | [Oauth Tokens](https://www.terraform.io/docs/cloud/api/oauth-tokens.html)                         | `oauth_tokens`             | True                 | True       | True       |

@@ -23,6 +23,10 @@ class TFCAuditTrails(TFCEndpoint):
     def list(self, since=None, page=None):
         """
         ``GET /organization/audit-trail``
+
+        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/audit-trails.html#query-parameters>`_):
+            - ``since`` (Optional)
+            - ``page`` (Optional)
         """
         return self._list(self._audit_trail_api_v2_base_url, \
             page=page, since=since)

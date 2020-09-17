@@ -38,12 +38,26 @@ class TFCAgents(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{org_name}/agent-pools"
         return self._list(url)
 
-    def list(self, agent_pool_id):
+    def list(self, agent_pool_id, filters=None):
         """
         ``GET /agent-pools/:agent_pool_id/agents``
+
+        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/agents.html#query-parameters>`_):
+            - ``filter[last-ping-since]`` (Optional)
+
+        Example filter(s):
+
+        .. code-block:: python
+
+            filters = [
+                {
+                    "keys": ["last-ping-since"],
+                    "value": "foo"
+                }
+            ]
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}/agents"
-        return self._list(url)
+        return self._list(url, filters=filters)
 
     def show_pool(self, agent_pool_id):
         """

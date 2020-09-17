@@ -43,7 +43,7 @@ contributor_check:
 
 .PHONY: docs
 docs:
-	cd docs/ && make html
+	cd docs/ && rm -rf _build/ && make html
 
 .PHONY: api_comparison
 api_comparison:

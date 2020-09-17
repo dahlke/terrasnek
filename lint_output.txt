@@ -1,3 +1,28 @@
+************* Module terrasnek.team_access
+terrasnek/team_access.py:34:0: C0301: Line too long (116/100) (line-too-long)
+************* Module terrasnek.vars
+terrasnek/vars.py:28:2: W0511: TODO: take the filters in the standard way here. (fixme)
+terrasnek/vars.py:32:0: C0301: Line too long (114/100) (line-too-long)
+************* Module terrasnek.run_triggers
+terrasnek/run_triggers.py:30:0: C0301: Line too long (117/100) (line-too-long)
+************* Module terrasnek.org_memberships
+terrasnek/org_memberships.py:39:0: C0301: Line too long (129/100) (line-too-long)
+************* Module terrasnek.state_versions
+terrasnek/state_versions.py:50:0: C0301: Line too long (119/100) (line-too-long)
+************* Module terrasnek.agents
+terrasnek/agents.py:45:0: C0301: Line too long (111/100) (line-too-long)
+************* Module terrasnek.audit_trails
+terrasnek/audit_trails.py:27:0: C0301: Line too long (117/100) (line-too-long)
+************* Module terrasnek.policy_sets
+terrasnek/policy_sets.py:43:0: C0301: Line too long (116/100) (line-too-long)
+************* Module terrasnek.runs
+terrasnek/runs.py:35:0: C0301: Line too long (108/100) (line-too-long)
+************* Module terrasnek.policies
+terrasnek/policies.py:38:0: C0301: Line too long (113/100) (line-too-long)
+************* Module terrasnek.config_versions
+terrasnek/config_versions.py:28:0: C0301: Line too long (127/100) (line-too-long)
+************* Module terrasnek.workspaces
+terrasnek/workspaces.py:70:0: C0301: Line too long (115/100) (line-too-long)
 ************* Module test.agents_test
 test/agents_test.py:33:2: W0511: TODO: show, list require me to actually add some agents to test (fixme)
 ************* Module test.admin_settings_test
@@ -8,5 +33,5 @@ test/admin_settings_test.py:122:2: W0511: TODO: need to use a real twilio accoun
 test/base.py:91:55: E1135: Value 'cls._endpoint_being_tested' doesn't support membership test (unsupported-membership-test)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.97/10 (previous run: 9.97/10, +0.00)
+Your code has been rated at 9.92/10 (previous run: 9.97/10, -0.05)
 

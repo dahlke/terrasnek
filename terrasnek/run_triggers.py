@@ -26,6 +26,21 @@ class TFCRunTriggers(TFCEndpoint):
     def list(self, workspace_id, filters=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/run-triggers``
+
+        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`_):
+            - ``filter[run-trigger][type]`` (Required)
+            - ``page_size`` (Optional)
+
+        Example filter(s):
+
+        .. code-block:: python
+
+            filters = [
+                {
+                    "keys": ["run-trigger", "type"],
+                    "value": "foo"
+                }
+            ]
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
         return self._list(url, filters=filters, page_size=page_size)

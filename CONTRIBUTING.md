@@ -81,6 +81,15 @@ make lint-lib
 make lint-tests
 ```
 
+### Building the Docs
+
+The docs are built using [Sphinx](https://www.sphinx-doc.org/en/master/). They are built
+upon push by CircleCI, but can be built at any time manualy using:
+
+```bash
+make docs
+```
+
 ### Testing
 
 It is recommended that when running the entire suite of tests, you use a

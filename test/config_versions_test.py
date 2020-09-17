@@ -56,5 +56,6 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         self._api.config_versions.upload(
             self._config_version_upload_tarball_path, cv_id)
         config_versions = self._api.config_versions.list(self._ws_id)["data"]
-        self.assertEqual(config_versions[0]
-                         ["attributes"]["status"], "uploaded")
+        uploaded_or_pending = \
+            config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
+        self.assertTrue(uploaded_or_pending)

@@ -80,6 +80,15 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
         updated_access = self._api.team_access.update(access_id, update_payload)["data"]
         self.assertEqual(updated_access["attributes"]["state-versions"], "none")
 
+        list_filters = [
+            {
+                "keys": ["workspace", "id"],
+                "value": self._ws_id
+            }
+        ]
+        listed_access = self._api.team_access.list(filters=list_filters)["data"]
+        self.assertEqual(updated_access["id"], listed_access[0]["id"])
+
         # Remove the team access, confirm it's gone
         self._api.team_access.remove_team_access(access_id)
         all_team_access = self._api.workspaces.list()["data"]

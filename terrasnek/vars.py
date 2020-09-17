@@ -25,8 +25,12 @@ class TFCVars(TFCEndpoint):
         return self._create(self._endpoint_base_url, payload)
 
     def list(self, workspace_name=None):
+        # TODO: take the filters in the standard way here.
         """
         ``GET /vars``
+
+        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/variables.html#query-parameters>`_):
+            - ``filter[workspace][name]`` (Required)
         """
         url = f"{self._endpoint_base_url}?filter[organization][name]={self._org_name}"
 

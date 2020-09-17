@@ -27,11 +27,25 @@ class TFCTeamAccess(TFCEndpoint):
         """
         return self._post(self._endpoint_base_url, data=payload)
 
-    def list(self):
+    def list(self, filters=None):
         """
         ``GET /team-workspaces``
+
+        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/team-access.html#query-parameters>`_):
+            - ``filter[workspace][id]`` (Required)
+
+        Example filter(s):
+
+        .. code-block:: python
+
+            filters = [
+                {
+                    "keys": ["workspace", "id"],
+                    "value": "foo"
+                }
+            ]
         """
-        return self._list(self._endpoint_base_url)
+        return self._list(self._endpoint_base_url, filters=filters)
 
     def remove_team_access(self, access_id):
         """
