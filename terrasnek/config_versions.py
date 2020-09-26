@@ -51,16 +51,15 @@ class TFCConfigVersions(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
         return self._create(url, payload)
 
-    def upload(self, path_to_tarball, config_version_id):
+    def upload(self, path_to_tarball, upload_url):
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
         The above URL is derived.
         """
-        url = self.show(config_version_id)["data"]["attributes"]["upload-url"]
         data = None
 
         with open(path_to_tarball, 'rb') as data_bytes:
             data = data_bytes.read()
 
-        return self._put(url, data=data)
+        return self._put(upload_url, data=data)

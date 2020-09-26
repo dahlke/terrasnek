@@ -53,8 +53,10 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         self.assertEqual(shown_config_version["id"], cv_id)
 
         # Upload the .tf code and confirm it's been uploaded
+        upload_url = shown_config_version["attributes"]["upload-url"]
         self._api.config_versions.upload(
-            self._config_version_upload_tarball_path, cv_id)
+            self._config_version_upload_tarball_path, upload_url)
+
         config_versions = self._api.config_versions.list(self._ws_id)["data"]
         uploaded_or_pending = \
             config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]

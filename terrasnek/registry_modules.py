@@ -17,8 +17,9 @@ class TFCRegistryModules(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
-        self._private_api_v2_base_url = f"{self._api_v2_base_url}/registry-modules"
+        self._modules_v2_base_url = f"{self._api_v2_base_url}/registry-modules"
         self._modules_v1_base_url = f"{self._modules_v1_base_url}"
+        self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations"
 
     def required_entitlements(self):
         return [Entitlements.PRIVATE_MODULE_REGISTRY]
@@ -43,11 +44,11 @@ class TFCRegistryModules(TFCEndpoint):
             query=query, offset=offset, limit=limit, provider=provider,\
             verified=verified)
 
-    def show(self, org_name, module_name, provider):
+    def show(self, module_name, provider):
         """
         ``GET /registry-modules/show/:organization_name/:name/:provider``
         """
-        url = f"{self._private_api_v2_base_url}/show/{org_name}/{module_name}/{provider}"
+        url = f"{self._modules_v2_base_url}/show/{self._org_name}/{module_name}/{provider}"
         return self._show(url)
 
     def list_versions(self, name, provider):
@@ -106,7 +107,7 @@ class TFCRegistryModules(TFCEndpoint):
         readme, submodules, etc.). The Module Registry Requirements define additional
         requirements on naming, standard module structure and tags for releases.
         """
-        return self._post(self._private_api_v2_base_url, data=payload)
+        return self._post(self._modules_v2_base_url, data=payload)
 
     def destroy(self, name, provider=None, version=None):
         """
@@ -114,7 +115,7 @@ class TFCRegistryModules(TFCEndpoint):
         ``POST /registry-modules/actions/delete/:organization_name/:name/:provider``
         ``POST /registry-modules/actions/delete/:organization_name/:name``
         """
-        url = f"{self._private_api_v2_base_url}/actions/delete/{self._org_name}"
+        url = f"{self._modules_v2_base_url}/actions/delete/{self._org_name}"
 
         if name:
             url += f"/{name}"
@@ -125,37 +126,51 @@ class TFCRegistryModules(TFCEndpoint):
 
         return self._post(url)
 
-    @staticmethod
-    def create():
+    def create(self, payload):
         """
         ``POST /organizations/:organization_name/registry-modules``
 
-        DEPRECATED: Creates a new registry module without a backing VCS repository.
+        Creates a new registry module without a backing VCS repository.
         After creating a module, a version must be created and uploaded in order to
         be usable. Modules created this way do not automatically update with new
         versions; instead, you must explicitly create and upload each new version
         with the Create a Module Version endpoint.
-        """
-        raise TFCDeprecatedWontFix
 
-    @staticmethod
-    def create_version():
+        https://www.terraform.io/docs/cloud/api/modules.html#create-a-module
+
+        TODO: add the some example payloads
+        """
+        url = f"{self._org_api_v2_base_url}/{self._org_name}/registry-modules"
+        return self._post(url, data=payload)
+
+    def create_version(self, module_name, provider, payload):
         """
         ``POST /registry-modules/:organization_name/:name/:provider/versions``
 
-        DEPRECATED: Creates a new registry module version. This endpoint only applies
+        Creates a new registry module version. This endpoint only applies
         to modules without a VCS repository; VCS-linked modules automatically create
         new versions for new tags. After creating the version, the module should be
         uploaded to the returned upload link.
-        """
-        raise TFCDeprecatedWontFix
 
-    @staticmethod
-    def upload_version():
+        https://www.terraform.io/docs/cloud/api/modules.html#create-a-module-version
+        """
+
+        # TODO take the org name from the API, not an argument
+        url = f"{self._modules_v2_base_url}/{self._org_name}/{module_name}/{provider}/versions"
+        return self._post(url, data=payload)
+
+    def upload_version(self, path_to_tarball, upload_url):
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
-        DEPRECATED: The URL is provided in the upload links attribute in the
+        The URL is provided in the upload links attribute in the
         registry-module-versions resource.
+
+        https://www.terraform.io/docs/cloud/api/modules.html#upload-a-module-version
         """
-        raise TFCDeprecatedWontFix
+        data = None
+
+        with open(path_to_tarball, 'rb') as data_bytes:
+            data = data_bytes.read()
+
+        return self._put(upload_url, data=data)

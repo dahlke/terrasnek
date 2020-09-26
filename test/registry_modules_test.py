@@ -151,7 +151,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
         shown_module = \
             self._api.registry_modules.show(\
-                self._test_org_name, published_module_name, TFE_MODULE_PROVIDER_TYPE)["data"]
+                published_module_name, TFE_MODULE_PROVIDER_TYPE)["data"]
         self.assertEqual(shown_module["attributes"]["name"], published_module_name)
 
         # Deleted the published module, confirm that it's gone.
@@ -162,11 +162,35 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
         self.assertIsNone(gotten_module)
 
-        with self.assertRaises(TFCDeprecatedWontFix):
-            self._api.registry_modules.create()
+        new_module_name = self._random_name()
+        create_payload = {
+            "data": {
+                "type": "registry-modules",
+                "attributes": {
+                    "name": new_module_name,
+                    "provider": TFE_MODULE_PROVIDER_TYPE
+                }
+            }
+        }
+        created_module = self._api.registry_modules.create(create_payload)["data"]
+        self.assertEqual(new_module_name, created_module["attributes"]["name"])
 
-        with self.assertRaises(TFCDeprecatedWontFix):
-            self._api.registry_modules.create_version()
+        example_version = "0.0.1"
+        create_version_payload = {
+            "data": {
+                "type": "registry-module-versions",
+                "attributes": {
+                    "version": example_version
+                }
+            }
+        }
+        created_version = self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
+        self.assertEqual("registry-module-versions", created_version["type"])
 
-        with self.assertRaises(TFCDeprecatedWontFix):
-            self._api.registry_modules.upload_version()
+        created_version_upload_url = created_version["links"]["upload"]
+
+        uploaded_version_resp = self._api.registry_modules.upload_version(self._module_upload_tarball_path, created_version_upload_url)
+        self.assertIsNone(uploaded_version_resp)
+
+        self._api.registry_modules.destroy(\
+            new_module_name, TFE_MODULE_PROVIDER_TYPE, example_version)

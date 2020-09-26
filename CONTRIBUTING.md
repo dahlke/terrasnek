@@ -116,6 +116,7 @@ provided in your `secrets.sh` file.
 ```bash
 cd test/testdata/terraform/
 tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
+tar -zcvf terrasnek_unittest_module.tar.gz src/*
 ```
 
 #### Running Specific Tests
