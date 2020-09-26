@@ -50,7 +50,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         test_filters = [
             {
                 "keys": ["versioned"],
-                "value": False
+                "value": "false"
             }
         ]
         all_policy_sets = self._api.policy_sets.list(\
