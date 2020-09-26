@@ -6,8 +6,8 @@ import time
 import os
 import timeout_decorator
 
-from terrasnek.exceptions import TFCDeprecatedWontFix
 from .base import TestTFCBaseTestCase
+from terrasnek.exceptions import TFCDeprecatedWontFix
 from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_TEST_TIMEOUT
 
 class TestTFCRegistryModules(TestTFCBaseTestCase):
@@ -30,14 +30,15 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_registry_modules_vcs_publish(self):
+    def test_registry_modules(self):
         """
-        Test the Registry Modules API endpoint: ``publish_from_vcs``, ``list``,
+        Test the Registry Modules API endpoint(s): ``publish_from_vcs``, ``list``,
         ``search``, ``list_versions``, ``list_latest_version_all_providers``,
-        ``list_latest_version_specific_provider``, ``get``, ``show``.
+        ``list_latest_version_specific_provider``, ``get``, ``show``, ``create``,
+        ``create_version``, ``upload_version``.
         """
 
-        # Publish a module from the VCS provider, using the oauth token generated
+        # Publish a module from the VCS provider, using the OAuth token generated
         # in the class setup. Assert that we got the expected response back.
         publish_payload = {
             "data": {
@@ -66,6 +67,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 time.sleep(1)
             return listed_modules_resp
         listed_modules_resp = listed_modules_timeout()
+
 
         # List all the modules for this org, confirm we found the one we
         # published.
@@ -162,6 +164,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
         self.assertIsNone(gotten_module)
 
+
         new_module_name = self._random_name()
         create_payload = {
             "data": {
@@ -172,8 +175,10 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 }
             }
         }
-        created_module = self._api.registry_modules.create(create_payload)["data"]
-        self.assertEqual(new_module_name, created_module["attributes"]["name"])
+        # created_module = self._api.registry_modules.create(create_payload)["data"]
+        # self.assertEqual(new_module_name, created_module["attributes"]["name"])
+        with self.assertRaises(TFCDeprecatedWontFix):
+            self._api.registry_modules.create(create_payload)
 
         example_version = "0.0.1"
         create_version_payload = {
@@ -184,13 +189,18 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 }
             }
         }
-        created_version = self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
-        self.assertEqual("registry-module-versions", created_version["type"])
+        # created_version = self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
+        # self.assertEqual("registry-module-versions", created_version["type"])
+        with self.assertRaises(TFCDeprecatedWontFix):
+            self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)
 
-        created_version_upload_url = created_version["links"]["upload"]
+        # created_version_upload_url = created_version["links"]["upload"]
 
-        uploaded_version_resp = self._api.registry_modules.upload_version(self._module_upload_tarball_path, created_version_upload_url)
-        self.assertIsNone(uploaded_version_resp)
+        # uploaded_version_resp = self._api.registry_modules.upload_version(self._module_upload_tarball_path, created_version_upload_url)
+        # self.assertIsNone(uploaded_version_resp)
 
-        self._api.registry_modules.destroy(\
-            new_module_name, TFE_MODULE_PROVIDER_TYPE, example_version)
+        with self.assertRaises(TFCDeprecatedWontFix):
+            self._api.registry_modules.upload_version(self._module_upload_tarball_path, "fake_upload_path")
+
+        # self._api.registry_modules.destroy(\
+            # new_module_name, TFE_MODULE_PROVIDER_TYPE, example_version)

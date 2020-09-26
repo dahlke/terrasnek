@@ -138,10 +138,13 @@ class TFCRegistryModules(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/modules.html#create-a-module
 
-        TODO: add the some example payloads
+        TODO: get rid of deprecated, add the some example payloads
         """
-        url = f"{self._org_api_v2_base_url}/{self._org_name}/registry-modules"
-        return self._post(url, data=payload)
+
+        # url = f"{self._org_api_v2_base_url}/{self._org_name}/registry-modules"
+        # return self._post(url, data=payload)
+        raise TFCDeprecatedWontFix
+
 
     def create_version(self, module_name, provider, payload):
         """
@@ -153,11 +156,13 @@ class TFCRegistryModules(TFCEndpoint):
         uploaded to the returned upload link.
 
         https://www.terraform.io/docs/cloud/api/modules.html#create-a-module-version
+
+        TODO: get rid of deprecated
         """
 
-        # TODO take the org name from the API, not an argument
-        url = f"{self._modules_v2_base_url}/{self._org_name}/{module_name}/{provider}/versions"
-        return self._post(url, data=payload)
+        # url = f"{self._modules_v2_base_url}/{self._org_name}/{module_name}/{provider}/versions"
+        # return self._post(url, data=payload)
+        raise TFCDeprecatedWontFix
 
     def upload_version(self, path_to_tarball, upload_url):
         """
@@ -167,10 +172,13 @@ class TFCRegistryModules(TFCEndpoint):
         registry-module-versions resource.
 
         https://www.terraform.io/docs/cloud/api/modules.html#upload-a-module-version
+
+        TODO: get rid of deprecated
         """
-        data = None
+        # data = None
 
-        with open(path_to_tarball, 'rb') as data_bytes:
-            data = data_bytes.read()
+        # with open(path_to_tarball, 'rb') as data_bytes:
+            # data = data_bytes.read()
 
-        return self._put(upload_url, data=data)
+        # return self._put(upload_url, data=data)
+        raise TFCDeprecatedWontFix

@@ -94,11 +94,20 @@ class TestTFCBaseTestCase(unittest.TestCase):
             raise unittest.SkipTest(\
                 "Skipping Admin Test since we're testing against Terraform Cloud.")
 
+        cls._purge_organization()
+
     @classmethod
     def tearDownClass(cls):
         # Only destroy the org if we auto generated it
         if not TEST_ORG_NAME:
             cls._api.orgs.destroy(cls._test_org_name)
+
+    @classmethod
+    def _purge_organization(cls):
+        # TODO: purge everything
+        # TODO: purge workspaces
+        # TODO: purge modules
+        pass
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
