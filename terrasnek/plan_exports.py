@@ -28,6 +28,8 @@ class TFCPlanExports(TFCEndpoint):
         is asynchronous, and the resulting data becomes downloadable when its status is
         "finished". The data is then available for one hour before expiring. After the hour
         is up, a new export can be created.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/plan-exports.html#sample-payload>`_
         """
 
         return self._create(self._endpoint_base_url, payload)

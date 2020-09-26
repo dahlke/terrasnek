@@ -24,6 +24,8 @@ class TFCTeamAccess(TFCEndpoint):
     def add_team_access(self, payload):
         """
         ``POST /team-workspaces``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/team-access.html#sample-payload>`_
         """
         return self._post(self._endpoint_base_url, data=payload)
 
@@ -64,6 +66,8 @@ class TFCTeamAccess(TFCEndpoint):
     def update(self, access_id, payload):
         """
         ``PATCH /team-workspaces/:id``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/team-access.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{access_id}"
         return self._update(url, payload)

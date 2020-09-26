@@ -21,6 +21,8 @@ class TFCVars(TFCEndpoint):
     def create(self, payload):
         """
         ``POST /vars``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload>`_
         """
         return self._create(self._endpoint_base_url, payload)
 
@@ -42,6 +44,8 @@ class TFCVars(TFCEndpoint):
     def update(self, variable_id, payload):
         """
         ``PATCH /vars/:variable_id``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{variable_id}"
         return self._update(url, payload)

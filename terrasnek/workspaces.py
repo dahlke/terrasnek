@@ -22,6 +22,8 @@ class TFCWorkspaces(TFCEndpoint):
     def create(self, payload):
         """
         ``POST /organizations/:organization_name/workspaces``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -57,6 +59,8 @@ class TFCWorkspaces(TFCEndpoint):
         ``POST /workspaces/:workspace_id/actions/lock``
 
         This endpoint locks a workspace.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-2>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/lock"
         return self._post(url, data=payload)
@@ -106,6 +110,8 @@ class TFCWorkspaces(TFCEndpoint):
 
         A workspace can be updated via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-1>`_
         """
         if workspace_name is not None:
             url = f"{self._org_api_v2_base_url}/{workspace_name}"
@@ -116,21 +122,25 @@ class TFCWorkspaces(TFCEndpoint):
         return self._update(url, payload)
 
 
-    def assign_ssh_key(self, workspace_id, data):
+    def assign_ssh_key(self, workspace_id, payload):
         """
         ``PATCH /workspaces/:workspace_id/relationships/ssh-key``
 
         This endpoint assigns an SSH key to a workspace.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-3>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
-        self._patch(url, data=data)
+        self._patch(url, data=payload)
 
-    def unassign_ssh_key(self, workspace_id, data):
+    def unassign_ssh_key(self, workspace_id, payload):
         """
         ``PATCH /workspaces/:workspace_id/relationships/ssh-key``
 
         This endpoint unassigns the currently assigned SSH key from a
         workspace.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-4>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
-        self._patch(url, data=data)
+        self._patch(url, data=payload)

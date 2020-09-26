@@ -27,18 +27,22 @@ class TFCAccount(TFCEndpoint):
         url = f"{self._endpoint_base_url}/details"
         return self._show(url)
 
-    def update(self, data):
+    def update(self, payload):
         """
         ``PATCH /account/update``
 
         Your username and email address can be updated with this endpoint.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_:
         """
         url = f"{self._endpoint_base_url}/update"
-        return self._patch(url, data)
+        return self._patch(url, payload)
 
     def change_password(self, data):
         """
         ``PATCH /account/password``
+
+        `Sample payload. <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_:
         """
         url = f"{self._endpoint_base_url}/password"
         return self._patch(url, data)

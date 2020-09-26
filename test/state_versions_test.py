@@ -33,7 +33,7 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         self._config_version_upload_url = self._config_version["attributes"]["upload-url"]
         self._cv_id = self._config_version["id"]
         self._api.config_versions.upload(
-            self._config_version_upload_tarball_path, self._cv_id)
+            self._config_version_upload_tarball_path, self._config_version_upload_url)
 
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)

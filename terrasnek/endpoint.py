@@ -89,13 +89,14 @@ class TFCEndpoint(ABC):
         results = None
         req = requests.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
+
         if req.status_code in [HTTP_OK, HTTP_CREATED]:
             results = json.loads(req.content)
             self._logger.debug(f"POST to {url} successful")
         elif req.status_code in [HTTP_ACCEPTED, HTTP_NO_CONTENT]:
             self._logger.debug(f"POST to {url} successful")
         else:
-            print("error results", req.content)
+            # TODO: surface error and status code
             err = json.loads(req.content.decode("utf-8"))
             self._logger.error(err)
 

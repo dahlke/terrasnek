@@ -27,6 +27,8 @@ class TFCOrgMemberships(TFCEndpoint):
         ``POST /organizations/:organization_name/organization-memberships``
 
         This endpoint invites a user to join an organization.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/organization-memberships.html#sample-payload>`_:
         """
         return self._create(self._org_base_url, payload)
 

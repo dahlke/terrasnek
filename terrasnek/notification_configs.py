@@ -25,6 +25,8 @@ class TFCNotificationConfigurations(TFCEndpoint):
     def create(self, workspace_id, payload):
         """
         ``POST /workspaces/:workspace_id/notification-configurations``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-for-generic-notification-configurations>`_:
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
         return self._create(url, payload)
@@ -46,6 +48,8 @@ class TFCNotificationConfigurations(TFCEndpoint):
     def update(self, notification_config_id, payload):
         """
         ``PATCH /notification-configurations/:notification-configuration-id``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-1>`_:
         """
         url = f"{self._endpoint_base_url}/{notification_config_id}"
         return self._update(url, payload)

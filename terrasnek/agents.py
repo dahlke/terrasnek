@@ -19,11 +19,11 @@ class TFCAgents(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.AGENTS]
 
-    def create_pool(self, org_name):
+    def create_pool(self):
         """
         ``POST /organizations/:organization_name/agent-pool``
         """
-        url = f"{self._org_api_v2_base_url}/{org_name}/agent-pools"
+        url = f"{self._org_api_v2_base_url}/{self._org_name}/agent-pools"
         payload = {
             "data": {
                 "type": "agent-pools"
@@ -31,11 +31,11 @@ class TFCAgents(TFCEndpoint):
         }
         return self._create(url, payload)
 
-    def list_pools(self, org_name):
+    def list_pools(self):
         """
         ``GET /organizations/:organization_name/agent-pools``
         """
-        url = f"{self._org_api_v2_base_url}/{org_name}/agent-pools"
+        url = f"{self._org_api_v2_base_url}/{self._org_name}/agent-pools"
         return self._list(url)
 
     def list(self, agent_pool_id, filters=None):

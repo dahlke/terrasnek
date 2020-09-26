@@ -55,10 +55,12 @@ class TFCRuns(TFCEndpoint):
         A run performs a plan and apply, using a configuration version and the workspace’s
         current variables. You can specify a configuration version when creating a run; if
         you don’t provide one, the run defaults to the workspace’s most recently used version.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/run.html#sample-payload>`_
         """
         return self._create(self._runs_api_v2_base_url, payload)
 
-    def apply(self, run_id):
+    def apply(self, run_id, comment=None):
         """
         ``POST /runs/:run_id/actions/apply``
 
@@ -74,10 +76,16 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, the endpoint does
         not return any object in the response body.
         """
-        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/apply"
-        return self._post(url)
+        payload = None
+        if comment is not None:
+            payload = {
+                "comment": comment
+            }
 
-    def discard(self, run_id):
+        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/apply"
+        return self._post(url, data=payload)
+
+    def discard(self, run_id, comment=None):
         """
         ``POST /runs/:run_id/actions/discard``
 
@@ -91,10 +99,16 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, it does not
         return any object in the response body.
         """
-        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/discard"
-        return self._post(url)
+        payload = None
+        if comment is not None:
+            payload = {
+                "comment": comment
+            }
 
-    def cancel(self, run_id):
+        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/discard"
+        return self._post(url, data=payload)
+
+    def cancel(self, run_id, comment=None):
         """
         ``POST /runs/:run_id/actions/cancel``
 
@@ -109,10 +123,16 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, it does not
         return any object in the response body.
         """
-        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/cancel"
-        return self._post(url)
+        payload = None
+        if comment is not None:
+            payload = {
+                "comment": comment
+            }
 
-    def force_cancel(self, run_id):
+        url = f"{self._runs_api_v2_base_url}/{run_id}/actions/cancel"
+        return self._post(url, data=payload)
+
+    def force_cancel(self, run_id, comment=None):
         """
         ``POST /runs/:run_id/actions/force-cancel``
 
@@ -131,8 +151,14 @@ class TFCRuns(TFCEndpoint):
         This endpoint represents an action as opposed to a resource. As such, it does not return any
         object in the response body.
         """
+        payload = None
+        if comment is not None:
+            payload = {
+                "comment": comment
+            }
+
         url = f"{self._runs_api_v2_base_url}/{run_id}/actions/force-cancel"
-        return self._post(url)
+        return self._post(url, data=payload)
 
     def force_execute(self, run_id):
         """

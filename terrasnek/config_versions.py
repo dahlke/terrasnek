@@ -47,6 +47,8 @@ class TFCConfigVersions(TFCEndpoint):
         payload.
 
         Properties without a default value are required.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/configuration-versions.html#sample-payload>`_:
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
         return self._create(url, payload)

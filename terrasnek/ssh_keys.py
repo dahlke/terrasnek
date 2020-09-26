@@ -36,6 +36,8 @@ class TFCSSHKeys(TFCEndpoint):
     def create(self, payload):
         """
         ``POST /organizations/:organization_name/ssh-keys``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -55,6 +57,8 @@ class TFCSSHKeys(TFCEndpoint):
     def update(self, ssh_key_id, payload):
         """
         ``PATCH /ssh-keys/:ssh_key_id``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{ssh_key_id}"
         return self._update(url, payload)

@@ -15,9 +15,9 @@ class TestTFCAgentTokens(TestTFCBaseTestCase):
 
     def setUp(self):
         # Make sure that we have an Agent Pool on the org if it hasn't already been enabled.
-        self._api.agents.create_pool(self._test_org_name)
+        self._api.agents.create_pool()
 
-        agent_pools = self._api.agents.list_pools(self._test_org_name)["data"]
+        agent_pools = self._api.agents.list_pools()["data"]
         self._agent_pool_id = agent_pools[0]["id"]
 
     def test_agent_tokens_endpoints(self):

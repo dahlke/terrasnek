@@ -26,6 +26,8 @@ class TFCStateVersions(TFCEndpoint):
         The workspace must be locked by the user creating a state version. The workspace may be
         locked with the API or with the UI. This is most useful for migrating existing state from
         open source Terraform into a new TFC workspace.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/state-versions.html#sample-payload>`_
         """
         url = f"{self._workspace_api_v2_base_url}/{workspace_id}/state-versions"
         return self._create(url, payload)

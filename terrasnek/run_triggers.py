@@ -19,6 +19,8 @@ class TFCRunTriggers(TFCEndpoint):
     def create(self, workspace_id, payload):
         """
         ``POST /workspaces/:workspace_id/run-triggers``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/run-triggers.html#sample-payload>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
         return self._create(url, payload)

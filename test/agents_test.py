@@ -20,10 +20,10 @@ class TestTFCAgents(TestTFCBaseTestCase):
         """
 
         # Create an agent pool, we won't assert anything on it, in case it has already been created.
-        self._api.agents.create_pool(self._test_org_name)
+        self._api.agents.create_pool()
 
         # List the agent pools, assert that we have only one.
-        agent_pools = self._api.agents.list_pools(self._test_org_name)["data"]
+        agent_pools = self._api.agents.list_pools()["data"]
         self.assertEqual(len(agent_pools), 1)
 
         agent_pool_id = agent_pools[0]["id"]

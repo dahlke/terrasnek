@@ -33,6 +33,8 @@ class TFCPolicySets(TFCEndpoint):
     def create(self, payload):
         """
         ``POST /organizations/:organization_name/policy-sets``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -73,6 +75,8 @@ class TFCPolicySets(TFCEndpoint):
     def update(self, policy_set_id, payload):
         """
         ``PATCH /policy-sets/:id``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}"
         return self._update(url, payload)
@@ -87,27 +91,35 @@ class TFCPolicySets(TFCEndpoint):
     def add_policies_to_set(self, policy_set_id, payload):
         """
         ``POST /policy-sets/:id/relationships/policies``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-2>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/relationships/policies"
+        return self._post(url, data=payload)
+
+    def attach_policy_set_to_workspaces(self, policy_id, payload):
+        """
+        ``POST /policy-sets/:id/relationships/workspaces``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-3>`_
+        """
+        url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
         return self._post(url, data=payload)
 
     def remove_policies_from_set(self, policy_id, payload):
         """
         ``DELETE /policy-sets/:id/relationships/policies``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-4>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/policies"
         return self._delete(url, data=payload)
 
-    def attach_policy_set_to_workspaces(self, policy_id, payload):
-        """
-        ``POST /policy-sets/:id/relationships/workspaces``
-        """
-        url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
-        return self._post(url, data=payload)
-
     def detach_policy_set_from_workspaces(self, policy_id, payload):
         """
         ``DELETE /policy-sets/:id/relationships/workspaces``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-5>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
         return self._delete(url, data=payload)

@@ -45,6 +45,8 @@ class TFCOAuthClients(TFCEndpoint):
         provider (GitHub or GitLab) for use when creating or setting up workspaces. By using
         this API endpoint, you can provide a pre-generated OAuth token string instead of going
         through the process of creating a GitHub or GitLab OAuth Application.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/oauth-clients.html#sample-payload>`_:
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -54,6 +56,8 @@ class TFCOAuthClients(TFCEndpoint):
 
         Use caution when changing attributes with this endpoint; editing an OAuth client that
         workspaces are currently using can have unexpected effects.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/oauth-clients.html#sample-payload-1>`_:
         """
         url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"
         return self._update(url, payload)

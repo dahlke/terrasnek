@@ -21,6 +21,8 @@ class TFCOrgs(TFCEndpoint):
     def create(self, payload):
         """
         ``POST /organizations``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload>`_:
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -56,6 +58,8 @@ class TFCOrgs(TFCEndpoint):
     def update(self, org_name, payload):
         """
         ``PATCH /organizations/:organization_name``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload-1>`_:
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._update(url, payload)

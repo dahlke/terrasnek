@@ -26,6 +26,8 @@ class TFCTeams(TFCEndpoint):
     def create(self, payload):
         """
         ``POST /organizations/:organization_name/teams``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -52,6 +54,8 @@ class TFCTeams(TFCEndpoint):
     def update(self, team_id, payload):
         """
         ``PATCH /teams/:team_id``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload-1>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._update(url, payload)

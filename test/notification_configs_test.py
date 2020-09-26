@@ -40,7 +40,6 @@ class TestTFCNotificationConfigurations(TestTFCBaseTestCase):
         all_noti_configs = self._api.notification_configs.list(self._ws_id)["data"]
         self.assertEqual(len(all_noti_configs), 0)
 
-
         # Add one notification configuration
         not_cnf_name = self._unittest_random_name()
         payload = {

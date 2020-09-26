@@ -22,6 +22,8 @@ class TFCWorkspaceVars(TFCEndpoint):
     def create(self, workspace_id, payload):
         """
         ``POST /workspaces/:workspace_id/vars``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/"
         return self._create(url, payload)
@@ -36,6 +38,8 @@ class TFCWorkspaceVars(TFCEndpoint):
     def update(self, workspace_id, variable_id, payload):
         """
         ``PATCH /workspaces/:workspace_id/vars/:variable_id``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/{variable_id}"
         return self._update(url, payload)

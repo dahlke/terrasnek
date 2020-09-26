@@ -20,6 +20,8 @@ class TFCPolicySetParams(TFCEndpoint):
     def create(self, policy_set_id, payload):
         """
         ``POST /policy-sets/:policy_set_id/parameters``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters"
         return self._create(url, payload)
@@ -34,6 +36,8 @@ class TFCPolicySetParams(TFCEndpoint):
     def update(self, policy_set_id, parameter_id, payload):
         """
         ``PATCH /policy-sets/:policy_set_id/parameters/:parameter_id``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters/{parameter_id}"
         return self._update(url, payload)

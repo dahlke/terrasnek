@@ -18,7 +18,7 @@ class TFCAgentTokens(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.AGENTS]
 
-    def create(self, agent_pool_id):
+    def create(self, agent_pool_id, description="api"):
         """
         ``POST /agent-pools/:agent_pool_id/authentication-tokens``
         """
@@ -27,7 +27,7 @@ class TFCAgentTokens(TFCEndpoint):
             "data": {
                 "type": "authentication-tokens",
                 "attributes": {
-                    "description":"api"
+                    "description": description
                 }
             }
         }

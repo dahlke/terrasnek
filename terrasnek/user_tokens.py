@@ -28,6 +28,8 @@ class TFCUserTokens(TFCEndpoint):
         since it uses a different prefix than the majority of endpoints.
 
         ``POST /api/v2/users/:user_id/authentication-tokens``
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/user-tokens.html#sample-payload>`_
         """
         url = f"{self._users_api_v2_base_url}/{user_id}/authentication-tokens"
         return self._create(url, payload)

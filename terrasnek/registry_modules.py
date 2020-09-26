@@ -105,6 +105,8 @@ class TFCRegistryModules(TFCEndpoint):
         the config parsed to populate module details (input and output variables,
         readme, submodules, etc.). The Module Registry Requirements define additional
         requirements on naming, standard module structure and tags for releases.
+
+        `Sample payload <https://www.terraform.io/docs/cloud/api/modules.html#sample-payload>`_
         """
         return self._post(self._modules_v2_base_url, data=payload)
 
@@ -137,7 +139,7 @@ class TFCRegistryModules(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/modules.html#create-a-module
 
-        TODO: add the some example payloads
+        `Sample payload <https://www.terraform.io/docs/cloud/api/modules.html#request-body-1>`_
         """
 
         url = f"{self._org_api_v2_base_url}/{self._org_name}/registry-modules"
@@ -155,7 +157,7 @@ class TFCRegistryModules(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/modules.html#create-a-module-version
 
-        TODO: add the some example payloads
+        `Sample payload <https://www.terraform.io/docs/cloud/api/modules.html#request-body-2>`_
         """
 
         url = f"{self._modules_v2_base_url}/{self._org_name}/{module_name}/{provider}/versions"

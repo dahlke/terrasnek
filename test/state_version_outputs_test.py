@@ -33,7 +33,7 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
         self._config_version_upload_url = self._config_version["attributes"]["upload-url"]
         self._cv_id = self._config_version["id"]
         self._api.config_versions.upload(
-            self._config_version_upload_tarball_path, self._cv_id)
+            self._config_version_upload_tarball_path, self._config_version_upload_url)
 
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
@@ -68,6 +68,8 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
         # Get the state version outputs ID, get the outputs, confirm they match the expected IDs
         shown_state_version = self._api.state_versions.show(sv_id)["data"]
         state_version_outputs = shown_state_version["relationships"]["outputs"]["data"]
+
+        # TODO: might be a race condition here for the tests
         state_version_output_id = state_version_outputs[0]["id"]
         shown_state_version_output = self._api.state_version_outputs.show(
             state_version_output_id)["data"]
