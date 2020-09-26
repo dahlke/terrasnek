@@ -34,7 +34,8 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         """
         Test the Registry Modules API endpoint: ``publish_from_vcs``, ``list``,
         ``search``, ``list_versions``, ``list_latest_version_all_providers``,
-        ``list_latest_version_specific_provider``, ``get``, ``show``.
+        ``list_latest_version_specific_provider``, ``get``, ``show``, ``create``,
+        ``create_version``, ``upload_version``.
         """
 
         # Publish a module from the VCS provider, using the oauth token generated
