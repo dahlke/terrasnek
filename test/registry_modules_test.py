@@ -44,9 +44,9 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             "data": {
                 "attributes": {
                     "vcs-repo": {
-                        "identifier": "dahlke/terraform-tfe-terrasnek-unittest",
+                        "identifier": "dahlke/terraform-tfe-terrasnek-unittest-module",
                         "oauth-token-id": self._oauth_token_id,
-                        "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest"
+                        "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest-module"
                     }
                 },
                 "type":"registry-modules"
@@ -175,10 +175,8 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 }
             }
         }
-        # created_module = self._api.registry_modules.create(create_payload)["data"]
-        # self.assertEqual(new_module_name, created_module["attributes"]["name"])
-        with self.assertRaises(TFCDeprecatedWontFix):
-            self._api.registry_modules.create(create_payload)
+        created_module = self._api.registry_modules.create(create_payload)["data"]
+        self.assertEqual(new_module_name, created_module["attributes"]["name"])
 
         example_version = "0.0.1"
         create_version_payload = {
@@ -189,18 +187,13 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 }
             }
         }
-        # created_version = self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
-        # self.assertEqual("registry-module-versions", created_version["type"])
-        with self.assertRaises(TFCDeprecatedWontFix):
-            self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)
+        created_version = self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
+        self.assertEqual("registry-module-versions", created_version["type"])
 
-        # created_version_upload_url = created_version["links"]["upload"]
+        created_version_upload_url = created_version["links"]["upload"]
 
-        # uploaded_version_resp = self._api.registry_modules.upload_version(self._module_upload_tarball_path, created_version_upload_url)
-        # self.assertIsNone(uploaded_version_resp)
+        uploaded_version_resp = self._api.registry_modules.upload_version(self._module_upload_tarball_path, created_version_upload_url)
+        self.assertIsNone(uploaded_version_resp)
 
-        with self.assertRaises(TFCDeprecatedWontFix):
-            self._api.registry_modules.upload_version(self._module_upload_tarball_path, "fake_upload_path")
-
-        # self._api.registry_modules.destroy(\
-            # new_module_name, TFE_MODULE_PROVIDER_TYPE, example_version)
+        self._api.registry_modules.destroy(\
+            new_module_name, TFE_MODULE_PROVIDER_TYPE, example_version)

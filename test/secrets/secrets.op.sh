@@ -30,7 +30,7 @@ export SMTP_PASSWORD=$(op get item Sendgrid | jq -r '.details.sections[1].fields
 # Constants used for creation and testing
 export TEST_EMAIL="neil.dahlke+terrasnek_unittest@gmail.com"
 # export TEST_ORG_NAME="terrasnek-unittest"
-export TEST_ORG_NAME="terrasnek-unittest-2"
+export TEST_ORG_NAME="terrasnek-unittest"
 export TEST_USERNAME="terrasnek-unittest"
 export TEST_TEAM_NAME="terrasnek-unittest"
 export TEST_PASSWORD=""
