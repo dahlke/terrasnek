@@ -44,15 +44,9 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             "data": {
                 "attributes": {
                     "vcs-repo": {
-<<<<<<< HEAD
-                        "identifier": "dahlke/terraform-tfe-terrasnek-unittest-module",
-                        "oauth-token-id": self._oauth_token_id,
-                        "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest-module"
-=======
                         "identifier": "dahlke/terraform-tfe-terrasnek-unittest-3",
                         "oauth-token-id": self._oauth_token_id,
                         "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest-3"
->>>>>>> 92c83be... Adding implmentations for the registry modules endpoints that I thought
                     }
                 },
                 "type":"registry-modules"
@@ -171,7 +165,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
         # Deleted the published module, confirm that it's gone.
         self._api.registry_modules.destroy(\
-            published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
+            published_module_name, provider=TFE_MODULE_PROVIDER_TYPE)
         gotten_module = \
             self._api.registry_modules.get(\
                 published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
@@ -190,7 +184,6 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         }
         created_module = self._api.registry_modules.create(create_payload)["data"]
         self.assertEqual(new_module_name, created_module["attributes"]["name"])
-<<<<<<< HEAD
 
         example_version = "0.0.1"
         create_version_payload = {
@@ -204,25 +197,10 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         created_version = self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
         self.assertEqual("registry-module-versions", created_version["type"])
 
-=======
-
-        example_version = "0.0.1"
-        create_version_payload = {
-            "data": {
-                "type": "registry-module-versions",
-                "attributes": {
-                    "version": example_version
-                }
-            }
-        }
-        created_version = self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
-        self.assertEqual("registry-module-versions", created_version["type"])
-
->>>>>>> 92c83be... Adding implmentations for the registry modules endpoints that I thought
         created_version_upload_url = created_version["links"]["upload"]
 
         uploaded_version_resp = self._api.registry_modules.upload_version(self._module_upload_tarball_path, created_version_upload_url)
         self.assertIsNone(uploaded_version_resp)
 
         self._api.registry_modules.destroy(\
-            new_module_name, TFE_MODULE_PROVIDER_TYPE, example_version)
+            new_module_name, provider=TFE_MODULE_PROVIDER_TYPE)
