@@ -10,8 +10,11 @@ class TFCRegistryModules(TFCEndpoint):
     The Terraform Cloud Module Registry implements the Registry standard API
     for consuming the modules, both public and private.
 
-    https://www.terraform.io/docs/cloud/api/modules.html
-    https://www.terraform.io/docs/registry/api.html
+    `API Docs (Private Registry) \
+        <https://www.terraform.io/docs/cloud/api/modules.html>`_
+
+    `API Docs (Public Registry) \
+        <https://www.terraform.io/docs/registry/api.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -106,7 +109,8 @@ class TFCRegistryModules(TFCEndpoint):
         readme, submodules, etc.). The Module Registry Requirements define additional
         requirements on naming, standard module structure and tags for releases.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/modules.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/modules.html#sample-payload>`_
         """
         return self._post(self._modules_v2_base_url, data=payload)
 
@@ -139,7 +143,8 @@ class TFCRegistryModules(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/modules.html#create-a-module
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/modules.html#request-body-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/modules.html#request-body-1>`_
         """
 
         url = f"{self._org_api_v2_base_url}/{self._org_name}/registry-modules"
@@ -157,7 +162,8 @@ class TFCRegistryModules(TFCEndpoint):
 
         https://www.terraform.io/docs/cloud/api/modules.html#create-a-module-version
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/modules.html#request-body-2>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/modules.html#request-body-2>`_
         """
 
         url = f"{self._modules_v2_base_url}/{self._org_name}/{module_name}/{provider}/versions"

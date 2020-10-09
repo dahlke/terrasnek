@@ -6,13 +6,14 @@ from .endpoint import TFCEndpoint
 
 class TFCNotificationConfigurations(TFCEndpoint):
     """
-        Terraform Cloud can be configured to send notifications for run state
-        transitions. The configuration allows you to specify a destination URL,
-        request type, and what events will trigger the notification. Each workspace
-        can have up to 20 notification configurations, and they apply to all runs
-        for that workspace.
+    Terraform Cloud can be configured to send notifications for run state
+    transitions. The configuration allows you to specify a destination URL,
+    request type, and what events will trigger the notification. Each workspace
+    can have up to 20 notification configurations, and they apply to all runs
+    for that workspace.
 
-        https://www.terraform.io/docs/cloud/api/notification-configurations.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/notification-configurations.html>`_
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
@@ -26,7 +27,8 @@ class TFCNotificationConfigurations(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/notification-configurations``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-for-generic-notification-configurations>`_:
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-for-generic-notification-configurations>`_
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
         return self._create(url, payload)
@@ -49,7 +51,8 @@ class TFCNotificationConfigurations(TFCEndpoint):
         """
         ``PATCH /notification-configurations/:notification-configuration-id``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-1>`_:
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{notification_config_id}"
         return self._update(url, payload)

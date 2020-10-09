@@ -8,7 +8,8 @@ class TFCWorkspaces(TFCEndpoint):
     """
     Workspaces represent running infrastructure managed by Terraform.
 
-    `Workspaces API Spec <https://www.terraform.io/docs/cloud/api/workspaces.html>`_
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/workspaces.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -23,7 +24,8 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/workspaces``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -60,7 +62,8 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint locks a workspace.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-2>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-2>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/lock"
         return self._post(url, data=payload)
@@ -71,7 +74,8 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint lists workspaces in the organization.
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters>`_):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """
@@ -111,7 +115,8 @@ class TFCWorkspaces(TFCEndpoint):
         A workspace can be updated via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-1>`_
         """
         if workspace_name is not None:
             url = f"{self._org_api_v2_base_url}/{workspace_name}"
@@ -128,7 +133,8 @@ class TFCWorkspaces(TFCEndpoint):
 
         This endpoint assigns an SSH key to a workspace.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-3>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-3>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
         self._patch(url, data=payload)
@@ -140,7 +146,8 @@ class TFCWorkspaces(TFCEndpoint):
         This endpoint unassigns the currently assigned SSH key from a
         workspace.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-4>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-4>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
         self._patch(url, data=payload)

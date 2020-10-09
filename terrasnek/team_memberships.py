@@ -10,7 +10,8 @@ class TFCTeamMemberships(TFCEndpoint):
     The Team Membership API is used to add or remove users from teams. The Team API is
     used to create or destroy teams.
 
-    https://www.terraform.io/docs/cloud/api/team-members.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/team-members.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -26,7 +27,8 @@ class TFCTeamMemberships(TFCEndpoint):
 
         This method adds multiple users to a team. Both users and teams must already exist.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/relationships/users"
         return self._post(url, data=payload)
@@ -38,7 +40,8 @@ class TFCTeamMemberships(TFCEndpoint):
         This method removes multiple users from a team. Both users and teams must already exist.
         This DOES NOT delete the user; it only removes them from this team.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/relationships/users"
         return self._delete(url, data=payload)

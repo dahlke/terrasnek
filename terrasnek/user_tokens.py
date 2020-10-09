@@ -6,7 +6,8 @@ from .endpoint import TFCEndpoint
 
 class TFCUserTokens(TFCEndpoint):
     """
-    https://www.terraform.io/docs/cloud/api/user-tokens.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/user-tokens.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -29,7 +30,8 @@ class TFCUserTokens(TFCEndpoint):
 
         ``POST /api/v2/users/:user_id/authentication-tokens``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/user-tokens.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/user-tokens.html#sample-payload>`_
         """
         url = f"{self._users_api_v2_base_url}/{user_id}/authentication-tokens"
         return self._create(url, payload)

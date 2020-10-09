@@ -17,7 +17,8 @@ class TFCRuns(TFCEndpoint):
     Alternatively, you can create a run with a pre-existing configuration version, even one from
     another workspace. This is useful for promoting known good code from one workspace to another.
 
-    https://www.terraform.io/docs/cloud/api/run.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/run.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -32,7 +33,8 @@ class TFCRuns(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/runs``
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/run.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/run.html#query-parameters>`_):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """
@@ -56,7 +58,8 @@ class TFCRuns(TFCEndpoint):
         current variables. You can specify a configuration version when creating a run; if
         you don’t provide one, the run defaults to the workspace’s most recently used version.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/run.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/run.html#sample-payload>`_
         """
         return self._create(self._runs_api_v2_base_url, payload)
 

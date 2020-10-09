@@ -7,7 +7,8 @@ from ._constants import Entitlements
 
 class TFCPolicySetParams(TFCEndpoint):
     """
-        https://www.terraform.io/docs/cloud/api/policy-set-params.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/policy-set-params.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -21,7 +22,8 @@ class TFCPolicySetParams(TFCEndpoint):
         """
         ``POST /policy-sets/:policy_set_id/parameters``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters"
         return self._create(url, payload)
@@ -37,7 +39,8 @@ class TFCPolicySetParams(TFCEndpoint):
         """
         ``PATCH /policy-sets/:policy_set_id/parameters/:parameter_id``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters/{parameter_id}"
         return self._update(url, payload)

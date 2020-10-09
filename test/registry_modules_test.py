@@ -7,7 +7,6 @@ import os
 import timeout_decorator
 
 from .base import TestTFCBaseTestCase
-from terrasnek.exceptions import TFCDeprecatedWontFix
 from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_TEST_TIMEOUT
 
 class TestTFCRegistryModules(TestTFCBaseTestCase):
@@ -194,12 +193,16 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 }
             }
         }
-        created_version = self._api.registry_modules.create_version(new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
+        created_version = \
+            self._api.registry_modules.create_version(\
+                new_module_name, TFE_MODULE_PROVIDER_TYPE, create_version_payload)["data"]
         self.assertEqual("registry-module-versions", created_version["type"])
 
         created_version_upload_url = created_version["links"]["upload"]
 
-        uploaded_version_resp = self._api.registry_modules.upload_version(self._module_upload_tarball_path, created_version_upload_url)
+        uploaded_version_resp = \
+            self._api.registry_modules.upload_version(\
+                self._module_upload_tarball_path, created_version_upload_url)
         self.assertIsNone(uploaded_version_resp)
 
         self._api.registry_modules.destroy(\

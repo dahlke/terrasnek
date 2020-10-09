@@ -8,7 +8,8 @@ class TFCOrgs(TFCEndpoint):
     """
     The Orgs API is used to list, show, create, update, and destroy organizations.
 
-    https://www.terraform.io/docs/cloud/api/organizations.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/organizations.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -22,7 +23,8 @@ class TFCOrgs(TFCEndpoint):
         """
         ``POST /organizations``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload>`_:
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -59,7 +61,8 @@ class TFCOrgs(TFCEndpoint):
         """
         ``PATCH /organizations/:organization_name``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload-1>`_:
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload-1>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._update(url, payload)

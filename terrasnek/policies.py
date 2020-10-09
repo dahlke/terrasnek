@@ -7,12 +7,13 @@ from ._constants import Entitlements
 
 class TFCPolicies(TFCEndpoint):
     """
-        Policies are configured on a per-organization level and are organized
-        and grouped into policy sets, which define the workspaces on which
-        policies are enforced during runs. In these workspaces, the plan's changes
-        are validated against the relevant policies after the plan step.
+    Policies are configured on a per-organization level and are organized
+    and grouped into policy sets, which define the workspaces on which
+    policies are enforced during runs. In these workspaces, the plan's changes
+    are validated against the relevant policies after the plan step.
 
-        https://www.terraform.io/docs/cloud/api/policies.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/policies.html>`_
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
@@ -29,7 +30,8 @@ class TFCPolicies(TFCEndpoint):
         This creates a new policy object for the organization, but does not upload
         the actual policy code
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -37,7 +39,8 @@ class TFCPolicies(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/policies``
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/policies.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/policies.html#query-parameters>`_):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
             - ``search`` (Optional)
@@ -59,7 +62,8 @@ class TFCPolicies(TFCEndpoint):
         This endpoint can update the enforcement mode of an existing policy. To
         update the policy code itself, use the upload endpoint.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload-2>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload-2>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}"
         return self._update(url, payload)
@@ -70,7 +74,8 @@ class TFCPolicies(TFCEndpoint):
 
         This endpoint uploads code to an existing Sentinel policy.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/upload"
         return self._put(url, octet=True, data=payload)

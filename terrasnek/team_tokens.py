@@ -10,7 +10,8 @@ class TFCTeamTokens(TFCEndpoint):
     Each team can have a special service account API token that is not associated with a
     specific user.
 
-    https://www.terraform.io/docs/cloud/api/team-tokens.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/team-tokens.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

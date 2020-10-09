@@ -9,7 +9,8 @@ class TFCOAuthClients(TFCEndpoint):
     """
     An OAuth Client represents the connection between an organization and a VCS provider.
 
-    https://www.terraform.io/docs/cloud/api/oauth-clients.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/oauth-clients.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -46,7 +47,8 @@ class TFCOAuthClients(TFCEndpoint):
         this API endpoint, you can provide a pre-generated OAuth token string instead of going
         through the process of creating a GitHub or GitLab OAuth Application.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/oauth-clients.html#sample-payload>`_:
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/oauth-clients.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -57,7 +59,8 @@ class TFCOAuthClients(TFCEndpoint):
         Use caution when changing attributes with this endpoint; editing an OAuth client that
         workspaces are currently using can have unexpected effects.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/oauth-clients.html#sample-payload-1>`_:
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/oauth-clients.html#sample-payload-1>`_
         """
         url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"
         return self._update(url, payload)

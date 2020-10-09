@@ -1,46 +1,23 @@
-************* Module terrasnek.team_access
-terrasnek/team_access.py:34:0: C0301: Line too long (116/100) (line-too-long)
 ************* Module terrasnek.vars
-terrasnek/vars.py:28:2: W0511: TODO: take the filters in the standard way here. (fixme)
-terrasnek/vars.py:32:0: C0301: Line too long (114/100) (line-too-long)
-************* Module terrasnek.run_triggers
-terrasnek/run_triggers.py:30:0: C0301: Line too long (117/100) (line-too-long)
-************* Module terrasnek.org_memberships
-terrasnek/org_memberships.py:39:0: C0301: Line too long (129/100) (line-too-long)
-************* Module terrasnek.registry_modules
-terrasnek/registry_modules.py:158:2: W0511: TODO take the org name from the API, not an argument (fixme)
-terrasnek/registry_modules.py:7:0: W0611: Unused TFCDeprecatedWontFix imported from exceptions (unused-import)
-************* Module terrasnek.state_versions
-terrasnek/state_versions.py:50:0: C0301: Line too long (119/100) (line-too-long)
-************* Module terrasnek.agents
-terrasnek/agents.py:45:0: C0301: Line too long (111/100) (line-too-long)
-************* Module terrasnek.audit_trails
-terrasnek/audit_trails.py:27:0: C0301: Line too long (117/100) (line-too-long)
-************* Module terrasnek.policy_sets
-terrasnek/policy_sets.py:43:0: C0301: Line too long (116/100) (line-too-long)
-************* Module terrasnek.runs
-terrasnek/runs.py:35:0: C0301: Line too long (108/100) (line-too-long)
-************* Module terrasnek.policies
-terrasnek/policies.py:38:0: C0301: Line too long (113/100) (line-too-long)
-************* Module terrasnek.config_versions
-terrasnek/config_versions.py:28:0: C0301: Line too long (127/100) (line-too-long)
-************* Module terrasnek.workspaces
-terrasnek/workspaces.py:70:0: C0301: Line too long (115/100) (line-too-long)
+terrasnek/vars.py:31:2: W0511: TODO: take the filters in the standard way here. (fixme)
+************* Module terrasnek.endpoint
+terrasnek/endpoint.py:99:2: W0511: TODO: surface error and status code (fixme)
 ************* Module test.agents_test
 test/agents_test.py:33:2: W0511: TODO: show, list require me to actually add some agents to test (fixme)
 ************* Module test.registry_modules_test
-test/registry_modules_test.py:188:0: C0301: Line too long (142/100) (line-too-long)
-test/registry_modules_test.py:193:0: C0301: Line too long (135/100) (line-too-long)
-test/registry_modules_test.py:197:0: C0304: Final newline missing (missing-final-newline)
-test/registry_modules_test.py:33:4: R0914: Too many local variables (31/25) (too-many-locals)
-test/registry_modules_test.py:9:0: W0611: Unused TFCDeprecatedWontFix imported from terrasnek.exceptions (unused-import)
+test/registry_modules_test.py:32:4: R0914: Too many local variables (30/25) (too-many-locals)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:111:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:122:2: W0511: TODO: need to use a real twilio account to finish this test. (fixme)
+************* Module test.state_version_outputs_test
+test/state_version_outputs_test.py:72:2: W0511: TODO: might be a race condition here for the tests (fixme)
 ************* Module test.base
+test/base.py:107:2: W0511: TODO: purge everything (fixme)
+test/base.py:108:2: W0511: TODO: purge workspaces (fixme)
+test/base.py:109:2: W0511: TODO: purge modules (fixme)
 test/base.py:93:55: E1135: Value 'cls._endpoint_being_tested' doesn't support membership test (unsupported-membership-test)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.89/10 (previous run: 9.92/10, -0.02)
+Your code has been rated at 9.94/10 (previous run: 9.92/10, +0.02)
 

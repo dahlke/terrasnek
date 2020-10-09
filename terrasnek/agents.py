@@ -7,7 +7,8 @@ from._constants import Entitlements
 
 class TFCAgents(TFCEndpoint):
     """
-    https://www.terraform.io/docs/cloud/api/agents.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/agents.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -42,7 +43,8 @@ class TFCAgents(TFCEndpoint):
         """
         ``GET /agent-pools/:agent_pool_id/agents``
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/agents.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/agents.html#query-parameters>`_):
             - ``filter[last-ping-since]`` (Optional)
 
         Example filter(s):

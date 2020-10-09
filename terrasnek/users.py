@@ -12,7 +12,8 @@ class TFCUsers(TFCEndpoint):
     of a run. Most of these contexts can already include user objects via an ?include parameter,
     so you shouldn't usually need to make a separate call to this endpoint.
 
-    https://www.terraform.io/docs/cloud/api/users.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/users.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

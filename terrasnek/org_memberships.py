@@ -10,7 +10,8 @@ class TFCOrgMemberships(TFCEndpoint):
     list memberships for an organization, to list a user's own memberships,
     to show a memberships, and to remove users from organizations.
 
-    https://www.terraform.io/docs/cloud/api/organization-memberships.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/organization-memberships.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -28,7 +29,8 @@ class TFCOrgMemberships(TFCEndpoint):
 
         This endpoint invites a user to join an organization.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/organization-memberships.html#sample-payload>`_:
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#sample-payload>`_
         """
         return self._create(self._org_base_url, payload)
 
@@ -38,7 +40,8 @@ class TFCOrgMemberships(TFCEndpoint):
 
         This endpoint retrieves all the users in the active organization.
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters>`_):
             - ``query`` (Optional)
             - ``filter[status]`` (Optional)
             - ``page`` (Optional)

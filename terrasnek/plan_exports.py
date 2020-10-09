@@ -10,7 +10,9 @@ class TFCPlanExports(TFCEndpoint):
     workspace. Currently, the only supported format for exporting plan data is to generate mock
     data for Sentinel.
 
-    https://www.terraform.io/docs/cloud/api/plan-exports.html
+
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/plan-exports.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -29,7 +31,8 @@ class TFCPlanExports(TFCEndpoint):
         "finished". The data is then available for one hour before expiring. After the hour
         is up, a new export can be created.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/plan-exports.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/plan-exports.html#sample-payload>`_
         """
 
         return self._create(self._endpoint_base_url, payload)

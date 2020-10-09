@@ -12,7 +12,8 @@ class TFCTeams(TFCEndpoint):
     from a team. Use the Team Access API to associate a team with privileges on an
     individual workspace.
 
-    https://www.terraform.io/docs/cloud/api/teams.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/teams.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -27,7 +28,8 @@ class TFCTeams(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/teams``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -55,7 +57,8 @@ class TFCTeams(TFCEndpoint):
         """
         ``PATCH /teams/:team_id``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload-1>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._update(url, payload)

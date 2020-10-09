@@ -10,7 +10,8 @@ class TFCAuditTrails(TFCEndpoint):
     changes to the application entities (workspaces, runs, etc.) that
     belong to a Terraform Cloud organization.
 
-    https://www.terraform.io/docs/cloud/api/audit-trails.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/audit-trails.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -24,7 +25,8 @@ class TFCAuditTrails(TFCEndpoint):
         """
         ``GET /organization/audit-trail``
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/audit-trails.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/audit-trails.html#query-parameters>`_):
             - ``since`` (Optional)
             - ``page`` (Optional)
         """

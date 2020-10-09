@@ -10,7 +10,8 @@ class TFCAccount(TFCEndpoint):
     the same type of object as the Users API, but also includes an email
     address, which is hidden when viewing info about other users.
 
-    https://www.terraform.io/docs/cloud/api/account.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/account.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -23,6 +24,9 @@ class TFCAccount(TFCEndpoint):
     def show(self):
         """
         ``GET /account/details``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/account.html#get-your-account-details>`_
         """
         url = f"{self._endpoint_base_url}/details"
         return self._show(url)
@@ -33,7 +37,11 @@ class TFCAccount(TFCEndpoint):
 
         Your username and email address can be updated with this endpoint.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_:
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/account.html#update-your-account-info>`_
+
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/update"
         return self._patch(url, payload)
@@ -42,7 +50,11 @@ class TFCAccount(TFCEndpoint):
         """
         ``PATCH /account/password``
 
-        `Sample payload. <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_:
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/account.html#change-your-password>`_
+
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/password"
         return self._patch(url, data)

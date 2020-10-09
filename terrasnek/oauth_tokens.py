@@ -11,7 +11,9 @@ class TFCOAuthTokens(TFCEndpoint):
     connection and the associated OAuth token. This object is used when creating a
     workspace to identify which VCS connection to use.
 
-    https://www.terraform.io/docs/cloud/api/oauth-tokens.html
+
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/oauth-tokens.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

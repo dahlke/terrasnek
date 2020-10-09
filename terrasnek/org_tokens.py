@@ -9,7 +9,8 @@ class TFCOrgTokens(TFCEndpoint):
     The Org Tokens API is used to generate and revoke Org
     tokens. Each organization can only have one token.
 
-    https://www.terraform.io/docs/cloud/api/organization-tokens.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/organization-tokens.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

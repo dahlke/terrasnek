@@ -7,18 +7,19 @@ from ._constants import Entitlements
 
 class TFCPolicySets(TFCEndpoint):
     """
-        Policy sets are groups of policies that are applied together to related
-        workspaces. By using policy sets, you can group your policies by
-        attributes such as environment or region. Individual policies within a
-        policy set will only be checked for workspaces that the policy set
-        is attached to.
+    Policy sets are groups of policies that are applied together to related
+    workspaces. By using policy sets, you can group your policies by
+    attributes such as environment or region. Individual policies within a
+    policy set will only be checked for workspaces that the policy set
+    is attached to.
 
-        Policy sets can group indidual policies created via the policies API,
-        or act as versioned sets which are either sourced from a version control
-        system (such as GitHub) or uploaded as a whole via the policy set
-        versions API.
+    Policy sets can group indidual policies created via the policies API,
+    or act as versioned sets which are either sourced from a version control
+    system (such as GitHub) or uploaded as a whole via the policy set
+    versions API.
 
-        https://www.terraform.io/docs/cloud/api/policy-sets.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/policy-sets.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -34,7 +35,8 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/policy-sets``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -42,7 +44,8 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/policy-sets``
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/policy-sets.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#query-parameters>`_):
             - ``filter[versioned]`` (Optional)
             - ``include`` (Optional)
             - ``page`` (Optional)
@@ -76,7 +79,8 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``PATCH /policy-sets/:id``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}"
         return self._update(url, payload)
@@ -92,7 +96,8 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``POST /policy-sets/:id/relationships/policies``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-2>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-2>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/relationships/policies"
         return self._post(url, data=payload)
@@ -101,7 +106,8 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``POST /policy-sets/:id/relationships/workspaces``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-3>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-3>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
         return self._post(url, data=payload)
@@ -110,7 +116,8 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``DELETE /policy-sets/:id/relationships/policies``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-4>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-4>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/policies"
         return self._delete(url, data=payload)
@@ -119,7 +126,8 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``DELETE /policy-sets/:id/relationships/workspaces``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-5>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-5>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
         return self._delete(url, data=payload)

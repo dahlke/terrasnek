@@ -10,7 +10,8 @@ class TFCConfigVersions(TFCEndpoint):
     configuration files. It is associated with the run to use the uploaded
     configuration files for performing the plan and apply.
 
-    https://www.terraform.io/docs/cloud/api/configuration-versions.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/configuration-versions.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -25,7 +26,8 @@ class TFCConfigVersions(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/configuration-versions``
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/configuration-versions.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#query-parameters>`_):
             - ``since`` (Optional)
             - ``page`` (Optional)
         """
@@ -48,7 +50,8 @@ class TFCConfigVersions(TFCEndpoint):
 
         Properties without a default value are required.
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/configuration-versions.html#sample-payload>`_:
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#sample-payload>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
         return self._create(url, payload)

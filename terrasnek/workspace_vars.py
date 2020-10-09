@@ -9,7 +9,8 @@ class TFCWorkspaceVars(TFCEndpoint):
     This set of APIs covers create, update, list and delete operations on variables,
     through the workspace API.
 
-    https://www.terraform.io/docs/cloud/api/workspace-variables.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/workspace-variables.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -23,7 +24,8 @@ class TFCWorkspaceVars(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/vars``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/"
         return self._create(url, payload)
@@ -39,7 +41,8 @@ class TFCWorkspaceVars(TFCEndpoint):
         """
         ``PATCH /workspaces/:workspace_id/vars/:variable_id``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/{variable_id}"
         return self._update(url, payload)

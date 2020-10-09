@@ -9,7 +9,9 @@ class TFCPlans(TFCEndpoint):
     """
     A plan represents the execution plan of a Run in a Terraform workspace.
 
-    https://www.terraform.io/docs/cloud/api/plans.html
+
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/plans.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

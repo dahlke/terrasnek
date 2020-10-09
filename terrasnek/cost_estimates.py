@@ -8,7 +8,8 @@ class TFCCostEstimates(TFCEndpoint):
     """
     A cost represents the cost estimates for many resources found in a TFC workspace.
 
-    https://www.terraform.io/docs/cloud/api/cost-estimates.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/cost-estimates.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

@@ -22,7 +22,8 @@ class TFCSSHKeys(TFCEndpoint):
         not need to do this if you use Terraform Cloud's private module
         registry.
 
-        https://www.terraform.io/docs/cloud/api/ssh-keys.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/ssh-keys.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -37,7 +38,8 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/ssh-keys``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
 
@@ -58,7 +60,8 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``PATCH /ssh-keys/:ssh_key_id``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{ssh_key_id}"
         return self._update(url, payload)

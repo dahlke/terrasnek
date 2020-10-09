@@ -8,7 +8,8 @@ class TFCVars(TFCEndpoint):
     """
     This set of APIs covers create, update, list and delete operations on variables.
 
-    https://www.terraform.io/docs/cloud/api/variables.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/variables.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -22,7 +23,8 @@ class TFCVars(TFCEndpoint):
         """
         ``POST /vars``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload>`_
         """
         return self._create(self._endpoint_base_url, payload)
 
@@ -31,7 +33,8 @@ class TFCVars(TFCEndpoint):
         """
         ``GET /vars``
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/variables.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/variables.html#query-parameters>`_):
             - ``filter[workspace][name]`` (Required)
         """
         url = f"{self._endpoint_base_url}?filter[organization][name]={self._org_name}"
@@ -45,7 +48,8 @@ class TFCVars(TFCEndpoint):
         """
         ``PATCH /vars/:variable_id``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload-1>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{variable_id}"
         return self._update(url, payload)

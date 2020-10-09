@@ -6,7 +6,8 @@ from .endpoint import TFCEndpoint
 
 class TFCRunTriggers(TFCEndpoint):
     """
-    https://www.terraform.io/docs/cloud/api/run-triggers.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/run-triggers.html>`_
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
@@ -20,7 +21,8 @@ class TFCRunTriggers(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/run-triggers``
 
-        `Sample payload <https://www.terraform.io/docs/cloud/api/run-triggers.html#sample-payload>`_
+        `Sample payload \
+            <https://www.terraform.io/docs/cloud/api/run-triggers.html#sample-payload>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
         return self._create(url, payload)
@@ -29,7 +31,8 @@ class TFCRunTriggers(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/run-triggers``
 
-        Query parameter(s) (`details <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`_):
+        Query parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`_):
             - ``filter[run-trigger][type]`` (Required)
             - ``page_size`` (Optional)
 
