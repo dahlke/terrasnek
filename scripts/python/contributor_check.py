@@ -33,6 +33,10 @@ def get_lint_score():
         .split(" ")[0].split("/")[0]) / 10
     return score
 
+# TODO: make sure all the version numbers are the same and match the branch?
+def check_versions():
+    pass
+
 def main():
     """
     Retrieve the coverage and lint scores, and compare them to the tolerable
