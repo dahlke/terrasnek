@@ -27,6 +27,9 @@ class TFCUsers(TFCEndpoint):
         """
         ``GET /users/:user_id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/users.html#show-a-user>`_
+
         Shows details for a given user.
         """
         url = f"{self._users_api_v2_base_url}/{user_id}"

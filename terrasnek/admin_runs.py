@@ -27,6 +27,9 @@ class TFCAdminRuns(TFCEndpoint):
         """
         ``GET /admin/runs``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/runs.html#list-all-runs>`_
+
         This endpoint lists all runs in the Terraform Cloud installation.
         """
         return self._list(self._endpoint_base_url, \
@@ -35,6 +38,9 @@ class TFCAdminRuns(TFCEndpoint):
     def force_cancel(self, run_id, data=None):
         """
         ``POST /admin/runs/:id/actions/force-cancel``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/runs.html#force-a-run-into-the-quot-cancelled-quot-state>`_
 
         This endpoint forces a run (and its plan/apply, if applicable) into
         the "canceled" state. This action should only be performed for runs

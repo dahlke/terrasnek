@@ -23,6 +23,9 @@ class TFCStateVersions(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/state-versions``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#create-a-state-version>`_
+
         Creates a state version and sets it as the current state version for the given workspace.
         The workspace must be locked by the user creating a state version. The workspace may be
         locked with the API or with the UI. This is most useful for migrating existing state from
@@ -38,6 +41,9 @@ class TFCStateVersions(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/current-state-version``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#fetch-the-current-state-version-for-a-workspace>`_
+
         Fetches the current state version for the given workspace. This state version will be
         the input state when running terraform operations.
         """
@@ -47,6 +53,9 @@ class TFCStateVersions(TFCEndpoint):
     def list(self, filters=None, page=None, page_size=None):
         """
         ``GET /state-versions``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#list-state-versions-for-a-workspace>`_
 
         This endpoint supports pagination with standard URL Query parameter(s); remember to
         percent-encode.
@@ -79,6 +88,9 @@ class TFCStateVersions(TFCEndpoint):
     def show(self, state_version_id):
         """
         ``GET /state-versions/:state_version_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#show-a-state-version>`_
         """
         url = f"{self._state_version_api_v2_base_url}/{state_version_id}"
         return self._show(url)

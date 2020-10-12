@@ -25,6 +25,9 @@ class TFCAdminOrgs(TFCEndpoint):
     def destroy(self, org_name):
         """
         ``DELETE /admin/organizations/:name``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#delete-an-organization>`_
         """
         url = f"{self._endpoint_base_url}/{org_name}"
         return self._destroy(url)
@@ -33,6 +36,9 @@ class TFCAdminOrgs(TFCEndpoint):
         """
         ``GET /admin/organizations``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#list-all-organizations>`_
+
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
         return self._list(self._endpoint_base_url)
@@ -40,6 +46,9 @@ class TFCAdminOrgs(TFCEndpoint):
     def show(self, org_name):
         """
         ``GET /admin/organizations/:name``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#show-an-organization>`_
         """
         url = f"{self._endpoint_base_url}/{org_name}"
         return self._show(url)

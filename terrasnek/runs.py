@@ -33,6 +33,9 @@ class TFCRuns(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/runs``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run.html#list-runs-in-a-workspace>`_
+
         Query parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/run.html#query-parameters>`_):
             - ``page`` (Optional)
@@ -45,6 +48,9 @@ class TFCRuns(TFCEndpoint):
         """
         ``GET /runs/:run_id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run.html#get-run-details>`_
+
         This endpoint is used for showing details of a specific run.
         """
         url = f"{self._runs_api_v2_base_url}/{run_id}"
@@ -53,6 +59,9 @@ class TFCRuns(TFCEndpoint):
     def create(self, payload):
         """
         ``POST /runs``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run.html#create-a-run>`_
 
         A run performs a plan and apply, using a configuration version and the workspace’s
         current variables. You can specify a configuration version when creating a run; if
@@ -66,6 +75,9 @@ class TFCRuns(TFCEndpoint):
     def apply(self, run_id, comment=None):
         """
         ``POST /runs/:run_id/actions/apply``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run.html#apply-a-run>`_
 
         Applies a run that is paused waiting for confirmation after a plan. This includes runs
         in the "needs confirmation" and "policy checked" states. This action is only required for
@@ -92,6 +104,9 @@ class TFCRuns(TFCEndpoint):
         """
         ``POST /runs/:run_id/actions/discard``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run.html#discard-a-run>`_
+
         The discard action can be used to skip any remaining work on runs that are paused
         waiting for confirmation or priority. This includes runs in the "pending,"
         "needs confirmation," "policy checked," and "policy override" states.
@@ -114,6 +129,9 @@ class TFCRuns(TFCEndpoint):
     def cancel(self, run_id, comment=None):
         """
         ``POST /runs/:run_id/actions/cancel``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run.html#cancel-a-run>`_
 
         The cancel action can be used to interrupt a run that is currently planning or applying.
         Performing a cancel is roughly equivalent to hitting ctrl+c during a Terraform plan or
@@ -138,6 +156,9 @@ class TFCRuns(TFCEndpoint):
     def force_cancel(self, run_id, comment=None):
         """
         ``POST /runs/:run_id/actions/force-cancel``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run.html#forcefully-cancel-a-run>`_
 
         The force-cancel action is like cancel, but ends the run immediately. Once invoked,
         the run is placed into a canceled state, and the running Terraform process is terminated.
@@ -166,6 +187,9 @@ class TFCRuns(TFCEndpoint):
     def force_execute(self, run_id):
         """
         ``POST /runs/:run_id/actions/force-execute``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run.html#forcefully-execute-a-run>`_
 
         The force-execute action cancels all prior runs that are not already complete, unlocking
         the run's workspace and allowing the run to be executed. (It initiates the same actions

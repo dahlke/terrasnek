@@ -26,6 +26,9 @@ class TFCStateVersionOutputs(TFCEndpoint):
         """
         ``GET /state-version-outputs/:state_version_output_id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/state-version-outputs.html#show-a-state-version-output>`_
+
         State version output IDs must be obtained from a state version object. When requesting a
         state version, you can optionally add ?include=outputs to include full details for all of
         that state version's outputs.

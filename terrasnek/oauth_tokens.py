@@ -28,6 +28,9 @@ class TFCOAuthTokens(TFCEndpoint):
         """
         ``GET /oauth-clients/:oauth_client_id/oauth-tokens``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#list-oauth-tokens>`_
+
         List all the OAuth Tokens for a given OAuth Client
         """
         url = f"{self._oauth_clients_api_v2_base_url}/{oauth_client_id}/oauth-tokens"
@@ -36,6 +39,9 @@ class TFCOAuthTokens(TFCEndpoint):
     def show(self, token_id):
         """
         ``GET /oauth-tokens/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#show-an-oauth-token>`_
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"
         return self._show(url)
@@ -43,6 +49,9 @@ class TFCOAuthTokens(TFCEndpoint):
     def update(self, token_id, payload):
         """
         ``PATCH /oauth-tokens/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#update-an-oauth-token>`_
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"
         return self._update(url, payload)
@@ -50,6 +59,9 @@ class TFCOAuthTokens(TFCEndpoint):
     def destroy(self, token_id):
         """
         ``DELETE /oauth-tokens/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#destroy-an-oauth-token>`_
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"
         return self._destroy(url)

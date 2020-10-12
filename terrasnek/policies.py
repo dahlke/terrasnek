@@ -27,6 +27,9 @@ class TFCPolicies(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/policies``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policies.html#create-a-policy>`_
+
         This creates a new policy object for the organization, but does not upload
         the actual policy code
 
@@ -38,6 +41,9 @@ class TFCPolicies(TFCEndpoint):
     def list(self, page=None, page_size=None, search=None):
         """
         ``GET /organizations/:organization_name/policies``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policies.html#list-policies>`_
 
         Query parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/policies.html#query-parameters>`_):
@@ -51,6 +57,9 @@ class TFCPolicies(TFCEndpoint):
     def show(self, policy_id):
         """
         ``GET /policies/:policy_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policies.html#show-a-policy>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}"
         return self._show(url)
@@ -58,6 +67,9 @@ class TFCPolicies(TFCEndpoint):
     def update(self, policy_id, payload):
         """
         ``PATCH /policies/:policy_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policies.html#update-a-policy>`_
 
         This endpoint can update the enforcement mode of an existing policy. To
         update the policy code itself, use the upload endpoint.
@@ -72,6 +84,9 @@ class TFCPolicies(TFCEndpoint):
         """
         ``PUT /policies/:policy_id/upload``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policies.html#upload-a-policy>`_
+
         This endpoint uploads code to an existing Sentinel policy.
 
         `Sample payload \
@@ -83,6 +98,9 @@ class TFCPolicies(TFCEndpoint):
     def destroy(self, policy_id):
         """
         ``DELETE /policies/:policy_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policies.html#delete-a-policy>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}"
         return self._destroy(url)

@@ -28,6 +28,9 @@ class TFCTeams(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/teams``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/teams.html#create-a-team>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload>`_
         """
@@ -36,6 +39,9 @@ class TFCTeams(TFCEndpoint):
     def destroy(self, team_id):
         """
         ``DELETE /teams/:team_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/teams.html#delete-a-team>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._destroy(url)
@@ -43,12 +49,18 @@ class TFCTeams(TFCEndpoint):
     def list(self):
         """
         ``GET organizations/:organization_name/teams``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/teams.html#list-teams>`_
         """
         return self._list(self._org_api_v2_base_url)
 
     def show(self, team_id):
         """
         ``GET /teams/:team_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/teams.html#show-team-information>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._show(url)
@@ -56,6 +68,9 @@ class TFCTeams(TFCEndpoint):
     def update(self, team_id, payload):
         """
         ``PATCH /teams/:team_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/teams.html#update-a-team>`_
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload-1>`_

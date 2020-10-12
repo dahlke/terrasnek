@@ -26,6 +26,9 @@ class TFCPlanExports(TFCEndpoint):
         """
         ``POST /plan-exports``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/plan-exports.html#create-a-plan-export>`_
+
         This endpoint exports data from a plan in the specified format. The export process
         is asynchronous, and the resulting data becomes downloadable when its status is
         "finished". The data is then available for one hour before expiring. After the hour
@@ -41,6 +44,9 @@ class TFCPlanExports(TFCEndpoint):
         """
         ``GET /plan-exports/:id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/plan-exports.html#show-a-plan-export>`_
+
         There is no endpoint to list plan exports. You can find IDs for plan exports in the
         relationships.exports property of a plan object.
         """
@@ -50,6 +56,9 @@ class TFCPlanExports(TFCEndpoint):
     def download(self, plan_export_id, target_path):
         """
         ``GET /plan-exports/:id/download``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/plan-exports.html#download-exported-plan-data>`_
 
         This endpoint generates a temporary URL to the location of the exported plan data in
         a .tar.gz archive, and then redirects to that link. If using a client that can follow
@@ -64,6 +73,9 @@ class TFCPlanExports(TFCEndpoint):
     def destroy(self, plan_export_id):
         """
         ``DELETE /plan-exports/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/plan-exports.html#delete-exported-plan-data>`_
 
         Plan exports expire after being available for one hour, but they can be deleted
         manually as well.

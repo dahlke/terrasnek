@@ -25,6 +25,9 @@ class TFCAuditTrails(TFCEndpoint):
         """
         ``GET /organization/audit-trail``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/audit-trails.html#list-audit-trails>`_
+
         Query parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/audit-trails.html#query-parameters>`_):
             - ``since`` (Optional)

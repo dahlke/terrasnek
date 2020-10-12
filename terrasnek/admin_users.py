@@ -22,6 +22,9 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``DELETE /admin/users/:id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#delete-a-user-account>`_
+
         This endpoint deletes a user's account from Terraform Cloud. To prevent unowned
         organizations, a user cannot be deleted if they are the sole owner of any organizations.
         The organizations must be given a new owner or deleted first.
@@ -32,6 +35,9 @@ class TFCAdminUsers(TFCEndpoint):
     def disable_two_factor(self, user_id):
         """
         ``POST /admin/users/:id/actions/disable_two_factor``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#disable-a-user-39-s-two-factor-authentication>`_
 
         This endpoint disables a user's two-factor authentication in the situation where they
         have lost access to their device and recovery codes. Before disabling a user's two-factor
@@ -45,6 +51,8 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/:id/actions/grant_admin``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#grant-a-user-administrative-privileges>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}/actions/grant_admin"
         return self._post(url)
@@ -52,6 +60,9 @@ class TFCAdminUsers(TFCEndpoint):
     def impersonate(self, user_id):
         """
         ``POST /admin/users/:id/actions/impersonate``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#impersonate-another-user>`_
 
         Impersonation allows an admin to begin a new session as another user in the system; for
         more information, see Impersonating a User in the Private Terraform Cloud
@@ -65,6 +76,9 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``GET /admin/users``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#list-all-users>`_
+
         This endpoint lists all user accounts in the Terraform Cloud installation.
         """
         return self._list(\
@@ -73,6 +87,9 @@ class TFCAdminUsers(TFCEndpoint):
     def revoke_admin(self, user_id):
         """
         ``POST /admin/users/:id/actions/revoke_admin``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#revoke-an-user-39-s-administrative-privileges>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}/actions/revoke_admin"
         return self._post(url)
@@ -80,6 +97,9 @@ class TFCAdminUsers(TFCEndpoint):
     def suspend(self, user_id):
         """
         ``POST /admin/users/:id/actions/suspend``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#suspend-a-user>`_
 
         This endpoint suspends a user's account, preventing them from authenticating
         and accessing resources.
@@ -91,6 +111,8 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/actions/unimpersonate``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#end-an-impersonation-session>`_
 
         When an admin has used the above endpoint to begin an impersonation session, they
         can make a request to this endpoint, using the cookie provided originally, in order
@@ -106,6 +128,9 @@ class TFCAdminUsers(TFCEndpoint):
     def unsuspend(self, user_id):
         """
         ``POST /admin/users/:id/actions/unsuspend``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/users.html#re-activate-a-suspended-user>`_
 
         This endpoint re-activates a suspended user's account, allowing them to
         resume authenticating and accessing resources.

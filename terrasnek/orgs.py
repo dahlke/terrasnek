@@ -23,6 +23,9 @@ class TFCOrgs(TFCEndpoint):
         """
         ``POST /organizations``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#create-an-organization>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload>`_
         """
@@ -31,6 +34,9 @@ class TFCOrgs(TFCEndpoint):
     def destroy(self, org_name):
         """
         ``DELETE /organizations/:organization_name``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#destroy-an-organization>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._destroy(url)
@@ -38,6 +44,9 @@ class TFCOrgs(TFCEndpoint):
     def entitlements(self, org_name):
         """
         ``GET /organizations/:organization_name/entitlement-set``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#show-the-entitlement-set>`_
 
         This endpoint shows the entitlements for an organization.
         """
@@ -47,12 +56,18 @@ class TFCOrgs(TFCEndpoint):
     def list(self):
         """
         ``GET /organizations``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#list-organizations>`_
         """
         return self._list(self._org_api_v2_base_url)
 
     def show(self, org_name):
         """
         ``GET /organizations/:organization_name``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#show-an-organization>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._show(url)
@@ -60,6 +75,9 @@ class TFCOrgs(TFCEndpoint):
     def update(self, org_name, payload):
         """
         ``PATCH /organizations/:organization_name``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#update-an-organization>`_
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload-1>`_

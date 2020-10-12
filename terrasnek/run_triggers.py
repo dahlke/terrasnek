@@ -21,6 +21,9 @@ class TFCRunTriggers(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/run-triggers``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-triggers.html#create-a-run-trigger>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#sample-payload>`_
         """
@@ -30,6 +33,9 @@ class TFCRunTriggers(TFCEndpoint):
     def list(self, workspace_id, filters=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/run-triggers``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-triggers.html#list-run-triggers>`_
 
         Query parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`_):
@@ -53,6 +59,9 @@ class TFCRunTriggers(TFCEndpoint):
     def show(self, run_trigger_id):
         """
         ``GET /run-triggers/:run_trigger_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-triggers.html#show-a-run-trigger>`_
         """
         url = f"{self._endpoint_base_url}/{run_trigger_id}"
         return self._show(url)
@@ -60,6 +69,9 @@ class TFCRunTriggers(TFCEndpoint):
     def destroy(self, run_trigger_id):
         """
         ``DELETE /run-triggers/:run_trigger_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-triggers.html#delete-a-run-trigger>`_
         """
         url = f"{self._endpoint_base_url}/{run_trigger_id}"
         return self._destroy(url)

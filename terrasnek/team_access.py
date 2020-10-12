@@ -26,6 +26,9 @@ class TFCTeamAccess(TFCEndpoint):
         """
         ``POST /team-workspaces``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-access.html#add-team-access-to-a-workspace>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/team-access.html#sample-payload>`_
         """
@@ -34,6 +37,9 @@ class TFCTeamAccess(TFCEndpoint):
     def list(self, filters=None):
         """
         ``GET /team-workspaces``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-access.html#list-team-access-to-a-workspace>`_
 
         Query parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/team-access.html#query-parameters>`_):
@@ -55,6 +61,9 @@ class TFCTeamAccess(TFCEndpoint):
     def remove_team_access(self, access_id):
         """
         ``DELETE /team-workspaces/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-access.html#remove-team-access-to-a-workspace>`_
         """
         url = f"{self._endpoint_base_url}/{access_id}"
         return self._delete(url)
@@ -62,6 +71,9 @@ class TFCTeamAccess(TFCEndpoint):
     def show(self, access_id):
         """
         ``GET /team-workspaces/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-access.html#show-a-team-access-relationship>`_
         """
         url = f"{self._endpoint_base_url}/{access_id}"
         return self._show(url)
@@ -69,6 +81,9 @@ class TFCTeamAccess(TFCEndpoint):
     def update(self, access_id, payload):
         """
         ``PATCH /team-workspaces/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-access.html#update-team-access-to-a-workspace>`_
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/team-access.html#sample-payload-1>`_

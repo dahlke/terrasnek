@@ -1,5 +1,5 @@
 ************* Module terrasnek.vars
-terrasnek/vars.py:31:2: W0511: TODO: take the filters in the standard way here. (fixme)
+terrasnek/vars.py:34:2: W0511: TODO: take the filters in the standard way here for list (fixme)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:99:2: W0511: TODO: surface error and status code (fixme)
 ************* Module test.agents_test
@@ -19,5 +19,5 @@ test/base.py:109:2: W0511: TODO: purge modules (fixme)
 test/base.py:93:55: E1135: Value 'cls._endpoint_being_tested' doesn't support membership test (unsupported-membership-test)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.94/10 (previous run: 9.92/10, +0.02)
+Your code has been rated at 9.94/10 (previous run: 9.94/10, +0.00)
 

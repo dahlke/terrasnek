@@ -28,6 +28,9 @@ class TFCAdminWorkspaces(TFCEndpoint):
         """
         ``GET /admin/workspaces``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#list-all-workspaces>`_
+
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
         return self._list(\
@@ -37,6 +40,9 @@ class TFCAdminWorkspaces(TFCEndpoint):
     def show(self, ws_id):
         """
         ``GET /admin/workspaces/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#show-a-workspace>`_
         """
         url = f"{self._endpoint_base_url}/{ws_id}"
         return self._show(url)
@@ -44,6 +50,9 @@ class TFCAdminWorkspaces(TFCEndpoint):
     def destroy(self, ws_id):
         """
         ``DELETE /admin/workspaces/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#destroy-a-workspace>`_
         """
         url = f"{self._endpoint_base_url}/{ws_id}"
         return self._destroy(url)

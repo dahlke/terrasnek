@@ -35,10 +35,10 @@ class TFCAccount(TFCEndpoint):
         """
         ``PATCH /account/update``
 
-        Your username and email address can be updated with this endpoint.
-
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/account.html#update-your-account-info>`_
+
+        Your username and email address can be updated with this endpoint.
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_

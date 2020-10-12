@@ -22,6 +22,9 @@ class TFCUserTokens(TFCEndpoint):
         """
         ``POST /users/:user_id/authentication-tokens``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/user-tokens.html#create-a-user-token>`_
+
         This endpoint returns the secret text of the created authentication token. A token
         is only shown upon creation, and cannot be recovered later.
 
@@ -40,6 +43,9 @@ class TFCUserTokens(TFCEndpoint):
         """
         ``DELETE /authentication-tokens/:id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/user-tokens.html#destroy-a-user-token>`_
+
         NOTE: the following method descriptor is here for the api_comparison.py script to pass,
         since it uses a different prefix than the majority of endpoints.
 
@@ -51,6 +57,9 @@ class TFCUserTokens(TFCEndpoint):
     def list(self, user_id):
         """
         ``GET /users/:user_id/authentication-tokens``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/user-tokens.html#list-user-tokens>`_
 
         Use the Account API to find your own user ID.
 
@@ -69,6 +78,9 @@ class TFCUserTokens(TFCEndpoint):
     def show(self, token_id):
         """
         ``GET /authentication-tokens/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/user-tokens.html#show-a-user-token>`_
 
         The objects returned by this endpoint only contain metadata, and do not include the
         secret text of any authentication tokens. A token is only shown upon creation, and

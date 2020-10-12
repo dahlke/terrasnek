@@ -22,6 +22,9 @@ class TFCPolicySetParams(TFCEndpoint):
         """
         ``POST /policy-sets/:policy_set_id/parameters``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policy-set-params.html#create-a-parameter>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload>`_
         """
@@ -31,6 +34,9 @@ class TFCPolicySetParams(TFCEndpoint):
     def list(self, policy_set_id):
         """
         ``GET /policy-sets/:policy_set_id/parameters``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policy-set-params.html#list-parameters>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters"
         return self._list(url)
@@ -38,6 +44,9 @@ class TFCPolicySetParams(TFCEndpoint):
     def update(self, policy_set_id, parameter_id, payload):
         """
         ``PATCH /policy-sets/:policy_set_id/parameters/:parameter_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policy-set-params.html#update-parameters>`_
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload-1>`_
@@ -48,6 +57,9 @@ class TFCPolicySetParams(TFCEndpoint):
     def destroy(self, policy_set_id, parameter_id):
         """
         ``DELETE /policy-sets/:policy_set_id/parameters/:parameter_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policy-set-params.html#delete-parameters>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters/{parameter_id}"
         return self._destroy(url)

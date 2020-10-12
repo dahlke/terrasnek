@@ -25,6 +25,9 @@ class TFCTeamTokens(TFCEndpoint):
         """
         ``POST /teams/:team_id/authentication-token``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-tokens.html#generate-a-new-team-token>`_
+
         Generates a new team token and overrides existing token if one exists.
         """
         url = f"{self._endpoint_base_url}/{team_id}/authentication-token"
@@ -35,6 +38,9 @@ class TFCTeamTokens(TFCEndpoint):
     def destroy(self, team_id):
         """
         ``DELETE /teams/:team_id/authentication-token``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-tokens.html#delete-the-team-token>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/authentication-token"
         return self._destroy(url)

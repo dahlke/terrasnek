@@ -24,6 +24,9 @@ class TFCApplies(TFCEndpoint):
         """
         ``GET /applies/:id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/applies.html#show-an-apply>`_
+
         There is no endpoint to list applies. You can find the ID for an apply in
         the relationships.apply property of a run object.
         """

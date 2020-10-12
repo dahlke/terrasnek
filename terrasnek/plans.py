@@ -26,8 +26,11 @@ class TFCPlans(TFCEndpoint):
         """
         ``GET /plans/:id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/plans.html#show-a-plan>`_
+
         Show the plan by it's ID. There is no endpoint to list plans. You can find the ID for
-        a plan in the relationships.plan property of a run object.
+        a plan in the ``relationships.plan`` property of a run object.
         """
         url = f"{self._endpoint_base_url}/{plan_id}"
         return self._show(url)
@@ -36,6 +39,9 @@ class TFCPlans(TFCEndpoint):
         """
         ``GET /plans/:id/json-output``
         ``GET /runs/:id/plan/json-output``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/plans.html#retrieve-the-json-execution-plan>`_
 
         Show the plan in JSON format, by either the plan ID itself, or through the run itself.
 

@@ -24,6 +24,9 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/workspaces``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#create-a-workspace>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload>`_
         """
@@ -33,6 +36,9 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``DELETE /organizations/:organization_name/workspaces/:name``
         ``DELETE /workspaces/:workspace_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#delete-a-workspace>`_
 
         A workspace can be deleted via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
@@ -50,6 +56,9 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/actions/force-unlock``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#force-unlock-a-workspace>`_
+
         This endpoint force unlocks a workspace. Only users with admin access are authorized to
         force unlock a workspace.
         """
@@ -59,6 +68,9 @@ class TFCWorkspaces(TFCEndpoint):
     def lock(self, workspace_id, payload):
         """
         ``POST /workspaces/:workspace_id/actions/lock``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#lock-a-workspace>`_
 
         This endpoint locks a workspace.
 
@@ -71,6 +83,9 @@ class TFCWorkspaces(TFCEndpoint):
     def list(self, page=None, page_size=None):
         """
         ``GET /organizations/:organization_name/workspaces``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#list-workspaces>`_
 
         This endpoint lists workspaces in the organization.
 
@@ -85,6 +100,9 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/workspaces/:name``
         ``GET /workspaces/:workspace_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#show-workspace>`_
 
         Details on a workspace can be retrieved from two endpoints, which behave identically.
         One refers to a workspace by its ID, and the other by its name and organization.
@@ -102,6 +120,9 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/actions/unlock``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#unlock-a-workspace>`_
+
         This endpoint unlocks a workspace.
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/unlock"
@@ -111,6 +132,9 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``PATCH /organizations/:organization_name/workspaces/:name``
         ``PATCH /workspaces/:workspace_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#update-a-workspace>`_
 
         A workspace can be updated via two endpoints, which behave identically. One refers to a
         workspace by its ID, and the other by its name and organization.
@@ -131,6 +155,9 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``PATCH /workspaces/:workspace_id/relationships/ssh-key``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#assign-an-ssh-key-to-a-workspace>`_
+
         This endpoint assigns an SSH key to a workspace.
 
         `Sample payload \
@@ -142,6 +169,9 @@ class TFCWorkspaces(TFCEndpoint):
     def unassign_ssh_key(self, workspace_id, payload):
         """
         ``PATCH /workspaces/:workspace_id/relationships/ssh-key``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#unassign-an-ssh-key-from-a-workspace>`_
 
         This endpoint unassigns the currently assigned SSH key from a
         workspace.

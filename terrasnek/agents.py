@@ -23,6 +23,9 @@ class TFCAgents(TFCEndpoint):
     def create_pool(self):
         """
         ``POST /organizations/:organization_name/agent-pool``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agents.html#create-an-agent-pool>`_
         """
         url = f"{self._org_api_v2_base_url}/{self._org_name}/agent-pools"
         payload = {
@@ -35,6 +38,9 @@ class TFCAgents(TFCEndpoint):
     def list_pools(self):
         """
         ``GET /organizations/:organization_name/agent-pools``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agents.html#list-agent-pools>`_
         """
         url = f"{self._org_api_v2_base_url}/{self._org_name}/agent-pools"
         return self._list(url)
@@ -42,6 +48,9 @@ class TFCAgents(TFCEndpoint):
     def list(self, agent_pool_id, filters=None):
         """
         ``GET /agent-pools/:agent_pool_id/agents``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agents.html#list-agents>`_
 
         Query parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/agents.html#query-parameters>`_):
@@ -64,6 +73,9 @@ class TFCAgents(TFCEndpoint):
     def show_pool(self, agent_pool_id):
         """
         ``GET /agent-pools/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agents.html#show-an-agent-pool>`_
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}"
         return self._show(url)
@@ -71,6 +83,9 @@ class TFCAgents(TFCEndpoint):
     def show(self, agent_id):
         """
         ``GET /agents/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agents.html#show-an-agent>`_
         """
         url = f"{self._agents_api_v2_base_url}/{agent_id}"
         return self._show(url)

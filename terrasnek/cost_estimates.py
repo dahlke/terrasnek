@@ -22,6 +22,9 @@ class TFCCostEstimates(TFCEndpoint):
     def show(self, cost_est_id):
         """
         ``GET /cost-estimates/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/cost-estimates.html#show-a-cost-estimate>`_
         """
         url = f"{self._endpoint_base_url}/{cost_est_id}"
         return self._show(url)

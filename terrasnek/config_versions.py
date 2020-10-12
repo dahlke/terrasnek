@@ -26,6 +26,9 @@ class TFCConfigVersions(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/configuration-versions``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#list-configuration-versions>`_
+
         Query parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#query-parameters>`_):
             - ``since`` (Optional)
@@ -37,6 +40,9 @@ class TFCConfigVersions(TFCEndpoint):
     def show(self, config_version_id):
         """
         ``GET /configuration-versions/:configuration-id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#show-a-configuration-version>`_
         """
         url = f"{self._config_version_api_v2_base_url}/{config_version_id}"
         return self._show(url)
@@ -44,6 +50,9 @@ class TFCConfigVersions(TFCEndpoint):
     def create(self, workspace_id, payload):
         """
         ``POST /workspaces/:workspace_id/configuration-versions``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#create-a-configuration-version>`_
 
         This POST endpoint requires a JSON object with the following properties as a request
         payload.
@@ -59,6 +68,9 @@ class TFCConfigVersions(TFCEndpoint):
     def upload(self, path_to_tarball, upload_url):
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#upload-configuration-files>`_
 
         The above URL is derived.
         """

@@ -25,6 +25,9 @@ class TFCTeamMemberships(TFCEndpoint):
         """
         ``POST /teams/:team_id/relationships/users``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-members.html#add-a-user-to-team>`_
+
         This method adds multiple users to a team. Both users and teams must already exist.
 
         `Sample payload \
@@ -36,6 +39,9 @@ class TFCTeamMemberships(TFCEndpoint):
     def remove_user_from_team(self, team_id, payload):
         """
         ``DELETE /teams/:team_id/relationships/users``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/team-members.html#delete-a-user-from-team>`_
 
         This method removes multiple users from a team. Both users and teams must already exist.
         This DOES NOT delete the user; it only removes them from this team.

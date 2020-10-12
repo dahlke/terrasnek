@@ -21,6 +21,9 @@ class TFCAgentTokens(TFCEndpoint):
     def create(self, agent_pool_id, description="api"):
         """
         ``POST /agent-pools/:agent_pool_id/authentication-tokens``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agent-tokens.html#create-an-agent-token>`_
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}/authentication-tokens"
         payload = {
@@ -36,6 +39,9 @@ class TFCAgentTokens(TFCEndpoint):
     def list(self, agent_pool_id):
         """
         ``GET /agent-pools/:agent_pool_id/authentication-tokens``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agent-tokens.html#list-agent-tokens>`_
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}/authentication-tokens"
         return self._list(url)
@@ -43,6 +49,9 @@ class TFCAgentTokens(TFCEndpoint):
     def show(self, token_id):
         """
         ``GET /authentication-tokens/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agent-tokens.html#show-an-agent-token>`_
         """
         url = f"{self._auth_tokens_api_v2_base_url}/{token_id}"
         return self._show(url)
@@ -50,6 +59,9 @@ class TFCAgentTokens(TFCEndpoint):
     def destroy(self, token_id):
         """
         ``DELETE /api/v2/authentication-tokens/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/agent-tokens.html#destroy-an-agent-token>`_
 
         NOTE: Including this function definition, since it matches what is in
         the docs and is used for the API comparison.

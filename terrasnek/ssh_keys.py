@@ -38,6 +38,9 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/ssh-keys``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/ssh-keys.html#create-an-ssh-key>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload>`_
         """
@@ -46,12 +49,18 @@ class TFCSSHKeys(TFCEndpoint):
     def list(self):
         """
         ``GET /organizations/:organization_name/ssh-keys``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/ssh-keys.html#list-ssh-keys>`_
         """
         return self._list(self._org_api_v2_base_url)
 
     def show(self, ssh_key_id):
         """
         ``GET /ssh-keys/:ssh_key_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/ssh-keys.html#get-an-ssh-key>`_
         """
         url = f"{self._endpoint_base_url}/{ssh_key_id}"
         return self._show(url)
@@ -59,6 +68,9 @@ class TFCSSHKeys(TFCEndpoint):
     def update(self, ssh_key_id, payload):
         """
         ``PATCH /ssh-keys/:ssh_key_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/ssh-keys.html#update-an-ssh-key>`_
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload-1>`_
@@ -69,6 +81,9 @@ class TFCSSHKeys(TFCEndpoint):
     def destroy(self, ssh_key_id):
         """
         ``DELETE /ssh-keys/:ssh_key_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/ssh-keys.html#delete-an-ssh-key>`_
         """
         url = f"{self._endpoint_base_url}/{ssh_key_id}"
         return self._destroy(url)

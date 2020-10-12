@@ -32,6 +32,9 @@ class TFCRegistryModules(TFCEndpoint):
         https://www.terraform.io/docs/registry/api.html#list-modules
         ``GET <base_url>``
         ``GET <base_url>/:namespace``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/registry/api.html#list-modules>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}"
         return self._list(\
@@ -40,6 +43,9 @@ class TFCRegistryModules(TFCEndpoint):
     def search(self, query, offset=None, limit=None, provider=None, verified=None):
         """
         ``GET <base_url>/search``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/registry/api.html#search-modules>`_
         """
         url = f"{self._modules_v1_base_url}/search"
         return self._list(url, \
@@ -49,6 +55,9 @@ class TFCRegistryModules(TFCEndpoint):
     def show(self, module_name, provider):
         """
         ``GET /registry-modules/show/:organization_name/:name/:provider``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/modules.html#show-a-module>`_
         """
         url = f"{self._modules_v2_base_url}/show/{self._org_name}/{module_name}/{provider}"
         return self._show(url)
@@ -56,6 +65,9 @@ class TFCRegistryModules(TFCEndpoint):
     def list_versions(self, name, provider):
         """
         ``GET <base_url>/:namespace/:name/:provider/versions``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/registry/api.html#list-available-versions-for-a-specific-module>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/versions"
         return self._get(url)
@@ -63,6 +75,9 @@ class TFCRegistryModules(TFCEndpoint):
     def list_latest_version_all_providers(self, name, offset=None, limit=None):
         """
         ``GET <base_url>/:namespace/:name``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/registry/api.html#list-latest-version-of-module-for-all-providers>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}"
         return self._list(url, offset=offset, limit=limit)
@@ -70,6 +85,9 @@ class TFCRegistryModules(TFCEndpoint):
     def list_latest_version_specific_provider(self, name, provider):
         """
         ``GET <base_url>/:namespace/:name/:provider``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/registry/api.html#latest-version-for-a-specific-module-provider>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}"
         return self._get(url)
@@ -77,6 +95,9 @@ class TFCRegistryModules(TFCEndpoint):
     def get(self, name, provider, version):
         """
         ``GET <base_url>/:namespace/:name/:provider/:version``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/registry/api.html#get-a-specific-module>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}"
         return self._get(url)
@@ -84,6 +105,9 @@ class TFCRegistryModules(TFCEndpoint):
     def download_version_source(self, name, provider, version, target_path):
         """
         ``GET <base_url>/:namespace/:name/:provider/:version/download``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/registry/api.html#download-source-code-for-a-specific-module-version>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}/download"
         return self._download(url, target_path, header_with_url="X-Terraform-Get")
@@ -91,6 +115,9 @@ class TFCRegistryModules(TFCEndpoint):
     def download_latest_source(self, name, provider, target_path):
         """
         ``GET <base_url>/:namespace/:name/:provider/download``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/registry/api.html#download-the-latest-version-of-a-module>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/download"
         return self._download(\
@@ -100,6 +127,9 @@ class TFCRegistryModules(TFCEndpoint):
     def publish_from_vcs(self, payload):
         """
         ``POST /registry-modules``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/modules.html#publish-a-module-from-a-vcs>`_
 
         Publishes a new registry module from a VCS repository, with module
         versions managed automatically by the repository's tags. The publishing
@@ -119,6 +149,9 @@ class TFCRegistryModules(TFCEndpoint):
         ``POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version``
         ``POST /registry-modules/actions/delete/:organization_name/:name/:provider``
         ``POST /registry-modules/actions/delete/:organization_name/:name``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/modules.html#delete-a-module>`_
         """
         url = f"{self._modules_v2_base_url}/actions/delete/{self._org_name}"
 
@@ -135,13 +168,14 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/registry-modules``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/modules.html#create-a-module`_
+
         Creates a new registry module without a backing VCS repository.
         After creating a module, a version must be created and uploaded in order to
         be usable. Modules created this way do not automatically update with new
         versions; instead, you must explicitly create and upload each new version
         with the Create a Module Version endpoint.
-
-        https://www.terraform.io/docs/cloud/api/modules.html#create-a-module
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/modules.html#request-body-1>`_
@@ -155,12 +189,13 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``POST /registry-modules/:organization_name/:name/:provider/versions``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/modules.html#create-a-module-version>`_
+
         Creates a new registry module version. This endpoint only applies
         to modules without a VCS repository; VCS-linked modules automatically create
         new versions for new tags. After creating the version, the module should be
         uploaded to the returned upload link.
-
-        https://www.terraform.io/docs/cloud/api/modules.html#create-a-module-version
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/modules.html#request-body-2>`_
@@ -173,10 +208,11 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/modules.html#upload-a-module-version>`_
+
         The URL is provided in the upload links attribute in the
         registry-module-versions resource.
-
-        https://www.terraform.io/docs/cloud/api/modules.html#upload-a-module-version
         """
         data = None
 

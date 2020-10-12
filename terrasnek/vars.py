@@ -23,15 +23,21 @@ class TFCVars(TFCEndpoint):
         """
         ``POST /vars``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variables.html#create-a-variable>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload>`_
         """
         return self._create(self._endpoint_base_url, payload)
 
+    # TODO: take the filters in the standard way here for list
     def list(self, workspace_name=None):
-        # TODO: take the filters in the standard way here.
         """
         ``GET /vars``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variables.html#list-variables>`_
 
         Query parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/variables.html#query-parameters>`_):
@@ -48,6 +54,9 @@ class TFCVars(TFCEndpoint):
         """
         ``PATCH /vars/:variable_id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variables.html#update-variables>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload-1>`_
         """
@@ -57,6 +66,9 @@ class TFCVars(TFCEndpoint):
     def destroy(self, variable_id):
         """
         ``DELETE /vars/:variable_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variables.html#delete-variables>`_
         """
         url = f"{self._endpoint_base_url}/{variable_id}"
         return self._destroy(url)

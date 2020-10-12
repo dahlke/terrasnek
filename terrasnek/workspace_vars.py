@@ -24,6 +24,9 @@ class TFCWorkspaceVars(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/vars``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspace-variables.html#create-a-variable>`_
+
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload>`_
         """
@@ -33,6 +36,9 @@ class TFCWorkspaceVars(TFCEndpoint):
     def list(self, workspace_id):
         """
         ``GET /workspaces/:workspace_id/vars``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspace-variables.html#list-variables>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/"
         return self._list(url)
@@ -40,6 +46,9 @@ class TFCWorkspaceVars(TFCEndpoint):
     def update(self, workspace_id, variable_id, payload):
         """
         ``PATCH /workspaces/:workspace_id/vars/:variable_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspace-variables.html#update-variables>`_
 
         `Sample payload \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload-1>`_
@@ -50,6 +59,9 @@ class TFCWorkspaceVars(TFCEndpoint):
     def destroy(self, workspace_id, variable_id):
         """
         ``DELETE /workspaces/:workspace_id/vars/:variable_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspace-variables.html#delete-variables>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/{variable_id}"
         return self._destroy(url)

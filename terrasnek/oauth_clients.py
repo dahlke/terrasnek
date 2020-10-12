@@ -26,6 +26,9 @@ class TFCOAuthClients(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/oauth-clients``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-clients.html#list-oauth-clients>`_
+
         This endpoint allows you to list VCS connections between an organization and a VCS
         provider (GitHub, Bitbucket, or GitLab) for use when creating or setting up workspaces.
         """
@@ -34,13 +37,19 @@ class TFCOAuthClients(TFCEndpoint):
     def show(self, client_id):
         """
         ``GET /oauth-clients/:id``
-        """
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-clients.html#show-an-oauth-client>`_
+       """
         url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"
         return self._show(url)
 
     def create(self, payload):
         """
         ``POST /organizations/:organization_name/oauth-clients``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-clients.html#create-an-oauth-client>`_
 
         This endpoint allows you to create a VCS connection between an organization and a VCS
         provider (GitHub or GitLab) for use when creating or setting up workspaces. By using
@@ -56,6 +65,9 @@ class TFCOAuthClients(TFCEndpoint):
         """
         ``PATCH /oauth-clients/:id``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-clients.html#update-an-oauth-client>`_
+
         Use caution when changing attributes with this endpoint; editing an OAuth client that
         workspaces are currently using can have unexpected effects.
 
@@ -68,6 +80,9 @@ class TFCOAuthClients(TFCEndpoint):
     def destroy(self, client_id):
         """
         ``DELETE /oauth-clients/:id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/oauth-clients.html#destroy-an-oauth-client>`_
 
         This endpoint allows you to remove an existing connection between an organization and a
         VCS provider (GitHub, Bitbucket, or GitLab).

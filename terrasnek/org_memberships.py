@@ -27,6 +27,9 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/organization-memberships``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#invite-a-user-to-an-organization>`_
+
         This endpoint invites a user to join an organization.
 
         `Sample payload \
@@ -37,6 +40,9 @@ class TFCOrgMemberships(TFCEndpoint):
     def list_for_org(self, query=None, filters=None, page=None, page_size=None):
         """
         ``GET /organizations/:organization_name/organization-memberships``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#list-memberships-for-an-organization>`_
 
         This endpoint retrieves all the users in the active organization.
 
@@ -66,6 +72,9 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         ``GET /organization-memberships``
 
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#list-user-39-s-own-memberships>`_
+
         This endpoint retrieves all the organizations for the active user.
         """
         return self._list(self._endpoint_base_url)
@@ -73,6 +82,9 @@ class TFCOrgMemberships(TFCEndpoint):
     def show(self, org_membership_id):
         """
         ``GET /organization-memberships/:organization_membership_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#show-a-membership>`_
 
         This endpoint shows organization membership details for the
         specified organization membership ID.
@@ -83,6 +95,9 @@ class TFCOrgMemberships(TFCEndpoint):
     def remove(self, org_membership_id):
         """
         ``DELETE /organization-memberships/:organization_membership_id``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#remove-user-from-organization>`_
 
         This endpoint removes a user from an organization using the
         specified organization membership ID.

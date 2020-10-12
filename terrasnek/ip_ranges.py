@@ -22,5 +22,8 @@ class TFCIPRanges(TFCEndpoint):
     def list(self):
         """
         ``GET /meta/ip-ranges``
+
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/ip-ranges.html#get-ip-ranges>`_
         """
         return self._list(self._endpoint_base_url)
