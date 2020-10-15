@@ -6,8 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCIPRanges(TFCEndpoint):
     """
-    The IP Ranges API is used to list egress IP ranges.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/ip-ranges.html>`_
     """

@@ -6,14 +6,15 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminWorkspaces(TFCEndpoint):
     """
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/admin/workspaces.html>`_
+
     The Admin API is exclusive to Terraform Enterprise, and can only be used
     by the admins and operators who install and maintain their organization's
     Terraform Enterprise instance.
 
     The Workspaces Admin API contains endpoints to help site administrators manage
     workspaces.
-
-    https://www.terraform.io/docs/cloud/api/admin/workspaces.html
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -30,8 +31,6 @@ class TFCAdminWorkspaces(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#list-all-workspaces>`_
-
-        This endpoint lists all organizations in the Terraform Cloud installation.
         """
         return self._list(\
             self._endpoint_base_url, filters=filters, \

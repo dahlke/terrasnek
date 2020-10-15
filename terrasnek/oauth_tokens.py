@@ -7,11 +7,6 @@ from._constants import Entitlements
 
 class TFCOAuthTokens(TFCEndpoint):
     """
-    The oauth-token object represents a VCS configuration which includes the OAuth
-    connection and the associated OAuth token. This object is used when creating a
-    workspace to identify which VCS connection to use.
-
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/oauth-tokens.html>`_
     """
@@ -30,8 +25,6 @@ class TFCOAuthTokens(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#list-oauth-tokens>`_
-
-        List all the OAuth Tokens for a given OAuth Client
         """
         url = f"{self._oauth_clients_api_v2_base_url}/{oauth_client_id}/oauth-tokens"
         return self._list(url)

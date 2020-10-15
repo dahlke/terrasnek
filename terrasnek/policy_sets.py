@@ -7,17 +7,6 @@ from ._constants import Entitlements
 
 class TFCPolicySets(TFCEndpoint):
     """
-    Policy sets are groups of policies that are applied together to related
-    workspaces. By using policy sets, you can group your policies by
-    attributes such as environment or region. Individual policies within a
-    policy set will only be checked for workspaces that the policy set
-    is attached to.
-
-    Policy sets can group indidual policies created via the policies API,
-    or act as versioned sets which are either sourced from a version control
-    system (such as GitHub) or uploaded as a whole via the policy set
-    versions API.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/policy-sets.html>`_
     """
@@ -38,7 +27,7 @@ class TFCPolicySets(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#create-a-policy-set>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -50,7 +39,7 @@ class TFCPolicySets(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets>`_
 
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#query-parameters>`_):
             - ``filter[versioned]`` (Optional)
             - ``include`` (Optional)
@@ -91,7 +80,7 @@ class TFCPolicySets(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#update-a-policy-set>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}"
@@ -114,7 +103,7 @@ class TFCPolicySets(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#add-policies-to-the-policy-set>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-2>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/relationships/policies"
@@ -127,7 +116,7 @@ class TFCPolicySets(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#attach-a-policy-set-to-workspaces>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-3>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
@@ -140,7 +129,7 @@ class TFCPolicySets(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#remove-policies-from-the-policy-set>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-4>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/policies"
@@ -153,7 +142,7 @@ class TFCPolicySets(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#detach-the-policy-set-from-workspaces>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-5>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
@@ -165,11 +154,6 @@ class TFCPolicySets(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#create-a-policy-set-version>`_
-
-        For versioned policy sets which have no VCS repository attached,
-        versions of policy code may be uploaded directly to the API by
-        creating a new policy set version and, in a subsequent request,
-        uploading a tarball (tar.gz) of data to it.
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/versions"
         return self._post(url)

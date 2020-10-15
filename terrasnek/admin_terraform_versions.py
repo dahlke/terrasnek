@@ -6,11 +6,8 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminTerraformVersions(TFCEndpoint):
     """
-    The Terraform Versions Admin API lets site administrators manage which
-    versions of Terraform are available to the Terraform Cloud users within
-    their enterprise.
-
-    https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -23,8 +20,6 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html#list-all-terraform-versions>`_
-
-        This endpoint lists all organizations in the Terraform Cloud installation.
         """
         return self._list(self._endpoint_base_url, page=page, page_size=page_size)
 

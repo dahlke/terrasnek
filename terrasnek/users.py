@@ -6,12 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCUsers(TFCEndpoint):
     """
-    Terraform Cloud (TFC)'s user objects do not contain any identifying information about a
-    user, other than their TFC username and avatar image; they are intended for displaying names
-    and avatars in contexts that refer to a user by ID, like lists of team members or the details
-    of a run. Most of these contexts can already include user objects via an ?include parameter,
-    so you shouldn't usually need to make a separate call to this endpoint.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/users.html>`_
     """
@@ -29,8 +23,6 @@ class TFCUsers(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/users.html#show-a-user>`_
-
-        Shows details for a given user.
         """
         url = f"{self._users_api_v2_base_url}/{user_id}"
         return self._show(url)

@@ -6,13 +6,8 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminOrgs(TFCEndpoint):
     """
-    The Admin API is exclusive to Terraform Enterprise, and can only be used
-    by the admins and operators who install and maintain their organization's
-    Terraform Enterprise instance.
-
-    The Orgs Admin API contains endpoints to help site administrators manage organizations.
-
-    https://www.terraform.io/docs/cloud/api/admin/organizations.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/admin/organizations.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

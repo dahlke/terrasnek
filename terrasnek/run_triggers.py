@@ -24,7 +24,7 @@ class TFCRunTriggers(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#create-a-run-trigger>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#sample-payload>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
@@ -37,7 +37,7 @@ class TFCRunTriggers(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#list-run-triggers>`_
 
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`_):
             - ``filter[run-trigger][type]`` (Required)
             - ``page_size`` (Optional)

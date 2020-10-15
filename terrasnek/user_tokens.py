@@ -25,15 +25,12 @@ class TFCUserTokens(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#create-a-user-token>`_
 
-        This endpoint returns the secret text of the created authentication token. A token
-        is only shown upon creation, and cannot be recovered later.
-
-        NOTE: the following method descriptor is here for the api_comparison.py script to pass,
+        NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
         since it uses a different prefix than the majority of endpoints.
 
         ``POST /api/v2/users/:user_id/authentication-tokens``
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#sample-payload>`_
         """
         url = f"{self._users_api_v2_base_url}/{user_id}/authentication-tokens"
@@ -46,7 +43,7 @@ class TFCUserTokens(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#destroy-a-user-token>`_
 
-        NOTE: the following method descriptor is here for the api_comparison.py script to pass,
+        NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
         since it uses a different prefix than the majority of endpoints.
 
         ``DELETE /api/v2/authentication-tokens/:id``
@@ -61,13 +58,7 @@ class TFCUserTokens(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#list-user-tokens>`_
 
-        Use the Account API to find your own user ID.
-
-        The objects returned by this endpoint only contain metadata, and do not include the
-        secret text of any authentication tokens. A token is only shown upon creation, and
-        cannot be recovered later.
-
-        NOTE: the following method descriptor is here for the api_comparison.py script to pass,
+        NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
         since it uses a different prefix than the majority of endpoints.
 
         ``GET /api/v2/users/:user_id/authentication-tokens``
@@ -82,11 +73,7 @@ class TFCUserTokens(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#show-a-user-token>`_
 
-        The objects returned by this endpoint only contain metadata, and do not include the
-        secret text of any authentication tokens. A token is only shown upon creation, and
-        cannot be recovered later.
-
-        NOTE: the following method descriptor is here for the api_comparison.py script to pass,
+        NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
         since it uses a different prefix than the majority of endpoints.
 
         ``GET /api/v2/authentication-tokens/:id``

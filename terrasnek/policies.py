@@ -7,11 +7,6 @@ from ._constants import Entitlements
 
 class TFCPolicies(TFCEndpoint):
     """
-    Policies are configured on a per-organization level and are organized
-    and grouped into policy sets, which define the workspaces on which
-    policies are enforced during runs. In these workspaces, the plan's changes
-    are validated against the relevant policies after the plan step.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/policies.html>`_
     """
@@ -30,10 +25,7 @@ class TFCPolicies(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#create-a-policy>`_
 
-        This creates a new policy object for the organization, but does not upload
-        the actual policy code
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -45,7 +37,7 @@ class TFCPolicies(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#list-policies>`_
 
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/policies.html#query-parameters>`_):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
@@ -71,10 +63,7 @@ class TFCPolicies(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#update-a-policy>`_
 
-        This endpoint can update the enforcement mode of an existing policy. To
-        update the policy code itself, use the upload endpoint.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload-2>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}"
@@ -87,9 +76,7 @@ class TFCPolicies(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#upload-a-policy>`_
 
-        This endpoint uploads code to an existing Sentinel policy.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/upload"

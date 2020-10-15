@@ -6,12 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCNotificationConfigurations(TFCEndpoint):
     """
-    Terraform Cloud can be configured to send notifications for run state
-    transitions. The configuration allows you to specify a destination URL,
-    request type, and what events will trigger the notification. Each workspace
-    can have up to 20 notification configurations, and they apply to all runs
-    for that workspace.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/notification-configurations.html>`_
     """
@@ -30,7 +24,7 @@ class TFCNotificationConfigurations(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#create-a-notification-configuration>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-for-generic-notification-configurations>`_
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
@@ -63,7 +57,7 @@ class TFCNotificationConfigurations(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#update-a-notification-configuration>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{notification_config_id}"

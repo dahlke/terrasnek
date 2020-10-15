@@ -7,7 +7,8 @@ from._constants import Entitlements
 
 class TFCAgentTokens(TFCEndpoint):
     """
-    https://www.terraform.io/docs/cloud/api/agent-tokens.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/agent-tokens.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

@@ -7,10 +7,6 @@ from._constants import Entitlements
 
 class TFCStateVersionOutputs(TFCEndpoint):
     """
-    State version outputs are the output values from a Terraform state file. They include the
-    name and value of the output, as well as a sensitive boolean if the value should be hidden
-    by default in UIs.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/state-version-outputs.html>`_
     """
@@ -28,10 +24,6 @@ class TFCStateVersionOutputs(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-version-outputs.html#show-a-state-version-output>`_
-
-        State version output IDs must be obtained from a state version object. When requesting a
-        state version, you can optionally add ?include=outputs to include full details for all of
-        that state version's outputs.
         """
         url = f"{self._endpoint_base_url}/{state_version_output_id}"
         return self._show(url)

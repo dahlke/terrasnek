@@ -6,9 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCOrgTokens(TFCEndpoint):
     """
-    The Org Tokens API is used to generate and revoke Org
-    tokens. Each organization can only have one token.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/organization-tokens.html>`_
     """

@@ -7,11 +7,6 @@ from ._constants import Entitlements
 
 class TFCTeams(TFCEndpoint):
     """
-    The Teams API is used to create, edit, and destroy teams as well as manage a team's
-    organization-level permissions. The Team Membership API is used to add or remove users
-    from a team. Use the Team Access API to associate a team with privileges on an
-    individual workspace.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/teams.html>`_
     """
@@ -31,7 +26,7 @@ class TFCTeams(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#create-a-team>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -72,7 +67,7 @@ class TFCTeams(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#update-a-team>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload-1>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"

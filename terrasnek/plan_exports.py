@@ -6,11 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCPlanExports(TFCEndpoint):
     """
-    Plan exports allow users to download data exported from the plan of a Run in a Terraform
-    workspace. Currently, the only supported format for exporting plan data is to generate mock
-    data for Sentinel.
-
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/plan-exports.html>`_
     """
@@ -29,12 +24,7 @@ class TFCPlanExports(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#create-a-plan-export>`_
 
-        This endpoint exports data from a plan in the specified format. The export process
-        is asynchronous, and the resulting data becomes downloadable when its status is
-        "finished". The data is then available for one hour before expiring. After the hour
-        is up, a new export can be created.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#sample-payload>`_
         """
 
@@ -46,9 +36,6 @@ class TFCPlanExports(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#show-a-plan-export>`_
-
-        There is no endpoint to list plan exports. You can find IDs for plan exports in the
-        relationships.exports property of a plan object.
         """
         url = f"{self._endpoint_base_url}/{plan_export_id}"
         return self._show(url)
@@ -59,11 +46,6 @@ class TFCPlanExports(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#download-exported-plan-data>`_
-
-        This endpoint generates a temporary URL to the location of the exported plan data in
-        a .tar.gz archive, and then redirects to that link. If using a client that can follow
-        redirects, you can use this endpoint to save the .tar.gz archive locally without needing
-        to save the temporary URL.
         """
         url = f"{self._endpoint_base_url}/{plan_export_id}/download"
         results = self._get(url, return_raw=True, allow_redirects=True)
@@ -76,9 +58,6 @@ class TFCPlanExports(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#delete-exported-plan-data>`_
-
-        Plan exports expire after being available for one hour, but they can be deleted
-        manually as well.
         """
         url = f"{self._endpoint_base_url}/{plan_export_id}"
         return self._destroy(url)

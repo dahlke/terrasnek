@@ -6,10 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCAuditTrails(TFCEndpoint):
     """
-    The Audit Trails API exposes a stream of audit events, which describe
-    changes to the application entities (workspaces, runs, etc.) that
-    belong to a Terraform Cloud organization.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/audit-trails.html>`_
     """
@@ -28,7 +24,7 @@ class TFCAuditTrails(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/audit-trails.html#list-audit-trails>`_
 
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/audit-trails.html#query-parameters>`_):
             - ``since`` (Optional)
             - ``page`` (Optional)

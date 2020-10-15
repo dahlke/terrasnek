@@ -7,10 +7,6 @@ from ._constants import Entitlements
 
 class TFCTeamAccess(TFCEndpoint):
     """
-    The team access APIs are used to associate a team to permissions on a workspace.
-    A single team-workspace resource contains the relationship between the Team and Workspace,
-    including the privileges the team has on the workspace.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/team-access.html>`_
     """
@@ -29,7 +25,7 @@ class TFCTeamAccess(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#add-team-access-to-a-workspace>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/team-access.html#sample-payload>`_
         """
         return self._post(self._endpoint_base_url, data=payload)
@@ -41,7 +37,7 @@ class TFCTeamAccess(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#list-team-access-to-a-workspace>`_
 
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/team-access.html#query-parameters>`_):
             - ``filter[workspace][id]`` (Required)
 
@@ -85,7 +81,7 @@ class TFCTeamAccess(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#update-team-access-to-a-workspace>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/team-access.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{access_id}"

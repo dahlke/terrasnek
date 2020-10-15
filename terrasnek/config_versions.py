@@ -6,10 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCConfigVersions(TFCEndpoint):
     """
-    A configuration version a resource used to reference the uploaded
-    configuration files. It is associated with the run to use the uploaded
-    configuration files for performing the plan and apply.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/configuration-versions.html>`_
     """
@@ -29,7 +25,7 @@ class TFCConfigVersions(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#list-configuration-versions>`_
 
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#query-parameters>`_):
             - ``since`` (Optional)
             - ``page`` (Optional)
@@ -59,7 +55,7 @@ class TFCConfigVersions(TFCEndpoint):
 
         Properties without a default value are required.
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#sample-payload>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"

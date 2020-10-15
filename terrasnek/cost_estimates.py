@@ -6,8 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCCostEstimates(TFCEndpoint):
     """
-    A cost represents the cost estimates for many resources found in a TFC workspace.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/cost-estimates.html>`_
     """

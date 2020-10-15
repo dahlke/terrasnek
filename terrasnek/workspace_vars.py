@@ -6,9 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCWorkspaceVars(TFCEndpoint):
     """
-    This set of APIs covers create, update, list and delete operations on variables,
-    through the workspace API.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/workspace-variables.html>`_
     """
@@ -27,7 +24,7 @@ class TFCWorkspaceVars(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#create-a-variable>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/"
@@ -50,7 +47,7 @@ class TFCWorkspaceVars(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#update-variables>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/{variable_id}"

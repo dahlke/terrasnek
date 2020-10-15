@@ -25,8 +25,6 @@ class TFCPolicyChecks(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-checks.html#list-policy-checks>`_
-
-        This endpoint lists the policy checks in a run.
         """
         url = f"{self._runs_api_v2_base_url}/{run_id}/policy-checks"
         return self._list(url)

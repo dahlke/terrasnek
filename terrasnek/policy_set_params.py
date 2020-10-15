@@ -25,7 +25,7 @@ class TFCPolicySetParams(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#create-a-parameter>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters"
@@ -48,7 +48,7 @@ class TFCPolicySetParams(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#update-parameters>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters/{parameter_id}"

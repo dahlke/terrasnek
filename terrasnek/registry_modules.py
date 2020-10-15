@@ -7,9 +7,6 @@ from ._constants import Entitlements
 
 class TFCRegistryModules(TFCEndpoint):
     """
-    The Terraform Cloud Module Registry implements the Registry standard API
-    for consuming the modules, both public and private.
-
     `API Docs (Private Registry) \
         <https://www.terraform.io/docs/cloud/api/modules.html>`_
 
@@ -29,7 +26,6 @@ class TFCRegistryModules(TFCEndpoint):
     # Public Registry API Endpoints
     def list(self, offset=None, limit=None, provider=None, verified=None):
         """
-        https://www.terraform.io/docs/registry/api.html#list-modules
         ``GET <base_url>``
         ``GET <base_url>/:namespace``
 
@@ -131,15 +127,7 @@ class TFCRegistryModules(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#publish-a-module-from-a-vcs>`_
 
-        Publishes a new registry module from a VCS repository, with module
-        versions managed automatically by the repository's tags. The publishing
-        process will fetch all tags in the source repository that look like SemVer
-        versions with optional 'v' prefix. For each version, the tag is cloned and
-        the config parsed to populate module details (input and output variables,
-        readme, submodules, etc.). The Module Registry Requirements define additional
-        requirements on naming, standard module structure and tags for releases.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/modules.html#sample-payload>`_
         """
         return self._post(self._modules_v2_base_url, data=payload)
@@ -171,13 +159,7 @@ class TFCRegistryModules(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#create-a-module`_
 
-        Creates a new registry module without a backing VCS repository.
-        After creating a module, a version must be created and uploaded in order to
-        be usable. Modules created this way do not automatically update with new
-        versions; instead, you must explicitly create and upload each new version
-        with the Create a Module Version endpoint.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/modules.html#request-body-1>`_
         """
 
@@ -192,12 +174,7 @@ class TFCRegistryModules(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#create-a-module-version>`_
 
-        Creates a new registry module version. This endpoint only applies
-        to modules without a VCS repository; VCS-linked modules automatically create
-        new versions for new tags. After creating the version, the module should be
-        uploaded to the returned upload link.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/modules.html#request-body-2>`_
         """
 
@@ -210,9 +187,6 @@ class TFCRegistryModules(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#upload-a-module-version>`_
-
-        The URL is provided in the upload links attribute in the
-        registry-module-versions resource.
         """
         data = None
 

@@ -6,8 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCVars(TFCEndpoint):
     """
-    This set of APIs covers create, update, list and delete operations on variables.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/variables.html>`_
     """
@@ -26,7 +24,7 @@ class TFCVars(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variables.html#create-a-variable>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload>`_
         """
         return self._create(self._endpoint_base_url, payload)
@@ -39,7 +37,7 @@ class TFCVars(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variables.html#list-variables>`_
 
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/variables.html#query-parameters>`_):
             - ``filter[workspace][name]`` (Required)
         """
@@ -57,7 +55,7 @@ class TFCVars(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variables.html#update-variables>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{variable_id}"

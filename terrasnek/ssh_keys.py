@@ -6,22 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCSSHKeys(TFCEndpoint):
     """
-    The ssh-key object represents an SSH key which includes a name and the SSH
-    private key. An organization can have multiple SSH keys available.
-
-    SSH keys can be used in two places:
-
-        They can be assigned to VCS provider integrations (available in the
-        API as oauth-tokens). Bitbucket Server requires an SSH key; other
-        providers only need an SSH key if your repositories include submodules
-        that are only accessible via SSH (instead of your VCS provider's API).
-
-        They can be assigned to workspaces and used when Terraform needs to
-        clone modules from a Git server. This is only necessary when your
-        configurations directly reference modules from a Git server; you do
-        not need to do this if you use Terraform Cloud's private module
-        registry.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/ssh-keys.html>`_
     """
@@ -41,7 +25,7 @@ class TFCSSHKeys(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#create-an-ssh-key>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -72,7 +56,7 @@ class TFCSSHKeys(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#update-an-ssh-key>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{ssh_key_id}"

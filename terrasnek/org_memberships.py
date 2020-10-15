@@ -6,10 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCOrgMemberships(TFCEndpoint):
     """
-    The Org Memberships API is used to invite to organizations, to
-    list memberships for an organization, to list a user's own memberships,
-    to show a memberships, and to remove users from organizations.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/organization-memberships.html>`_
     """
@@ -30,9 +26,7 @@ class TFCOrgMemberships(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#invite-a-user-to-an-organization>`_
 
-        This endpoint invites a user to join an organization.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#sample-payload>`_
         """
         return self._create(self._org_base_url, payload)
@@ -44,9 +38,7 @@ class TFCOrgMemberships(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#list-memberships-for-an-organization>`_
 
-        This endpoint retrieves all the users in the active organization.
-
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters>`_):
             - ``query`` (Optional)
             - ``filter[status]`` (Optional)
@@ -74,8 +66,6 @@ class TFCOrgMemberships(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#list-user-39-s-own-memberships>`_
-
-        This endpoint retrieves all the organizations for the active user.
         """
         return self._list(self._endpoint_base_url)
 
@@ -85,9 +75,6 @@ class TFCOrgMemberships(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#show-a-membership>`_
-
-        This endpoint shows organization membership details for the
-        specified organization membership ID.
         """
         url = f"{self._endpoint_base_url}/{org_membership_id}"
         return self._show(url)
@@ -98,9 +85,6 @@ class TFCOrgMemberships(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#remove-user-from-organization>`_
-
-        This endpoint removes a user from an organization using the
-        specified organization membership ID.
         """
         url = f"{self._endpoint_base_url}/{org_membership_id}"
         return self._destroy(url)

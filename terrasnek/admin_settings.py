@@ -6,13 +6,8 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminSettings(TFCEndpoint):
     """
-    The Admin API is exclusive to Terraform Enterprise, and can only be used
-    by the admins and operators who install and maintain their organization's
-    Terraform Enterprise instance.
-
-    The Admin Settings API contains endpoints to help update TFE settings.
-
-    https://www.terraform.io/docs/cloud/api/admin/settings.html
+    `API Docs \
+        <https://www.terraform.io/docs/cloud/api/admin/settings.html>`_
     """
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):

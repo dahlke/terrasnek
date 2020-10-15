@@ -7,9 +7,6 @@ from ._constants import Entitlements
 
 class TFCTeamTokens(TFCEndpoint):
     """
-    Each team can have a special service account API token that is not associated with a
-    specific user.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/team-tokens.html>`_
     """
@@ -27,8 +24,6 @@ class TFCTeamTokens(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-tokens.html#generate-a-new-team-token>`_
-
-        Generates a new team token and overrides existing token if one exists.
         """
         url = f"{self._endpoint_base_url}/{team_id}/authentication-token"
         payload = {}

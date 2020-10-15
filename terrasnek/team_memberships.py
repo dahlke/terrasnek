@@ -7,9 +7,6 @@ from ._constants import Entitlements
 
 class TFCTeamMemberships(TFCEndpoint):
     """
-    The Team Membership API is used to add or remove users from teams. The Team API is
-    used to create or destroy teams.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/team-members.html>`_
     """
@@ -28,9 +25,7 @@ class TFCTeamMemberships(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-members.html#add-a-user-to-team>`_
 
-        This method adds multiple users to a team. Both users and teams must already exist.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/relationships/users"
@@ -43,10 +38,7 @@ class TFCTeamMemberships(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-members.html#delete-a-user-from-team>`_
 
-        This method removes multiple users from a team. Both users and teams must already exist.
-        This DOES NOT delete the user; it only removes them from this team.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/relationships/users"

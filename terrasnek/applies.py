@@ -7,8 +7,6 @@ from._constants import Entitlements
 
 class TFCApplies(TFCEndpoint):
     """
-    An apply represents the results of applying a Terraform Run's execution plan.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/applies.html>`_
     """

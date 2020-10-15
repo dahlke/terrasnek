@@ -7,9 +7,6 @@ from._constants import Entitlements
 
 class TFCPlans(TFCEndpoint):
     """
-    A plan represents the execution plan of a Run in a Terraform workspace.
-
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/plans.html>`_
     """
@@ -28,9 +25,6 @@ class TFCPlans(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plans.html#show-a-plan>`_
-
-        Show the plan by it's ID. There is no endpoint to list plans. You can find the ID for
-        a plan in the ``relationships.plan`` property of a run object.
         """
         url = f"{self._endpoint_base_url}/{plan_id}"
         return self._show(url)
@@ -42,19 +36,6 @@ class TFCPlans(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plans.html#retrieve-the-json-execution-plan>`_
-
-        Show the plan in JSON format, by either the plan ID itself, or through the run itself.
-
-        These endpoints generate a temporary authenticated URL to the location of the JSON
-        formatted execution plan. When successful, this endpoint responds with a temporary
-        redirect that should be followed.
-
-        If using a client that can follow redirects, you can use this endpoint to save
-        the .json file locally without needing to save the temporary URL.
-
-        This temporary URL provided by the redirect has a life of 1 minute, and should not be
-        relied upon beyond the initial request. If you need repeat access, you should use
-        this endpoint to generate a new URL each time.
         """
         if plan_id is not None:
             url = f"{self._endpoint_base_url}/{plan_id}/json-output"

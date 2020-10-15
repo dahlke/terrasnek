@@ -6,10 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCAccount(TFCEndpoint):
     """
-    Account represents the current user interacting with Terraform. It returns
-    the same type of object as the Users API, but also includes an email
-    address, which is hidden when viewing info about other users.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/account.html>`_
     """
@@ -38,9 +34,7 @@ class TFCAccount(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/account.html#update-your-account-info>`_
 
-        Your username and email address can be updated with this endpoint.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/update"
@@ -53,7 +47,7 @@ class TFCAccount(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/account.html#change-your-password>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/password"

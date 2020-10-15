@@ -6,8 +6,6 @@ from .endpoint import TFCEndpoint
 
 class TFCWorkspaces(TFCEndpoint):
     """
-    Workspaces represent running infrastructure managed by Terraform.
-
     `API Docs \
         <https://www.terraform.io/docs/cloud/api/workspaces.html>`_
     """
@@ -27,7 +25,7 @@ class TFCWorkspaces(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#create-a-workspace>`_
 
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -39,9 +37,6 @@ class TFCWorkspaces(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#delete-a-workspace>`_
-
-        A workspace can be deleted via two endpoints, which behave identically. One refers to a
-        workspace by its ID, and the other by its name and organization.
         """
         if workspace_name is not None:
             url = f"{self._org_api_v2_base_url}/{workspace_name}"
@@ -58,9 +53,6 @@ class TFCWorkspaces(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#force-unlock-a-workspace>`_
-
-        This endpoint force unlocks a workspace. Only users with admin access are authorized to
-        force unlock a workspace.
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/force-unlock"
         return self._post(url)
@@ -72,9 +64,7 @@ class TFCWorkspaces(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#lock-a-workspace>`_
 
-        This endpoint locks a workspace.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-2>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/lock"
@@ -87,9 +77,7 @@ class TFCWorkspaces(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#list-workspaces>`_
 
-        This endpoint lists workspaces in the organization.
-
-        Query parameter(s) (`details \
+        Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters>`_):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
@@ -103,9 +91,6 @@ class TFCWorkspaces(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#show-workspace>`_
-
-        Details on a workspace can be retrieved from two endpoints, which behave identically.
-        One refers to a workspace by its ID, and the other by its name and organization.
         """
         if workspace_name is not None:
             url = f"{self._org_api_v2_base_url}/{workspace_name}"
@@ -122,8 +107,6 @@ class TFCWorkspaces(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#unlock-a-workspace>`_
-
-        This endpoint unlocks a workspace.
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/unlock"
         return self._post(url)
@@ -136,10 +119,7 @@ class TFCWorkspaces(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#update-a-workspace>`_
 
-        A workspace can be updated via two endpoints, which behave identically. One refers to a
-        workspace by its ID, and the other by its name and organization.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-1>`_
         """
         if workspace_name is not None:
@@ -158,9 +138,7 @@ class TFCWorkspaces(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#assign-an-ssh-key-to-a-workspace>`_
 
-        This endpoint assigns an SSH key to a workspace.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-3>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
@@ -173,10 +151,7 @@ class TFCWorkspaces(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#unassign-an-ssh-key-from-a-workspace>`_
 
-        This endpoint unassigns the currently assigned SSH key from a
-        workspace.
-
-        `Sample payload \
+        `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-4>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
