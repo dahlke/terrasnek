@@ -104,10 +104,53 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
     @classmethod
     def _purge_organization(cls):
-        # TODO: purge everything
-        # TODO: purge workspaces
-        # TODO: purge modules
-        pass
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of workspaces...")
+        workspaces = cls._api.workspaces.list()["data"]
+        for workspace in workspaces:
+            cls._api.workspaces.destroy(workspace_id=workspace["id"])
+        cls._logger.debug(f"Workspaces purged from test org ({cls._test_org_name}).")
+
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of modules...")
+        registry_modules = cls._api.registry_modules.list()["modules"]
+        for registry_module in registry_modules:
+            cls._api.registry_modules.destroy(registry_module["name"])
+        cls._logger.debug(f"Modules purged from test org ({cls._test_org_name}).")
+
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of policies...")
+        policies = cls._api.policies.list()["data"]
+        for policy in policies:
+            cls._api.policies.destroy(policy["id"])
+        cls._logger.debug(f"Policies purged from test org ({cls._test_org_name}).")
+
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of policy sets...")
+        policy_sets = cls._api.policy_sets.list()["data"]
+        for policy_set in policy_sets:
+            cls._api.policy_sets.destroy(policy_set["id"])
+        cls._logger.debug(f"Policy sets purged from test org ({cls._test_org_name}).")
+
+        # Delete all the VCS adjacent resources before the VCS client
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of OAuth clients...")
+        oauth_clients = cls._api.oauth_clients.list()["data"]
+        for oauth_client in oauth_clients:
+            cls._api.oauth_clients.destroy(oauth_client["id"])
+        cls._logger.debug(f"OAuth clients purged from test org ({cls._test_org_name}).")
+
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of SSH Keys...")
+        ssh_keys = cls._api.ssh_keys.list()["data"]
+        for ssh_key in ssh_keys:
+            cls._api.ssh_keys.destroy(ssh_key["id"])
+        cls._logger.debug(f"SSH keys purged from test org ({cls._test_org_name}).")
+
+        # Deleting the teams will delete all team memberships, and team tokens
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of teams...")
+        teams = cls._api.teams.list()["data"]
+        for team in teams:
+            team_name = team["attributes"]["name"]
+            if team_name != "owners":
+                cls._api.teams.destroy(team["id"])
+        cls._logger.debug(f"Teams purged from test org ({cls._test_org_name}).")
+
+        # TODO: org tokens / org memberships / agents / agent pools
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
