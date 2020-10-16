@@ -31,6 +31,7 @@ class TFCRuns(TFCEndpoint):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """
+
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"
         return self._list(url, page=page, page_size=page_size)
 
@@ -41,6 +42,7 @@ class TFCRuns(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#get-run-details>`_
         """
+
         url = f"{self._runs_api_v2_base_url}/{run_id}"
         return self._show(url)
 
@@ -54,68 +56,49 @@ class TFCRuns(TFCEndpoint):
         `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/run.html#sample-payload>`_
         """
+
         return self._create(self._runs_api_v2_base_url, payload)
 
-    def apply(self, run_id, comment=None):
+    def apply(self, run_id, payload):
         """
         ``POST /runs/:run_id/actions/apply``
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#apply-a-run>`_
         """
-        payload = None
-        if comment is not None:
-            payload = {
-                "comment": comment
-            }
 
         url = f"{self._runs_api_v2_base_url}/{run_id}/actions/apply"
         return self._post(url, data=payload)
 
-    def discard(self, run_id, comment=None):
+    def discard(self, run_id, payload):
         """
         ``POST /runs/:run_id/actions/discard``
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#discard-a-run>`_
         """
-        payload = None
-        if comment is not None:
-            payload = {
-                "comment": comment
-            }
 
         url = f"{self._runs_api_v2_base_url}/{run_id}/actions/discard"
         return self._post(url, data=payload)
 
-    def cancel(self, run_id, comment=None):
+    def cancel(self, run_id, payload):
         """
         ``POST /runs/:run_id/actions/cancel``
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#cancel-a-run>`_
         """
-        payload = None
-        if comment is not None:
-            payload = {
-                "comment": comment
-            }
 
         url = f"{self._runs_api_v2_base_url}/{run_id}/actions/cancel"
         return self._post(url, data=payload)
 
-    def force_cancel(self, run_id, comment=None):
+    def force_cancel(self, run_id, payload):
         """
         ``POST /runs/:run_id/actions/force-cancel``
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#forcefully-cancel-a-run>`_
         """
-        payload = None
-        if comment is not None:
-            payload = {
-                "comment": comment
-            }
 
         url = f"{self._runs_api_v2_base_url}/{run_id}/actions/force-cancel"
         return self._post(url, data=payload)
@@ -127,5 +110,6 @@ class TFCRuns(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#forcefully-execute-a-run>`_
         """
+
         url = f"{self._runs_api_v2_base_url}/{run_id}/actions/force-execute"
         return self._post(url)

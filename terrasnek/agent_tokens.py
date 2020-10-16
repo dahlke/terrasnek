@@ -19,7 +19,7 @@ class TFCAgentTokens(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.AGENTS]
 
-    def create(self, agent_pool_id, description="api"):
+    def create(self, agent_pool_id, payload):
         """
         ``POST /agent-pools/:agent_pool_id/authentication-tokens``
 
@@ -27,14 +27,6 @@ class TFCAgentTokens(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/agent-tokens.html#create-an-agent-token>`_
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}/authentication-tokens"
-        payload = {
-            "data": {
-                "type": "authentication-tokens",
-                "attributes": {
-                    "description": description
-                }
-            }
-        }
         return self._create(url, payload)
 
     def list(self, agent_pool_id):

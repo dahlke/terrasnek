@@ -19,7 +19,12 @@ class TestTFCAgents(TestTFCBaseTestCase):
         """
 
         # Create an agent pool, we won't assert anything on it, in case it has already been created.
-        self._api.agents.create_pool()
+        create_payload = {
+            "data": {
+                "type": "agent-pools"
+            }
+        }
+        self._api.agents.create_pool(create_payload)
 
         # List the agent pools, assert that we have only one.
         agent_pools = self._api.agents.list_pools()["data"]

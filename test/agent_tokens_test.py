@@ -30,7 +30,15 @@ class TestTFCAgentTokens(TestTFCBaseTestCase):
         self.assertEqual(len(agent_tokens), 0)
 
         # Create an agent token, store it's ID
-        created_agent_token = self._api.agent_tokens.create(self._agent_pool_id)["data"]
+        create_payload = {
+            "data": {
+                "type": "authentication-tokens",
+                "attributes": {
+                    "description": "foo"
+                }
+            }
+        }
+        created_agent_token = self._api.agent_tokens.create(self._agent_pool_id, create_payload)["data"]
         created_agent_token_id = created_agent_token["id"]
 
         # List the agent tokens again, assert we have one

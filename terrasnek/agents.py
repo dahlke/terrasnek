@@ -20,7 +20,7 @@ class TFCAgents(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.AGENTS]
 
-    def create_pool(self):
+    def create_pool(self, payload):
         """
         ``POST /organizations/:organization_name/agent-pool``
 
@@ -28,11 +28,6 @@ class TFCAgents(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/agents.html#create-an-agent-pool>`_
         """
         url = f"{self._org_api_v2_base_url}/{self._org_name}/agent-pools"
-        payload = {
-            "data": {
-                "type": "agent-pools"
-            }
-        }
         return self._create(url, payload)
 
     def list_pools(self):

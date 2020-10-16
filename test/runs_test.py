@@ -50,9 +50,10 @@ class TestTFCRuns(TestTFCBaseTestCase):
         """
         Test the Runs API endpoints with an apply.
         """
+
         # Create a run
-        create_run_payload = self._get_run_create_payload(self._ws_id)
-        run = self._api.runs.create(create_run_payload)["data"]
+        create_payload = self._get_run_create_payload(self._ws_id)
+        run = self._api.runs.create(create_payload)["data"]
         run_id = run["id"]
 
         # Timeout if the plan doesn't reach confirmable, this can happen
@@ -60,7 +61,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
         created_run = self._created_run_timeout(run_id)
 
         self.assertEqual(created_run["relationships"]["workspace"]["data"]["id"],
-                         create_run_payload["data"]["relationships"]["workspace"]["data"]["id"])
+                         create_payload["data"]["relationships"]["workspace"]["data"]["id"])
         self.assertTrue(created_run["attributes"]["actions"]["is-confirmable"], True)
         self.assertRaises(
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["applying-at"])
@@ -75,7 +76,10 @@ class TestTFCRuns(TestTFCBaseTestCase):
         self.assertTrue(found_run)
 
         # Apply the plan
-        self._api.runs.apply(run_id)
+        apply_payload = {
+            "comment": "foo"
+        }
+        self._api.runs.apply(run_id, apply_payload)
 
         # Wait for the plan to apply, then confirm the apply took place
         status_timestamps = self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
@@ -94,8 +98,8 @@ class TestTFCRuns(TestTFCBaseTestCase):
         time.sleep(1)
 
         # Create a run
-        create_run_payload = self._get_run_create_payload(self._ws_id)
-        run = self._api.runs.create(create_run_payload)["data"]
+        create_payload = self._get_run_create_payload(self._ws_id)
+        run = self._api.runs.create(create_payload)["data"]
         run_id = run["id"]
 
         created_run = self._api.runs.show(run_id)["data"]
@@ -107,7 +111,10 @@ class TestTFCRuns(TestTFCBaseTestCase):
         created_run = self._created_run_timeout(run_id)
 
         # Discard the run
-        self._api.runs.discard(run_id)
+        discard_payload = {
+            "comment": "foo"
+        }
+        self._api.runs.discard(run_id, discard_payload)
         status_timestamps = self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
         while "discarded-at" not in status_timestamps:
             time.sleep(1)
@@ -119,9 +126,10 @@ class TestTFCRuns(TestTFCBaseTestCase):
         """
         Test the Runs API endpoints for a normal cancel.
         """
+
         # Create a run
-        create_run_payload = self._get_run_create_payload(self._ws_id)
-        run = self._api.runs.create(create_run_payload)["data"]
+        create_payload = self._get_run_create_payload(self._ws_id)
+        run = self._api.runs.create(create_payload)["data"]
         run_id = run["id"]
 
         # Show the created run, make sure it hasn't yet been cancelled
@@ -134,7 +142,10 @@ class TestTFCRuns(TestTFCBaseTestCase):
         self._logger.debug("Done sleeping.")
 
         # Cancel the run, confirm it has been cancelled
-        self._api.runs.cancel(run_id)
+        cancel_payload = {
+            "comment": "foo"
+        }
+        self._api.runs.cancel(run_id, cancel_payload)
         status_timestamps = self._api.runs.show(run_id)["data"]["attributes"]["status-timestamps"]
         while "force-canceled-at" not in status_timestamps:
             time.sleep(1)
@@ -148,8 +159,8 @@ class TestTFCRuns(TestTFCBaseTestCase):
         """
 
         # Create a run
-        create_run_payload = self._get_run_create_payload(self._ws_id)
-        run = self._api.runs.create(create_run_payload)["data"]
+        create_payload = self._get_run_create_payload(self._ws_id)
+        run = self._api.runs.create(create_payload)["data"]
         run_id = run["id"]
 
         # Show the created run, make sure it hasn't yet been cancelled
@@ -162,10 +173,16 @@ class TestTFCRuns(TestTFCBaseTestCase):
         self._logger.debug("Done sleeping.")
 
         # Cancel the run first, it has to be cancelled before it can be force cancelled
-        self._api.runs.cancel(run_id)
+        cancel_payload = {
+            "comment": "foo"
+        }
+        self._api.runs.cancel(run_id, cancel_payload)
 
         # Cancel the run, confirm it has been cancelled
-        self._api.runs.force_cancel(run_id)
+        force_cancel_payload = {
+            "comment": "foo"
+        }
+        self._api.runs.force_cancel(run_id, force_cancel_payload)
         run_attrs = self._api.runs.show(run_id)["data"]["attributes"]
         while "force-cancel-available-at" not in run_attrs:
             shown_run = self._api.runs.show(run_id)["data"]
