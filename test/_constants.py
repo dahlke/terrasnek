@@ -31,7 +31,7 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", None)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
 GITHUB_SECRET = os.getenv("GITHUB_SECRET", None)
 
-# NOTE: This is an optional env var
+# NOTE: This is an optional env var, if not provided a random test org will be generated
 TEST_ORG_NAME = os.getenv("TEST_ORG_NAME", None)
 
 TEST_EMAIL = os.getenv("TEST_EMAIL", None)

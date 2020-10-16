@@ -15,7 +15,7 @@ class TestTFCOAuthClients(TestTFCBaseTestCase):
 
     def test_oauth_clients(self):
         """
-        Test the OAuth Clients API endpoints: ``list``, ``create``, ``show``, ``destroy``.
+        Test the OAuth Clients API endpoints.
         """
 
         # Create a test OAuth client

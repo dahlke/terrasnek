@@ -21,10 +21,11 @@ class TestTFCTeamTokens(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.teams.destroy(self._team_id)
 
-    def test_team_token(self):
+    def test_team_tokens(self):
         """
-        Test the Team Tokens API endpoints: ``create``, ``destroy``.
+        Test the Team Tokens API endpoints.
         """
+
         # Create a test token and make sure we get an ID back
         created_token = self._api.team_tokens.create(self._team_id)["data"]
         self.assertIsNotNone(created_token["id"])

@@ -33,7 +33,7 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),
             self._get_variable_create_payload(
-                "org_name", "terrasnek_unittest", self._ws_id),
+                "org_name", self._test_org_name, self._ws_id),
             self._get_variable_create_payload(
                 "TFE_TOKEN", self._test_api_token, self._ws_id, category="env", sensitive=True)
         ]
@@ -54,8 +54,9 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
 
     def test_admin_runs(self):
         """
-        Test the Admin Runs API endpoints: ``list`` and ``force_cancel``.
+        Test all the Admin Runs API endpoints.
         """
+
         # List all the runs confirm the one we created in the setup is there
         all_runs = self._api.admin_runs.list(\
             query=self._run_id, filters=[], page=0, page_size=50)["data"]

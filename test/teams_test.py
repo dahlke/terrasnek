@@ -13,10 +13,11 @@ class TestTFCTeams(TestTFCBaseTestCase):
     _unittest_name = "teams"
     _endpoint_being_tested = "teams"
 
-    def test_team(self):
+    def test_teams(self):
         """
-        Test the Teams API endpoints: ``list``, ``create``, ``show``, ``destroy``.
+        Test the Teams API endpoints.
         """
+
         # List all the teams, confirm that the response type
         teams = self._api.teams.list()["data"]
         self.assertEqual("teams", teams[0]["type"])

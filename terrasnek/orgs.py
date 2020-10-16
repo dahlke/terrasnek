@@ -45,8 +45,6 @@ class TFCOrgs(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#show-the-entitlement-set>`_
-
-        This endpoint shows the entitlements for an organization.
         """
         url = f"{self._org_api_v2_base_url}/{org_name}/entitlement-set"
         return self._get(url)

@@ -2,17 +2,17 @@
 
 _[GitHub Repository](https://github.com/dahlke/terrasnek)_
 
-### Installation
+## Installation
 
-```
+```bash
 pip install terrasnek
 ```
 
-### Getting Started
+## Getting Started
 
 Recommended Env Var Usage:
 
-```
+```python
 import os
 
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
@@ -21,7 +21,7 @@ TFC_URL = os.getenv("TFC_URL", None)  # ex: https://app.terraform.io
 
 Using TLS:
 
-```
+```python
 from terrasnek.api import TFC
 
 api = TFC(TFC_TOKEN, url=TFC_URL)
@@ -30,7 +30,7 @@ api.set_org("YOUR_ORGANIZATION")
 
 Insecure:
 
-```
+```python
 from terrasnek.api import TFC
 
 api = TFC(TFC_TOKEN, url=TFC_URL, verify=False)
@@ -39,8 +39,11 @@ api.set_org("YOUR_ORGANIZATION")
 
 ### Examples
 
+_NOTE: Every endpoint supported in `terrasnek` has an API reference in its docstring_.
+
 #### Configure the API Class
-```
+
+```python
 import os
 from terrasnek.api import TFC
 
@@ -52,7 +55,8 @@ api.set_org("YOUR_ORGANIZATION")
 ```
 
 #### Create a Workspace
-```
+
+```python
 create_workspace_payload = {
     # https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload
 }
@@ -62,7 +66,8 @@ created_workspace_id = created_workspace["data]["id"]
 ```
 
 #### Add Variables to a Workspace
-```
+
+```python
 create_variable_payload = {
     # https://www.terraform.io/docs/cloud/api/variables.html#sample-payload
 }
@@ -71,7 +76,8 @@ api.vars.create(create_variable_payload)
 ```
 
 #### Create a Run on a Workspace
-```
+
+```python
 create_run_payload = {
     # https://www.terraform.io/docs/cloud/api/run.html#sample-payload
 }
@@ -81,18 +87,19 @@ run_id = self._run["data"]["id"]
 ```
 
 #### Override a Failed Policy Check
-```
+
+```python
 pol_checks = api.pol_checks.list(run_id)
 api.pol_checks.override(pol_checks["data"][0]["id"])
 ```
 
 #### Apply a Run on a Workspace
-```
+
+```python
 applied_run = api.runs.apply(run_id)
 ```
 
 _For more examples, see the `./test` directory in the repository._
-
 
 ### `terrasnek` to Terraform Cloud API Parity
 
@@ -100,8 +107,7 @@ _For more examples, see the `./test` directory in the repository._
 .. include:: api_parity_table.rst
 ```
 
-Contents
---------
+## Contents
 
 * [Account](account.md)
 * [Admin Runs](admin_runs.md)

@@ -15,8 +15,7 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
 
     def test_org_memberships(self):
         """
-        Test the Org Memberships API endpoints: ``invite``, ``list_for_org``,
-        ``list_for_user``, ``show``, ``remove``.
+        Test the Org Memberships API endpoints.
         """
 
         # NOTE: User needs to be created ahead of time, and it can't be done with

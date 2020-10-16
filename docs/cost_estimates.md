@@ -1,4 +1,6 @@
 # Cost Estimates
 
-
-_Not yet implemented._
+```eval_rst
+.. autoclass:: terrasnek.cost_estimates.TFCCostEstimates
+   :members:
+```

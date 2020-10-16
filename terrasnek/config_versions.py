@@ -50,11 +50,6 @@ class TFCConfigVersions(TFCEndpoint):
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#create-a-configuration-version>`_
 
-        This POST endpoint requires a JSON object with the following properties as a request
-        payload.
-
-        Properties without a default value are required.
-
         `Sample Payload \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#sample-payload>`_
         """
@@ -67,8 +62,6 @@ class TFCConfigVersions(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#upload-configuration-files>`_
-
-        The above URL is derived.
         """
         data = None
 

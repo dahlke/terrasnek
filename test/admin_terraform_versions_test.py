@@ -17,9 +17,9 @@ class TestTFCAdminTerraformVersions(TestTFCBaseTestCase):
 
     def test_admin_terraform_versions(self):
         """
-        Test the Admin Terraform Versions API endpoints: ``created``, ``show``, ``update``,
-        ``list``, ``destroy``.
+        Test the Admin Terraform Versions API endpoints.
         """
+
         # List all the TF versions, verify the response type
         all_tf_versions = self._api.admin_terraform_versions.list()["data"]
         self.assertEqual("terraform-versions", all_tf_versions[0]["type"])

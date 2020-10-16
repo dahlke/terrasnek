@@ -39,10 +39,11 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_run_and_apply(self):
+    def test_state_version_outputs(self):
         """
-        Test the State Version API endpoints: ``list``, ``create``, ``show``.
+        Test the State Version Outputs API endpoints.
         """
+
         # Create a sample state version
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
         self._api.state_versions.create(self._ws_id, self._get_state_version_create_payload())

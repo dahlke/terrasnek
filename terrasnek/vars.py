@@ -29,7 +29,6 @@ class TFCVars(TFCEndpoint):
         """
         return self._create(self._endpoint_base_url, payload)
 
-    # TODO: take the filters in the standard way here for list
     def list(self, workspace_name=None):
         """
         ``GET /vars``

@@ -31,7 +31,7 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
 
     def test_run_triggers(self):
         """
-        Test the Run Triggers API endpoints: ``create``, ``list``, ``update``, ``destroy``.
+        Test the Run Triggers API endpoints.
         """
 
         test_filters = [

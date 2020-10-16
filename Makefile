@@ -8,18 +8,6 @@ DOCKER_TEST_IMAGE_VERSION=0.1
 ##########################
 # DEV HELPERS
 ##########################
-.PHONY: todo
-todo:
-	@ag "TODO" --ignore Makefile
-
-.PHONY: note
-note:
-	@ag "NOTE" --ignore Makefile
-
-.PHONY: wontfix
-wontfix:
-	@ag "WONTFIX" --ignore Makefile
-
 .PHONY: test
 test:
 	python3 -m unittest test/*.py

@@ -26,8 +26,9 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
 
     def test_team_memberships(self):
         """
-        Test the Team Memberships API endpoints: ``add_user_to_team``, `remove_user_from_team`.
+        Test the Team Memberships API endpoints.
         """
+
         logged_in_user = self._api.account.show()["data"]
         logged_in_username = logged_in_user["attributes"]["username"]
 

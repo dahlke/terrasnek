@@ -26,7 +26,7 @@ class TestTFCVars(TestTFCBaseTestCase):
 
     def test_variables(self):
         """
-        Test the Variables API endpoints: create, list, update, destroy.
+        Test the Variables API endpoints.
         """
 
         create_variable_payload = self._get_variable_create_payload(

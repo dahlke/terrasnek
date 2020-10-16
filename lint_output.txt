@@ -1,5 +1,3 @@
-************* Module terrasnek.vars
-terrasnek/vars.py:34:2: W0511: TODO: take the filters in the standard way here for list (fixme)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:99:2: W0511: TODO: surface error and status code (fixme)
 ************* Module test.agents_test
@@ -13,11 +11,9 @@ test/admin_settings_test.py:122:2: W0511: TODO: need to use a real twilio accoun
 ************* Module test.state_version_outputs_test
 test/state_version_outputs_test.py:72:2: W0511: TODO: might be a race condition here for the tests (fixme)
 ************* Module test.base
-test/base.py:107:2: W0511: TODO: purge everything (fixme)
-test/base.py:108:2: W0511: TODO: purge workspaces (fixme)
-test/base.py:109:2: W0511: TODO: purge modules (fixme)
+test/base.py:153:2: W0511: TODO: org tokens / org memberships / agents / agent pools (fixme)
 test/base.py:93:55: E1135: Value 'cls._endpoint_being_tested' doesn't support membership test (unsupported-membership-test)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.94/10 (previous run: 9.94/10, +0.00)
+Your code has been rated at 9.95/10 (previous run: 9.94/10, +0.01)
 

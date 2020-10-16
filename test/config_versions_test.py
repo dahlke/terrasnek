@@ -20,9 +20,9 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
 
-    def test_config_version(self):
+    def test_config_versions(self):
         """
-        Test the Config Version API endpoints: ``create``, ``list``, ``show``, ``upload``.
+        Test the Config Versions API endpoints.
         """
 
         # Create a new config version

@@ -63,9 +63,6 @@ class TFCAgentTokens(TFCEndpoint):
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agent-tokens.html#destroy-an-agent-token>`_
-
-        NOTE: Including this function definition, since it matches what is in
-        the docs and is used for the API comparison.
         """
         url = f"{self._auth_tokens_api_v2_base_url}/{token_id}"
         return self._destroy(url)

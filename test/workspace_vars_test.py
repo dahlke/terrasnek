@@ -24,9 +24,9 @@ class TestTFCWorkspaceVars(TestTFCBaseTestCase):
         self._api.workspaces.destroy(
             workspace_name=self._ws["data"]["attributes"]["name"])
 
-    def test_variables(self):
+    def test_workspace_variables(self):
         """
-        Test the Variables API endpoints: create, list, update, destroy.
+        Test the Workspace Variables API endpoints.
         """
 
         create_variable_payload = self._get_variable_create_payload(

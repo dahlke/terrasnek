@@ -76,10 +76,11 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_show(self):
+    def test_cost_estimates(self):
         """
-        Test the Cost Estimates API endpoints: ``show``.
+        Test the Cost Estimates API endpoints.
         """
+
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)
         run = self._api.runs.create(create_run_payload)["data"]

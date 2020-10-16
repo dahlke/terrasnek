@@ -39,10 +39,11 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_state_version_endpoints(self):
+    def test_state_versions(self):
         """
-        Test the State Version API endpoints: ``list``, ``create``, ``show``.
+        Test the State Version API endpoints.
         """
+
         # List the existing state versions, confirm there are none.
         test_filters = [
             {

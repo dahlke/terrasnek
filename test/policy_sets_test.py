@@ -32,9 +32,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
 
     def test_policy_sets(self):
         """
-        Test the Policy Set API endpoints: ``create``, ``list``, ``show``,
-        ``update``, ``destroy``, ``add_policies_to_set``, ``remove_policies_from_set``,
-        ``attach_policy_set_to_workspaces``, ``detach_policy_set_from_workspaces``.
+        Test the Policy Sets API endpoints.
         """
         # List all the policy sets, confirm there are none
         all_policy_sets = self._api.policy_sets.list()["data"]
@@ -121,8 +119,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
 
     def test_policy_sets_versions(self):
         """
-        Test the Policy Set API endpoints: ``create_policy_set_version``,
-        ``show_policy_set_version``, ``upload``.
+        Test the Policy Sets Versions API endpoints.
         """
         # Create a new policy set and policy set version, without being attached to VCS.
         created_policy_set = self._api.policy_sets.create(self._get_policy_create_payload())["data"]

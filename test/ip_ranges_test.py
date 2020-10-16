@@ -15,7 +15,7 @@ class TestTFCIPRanges(TestTFCBaseTestCase):
 
     def test_ip_ranges(self):
         """
-        Test the IP Ranges API endpoints: ``list``.
+        Test the IP Ranges API endpoints.
         """
         ip_ranges = self._api.ip_ranges.list()
 

@@ -15,8 +15,9 @@ class TestTFCUserTokens(TestTFCBaseTestCase):
 
     def test_user_tokens(self):
         """
-        Test the User Tokens API endpoints: ``list``, ``create``, ``show``, ``destroy``.
+        Test the User Tokens API endpoints.
         """
+
         logged_in_user = self._api.account.show()["data"]
         logged_in_user_id = logged_in_user["id"]
 

@@ -31,10 +31,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
     def test_registry_modules(self):
         """
-        Test the Registry Modules API endpoint(s): ``publish_from_vcs``, ``list``,
-        ``search``, ``list_versions``, ``list_latest_version_all_providers``,
-        ``list_latest_version_specific_provider``, ``get``, ``show``, ``create``,
-        ``create_version``, ``upload_version``.
+        Test the Registry Modules API endpoints.
         """
 
         # Publish a module from the VCS provider, using the OAuth token generated
@@ -55,7 +52,6 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             self._api.registry_modules.publish_from_vcs(publish_payload)["data"]
         published_module_name = published_module["attributes"]["name"]
         self.assertEqual("registry-modules", published_module["type"])
-
 
         # Test the listing of the modules, time out if it takes too long.
         # List all the modules for this org, confirm we found the one we
@@ -100,7 +96,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             self._api.registry_modules.list_versions(\
                 published_module_name, TFE_MODULE_PROVIDER_TYPE)
         self.assertIn("modules", listed_versions_resp)
-        listed_version = listed_modules[0]["version"]
+        latest_listed_version = listed_modules[-1]["version"]
 
         # List the latest version for all providers, compare to the
         # published module version
@@ -108,7 +104,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             self._api.registry_modules.list_versions(\
                 published_module_name, TFE_MODULE_PROVIDER_TYPE)
         latest_all_providers = listed_latest_version_all_providers["modules"][0]
-        self.assertEqual(listed_version, latest_all_providers["versions"][-1]["version"])
+        self.assertEqual(latest_listed_version, latest_all_providers["versions"][-1]["version"])
 
         # List the latest version for a specific provider, compare to the
         # published module version
@@ -116,12 +112,12 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             self._api.registry_modules.list_versions(\
                 published_module_name, TFE_MODULE_PROVIDER_TYPE)
         latest_specific_provider = listed_latest_version_specific_provider["modules"][0]
-        self.assertEqual(listed_version, latest_specific_provider["versions"][-1]["version"])
+        self.assertEqual(latest_listed_version, latest_specific_provider["versions"][-1]["version"])
 
         # Download the source for a specific version of the module, confirm the file
         # was downloaded to the correct path (and then remove it).
         self._api.registry_modules.download_version_source(\
-            published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version, \
+            published_module_name, TFE_MODULE_PROVIDER_TYPE, latest_listed_version, \
             self._module_version_source_tarball_target_path)
         self.assertTrue(os.path.exists(self._module_version_source_tarball_target_path))
         if os.path.exists(self._module_version_source_tarball_target_path):
@@ -139,7 +135,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         # Get the module, compare to the published module name
         gotten_module = \
             self._api.registry_modules.get(\
-                published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
+                published_module_name, TFE_MODULE_PROVIDER_TYPE, latest_listed_version)
         self.assertEqual(published_module_name, gotten_module["name"])
 
         # List all the provider versions for the module, confirm they are as expected.
@@ -167,7 +163,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             published_module_name, provider=TFE_MODULE_PROVIDER_TYPE)
         gotten_module = \
             self._api.registry_modules.get(\
-                published_module_name, TFE_MODULE_PROVIDER_TYPE, listed_version)
+                published_module_name, TFE_MODULE_PROVIDER_TYPE, latest_listed_version)
         self.assertIsNone(gotten_module)
 
 

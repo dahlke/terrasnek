@@ -21,8 +21,9 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
 
     def test_admin_workspaces(self):
         """
-        Test the Admin Workspaces API endpoints: ``list``, ``show``, ``destroy``.
+        Test the Admin Workspaces API endpoints.
         """
+
         # List all the workspaces, confirm the one we created in the setup exists
         all_ws = self._api.admin_workspaces.list(\
             search=self._created_ws_name, filters=[], page=0, page_size=50, sort="name")["data"]

@@ -21,8 +21,9 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
 
     def test_admin_orgs(self):
         """
-        Test the Admin Orgs API endpoints: ``list``, ``show``, ``destroy``.
+        Test the Admin Orgs API endpoints.
         """
+
         # List all the orgs, confirm the created one is present
         all_orgs = self._api.admin_orgs.list()["data"]
         found_created_org = False

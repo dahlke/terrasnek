@@ -15,7 +15,7 @@ class TestTFCAuditTrails(TestTFCBaseTestCase):
 
     def test_audit_trails(self):
         """
-        Test the Audit Trails API endpoints: ``list``.
+        Test the Audit Trails API endpoints.
         """
 
         # List the audit trails. This deviates from the standard JSON spec

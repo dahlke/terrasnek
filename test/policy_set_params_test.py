@@ -31,9 +31,9 @@ class TestTFCPolicySetParams(TestTFCBaseTestCase):
 
     def test_policy_sets(self):
         """
-        Test the Policy Set Params API endpoints: ``create``, ``list``, ``update``,
-        ``destroy``.
+        Test the Policy Set Params API endpoints.
         """
+
         # List the params, confirm that there are none to start.
         all_params = self._api.policy_set_params.list(self._created_policy_set_id)["data"]
         self.assertEqual(len(all_params), 0)

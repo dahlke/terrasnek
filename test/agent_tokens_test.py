@@ -20,9 +20,9 @@ class TestTFCAgentTokens(TestTFCBaseTestCase):
         agent_pools = self._api.agents.list_pools()["data"]
         self._agent_pool_id = agent_pools[0]["id"]
 
-    def test_agent_tokens_endpoints(self):
+    def test_agent_tokens(self):
         """
-        Test the Agent Tokens API endpoints: ``list``, ``show``, ``create``, ``destroy``.
+        Test the Agent Tokens API endpoints.
         """
 
         # List the tokens, assert we have zero

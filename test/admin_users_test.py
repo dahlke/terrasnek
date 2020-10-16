@@ -15,8 +15,7 @@ class TestTFCAdminUsers(TestTFCBaseTestCase):
 
     def test_admin_users(self):
         """
-        Test the Admin Users API endpoints: ``grant_admin``, ``list``,
-        ``revoke_admin``, ``suspend``, ``unsuspend``.
+        Test the Admin Users API endpoints.
 
         NOTE: Not tested, as they can't be reverted via the API: ``destroy``,
         ``disable_two_factor``.

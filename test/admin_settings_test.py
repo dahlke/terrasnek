@@ -17,7 +17,7 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_general(self):
         """
-        Test the Admin Settings API endpoints: ``list_general``, ``update_general``.
+        Test the Admin Settings General API endpoints.
         """
         # List all the general settings, verify the response type
         all_general = self._api.admin_settings.list_general()["data"]
@@ -38,9 +38,9 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_cost_estimation(self):
         """
-        Test the Admin Settings API endpoints: ``list_cost_estimation``,
-        ``update_cost_estimation``.
+        Test the Admin Settings Cost Estimation API endpoints.
         """
+
         # List all the cost estimation settings, verify the response type
         all_cost_est = self._api.admin_settings.list_cost_estimation()["data"]
         self.assertEqual("cost-estimation-settings", all_cost_est["type"])
@@ -65,9 +65,9 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_saml(self):
         """
-        Test the Admin Settings API endpoints: ``list_saml``, ``update_saml``,
-        ``revoke_previous_saml_idp_cert``.
+        Test the Admin Settings SAML API endpoints.
         """
+
         # List all the SAML settings, verify the response type
         all_saml = self._api.admin_settings.list_saml()["data"]
         self.assertEqual("saml-settings", all_saml["type"])
@@ -102,8 +102,9 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_smtp(self):
         """
-        Test the Admin Settings API endpoints: ``list_smtp``, ``update_smtp``.
+        Test the Admin Settings SMTP API endpoints.
         """
+
         # List all the SMTP settings, verify the response type
         all_smtp = self._api.admin_settings.list_smtp()["data"]
         self.assertEqual("smtp-settings", all_smtp["type"])
@@ -112,9 +113,9 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_twilio(self):
         """
-        Test the Admin Settings API endpoints: ``list_twilio``, ``update_twilio``,
-        ``verify_twilio``.
+        Test the Admin Settings Twilio API endpoints.
         """
+
         # List all the Twilio settings, verify the response type
         all_twilio = self._api.admin_settings.list_twilio()["data"]
         self.assertEqual("twilio-settings", all_twilio["type"])
@@ -123,9 +124,9 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
 
     def test_admin_settings_customization(self):
         """
-        Test the Admin Settings API endpoints: ``list_customization``,
-        ``update_customization``.
+        Test the Admin Settings Customization API endpoints.
         """
+
         # List all the customization settings, verify the response type
         all_customization = self._api.admin_settings.list_customization()["data"]
         self.assertEqual("customization-settings", all_customization["type"])

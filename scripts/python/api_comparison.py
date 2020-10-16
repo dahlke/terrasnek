@@ -20,7 +20,6 @@ TEST_PATH = "./test"
 DOCS_PATH = "./docs"
 HTTP_VERBS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
-# TODO: naming pass
 def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_ignore=[]):
     """
     List a directory, and return all filenames that don't start with a "." or "_",
@@ -149,7 +148,8 @@ def check_contributor_requirements(endpoints):
     """
     # Check for an implementation file for each endpoint
     implementation_filenames = \
-        get_valid_filenames_in_dir(IMPLEMENTATION_PATH, filename_ignore=["endpoint", "api", "exceptions"])
+        get_valid_filenames_in_dir(IMPLEMENTATION_PATH, \
+            filename_ignore=["endpoint", "api", "exceptions"])
     for filename in implementation_filenames:
         if filename in endpoints:
             endpoints[filename]["implementation"] = True
@@ -175,9 +175,6 @@ def check_methods_implementation(endpoints):
     With the endpoint info we scraped from the API docs, check that each method
     in the docs has an implementation.
     """
-    implementation_filenames = \
-        get_valid_filenames_in_dir(\
-            IMPLEMENTATION_PATH, filename_ignore=["endpoint", "api", "exceptions"])
 
     for ep_name in endpoints:
         endpoint = endpoints[ep_name]
@@ -187,8 +184,8 @@ def check_methods_implementation(endpoints):
         split_by_func_def = []
 
         if os.path.exists(path):
-            with open(path, "r") as f:
-                file_contents = f.read()
+            with open(path, "r") as infile:
+                file_contents = infile.read()
                 split_by_func_def = file_contents.split("\n")
 
         for method in endpoint_methods:
@@ -216,6 +213,10 @@ def write_table_to_file(path, rows, headers, tablefmt):
         f.write(table_data)
 
 def main():
+    """
+    Main function to check the implemementation files herein this repo
+    and what is specced out in the TFC API docs.
+    """
     endpoints = scrape_endpoint_info()
     endpoints = check_contributor_requirements(endpoints)
     endpoints = check_methods_implementation(endpoints)
@@ -312,7 +313,7 @@ def main():
             num_total_methods += 1
             if method["implemented"]:
                 num_methods_implemented += 1
-    
+
     badge_text = f"{num_methods_implemented}/{num_total_methods} API endpoints implemented"
     implemented_pct = round(((num_methods_implemented / num_total_methods) * 100), 2)
     badge = anybadge.Badge(badge_text, f"{implemented_pct}%", default_color="lightgrey")

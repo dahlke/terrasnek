@@ -32,7 +32,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),
             self._get_variable_create_payload(
-                "org_name", "terrasnek_unittest", self._ws_id),
+                "org_name", self._test_org_name, self._ws_id),
             self._get_variable_create_payload(
                 "TFE_TOKEN", self._test_api_token, self._ws_id, category="env", sensitive=True)
         ]
@@ -48,7 +48,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
     def test_run_and_apply(self):
         """
-        Test the Runs API endpoints: ``create``, ``show``, ``apply``.
+        Test the Runs API endpoints with an apply.
         """
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)
@@ -87,7 +87,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
     def test_run_and_discard(self):
         """
-        Test the Runs API endpoint: ``discard``.
+        Test the Runs API endpoints for a discard.
         """
 
         # Give the worksapce a little time to create
@@ -117,7 +117,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
     def test_run_and_cancel(self):
         """
-        Test the Runs API endpoint: ``cancel``.
+        Test the Runs API endpoints for a normal cancel.
         """
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)
@@ -144,8 +144,9 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
     def test_run_and_force_cancel(self):
         """
-        Test the Runs API endpoint: ``force_cancel``.
+        Test the Runs API endpoints for a force cancel.
         """
+
         # Create a run
         create_run_payload = self._get_run_create_payload(self._ws_id)
         run = self._api.runs.create(create_run_payload)["data"]

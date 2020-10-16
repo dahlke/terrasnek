@@ -21,9 +21,9 @@ class TestTFCOAuthTokens(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_oauth_tokens_endpoints(self):
+    def test_oauth_tokens(self):
         """
-        Test the OAuth Tokens API endpoints: ``list``, ``show``, ``update``, ``destroy``.
+        Test the OAuth Tokens API endpoints.
         """
 
         # List all the tokens and make sure there is one associated to your client

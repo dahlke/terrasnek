@@ -23,9 +23,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
     def test_workspaces(self):
         """
-        Test the Workspaces API endpoints: ``create``, ``destroy``, ``show``, ``lock``,
-        ``unlock``, ``update``, ``assign_ssh_key``, ``unassign_ssh_key``.
+        Test the Workspaces API endpoints.
         """
+
         # Get the number of existing workspaces, then create one and compare them
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload())["data"]

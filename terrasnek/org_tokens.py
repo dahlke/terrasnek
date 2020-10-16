@@ -22,7 +22,8 @@ class TFCOrgTokens(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/authentication-token``
 
-        This endpoint creates an org token for the active org.
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organization-tokens.html#generate-a-new-organization-token>`_
         """
         return self._create(self._endpoint_base_url, None)
 
@@ -30,7 +31,8 @@ class TFCOrgTokens(TFCEndpoint):
         """
         ``DELETE /organizations/:organization/authentication-token``
 
-        This endpoint deletes the org token for the active org.
+        `API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organization-tokens.html#delete-the-organization-token>`_
         """
         url = f"{self._endpoint_base_url}"
         return self._destroy(url)

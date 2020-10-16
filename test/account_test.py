@@ -17,7 +17,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
 
     def test_account(self):
         """
-        Test the Account API endpoints: ``show``, ``update``, ``change_password``.
+        Test the Account API endpoints.
         """
 
         # Show the account and confirm we get a valid response

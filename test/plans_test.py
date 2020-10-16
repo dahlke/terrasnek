@@ -33,7 +33,7 @@ class TestTFCPlans(TestTFCBaseTestCase):
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),
             self._get_variable_create_payload(
-                "org_name", "terrasnek_unittest", self._ws_id),
+                "org_name", self._test_org_name, self._ws_id),
             self._get_variable_create_payload(
                 "TFE_TOKEN", self._test_api_token, self._ws_id, category="env", sensitive=True)
         ]
@@ -52,9 +52,9 @@ class TestTFCPlans(TestTFCBaseTestCase):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
-    def test_plan(self):
+    def test_plans(self):
         """
-        Test the Plans API endpoint: ``show``, ``download_json``.
+        Test the Plans API endpoints.
         """
 
         # Create a run and wait for the created run to complete it's plan

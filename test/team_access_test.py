@@ -35,8 +35,9 @@ class TestTFCTeamAccess(TestTFCBaseTestCase):
 
     def test_team_access(self):
         """
-        Test the Team Access API endpoints: ``list``, ``add``, ``remove``, ``update``.
+        Test the Team Access API endpoints.
         """
+
         # Create new Team access, confirm it has been created
         team_access_create_payload = {
             "data": {

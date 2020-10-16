@@ -104,7 +104,9 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
     @classmethod
     def _purge_organization(cls):
-        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of workspaces...")
+        cls._logger.info(f"Purging test org ({cls._test_org_name}) of all resources to start fresh...")
+
+        cls._logger.info(f"Purging test org ({cls._test_org_name}) of workspaces...")
         workspaces = cls._api.workspaces.list()["data"]
         for workspace in workspaces:
             cls._api.workspaces.destroy(workspace_id=workspace["id"])
@@ -113,6 +115,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of modules...")
         registry_modules = cls._api.registry_modules.list()["modules"]
         for registry_module in registry_modules:
+            print(registry_module)
             cls._api.registry_modules.destroy(registry_module["name"])
         cls._logger.debug(f"Modules purged from test org ({cls._test_org_name}).")
 
@@ -149,6 +152,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
             if team_name != "owners":
                 cls._api.teams.destroy(team["id"])
         cls._logger.debug(f"Teams purged from test org ({cls._test_org_name}).")
+
+        cls._logger.info(f"Test org ({cls._test_org_name}) purged of all resources.")
 
         # TODO: org tokens / org memberships / agents / agent pools
 

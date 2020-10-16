@@ -15,8 +15,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
 
     def test_policies(self):
         """
-        Test the Policies API endpoints: ``create``, ``list``, ``show``,
-        ``update``, ``upload``, ``destroy``.
+        Test the Policies API endpoints.
         """
 
         # Confirm we have no policies.

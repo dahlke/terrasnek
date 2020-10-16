@@ -13,10 +13,9 @@ class TestTFCAgents(TestTFCBaseTestCase):
     _unittest_name = "agents"
     _endpoint_being_tested = "agents"
 
-    def test_agent_pools_endpoints(self):
+    def test_agent_pools(self):
         """
-        Test the Agents API endpoints: ``list``, ``show``, ``create``,
-        ``show_pool``, ``list_pool``.
+        Test the Agent Pools API endpoints.
         """
 
         # Create an agent pool, we won't assert anything on it, in case it has already been created.

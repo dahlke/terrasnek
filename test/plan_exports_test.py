@@ -33,7 +33,7 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),
             self._get_variable_create_payload(
-                "org_name", "terrasnek_unittest", self._ws_id),
+                "org_name", self._test_org_name, self._ws_id),
             self._get_variable_create_payload(
                 "TFE_TOKEN", self._test_api_token, self._ws_id, category="env", sensitive=True)
         ]
@@ -54,8 +54,9 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
 
     def test_plan_exports(self):
         """
-        Test the Plan Exports API endpoints: ``show``, ``create``, ``download``.
+        Test the Plan Exports API endpoints.
         """
+
         # Create a run and wait for the created run to complete it's plan
         created_run = self._api.runs.show(self._run_id)["data"]
         created_plan_id = created_run["relationships"]["plan"]["data"]["id"]

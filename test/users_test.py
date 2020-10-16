@@ -15,9 +15,9 @@ class TestTFCUsers(TestTFCBaseTestCase):
 
     def test_users(self):
         """
-        Test the Users API endpoints: ``show`, ``destroy``.
-
+        Test the Users API endpoints.
         """
+
         logged_in_user = self._api.account.show()["data"]
         logged_in_user_id = logged_in_user["id"]
 
