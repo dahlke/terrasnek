@@ -61,7 +61,10 @@ class TestTFCApplies(TestTFCBaseTestCase):
         self._created_run_timeout(self._run_id)
 
         # Apply the plan
-        self._api.runs.apply(self._run_id)
+        apply_payload = {
+            "comment": "foo"
+        }
+        self._api.runs.apply(self._run_id, apply_payload)
         applied_run = self._api.runs.show(self._run_id)["data"]
 
         self._logger.debug("Waiting for apply to kick off...")

@@ -115,7 +115,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of modules...")
         registry_modules = cls._api.registry_modules.list()["modules"]
         for registry_module in registry_modules:
-            print(registry_module)
             cls._api.registry_modules.destroy(registry_module["name"])
         cls._logger.debug(f"Modules purged from test org ({cls._test_org_name}).")
 
