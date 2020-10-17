@@ -7,6 +7,7 @@ just quick lookups. It is meant to be self contained.
 """
 
 import os
+import json
 import requests
 import anybadge
 
@@ -212,6 +213,14 @@ def write_table_to_file(path, rows, headers, tablefmt):
         table_data = tabulate(rows, headers=headers, tablefmt=tablefmt)
         f.write(table_data)
 
+def write_pretty_json_to_file(path, data):
+    """
+    Helper function to write pretty JSON to a file.
+    """
+    with open(path, "w") as f:
+        pretty_json = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
+        f.write(pretty_json)
+
 def main():
     """
     Main function to check the implemementation files herein this repo
@@ -220,6 +229,8 @@ def main():
     endpoints = scrape_endpoint_info()
     endpoints = check_contributor_requirements(endpoints)
     endpoints = check_methods_implementation(endpoints)
+
+    write_pretty_json_to_file("./ref/data/endpoint_data.raw.json", endpoints)
 
     # High level comparison which shows if the endpoint is implemented at all.
     # Build a markdown table for GitHub display
@@ -301,8 +312,6 @@ def main():
 
     rst_method_rows.sort(key=lambda x: x[0])
     write_table_to_file("./docs/TERRASNEK_API_COVERAGE_COMPLETENESS.rst", rst_method_rows, rst_method_headers, "rst")
-
-    # TODO: write the endpoints mapping out to a file
 
     # Write a badge for the # of implemented methods vs the total # of method endpoints
     num_methods_implemented = 0
