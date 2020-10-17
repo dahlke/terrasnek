@@ -101,10 +101,10 @@ applied_run = api.runs.apply(run_id)
 
 _For more examples, see the `./test` directory in the repository._
 
-### `terrasnek` to Terraform Cloud API Parity
+### `terrasnek` to Terraform Cloud API Completeness
 
 ```eval_rst
-.. include:: api_parity_table.rst
+.. include:: TERRASNEK_API_COVERAGE_COMPLETENESS.rst
 ```
 
 ## Contents

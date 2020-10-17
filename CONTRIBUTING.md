@@ -166,7 +166,7 @@ bash <(curl -s https://codecov.io/bash)
 make docs
 ```
 
-#### Comparing Parity to Terraform API Spec
+#### Comparing Completeness of `terrasnek` vs Terraform API Spec
 
 ```bash
 make api_comparison

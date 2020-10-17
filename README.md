@@ -6,7 +6,7 @@
 [![Documentation Status](https://readthedocs.org/projects/terrasnek/badge/)](https://terrasnek.readthedocs.io/en/latest/?badge=latest)
 [![GitHub issues](https://img.shields.io/github/issues/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/issues)
 [![GitHub license](https://img.shields.io/github/license/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/blob/master/LICENSE)
-[![API Method Support](./api_endpoints_implemented.svg)](./API_PARITY_TABLE.md)
+[![API Method Support](./api_endpoints_implemented.svg)](./TERRASNEK_API_COVERAGE_COMPLETENESS.md)
 
 _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/cloud/api/index.html)._
 
@@ -54,11 +54,11 @@ if __name__ == "__main__":
     api.set_org("YOUR_ORGANIZATION")
 ```
 
-### `terrasnek` to Terraform Cloud API Spec Parity
+### `terrasnek` to Terraform Cloud API Spec Completeness
 
 To see the which endpoints are implemented in `terrasnek` compared to those
 that are listed on the Terraform Cloud API docs, view the auto-generated
-[`API_PARITY_TABLE.md`](API_PARITY_TABLE.md) file.
+[`TERRASNEK_API_COVERAGE_COMPLETENESS.md`](TERRASNEK_API_COVERAGE_COMPLETENESS.md) file.
 
 ### `terrasnek` Common Use Case Examples
 

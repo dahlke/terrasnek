@@ -270,7 +270,7 @@ def main():
             md_method_rows.append(md_method_row)
 
     md_method_rows.sort(key=lambda x: x[0])
-    write_table_to_file("./API_PARITY_TABLE.md", md_method_rows, md_method_headers, "github")
+    write_table_to_file("./TERRASNEK_API_COVERAGE_COMPLETENESS.md", md_method_rows, md_method_headers, "github")
 
     # Build an RST table for the Sphinx Python Docs
     rst_method_headers = [
@@ -300,7 +300,7 @@ def main():
             rst_method_rows.append(rst_method_row)
 
     rst_method_rows.sort(key=lambda x: x[0])
-    write_table_to_file("./docs/api_parity_table.rst", rst_method_rows, rst_method_headers, "rst")
+    write_table_to_file("./docs/TERRASNEK_API_COVERAGE_COMPLETENESS.rst", rst_method_rows, rst_method_headers, "rst")
 
     # TODO: write the endpoints mapping out to a file
 
