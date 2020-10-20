@@ -90,7 +90,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 "Missing required Terraform Cloud Entitlments for test", \
                     cls._unittest_name, missing_entitlements)
 
-        if TFC_SAAS_HOSTNAME in TFC_URL and "admin" in cls._endpoint_being_tested:
+        if TFC_SAAS_HOSTNAME in TFC_URL and "admin" in str(cls._endpoint_being_tested):
             raise unittest.SkipTest(\
                 "Skipping Admin Test since we're testing against Terraform Cloud.")
 
@@ -104,7 +104,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
     @classmethod
     def _purge_organization(cls):
-        cls._logger.info(f"Purging test org ({cls._test_org_name}) of all resources to start fresh...")
+        cls._logger.info(\
+            f"Purging test org ({cls._test_org_name}) of all resources to start fresh...")
 
         cls._logger.info(f"Purging test org ({cls._test_org_name}) of workspaces...")
         workspaces = cls._api.workspaces.list()["data"]

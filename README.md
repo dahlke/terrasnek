@@ -25,7 +25,6 @@ Business Tier (skipping all `admin_` modules), so the coverage percentage
 is higher than represented in the badge._
 
 **[Terraform Enterprise Release Notes](https://github.com/hashicorp/terraform-enterprise-release-notes)**
-**_This repo has been updated as of TFE version 202007-2._**
 
 _Note: Terraform Enterprise is the self-hosted distribution of Terraform Cloud.
 It offers enterprises a private instance of the Terraform Cloud application,

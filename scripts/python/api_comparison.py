@@ -324,6 +324,7 @@ def main():
                 num_methods_implemented += 1
 
     badge_text = f"{num_methods_implemented}/{num_total_methods} API endpoints implemented"
+    print(badge_text)
     implemented_pct = round(((num_methods_implemented / num_total_methods) * 100), 2)
     badge = anybadge.Badge(badge_text, f"{implemented_pct}%", default_color="lightgrey")
     badge.write_badge("api_endpoints_implemented.svg", overwrite=True)

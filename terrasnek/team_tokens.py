@@ -18,13 +18,17 @@ class TFCTeamTokens(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.TEAMS]
 
-    def create(self, team_id, payload={}):
+    def create(self, team_id, payload=None):
         """
         ``POST /teams/:team_id/authentication-token``
 
         `API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-tokens.html#generate-a-new-team-token>`_
         """
+
+        if payload is None:
+            payload = {}
+
         url = f"{self._endpoint_base_url}/{team_id}/authentication-token"
         return self._create(url, payload=payload)
 
