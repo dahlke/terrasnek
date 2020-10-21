@@ -9,9 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - TBD
 
-## [0.0.9] - TBD
+## [0.0.9] - 2020-10-20
 
-- TBD
+- Updating docstrings across all methods for method use clarity.
+- Updating Registry Modules API to support all methods.
+- Standardize how payloads are taken by each endpoint.
+- More test streamlining.
 
 ## [0.0.8] - 2020-09-17
 
