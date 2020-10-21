@@ -16,7 +16,7 @@ class TFCStateVersions(TFCEndpoint):
         self._state_version_api_v2_base_url = f"{self._api_v2_base_url}/state-versions"
         self._workspace_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.STATE_STORAGE]
 
     def create(self, workspace_id, payload):

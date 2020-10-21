@@ -14,7 +14,7 @@ class TFCOrgs(TFCEndpoint):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def create(self, payload):

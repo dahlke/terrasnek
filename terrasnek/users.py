@@ -14,7 +14,7 @@ class TFCUsers(TFCEndpoint):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._users_api_v2_base_url = f"{self._api_v2_base_url}/users"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def show(self, user_id):

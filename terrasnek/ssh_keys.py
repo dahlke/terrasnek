@@ -15,7 +15,7 @@ class TFCSSHKeys(TFCEndpoint):
         self._endpoint_base_url = f"{self._api_v2_base_url}/ssh-keys"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/ssh-keys"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def create(self, payload):

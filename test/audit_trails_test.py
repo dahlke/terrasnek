@@ -2,6 +2,7 @@
 Module for testing the Terraform Cloud API Endpoint: Audit Trails.
 """
 
+from terrasnek.api import TFC
 from .base import TestTFCBaseTestCase
 
 
@@ -21,5 +22,6 @@ class TestTFCAuditTrails(TestTFCBaseTestCase):
         # List the audit trails. This deviates from the standard JSON spec
         # we use across the API, so we'll just assert no response, which
         # means it completed successfully for now.
-        audit_trails = self._api.audit_trails.list()
-        self.assertIsNone(audit_trails)
+
+        audit_trails = self._api.audit_trails.list()["data"]
+        self.assertEqual(len(audit_trails), 0)

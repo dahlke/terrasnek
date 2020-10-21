@@ -17,7 +17,7 @@ class TFCAgents(TFCEndpoint):
         self._agents_api_v2_base_url = f"{self._api_v2_base_url}/agents"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.AGENTS]
 
     def create_pool(self, payload):

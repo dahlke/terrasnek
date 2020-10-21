@@ -16,7 +16,7 @@ class TFCAgentTokens(TFCEndpoint):
         self._agent_pools_api_v2_base_url = f"{self._api_v2_base_url}/agent-pools"
         self._auth_tokens_api_v2_base_url = f"{self._api_v2_base_url}/authentication-tokens"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.AGENTS]
 
     def create(self, agent_pool_id, payload):

@@ -21,7 +21,7 @@ working against an older version of
 
 _Note: This project is tested against Terraform Enterprise often, but the code coverage
 represented in this repo will always represent coverage against Terraform Cloud
-Business Tier (skipping all `admin_` modules), so the coverage percentage
+Business Tier (skipping all `admin` modules), so the coverage percentage
 is higher than represented in the badge._
 
 **[Terraform Enterprise Release Notes](https://github.com/hashicorp/terraform-enterprise-release-notes)**

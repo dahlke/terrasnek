@@ -17,7 +17,7 @@ class TFCPolicySets(TFCEndpoint):
         self._pol_set_version_api_v2_base_url = f"{self._api_v2_base_url}/policy-set-versions"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/policy-sets"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.SENTINEL]
 
     def create(self, payload):

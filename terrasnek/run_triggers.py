@@ -14,7 +14,7 @@ class TFCRunTriggers(TFCEndpoint):
         self._endpoint_base_url = f"{self._api_v2_base_url}/run-triggers"
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def create(self, workspace_id, payload):

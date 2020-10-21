@@ -15,7 +15,7 @@ class TFCUserTokens(TFCEndpoint):
         self._users_api_v2_base_url = f"{self._api_v2_base_url}/users"
         self._tokens_api_v2_base_url = f"{self._api_v2_base_url}/authentication-tokens"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def create(self, user_id, payload):

@@ -5,6 +5,7 @@ Module for testing the Terraform Cloud API Endpoint: Plan Exports.
 import time
 import os
 
+from terrasnek.exceptions import TFCHTTPNotFound
 from .base import TestTFCBaseTestCase
 
 
@@ -102,4 +103,4 @@ class TestTFCPlanExports(TestTFCBaseTestCase):
 
         # Destroy the plan export and confirm it's gone.
         self._api.plan_exports.destroy(plan_export_id)
-        self.assertIsNone(self._api.plan_exports.show(plan_export_id))
+        self.assertRaises(TFCHTTPNotFound, self._api.plan_exports.show, plan_export_id)

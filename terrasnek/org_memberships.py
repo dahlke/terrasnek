@@ -16,7 +16,7 @@ class TFCOrgMemberships(TFCEndpoint):
         self._org_base_url = \
             f"{self._api_v2_base_url}/organizations/{org_name}/organization-memberships"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def invite(self, payload):

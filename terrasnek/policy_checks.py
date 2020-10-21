@@ -16,7 +16,7 @@ class TFCPolicyChecks(TFCEndpoint):
         self._endpoint_base_url = f"{self._api_v2_base_url}/policy-checks"
         self._runs_api_v2_base_url = f"{self._api_v2_base_url}/runs"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.SENTINEL]
 
     def list(self, run_id):

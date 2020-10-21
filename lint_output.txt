@@ -1,3 +1,11 @@
+************* Module terrasnek.api
+terrasnek/api.py:152:34: C0326: Exactly one space required before assignment
+        self.applies: TFCApplies  = None
+                                  ^ (bad-whitespace)
+terrasnek/api.py:155:49: C0326: Exactly one space required before assignment
+        self.config_versions: TFCConfigVersions  = None
+                                                 ^ (bad-whitespace)
+terrasnek/api.py:250:0: C0304: Final newline missing (missing-final-newline)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:99:2: W0511: TODO: surface error and status code (fixme)
 ************* Module test.agents_test
@@ -12,7 +20,8 @@ test/admin_settings_test.py:123:2: W0511: TODO: need to use a real twilio accoun
 test/state_version_outputs_test.py:73:2: W0511: TODO: might be a race condition here for the tests (fixme)
 ************* Module test.base
 test/base.py:158:2: W0511: TODO: org tokens / org memberships / agents / agent pools (fixme)
+test/base.py:163:32: W0212: Access to a protected member _required_entitlements of a client class (protected-access)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.97/10 (previous run: 9.97/10, +0.00)
+Your code has been rated at 9.96/10 (previous run: 9.81/10, +0.15)
 

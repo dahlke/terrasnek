@@ -20,7 +20,7 @@ class TFCRegistryModules(TFCEndpoint):
         self._modules_v1_base_url = f"{self._modules_v1_base_url}"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.PRIVATE_MODULE_REGISTRY]
 
     # Public Registry API Endpoints

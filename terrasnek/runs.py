@@ -16,7 +16,7 @@ class TFCRuns(TFCEndpoint):
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
         self._runs_api_v2_base_url = f"{self._api_v2_base_url}/runs"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.OPERATIONS]
 
     def list(self, workspace_id, page=None, page_size=None):

@@ -15,7 +15,7 @@ class TFCOrgTokens(TFCEndpoint):
         self._endpoint_base_url = \
             f"{self._api_v2_base_url}/organizations/{org_name}/authentication-token"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def create(self):

@@ -6,6 +6,7 @@ import time
 import os
 import timeout_decorator
 
+from terrasnek.exceptions import TFCHTTPNotFound
 from .base import TestTFCBaseTestCase
 from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_TEST_TIMEOUT
 
@@ -161,10 +162,9 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         # Deleted the published module, confirm that it's gone.
         self._api.registry_modules.destroy(\
             published_module_name, provider=TFE_MODULE_PROVIDER_TYPE)
-        gotten_module = \
-            self._api.registry_modules.get(\
+        self.assertRaises(TFCHTTPNotFound, \
+            self._api.registry_modules.get, \
                 published_module_name, TFE_MODULE_PROVIDER_TYPE, latest_listed_version)
-        self.assertIsNone(gotten_module)
 
 
         new_module_name = self._random_name()

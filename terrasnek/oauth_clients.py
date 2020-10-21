@@ -17,7 +17,7 @@ class TFCOAuthClients(TFCEndpoint):
             f"{self._api_v2_base_url}/organizations/{org_name}/oauth-clients"
         self._oauth_clients_api_v2_base_url = f"{self._api_v2_base_url}/oauth-clients"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.VCS_INTEGRATIONS]
 
     def list(self):

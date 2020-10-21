@@ -23,7 +23,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         return self._list(self._endpoint_base_url, page=page, page_size=page_size)
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def create(self, data):

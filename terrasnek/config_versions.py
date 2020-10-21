@@ -15,7 +15,7 @@ class TFCConfigVersions(TFCEndpoint):
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
         self._config_version_api_v2_base_url = f"{self._api_v2_base_url}/configuration-versions"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def list(self, workspace_id, page=None, page_size=None):

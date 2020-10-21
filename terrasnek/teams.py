@@ -16,7 +16,7 @@ class TFCTeams(TFCEndpoint):
         self._teams_api_v2_base_url = f"{self._api_v2_base_url}/teams"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/teams"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return [Entitlements.TEAMS]
 
     def create(self, payload):

@@ -2,6 +2,7 @@
 Module for testing the Terraform Cloud API Endpoint: Agent Tokens.
 """
 
+from terrasnek.exceptions import TFCHTTPUnprocessableEntity
 from .base import TestTFCBaseTestCase
 
 
@@ -20,7 +21,13 @@ class TestTFCAgentTokens(TestTFCBaseTestCase):
                 "type": "agent-pools"
             }
         }
-        self._api.agents.create_pool(create_payload)
+
+        try:
+            self._api.agents.create_pool(create_payload)
+        except TFCHTTPUnprocessableEntity as e:
+            # NOTE: this is not a good test, but the API endpoint isn't very flexible.
+            self._logger.info("Unprocessable entity for agent pool. You may already have one created.")
+            self._logger.error(e)
 
         agent_pools = self._api.agents.list_pools()["data"]
         self._agent_pool_id = agent_pools[0]["id"]

@@ -4,6 +4,7 @@ Module for testing the Terraform Cloud API Endpoint: Runs.
 
 import time
 
+from terrasnek.exceptions import TFCHTTPConflict
 from .base import TestTFCBaseTestCase
 
 
@@ -182,7 +183,8 @@ class TestTFCRuns(TestTFCBaseTestCase):
         force_cancel_payload = {
             "comment": "foo"
         }
-        self._api.runs.force_cancel(run_id, force_cancel_payload)
+        self.assertRaises(TFCHTTPConflict, self._api.runs.force_cancel, run_id, force_cancel_payload)
+
         run_attrs = self._api.runs.show(run_id)["data"]["attributes"]
         while "force-cancel-available-at" not in run_attrs:
             shown_run = self._api.runs.show(run_id)["data"]

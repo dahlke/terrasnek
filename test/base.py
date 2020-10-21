@@ -17,7 +17,7 @@ from terrasnek.api import TFC
 from terrasnek._constants import Entitlements
 
 from ._constants import \
-    TFC_TOKEN, TFC_URL, TEST_EMAIL, \
+    TFC_TOKEN, TFC_ORG_TOKEN, TFC_URL, TEST_EMAIL, \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET, \
     SSL_VERIFY, TEST_PASSWORD, MAX_TEST_TIMEOUT, \
@@ -39,12 +39,18 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.setLevel(logging.INFO)
         cls._tfc_url = TFC_URL
 
+        cls._test_api_token = TFC_TOKEN
+        cls._test_api_org_token = TFC_ORG_TOKEN
+        cls._api_log_level = API_LOG_LEVEL
+        cls._ssl_verify = SSL_VERIFY
+
         cls._api = TFC(\
-            TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY, log_level=API_LOG_LEVEL)
+            cls._test_api_token, url=cls._tfc_url, \
+                verify=cls._ssl_verify, log_level=cls._api_log_level)
+
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL
         cls._test_team_name = TEST_TEAM_NAME
-        cls._test_api_token = TFC_TOKEN
         cls._test_password = TEST_PASSWORD
 
         cls._test_state_path = "./test/testdata/terraform/terrasnek_unittest.tfstate"
@@ -160,7 +166,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
         endpoint = getattr(cls._api, endpoint_attr_name)
-        required_entitlements = endpoint.required_entitlements()
+        required_entitlements = endpoint._required_entitlements()
         current_entitlements = cls._api.orgs.entitlements(cls._test_org_name)["data"]["attributes"]
 
         missing_entitlements = []

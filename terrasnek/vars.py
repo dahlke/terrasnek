@@ -14,7 +14,7 @@ class TFCVars(TFCEndpoint):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/vars"
 
-    def required_entitlements(self):
+    def _required_entitlements(self):
         return []
 
     def create(self, payload):
