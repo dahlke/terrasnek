@@ -139,48 +139,48 @@ class TFC():
         self._well_known_paths = self.well_known_paths()
         self._logger.debug("TFC API well known paths retrieved.")
 
-        # Instantiate each endpoint with None to help out auto-completers and linters
-        self.admin_orgs = None
-        self.admin_runs = None
-        self.admin_settings = None
-        self.admin_terraform_versions = None
-        self.admin_users = None
-        self.admin_workspaces = None
-        self.audit_trails = None
-        self.ip_ranges = None
-        self.orgs = None
-        self.account = None
-        self.applies = None
-        self.agents = None
-        self.agent_tokens = None
-        self.config_versions = None
-        self.cost_estimates = None
-        self.oauth_clients = None
-        self.oauth_tokens = None
-        self.org_memberships = None
-        self.org_tokens = None
-        self.plans = None
-        self.plan_exports = None
-        self.policies = None
-        self.policy_checks = None
-        self.policy_sets = None
-        self.policy_set_params = None
-        self.notification_configs = None
-        self.registry_modules = None
-        self.run_triggers = None
-        self.runs = None
-        self.state_versions = None
-        self.state_version_outputs = None
-        self.ssh_keys = None
-        self.teams = None
-        self.team_access = None
-        self.team_memberships = None
-        self.team_tokens = None
-        self.users = None
-        self.user_tokens = None
-        self.vars = None
-        self.workspace_vars = None
-        self.workspaces = None
+        self.admin_orgs                 : TFCAdminOrgs = None
+        self.admin_runs                 : TFCAdminRuns = None  
+        self.admin_settings             : TFCAdminSettings = None
+        self.admin_terraform_versions   : TFCAdminTerraformVersions = None
+        self.admin_users                : TFCAdminUsers = None
+        self.admin_workspaces           : TFCAdminWorkspaces = None
+        self.audit_trails               : TFCAuditTrails = None
+        self.ip_ranges                  : TFCIPRanges = None
+        self.orgs                       : TFCOrgs = None
+
+        self.account                    : TFCAccount = None
+        self.applies                    : TFCApplies  = None
+        self.agents                     : TFCAgents = None
+        self.agent_tokens               : TFCAgentTokens = None
+        self.config_versions            : TFCConfigVersions  = None
+        self.cost_estimates             : TFCCostEstimates = None
+        self.oauth_clients              : TFCOAuthClients = None
+        self.oauth_tokens               : TFCOAuthTokens = None
+        self.org_memberships            : TFCOrgMemberships = None
+        self.org_tokens                 : TFCOrgTokens = None
+        self.plans                      : TFCPlans = None
+        self.plan_exports               : TFCPlanExports = None
+        self.policies                   : TFCPolicies = None
+        self.policy_checks              : TFCPolicyChecks = None
+        self.policy_sets                : TFCPolicySets = None
+        self.policy_set_params          : TFCPolicySetParams = None
+        self.notification_configs       : TFCNotificationConfigurations = None
+        self.registry_modules           : TFCRegistryModules = None
+        self.run_triggers               : TFCRunTriggers= None
+        self.runs                       : TFCRuns = None
+        self.state_versions             : TFCStateVersions = None
+        self.state_version_outputs      : TFCStateVersionOutputs = None
+        self.ssh_keys                   : TFCSSHKeys = None
+        self.teams                      : TFCTeams = None
+        self.team_access                : TFCTeamAccess = None
+        self.team_memberships           : TFCTeamMemberships = None
+        self.team_tokens                : TFCTeamTokens = None
+        self.users                      : TFCUsers = None
+        self.user_tokens                : TFCUserTokens = None
+        self.vars                       : TFCVars = None
+        self.workspace_vars             : TFCWorkspaceVars = None
+        self.workspaces                 : TFCWorkspaces = None
 
         self._logger.debug("Initializing endpoints that don't require an org to be set...")
         # Loop through all the endpoints that don't require an org and initialize them
@@ -194,8 +194,8 @@ class TFC():
                 self._verify,
                 self._log_level)
             setattr(self, ep_name, initialized_endpoint_class)
+        
         self._logger.debug("Initialized endpoints that don't require an org to be set.")
-
         # Loop through all the endpoints that do require an org and initialize them
         for ep_name in self._class_for_attr_dict["org-required"]:
             setattr(self, ep_name, None)
