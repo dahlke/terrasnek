@@ -62,7 +62,7 @@ create_workspace_payload = {
 }
 
 created_workspace = api.workspaces.create(create_workspace_payload)
-created_workspace_id = created_workspace["data]["id"]
+created_workspace_id = created_workspace["data"]["id"]
 ```
 
 #### Add Variables to a Workspace
