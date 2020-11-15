@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminTerraformVersions(TFCEndpoint):
     """
-    `API Docs \
+    `Admin Terraform Versions API Docs \
         <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html>`_
     """
 
@@ -18,7 +18,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         ``GET /admin/terraform-versions``
 
-        `API Doc Reference \
+        `Admin Terraform Versions List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html#list-all-terraform-versions>`_
         """
         return self._list(self._endpoint_base_url, page=page, page_size=page_size)
@@ -30,7 +30,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         ``POST /admin/terraform-versions``
 
-        `API Doc Reference \
+        `Admin Terraform Versions Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html#create-a-terraform-version>`_
         """
         return self._post(self._endpoint_base_url, data=data)
@@ -39,7 +39,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         ``GET /admin/terraform-versions/:id``
 
-        `API Doc Reference \
+        `Admin Terraform Versions Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html#show-a-terraform-version>`_
         """
         url = f"{self._endpoint_base_url}/{version_id}"
@@ -49,7 +49,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         ``PATCH /admin/terraform-versions/:id``
 
-        `API Doc Reference \
+        `Admin Terraform Versions Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html#update-a-terraform-version>`_
         """
         url = f"{self._endpoint_base_url}/{version_id}"
@@ -59,7 +59,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         ``DELETE /admin/terraform-versions/:id``
 
-        `API Doc Reference \
+        `Admin Terraform Versions Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html#delete-a-terraform-version>`_
         """
         url = f"{self._endpoint_base_url}/{version_id}"

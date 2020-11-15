@@ -13,7 +13,6 @@ TFC_SAAS_HOSTNAME = "app.terraform.io"
 
 # Configurable Constants
 TFC_URL = os.getenv("TFC_URL", None)
-# TODO: name this TFC_USER_TOKEN?
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
 TFC_ORG_TOKEN = os.getenv("TFC_ORG_TOKEN", None)
 

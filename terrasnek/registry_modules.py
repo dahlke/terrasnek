@@ -7,10 +7,10 @@ from ._constants import Entitlements
 
 class TFCRegistryModules(TFCEndpoint):
     """
-    `API Docs (Private Registry) \
+    `Registry Modules API Docs (Private Registry) \
         <https://www.terraform.io/docs/cloud/api/modules.html>`_
 
-    `API Docs (Public Registry) \
+    `Registry Modules API Docs (Public Registry) \
         <https://www.terraform.io/docs/registry/api.html>`_
     """
 
@@ -29,7 +29,7 @@ class TFCRegistryModules(TFCEndpoint):
         ``GET <base_url>``
         ``GET <base_url>/:namespace``
 
-        `API Doc Reference \
+        `Registry Modules List API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-modules>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}"
@@ -40,7 +40,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``GET <base_url>/search``
 
-        `API Doc Reference \
+        `Registry Modules Search API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#search-modules>`_
         """
         url = f"{self._modules_v1_base_url}/search"
@@ -52,7 +52,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``GET /registry-modules/show/:organization_name/:name/:provider``
 
-        `API Doc Reference \
+        `Registry Modules Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#show-a-module>`_
         """
         url = f"{self._modules_v2_base_url}/show/{self._org_name}/{module_name}/{provider}"
@@ -62,7 +62,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``GET <base_url>/:namespace/:name/:provider/versions``
 
-        `API Doc Reference \
+        `Registry Modules List Versions API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-available-versions-for-a-specific-module>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/versions"
@@ -72,7 +72,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``GET <base_url>/:namespace/:name``
 
-        `API Doc Reference \
+        `Registry Modules List Latest Version All Providers API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-latest-version-of-module-for-all-providers>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}"
@@ -82,7 +82,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``GET <base_url>/:namespace/:name/:provider``
 
-        `API Doc Reference \
+        `Registry Modules List Latest Version Specific Provider API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#latest-version-for-a-specific-module-provider>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}"
@@ -92,7 +92,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``GET <base_url>/:namespace/:name/:provider/:version``
 
-        `API Doc Reference \
+        `Registry Modules Get API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#get-a-specific-module>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}"
@@ -102,7 +102,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``GET <base_url>/:namespace/:name/:provider/:version/download``
 
-        `API Doc Reference \
+        `Registry Modules Download Version Source API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#download-source-code-for-a-specific-module-version>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}/download"
@@ -112,7 +112,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``GET <base_url>/:namespace/:name/:provider/download``
 
-        `API Doc Reference \
+        `Registry Modules Download Latest Source API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#download-the-latest-version-of-a-module>`_
         """
         url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/download"
@@ -124,10 +124,10 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``POST /registry-modules``
 
-        `API Doc Reference \
+        `Registry Modules Publish From VCS API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#publish-a-module-from-a-vcs>`_
 
-        `Sample Payload \
+        `Publish From VCS Sample Payload \
             <https://www.terraform.io/docs/cloud/api/modules.html#sample-payload>`_
         """
         return self._post(self._modules_v2_base_url, data=payload)
@@ -138,7 +138,7 @@ class TFCRegistryModules(TFCEndpoint):
         ``POST /registry-modules/actions/delete/:organization_name/:name/:provider``
         ``POST /registry-modules/actions/delete/:organization_name/:name``
 
-        `API Doc Reference \
+        `Registry Modules Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#delete-a-module>`_
         """
         url = f"{self._modules_v2_base_url}/actions/delete/{self._org_name}"
@@ -156,10 +156,10 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/registry-modules``
 
-        `API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/modules.html#create-a-module`_
+        `Registry Modules Create API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/modules.html#create-a-module>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/modules.html#request-body-1>`_
         """
 
@@ -171,10 +171,10 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``POST /registry-modules/:organization_name/:name/:provider/versions``
 
-        `API Doc Reference \
+        `Registry Modules Create Version API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#create-a-module-version>`_
 
-        `Sample Payload \
+        `Create Version Sample Payload \
             <https://www.terraform.io/docs/cloud/api/modules.html#request-body-2>`_
         """
 
@@ -185,7 +185,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
-        `API Doc Reference \
+        `Registry Modules Upload Version API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#upload-a-module-version>`_
         """
         data = None

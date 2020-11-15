@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminSettings(TFCEndpoint):
     """
-    `API Docs \
+    `Admin Settings API Docs \
         <https://www.terraform.io/docs/cloud/api/admin/settings.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``GET /api/v2/admin/general-settings``
 
-        `API Doc Reference \
+        `Admin List General Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#list-general-settings>`_
         """
         url = f"{self._endpoint_base_url}/general-settings"
@@ -31,7 +31,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``PATCH /api/v2/admin/general-settings``
 
-        `API Doc Reference \
+        `Admin Update General Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#update-general-settings>`_
         """
         url = f"{self._endpoint_base_url}/general-settings"
@@ -41,7 +41,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``GET /api/v2/admin/cost-estimation-settings``
 
-        `API Doc Reference \
+        `Admin List Cost Estimation Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#list-cost-estimation-settings>`_
         """
         url = f"{self._endpoint_base_url}/cost-estimation-settings"
@@ -51,7 +51,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``PATCH /api/v2/admin/cost-estimation-settings``
 
-        `API Doc Reference \
+        `Admin Update Cost Estimation Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#update-cost-estimation-settings>`_
         """
         url = f"{self._endpoint_base_url}/cost-estimation-settings"
@@ -61,7 +61,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``GET /api/v2/admin/saml-settings``
 
-        `API Doc Reference \
+        `Admin List SAML Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#list-saml-settings>`_
         """
         url = f"{self._endpoint_base_url}/saml-settings"
@@ -71,7 +71,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``PATCH /api/v2/admin/saml-settings``
 
-        `API Doc Reference \
+        `Admin Update SAML Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#update-saml-settings>`_
         """
         url = f"{self._endpoint_base_url}/saml-settings"
@@ -81,7 +81,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``POST /api/v2/admin/saml-settings/actions/revoke-old-certificate``
 
-        `API Doc Reference \
+        `Admin Revoke SAML IDP Cert API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#revoke-previous-saml-idp-certificate>`_
         """
         url = f"{self._endpoint_base_url}/saml-settings/actions/revoke-old-certificate"
@@ -91,7 +91,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``GET /api/v2/admin/smtp-settings``
 
-        `API Doc Reference \
+        `Admin List SMTP Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#list-smtp-settings>`_
         """
         url = f"{self._endpoint_base_url}/smtp-settings"
@@ -101,7 +101,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``PATCH /api/v2/admin/smtp-settings``
 
-        `API Doc Reference \
+        `Admin Update SMTP Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#update-smtp-settings>`_
         """
         url = f"{self._endpoint_base_url}/smtp-settings"
@@ -111,7 +111,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``GET /api/v2/admin/twilio-settings``
 
-        `API Doc Reference \
+        `Admin List Twilio Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#list-twilio-settings>`_
         """
         url = f"{self._endpoint_base_url}/twilio-settings"
@@ -121,7 +121,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``PATCH /api/v2/admin/twilio-settings``
 
-        `API Doc Reference \
+        `Admin Update Twilio Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#update-twilio-settings>`_
         """
         url = f"{self._endpoint_base_url}/twilio-settings"
@@ -131,7 +131,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``POST /api/v2/admin/twilio-settings/verify``
 
-        `API Doc Reference \
+        `Admin Verify Twilio Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#verify-twilio-settings>`_
         """
         url = f"{self._endpoint_base_url}/twilio-settings/verify"
@@ -141,7 +141,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``GET /api/v2/admin/customization-settings``
 
-        `API Doc Reference \
+        `Admin List Customization Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#list-customization-settings>`_
         """
         url = f"{self._endpoint_base_url}/customization-settings"
@@ -151,7 +151,7 @@ class TFCAdminSettings(TFCEndpoint):
         """
         ``PATCH /api/v2/admin/customization-settings``
 
-        `API Doc Reference \
+        `Admin Update Customization Settings API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/settings.html#update-customization-settings>`_
         """
         url = f"{self._endpoint_base_url}/customization-settings"

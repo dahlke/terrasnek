@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCOAuthClients(TFCEndpoint):
     """
-    `API Docs \
+    `OAuth Clients API Docs \
         <https://www.terraform.io/docs/cloud/api/oauth-clients.html>`_
     """
 
@@ -24,7 +24,7 @@ class TFCOAuthClients(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/oauth-clients``
 
-        `API Doc Reference \
+        `OAuth Clients List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-clients.html#list-oauth-clients>`_
         """
         return self._list(self._org_api_v2_base_url)
@@ -33,7 +33,7 @@ class TFCOAuthClients(TFCEndpoint):
         """
         ``GET /oauth-clients/:id``
 
-        `API Doc Reference \
+        `OAuth Clients Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-clients.html#show-an-oauth-client>`_
        """
         url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"
@@ -43,10 +43,10 @@ class TFCOAuthClients(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/oauth-clients``
 
-        `API Doc Reference \
+        `OAuth Clients Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-clients.html#create-an-oauth-client>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/oauth-clients.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -55,10 +55,10 @@ class TFCOAuthClients(TFCEndpoint):
         """
         ``PATCH /oauth-clients/:id``
 
-        `API Doc Reference \
+        `OAuth Clients Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-clients.html#update-an-oauth-client>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/oauth-clients.html#sample-payload-1>`_
         """
         url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"
@@ -68,7 +68,7 @@ class TFCOAuthClients(TFCEndpoint):
         """
         ``DELETE /oauth-clients/:id``
 
-        `API Doc Reference \
+        `OAuth Clients Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-clients.html#destroy-an-oauth-client>`_
         """
         url = f"{self._oauth_clients_api_v2_base_url}/{client_id}"

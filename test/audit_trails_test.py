@@ -2,7 +2,6 @@
 Module for testing the Terraform Cloud API Endpoint: Audit Trails.
 """
 
-from terrasnek.api import TFC
 from .base import TestTFCBaseTestCase
 
 

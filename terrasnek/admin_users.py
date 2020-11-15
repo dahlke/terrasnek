@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminUsers(TFCEndpoint):
     """
-    `API Docs \
+    `Admin Users API Docs \
         <https://www.terraform.io/docs/cloud/api/admin/users.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``DELETE /admin/users/:id``
 
-        `API Doc Reference \
+        `Admin Users Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#delete-a-user-account>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}"
@@ -31,7 +31,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/:id/actions/disable_two_factor``
 
-        `API Doc Reference \
+        `Admin Users Disable Two Factor API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#disable-a-user-39-s-two-factor-authentication>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}/actions/disable_two_factor"
@@ -41,7 +41,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/:id/actions/grant_admin``
 
-        `API Doc Reference \
+        `Admin Users Grant Admin API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#grant-a-user-administrative-privileges>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}/actions/grant_admin"
@@ -51,7 +51,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/:id/actions/impersonate``
 
-        `API Doc Reference \
+        `Admin Users Impersonate API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#impersonate-another-user>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}/actions/impersonate"
@@ -61,7 +61,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``GET /admin/users``
 
-        `API Doc Reference \
+        `Admin Users List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#list-all-users>`_
         """
         return self._list(\
@@ -71,7 +71,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/:id/actions/revoke_admin``
 
-        `API Doc Reference \
+        `Admin Users Revoke Admin API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#revoke-an-user-39-s-administrative-privileges>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}/actions/revoke_admin"
@@ -81,7 +81,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/:id/actions/suspend``
 
-        `API Doc Reference \
+        `Admin Users Suspend API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#suspend-a-user>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}/actions/suspend"
@@ -91,7 +91,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/actions/unimpersonate``
 
-        `API Doc Reference \
+        `Admin Users Unimpersonate API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#end-an-impersonation-session>`_
         """
         url = f"{self._endpoint_base_url}/actions/unimpersonate"
@@ -101,7 +101,7 @@ class TFCAdminUsers(TFCEndpoint):
         """
         ``POST /admin/users/:id/actions/unsuspend``
 
-        `API Doc Reference \
+        `Admin Users Unsuspend API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#re-activate-a-suspended-user>`_
         """
         url = f"{self._endpoint_base_url}/{user_id}/actions/unsuspend"

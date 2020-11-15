@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCStateVersions(TFCEndpoint):
     """
-    `API Docs \
+    `State Versions API Docs \
         <https://www.terraform.io/docs/cloud/api/state-versions.html>`_
     """
 
@@ -23,10 +23,10 @@ class TFCStateVersions(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/state-versions``
 
-        `API Doc Reference \
+        `State Versions Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#create-a-state-version>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#sample-payload>`_
         """
         url = f"{self._workspace_api_v2_base_url}/{workspace_id}/state-versions"
@@ -36,7 +36,7 @@ class TFCStateVersions(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/current-state-version``
 
-        `API Doc Reference \
+        `State Versions Get Current API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#fetch-the-current-state-version-for-a-workspace>`_
         """
         url = f"{self._workspace_api_v2_base_url}/{workspace_id}/current-state-version"
@@ -46,7 +46,7 @@ class TFCStateVersions(TFCEndpoint):
         """
         ``GET /state-versions``
 
-        `API Doc Reference \
+        `State Versions List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#list-state-versions-for-a-workspace>`_
 
         Query Parameter(s) (`details \
@@ -78,7 +78,7 @@ class TFCStateVersions(TFCEndpoint):
         """
         ``GET /state-versions/:state_version_id``
 
-        `API Doc Reference \
+        `State Versions Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#show-a-state-version>`_
         """
         url = f"{self._state_version_api_v2_base_url}/{state_version_id}"

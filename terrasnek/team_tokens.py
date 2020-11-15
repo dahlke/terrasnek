@@ -7,7 +7,7 @@ from ._constants import Entitlements
 
 class TFCTeamTokens(TFCEndpoint):
     """
-    `API Docs \
+    `Team Tokens API Docs \
         <https://www.terraform.io/docs/cloud/api/team-tokens.html>`_
     """
 
@@ -22,7 +22,7 @@ class TFCTeamTokens(TFCEndpoint):
         """
         ``POST /teams/:team_id/authentication-token``
 
-        `API Doc Reference \
+        `Team Tokens Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-tokens.html#generate-a-new-team-token>`_
         """
 
@@ -37,7 +37,7 @@ class TFCTeamTokens(TFCEndpoint):
         """
         ``DELETE /teams/:team_id/authentication-token``
 
-        `API Doc Reference \
+        `Team Tokens Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-tokens.html#delete-the-team-token>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/authentication-token"

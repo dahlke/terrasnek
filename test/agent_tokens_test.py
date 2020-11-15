@@ -24,10 +24,11 @@ class TestTFCAgentTokens(TestTFCBaseTestCase):
 
         try:
             self._api.agents.create_pool(create_payload)
-        except TFCHTTPUnprocessableEntity as e:
+        except TFCHTTPUnprocessableEntity as exc:
             # NOTE: this is not a good test, but the API endpoint isn't very flexible.
-            self._logger.info("Unprocessable entity for agent pool. You may already have one created.")
-            self._logger.error(e)
+            self._logger.info(\
+                "Unprocessable entity for agent pool. You may already have one created.")
+            self._logger.error(exc)
 
         agent_pools = self._api.agents.list_pools()["data"]
         self._agent_pool_id = agent_pools[0]["id"]

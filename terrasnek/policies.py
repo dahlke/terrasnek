@@ -7,7 +7,7 @@ from ._constants import Entitlements
 
 class TFCPolicies(TFCEndpoint):
     """
-    `API Docs \
+    `Policies API Docs \
         <https://www.terraform.io/docs/cloud/api/policies.html>`_
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -22,10 +22,10 @@ class TFCPolicies(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/policies``
 
-        `API Doc Reference \
+        `Policies Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#create-a-policy>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -34,7 +34,7 @@ class TFCPolicies(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/policies``
 
-        `API Doc Reference \
+        `Policies List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#list-policies>`_
 
         Query Parameter(s) (`details \
@@ -50,7 +50,7 @@ class TFCPolicies(TFCEndpoint):
         """
         ``GET /policies/:policy_id``
 
-        `API Doc Reference \
+        `Policies Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#show-a-policy>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}"
@@ -60,10 +60,10 @@ class TFCPolicies(TFCEndpoint):
         """
         ``PATCH /policies/:policy_id``
 
-        `API Doc Reference \
+        `Policies Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#update-a-policy>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload-2>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}"
@@ -73,10 +73,10 @@ class TFCPolicies(TFCEndpoint):
         """
         ``PUT /policies/:policy_id/upload``
 
-        `API Doc Reference \
+        `Policies Upload API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#upload-a-policy>`_
 
-        `Sample Payload \
+        `Upload Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policies.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/upload"
@@ -86,7 +86,7 @@ class TFCPolicies(TFCEndpoint):
         """
         ``DELETE /policies/:policy_id``
 
-        `API Doc Reference \
+        `Policies Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#delete-a-policy>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}"

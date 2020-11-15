@@ -7,7 +7,7 @@ from ._constants import Entitlements
 
 class TFCPolicySetParams(TFCEndpoint):
     """
-    `API Docs \
+    `Policy Set Params API Docs \
         <https://www.terraform.io/docs/cloud/api/policy-set-params.html>`_
     """
 
@@ -22,10 +22,10 @@ class TFCPolicySetParams(TFCEndpoint):
         """
         ``POST /policy-sets/:policy_set_id/parameters``
 
-        `API Doc Reference \
+        `Policy Set Params Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#create-a-parameter>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters"
@@ -35,7 +35,7 @@ class TFCPolicySetParams(TFCEndpoint):
         """
         ``GET /policy-sets/:policy_set_id/parameters``
 
-        `API Doc Reference \
+        `Policy Set Params List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#list-parameters>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters"
@@ -45,10 +45,10 @@ class TFCPolicySetParams(TFCEndpoint):
         """
         ``PATCH /policy-sets/:policy_set_id/parameters/:parameter_id``
 
-        `API Doc Reference \
+        `Policy Set Params Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#update-parameters>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters/{parameter_id}"
@@ -58,7 +58,7 @@ class TFCPolicySetParams(TFCEndpoint):
         """
         ``DELETE /policy-sets/:policy_set_id/parameters/:parameter_id``
 
-        `API Doc Reference \
+        `Policy Set Params Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-set-params.html#delete-parameters>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/parameters/{parameter_id}"

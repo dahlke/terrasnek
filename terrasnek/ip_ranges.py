@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCIPRanges(TFCEndpoint):
     """
-    `API Docs \
+    `IP Ranges API Docs \
         <https://www.terraform.io/docs/cloud/api/ip-ranges.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCIPRanges(TFCEndpoint):
         """
         ``GET /meta/ip-ranges``
 
-        `API Doc Reference \
+        `IP Ranges List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/ip-ranges.html#get-ip-ranges>`_
         """
         return self._list(self._endpoint_base_url)

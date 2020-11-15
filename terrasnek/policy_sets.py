@@ -7,7 +7,7 @@ from ._constants import Entitlements
 
 class TFCPolicySets(TFCEndpoint):
     """
-    `API Docs \
+    `Policy Sets API Docs \
         <https://www.terraform.io/docs/cloud/api/policy-sets.html>`_
     """
 
@@ -24,10 +24,10 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/policy-sets``
 
-        `API Doc Reference \
+        `Policy Sets Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#create-a-policy-set>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -36,7 +36,7 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/policy-sets``
 
-        `API Doc Reference \
+        `Policy Sets List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets>`_
 
         Query Parameter(s) (`details \
@@ -67,7 +67,7 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``GET /policy-sets/:id``
 
-        `API Doc Reference \
+        `Policy Sets Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#show-a-policy-set>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}"
@@ -77,10 +77,10 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``PATCH /policy-sets/:id``
 
-        `API Doc Reference \
+        `Policy Sets Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#update-a-policy-set>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}"
@@ -90,7 +90,7 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``DELETE /policies/:policy_set_id``
 
-        `API Doc Reference \
+        `Policy Sets Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#delete-a-policy-set>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}"
@@ -100,10 +100,10 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``POST /policy-sets/:id/relationships/policies``
 
-        `API Doc Reference \
+        `Policy Sets Add Policies to Set API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#add-policies-to-the-policy-set>`_
 
-        `Sample Payload \
+        `Add Policies to Set Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-2>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/relationships/policies"
@@ -113,10 +113,10 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``POST /policy-sets/:id/relationships/workspaces``
 
-        `API Doc Reference \
+        `Policy Sets Attach Set to Workspaces API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#attach-a-policy-set-to-workspaces>`_
 
-        `Sample Payload \
+        `Attach Policy Set to Workspaces Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-3>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
@@ -126,10 +126,10 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``DELETE /policy-sets/:id/relationships/policies``
 
-        `API Doc Reference \
+        `Policy Sets Remove Policies From Set API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#remove-policies-from-the-policy-set>`_
 
-        `Sample Payload \
+        `Remove Policies from Set Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-4>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/policies"
@@ -139,10 +139,10 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``DELETE /policy-sets/:id/relationships/workspaces``
 
-        `API Doc Reference \
+        `Policy Sets Detach Set from Workspaces API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#detach-the-policy-set-from-workspaces>`_
 
-        `Sample Payload \
+        `Detach Policy Set From Workspaces Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-5>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
@@ -152,7 +152,7 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``POST /policy-sets/:id/versions``
 
-        `API Doc Reference \
+        `Policy Sets Create Set Version API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#create-a-policy-set-version>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}/versions"
@@ -162,7 +162,7 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``GET /policy-set-versions/:id``
 
-        `API Doc Reference \
+        `Policy Sets Show Policy Set Version API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#show-a-policy-set-version>`_
         """
         url = f"{self._pol_set_version_api_v2_base_url}/{policy_set_version_id}"
@@ -173,7 +173,7 @@ class TFCPolicySets(TFCEndpoint):
         ``PUT {derived_policy_set_upload_url}``
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
-        `API Doc Reference \
+        `Policy Sets Upload API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#upload-policy-set-versions>`_
         """
         url = self.show_policy_set_version(policy_set_version_id)["data"]["links"]["upload"]

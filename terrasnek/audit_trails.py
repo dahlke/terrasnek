@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCAuditTrails(TFCEndpoint):
     """
-    `API Docs \
+    `Audit Trails API Docs \
         <https://www.terraform.io/docs/cloud/api/audit-trails.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCAuditTrails(TFCEndpoint):
         """
         ``GET /organization/audit-trail``
 
-        `API Doc Reference \
+        `Audit Trails List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/audit-trails.html#list-audit-trails>`_
 
         Query Parameter(s) (`details \

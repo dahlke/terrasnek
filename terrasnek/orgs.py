@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCOrgs(TFCEndpoint):
     """
-    `API Docs \
+    `Orgs API Docs \
         <https://www.terraform.io/docs/cloud/api/organizations.html>`_
     """
 
@@ -21,10 +21,10 @@ class TFCOrgs(TFCEndpoint):
         """
         ``POST /organizations``
 
-        `API Doc Reference \
+        `Orgs Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#create-an-organization>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -33,7 +33,7 @@ class TFCOrgs(TFCEndpoint):
         """
         ``DELETE /organizations/:organization_name``
 
-        `API Doc Reference \
+        `Orgs Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#destroy-an-organization>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
@@ -43,7 +43,7 @@ class TFCOrgs(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/entitlement-set``
 
-        `API Doc Reference \
+        `Orgs Entitlements API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#show-the-entitlement-set>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}/entitlement-set"
@@ -53,7 +53,7 @@ class TFCOrgs(TFCEndpoint):
         """
         ``GET /organizations``
 
-        `API Doc Reference \
+        `Orgs List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#list-organizations>`_
         """
         return self._list(self._org_api_v2_base_url)
@@ -62,7 +62,7 @@ class TFCOrgs(TFCEndpoint):
         """
         ``GET /organizations/:organization_name``
 
-        `API Doc Reference \
+        `Orgs Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#show-an-organization>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
@@ -72,10 +72,10 @@ class TFCOrgs(TFCEndpoint):
         """
         ``PATCH /organizations/:organization_name``
 
-        `API Doc Reference \
+        `Orgs Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#update-an-organization>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/organizations.html#sample-payload-1>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"

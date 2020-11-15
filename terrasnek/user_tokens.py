@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCUserTokens(TFCEndpoint):
     """
-    `API Docs \
+    `User Tokens API Docs \
         <https://www.terraform.io/docs/cloud/api/user-tokens.html>`_
     """
 
@@ -22,7 +22,7 @@ class TFCUserTokens(TFCEndpoint):
         """
         ``POST /users/:user_id/authentication-tokens``
 
-        `API Doc Reference \
+        `User Tokens Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#create-a-user-token>`_
 
         NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
@@ -30,7 +30,7 @@ class TFCUserTokens(TFCEndpoint):
 
         ``POST /api/v2/users/:user_id/authentication-tokens``
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#sample-payload>`_
         """
         url = f"{self._users_api_v2_base_url}/{user_id}/authentication-tokens"
@@ -40,7 +40,7 @@ class TFCUserTokens(TFCEndpoint):
         """
         ``DELETE /authentication-tokens/:id``
 
-        `API Doc Reference \
+        `User Tokens Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#destroy-a-user-token>`_
 
         NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
@@ -55,7 +55,7 @@ class TFCUserTokens(TFCEndpoint):
         """
         ``GET /users/:user_id/authentication-tokens``
 
-        `API Doc Reference \
+        `User Tokens List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#list-user-tokens>`_
 
         NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
@@ -70,7 +70,7 @@ class TFCUserTokens(TFCEndpoint):
         """
         ``GET /authentication-tokens/:id``
 
-        `API Doc Reference \
+        `User Tokens Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#show-a-user-token>`_
 
         NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,

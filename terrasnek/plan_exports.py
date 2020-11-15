@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCPlanExports(TFCEndpoint):
     """
-    `API Docs \
+    `Plan Exports API Docs \
         <https://www.terraform.io/docs/cloud/api/plan-exports.html>`_
     """
 
@@ -21,10 +21,10 @@ class TFCPlanExports(TFCEndpoint):
         """
         ``POST /plan-exports``
 
-        `API Doc Reference \
+        `Plan Exports Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#create-a-plan-export>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#sample-payload>`_
         """
 
@@ -34,7 +34,7 @@ class TFCPlanExports(TFCEndpoint):
         """
         ``GET /plan-exports/:id``
 
-        `API Doc Reference \
+        `Plan Exports Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#show-a-plan-export>`_
         """
         url = f"{self._endpoint_base_url}/{plan_export_id}"
@@ -44,7 +44,7 @@ class TFCPlanExports(TFCEndpoint):
         """
         ``GET /plan-exports/:id/download``
 
-        `API Doc Reference \
+        `Plan Exports Download API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#download-exported-plan-data>`_
         """
         url = f"{self._endpoint_base_url}/{plan_export_id}/download"
@@ -56,7 +56,7 @@ class TFCPlanExports(TFCEndpoint):
         """
         ``DELETE /plan-exports/:id``
 
-        `API Doc Reference \
+        `Plan Exports Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plan-exports.html#delete-exported-plan-data>`_
         """
         url = f"{self._endpoint_base_url}/{plan_export_id}"

@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCRunTriggers(TFCEndpoint):
     """
-    `API Docs \
+    `Run Triggers API Docs \
         <https://www.terraform.io/docs/cloud/api/run-triggers.html>`_
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -21,10 +21,10 @@ class TFCRunTriggers(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/run-triggers``
 
-        `API Doc Reference \
+        `Run Triggers Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#create-a-run-trigger>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#sample-payload>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
@@ -34,7 +34,7 @@ class TFCRunTriggers(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/run-triggers``
 
-        `API Doc Reference \
+        `Run Triggers List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#list-run-triggers>`_
 
         Query Parameter(s) (`details \
@@ -60,7 +60,7 @@ class TFCRunTriggers(TFCEndpoint):
         """
         ``GET /run-triggers/:run_trigger_id``
 
-        `API Doc Reference \
+        `Run Triggers Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#show-a-run-trigger>`_
         """
         url = f"{self._endpoint_base_url}/{run_trigger_id}"
@@ -70,7 +70,7 @@ class TFCRunTriggers(TFCEndpoint):
         """
         ``DELETE /run-triggers/:run_trigger_id``
 
-        `API Doc Reference \
+        `Run Triggers Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#delete-a-run-trigger>`_
         """
         url = f"{self._endpoint_base_url}/{run_trigger_id}"

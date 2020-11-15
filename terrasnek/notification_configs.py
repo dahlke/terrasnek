@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCNotificationConfigurations(TFCEndpoint):
     """
-    `API Docs \
+    `Notification Configurations API Docs \
         <https://www.terraform.io/docs/cloud/api/notification-configurations.html>`_
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
@@ -21,10 +21,10 @@ class TFCNotificationConfigurations(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/notification-configurations``
 
-        `API Doc Reference \
+        `Notification Configurations Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#create-a-notification-configuration>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-for-generic-notification-configurations>`_
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
@@ -34,7 +34,7 @@ class TFCNotificationConfigurations(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/notification-configurations``
 
-        `API Doc Reference \
+        `Notification Configurations List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#list-notification-configurations>`_
         """
         url = f"{self._ws_base_url}/{workspace_id}/notification-configurations"
@@ -44,7 +44,7 @@ class TFCNotificationConfigurations(TFCEndpoint):
         """
         ``GET /notification-configurations/:notification-configuration-id``
 
-        `API Doc Reference \
+        `Notification Configurations Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#show-a-notification-configuration>`_
         """
         url = f"{self._endpoint_base_url}/{notification_config_id}"
@@ -54,10 +54,10 @@ class TFCNotificationConfigurations(TFCEndpoint):
         """
         ``PATCH /notification-configurations/:notification-configuration-id``
 
-        `API Doc Reference \
+        `Notification Configurations Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#update-a-notification-configuration>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{notification_config_id}"
@@ -67,7 +67,7 @@ class TFCNotificationConfigurations(TFCEndpoint):
         """
         ``POST /notification-configurations/:notification-configuration-id/actions/verify``
 
-        `API Doc Reference \
+        `Notification Configurations Verify API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#verify-a-notification-configuration>`_
         """
         url = f"{self._endpoint_base_url}/{notification_config_id}/actions/verify"
@@ -77,7 +77,7 @@ class TFCNotificationConfigurations(TFCEndpoint):
         """
         ``DELETE /notification-configurations/:notification-configuration-id``
 
-        `API Doc Reference \
+        `Notification Configurations Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/notification-configurations.html#delete-a-notification-configuration>`_
         """
         url = f"{self._endpoint_base_url}/{notification_config_id}"

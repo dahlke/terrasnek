@@ -183,7 +183,8 @@ class TestTFCRuns(TestTFCBaseTestCase):
         force_cancel_payload = {
             "comment": "foo"
         }
-        self.assertRaises(TFCHTTPConflict, self._api.runs.force_cancel, run_id, force_cancel_payload)
+        self.assertRaises(\
+            TFCHTTPConflict, self._api.runs.force_cancel, run_id, force_cancel_payload)
 
         run_attrs = self._api.runs.show(run_id)["data"]["attributes"]
         while "force-cancel-available-at" not in run_attrs:

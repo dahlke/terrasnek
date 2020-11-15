@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCVars(TFCEndpoint):
     """
-    `API Docs \
+    `Vars API Docs \
         <https://www.terraform.io/docs/cloud/api/variables.html>`_
     """
 
@@ -21,10 +21,10 @@ class TFCVars(TFCEndpoint):
         """
         ``POST /vars``
 
-        `API Doc Reference \
+        `Vars Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variables.html#create-a-variable>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload>`_
         """
         return self._create(self._endpoint_base_url, payload)
@@ -33,7 +33,7 @@ class TFCVars(TFCEndpoint):
         """
         ``GET /vars``
 
-        `API Doc Reference \
+        `Vars List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variables.html#list-variables>`_
 
         Query Parameter(s) (`details \
@@ -51,10 +51,10 @@ class TFCVars(TFCEndpoint):
         """
         ``PATCH /vars/:variable_id``
 
-        `API Doc Reference \
+        `Vars Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variables.html#update-variables>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/variables.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{variable_id}"
@@ -64,7 +64,7 @@ class TFCVars(TFCEndpoint):
         """
         ``DELETE /vars/:variable_id``
 
-        `API Doc Reference \
+        `Vars Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variables.html#delete-variables>`_
         """
         url = f"{self._endpoint_base_url}/{variable_id}"

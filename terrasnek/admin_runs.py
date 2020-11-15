@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminRuns(TFCEndpoint):
     """
-    `API Docs \
+    `Admin Runs API Docs \
         <https://www.terraform.io/docs/cloud/api/admin/runs.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCAdminRuns(TFCEndpoint):
         """
         ``GET /admin/runs``
 
-        `API Doc Reference \
+        `Admin List Runs API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/runs.html#list-all-runs>`_
         """
         return self._list(self._endpoint_base_url, \
@@ -31,7 +31,7 @@ class TFCAdminRuns(TFCEndpoint):
         """
         ``POST /admin/runs/:id/actions/force-cancel``
 
-        `API Doc Reference \
+        `Admin Force Cancel Run API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/runs.html#force-a-run-into-the-quot-cancelled-quot-state>`_
         """
         url = f"{self._endpoint_base_url}/{run_id}/actions/force-cancel"

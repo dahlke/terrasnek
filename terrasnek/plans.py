@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCPlans(TFCEndpoint):
     """
-    `API Docs \
+    `Plans API Docs \
         <https://www.terraform.io/docs/cloud/api/plans.html>`_
     """
 
@@ -23,7 +23,7 @@ class TFCPlans(TFCEndpoint):
         """
         ``GET /plans/:id``
 
-        `API Doc Reference \
+        `Plans Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plans.html#show-a-plan>`_
         """
         url = f"{self._endpoint_base_url}/{plan_id}"
@@ -34,7 +34,7 @@ class TFCPlans(TFCEndpoint):
         ``GET /plans/:id/json-output``
         ``GET /runs/:id/plan/json-output``
 
-        `API Doc Reference \
+        `Plans Download JSON API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plans.html#retrieve-the-json-execution-plan>`_
         """
         if plan_id is not None:

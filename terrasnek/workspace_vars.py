@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCWorkspaceVars(TFCEndpoint):
     """
-    `API Docs \
+    `Workspace Vars API Docs \
         <https://www.terraform.io/docs/cloud/api/workspace-variables.html>`_
     """
 
@@ -21,10 +21,10 @@ class TFCWorkspaceVars(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/vars``
 
-        `API Doc Reference \
+        `Workspace Vars Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#create-a-variable>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/"
@@ -34,7 +34,7 @@ class TFCWorkspaceVars(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/vars``
 
-        `API Doc Reference \
+        `Workspace Vars List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#list-variables>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/"
@@ -44,10 +44,10 @@ class TFCWorkspaceVars(TFCEndpoint):
         """
         ``PATCH /workspaces/:workspace_id/vars/:variable_id``
 
-        `API Doc Reference \
+        `Workspace Vars Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#update-variables>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/{variable_id}"
@@ -57,7 +57,7 @@ class TFCWorkspaceVars(TFCEndpoint):
         """
         ``DELETE /workspaces/:workspace_id/vars/:variable_id``
 
-        `API Doc Reference \
+        `Workspace Vars Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspace-variables.html#delete-variables>`_
         """
         url = f"{self._endpoint_base_url}/{workspace_id}/vars/{variable_id}"

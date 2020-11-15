@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminWorkspaces(TFCEndpoint):
     """
-    `API Docs \
+    `Admin Workspaces API Docs \
         <https://www.terraform.io/docs/cloud/api/admin/workspaces.html>`_
 
     The Admin API is exclusive to Terraform Enterprise, and can only be used
@@ -29,7 +29,7 @@ class TFCAdminWorkspaces(TFCEndpoint):
         """
         ``GET /admin/workspaces``
 
-        `API Doc Reference \
+        `Admin Workspaces List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#list-all-workspaces>`_
         """
         return self._list(\
@@ -40,7 +40,7 @@ class TFCAdminWorkspaces(TFCEndpoint):
         """
         ``GET /admin/workspaces/:id``
 
-        `API Doc Reference \
+        `Admin Workspaces Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#show-a-workspace>`_
         """
         url = f"{self._endpoint_base_url}/{ws_id}"
@@ -50,7 +50,7 @@ class TFCAdminWorkspaces(TFCEndpoint):
         """
         ``DELETE /admin/workspaces/:id``
 
-        `API Doc Reference \
+        `Admin Workspaces Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#destroy-a-workspace>`_
         """
         url = f"{self._endpoint_base_url}/{ws_id}"

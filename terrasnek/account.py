@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCAccount(TFCEndpoint):
     """
-    `API Docs \
+    `Account API Docs \
         <https://www.terraform.io/docs/cloud/api/account.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCAccount(TFCEndpoint):
         """
         ``GET /account/details``
 
-        `API Doc Reference \
+        `Show Account API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/account.html#get-your-account-details>`_
         """
         url = f"{self._endpoint_base_url}/details"
@@ -31,10 +31,10 @@ class TFCAccount(TFCEndpoint):
         """
         ``PATCH /account/update``
 
-        `API Doc Reference \
+        `Update Account API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/account.html#update-your-account-info>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/update"
@@ -44,10 +44,10 @@ class TFCAccount(TFCEndpoint):
         """
         ``PATCH /account/password``
 
-        `API Doc Reference \
+        `Change Account Password API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/account.html#change-your-password>`_
 
-        `Sample Payload \
+        `Change Password Sample Payload \
             <https://www.terraform.io/docs/cloud/api/account.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/password"

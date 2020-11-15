@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCStateVersionOutputs(TFCEndpoint):
     """
-    `API Docs \
+    `State Version Outputs API Docs \
         <https://www.terraform.io/docs/cloud/api/state-version-outputs.html>`_
     """
 
@@ -22,7 +22,7 @@ class TFCStateVersionOutputs(TFCEndpoint):
         """
         ``GET /state-version-outputs/:state_version_output_id``
 
-        `API Doc Reference \
+        `State Version Outputs Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-version-outputs.html#show-a-state-version-output>`_
         """
         url = f"{self._endpoint_base_url}/{state_version_output_id}"

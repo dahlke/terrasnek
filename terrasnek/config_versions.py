@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCConfigVersions(TFCEndpoint):
     """
-    `API Docs \
+    `Config Versions API Docs \
         <https://www.terraform.io/docs/cloud/api/configuration-versions.html>`_
     """
 
@@ -22,7 +22,7 @@ class TFCConfigVersions(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/configuration-versions``
 
-        `API Doc Reference \
+        `Config Versions List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#list-configuration-versions>`_
 
         Query Parameter(s) (`details \
@@ -37,7 +37,7 @@ class TFCConfigVersions(TFCEndpoint):
         """
         ``GET /configuration-versions/:configuration-id``
 
-        `API Doc Reference \
+        `Config Versions Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#show-a-configuration-version>`_
         """
         url = f"{self._config_version_api_v2_base_url}/{config_version_id}"
@@ -47,10 +47,10 @@ class TFCConfigVersions(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/configuration-versions``
 
-        `API Doc Reference \
+        `Config Versions Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#create-a-configuration-version>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#sample-payload>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
@@ -60,7 +60,7 @@ class TFCConfigVersions(TFCEndpoint):
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
-        `API Doc Reference \
+        `Config Versions Upload API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#upload-configuration-files>`_
         """
         data = None

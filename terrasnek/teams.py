@@ -7,7 +7,7 @@ from ._constants import Entitlements
 
 class TFCTeams(TFCEndpoint):
     """
-    `API Docs \
+    `Teams API Docs \
         <https://www.terraform.io/docs/cloud/api/teams.html>`_
     """
 
@@ -23,10 +23,10 @@ class TFCTeams(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/teams``
 
-        `API Doc Reference \
+        `Teams Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#create-a-team>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -35,7 +35,7 @@ class TFCTeams(TFCEndpoint):
         """
         ``DELETE /teams/:team_id``
 
-        `API Doc Reference \
+        `Teams Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#delete-a-team>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"
@@ -45,7 +45,7 @@ class TFCTeams(TFCEndpoint):
         """
         ``GET organizations/:organization_name/teams``
 
-        `API Doc Reference \
+        `Teams List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#list-teams>`_
         """
         return self._list(self._org_api_v2_base_url)
@@ -54,7 +54,7 @@ class TFCTeams(TFCEndpoint):
         """
         ``GET /teams/:team_id``
 
-        `API Doc Reference \
+        `Teams Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#show-team-information>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"
@@ -64,10 +64,10 @@ class TFCTeams(TFCEndpoint):
         """
         ``PATCH /teams/:team_id``
 
-        `API Doc Reference \
+        `Teams Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#update-a-team>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/teams.html#sample-payload-1>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"

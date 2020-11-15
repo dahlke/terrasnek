@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCOrgTokens(TFCEndpoint):
     """
-    `API Docs \
+    `Org Tokens API Docs \
         <https://www.terraform.io/docs/cloud/api/organization-tokens.html>`_
     """
 
@@ -22,7 +22,7 @@ class TFCOrgTokens(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/authentication-token``
 
-        `API Doc Reference \
+        `Org Tokens Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-tokens.html#generate-a-new-organization-token>`_
         """
         return self._create(self._endpoint_base_url, None)
@@ -31,7 +31,7 @@ class TFCOrgTokens(TFCEndpoint):
         """
         ``DELETE /organizations/:organization/authentication-token``
 
-        `API Doc Reference \
+        `Org Tokens Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-tokens.html#delete-the-organization-token>`_
         """
         url = f"{self._endpoint_base_url}"

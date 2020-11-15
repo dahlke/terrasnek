@@ -7,7 +7,7 @@ from ._constants import Entitlements
 
 class TFCTeamMemberships(TFCEndpoint):
     """
-    `API Docs \
+    `Team Membership API Docs \
         <https://www.terraform.io/docs/cloud/api/team-members.html>`_
     """
 
@@ -22,10 +22,10 @@ class TFCTeamMemberships(TFCEndpoint):
         """
         ``POST /teams/:team_id/relationships/users``
 
-        `API Doc Reference \
+        `Team Membership Add User To Team API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-members.html#add-a-user-to-team>`_
 
-        `Sample Payload \
+        `Add Sample Payload \
             <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/relationships/users"
@@ -35,10 +35,10 @@ class TFCTeamMemberships(TFCEndpoint):
         """
         ``DELETE /teams/:team_id/relationships/users``
 
-        `API Doc Reference \
+        `Team Membership Remove User From Team API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-members.html#delete-a-user-from-team>`_
 
-        `Sample Payload \
+        `Remove Sample Payload \
             <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/relationships/users"

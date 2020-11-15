@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCSSHKeys(TFCEndpoint):
     """
-    `API Docs \
+    `SSH Keys API Docs \
         <https://www.terraform.io/docs/cloud/api/ssh-keys.html>`_
     """
 
@@ -22,10 +22,10 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/ssh-keys``
 
-        `API Doc Reference \
+        `SSH Keys Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#create-an-ssh-key>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -34,7 +34,7 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/ssh-keys``
 
-        `API Doc Reference \
+        `SSH Keys List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#list-ssh-keys>`_
         """
         return self._list(self._org_api_v2_base_url)
@@ -43,7 +43,7 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``GET /ssh-keys/:ssh_key_id``
 
-        `API Doc Reference \
+        `SSH Keys Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#get-an-ssh-key>`_
         """
         url = f"{self._endpoint_base_url}/{ssh_key_id}"
@@ -53,10 +53,10 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``PATCH /ssh-keys/:ssh_key_id``
 
-        `API Doc Reference \
+        `SSH Keys Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#update-an-ssh-key>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{ssh_key_id}"
@@ -66,7 +66,7 @@ class TFCSSHKeys(TFCEndpoint):
         """
         ``DELETE /ssh-keys/:ssh_key_id``
 
-        `API Doc Reference \
+        `SSH Keys Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/ssh-keys.html#delete-an-ssh-key>`_
         """
         url = f"{self._endpoint_base_url}/{ssh_key_id}"

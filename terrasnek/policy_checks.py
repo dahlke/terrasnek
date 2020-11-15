@@ -7,7 +7,7 @@ from ._constants import Entitlements
 
 class TFCPolicyChecks(TFCEndpoint):
     """
-    `API Docs \
+    `Policy Checks API Docs \
         <https://www.terraform.io/docs/cloud/api/policy-checks.html>`_
     """
 
@@ -23,7 +23,7 @@ class TFCPolicyChecks(TFCEndpoint):
         """
         ``GET /runs/:run_id/policy-checks``
 
-        `API Doc Reference \
+        `Policy Checks List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-checks.html#list-policy-checks>`_
         """
         url = f"{self._runs_api_v2_base_url}/{run_id}/policy-checks"
@@ -33,7 +33,7 @@ class TFCPolicyChecks(TFCEndpoint):
         """
         ``POST /policy-checks/:policy_check_id/actions/override``
 
-        `API Doc Reference \
+        `Policy Checks Override API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-checks.html#override-policy>`_
         """
         url = f"{self._endpoint_base_url}/{policy_check_id}/actions/override"

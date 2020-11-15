@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCUsers(TFCEndpoint):
     """
-    `API Docs \
+    `Users API Docs \
         <https://www.terraform.io/docs/cloud/api/users.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCUsers(TFCEndpoint):
         """
         ``GET /users/:user_id``
 
-        `API Doc Reference \
+        `Users Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/users.html#show-a-user>`_
         """
         url = f"{self._users_api_v2_base_url}/{user_id}"

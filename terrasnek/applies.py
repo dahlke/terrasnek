@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCApplies(TFCEndpoint):
     """
-    `API Docs \
+    `Applies API Docs \
         <https://www.terraform.io/docs/cloud/api/applies.html>`_
     """
 
@@ -22,7 +22,7 @@ class TFCApplies(TFCEndpoint):
         """
         ``GET /applies/:id``
 
-        `API Doc Reference \
+        `Applies Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/applies.html#show-an-apply>`_
         """
         url = f"{self._endpoint_base_url}/{apply_id}"

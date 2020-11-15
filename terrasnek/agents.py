@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCAgents(TFCEndpoint):
     """
-    `API Docs \
+    `Agents API Docs \
         <https://www.terraform.io/docs/cloud/api/agents.html>`_
     """
 
@@ -24,7 +24,7 @@ class TFCAgents(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/agent-pool``
 
-        `API Doc Reference \
+        `Agents Create Pool API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agents.html#create-an-agent-pool>`_
         """
         url = f"{self._org_api_v2_base_url}/{self._org_name}/agent-pools"
@@ -34,7 +34,7 @@ class TFCAgents(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/agent-pools``
 
-        `API Doc Reference \
+        `Agents List Pools API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agents.html#list-agent-pools>`_
         """
         url = f"{self._org_api_v2_base_url}/{self._org_name}/agent-pools"
@@ -44,7 +44,7 @@ class TFCAgents(TFCEndpoint):
         """
         ``GET /agent-pools/:agent_pool_id/agents``
 
-        `API Doc Reference \
+        `Agents List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agents.html#list-agents>`_
 
         Query Parameter(s) (`details \
@@ -69,7 +69,7 @@ class TFCAgents(TFCEndpoint):
         """
         ``GET /agent-pools/:id``
 
-        `API Doc Reference \
+        `Agents Show Pool API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agents.html#show-an-agent-pool>`_
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}"
@@ -79,7 +79,7 @@ class TFCAgents(TFCEndpoint):
         """
         ``GET /agents/:id``
 
-        `API Doc Reference \
+        `Agents Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agents.html#show-an-agent>`_
         """
         url = f"{self._agents_api_v2_base_url}/{agent_id}"

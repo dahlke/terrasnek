@@ -7,7 +7,7 @@ from ._constants import Entitlements
 
 class TFCTeamAccess(TFCEndpoint):
     """
-    `API Docs \
+    `Team Access API Docs \
         <https://www.terraform.io/docs/cloud/api/team-access.html>`_
     """
 
@@ -22,10 +22,10 @@ class TFCTeamAccess(TFCEndpoint):
         """
         ``POST /team-workspaces``
 
-        `API Doc Reference \
+        `Team Access Add API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#add-team-access-to-a-workspace>`_
 
-        `Sample Payload \
+        `Add Sample Payload \
             <https://www.terraform.io/docs/cloud/api/team-access.html#sample-payload>`_
         """
         return self._post(self._endpoint_base_url, data=payload)
@@ -34,7 +34,7 @@ class TFCTeamAccess(TFCEndpoint):
         """
         ``GET /team-workspaces``
 
-        `API Doc Reference \
+        `Team Access List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#list-team-access-to-a-workspace>`_
 
         Query Parameter(s) (`details \
@@ -58,7 +58,7 @@ class TFCTeamAccess(TFCEndpoint):
         """
         ``DELETE /team-workspaces/:id``
 
-        `API Doc Reference \
+        `Team Access Remove API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#remove-team-access-to-a-workspace>`_
         """
         url = f"{self._endpoint_base_url}/{access_id}"
@@ -68,7 +68,7 @@ class TFCTeamAccess(TFCEndpoint):
         """
         ``GET /team-workspaces/:id``
 
-        `API Doc Reference \
+        `Team Access Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#show-a-team-access-relationship>`_
         """
         url = f"{self._endpoint_base_url}/{access_id}"
@@ -78,10 +78,10 @@ class TFCTeamAccess(TFCEndpoint):
         """
         ``PATCH /team-workspaces/:id``
 
-        `API Doc Reference \
+        `Team Access Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#update-team-access-to-a-workspace>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/team-access.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{access_id}"

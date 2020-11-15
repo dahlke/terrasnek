@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCOAuthTokens(TFCEndpoint):
     """
-    `API Docs \
+    `OAuth Tokens API Docs \
         <https://www.terraform.io/docs/cloud/api/oauth-tokens.html>`_
     """
 
@@ -23,7 +23,7 @@ class TFCOAuthTokens(TFCEndpoint):
         """
         ``GET /oauth-clients/:oauth_client_id/oauth-tokens``
 
-        `API Doc Reference \
+        `OAuth Tokens List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#list-oauth-tokens>`_
         """
         url = f"{self._oauth_clients_api_v2_base_url}/{oauth_client_id}/oauth-tokens"
@@ -33,7 +33,7 @@ class TFCOAuthTokens(TFCEndpoint):
         """
         ``GET /oauth-tokens/:id``
 
-        `API Doc Reference \
+        `OAuth Tokens Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#show-an-oauth-token>`_
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"
@@ -43,7 +43,7 @@ class TFCOAuthTokens(TFCEndpoint):
         """
         ``PATCH /oauth-tokens/:id``
 
-        `API Doc Reference \
+        `OAuth Tokens Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#update-an-oauth-token>`_
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"
@@ -53,7 +53,7 @@ class TFCOAuthTokens(TFCEndpoint):
         """
         ``DELETE /oauth-tokens/:id``
 
-        `API Doc Reference \
+        `OAuth Tokens Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/oauth-tokens.html#destroy-an-oauth-token>`_
         """
         url = f"{self._oauth_tokens_api_v2_base_url}/{token_id}"

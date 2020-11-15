@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCAdminOrgs(TFCEndpoint):
     """
-    `API Docs \
+    `Admin Orgs API Docs \
         <https://www.terraform.io/docs/cloud/api/admin/organizations.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCAdminOrgs(TFCEndpoint):
         """
         ``DELETE /admin/organizations/:name``
 
-        `API Doc Reference \
+        `Admin Destroy Org API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#delete-an-organization>`_
         """
         url = f"{self._endpoint_base_url}/{org_name}"
@@ -31,7 +31,7 @@ class TFCAdminOrgs(TFCEndpoint):
         """
         ``GET /admin/organizations``
 
-        `API Doc Reference \
+        `Admin List Orgs API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#list-all-organizations>`_
 
         This endpoint lists all organizations in the Terraform Cloud installation.
@@ -42,7 +42,7 @@ class TFCAdminOrgs(TFCEndpoint):
         """
         ``GET /admin/organizations/:name``
 
-        `API Doc Reference \
+        `Admin Show Org API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#show-an-organization>`_
         """
         url = f"{self._endpoint_base_url}/{org_name}"

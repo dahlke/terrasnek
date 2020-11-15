@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCRuns(TFCEndpoint):
     """
-    `API Docs \
+    `Runs API Docs \
         <https://www.terraform.io/docs/cloud/api/run.html>`_
     """
 
@@ -23,7 +23,7 @@ class TFCRuns(TFCEndpoint):
         """
         ``GET /workspaces/:workspace_id/runs``
 
-        `API Doc Reference \
+        `Runs List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#list-runs-in-a-workspace>`_
 
         Query Parameter(s) (`details \
@@ -39,7 +39,7 @@ class TFCRuns(TFCEndpoint):
         """
         ``GET /runs/:run_id``
 
-        `API Doc Reference \
+        `Runs Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#get-run-details>`_
         """
 
@@ -50,10 +50,10 @@ class TFCRuns(TFCEndpoint):
         """
         ``POST /runs``
 
-        `API Doc Reference \
+        `Runs Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#create-a-run>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/run.html#sample-payload>`_
         """
 
@@ -63,7 +63,7 @@ class TFCRuns(TFCEndpoint):
         """
         ``POST /runs/:run_id/actions/apply``
 
-        `API Doc Reference \
+        `Runs Apply API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#apply-a-run>`_
         """
 
@@ -74,7 +74,7 @@ class TFCRuns(TFCEndpoint):
         """
         ``POST /runs/:run_id/actions/discard``
 
-        `API Doc Reference \
+        `Runs Discard API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#discard-a-run>`_
         """
 
@@ -85,7 +85,7 @@ class TFCRuns(TFCEndpoint):
         """
         ``POST /runs/:run_id/actions/cancel``
 
-        `API Doc Reference \
+        `Runs Cancel API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#cancel-a-run>`_
         """
 
@@ -96,7 +96,7 @@ class TFCRuns(TFCEndpoint):
         """
         ``POST /runs/:run_id/actions/force-cancel``
 
-        `API Doc Reference \
+        `Runs Force Cancel API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#forcefully-cancel-a-run>`_
         """
 
@@ -107,7 +107,7 @@ class TFCRuns(TFCEndpoint):
         """
         ``POST /runs/:run_id/actions/force-execute``
 
-        `API Doc Reference \
+        `Runs Force Execute API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#forcefully-execute-a-run>`_
         """
 

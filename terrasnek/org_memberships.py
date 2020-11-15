@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCOrgMemberships(TFCEndpoint):
     """
-    `API Docs \
+    `Org Memberships API Docs \
         <https://www.terraform.io/docs/cloud/api/organization-memberships.html>`_
     """
 
@@ -23,10 +23,10 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/organization-memberships``
 
-        `API Doc Reference \
+        `Org Memberships Invite API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#invite-a-user-to-an-organization>`_
 
-        `Sample Payload \
+        `Invite Sample Payload \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#sample-payload>`_
         """
         return self._create(self._org_base_url, payload)
@@ -35,7 +35,7 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/organization-memberships``
 
-        `API Doc Reference \
+        `Org Memberships List for Org API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#list-memberships-for-an-organization>`_
 
         Query Parameter(s) (`details \
@@ -64,7 +64,7 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         ``GET /organization-memberships``
 
-        `API Doc Reference \
+        `Org Memberships List for User API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#list-user-39-s-own-memberships>`_
         """
         return self._list(self._endpoint_base_url)
@@ -73,7 +73,7 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         ``GET /organization-memberships/:organization_membership_id``
 
-        `API Doc Reference \
+        `Org Memberships Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#show-a-membership>`_
         """
         url = f"{self._endpoint_base_url}/{org_membership_id}"
@@ -83,7 +83,7 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         ``DELETE /organization-memberships/:organization_membership_id``
 
-        `API Doc Reference \
+        `Org Memberships Remove API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#remove-user-from-organization>`_
         """
         url = f"{self._endpoint_base_url}/{org_membership_id}"

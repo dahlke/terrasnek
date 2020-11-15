@@ -7,7 +7,7 @@ from._constants import Entitlements
 
 class TFCAgentTokens(TFCEndpoint):
     """
-    `API Docs \
+    `Agent Tokens API Docs \
         <https://www.terraform.io/docs/cloud/api/agent-tokens.html>`_
     """
 
@@ -23,7 +23,7 @@ class TFCAgentTokens(TFCEndpoint):
         """
         ``POST /agent-pools/:agent_pool_id/authentication-tokens``
 
-        `API Doc Reference \
+        `Agent Tokens Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agent-tokens.html#create-an-agent-token>`_
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}/authentication-tokens"
@@ -33,7 +33,7 @@ class TFCAgentTokens(TFCEndpoint):
         """
         ``GET /agent-pools/:agent_pool_id/authentication-tokens``
 
-        `API Doc Reference \
+        `Agent Tokens List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agent-tokens.html#list-agent-tokens>`_
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}/authentication-tokens"
@@ -43,7 +43,7 @@ class TFCAgentTokens(TFCEndpoint):
         """
         ``GET /authentication-tokens/:id``
 
-        `API Doc Reference \
+        `Agent Tokens Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agent-tokens.html#show-an-agent-token>`_
         """
         url = f"{self._auth_tokens_api_v2_base_url}/{token_id}"
@@ -53,7 +53,7 @@ class TFCAgentTokens(TFCEndpoint):
         """
         ``DELETE /api/v2/authentication-tokens/:id``
 
-        `API Doc Reference \
+        `Agent Tokens Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agent-tokens.html#destroy-an-agent-token>`_
         """
         url = f"{self._auth_tokens_api_v2_base_url}/{token_id}"

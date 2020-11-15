@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCCostEstimates(TFCEndpoint):
     """
-    `API Docs \
+    `Cost Estimates API Docs \
         <https://www.terraform.io/docs/cloud/api/cost-estimates.html>`_
     """
 
@@ -21,7 +21,7 @@ class TFCCostEstimates(TFCEndpoint):
         """
         ``GET /cost-estimates/:id``
 
-        `API Doc Reference \
+        `Cost Estimates Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/cost-estimates.html#show-a-cost-estimate>`_
         """
         url = f"{self._endpoint_base_url}/{cost_est_id}"

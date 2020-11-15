@@ -6,7 +6,7 @@ from .endpoint import TFCEndpoint
 
 class TFCWorkspaces(TFCEndpoint):
     """
-    `API Docs \
+    `Workspaces API Docs \
         <https://www.terraform.io/docs/cloud/api/workspaces.html>`_
     """
 
@@ -22,10 +22,10 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /organizations/:organization_name/workspaces``
 
-        `API Doc Reference \
+        `Workspaces Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#create-a-workspace>`_
 
-        `Sample Payload \
+        `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload>`_
         """
         return self._create(self._org_api_v2_base_url, payload)
@@ -35,7 +35,7 @@ class TFCWorkspaces(TFCEndpoint):
         ``DELETE /organizations/:organization_name/workspaces/:name``
         ``DELETE /workspaces/:workspace_id``
 
-        `API Doc Reference \
+        `Workspaces Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#delete-a-workspace>`_
         """
         if workspace_name is not None:
@@ -51,7 +51,7 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/actions/force-unlock``
 
-        `API Doc Reference \
+        `Workspaces Force Unlock API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#force-unlock-a-workspace>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/force-unlock"
@@ -61,10 +61,10 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/actions/lock``
 
-        `API Doc Reference \
+        `Workspaces Lock API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#lock-a-workspace>`_
 
-        `Sample Payload \
+        `Lock Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-2>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/lock"
@@ -74,7 +74,7 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/workspaces``
 
-        `API Doc Reference \
+        `Workspaces List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#list-workspaces>`_
 
         Query Parameter(s) (`details \
@@ -89,7 +89,7 @@ class TFCWorkspaces(TFCEndpoint):
         ``GET /organizations/:organization_name/workspaces/:name``
         ``GET /workspaces/:workspace_id``
 
-        `API Doc Reference \
+        `Workspaces Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#show-workspace>`_
         """
         if workspace_name is not None:
@@ -105,7 +105,7 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``POST /workspaces/:workspace_id/actions/unlock``
 
-        `API Doc Reference \
+        `Workspaces Unlock API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#unlock-a-workspace>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/unlock"
@@ -116,10 +116,10 @@ class TFCWorkspaces(TFCEndpoint):
         ``PATCH /organizations/:organization_name/workspaces/:name``
         ``PATCH /workspaces/:workspace_id``
 
-        `API Doc Reference \
+        `Workspaces Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#update-a-workspace>`_
 
-        `Sample Payload \
+        `Update Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-1>`_
         """
         if workspace_name is not None:
@@ -135,10 +135,10 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``PATCH /workspaces/:workspace_id/relationships/ssh-key``
 
-        `API Doc Reference \
+        `Workspaces Assign SSH Key API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#assign-an-ssh-key-to-a-workspace>`_
 
-        `Sample Payload \
+        `Assign Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-3>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
@@ -148,10 +148,10 @@ class TFCWorkspaces(TFCEndpoint):
         """
         ``PATCH /workspaces/:workspace_id/relationships/ssh-key``
 
-        `API Doc Reference \
+        `Workspaces Unassign SSH Key API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#unassign-an-ssh-key-from-a-workspace>`_
 
-        `Sample Payload \
+        `Unassign Sample Payload \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-4>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
