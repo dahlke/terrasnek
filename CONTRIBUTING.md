@@ -72,19 +72,13 @@ chmod +x ../../hooks/pre-commit ./pre-commit
 #### Lint Library Code
 
 ```bash
-make lint-lib
-```
-
-##### Lint Test Code
-
-```bash
-make lint-tests
+make lint
 ```
 
 ### Building the Docs
 
 The docs are built using [Sphinx](https://www.sphinx-doc.org/en/master/). They are built
-upon push by CircleCI, but can be built at any time manualy using:
+upon push by CircleCI, but can be built at any time manually using:
 
 ```bash
 make docs

@@ -159,9 +159,24 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 cls._api.teams.destroy(team["id"])
         cls._logger.debug(f"Teams purged from test org ({cls._test_org_name}).")
 
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of unnecessary org membership invites...")
+        org_memberships = cls._api.org_memberships.list_for_org()["data"]
+        for org_memberships in org_memberships:
+            membership_id = org_memberships["id"]
+            member_status = org_memberships["attributes"]["status"]
+            if member_status == "invited":
+                cls._api.org_memberships.remove(membership_id)
+        cls._logger.debug(f"Unnecessary org member invites purged from test org ({cls._test_org_name}).")
+
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of agent pools...")
+        agent_pools = cls._api.agents.list_pools()["data"]
+        for agent_pool in agent_pools:
+            cls._api.agents.destroy(agent_pool["id"])
+        cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
+
         cls._logger.info(f"Test org ({cls._test_org_name}) purged of all resources.")
 
-        # TODO: org tokens / org memberships / agents / agent pools
+        # TODO: org tokens
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):

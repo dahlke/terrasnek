@@ -2,8 +2,6 @@
 terrasnek/endpoint.py:16:0: W0611: Unused HTTP_MOVED_TEMPORARILY imported from _constants (unused-import)
 terrasnek/endpoint.py:16:0: W0611: Unused HTTP_TEMPORARY_REDIRECT imported from _constants (unused-import)
 terrasnek/endpoint.py:16:0: W0611: Unused HTTP_NOT_MODIFIED imported from _constants (unused-import)
-************* Module test.agents_test
-test/agents_test.py:45:2: W0511: TODO: show, list require me to actually add some agents to test (fixme)
 ************* Module test.registry_modules_test
 test/registry_modules_test.py:33:4: R0914: Too many local variables (30/25) (too-many-locals)
 ************* Module test.admin_settings_test
@@ -13,8 +11,10 @@ test/admin_settings_test.py:123:2: W0511: TODO: need to use a real twilio accoun
 ************* Module test.state_version_outputs_test
 test/state_version_outputs_test.py:73:2: W0511: TODO: might be a race condition here for the tests (fixme)
 ************* Module test.base
-test/base.py:164:2: W0511: TODO: org tokens / org memberships / agents / agent pools (fixme)
-test/base.py:169:32: W0212: Access to a protected member _required_entitlements of a client class (protected-access)
+test/base.py:179:2: W0511: TODO: org tokens (fixme)
+test/base.py:162:0: C0301: Line too long (110/100) (line-too-long)
+test/base.py:169:0: C0301: Line too long (105/100) (line-too-long)
+test/base.py:184:32: W0212: Access to a protected member _required_entitlements of a client class (protected-access)
 
 ------------------------------------------------------------------
 Your code has been rated at 9.96/10 (previous run: 9.96/10, +0.00)

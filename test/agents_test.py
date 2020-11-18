@@ -22,7 +22,10 @@ class TestTFCAgents(TestTFCBaseTestCase):
         # Create an agent pool, we won't assert anything on it, in case it has already been created.
         create_payload = {
             "data": {
-                "type": "agent-pools"
+                "type": "agent-pools",
+                "attributes": {
+                    "name": self._random_name()
+                }
             }
         }
 
@@ -42,4 +45,20 @@ class TestTFCAgents(TestTFCBaseTestCase):
         shown_agent_pool = self._api.agents.show_pool(agent_pool_id)["data"]
         self.assertEqual(agent_pool_id, shown_agent_pool["id"])
 
-        # TODO: show, list require me to actually add some agents to test
+        # Update the agent pool name, check that it has taken effect.
+        updated_agent_pool_name = self._random_name()
+        update_payload = {
+            "data": {
+                "type": "agent-pools",
+                "attributes": {
+                    "name": updated_agent_pool_name
+                }
+            }
+        }
+        updated_agent_pool = self._api.agents.update(agent_pool_id, update_payload)
+        self.assertEqual(updated_agent_pool_name, updated_agent_pool["data"]["attributes"]["name"])
+
+        # Destroy the agent pool, confirm that it's gone.
+        self._api.agents.destroy(agent_pool_id)
+        agent_pools = self._api.agents.list_pools()["data"]
+        self.assertEqual(len(agent_pools), 0)

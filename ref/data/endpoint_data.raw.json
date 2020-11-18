@@ -402,6 +402,20 @@
                 "implementation-method-name": "create_pool",
                 "implemented": true,
                 "permalink": "#create-an-agent-pool"
+            },
+            {
+                "description": "Update an Agent Pool",
+                "http-path": "PATCH /agent-pools/:id",
+                "implementation-method-name": "update",
+                "implemented": true,
+                "permalink": "#update-an-agent-pool"
+            },
+            {
+                "description": "Delete an Agent Pool",
+                "http-path": "DELETE /agent-pools/:agent_pool_id",
+                "implementation-method-name": "destroy",
+                "implemented": true,
+                "permalink": "#delete-an-agent-pool"
             }
         ],
         "test": true,

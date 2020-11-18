@@ -71,6 +71,7 @@ class TFCEndpoint(ABC):
     def _get(self, url, return_raw=False, allow_redirects=False):
         results = None
 
+        self._logger.debug(f"Trying HTTP GET to URL: {url} ...")
         req = requests.get(\
             url, headers=self._headers, verify=self._verify, allow_redirects=allow_redirects)
 
@@ -103,6 +104,8 @@ class TFCEndpoint(ABC):
 
     def _patch(self, url, data=None):
         results = None
+
+        self._logger.debug(f"Trying HTTP PATCH to URL: {url} ...")
         req = requests.patch(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
         if req.status_code == HTTP_OK:
@@ -128,6 +131,8 @@ class TFCEndpoint(ABC):
 
     def _post(self, url, data=None):
         results = None
+
+        self._logger.debug(f"Trying HTTP POST to URL: {url} ...")
         req = requests.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
         if req.status_code in [HTTP_OK, HTTP_CREATED]:
@@ -174,6 +179,7 @@ class TFCEndpoint(ABC):
             headers["Content-Type"] = "application/octet-stream"
             data = bytes(data, "utf-8")
 
+        self._logger.debug(f"Trying HTTP PUT to URL: {url} ...")
         req = requests.put(url, data=data, headers=headers, verify=self._verify)
 
         if req.status_code == HTTP_OK:
