@@ -5,9 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.11] - TBD
+## [0.0.12] - TBD
 
 - TBD
+
+## [0.0.11] - 2020-11-23
+
+- More API tests.
+- Purging org memberships and agent pools at the start of a test
+- Implement new agent pool endpoints
+- Add debug logic to all API requests for prod debugging
+- Pass error information back up through exceptions
+
 
 ## [0.0.10] - 2020-11-17
 
