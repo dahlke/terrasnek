@@ -126,8 +126,9 @@ class TFC():
         self._logger.debug("Initializing the TFC API class...")
 
         self._instance_url = url
-        self._verify = verify
+        self._token = api_token
         self._current_org = None
+        self._verify = verify
 
         self.admin_orgs: TFCAdminOrgs = None
         self.admin_runs: TFCAdminRuns = None
@@ -198,18 +199,6 @@ class TFC():
 
         return results
 
-    def set_token(self, token):
-        """
-        Allows for the user to change the token they are using on the fly if
-        they need to change tokens.
-        """
-        self._token = token
-        self._headers = {
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/vnd.api+json"
-        }
-        self._initialize_endpoints()
-
     def _initialize_endpoints(self):
         self._logger.debug("Initializing endpoints that don't require an org to be set...")
         # Loop through all the endpoints that don't require an org and initialize them
@@ -231,12 +220,13 @@ class TFC():
 
         self._logger.debug("TFC API class initialized.")
 
-    def well_known_paths(self):
+
+    def get_url(self):
         """
-        Retrieve all the well known paths from the Terraform Cloud installation.
+        Allows for the user to retrieve the URL being hit from the API object.
         """
-        url = f"{self._instance_url}/.well-known/terraform.json"
-        return self._get(url)
+        return self._instance_url
+
 
     def set_org(self, org_name):
         """
@@ -262,3 +252,36 @@ class TFC():
             setattr(self, ep_name, initialized_endpoint_class)
 
         self._logger.debug("Initialized endpoints that do require an org to be set.")
+
+
+    def get_org(self):
+        """
+        Allows for the user to retrieve the current org from the API object.
+        """
+        return self._current_org
+
+
+    def set_token(self, token):
+        """
+        Allows for the user to change the token they are using on the fly if
+        they need to change tokens.
+        """
+        self._token = token
+        self._headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/vnd.api+json"
+        }
+        self._initialize_endpoints()
+
+    def get_token(self):
+        """
+        Allows for the user to retrieve the token from the API object.
+        """
+        return self._token
+
+    def well_known_paths(self):
+        """
+        Retrieve all the well known paths from the Terraform Cloud installation.
+        """
+        url = f"{self._instance_url}/.well-known/terraform.json"
+        return self._get(url)
