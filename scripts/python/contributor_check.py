@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 MIN_COVERAGE_SCORE = 0.9
 MIN_LINT_SCORE = 0.9
 
+
 def get_coverage_score():
     """
     Get the coverage score from the coverage output, return it.
@@ -20,22 +21,35 @@ def get_coverage_score():
     line_rate = float(root.attrib["line-rate"])
     return line_rate
 
+
 def get_lint_score():
     """
     Get the lint score from the pylint output, return it.
     """
     lint_results = ""
-    with open("./lint_output.txt", "r") as f:
-        lint_results = f.read()
+
+    with open("./lint_output.txt", "r") as infile:
+        lint_results = infile.read()
+
     lint_results_list = [i for i in lint_results.split("\n") if i]
     score_line = lint_results_list[-1]
     score = float(score_line.replace("Your code has been rated at ", "")\
         .split(" ")[0].split("/")[0]) / 10
+
     return score
 
-# TODO: make sure all the version numbers are the same and match the branch?
+
 def check_versions():
-    pass
+    """
+    Make sure all of the files that need to have the right version number in them
+    have the right version number.
+    """
+
+    # TODO: check changelog
+    # TODO: check setup.py
+    # TODO: check conf.py
+    # TODO: check branch
+
 
 def main():
     """
@@ -59,7 +73,7 @@ def main():
             f"The lint score {lint_score} does not meet the lint threshold {MIN_LINT_SCORE}.")
 
     if err_msg_list:
-        print("\n".joins(err_msg_list), "Exiting.")
+        print("\n".join(err_msg_list), "Exiting.")
         sys.exit(1)
     else:
         print("Coverage score and lint score both meet their thresholds.")

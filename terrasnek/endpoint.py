@@ -14,10 +14,9 @@ from .exceptions import \
             TFCHTTPInternalServerError, TFCHTTPUnclassified
 
 from ._constants import \
-    HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT, HTTP_MOVED_TEMPORARILY, \
-        HTTP_TEMPORARY_REDIRECT, HTTP_NOT_MODIFIED, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED, \
-            HTTP_FORBIDDEN, HTTP_NOT_FOUND, HTTP_CONFLICT, HTTP_PRECONDITION_FAILED, \
-                HTTP_UNPROCESSABLE_ENTITY, HTTP_INTERNAL_SERVER_ERROR
+    HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED, \
+        HTTP_FORBIDDEN, HTTP_NOT_FOUND, HTTP_CONFLICT, HTTP_PRECONDITION_FAILED, \
+            HTTP_UNPROCESSABLE_ENTITY, HTTP_INTERNAL_SERVER_ERROR
 
 
 class TFCEndpoint(ABC):
@@ -40,7 +39,7 @@ class TFCEndpoint(ABC):
         self._verify = verify
 
     @abstractmethod
-    def _required_entitlements(self):
+    def required_entitlements(self):
         """
         Terraform Cloud Entitlements required for endpoint to work.
         """

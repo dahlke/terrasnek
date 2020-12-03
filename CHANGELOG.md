@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.12] - TBD
+## [0.0.13] - TBD
 
 - TBD
+
+## [0.0.12] - 2020-02-02
+
+- Updating some of the organization purge logic before running tests
+- Making it easier to retrieve important values from the API class
+- Making it easier to retrieve important values from the Endpoint class
 
 ## [0.0.11] - 2020-11-23
 
@@ -16,7 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement new agent pool endpoints
 - Add debug logic to all API requests for prod debugging
 - Pass error information back up through exceptions
-
 
 ## [0.0.10] - 2020-11-17
 
@@ -48,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.6] - 2020-07-01
 
-- Make sure all the endpoint docstrings match the documented path in the API docs for automated checks
+- Make sure endpoint docstrings match the API docs path for automated checks
 - Implemented APIs: Workspace Variables, Egress IP Ranges
 - Added endpoints for Plans API JSON downloads
 - Added endpoints for Team Access API statefile access
@@ -56,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - API method comparison script and output tables
 - Markdown linting
 - CircleCI testing docker image and script to upload env vars
-- Hitting some uncovered lines in Plan Exports, OAuth Clients, Registry Modules, Runs.
+- Hitting uncovered lines in Plan Exports, OAuth Clients, Registry Modules, Runs.
 - Added TFE release notes links to README.
 - Added methods implemented badge to README.
 

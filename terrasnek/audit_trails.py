@@ -14,7 +14,7 @@ class TFCAuditTrails(TFCEndpoint):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._audit_trail_api_v2_base_url = f"{self._api_v2_base_url}/organization/audit-trail"
 
-    def _required_entitlements(self):
+    def required_entitlements(self):
         return []
 
     def list(self, since=None, page=None):

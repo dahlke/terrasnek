@@ -12,6 +12,7 @@ import os
 import binascii
 import time
 import timeout_decorator
+import terrasnek.exceptions
 
 from terrasnek.api import TFC
 from terrasnek._constants import Entitlements
@@ -125,6 +126,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._api.registry_modules.destroy(registry_module["name"])
         cls._logger.debug(f"Modules purged from test org ({cls._test_org_name}).")
 
+
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of policies...")
         policies = cls._api.policies.list()["data"]
         for policy in policies:
@@ -159,14 +161,14 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 cls._api.teams.destroy(team["id"])
         cls._logger.debug(f"Teams purged from test org ({cls._test_org_name}).")
 
-        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of unnecessary org membership invites...")
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of org membership invites...")
         org_memberships = cls._api.org_memberships.list_for_org()["data"]
         for org_memberships in org_memberships:
             membership_id = org_memberships["id"]
             member_status = org_memberships["attributes"]["status"]
             if member_status == "invited":
                 cls._api.org_memberships.remove(membership_id)
-        cls._logger.debug(f"Unnecessary org member invites purged from test org ({cls._test_org_name}).")
+        cls._logger.debug(f"Org member invites purged from test org ({cls._test_org_name}).")
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of agent pools...")
         agent_pools = cls._api.agents.list_pools()["data"]
@@ -174,14 +176,19 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._api.agents.destroy(agent_pool["id"])
         cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
 
-        cls._logger.info(f"Test org ({cls._test_org_name}) purged of all resources.")
+        try:
+            cls._logger.debug(f"Purging org token from test org ({cls._test_org_name})...")
+            cls._api.org_tokens.destroy()
+            cls._logger.debug(f"Org token purged from test org ({cls._test_org_name}).")
+        except terrasnek.exceptions.TFCHTTPUnclassified:
+            cls._logger.debug(f"No org token exists for test org ({cls._test_org_name})...")
 
-        # TODO: org tokens
+
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
         endpoint = getattr(cls._api, endpoint_attr_name)
-        required_entitlements = endpoint._required_entitlements()
+        required_entitlements = endpoint.required_entitlements()
         current_entitlements = cls._api.orgs.entitlements(cls._test_org_name)["data"]["attributes"]
 
         missing_entitlements = []

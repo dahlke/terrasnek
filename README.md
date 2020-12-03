@@ -55,9 +55,10 @@ if __name__ == "__main__":
 
 ### `terrasnek` to Terraform Cloud API Spec Completeness
 
-To see the which endpoints are implemented in `terrasnek` compared to those
-that are listed on the Terraform Cloud API docs, view the auto-generated
-[`TERRASNEK_API_COVERAGE_COMPLETENESS.md`](TERRASNEK_API_COVERAGE_COMPLETENESS.md) file.
+To compare `terrasnek` implemented endpoints to those listed on the Terraform
+ Cloud API docs, view the auto-generated
+[`TERRASNEK_API_COVERAGE_COMPLETENESS.md`](TERRASNEK_API_COVERAGE_COMPLETENESS.md)
+file.
 
 ### `terrasnek` Common Use Case Examples
 
