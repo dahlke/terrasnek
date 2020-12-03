@@ -45,10 +45,7 @@ def check_versions():
     have the right version number.
     """
 
-    # TODO: check changelog
-    # TODO: check setup.py
-    # TODO: check conf.py
-    # TODO: check branch
+    # TODO: check changelog, setup.py, conf.py, and the git branch
 
 
 def main():

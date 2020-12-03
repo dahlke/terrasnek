@@ -77,8 +77,8 @@ make lint
 
 ### Building the Docs
 
-The docs are built using [Sphinx](https://www.sphinx-doc.org/en/master/). They are built
-upon push by CircleCI, but can be built at any time manually using:
+The docs are built using [Sphinx](https://www.sphinx-doc.org/en/master/). They
+are built upon push by CircleCI, but can be built at any time manually using:
 
 ```bash
 make docs
