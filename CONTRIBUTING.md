@@ -55,6 +55,9 @@ make pip-publish
 make codecov
 ```
 
+TODO: After the new version has deployed, and has been merged to `master`, be
+sure to cut a new release in GitHub.
+
 ### Helpful Git Hooks
 
 There are some pre-commit hooks that are useful since the same tests will be run

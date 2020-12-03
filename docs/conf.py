@@ -18,7 +18,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
-import recommonmark
 from recommonmark.transform import AutoStructify
 
 
@@ -29,7 +28,7 @@ copyright = '2020, Neil Dahlke'
 author = 'Neil Dahlke'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.12'
+release = '0.0.13'
 
 
 # -- General configuration ---------------------------------------------------
