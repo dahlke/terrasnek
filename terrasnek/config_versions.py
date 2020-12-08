@@ -81,17 +81,17 @@ class TFCConfigVersions(TFCEndpoint):
 
         Set configuration version from string, rather than pre-existing tarball
         """
-        
+
         # create template io obj
         template_data = template_string.encode('utf-8')
         template_io = io.BytesIO(template_data)
-        
+
         # create tarfile io obj
         targz_io = io.BytesIO()
-        
+
         # add data to targz
         with tarfile.open(fileobj=targz_io, mode='w:gz') as tar:
-            
+
             # create tarinfo object w/ desired path and size
             tarinfo = tarfile.TarInfo("main.tf")
             tarinfo.size = len(template_data)
@@ -101,8 +101,8 @@ class TFCConfigVersions(TFCEndpoint):
 
             # add the prepared item
             tar.addfile(tarinfo, template_io)
-        
+
         targz_io.seek(0)
-        
+
         # upload the template
         return self._put(upload_url, data=targz_io.read())
