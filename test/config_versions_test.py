@@ -25,39 +25,47 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         Test the Config Versions API endpoints.
         """
 
-        # Create a new config version
-        config_version = self._api.config_versions.create(
-            self._ws_id, self._get_config_version_create_payload())["data"]
-        cv_id = config_version["id"]
+        # two upload methods to test; use a different 1st positional argument for each test
+        upload_tests = (
+            (self._api.config_versions.upload, self._config_version_upload_tarball_path),
+            (self._api.config_versions.upload_from_string, self._config_version_upload_string),
+        )
+        for upload_handle, source in upload_tests:
 
-        # List all of the config versions for the workspace
-        all_config_versions = self._api.config_versions.list(self._ws_id)["data"]
+            with self.subTest():
 
-        # Confirm we found the newly created config version
-        found_conf_ver = False
-        for conf_ver in all_config_versions:
-            if cv_id == conf_ver["id"]:
-                found_conf_ver = True
-                break
-        self.assertTrue(found_conf_ver)
+                # Create a new config version
+                config_version = self._api.config_versions.create(
+                    self._ws_id, self._get_config_version_create_payload())["data"]
+                cv_id = config_version["id"]
 
-        # Confirm the config version status is "pending" or "uploaded" as well
-        uploaded_or_pending = \
-            all_config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
-        self.assertTrue(uploaded_or_pending)
+                # List all of the config versions for the workspace
+                all_config_versions = self._api.config_versions.list(self._ws_id)["data"]
 
-        # Test the show method on that same config version ID
-        shown_config_version = self._api.config_versions.show(cv_id)["data"]
+                # Confirm we found the newly created config version
+                found_conf_ver = False
+                for conf_ver in all_config_versions:
+                    if cv_id == conf_ver["id"]:
+                        found_conf_ver = True
+                        break
+                self.assertTrue(found_conf_ver)
 
-        # Confirm the results match the same ID we looked up
-        self.assertEqual(shown_config_version["id"], cv_id)
+                # Confirm the config version status is "pending" or "uploaded" as well
+                uploaded_or_pending = \
+                    all_config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
+                self.assertTrue(uploaded_or_pending)
 
-        # Upload the .tf code and confirm it's been uploaded
-        upload_url = shown_config_version["attributes"]["upload-url"]
-        self._api.config_versions.upload(
-            self._config_version_upload_tarball_path, upload_url)
+                # Test the show method on that same config version ID
+                shown_config_version = self._api.config_versions.show(cv_id)["data"]
 
-        config_versions = self._api.config_versions.list(self._ws_id)["data"]
-        uploaded_or_pending = \
-            config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
-        self.assertTrue(uploaded_or_pending)
+                # Confirm the results match the same ID we looked up
+                self.assertEqual(shown_config_version["id"], cv_id)
+
+                # Upload the .tf code and confirm it's been uploaded
+                upload_url = shown_config_version["attributes"]["upload-url"]
+                upload_handle(source, upload_url)
+
+                config_versions = self._api.config_versions.list(self._ws_id)["data"]
+                uploaded_or_pending = \
+                    config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
+                self.assertTrue(uploaded_or_pending)
