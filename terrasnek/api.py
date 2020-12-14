@@ -195,7 +195,7 @@ class TFC():
             self._logger.debug(f"GET to {url} successful")
         else:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
 
         return results
 

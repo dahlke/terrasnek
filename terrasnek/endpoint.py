@@ -54,15 +54,15 @@ class TFCEndpoint(ABC):
             pass
         elif req.status_code == HTTP_NOT_FOUND:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPNotFound(err)
         elif req.status_code == HTTP_FORBIDDEN:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPForbidden(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
         return results
@@ -88,15 +88,15 @@ class TFCEndpoint(ABC):
             results = {"redirect-url": url}
         elif req.status_code == HTTP_UNAUTHORIZED:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnauthorized(err)
         elif req.status_code == HTTP_NOT_FOUND:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPNotFound(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
         return results
@@ -111,19 +111,19 @@ class TFCEndpoint(ABC):
             results = json.loads(req.content)
         elif req.status_code == HTTP_BAD_REQUEST:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPBadRequest(err)
         elif req.status_code == HTTP_UNAUTHORIZED:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnauthorized(err)
         elif req.status_code == HTTP_UNPROCESSABLE_ENTITY:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnprocessableEntity(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
         return results
@@ -141,31 +141,31 @@ class TFCEndpoint(ABC):
             self._logger.debug(f"POST to {url} successful")
         elif req.status_code == HTTP_BAD_REQUEST:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPBadRequest(err)
         elif req.status_code == HTTP_NOT_FOUND:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPNotFound(err)
         elif req.status_code == HTTP_CONFLICT:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPConflict(err)
         elif req.status_code == HTTP_PRECONDITION_FAILED:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPPreconditionFailed(err)
         elif req.status_code == HTTP_UNPROCESSABLE_ENTITY:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnprocessableEntity(err)
         elif req.status_code == HTTP_INTERNAL_SERVER_ERROR:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPInternalServerError(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
         return results
@@ -187,7 +187,7 @@ class TFCEndpoint(ABC):
             self._logger.debug(f"PUT to {url} successful")
         else:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
         return results
@@ -209,7 +209,7 @@ class TFCEndpoint(ABC):
             self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
         else:
             err = json.loads(req.content.decode("utf-8"))
-            self._logger.error(err)
+            self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
     def _list(self, url, query=None, filters=None, \
