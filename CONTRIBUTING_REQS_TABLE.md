@@ -1,6 +1,7 @@
 | Endpoint                                                                                          | Module                     | Has Implementation   | Has Test   | Has Docs   |
 |---------------------------------------------------------------------------------------------------|----------------------------|----------------------|------------|------------|
 | [Account](https://www.terraform.io/docs/cloud/api/account.html)                                   | `account`                  | True                 | True       | True       |
+| [Admin Module Sharing](https://www.terraform.io/docs/cloud/api/admin/module-sharing.html)         | `admin_module_sharing`     | False                | False      | False      |
 | [Admin Orgs](https://www.terraform.io/docs/cloud/api/admin/organizations.html)                    | `admin_orgs`               | True                 | True       | True       |
 | [Admin Runs](https://www.terraform.io/docs/cloud/api/admin/runs.html)                             | `admin_runs`               | True                 | True       | True       |
 | [Admin Settings](https://www.terraform.io/docs/cloud/api/admin/settings.html)                     | `admin_settings`           | True                 | True       | True       |

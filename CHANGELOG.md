@@ -5,11 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.13] - TBD
+## [0.0.14] - TBD
 
 - TBD
 
-## [0.0.12] - 2020-02-02
+## [0.0.13] - 2020-12-14
+
+- Merge in the upload TF config version from string.
+- Exceptions log to debug, let the app handle logging errors.
+
+## [0.0.12] - 2020-12-02
 
 - Updating some of the organization purge logic before running tests
 - Making it easier to retrieve important values from the API class

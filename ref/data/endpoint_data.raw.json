@@ -28,6 +28,18 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/account.html"
     },
+    "admin_module_sharing": {
+        "methods": [
+            {
+                "description": "Update an Organization's Module Consumers",
+                "http-path": "PATCH /admin/organizations/:name/module-consumers",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#update-an-organization-39-s-module-consumers"
+            }
+        ],
+        "url": "https://www.terraform.io/docs/cloud/api/admin/module-sharing.html"
+    },
     "admin_orgs": {
         "docs": true,
         "implementation": true,
@@ -45,6 +57,13 @@
                 "implementation-method-name": "show",
                 "implemented": true,
                 "permalink": "#show-an-organization"
+            },
+            {
+                "description": "Update an Organization",
+                "http-path": "PATCH /organizations/:organization_name",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#update-an-organization"
             },
             {
                 "description": "Delete an organization",

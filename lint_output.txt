@@ -8,5 +8,5 @@ test/admin_settings_test.py:123:2: W0511: TODO: need to use a real twilio accoun
 test/state_version_outputs_test.py:73:2: W0511: TODO: might be a race condition here for the tests (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.98/10 (previous run: 9.97/10, +0.01)
+Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)
 

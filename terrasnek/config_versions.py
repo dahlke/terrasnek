@@ -72,7 +72,6 @@ class TFCConfigVersions(TFCEndpoint):
         return self._put(upload_url, data=data)
 
     def upload_from_string(self, template_string, upload_url):
-
         """
         ``PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>``
 
