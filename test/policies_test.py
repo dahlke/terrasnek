@@ -29,8 +29,17 @@ class TestTFCPolicies(TestTFCBaseTestCase):
 
         # List all the policies, search the policy we just created so
         # we can test out the list params
-        all_policies = self._api.policies.list(\
+        some_policies = self._api.policies.list(\
             page=0, page_size=50, search=created_policy_name)["data"]
+
+        found_pol = False
+        for pol in some_policies:
+            if created_policy_id == pol["id"]:
+                found_pol = True
+                break
+        self.assertTrue(found_pol)
+
+        all_policies = self._api.policies.list_all(search=created_policy_name)
 
         found_pol = False
         for pol in all_policies:
@@ -38,6 +47,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
                 found_pol = True
                 break
         self.assertTrue(found_pol)
+
 
         # Upload the policy
         policy_payload = "main = rule { true }"
@@ -71,5 +81,5 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         self._api.policies.destroy(created_policy_id)
 
         # Check that we now have zero policies again
-        all_policies = self._api.policies.list()["data"]
-        self.assertEqual(len(all_policies), 0)
+        some_policies = self._api.policies.list()["data"]
+        self.assertEqual(len(some_policies), 0)

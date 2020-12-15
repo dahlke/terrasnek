@@ -56,6 +56,12 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         # Only one cause we are filtering on the test username (inactive users)
         self.assertEqual(num_users_in_org, 1)
 
+        all_users_for_org = self._api.org_memberships.list_all_for_org(\
+            query=truncated_test_username, filters=test_filters)
+        num_users_in_org = len(all_users_for_org)
+        # Only one cause we are filtering on the test username (inactive users)
+        self.assertEqual(num_users_in_org, 1)
+
         # Remove the user, confirm that the user is gone when we filter on the username
         self._api.org_memberships.remove(org_membership_id)
         users_for_org = self._api.org_memberships.list_for_org(\

@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Org Memberships.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import MAX_PAGE_SIZE
 
 class TFCOrgMemberships(TFCEndpoint):
     """
@@ -59,6 +60,31 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         return self._list(\
             self._org_base_url, query=query, filters=filters, page=page, page_size=page_size)
+
+    def list_all_for_org(self, query=None, filters=None):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every org membership for an organization.
+
+        Returns an array of objects.
+        """
+        current_page_number = 1
+        org_memberships_resp = \
+            self._list(self._org_base_url, \
+                page=current_page_number, page_size=MAX_PAGE_SIZE, query=query, filters=filters)
+        total_pages = org_memberships_resp["meta"]["pagination"]["total-pages"]
+
+        org_memberships = []
+        while current_page_number <= total_pages:
+            org_memberships_resp = \
+                self._list(self._org_base_url, \
+                    page=current_page_number, page_size=MAX_PAGE_SIZE, query=query, filters=filters)
+            org_memberships += org_memberships_resp["data"]
+            current_page_number += 1
+
+        return org_memberships
 
     def list_for_user(self):
         """

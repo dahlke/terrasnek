@@ -8,7 +8,7 @@ import logging
 import requests
 import urllib3
 
-from._constants import TFC_SAAS_URL, HTTP_OK, LOG_LEVEL
+from ._constants import TFC_SAAS_URL, HTTP_OK, LOG_LEVEL
 from .account import TFCAccount
 from .admin_orgs import TFCAdminOrgs
 from .admin_runs import TFCAdminRuns

@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: Runs.
 """
 
 from .endpoint import TFCEndpoint
-from._constants import Entitlements
+from ._constants import Entitlements, MAX_PAGE_SIZE
 
 class TFCRuns(TFCEndpoint):
     """
@@ -34,6 +34,31 @@ class TFCRuns(TFCEndpoint):
 
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"
         return self._list(url, page=page, page_size=page_size)
+
+    def list_all(self, workspace_id):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every run for a workspace.
+
+        Returns an array of objects.
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"
+
+        current_page_number = 1
+        runs_resp = self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE)
+        total_pages = runs_resp["meta"]["pagination"]["total-pages"]
+
+        runs = []
+        while current_page_number <= total_pages:
+            runs_resp = \
+                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE)
+            runs += runs_resp["data"]
+            current_page_number += 1
+
+        return runs
+
 
     def show(self, run_id):
         """

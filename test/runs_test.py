@@ -68,7 +68,15 @@ class TestTFCRuns(TestTFCBaseTestCase):
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["applying-at"])
 
         # List the runs, using the correct parameters, confirm it has been created
-        all_runs = self._api.runs.list(self._ws_id, page=0, page_size=50)["data"]
+        some_runs = self._api.runs.list(self._ws_id, page=0, page_size=50)["data"]
+        found_run = False
+        for run in some_runs:
+            if run["id"] == run_id:
+                found_run = True
+                break
+        self.assertTrue(found_run)
+
+        all_runs = self._api.runs.list_all(self._ws_id)
         found_run = False
         for run in all_runs:
             if run["id"] == run_id:

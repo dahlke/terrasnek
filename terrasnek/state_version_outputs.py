@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: State Version Outputs.
 """
 
 from .endpoint import TFCEndpoint
-from._constants import Entitlements
+from ._constants import Entitlements
 
 class TFCStateVersionOutputs(TFCEndpoint):
     """

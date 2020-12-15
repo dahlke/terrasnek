@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: OAuth Tokens.
 """
 
 from .endpoint import TFCEndpoint
-from._constants import Entitlements
+from ._constants import Entitlements
 
 class TFCOAuthTokens(TFCEndpoint):
     """

@@ -51,9 +51,14 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
                 "value": "false"
             }
         ]
-        all_policy_sets = self._api.policy_sets.list(\
+        some_policy_sets = self._api.policy_sets.list(\
             filters=test_filters, page=0, page_size=50, \
             include="policies", search=created_policy_set_name)["data"]
+        self.assertEqual(len(some_policy_sets), 1)
+
+        all_policy_sets = self._api.policy_sets.list_all(\
+            filters=test_filters, include="policies", \
+                search=created_policy_set_name)
         self.assertEqual(len(all_policy_sets), 1)
 
         # Update the policy set, confirm the update took place

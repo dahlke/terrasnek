@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: Policy Sets.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import Entitlements
+from ._constants import Entitlements, MAX_PAGE_SIZE
 
 class TFCPolicySets(TFCEndpoint):
     """
@@ -62,6 +62,32 @@ class TFCPolicySets(TFCEndpoint):
             self._org_api_v2_base_url, \
             filters=filters, include=include, \
             page=page, page_size=page_size, search=search)
+
+    def list_all(self, search=None, filters=None, include=None):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every policy set for an organization.
+
+        Returns an array of objects.
+        """
+        current_page_number = 1
+        policy_sets_resp = \
+            self._list(self._org_api_v2_base_url, \
+                page=current_page_number, page_size=MAX_PAGE_SIZE, search=search)
+        total_pages = policy_sets_resp["meta"]["pagination"]["total-pages"]
+
+        policy_sets = []
+        while current_page_number <= total_pages:
+            policy_sets_resp = \
+                self._list(\
+                    self._org_api_v2_base_url, page=current_page_number, page_size=MAX_PAGE_SIZE, \
+                        include=include, filters=filters, search=search)
+            policy_sets += policy_sets_resp["data"]
+            current_page_number += 1
+
+        return policy_sets
 
     def show(self, policy_set_id):
         """

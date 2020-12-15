@@ -67,6 +67,9 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         state_versions = self._api.state_versions.list(filters=test_filters)["data"]
         self.assertNotEqual(len(state_versions), 0)
 
+        all_state_versions = self._api.state_versions.list_all(filters=test_filters)
+        self.assertNotEqual(len(all_state_versions), 0)
+
         # Get the most current state version, confirm it matches the one we created
         state_version = state_versions[0]
         sv_id = state_version["id"]
