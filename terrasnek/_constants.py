@@ -8,6 +8,7 @@ import logging
 # Default Config Items
 TFC_SAAS_URL = "https://app.terraform.io"
 LOG_LEVEL = logging.INFO
+MAX_PAGE_SIZE = 100
 
 # Common TFC API HTTP Codes
 HTTP_OK = 200
@@ -26,6 +27,7 @@ HTTP_CONFLICT = 409
 HTTP_PRECONDITION_FAILED = 412
 HTTP_UNPROCESSABLE_ENTITY = 422
 HTTP_INTERNAL_SERVER_ERROR = 500
+
 
 class Entitlements(Enum):
     """

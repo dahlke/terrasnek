@@ -4,6 +4,7 @@ Module for Terraform Cloud API Endpoint: Config Versions.
 import io
 import tarfile
 from .endpoint import TFCEndpoint
+from ._constants import MAX_PAGE_SIZE
 
 class TFCConfigVersions(TFCEndpoint):
     """
@@ -28,11 +29,36 @@ class TFCConfigVersions(TFCEndpoint):
 
         Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#query-parameters>`_):
-            - ``since`` (Optional)
             - ``page`` (Optional)
+            - ``page_size`` (Optional)
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
         return self._list(url, page=page, page_size=page_size)
+
+    def list_all(self, workspace_id):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every config version in a workspace.
+
+        Returns an array of objects.
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
+
+        current_page_number = 1
+        config_versions_resp = \
+            self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE)
+        total_pages = config_versions_resp["meta"]["pagination"]["total-pages"]
+
+        config_versions = []
+        while current_page_number <= total_pages:
+            config_versions_resp = \
+                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE)
+            config_versions += config_versions_resp["data"]
+            current_page_number += 1
+
+        return config_versions
 
     def show(self, config_version_id):
         """
@@ -78,7 +104,10 @@ class TFCConfigVersions(TFCEndpoint):
         `Config Versions Upload API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#upload-configuration-files>`_
 
-        Set configuration version from string, rather than pre-existing tarball
+        Set configuration version from string, rather than pre-existing tarball.
+
+        NOTE: this does not map to typical API usage, but for ease of use in some use cases,
+        it's fine.
         """
 
         # create template io obj

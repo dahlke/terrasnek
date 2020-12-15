@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Workspaces.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import MAX_PAGE_SIZE
 
 class TFCWorkspaces(TFCEndpoint):
     """
@@ -83,6 +84,30 @@ class TFCWorkspaces(TFCEndpoint):
             - ``page_size`` (Optional)
         """
         return self._list(self._org_api_v2_base_url, page=page, page_size=page_size)
+
+    def list_all(self):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every workspace in an organization.
+
+        Returns an array of objects.
+        """
+        current_page_number = 1
+        workspaces_resp = \
+            self._list(self._org_api_v2_base_url, page=current_page_number, page_size=MAX_PAGE_SIZE)
+        total_pages = workspaces_resp["meta"]["pagination"]["total-pages"]
+
+        workspaces = []
+        while current_page_number <= total_pages:
+            workspaces_resp = \
+                self._list(self._org_api_v2_base_url, \
+                    page=current_page_number, page_size=MAX_PAGE_SIZE)
+            workspaces += workspaces_resp["data"]
+            current_page_number += 1
+
+        return workspaces
 
     def show(self, workspace_name=None, workspace_id=None):
         """

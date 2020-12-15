@@ -40,11 +40,11 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                 cv_id = config_version["id"]
 
                 # List all of the config versions for the workspace
-                all_config_versions = self._api.config_versions.list(self._ws_id)["data"]
+                config_versions = self._api.config_versions.list(self._ws_id)["data"]
 
                 # Confirm we found the newly created config version
                 found_conf_ver = False
-                for conf_ver in all_config_versions:
+                for conf_ver in config_versions:
                     if cv_id == conf_ver["id"]:
                         found_conf_ver = True
                         break
@@ -52,7 +52,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
 
                 # Confirm the config version status is "pending" or "uploaded" as well
                 uploaded_or_pending = \
-                    all_config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
+                    config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
                 self.assertTrue(uploaded_or_pending)
 
                 # Test the show method on that same config version ID
@@ -69,3 +69,11 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                 uploaded_or_pending = \
                     config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
                 self.assertTrue(uploaded_or_pending)
+
+                all_config_versions = self._api.config_versions.list_all(self._ws_id)
+                found_conf_ver = False
+                for conf_ver in all_config_versions:
+                    if cv_id == conf_ver["id"]:
+                        found_conf_ver = True
+                        break
+                self.assertTrue(found_conf_ver)

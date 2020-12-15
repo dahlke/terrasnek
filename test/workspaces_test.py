@@ -30,7 +30,15 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload())["data"]
         ws_id = workspace["id"]
-        all_ws = self._api.workspaces.list(page=0, page_size=50)["data"]
+        listed_ws = self._api.workspaces.list(page=0, page_size=50)["data"]
+        found_ws = False
+        for workspace in listed_ws:
+            if workspace["id"] == ws_id:
+                found_ws = True
+                break
+        self.assertTrue(found_ws)
+
+        all_ws = self._api.workspaces.list_all()
         found_ws = False
         for workspace in all_ws:
             if workspace["id"] == ws_id:
@@ -102,9 +110,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         self._api.workspaces.destroy(
             workspace_name=updated_name)
-        all_ws = self._api.workspaces.list()["data"]
+        listed_ws = self._api.workspaces.list()["data"]
         found_ws = False
-        for workspace in all_ws:
+        for workspace in listed_ws:
             if workspace["id"] == ws_id:
                 found_ws = True
                 break
