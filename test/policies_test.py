@@ -48,7 +48,6 @@ class TestTFCPolicies(TestTFCBaseTestCase):
                 break
         self.assertTrue(found_pol)
 
-
         # Upload the policy
         policy_payload = "main = rule { true }"
         self._api.policies.upload(created_policy_id, policy_payload)
@@ -56,6 +55,10 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         # Show the policy we just created
         shown_policy = self._api.policies.show(created_policy_id)["data"]
         shown_policy_id = shown_policy["id"]
+
+        # Get the text of the policy we just created
+        policy_text = self._api.policies.get_policy_text(created_policy_id)
+        self.assertEqual(policy_text, policy_payload)
 
         # Make sure the IDs are the same
         self.assertEqual(shown_policy_id, created_policy_id)

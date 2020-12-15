@@ -95,6 +95,19 @@ class TFCPolicies(TFCEndpoint):
         url = f"{self._endpoint_base_url}/{policy_id}"
         return self._update(url, payload)
 
+    def get_policy_text(self, policy_id):
+        """
+        ``GET /policies/:policy_id/download``
+
+        This endpoint is currently not documented in the offical TFC API docs. You can find a
+        reference to it in the `sample response \
+            <https://www.terraform.io/docs/cloud/api/policies.html#sample-response-1>` for the
+        `show` function.
+        """
+        url = f"{self._endpoint_base_url}/{policy_id}/download"
+        byte_results = self._get(url, return_raw=True, allow_redirects=True)
+        return byte_results.decode("utf-8")
+
     def upload(self, policy_id, payload):
         """
         ``PUT /policies/:policy_id/upload``

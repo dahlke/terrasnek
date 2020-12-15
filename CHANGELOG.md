@@ -9,13 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - TBD
 
-## [0.0.15] - TBD
+## [0.0.15] - 2020-12-14
 
-- TBD
+- Implement the get policy text function for the policies api.
+- Implement paging for run triggers API.
 
 ## [0.0.14] - 2020-12-14
 
-- Adding a list all function to any paged item for simplicity for end users.
+- Adding a list all function to:
+  - workspaces
+  - audit trails
+  - config versions
+  - state versions
+  - org memberships
+  - policies
+  - policy sets
+  - runs
 
 ## [0.0.13] - 2020-12-14
 
