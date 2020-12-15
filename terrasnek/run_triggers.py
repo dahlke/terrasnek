@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Run Triggers.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements, MAX_PAGE_SIZE
 
 class TFCRunTriggers(TFCEndpoint):
     """
@@ -30,7 +31,7 @@ class TFCRunTriggers(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
         return self._create(url, payload)
 
-    def list(self, workspace_id, filters=None, page_size=None):
+    def list(self, workspace_id, filters=None, page=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/run-triggers``
 
@@ -54,7 +55,32 @@ class TFCRunTriggers(TFCEndpoint):
             ]
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
-        return self._list(url, filters=filters, page_size=page_size)
+        return self._list(url, filters=filters, page=page, page_size=page_size)
+
+    def list_all(self, workspace_id, filters=None):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every run trigger for a workspace.
+
+        Returns an array of objects.
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
+
+        current_page_number = 1
+        run_triggers_resp = \
+            self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, filters=filters)
+        total_pages = run_triggers_resp["meta"]["pagination"]["total-pages"]
+
+        run_triggers = []
+        while current_page_number <= total_pages:
+            run_triggers_resp = \
+                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, filters=filters)
+            run_triggers += run_triggers_resp["data"]
+            current_page_number += 1
+
+        return run_triggers
 
     def show(self, run_trigger_id):
         """

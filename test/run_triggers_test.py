@@ -42,8 +42,8 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         ]
 
         # List the triggers and confirm there are none
-        all_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
-        self.assertEqual(len(all_triggers), 0)
+        some_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
+        self.assertEqual(len(some_triggers), 0)
 
         # Create a trigger
         create_payload = {
@@ -62,7 +62,11 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         created_trigger_id = created_trigger["id"]
 
         # List the triggers again and confirm there is one
-        all_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
+        some_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
+        self.assertEqual(len(some_triggers), 1)
+
+        # List all triggers and confirm there is one
+        all_triggers = self._api.run_triggers.list_all(self._target_ws_id, filters=test_filters)
         self.assertEqual(len(all_triggers), 1)
 
         # Show the run trigger by id, compare to our created ID
@@ -72,5 +76,5 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
 
         # Destroy the run trigger, confirm that we have zero run triggers again
         self._api.run_triggers.destroy(created_trigger_id)
-        all_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
-        self.assertEqual(len(all_triggers), 0)
+        some_triggers = self._api.run_triggers.list(self._target_ws_id, filters=test_filters)["data"]
+        self.assertEqual(len(some_triggers), 0)
