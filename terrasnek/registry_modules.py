@@ -132,7 +132,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         return self._post(self._modules_v2_base_url, data=payload)
 
-    def destroy(self, name, provider=None, version=None):
+    def destroy(self, module_name, provider=None, version=None):
         """
         ``POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version``
         ``POST /registry-modules/actions/delete/:organization_name/:name/:provider``
@@ -141,14 +141,12 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#delete-a-module>`_
         """
-        url = f"{self._modules_v2_base_url}/actions/delete/{self._org_name}"
+        url = f"{self._modules_v2_base_url}/actions/delete/{self._org_name}/{module_name}"
 
-        if name:
-            url += f"/{name}"
-            if provider:
-                url += f"/{provider}"
-                if version:
-                    url += f"/{version}"
+        if provider:
+            url += f"/{provider}"
+            if version:
+                url += f"/{version}"
 
         return self._post(url)
 

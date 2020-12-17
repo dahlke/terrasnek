@@ -7,7 +7,7 @@ import logging
 
 # Default Config Items
 TFC_SAAS_URL = "https://app.terraform.io"
-LOG_LEVEL = logging.INFO
+API_LOG_LEVEL = logging.CRITICAL
 MAX_PAGE_SIZE = 100
 
 # Common TFC API HTTP Codes

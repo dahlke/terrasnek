@@ -37,7 +37,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls._logger = logging.getLogger(cls.__class__.__name__)
-        cls._logger.setLevel(logging.INFO)
+        cls._logger.setLevel(API_LOG_LEVEL)
         cls._tfc_url = TFC_URL
 
         cls._test_api_token = TFC_TOKEN

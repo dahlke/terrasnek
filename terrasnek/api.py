@@ -8,7 +8,7 @@ import logging
 import requests
 import urllib3
 
-from ._constants import TFC_SAAS_URL, HTTP_OK, LOG_LEVEL
+from ._constants import TFC_SAAS_URL, HTTP_OK, API_LOG_LEVEL
 from .account import TFCAccount
 from .admin_orgs import TFCAdminOrgs
 from .admin_runs import TFCAdminRuns
@@ -115,7 +115,7 @@ class TFC():
         }
     }
 
-    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True, log_level=LOG_LEVEL):
+    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True, log_level=API_LOG_LEVEL):
         if api_token is None:
             raise InvalidTFCTokenException
 

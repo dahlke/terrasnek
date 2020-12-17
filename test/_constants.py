@@ -7,7 +7,8 @@ import sys
 import logging
 
 # Test Defaults
-API_LOG_LEVEL = logging.CRITICAL
+API_LOG_LEVEL = logging.INFO
+
 
 TFC_SAAS_HOSTNAME = "app.terraform.io"
 

@@ -65,14 +65,25 @@ created_workspace = api.workspaces.create(create_workspace_payload)
 created_workspace_id = created_workspace["data"]["id"]
 ```
 
-#### Add Variables to a Workspace
+#### Add Variables to a Workspace [Deprecated]
 
 ```python
-create_variable_payload = {
+create_var_payload = {
     # https://www.terraform.io/docs/cloud/api/variables.html#sample-payload
 }
 
-api.vars.create(create_variable_payload)
+api.vars.create(create_var_payload)
+```
+
+#### Add Workspace Variables
+
+```python
+create_ws_var_payload = {
+    # https://www.terraform.io/docs/cloud/api/variables.html#sample-payload
+}
+workspace_id = "ws-foo"
+
+api.workspace_vars.create(workspace_id, create_ws_var_payload)
 ```
 
 #### Create a Run on a Workspace
@@ -148,5 +159,5 @@ _For more examples, see the `./test` directory in the repository._
 * [User Tokens](user_tokens.md)
 * [Users](users.md)
 * [Vars](vars.md)
-* [Workspace Variables](workspace_vars.md)
+* [Workspace Vars](workspace_vars.md)
 * [Workspaces](workspaces.md)
