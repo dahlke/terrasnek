@@ -11,7 +11,9 @@ test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server t
 test/admin_settings_test.py:123:2: W0511: TODO: need to use a real twilio account to finish this test. (fixme)
 ************* Module test.state_version_outputs_test
 test/state_version_outputs_test.py:73:2: W0511: TODO: might be a race condition here for the tests (fixme)
+************* Module test.base
+test/base.py:170:31: E0602: Undefined variable 'org_memberships' (undefined-variable)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.97/10 (previous run: 9.96/10, +0.01)
+Your code has been rated at 9.96/10 (previous run: 9.92/10, +0.03)
 

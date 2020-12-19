@@ -31,6 +31,11 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         self.assertEqual(ent["type"], "entitlement-sets")
         self.assertTrue(ent["attributes"]["state-storage"])
 
+        # List subscription details, confirm expected response
+        sub = self._api.orgs.subscription(self._test_org_name)["data"]
+        self.assertEqual(sub["type"], "subscriptions")
+        self.assertIn("identifer", sub["included"][0]["attributes"])
+
         # Show the org, confirm IDs match
         org = self._api.orgs.show(self._test_org_name)
         self.assertEqual(org["data"]["id"], self._test_org_name)

@@ -28,7 +28,7 @@ corresponding doc file.
 coverage, and all tests must pass.
 - The test coverage must be uploaded to CodeCov.
 
-View the auto-generated [`CONTRIBUTING_REQS.md`](CONTRIBUTING_REQS.md) file.
+View the auto-generated [`CONTRIBUTING_REQS_TABLE.md`](CONTRIBUTING_REQS_TABLE.md) file.
 
 The instructions for doing each of these can be found below. This process is not
 automated for now due to some of the limitations of the free Terraform Cloud
