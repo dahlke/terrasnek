@@ -53,7 +53,8 @@ class TFCOrgs(TFCEndpoint):
         """
         ``GET /organizations/:organization_name/subscription``
 
-        This endpoint is available but not currently documented in the TFC API docs.
+        This endpoint is not currently documented in the TFC API docs, but it can be used to pull
+        detailed subscription information for a TFC organization.
         """
         url = f"{self._org_api_v2_base_url}/{org_name}/subscription"
         return self._get(url)
