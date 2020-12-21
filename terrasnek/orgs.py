@@ -49,6 +49,16 @@ class TFCOrgs(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{org_name}/entitlement-set"
         return self._get(url)
 
+    def subscription(self, org_name):
+        """
+        ``GET /organizations/:organization_name/subscription``
+
+        This endpoint is not currently documented in the TFC API docs, but it can be used to pull
+        detailed subscription information for a TFC organization.
+        """
+        url = f"{self._org_api_v2_base_url}/{org_name}/subscription"
+        return self._get(url)
+
     def list(self):
         """
         ``GET /organizations``
