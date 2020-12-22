@@ -34,7 +34,7 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         # List subscription details, confirm expected response
         sub = self._api.orgs.subscription(self._test_org_name)["data"]
         self.assertEqual(sub["type"], "subscriptions")
-        self.assertIn("identifer", sub["included"][0]["attributes"])
+        self.assertIn("identifier", sub["included"][0]["attributes"])
 
         # Show the org, confirm IDs match
         org = self._api.orgs.show(self._test_org_name)
