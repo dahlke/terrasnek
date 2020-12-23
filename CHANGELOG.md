@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - TBD
 
-## [0.0.16] - TBD
+## [0.0.16] - 2020-12-23
 
-- TBD
+- Adding new Admin Orgs API endpoint.
+- Add the new Admin Module Sharing API
+- Make it easier to understand when to run things against TFE or TFC.
 
 ## [0.0.15] - 2020-12-14
 
