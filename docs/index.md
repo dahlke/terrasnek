@@ -121,6 +121,7 @@ _For more examples, see the `./test` directory in the repository._
 ## Contents
 
 * [Account](account.md)
+* [Admin Module Sharing](admin_module_sharing.md)
 * [Admin Runs](admin_runs.md)
 * [Admin Orgs](admin_orgs.md)
 * [Admin Users](admin_users.md)

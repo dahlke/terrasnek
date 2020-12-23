@@ -4,14 +4,11 @@ terrasnek/run_triggers.py:6:0: W0611: Unused Entitlements imported from _constan
 terrasnek/registry_modules.py:41:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 terrasnek/registry_modules.py:53:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 ************* Module terrasnek.api
-terrasnek/api.py:273:12: W0612: Unused variable 'notfound' (unused-variable)
 terrasnek/api.py:298:4: C0111: Missing method docstring (missing-docstring)
 ************* Module terrasnek.audit_trails
 terrasnek/audit_trails.py:66:0: C0304: Final newline missing (missing-final-newline)
 ************* Module terrasnek.plans
 terrasnek/plans.py:46:2: W0511: TODO: should this log an error or raise an exception? (fixme)
-************* Module terrasnek.config_versions
-terrasnek/config_versions.py:53:8: W0612: Unused variable 'url' (unused-variable)
 ************* Module terrasnek.workspaces
 terrasnek/workspaces.py:104:2: W0511: TODO: this shouldn't require a URL? (fixme)
 ************* Module test.registry_modules_test
@@ -33,6 +30,6 @@ test/base.py:111:0: C0301: Line too long (120/100) (line-too-long)
 test/base.py:106:8: R1720: Unnecessary "elif" after "raise" (no-else-raise)
 test/base.py:114:12: E1205: Too many arguments for logging format string (logging-too-many-args)
 
--------------------------------------------------------------------
-Your code has been rated at 9.92/10 (previous run: 10.00/10, -0.08)
+------------------------------------------------------------------
+Your code has been rated at 9.93/10 (previous run: 9.93/10, +0.00)
 
