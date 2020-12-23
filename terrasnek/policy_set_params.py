@@ -18,6 +18,12 @@ class TFCPolicySetParams(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.SENTINEL]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def create(self, policy_set_id, payload):
         """
         ``POST /policy-sets/:policy_set_id/parameters``

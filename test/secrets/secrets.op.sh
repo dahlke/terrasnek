@@ -41,3 +41,15 @@ export CODECOV_TOKEN=$(op get item CodeCov | jq -r '.details.sections[1].fields[
 
 # Variable used for uploading the above variables to CircleCI
 export CIRCLECI_TOKEN=$(op get item CircleCI | jq -r '.details.sections[1].fields[0].v')
+
+# Terraform Enterprise Overrides
+# Uncomment these to override the standard TFC creds if needed.
+export TFC_URL="https://neil-ptfe-pmd.hashidemos.io"
+export TFC_TOKEN=""
+export TFC_ORG_TOKEN=""
+export SSL_VERIFY="false"
+export TEST_EMAIL="test@test.com"
+export TEST_USERNAME="test-user" # DO NOT make this the admin user or it will be suspended.
+export TEST_TEAM_NAME="terrasnek-unittest"
+export TEST_ORG_NAME="migration-test"
+export TEST_PASSWORD="neilneilneil"

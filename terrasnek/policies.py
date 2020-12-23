@@ -18,6 +18,12 @@ class TFCPolicies(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.SENTINEL]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def create(self, payload):
         """
         ``POST /organizations/:organization_name/policies``
@@ -57,16 +63,13 @@ class TFCPolicies(TFCEndpoint):
         """
         current_page_number = 1
         policies_resp = \
-            self._list(self._org_api_v2_base_url, \
-                page=current_page_number, page_size=MAX_PAGE_SIZE, search=search)
+            self.list(page=current_page_number, page_size=MAX_PAGE_SIZE, search=search)
         total_pages = policies_resp["meta"]["pagination"]["total-pages"]
 
         policies = []
         while current_page_number <= total_pages:
             policies_resp = \
-                self._list(\
-                    self._org_api_v2_base_url, \
-                        page=current_page_number, page_size=MAX_PAGE_SIZE, search=search)
+                self.list(page=current_page_number, page_size=MAX_PAGE_SIZE, search=search)
             policies += policies_resp["data"]
             current_page_number += 1
 

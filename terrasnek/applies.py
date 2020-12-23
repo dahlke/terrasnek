@@ -18,6 +18,12 @@ class TFCApplies(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.OPERATIONS]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def show(self, apply_id):
         """
         ``GET /applies/:id``

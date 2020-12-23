@@ -19,6 +19,12 @@ class TFCTeams(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.TEAMS]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def create(self, payload):
         """
         ``POST /organizations/:organization_name/teams``

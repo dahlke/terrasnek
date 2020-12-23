@@ -20,6 +20,12 @@ class TFCAgents(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.AGENTS]
 
+    def terraform_cloud_only(self):
+        return True
+
+    def terraform_enterprise_only(self):
+        return False
+
     def create_pool(self, payload):
         """
         ``POST /organizations/:organization_name/agent-pool``

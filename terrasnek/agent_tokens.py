@@ -19,6 +19,12 @@ class TFCAgentTokens(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.AGENTS]
 
+    def terraform_cloud_only(self):
+        return True
+
+    def terraform_enterprise_only(self):
+        return True
+
     def create(self, agent_pool_id, payload):
         """
         ``POST /agent-pools/:agent_pool_id/authentication-tokens``

@@ -18,6 +18,12 @@ class TFCSSHKeys(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def create(self, payload):
         """
         ``POST /organizations/:organization_name/ssh-keys``

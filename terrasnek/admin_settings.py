@@ -17,6 +17,12 @@ class TFCAdminSettings(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return True
+
     def list_general(self):
         """
         ``GET /api/v2/admin/general-settings``

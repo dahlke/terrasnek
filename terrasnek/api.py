@@ -8,7 +8,9 @@ import logging
 import requests
 import urllib3
 
-from ._constants import TFC_SAAS_URL, HTTP_OK, API_LOG_LEVEL
+from ._constants import TFC_SAAS_URL, TFC_SAAS_HOSTNAME, HTTP_OK, LOG_LEVEL
+from .exceptions import TFCHTTPNotFound
+
 from .account import TFCAccount
 from .admin_orgs import TFCAdminOrgs
 from .admin_runs import TFCAdminRuns
@@ -182,7 +184,6 @@ class TFC():
         self.set_token(api_token)
         self._initialize_endpoints()
 
-
     def _get(self, url):
         """
         Simplified HTTP GET function for usage only with this API module.
@@ -220,13 +221,11 @@ class TFC():
 
         self._logger.debug("TFC API class initialized.")
 
-
     def get_url(self):
         """
         Allows for the user to retrieve the URL being hit from the API object.
         """
         return self._instance_url
-
 
     def set_org(self, org_name):
         """
@@ -253,13 +252,28 @@ class TFC():
 
         self._logger.debug("Initialized endpoints that do require an org to be set.")
 
-
     def get_org(self):
         """
         Allows for the user to retrieve the current org from the API object.
         """
         return self._current_org
 
+    def get_entitlements(self):
+        """
+        Allows for the user to retrieve the entitlements to the API for the current org.
+        """
+        entitlements = None
+
+        if self.is_terraform_cloud():
+            try:
+                entitlements = self.orgs.entitlements(self._current_org)["data"]["attributes"]
+            except TFCHTTPNotFound as notfound:
+                self._logger.debug("Entitlements API endpoint not found. No entitlements recorded.")
+                print("NOT FOUND", notfound)
+        else:
+            self._logger.debug("Not Terraform Cloud, so entitlements API is not supported.")
+
+        return entitlements
 
     def set_token(self, token):
         """
@@ -278,6 +292,10 @@ class TFC():
         Allows for the user to retrieve the token from the API object.
         """
         return self._token
+
+    def is_terraform_cloud(self):
+        return TFC_SAAS_HOSTNAME in self._instance_url
+
 
     def well_known_paths(self):
         """

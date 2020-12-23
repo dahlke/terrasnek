@@ -22,7 +22,7 @@ from ._constants import \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET, \
     SSL_VERIFY, TEST_PASSWORD, MAX_TEST_TIMEOUT, \
-    DEFAULT_VCS_WORKING_DIR, TFC_SAAS_HOSTNAME, API_LOG_LEVEL
+    DEFAULT_VCS_WORKING_DIR, API_LOG_LEVEL
 
 class TestTFCBaseTestCase(unittest.TestCase):
     """
@@ -101,9 +101,17 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 "Missing required Terraform Cloud Entitlments for test", \
                     cls._unittest_name, missing_entitlements)
 
-        if TFC_SAAS_HOSTNAME in TFC_URL and "admin" in str(cls._endpoint_being_tested):
+        endpoint_to_test = getattr(cls._api, cls._endpoint_being_tested)
+
+        if cls._api.is_terraform_cloud() and endpoint_to_test.terraform_enterprise_only():
             raise unittest.SkipTest(\
-                "Skipping Admin Test since we're testing against Terraform Cloud.")
+                (f"Skipping Test (%s), since we're testing against Terraform Cloud." % cls._endpoint_being_tested))
+        elif not cls._api.is_terraform_cloud() and endpoint_to_test.terraform_cloud_only():
+            raise unittest.SkipTest(\
+                (f"Skipping Test (%s), since we're testing against Terraform Enterprise." % cls._endpoint_being_tested))
+        else:
+            # TODO
+            cls._logger.debug("TODO Endpoint", cls._endpoint_being_tested, "NOT EXPECTED")
 
         cls._purge_organization()
 
@@ -125,9 +133,14 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.debug(f"Workspaces purged from test org ({cls._test_org_name}).")
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of modules...")
-        registry_modules = cls._api.registry_modules.list()["modules"]
-        for registry_module in registry_modules:
-            cls._api.registry_modules.destroy(registry_module["name"])
+        try:
+            registry_modules_resp = cls._api.registry_modules.list()
+            registry_modules = registry_modules_resp["modules"]
+            for registry_module in registry_modules:
+                cls._api.registry_modules.destroy(registry_module["name"])
+        except terrasnek.exceptions.TFCHTTPNotFound:
+            cls._logger.debug("No modules exist in this org, skipping.")
+
         cls._logger.debug(f"Modules purged from test org ({cls._test_org_name}).")
 
 
@@ -174,11 +187,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 cls._api.org_memberships.remove(membership_id)
         cls._logger.debug(f"Org member invites purged from test org ({cls._test_org_name}).")
 
-        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of agent pools...")
-        agent_pools = cls._api.agents.list_pools()["data"]
-        for agent_pool in agent_pools:
-            cls._api.agents.destroy(agent_pool["id"])
-        cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
+        if cls._api.is_terraform_cloud():
+            cls._logger.debug(f"Purging test org ({cls._test_org_name}) of agent pools...")
+            agent_pools = cls._api.agents.list_pools()["data"]
+            for agent_pool in agent_pools:
+                cls._api.agents.destroy(agent_pool["id"])
+            cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
 
         try:
             cls._logger.debug(f"Purging org token from test org ({cls._test_org_name})...")
@@ -188,26 +202,26 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._logger.debug(f"No org token exists for test org ({cls._test_org_name})...")
 
 
-
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
         endpoint = getattr(cls._api, endpoint_attr_name)
         required_entitlements = endpoint.required_entitlements()
-        current_entitlements = cls._api.orgs.entitlements(cls._test_org_name)["data"]["attributes"]
-
+        current_entitlements = cls._api.get_entitlements()
         missing_entitlements = []
-        for req_ent in required_entitlements:
-            meets_sub_requirement = False
 
-            for cur_ent_key in current_entitlements:
-                ent_enabled = current_entitlements[cur_ent_key]
-                cur_ent_key = cur_ent_key.replace("-", "_").upper()
+        if cls._api.is_terraform_cloud() and current_entitlements is not None:
+            for req_ent in required_entitlements:
+                meets_sub_requirement = False
 
-                if Entitlements[cur_ent_key] == req_ent and ent_enabled:
-                    meets_sub_requirement = True
+                for cur_ent_key in current_entitlements:
+                    ent_enabled = current_entitlements[cur_ent_key]
+                    cur_ent_key = cur_ent_key.replace("-", "_").upper()
 
-            if not meets_sub_requirement:
-                missing_entitlements.append(req_ent)
+                    if Entitlements[cur_ent_key] == req_ent and ent_enabled:
+                        meets_sub_requirement = True
+
+                if not meets_sub_requirement:
+                    missing_entitlements.append(req_ent)
 
         return missing_entitlements
 

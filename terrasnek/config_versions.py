@@ -20,6 +20,12 @@ class TFCConfigVersions(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def list(self, workspace_id, page=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/configuration-versions``
@@ -48,13 +54,13 @@ class TFCConfigVersions(TFCEndpoint):
 
         current_page_number = 1
         config_versions_resp = \
-            self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE)
+            self.list(workspace_id, page=current_page_number, page_size=MAX_PAGE_SIZE)
         total_pages = config_versions_resp["meta"]["pagination"]["total-pages"]
 
         config_versions = []
         while current_page_number <= total_pages:
             config_versions_resp = \
-                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE)
+                self.list(workspace_id, page=current_page_number, page_size=MAX_PAGE_SIZE)
             config_versions += config_versions_resp["data"]
             current_page_number += 1
 

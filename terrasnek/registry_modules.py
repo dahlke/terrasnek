@@ -23,6 +23,12 @@ class TFCRegistryModules(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.PRIVATE_MODULE_REGISTRY]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     # Public Registry API Endpoints
     def list(self, offset=None, limit=None, provider=None, verified=None):
         """
@@ -32,7 +38,7 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules List API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-modules>`_
         """
-        url = f"{self._modules_v1_base_url}/{self._org_name}"
+        url = f"{self._modules_v1_base_url}{self._org_name}"
         return self._list(\
             url, offset=offset, limit=limit, provider=provider, verified=verified)
 
@@ -43,7 +49,7 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Search API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#search-modules>`_
         """
-        url = f"{self._modules_v1_base_url}/search"
+        url = f"{self._modules_v1_base_url}search"
         return self._list(url, \
             query=query, offset=offset, limit=limit, provider=provider,\
             verified=verified)

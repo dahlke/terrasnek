@@ -18,6 +18,12 @@ class TFCAuditTrails(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return True
+
+    def terraform_enterprise_only(self):
+        return False
+
     def list(self, since=None, page=None, page_size=None):
         """
         ``GET /organization/audit-trail``
@@ -46,7 +52,7 @@ class TFCAuditTrails(TFCEndpoint):
         """
         current_page_number = 1
         audit_trails_resp = \
-            self._list(self._audit_trail_api_v2_base_url, page=current_page_number, page_size=MAX_PAGE_SIZE)
+            self.list(page=current_page_number, page_size=MAX_PAGE_SIZE)
         total_pages = audit_trails_resp["pagination"]["total_pages"]
 
         audit_trails = []

@@ -57,6 +57,15 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         # Test the listing of the modules, time out if it takes too long.
         # List all the modules for this org, confirm we found the one we
         # published.
+        """ TODO: example code
+        try:
+            registry_modules_resp = cls._api.registry_modules.list()
+            registry_modules = registry_modules_resp["modules"]
+            for registry_module in registry_modules:
+                cls._api.registry_modules.destroy(registry_module["name"])
+        except terrasnek.exceptions.TFCHTTPNotFound:
+            cls._logger.debug("No modules exist in this org, skipping.")
+        """
         @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
         def found_module_in_listed_modules_timeout(name_to_check):
             found_module = False

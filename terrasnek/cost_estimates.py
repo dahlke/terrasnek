@@ -17,6 +17,12 @@ class TFCCostEstimates(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def show(self, cost_est_id):
         """
         ``GET /cost-estimates/:id``

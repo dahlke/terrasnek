@@ -19,6 +19,12 @@ class TFCPlans(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.OPERATIONS]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def show(self, plan_id):
         """
         ``GET /plans/:id``

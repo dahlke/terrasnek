@@ -4,8 +4,6 @@ Module for testing the Terraform Cloud API Endpoint: Account.
 
 from .base import TestTFCBaseTestCase
 
-from ._constants import TFC_SAAS_HOSTNAME
-
 
 class TestTFCAccount(TestTFCBaseTestCase):
     """
@@ -44,7 +42,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
 
         # If it's TFC, we don't want to actually change the email, so we will
         # check against the unconfirmed email.
-        if TFC_SAAS_HOSTNAME not in self._tfc_url:
+        if not self._api.is_terraform_cloud():
             updated_email = updated_account["attributes"]["email"]
         else:
             updated_email = updated_account["attributes"]["unconfirmed-email"]
@@ -67,7 +65,7 @@ class TestTFCAccount(TestTFCBaseTestCase):
 
         # Only fiddle around with the password for the account if it's not TFC,
         # and is a TFE instance used only for testing.
-        if TFC_SAAS_HOSTNAME not in self._tfc_url:
+        if not self._api.is_terraform_cloud():
             # Update the password and confirm the request didn't fail
             password_to_update_to = self._unittest_random_name()
             change_password_payload = {

@@ -18,6 +18,12 @@ class TFCStateVersionOutputs(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.STATE_STORAGE]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def show(self, state_version_output_id):
         """
         ``GET /state-version-outputs/:state_version_output_id``

@@ -19,6 +19,12 @@ class TFCRuns(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.OPERATIONS]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def list(self, workspace_id, page=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/runs``

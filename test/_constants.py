@@ -10,8 +10,6 @@ import logging
 API_LOG_LEVEL = logging.INFO
 
 
-TFC_SAAS_HOSTNAME = "app.terraform.io"
-
 # Configurable Constants
 TFC_URL = os.getenv("TFC_URL", None)
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)

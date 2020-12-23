@@ -6,6 +6,7 @@ from enum import Enum
 import logging
 
 # Default Config Items
+TFC_SAAS_HOSTNAME = "app.terraform.io"
 TFC_SAAS_URL = "https://app.terraform.io"
 API_LOG_LEVEL = logging.CRITICAL
 MAX_PAGE_SIZE = 100

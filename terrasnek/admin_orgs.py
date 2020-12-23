@@ -17,6 +17,12 @@ class TFCAdminOrgs(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return True
+
     def destroy(self, org_name):
         """
         ``DELETE /admin/organizations/:name``

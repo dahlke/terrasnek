@@ -26,6 +26,12 @@ class TFCAdminTerraformVersions(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return True
+
     def create(self, data):
         """
         ``POST /admin/terraform-versions``

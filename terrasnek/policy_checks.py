@@ -19,6 +19,12 @@ class TFCPolicyChecks(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.SENTINEL]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def list(self, run_id):
         """
         ``GET /runs/:run_id/policy-checks``

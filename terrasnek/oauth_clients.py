@@ -20,6 +20,12 @@ class TFCOAuthClients(TFCEndpoint):
     def required_entitlements(self):
         return [Entitlements.VCS_INTEGRATIONS]
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def list(self):
         """
         ``GET /organizations/:organization_name/oauth-clients``

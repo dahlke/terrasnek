@@ -20,6 +20,12 @@ class TFCOrgMemberships(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return False
+
     def invite(self, payload):
         """
         ``POST /organizations/:organization_name/organization-memberships``

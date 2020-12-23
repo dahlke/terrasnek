@@ -45,6 +45,20 @@ class TFCEndpoint(ABC):
         """
         return []
 
+    @abstractmethod
+    def terraform_cloud_only(self):
+        """
+        Return ``True`` if this endpoint is only for Terraform Cloud, else ``False``.
+        """
+        return False
+
+    @abstractmethod
+    def terraform_enterprise_only(self):
+        """
+        Return ``True`` if this endpoint is only for Terraform Enterprise, else ``False``.
+        """
+        return False
+
     def _delete(self, url, data=None):
         results = None
         req = requests.delete(\

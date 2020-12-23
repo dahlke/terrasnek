@@ -17,6 +17,12 @@ class TFCAdminUsers(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return True
+
     def destroy(self, user_id):
         """
         ``DELETE /admin/users/:id``

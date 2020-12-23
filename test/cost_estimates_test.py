@@ -7,7 +7,7 @@ import time
 from .base import TestTFCBaseTestCase
 
 from ._constants import \
-    AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, TFC_SAAS_HOSTNAME
+    AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 class TestTFCCostEstimates(TestTFCBaseTestCase):
     """
@@ -46,7 +46,7 @@ class TestTFCCostEstimates(TestTFCBaseTestCase):
         time.sleep(1)
 
         # Enable cost estimation if this is TFE
-        if TFC_SAAS_HOSTNAME not in self._tfc_url:
+        if not self._api.is_terraform_cloud():
             # Configure the AWS credentials for it at the admin level
             update_payload = {
                 "data": {

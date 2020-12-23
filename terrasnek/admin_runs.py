@@ -17,6 +17,12 @@ class TFCAdminRuns(TFCEndpoint):
     def required_entitlements(self):
         return []
 
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return True
+
     def list(self, query=None, filters=None, page=None, page_size=None):
         """
         ``GET /admin/runs``

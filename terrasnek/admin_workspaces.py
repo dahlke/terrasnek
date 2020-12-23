@@ -24,8 +24,13 @@ class TFCAdminWorkspaces(TFCEndpoint):
     def required_entitlements(self):
         return []
 
-    def list(self, \
-        filters=None, page=None, page_size=None, sort=None, search=None):
+    def terraform_cloud_only(self):
+        return False
+
+    def terraform_enterprise_only(self):
+        return True
+
+    def list(self, filters=None, page=None, page_size=None, sort=None, search=None):
         """
         ``GET /admin/workspaces``
 
