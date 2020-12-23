@@ -50,8 +50,6 @@ class TFCConfigVersions(TFCEndpoint):
 
         Returns an array of objects.
         """
-        url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
-
         current_page_number = 1
         config_versions_resp = \
             self.list(workspace_id, page=current_page_number, page_size=MAX_PAGE_SIZE)

@@ -1,10 +1,25 @@
 ************* Module terrasnek.run_triggers
 terrasnek/run_triggers.py:6:0: W0611: Unused Entitlements imported from _constants (unused-import)
+************* Module terrasnek.registry_modules
+terrasnek/registry_modules.py:41:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
+terrasnek/registry_modules.py:53:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
+************* Module terrasnek.api
+terrasnek/api.py:273:12: W0612: Unused variable 'notfound' (unused-variable)
+terrasnek/api.py:298:4: C0111: Missing method docstring (missing-docstring)
 ************* Module terrasnek.audit_trails
-terrasnek/audit_trails.py:49:0: C0301: Line too long (108/100) (line-too-long)
-terrasnek/audit_trails.py:60:0: C0304: Final newline missing (missing-final-newline)
+terrasnek/audit_trails.py:66:0: C0304: Final newline missing (missing-final-newline)
+************* Module terrasnek.plans
+terrasnek/plans.py:46:2: W0511: TODO: should this log an error or raise an exception? (fixme)
+************* Module terrasnek.config_versions
+terrasnek/config_versions.py:53:8: W0612: Unused variable 'url' (unused-variable)
+************* Module terrasnek.workspaces
+terrasnek/workspaces.py:104:2: W0511: TODO: this shouldn't require a URL? (fixme)
 ************* Module test.registry_modules_test
-test/registry_modules_test.py:33:4: R0914: Too many local variables (30/25) (too-many-locals)
+test/registry_modules_test.py:97:2: W0511: TODO (fixme)
+test/registry_modules_test.py:36:4: R0914: Too many local variables (30/25) (too-many-locals)
+test/registry_modules_test.py:63:8: W0105: String statement has no effect (pointless-string-statement)
+************* Module test.admin_module_sharing_test
+test/admin_module_sharing_test.py:48:0: C0301: Line too long (103/100) (line-too-long)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
@@ -12,8 +27,12 @@ test/admin_settings_test.py:123:2: W0511: TODO: need to use a real twilio accoun
 ************* Module test.state_version_outputs_test
 test/state_version_outputs_test.py:73:2: W0511: TODO: might be a race condition here for the tests (fixme)
 ************* Module test.base
-test/base.py:170:31: E0602: Undefined variable 'org_memberships' (undefined-variable)
+test/base.py:113:2: W0511: TODO (fixme)
+test/base.py:108:0: C0301: Line too long (115/100) (line-too-long)
+test/base.py:111:0: C0301: Line too long (120/100) (line-too-long)
+test/base.py:106:8: R1720: Unnecessary "elif" after "raise" (no-else-raise)
+test/base.py:114:12: E1205: Too many arguments for logging format string (logging-too-many-args)
 
-------------------------------------------------------------------
-Your code has been rated at 9.96/10 (previous run: 9.92/10, +0.03)
+-------------------------------------------------------------------
+Your code has been rated at 9.92/10 (previous run: 10.00/10, -0.08)
 

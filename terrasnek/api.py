@@ -12,6 +12,7 @@ from ._constants import TFC_SAAS_URL, TFC_SAAS_HOSTNAME, HTTP_OK, API_LOG_LEVEL
 from .exceptions import TFCHTTPNotFound
 
 from .account import TFCAccount
+from .admin_module_sharing import TFCAdminModuleSharing
 from .admin_orgs import TFCAdminOrgs
 from .admin_runs import TFCAdminRuns
 from .admin_settings import TFCAdminSettings
@@ -72,6 +73,7 @@ class TFC():
     _class_for_attr_dict = {
         "org-not-required": {
             "admin_orgs": TFCAdminOrgs,
+            "admin_module_sharing": TFCAdminModuleSharing,
             "admin_runs": TFCAdminRuns,
             "admin_settings": TFCAdminSettings,
             "admin_terraform_versions": TFCAdminTerraformVersions,
@@ -132,6 +134,7 @@ class TFC():
         self._current_org = None
         self._verify = verify
 
+        self.admin_module_sharing: TFCAdminModuleSharing = None
         self.admin_orgs: TFCAdminOrgs = None
         self.admin_runs: TFCAdminRuns = None
         self.admin_settings: TFCAdminSettings = None
@@ -267,7 +270,7 @@ class TFC():
         if self.is_terraform_cloud():
             try:
                 entitlements = self.orgs.entitlements(self._current_org)["data"]["attributes"]
-            except TFCHTTPNotFound as notfound:
+            except TFCHTTPNotFound:
                 self._logger.debug("Entitlements API endpoint not found. No entitlements recorded.")
         else:
             self._logger.debug("Not Terraform Cloud, so entitlements API is not supported.")

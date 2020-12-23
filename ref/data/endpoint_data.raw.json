@@ -29,15 +29,18 @@
         "url": "https://www.terraform.io/docs/cloud/api/account.html"
     },
     "admin_module_sharing": {
+        "docs": true,
+        "implementation": true,
         "methods": [
             {
                 "description": "Update an Organization's Module Consumers",
                 "http-path": "PATCH /admin/organizations/:name/module-consumers",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "#update-an-organization-39-s-module-consumers"
             }
         ],
+        "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/admin/module-sharing.html"
     },
     "admin_orgs": {
