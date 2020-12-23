@@ -58,7 +58,7 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         }
         updated_org = self._api.orgs.update(
             self._test_org_name, update_org_payload)
-        self.assertEqual(updated_org["data"]
+        self.assertEqual(updated_org["data"] \
                          ["attributes"]["email"], email_to_update_to)
 
         # Destroy the org, confirm it's gone

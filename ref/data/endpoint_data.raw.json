@@ -61,8 +61,8 @@
             {
                 "description": "Update an Organization",
                 "http-path": "PATCH /organizations/:organization_name",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "#update-an-organization"
             },
             {

@@ -34,6 +34,18 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
                 break
         self.assertTrue(found_created_org)
 
+        # Change the email address for the org, confirm the change.
+        update_org_payload = {
+            "data": {
+                "type": "organizations",
+                "attributes": {
+                    "global-module-sharing": True
+                }
+            }
+        }
+        updated_org = self._api.admin_orgs.update(self._test_org_name, update_org_payload)["data"]
+        self.assertTrue(updated_org["attributes"]["global-module-sharing"])
+
         # Show the created org, confirm it matches the created org's ID
         shown_org = self._api.admin_orgs.show(self._created_org_name)["data"]
         self.assertEqual(self._created_org_id, shown_org["id"])

@@ -12,7 +12,7 @@ class TFCAdminOrgs(TFCEndpoint):
 
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
-        self._endpoint_base_url = f"{self._api_v2_base_url}/admin/organizations"
+        self._org_api_v2_base_url = f"{self._api_v2_base_url}/admin/organizations"
 
     def required_entitlements(self):
         return []
@@ -30,7 +30,7 @@ class TFCAdminOrgs(TFCEndpoint):
         `Admin Destroy Org API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#delete-an-organization>`_
         """
-        url = f"{self._endpoint_base_url}/{org_name}"
+        url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._destroy(url)
 
     def list(self):
@@ -42,7 +42,7 @@ class TFCAdminOrgs(TFCEndpoint):
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
-        return self._list(self._endpoint_base_url)
+        return self._list(self._org_api_v2_base_url)
 
     def show(self, org_name):
         """
@@ -51,5 +51,18 @@ class TFCAdminOrgs(TFCEndpoint):
         `Admin Show Org API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#show-an-organization>`_
         """
-        url = f"{self._endpoint_base_url}/{org_name}"
+        url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._show(url)
+
+    def update(self, org_name, payload):
+        """
+        ``PATCH /organizations/:organization_name``
+
+        `Admin Orgs Update API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#update-an-organization>`_
+
+        `Update Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#sample-payload>`_
+        """
+        url = f"{self._org_api_v2_base_url}/{org_name}"
+        return self._update(url, payload)
