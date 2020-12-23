@@ -33,8 +33,13 @@ class TestTFCOrgs(TestTFCBaseTestCase):
 
         # List subscription details, confirm expected response
         sub = self._api.orgs.subscription(self._test_org_name)["data"]
-        self.assertEqual(sub["type"], "subscriptions")
-        self.assertIn("identifier", sub["included"][0]["attributes"])
+        if "included" in sub:
+            # If "included" is present, it's an active subscription
+            self.assertEqual(sub["type"], "subscriptions")
+            self.assertIn("identifier", sub["included"][0]["attributes"])
+        else:
+            # Otherwise, make sure it's a free tier subscription
+            self.assertTrue(sub["attributes"]["is-public-free-tier"])
 
         # Show the org, confirm IDs match
         org = self._api.orgs.show(self._test_org_name)

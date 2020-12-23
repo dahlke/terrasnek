@@ -28,6 +28,9 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             oauth_client["relationships"]["oauth-tokens"]["data"][0]["id"]
 
     def tearDown(self):
+        # Delete all the modules before deleting the OAuth client, otherwise
+        # you might not be able to delete it after the oauth client is purged.
+        self._purge_module_registry()
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
     def test_registry_modules(self):
@@ -41,9 +44,9 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             "data": {
                 "attributes": {
                     "vcs-repo": {
-                        "identifier": "dahlke/terraform-tfe-terrasnek-unittest-4",
+                        "identifier": "dahlke/terraform-tfe-terrasnek-unittest-6",
                         "oauth-token-id": self._oauth_token_id,
-                        "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest-4"
+                        "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest-6"
                     }
                 },
                 "type":"registry-modules"
@@ -86,12 +89,12 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
                 time.sleep(1)
             return listed_modules, found_module
-
         listed_modules, found_module = found_module_in_listed_modules_timeout(published_module_name)
 
         self.assertTrue(found_module)
 
         # Search for the module by name, confirm we got it back in the results.
+        # TODO
         search_modules_resp = self._api.registry_modules.search(published_module_name)
         search_modules = search_modules_resp["modules"]
         found_module = False
@@ -153,14 +156,14 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         latest_version_all_providers = \
             self._api.registry_modules.list_latest_version_all_providers(published_module_name)
         tfe_provider_data = latest_version_all_providers["modules"][0]
-        self.assertEqual(tfe_provider_data["version"], "0.0.2")
+        self.assertEqual(tfe_provider_data["version"], "0.0.3")
         self.assertEqual(tfe_provider_data["provider"], expected_provider)
 
         # Confirm the latest version for specific providers endpoint works as expected
         latest_version_tfe_provider = \
             self._api.registry_modules.list_latest_version_specific_provider(\
                 published_module_name, expected_provider)
-        self.assertEqual(latest_version_tfe_provider["version"], "0.0.2")
+        self.assertEqual(latest_version_tfe_provider["version"], "0.0.3")
         self.assertEqual(latest_version_tfe_provider["provider"], expected_provider)
 
         shown_module = \

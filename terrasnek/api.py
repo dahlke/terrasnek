@@ -8,7 +8,7 @@ import logging
 import requests
 import urllib3
 
-from ._constants import TFC_SAAS_URL, TFC_SAAS_HOSTNAME, HTTP_OK, LOG_LEVEL
+from ._constants import TFC_SAAS_URL, TFC_SAAS_HOSTNAME, HTTP_OK, API_LOG_LEVEL
 from .exceptions import TFCHTTPNotFound
 
 from .account import TFCAccount
@@ -269,7 +269,6 @@ class TFC():
                 entitlements = self.orgs.entitlements(self._current_org)["data"]["attributes"]
             except TFCHTTPNotFound as notfound:
                 self._logger.debug("Entitlements API endpoint not found. No entitlements recorded.")
-                print("NOT FOUND", notfound)
         else:
             self._logger.debug("Not Terraform Cloud, so entitlements API is not supported.")
 

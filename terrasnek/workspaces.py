@@ -162,7 +162,6 @@ class TFCWorkspaces(TFCEndpoint):
             self._logger.error("Arguments workspace_name or workspace_id must be defined")
         return self._update(url, payload)
 
-
     def assign_ssh_key(self, workspace_id, payload):
         """
         ``PATCH /workspaces/:workspace_id/relationships/ssh-key``

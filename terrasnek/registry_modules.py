@@ -38,7 +38,8 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules List API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-modules>`_
         """
-        url = f"{self._modules_v1_base_url}{self._org_name}"
+        # TODO: the slash here is behaving differently from TFE to TFC
+        url = f"{self._modules_v1_base_url}/{self._org_name}"
         return self._list(\
             url, offset=offset, limit=limit, provider=provider, verified=verified)
 
@@ -49,7 +50,8 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Search API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#search-modules>`_
         """
-        url = f"{self._modules_v1_base_url}search"
+        # TODO: the slash here is behaving differently from TFE to TFC
+        url = f"{self._modules_v1_base_url}/search"
         return self._list(url, \
             query=query, offset=offset, limit=limit, provider=provider,\
             verified=verified)
