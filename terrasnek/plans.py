@@ -43,10 +43,8 @@ class TFCPlans(TFCEndpoint):
         `Plans Download JSON API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/plans.html#retrieve-the-json-execution-plan>`_
         """
-        # TODO: should this log an error or raise an exception?
         if plan_id is not None:
             url = f"{self._endpoint_base_url}/{plan_id}/json-output"
-            self._logger.error(f"This endpoint ({url}) does not yet work.")
         elif run_id is not None:
             url = f"{self._runs_base_url}/{run_id}/plan/json-output"
         else:

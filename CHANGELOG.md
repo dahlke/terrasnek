@@ -5,9 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.17] - TBD
+## [0.1.1] - 2020-02-09
 
-- TBD
+I started working on this project about a half a year or so ago, and never
+thought it would get this far, but it did. This library has been tested in a
+bunch of different places, and I feel confident in it going forward, so today
+I will move it to `0.1.1`. There is certainly room for improvement (and I'd
+like help to do so if you're willing), but I'm confident you can use this
+library for it's utility at this stage.
+
+- Cleared out a bunch of TODOs
+- Implemented a bunch of TFC specific endpoints (like subscriptions, invoices, etc.)
+- New TFCHTTPRequestRateLimit exception
+- Tweaks to the documentation to include more of the library
+- Added new TFC entitlements
+- 196/196 Implemented endpoints at time of release
 
 ## [0.0.16] - 2020-12-23
 

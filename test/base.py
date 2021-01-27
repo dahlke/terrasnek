@@ -110,8 +110,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             raise unittest.SkipTest(\
                 (f"Skipping Test (%s), since we're testing against Terraform Enterprise." % cls._endpoint_being_tested))
         else:
-            # TODO
-            cls._logger.debug("TODO Endpoint", cls._endpoint_being_tested, "NOT EXPECTED")
+            cls._logger.debug("Endpoint", cls._endpoint_being_tested, " not expected.")
 
         cls._purge_organization()
 
@@ -487,7 +486,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
         """
         created_run = self._api.runs.show(run_id)["data"]
         while not created_run["attributes"]["actions"]["is-confirmable"]:
-            self._logger.debug("Waiting on plan to execute...")
             created_run = self._api.runs.show(run_id)["data"]
             self._logger.debug("Waiting for created run to finish planning...")
             time.sleep(1)

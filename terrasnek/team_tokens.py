@@ -32,9 +32,6 @@ class TFCTeamTokens(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/team-tokens.html#generate-a-new-team-token>`_
         """
 
-        if payload is None:
-            payload = {}
-
         url = f"{self._endpoint_base_url}/{team_id}/authentication-token"
         return self._create(url, payload=payload)
 

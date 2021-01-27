@@ -1,34 +1,33 @@
 ************* Module terrasnek.run_triggers
 terrasnek/run_triggers.py:6:0: W0611: Unused Entitlements imported from _constants (unused-import)
+************* Module terrasnek.subscriptions
+terrasnek/subscriptions.py:38:25: W0622: Redefining built-in 'id' (redefined-builtin)
+terrasnek/subscriptions.py:38:4: C0103: Argument name "id" doesn't conform to snake_case naming style (invalid-name)
 ************* Module terrasnek.registry_modules
 terrasnek/registry_modules.py:41:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 terrasnek/registry_modules.py:53:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 ************* Module terrasnek.api
-terrasnek/api.py:298:4: C0111: Missing method docstring (missing-docstring)
-************* Module terrasnek.audit_trails
-terrasnek/audit_trails.py:66:0: C0304: Final newline missing (missing-final-newline)
-************* Module terrasnek.plans
-terrasnek/plans.py:46:2: W0511: TODO: should this log an error or raise an exception? (fixme)
-************* Module terrasnek.workspaces
-terrasnek/workspaces.py:104:2: W0511: TODO: this shouldn't require a URL? (fixme)
+terrasnek/api.py:68:0: R0902: Too many instance attributes (52/50) (too-many-instance-attributes)
+terrasnek/api.py:306:4: C0111: Missing method docstring (missing-docstring)
+************* Module terrasnek.invoices
+terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
+terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
 ************* Module test.registry_modules_test
-test/registry_modules_test.py:97:2: W0511: TODO (fixme)
-test/registry_modules_test.py:36:4: R0914: Too many local variables (30/25) (too-many-locals)
-test/registry_modules_test.py:63:8: W0105: String statement has no effect (pointless-string-statement)
+test/registry_modules_test.py:121:0: C0301: Line too long (102/100) (line-too-long)
+test/registry_modules_test.py:36:4: R0914: Too many local variables (32/25) (too-many-locals)
 ************* Module test.admin_module_sharing_test
 test/admin_module_sharing_test.py:48:0: C0301: Line too long (103/100) (line-too-long)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:123:2: W0511: TODO: need to use a real twilio account to finish this test. (fixme)
-************* Module test.state_version_outputs_test
-test/state_version_outputs_test.py:73:2: W0511: TODO: might be a race condition here for the tests (fixme)
+************* Module test.invoices_test
+test/invoices_test.py:20:2: W0511: TODO: this will fail since I don't have any billing info associated with the test org. (fixme)
 ************* Module test.base
-test/base.py:113:2: W0511: TODO (fixme)
 test/base.py:108:0: C0301: Line too long (115/100) (line-too-long)
 test/base.py:111:0: C0301: Line too long (120/100) (line-too-long)
 test/base.py:106:8: R1720: Unnecessary "elif" after "raise" (no-else-raise)
-test/base.py:114:12: E1205: Too many arguments for logging format string (logging-too-many-args)
+test/base.py:113:12: E1205: Too many arguments for logging format string (logging-too-many-args)
 
 ------------------------------------------------------------------
 Your code has been rated at 9.93/10 (previous run: 9.93/10, +0.00)

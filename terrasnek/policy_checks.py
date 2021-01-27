@@ -25,6 +25,16 @@ class TFCPolicyChecks(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
+    def show(self, policy_check_id):
+        """
+        ``GET /policy-checks/:id``
+
+        `Policy Checks Show API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/policy-checks.html#show-policy-check>`_
+        """
+        url = f"{self._endpoint_base_url}/{policy_check_id}"
+        return self._show(url)
+
     def list(self, run_id):
         """
         ``GET /runs/:run_id/policy-checks``
@@ -37,7 +47,7 @@ class TFCPolicyChecks(TFCEndpoint):
 
     def override(self, policy_check_id):
         """
-        ``POST /policy-checks/:policy_check_id/actions/override``
+        ``POST /policy-checks/:id/actions/override``
 
         `Policy Checks Override API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-checks.html#override-policy>`_

@@ -1,6 +1,6 @@
 FROM alpine:3.10.2
 
-# Install some system utilities for Python to use 
+# Install some system utilities for Python to use
 RUN apk update && apk upgrade && apk add gcc musl-dev libc-dev libc6-compat linux-headers build-base libffi-dev openssl-dev
 
 # Install Node, Make, Python and Git

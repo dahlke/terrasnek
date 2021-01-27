@@ -1,6 +1,5 @@
 {
     "account": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -29,7 +28,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/account.html"
     },
     "admin_module_sharing": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -44,7 +42,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/admin/module-sharing.html"
     },
     "admin_orgs": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -63,7 +60,7 @@
             },
             {
                 "description": "Update an Organization",
-                "http-path": "PATCH /organizations/:organization_name",
+                "http-path": "PATCH /admin/organizations/:organization_name",
                 "implementation-method-name": "update",
                 "implemented": true,
                 "permalink": "#update-an-organization"
@@ -80,7 +77,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/admin/organizations.html"
     },
     "admin_runs": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -102,7 +98,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/admin/runs.html"
     },
     "admin_settings": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -208,7 +203,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/admin/settings.html"
     },
     "admin_terraform_versions": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -251,7 +245,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html"
     },
     "admin_users": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -322,7 +315,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/admin/users.html"
     },
     "admin_workspaces": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -351,7 +343,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/admin/workspaces.html"
     },
     "agent_tokens": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -387,7 +378,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/agent-tokens.html"
     },
     "agents": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -444,7 +434,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/agents.html"
     },
     "applies": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -459,7 +448,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/applies.html"
     },
     "audit_trails": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -474,7 +462,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/audit-trails.html"
     },
     "config_versions": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -510,7 +497,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/configuration-versions.html"
     },
     "cost_estimates": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -524,8 +510,49 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/cost-estimates.html"
     },
+    "feature_sets": {
+        "implementation": true,
+        "methods": [
+            {
+                "description": "List Feature Sets",
+                "http-path": "GET /feature-sets",
+                "implementation-method-name": "list",
+                "implemented": true,
+                "permalink": "#list-feature-sets"
+            },
+            {
+                "description": "List Feature Sets for Organization",
+                "http-path": "GET /organizations/:organization_name/feature-sets",
+                "implementation-method-name": "list_for_org",
+                "implemented": true,
+                "permalink": "#list-feature-sets-for-organization"
+            }
+        ],
+        "test": true,
+        "url": "https://www.terraform.io/docs/cloud/api/feature-sets.html"
+    },
+    "invoices": {
+        "implementation": true,
+        "methods": [
+            {
+                "description": "List Invoices",
+                "http-path": "GET /organizations/:organization_name/invoices",
+                "implementation-method-name": "list",
+                "implemented": true,
+                "permalink": "#list-invoices"
+            },
+            {
+                "description": "Get Next Invoice",
+                "http-path": "GET /organizations/:organization_name/invoices/next",
+                "implementation-method-name": "next",
+                "implemented": true,
+                "permalink": "#get-next-invoice"
+            }
+        ],
+        "test": true,
+        "url": "https://www.terraform.io/docs/cloud/api/invoices.html"
+    },
     "ip_ranges": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -540,7 +567,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/ip-ranges.html"
     },
     "notification_configs": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -590,7 +616,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/notification-configurations.html"
     },
     "oauth_clients": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -633,7 +658,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/oauth-clients.html"
     },
     "oauth_tokens": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -669,7 +693,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/oauth-tokens.html"
     },
     "org_memberships": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -712,7 +735,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/organization-memberships.html"
     },
     "org_tokens": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -734,7 +756,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/organization-tokens.html"
     },
     "orgs": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -784,7 +805,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/organizations.html"
     },
     "plan_exports": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -820,7 +840,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/plan-exports.html"
     },
     "plans": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -849,7 +868,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/plans.html"
     },
     "policies": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -899,14 +917,34 @@
         "url": "https://www.terraform.io/docs/cloud/api/policies.html"
     },
     "policy_checks": {
-        "docs": true,
         "implementation": true,
-        "methods": [],
+        "methods": [
+            {
+                "description": "List Policy Checks",
+                "http-path": "GET /runs/:run_id/policy-checks",
+                "implementation-method-name": "list",
+                "implemented": true,
+                "permalink": "#list-policy-checks"
+            },
+            {
+                "description": "Show Policy Check",
+                "http-path": "GET /policy-checks/:id",
+                "implementation-method-name": "show",
+                "implemented": true,
+                "permalink": "#show-policy-check"
+            },
+            {
+                "description": "Override Policy",
+                "http-path": "POST /policy-checks/:id/actions/override",
+                "implementation-method-name": "override",
+                "implemented": true,
+                "permalink": "#override-policy"
+            }
+        ],
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/policy-checks.html"
     },
     "policy_set_params": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -942,7 +980,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/policy-set-params.html"
     },
     "policy_sets": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1048,7 +1085,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/policy-sets.html"
     },
     "registry_modules": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1112,7 +1148,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/modules.html"
     },
     "run_triggers": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1148,7 +1183,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/run-triggers.html"
     },
     "runs": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1212,7 +1246,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/run.html"
     },
     "ssh_keys": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1255,7 +1288,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/ssh-keys.html"
     },
     "state_version_outputs": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1270,7 +1302,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/state-version-outputs.html"
     },
     "state_versions": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1305,8 +1336,28 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/state-versions.html"
     },
+    "subscriptions": {
+        "implementation": true,
+        "methods": [
+            {
+                "description": "Show Subscription For Organization",
+                "http-path": "GET /organizations/:organization_name/subscription",
+                "implementation-method-name": "show",
+                "implemented": true,
+                "permalink": "#show-subscription-for-organization"
+            },
+            {
+                "description": "Show Subscription By ID",
+                "http-path": "GET /subscriptions/:id",
+                "implementation-method-name": "show_by_id",
+                "implemented": true,
+                "permalink": "#show-subscription-by-id"
+            }
+        ],
+        "test": true,
+        "url": "https://www.terraform.io/docs/cloud/api/subscriptions.html"
+    },
     "team_access": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1349,7 +1400,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/team-access.html"
     },
     "team_memberships": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1371,14 +1421,12 @@
         "url": "https://www.terraform.io/docs/cloud/api/team-members.html"
     },
     "team_tokens": {
-        "docs": true,
         "implementation": true,
         "methods": [],
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/team-tokens.html"
     },
     "teams": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1421,7 +1469,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/teams.html"
     },
     "user_tokens": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1457,7 +1504,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/user-tokens.html"
     },
     "users": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1472,7 +1518,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/users.html"
     },
     "vars": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1508,7 +1553,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/variables.html"
     },
     "workspace_vars": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {
@@ -1544,7 +1588,6 @@
         "url": "https://www.terraform.io/docs/cloud/api/workspace-variables.html"
     },
     "workspaces": {
-        "docs": true,
         "implementation": true,
         "methods": [
             {

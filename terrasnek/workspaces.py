@@ -101,7 +101,6 @@ class TFCWorkspaces(TFCEndpoint):
         Returns an array of objects.
         """
         current_page_number = 1
-        # TODO: this shouldn't require a URL?
         workspaces_resp = \
             self.list(page=current_page_number, page_size=MAX_PAGE_SIZE)
         total_pages = workspaces_resp["meta"]["pagination"]["total-pages"]

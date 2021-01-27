@@ -40,8 +40,9 @@ class TestTFCRuns(TestTFCBaseTestCase):
         for payload in variable_payloads:
             self._api.vars.create(payload)
 
-        # Sleep for 1 second to give the WS time to create
-        time.sleep(1)
+        # Sleep for 3 seconds to give the WS time to create, takes a bit longer
+        # on small TFE instances.
+        time.sleep(3)
 
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
@@ -51,7 +52,6 @@ class TestTFCRuns(TestTFCBaseTestCase):
         """
         Test the Runs API endpoints with an apply.
         """
-
         # Create a run
         create_payload = self._get_run_create_payload(self._ws_id)
         run = self._api.runs.create(create_payload)["data"]
@@ -102,9 +102,6 @@ class TestTFCRuns(TestTFCBaseTestCase):
         """
         Test the Runs API endpoints for a discard.
         """
-
-        # Give the worksapce a little time to create
-        time.sleep(1)
 
         # Create a run
         create_payload = self._get_run_create_payload(self._ws_id)

@@ -35,9 +35,7 @@ features like audit logging and SAML single sign-on._
 
 For more details on using each endpoint, check out the
 [docs](https://terrasnek.readthedocs.io/en/latest/) or the [`test`](./test)
-directory. I also wrote a
-[blog post](https://medium.com/hashicorp-engineering/migrating-a-lot-of-state-with-python-and-the-terraform-cloud-api-997ec798cd11)
-showing how this library can be used.
+directory.
 
 ```python3
 from terrasnek.api import TFC
@@ -46,7 +44,7 @@ import os
 TFC_TOKEN = os.getenv("TFC_TOKEN", None)
 TFC_URL = os.getenv("TFC_URL", None)  # ex: https://app.terraform.io
 # set to True if you want to use HTTP or insecure HTTPS
-SSL_VERIFY = os.getenv("SSL_VERIFY", None)
+SSL_VERIFY = os.getenv("SSL_VERIFY", False)
 
 if __name__ == "__main__":
     api = TFC(TFC_TOKEN, url=TFC_URL, ssl_verify=SSL_VERIFY)
@@ -67,6 +65,10 @@ See the [`terrasnek` documentation](https://terrasnek.readthedocs.io/en/latest/)
 ### Contributing to `terrasnek`
 
 If you'd like to contribute to `terrasnek`, review [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+### Relevant Blogs
+- [Migrating a Lot of State with Python and the Terraform Cloud API](https://medium.com/hashicorp-engineering/migrating-a-lot-of-state-with-python-and-the-terraform-cloud-api-997ec798cd11)
+- [The Power of the Terraform API: How to Easily Migrate Any Data Between Enterprise and Cloud ](https://medium.com/hashicorp-engineering/the-power-of-the-terraform-api-how-to-easily-migrate-any-data-between-enterprise-and-cloud-596e7023eb7f)
 
 ---
 

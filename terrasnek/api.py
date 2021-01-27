@@ -25,7 +25,9 @@ from .applies import TFCApplies
 from .audit_trails import TFCAuditTrails
 from .config_versions import TFCConfigVersions
 from .cost_estimates import TFCCostEstimates
+from .feature_sets import TFCFeatureSets
 from .ip_ranges import TFCIPRanges
+from .invoices import TFCInvoices
 from .oauth_clients import TFCOAuthClients
 from .oauth_tokens import TFCOAuthTokens
 from .orgs import TFCOrgs
@@ -44,6 +46,7 @@ from .runs import TFCRuns
 from .state_versions import TFCStateVersions
 from .state_version_outputs import TFCStateVersionOutputs
 from .ssh_keys import TFCSSHKeys
+from .subscriptions import TFCSubscriptions
 from .teams import TFCTeams
 from .team_access import TFCTeamAccess
 from .team_memberships import TFCTeamMemberships
@@ -90,6 +93,8 @@ class TFC():
             "agent_tokens": TFCAgentTokens,
             "config_versions": TFCConfigVersions,
             "cost_estimates": TFCCostEstimates,
+            "feature_sets": TFCFeatureSets,
+            "invoices": TFCInvoices,
             "oauth_clients": TFCOAuthClients,
             "oauth_tokens": TFCOAuthTokens,
             "org_memberships": TFCOrgMemberships,
@@ -104,9 +109,10 @@ class TFC():
             "registry_modules": TFCRegistryModules,
             "run_triggers": TFCRunTriggers,
             "runs": TFCRuns,
+            "ssh_keys": TFCSSHKeys,
             "state_versions": TFCStateVersions,
             "state_version_outputs": TFCStateVersionOutputs,
-            "ssh_keys": TFCSSHKeys,
+            "subscriptions": TFCSubscriptions,
             "teams": TFCTeams,
             "team_access": TFCTeamAccess,
             "team_memberships": TFCTeamMemberships,
@@ -142,7 +148,9 @@ class TFC():
         self.admin_users: TFCAdminUsers = None
         self.admin_workspaces: TFCAdminWorkspaces = None
         self.audit_trails: TFCAuditTrails = None
+        self.invoices: TFCInvoices = None
         self.ip_ranges: TFCIPRanges = None
+        self.feature_sets: TFCFeatureSets = None
         self.orgs: TFCOrgs = None
         self.account: TFCAccount = None
         self.applies: TFCApplies = None

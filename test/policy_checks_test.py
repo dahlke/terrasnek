@@ -92,8 +92,12 @@ class TestTFCPolicyChecks(TestTFCBaseTestCase):
         self.assertEqual(len(pol_checks), 1)
         self.assertFalse(pol_checks[0]["attributes"]["result"]["result"])
 
+        pol_check_id = pol_checks[0]["id"]
+        shown_pol_check = self._api.policy_checks.show(pol_check_id)["data"]
+        self.assertEqual(pol_check_id, shown_pol_check["id"])
+
         # Override the policy check that soft failed, confirm we can continue
-        self._api.policy_checks.override(pol_checks[0]["id"])
+        self._api.policy_checks.override(pol_check_id)
 
         created_run = self._api.runs.show(self._run_id)["data"]
         self.assertTrue(created_run["attributes"]["actions"]["is-confirmable"])

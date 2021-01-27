@@ -40,8 +40,9 @@ class TestTFCPlans(TestTFCBaseTestCase):
         for payload in variable_payloads:
             self._api.vars.create(payload)
 
-        # Sleep for 1 second to give the WS time to create
-        time.sleep(1)
+        # Sleep for 3 seconds to give the WS time to create, takes a bit longer
+        # on small TFE instances.
+        time.sleep(3)
 
         # Start the run, store the run ID
         create_run_payload = self._get_run_create_payload(self._ws_id)

@@ -56,7 +56,7 @@ class TFCAdminOrgs(TFCEndpoint):
 
     def update(self, org_name, payload):
         """
-        ``PATCH /organizations/:organization_name``
+        ``PATCH /admin/organizations/:organization_name``
 
         `Admin Orgs Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#update-an-organization>`_

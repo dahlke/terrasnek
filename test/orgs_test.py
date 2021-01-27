@@ -32,14 +32,16 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         self.assertTrue(ent["attributes"]["state-storage"])
 
         # List subscription details, confirm expected response
-        sub = self._api.orgs.subscription(self._test_org_name)["data"]
-        if "included" in sub:
-            # If "included" is present, it's an active subscription
-            self.assertEqual(sub["type"], "subscriptions")
-            self.assertIn("identifier", sub["included"][0]["attributes"])
-        else:
-            # Otherwise, make sure it's a free tier subscription
-            self.assertTrue(sub["attributes"]["is-public-free-tier"])
+        if self._api.is_terraform_cloud():
+            # This only works on TFC, so skip it if we're on TFE.
+            sub = self._api.orgs.subscription(self._test_org_name)["data"]
+            if "included" in sub:
+                # If "included" is present, it's an active subscription
+                self.assertEqual(sub["type"], "subscriptions")
+                self.assertIn("identifier", sub["included"][0]["attributes"])
+            else:
+                # Otherwise, make sure it's a free tier subscription
+                self.assertTrue(sub["attributes"]["is-public-free-tier"])
 
         # Show the org, confirm IDs match
         org = self._api.orgs.show(self._test_org_name)

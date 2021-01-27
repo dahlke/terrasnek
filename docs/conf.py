@@ -18,8 +18,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
-from recommonmark.transform import AutoStructify
-
 
 # -- Project information -----------------------------------------------------
 
@@ -28,7 +26,7 @@ copyright = '2020, Neil Dahlke'
 author = 'Neil Dahlke'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.16'
+release = '0.1.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -40,13 +38,11 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.coverage',
     'sphinx.ext.napoleon',
-    'recommonmark'
+    'sphinx_rtd_theme'
 ]
 
 source_suffix = {
-    '.rst': 'restructuredtext',
-    '.txt': 'markdown',
-    '.md': 'markdown',
+    '.rst': 'restructuredtext'
 }
 
 master_doc = "index"
@@ -66,7 +62,14 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
+
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For a list of options available for each theme, see the
+# documentation.
+html_theme_options = {
+    "collapse_navigation" : True
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -77,13 +80,5 @@ html_static_path = []
 # github_doc_root = 'https://github.com/dahlke/terrasnek/tree/master/docs/'
 # 'url_resolver': lambda url: github_doc_root + url,
 def setup(app):
-    app.add_config_value('recommonmark_config', {
-        'auto_toc_tree_section': 'Contents',
-        'auto_toc_maxdepth': 3,
-        'enable_math': False,
-        'enable_inline_math': False,
-        'enable_eval_rst': True,
-        'enable_auto_toc_tree': True,
-    }, True)
-    app.add_transform(AutoStructify)
+    pass
 

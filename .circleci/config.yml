@@ -2,7 +2,7 @@ version: 2
 jobs:
   prepare_deploy:
     docker:
-      - image: eklhad/terrasnek-circleci:0.1
+      - image: eklhad/terrasnek-circleci:0.2
     working_directory: ~/terrasnek
     steps:
       - checkout

@@ -21,6 +21,7 @@ TEST_PATH = "./test"
 DOCS_PATH = "./docs"
 HTTP_VERBS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
+
 def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_ignore=[]):
     """
     List a directory, and return all filenames that don't start with a "." or "_",
@@ -194,6 +195,8 @@ def check_methods_implementation(endpoints):
             method["implemented"] = False
             method["implementation-method-name"] = None
             most_recent_method_name = None
+
+
             for line in split_by_func_def:
                 if "def" in line:
                     most_recent_method_name = line.split("(")[0].replace("def", "").strip()
@@ -209,17 +212,19 @@ def write_table_to_file(path, rows, headers, tablefmt):
     """
     Helper function to write table data to a file.
     """
-    with open(path, "w") as f:
+    with open(path, "w") as outfile:
         table_data = tabulate(rows, headers=headers, tablefmt=tablefmt)
-        f.write(table_data)
+        outfile.write("# `terrasnek` API Coverage Completeness\n\n")
+        outfile.write(table_data)
+        outfile.write("\n")
 
 def write_pretty_json_to_file(path, data):
     """
     Helper function to write pretty JSON to a file.
     """
-    with open(path, "w") as f:
+    with open(path, "w") as outfile:
         pretty_json = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
-        f.write(pretty_json)
+        outfile.write(pretty_json)
 
 def main():
     """
@@ -281,7 +286,8 @@ def main():
             md_method_rows.append(md_method_row)
 
     md_method_rows.sort(key=lambda x: x[0])
-    write_table_to_file("./TERRASNEK_API_COVERAGE_COMPLETENESS.md", md_method_rows, md_method_headers, "github")
+    write_table_to_file("./TERRASNEK_API_COVERAGE_COMPLETENESS.md", \
+        md_method_rows, md_method_headers, "github")
 
     # Build an RST table for the Sphinx Python Docs
     rst_method_headers = [
@@ -311,7 +317,8 @@ def main():
             rst_method_rows.append(rst_method_row)
 
     rst_method_rows.sort(key=lambda x: x[0])
-    write_table_to_file("./docs/TERRASNEK_API_COVERAGE_COMPLETENESS.rst", rst_method_rows, rst_method_headers, "rst")
+    write_table_to_file("./docs/TERRASNEK_API_COVERAGE_COMPLETENESS.rst", \
+        rst_method_rows, rst_method_headers, "rst")
 
     # Write a badge for the # of implemented methods vs the total # of method endpoints
     num_methods_implemented = 0
