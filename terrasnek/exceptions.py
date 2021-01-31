@@ -75,6 +75,15 @@ class TFCHTTPUnprocessableEntity(TFCException):
     instructions.
     """
 
+class TFCHTTPApiRequestRateLimit(TFCException):
+    """Terraform Cloud API rate limit has been reached. (HTTP 429)
+
+    The HTTP 429 Rate limit has been reached error indicates that the client has
+    reached the set request limit for the organization. By default; terraform enterprise
+    and cloud APIs have a default limit of 30 requests per second as as authenticated or
+    unauthenticated request.
+    """
+
 class TFCHTTPInternalServerError(TFCException):
     """Terraform Cloud internal server error. (HTTP 500)
 

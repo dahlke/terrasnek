@@ -11,12 +11,13 @@ import requests
 from .exceptions import \
     TFCHTTPBadRequest, TFCHTTPUnauthorized, TFCHTTPForbidden, TFCHTTPNotFound, \
         TFCHTTPConflict, TFCHTTPPreconditionFailed, TFCHTTPUnprocessableEntity, \
-            TFCHTTPInternalServerError, TFCHTTPUnclassified
+            TFCHTTPInternalServerError, TFCHTTPUnclassified, TFCHTTPApiRequestRateLimit
 
 from ._constants import \
     HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED, \
         HTTP_FORBIDDEN, HTTP_NOT_FOUND, HTTP_CONFLICT, HTTP_PRECONDITION_FAILED, \
-            HTTP_UNPROCESSABLE_ENTITY, HTTP_INTERNAL_SERVER_ERROR
+            HTTP_UNPROCESSABLE_ENTITY, HTTP_API_REQUEST_RATE_LIMIT_REACHED, \
+                HTTP_INTERNAL_SERVER_ERROR
 
 
 class TFCEndpoint(ABC):
@@ -74,6 +75,10 @@ class TFCEndpoint(ABC):
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPForbidden(err)
+        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.debug(err)
+            raise TFCHTTPApiRequestRateLimit(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
@@ -108,6 +113,10 @@ class TFCEndpoint(ABC):
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPNotFound(err)
+        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.debug(err)
+            raise TFCHTTPApiRequestRateLimit(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
@@ -135,6 +144,10 @@ class TFCEndpoint(ABC):
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPUnprocessableEntity(err)
+        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.debug(err)
+            raise TFCHTTPApiRequestRateLimit(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
@@ -173,6 +186,10 @@ class TFCEndpoint(ABC):
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPUnprocessableEntity(err)
+        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.debug(err)
+            raise TFCHTTPApiRequestRateLimit(err)
         elif req.status_code == HTTP_INTERNAL_SERVER_ERROR:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
@@ -199,6 +216,10 @@ class TFCEndpoint(ABC):
             if octet:
                 results = json.loads(req.content)
             self._logger.debug(f"PUT to {url} successful")
+        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.debug(err)
+            raise TFCHTTPApiRequestRateLimit(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
@@ -221,6 +242,10 @@ class TFCEndpoint(ABC):
         valid_status_codes = [HTTP_OK, HTTP_NO_CONTENT]
         if req.status_code in valid_status_codes:
             self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
+        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.debug(err)
+            raise TFCHTTPApiRequestRateLimit(err)
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
