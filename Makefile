@@ -46,7 +46,7 @@ codecov:
 	bash <(curl -s https://codecov.io/bash)
 
 .PHONY: pip-package
-pip-package:
+pip-package: lint api_comparison contributor_check
 	python3 setup.py sdist bdist_wheel;
 
 .PHONY: pip-publish

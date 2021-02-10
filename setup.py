@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="terrasnek",
-    version="0.1.1",
+    version="0.1.2",
     author="Neil Dahlke",
     author_email="neil.dahlke+terrasnek@gmail.com",
     description="A Python client for the Terraform Cloud API",

@@ -13,8 +13,28 @@ jobs:
             make docs
             make coverage
             make contributor_check
+  api_comparison:
+    docker:
+      - image: eklhad/terrasnek-circleci:0.2
+    working_directory: ~/terrasnek
+    steps:
+      - checkout
+      - run:
+          name: Compare API docs against implemented endpoints, identify gaps.
+          command: |
+            make api_comparison
 workflows:
   version: 2
   test_and_deploy:
     jobs:
       - prepare_deploy
+  check_api_completeness:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - api_comparison

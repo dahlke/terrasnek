@@ -25,13 +25,14 @@ class TestTFCApplies(TestTFCBaseTestCase):
         ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
         workspace = self._api.workspaces.create(ws_payload)["data"]
         self._ws_id = workspace["id"]
+        self._temp_org_name = self._random_name()
 
         # Configure the required variables on the workspace
         variable_payloads = [
             self._get_variable_create_payload(
                 "email", self._test_email, self._ws_id),
             self._get_variable_create_payload(
-                "org_name", self._test_org_name, self._ws_id),
+                "org_name", self._temp_org_name, self._ws_id),
             self._get_variable_create_payload(
                 "TFE_TOKEN", self._test_api_token, self._ws_id, category="env", sensitive=True)
         ]
@@ -50,6 +51,7 @@ class TestTFCApplies(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
         self._api.oauth_clients.destroy(self._oauth_client_id)
+        self._api.orgs.destroy(self._temp_org_name)
 
     def test_apply(self):
         """
@@ -79,3 +81,12 @@ class TestTFCApplies(TestTFCBaseTestCase):
         shown_apply = self._api.applies.show(apply_id)["data"]
         shown_apply_id = shown_apply["id"]
         self.assertEqual(apply_id, shown_apply_id)
+
+        # Wait for the apply to finish successfully
+        self._logger.debug("Waiting for apply to finish...")
+        shown_apply = self._api.applies.show(apply_id)["data"]
+        while shown_apply["attributes"]["status"] != "finished":
+            shown_apply = self._api.applies.show(apply_id)["data"]
+            time.sleep(1)
+        self.assertEqual("finished", shown_apply["attributes"]["status"])
+        self._logger.debug("Apply finished.")

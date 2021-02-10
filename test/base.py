@@ -78,6 +78,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
         # a new one to run the testing in.
         if TEST_ORG_NAME:
             cls._test_org_name = TEST_ORG_NAME
+            cls._test_org = cls._api.orgs.show(cls._test_org_name)
         else:
             cls._test_org_name = cls._random_name()
             org_create_payload = {
@@ -106,11 +107,10 @@ class TestTFCBaseTestCase(unittest.TestCase):
         if cls._api.is_terraform_cloud() and endpoint_to_test.terraform_enterprise_only():
             raise unittest.SkipTest(\
                 (f"Skipping Test (%s), since we're testing against Terraform Cloud." % cls._endpoint_being_tested))
-        elif not cls._api.is_terraform_cloud() and endpoint_to_test.terraform_cloud_only():
+
+        if not cls._api.is_terraform_cloud() and endpoint_to_test.terraform_cloud_only():
             raise unittest.SkipTest(\
                 (f"Skipping Test (%s), since we're testing against Terraform Enterprise." % cls._endpoint_being_tested))
-        else:
-            cls._logger.debug("Endpoint", cls._endpoint_being_tested, " not expected.")
 
         cls._purge_organization()
 

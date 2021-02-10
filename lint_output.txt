@@ -24,11 +24,9 @@ test/admin_settings_test.py:123:2: W0511: TODO: need to use a real twilio accoun
 ************* Module test.invoices_test
 test/invoices_test.py:20:2: W0511: TODO: this will fail since I don't have any billing info associated with the test org. (fixme)
 ************* Module test.base
-test/base.py:108:0: C0301: Line too long (115/100) (line-too-long)
-test/base.py:111:0: C0301: Line too long (120/100) (line-too-long)
-test/base.py:106:8: R1720: Unnecessary "elif" after "raise" (no-else-raise)
-test/base.py:113:12: E1205: Too many arguments for logging format string (logging-too-many-args)
+test/base.py:109:0: C0301: Line too long (115/100) (line-too-long)
+test/base.py:113:0: C0301: Line too long (120/100) (line-too-long)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.93/10 (previous run: 9.93/10, +0.00)
+Your code has been rated at 9.95/10 (previous run: 9.94/10, +0.01)
 

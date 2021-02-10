@@ -7,6 +7,7 @@ just quick lookups. It is meant to be self contained.
 """
 
 import os
+import sys
 import json
 import requests
 import anybadge
@@ -335,6 +336,10 @@ def main():
     implemented_pct = round(((num_methods_implemented / num_total_methods) * 100), 2)
     badge = anybadge.Badge(badge_text, f"{implemented_pct}%", default_color="lightgrey")
     badge.write_badge("api_endpoints_implemented.svg", overwrite=True)
+
+    # We want this to error if we fall below 95% coverage so we know we have to do work
+    if implemented_pct <= 95:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

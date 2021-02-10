@@ -118,7 +118,8 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 published_module_name, TFE_MODULE_PROVIDER_TYPE)
         latest_specific_provider = listed_latest_version_specific_provider["modules"][0]
         latest_specific_versions = \
-            [provider_version["version"] for provider_version in latest_specific_provider["versions"]]
+            [provider_version["version"] for \
+                provider_version in latest_specific_provider["versions"]]
         self.assertIn(latest_listed_version, latest_specific_versions)
 
         # Download the source for a specific version of the module, confirm the file
