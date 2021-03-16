@@ -45,5 +45,6 @@
 | [User Tokens](https://www.terraform.io/docs/cloud/api/user-tokens.html)                           | `user_tokens`              | True                 | True       | False      |
 | [Users](https://www.terraform.io/docs/cloud/api/users.html)                                       | `users`                    | True                 | True       | False      |
 | [Vars](https://www.terraform.io/docs/cloud/api/variables.html)                                    | `vars`                     | True                 | True       | False      |
+| [Vcs Events](https://www.terraform.io/docs/cloud/api/vcs-events.html)                             | `vcs_events`               | False                | False      | False      |
 | [Workspace Vars](https://www.terraform.io/docs/cloud/api/workspace-variables.html)                | `workspace_vars`           | True                 | True       | False      |
 | [Workspaces](https://www.terraform.io/docs/cloud/api/workspaces.html)                             | `workspaces`               | True                 | True       | False      |

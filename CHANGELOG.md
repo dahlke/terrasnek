@@ -5,11 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.2] - TBD
+## [0.1.2] - 2021-03-14
 
-- TODO
+- Loosen install_requires entry for `requests`.
+- Adding an auditable action to the audit trails test.
+- Clean up how the base test org is set.
+- Make the applies test wait for the apply to actually finish.
+- Add cron job to compare endpoint implementations against the API docs nightly.
+- Update package makefile logic.
 
-## [0.1.1] - 2020-02-09
+## [0.1.1] - 2021-02-09
 
 I started working on this project about a half a year or so ago, and never
 thought it would get this far, but it did. This library has been tested in a

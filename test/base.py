@@ -106,11 +106,13 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         if cls._api.is_terraform_cloud() and endpoint_to_test.terraform_enterprise_only():
             raise unittest.SkipTest(\
-                (f"Skipping Test (%s), since we're testing against Terraform Cloud." % cls._endpoint_being_tested))
+                (f"Skipping Test (%s), since we're testing against Terraform Cloud." % \
+                    cls._endpoint_being_tested))
 
         if not cls._api.is_terraform_cloud() and endpoint_to_test.terraform_cloud_only():
             raise unittest.SkipTest(\
-                (f"Skipping Test (%s), since we're testing against Terraform Enterprise." % cls._endpoint_being_tested))
+                (f"Skipping Test (%s), since we're testing against Terraform Enterprise." % \
+                    cls._endpoint_being_tested))
 
         cls._purge_organization()
 

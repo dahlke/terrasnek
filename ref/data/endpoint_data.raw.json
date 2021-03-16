@@ -1552,6 +1552,18 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/variables.html"
     },
+    "vcs_events": {
+        "methods": [
+            {
+                "description": "List VCS events",
+                "http-path": "GET /organizations/:organization_name/vcs-events",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#list-vcs-events"
+            }
+        ],
+        "url": "https://www.terraform.io/docs/cloud/api/vcs-events.html"
+    },
     "workspace_vars": {
         "implementation": true,
         "methods": [

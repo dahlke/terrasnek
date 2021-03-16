@@ -45,7 +45,8 @@ class TestTFCAdminModuleSharing(TestTFCBaseTestCase):
 
         found_partnership = False
         for partnership in module_partnerships:
-            if partnership["attributes"]["consuming-organization-id"] == self._created_org_external_id:
+            if partnership["attributes"]["consuming-organization-id"] == \
+                    self._created_org_external_id:
                 found_partnership = True
                 break
 

@@ -35,12 +35,12 @@ class TFCSubscriptions(TFCEndpoint):
         """
         return self._get(self._org_base_url)
 
-    def show_by_id(self, id):
+    def show_by_id(self, sub_id):
         """
         ``GET /subscriptions/:id``
 
         `Subscriptions Show by ID API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/subscriptions.html#show-subscription-by-id>`_
         """
-        url = f"{self._subscriptions_base_url}/{id}"
+        url = f"{self._subscriptions_base_url}/{sub_id}"
         return self._get(url)

@@ -43,9 +43,10 @@ class TestTFCAuditTrails(TestTFCBaseTestCase):
         # we use across the API, so we'll just assert no response, which
         # means it completed successfully for now.
 
+        # TODO: audit trails aren't showing properly
+        # print(self._test_org_name)
+        # print(audit_trails)
         audit_trails = self._api.audit_trails.list()["data"]
-        print(self._test_org_name)
-        print(audit_trails)
         self.assertEqual(len(audit_trails), 0)
 
         all_audit_trails = self._api.audit_trails.list_all()

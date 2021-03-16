@@ -44,9 +44,9 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
             "data": {
                 "attributes": {
                     "vcs-repo": {
-                        "identifier": "dahlke/terraform-tfe-terrasnek-unittest-6",
+                        "identifier": "dahlke/terraform-tfe-terrasnek-unittest-7",
                         "oauth-token-id": self._oauth_token_id,
-                        "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest-6"
+                        "display_identifier": "dahlke/terraform-tfe-terrasnek-unittest-7"
                     }
                 },
                 "type":"registry-modules"

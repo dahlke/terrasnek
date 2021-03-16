@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: Run Triggers.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import Entitlements, MAX_PAGE_SIZE
+from ._constants import MAX_PAGE_SIZE
 
 class TFCRunTriggers(TFCEndpoint):
     """
