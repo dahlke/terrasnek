@@ -46,9 +46,10 @@ make coverage # the results of this depend on the endpoint you hit.
 make contributor_check
 ```
 
-Before merging to master and publishing a new version, update [`CHANGELOG.md`](./CHANGELOG.md),
+Before publishing a new version, update [`CHANGELOG.md`](./CHANGELOG.md),
 [`setup.py`](./setup.py) and [`docs/conf.py`](./docs/conf.py) for the new release
-version. Merge the changes to the master branch, then publish.
+version. Publish to PyPi, upload the code coverage results and tag a release in
+GitHub.
 
 ```bash
 make pip-package
@@ -122,7 +123,8 @@ tar -zcvf terrasnek_unittest_module.tar.gz src/*
 
 The test suite takes a long time to execute fully, since there is a lot of async
 work, and waiting for plans, applies, etc. In the scenario you want to just test
-a new implementation or change, use the below.
+a new implementation or change, use something like the below. You can replace
+`test/orgs_test.py` with the test you want to run.
 
 ```bash
 source test/secrets/secrets.sh
