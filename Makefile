@@ -25,10 +25,6 @@ coverage_report:
 lint:
 	pylint terrasnek test | tee lint_output.txt;
 
-.PHONY: contributor_check
-contributor_check:
-	python3 scripts/python/contributor_check.py
-
 .PHONY: docs
 docs:
 	cd docs/ && rm -rf _build/ && make html
@@ -57,9 +53,23 @@ pip-publish: pip-package
 pip-test-publish: pip-package
 	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/* --verbose --skip-existing
 
+.PHONY: contributor_check
+contributor_check:
+	python3 scripts/python/contributor_check.py
+
+.PHONY: release_check
+release_check:
+	python3 scripts/python/contributor_check.py --release-check
+
+.PHONY: release
+release: lint api_comparison docs coverage release_check pip-package
+	make codecov;
+	make pip-publish;
+
 ##########################
 # DOCKER TEST IMAGE HELPERS
 ##########################
+# TODO: why no phony?
 docker_build:
 	cp pip-reqs.txt .circleci/pip-reqs.txt;
 	docker build -t ${DOCKER_HUB_USER}/$(DOCKER_TEST_IMAGE_NAME):$(DOCKER_TEST_IMAGE_VERSION) .circleci/ && \

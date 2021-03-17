@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make the applies test wait for the apply to actually finish.
 - Add cron job to compare endpoint implementations against the API docs nightly.
 - Update package makefile logic.
+- Make it easier and safer to release versions to PyPi.
 
 ## [0.1.1] - 2021-02-09
 
