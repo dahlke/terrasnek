@@ -50,8 +50,9 @@ def get_pypi_latest_published_version():
     req = requests.get(PYPI_XML_URL)
     tree = ET.fromstring(req.content)
     latest_published_version = None
+
     for i, item in enumerate(tree.iter("title")):
-        # The second "title" in the XML is our latest version
+        # The second "title" in the XML is our latest version, this is not good code.
         if i == 1:
             latest_published_version = item.text
             break
@@ -109,9 +110,6 @@ def main():
         help="If set, run the release checker.")
     args = parser.parse_args()
 
-    print(args.release_check)
-
-
     coverage_score = get_coverage_score()
     lint_score = get_lint_score()
     changelog_version, pypi_config_version, docs_version = get_local_versions()
@@ -134,9 +132,13 @@ def main():
         err_msg_list.append(\
             f"The versions do not match across the important files (CHANGELOG.md, setup.py, docs/conf.py).")
 
+    latest_published_version = None
     if args.release_check:
         # Check that the version in the important files is not already present in PyPi.
         latest_published_version = get_pypi_latest_published_version()
+
+        if latest_published_version is None:
+            pass
 
         if latest_published_version >= changelog_version:
             err_msg_list.append(\
@@ -150,18 +152,17 @@ def main():
             err_msg_list.append(\
                 f"The latest version in docs config is greater or equal to the latest in PyPi, do not release.")
 
-
     if err_msg_list:
         print("\n".join(err_msg_list), "Exiting.")
         sys.exit(1)
     else:
         print("Coverage score and lint score both meet their thresholds.")
         print("All of the versions match in the important files (CHANGELOG.md, setup.py, docs/conf.py).")
-        if latest_published_version < changelog_version and \
+        if latest_published_version is not None and \
+            latest_published_version < changelog_version and \
             latest_published_version < pypi_config_version and \
                 latest_published_version < docs_version:
                     print("All versions locally are greater than published PyPi modules, good to release.")
 
 if __name__ == "__main__":
-    # TODO: take a flag to to a "publish" check that will check PyPi as well.
     main()
