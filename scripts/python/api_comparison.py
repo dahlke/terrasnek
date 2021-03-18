@@ -337,8 +337,8 @@ def main():
     badge = anybadge.Badge(badge_text, f"{implemented_pct}%", default_color="lightgrey")
     badge.write_badge("api_endpoints_implemented.svg", overwrite=True)
 
-    # We want this to error if we fall below 95% coverage so we know we have to do work
-    if implemented_pct <= 95:
+    # We want this to error if we fall below 99% coverage so we know we have to do work
+    if implemented_pct <= 99:
         sys.exit(1)
 
 if __name__ == "__main__":
