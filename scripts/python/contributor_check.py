@@ -6,6 +6,7 @@ define for coverage or linting. It is meant to be self contained.
 """
 
 import sys
+import git
 import requests
 import argparse
 import xml.etree.ElementTree as ET
@@ -99,6 +100,13 @@ def get_local_versions():
     return changelog_version, pypi_config_version, docs_version
 
 
+def has_staged_or_modified_files():
+    repo = git.Repo()
+    count_modified_files = len(repo.index.diff(None))
+    count_staged_files = len(repo.index.diff("HEAD"))
+    return (count_modified_files > 0) or (count_staged_files > 0)
+
+
 def main():
     """
     Retrieve the coverage and lint scores, and compare them to the tolerable
@@ -152,8 +160,12 @@ def main():
             err_msg_list.append(\
                 f"The latest version in docs config is greater or equal to the latest in PyPi, do not release.")
 
+        if has_staged_or_modified_files():
+            err_msg_list.append(\
+                f"No releasing the project with staged or modified files in the git repo.")
+
     if err_msg_list:
-        print("\n".join(err_msg_list), "Exiting.")
+        print("\n".join(err_msg_list), "\nExiting.")
         sys.exit(1)
     else:
         print("Coverage score and lint score both meet their thresholds.")
