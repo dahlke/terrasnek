@@ -136,10 +136,6 @@ def main():
         err_msg_list.append(\
             f"The lint score {lint_score} does not meet the lint threshold {MIN_LINT_SCORE}.")
 
-    if not version_match:
-        err_msg_list.append(\
-            f"The versions do not match across the important files (CHANGELOG.md, setup.py, docs/conf.py).")
-
     latest_published_version = None
     if args.release_check:
         # Check that the version in the important files is not already present in PyPi.
@@ -147,6 +143,10 @@ def main():
 
         if latest_published_version is None:
             pass
+
+        if not version_match:
+            err_msg_list.append(\
+                f"The versions do not match across the important files (CHANGELOG.md, setup.py, docs/conf.py).")
 
         if latest_published_version >= changelog_version:
             err_msg_list.append(\
@@ -156,6 +156,7 @@ def main():
             err_msg_list.append(\
                 f"The latest version in the PyPi config is greater or equal to the latest in PyPi, do not release.")
 
+        # TODO: handle bugfix release numbers with lower numbers than the latest minor or major release)
         if latest_published_version >= docs_version:
             err_msg_list.append(\
                 f"The latest version in docs config is greater or equal to the latest in PyPi, do not release.")

@@ -28,57 +28,20 @@ corresponding doc file.
 coverage, and all tests must pass.
 - The test coverage must be uploaded to CodeCov.
 
-View the auto-generated
-[`CONTRIBUTING_REQS_TABLE.md`](CONTRIBUTING_REQS_TABLE.md) file.
+The instructions for doing each of these can be found below. 
 
-The instructions for doing each of these can be found below. This process is not
-automated for now due to some of the limitations of the free Terraform Cloud
-offering. In the future, if some of the limitations are lifted, these checks
-will be automated in CircleCI.
-
-Here is a summary of the commands:
+### Linting the Library Code
 
 ```bash
 make lint
+```
+
+### Comparing Completeness of `terrasnek` vs Terraform API Spec
+
+This command will generate a markdown table that represents the delta between what is published Terraform Cloud API Spec and what is implemented in `terrasnek`. Useful for keeping us honest on it's parity with reality.
+
+```bash
 make api_comparison
-make docs
-make coverage # the results of this depend on the endpoint you hit.
-make contributor_check
-```
-
-Before publishing a new version, update [`CHANGELOG.md`](./CHANGELOG.md),
-[`setup.py`](./setup.py) and [`docs/conf.py`](./docs/conf.py) for the new release
-version. Publish to PyPi, upload the code coverage results and tag a release in
-GitHub.
-
-```bash
-make pip-package
-make pip-publish
-make codecov
-```
-
-Once a new version has been deployed to PyPi, make sure to tag a release in
-GitHub to match the newly published version so `readthedocs` can pick up
-versions of the documentation.
-
-### Helpful Git Hooks
-
-There are some pre-commit hooks that are useful since the same tests will be run
-in CircleCI. They are located in the `./hooks/pre-commit/` folder here. Symlink
-them to the git repo using:
-
-```bash
-cd .git/hooks
-ln -s -f ../../hooks/pre-commit ./pre-commit
-chmod +x ../../hooks/pre-commit ./pre-commit
-```
-
-### Linting the Code
-
-#### Lint Library Code
-
-```bash
-make lint
 ```
 
 ### Building the Docs
@@ -90,26 +53,19 @@ are built upon push by CircleCI, but can be built at any time manually using:
 make docs
 ```
 
+
 ### Testing
 
-It is recommended that when running the entire suite of tests, you use a
-sandbox Terraform Enterprise instance. This will allow you to test the
-Admin Endpoints without any worry of error, and you will not have any
-run limits. It is currently required that you run the entire test suite
-with a [User Token](https://www.terraform.io/docs/cloud/users-teams-organizations/api-tokens.html#user-api-tokens)
-of an admin user, in order to fully test all the endpoints. You can run
-the test suite against Terraform Cloud, but tests will be skipped.
+Testing `terrasnek` is a little tricky since Terraform Cloud and Terraform Enterprise _do_ have some differences in the endpoints they support. This library is most commonly run against Terraform Cloud, but it is also tested against Terraform Enterprise often (about once a month, manually). As such, all published code coverage represents the Terraform Cloud code coverage.
 
-Due to those limitations, this library does not currently test the full
-suite of tests in CircleCI. It is recommended that you run the tests
-locally before submitting pull requests, or at the very least, verify
-all of the tests that touch code you are contributing.
+Since this library serves a small number of users, and smaller number of contributors, for the time being I (@dahlke) will handle unit testing any changes that are submitted to the project from the community. If the project grows, we'll consider a more streamlined process for others to test. If you _want_ to run tests, see `test/secrets/secrets.example.sh` to understand all the environment variables you will need to consider. You will need to use a privileged [User Token](https://www.terraform.io/docs/cloud/users-teams-organizations/api-tokens.html#user-api-tokens) for everything to work as expected. If you have any trouble just drop me (@dahlke) a line.
 
-If you are running against a Terraform Enterprise instance, be sure to
+_NOTE: If you are running against a Terraform Enterprise instance, be sure to
 have enabled Cost Estimates as well a create a user that can be used
 for team and organization memberships tests, a this cannot be done
 from the API currently. That user's username and email must match those
-provided in your `secrets.sh` file.
+provided in your `secrets.sh` file._
+
 
 #### Building Test Data
 
@@ -131,7 +87,7 @@ source test/secrets/secrets.sh
 python3 -m unittest test/orgs_test.py
 ```
 
-#### Running All Tests
+#### Running the Full Test Suite
 
 _Note: When you run all of the tests, you will have to create a user (that
 matches your `TEST_USER` in `secrets.sh`) manually ahead of executing the tests
@@ -144,45 +100,52 @@ Enterprise instance._
 
 ```bash
 source test/secrets/secrets.sh
-make test
-```
-
-#### Running the Tests with Coverage Info
-
-```bash
-source test/secrets/secrets.sh
 make coverage
 ```
 
-#### Uploading Coverage Stats to CodeCov.io
+#### Uploading Code Coverage
+
+Once the tests have completed and there are *zero* errors, it's safe for us to upload the code coverage to `codecov.io`. If the tests fail, don't upload the results, as it's non-representative of the release since there will be no release with errors in the test suite. 
 
 ```bash
 export CODECOV_TOKEN="<TOKEN>"
-bash <(curl -s https://codecov.io/bash)
+make codecov
 ```
 
-#### Building the Documentation
+
+### Releasing a new version of `terrasnek`
+
+Before publishing a new version, all of the previous steps must be executed. Only then, update [`CHANGELOG.md`](./CHANGELOG.md),
+[`setup.py`](./setup.py) and [`docs/conf.py`](./docs/conf.py) for the new release
+version. Then package it up for PyPi, Publish to PyPi, upload the code coverage results and tag a release in
+GitHub.
+
+### Running the Release Check to Verify Quality
+
+After completing all of the above steps, the release check should be run to make sure the library is within acceptable parameters of quality. The release check will confirm that the project is linted (enough), passes (enough) tests, has all the relevant files updated for the correct version (`./CHANGELOG.md`, `./setup.py`, `./docs/conf.py`) and that the version being released is greater than any existing published versions.
 
 ```bash
-make docs
+make release_check
 ```
 
-#### Comparing Completeness of `terrasnek` vs Terraform API Spec
+### Releasing a New Version
+
+If the release check is passed, the library is good to publish a new version. Since I (@dahlke) currently own this repo in PyPi, you will not have to deal with this for the time being.
 
 ```bash
-make api_comparison
+make release
 ```
 
-#### Publishing to PyPi
-
-##### Production
-
-```bash
-make pip-publish
-```
-
-##### Test
+#### Releasing a New Version to PyPi Test Instance
 
 ```bash
 make pip-test-publish
 ```
+
+### Final Notes
+
+Once a new version has been deployed to PyPi, make sure to tag a release in
+GitHub to match the newly published version so `readthedocs` can pick up
+versions of the documentation.
+
+Thank you for your help or just for using `terrasnek`.

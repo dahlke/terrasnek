@@ -66,6 +66,11 @@ release: lint api_comparison docs coverage release_check pip-package
 	make codecov;
 	make pip-publish;
 
+.PHONY: release-test
+release-test: lint api_comparison docs coverage release_check pip-package
+	make codecov;
+	make pip-test-publish;
+
 ##########################
 # DOCKER TEST IMAGE HELPERS
 ##########################
