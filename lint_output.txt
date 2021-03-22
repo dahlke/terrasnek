@@ -1,14 +1,11 @@
 ************* Module terrasnek.registry_modules
 terrasnek/registry_modules.py:41:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 terrasnek/registry_modules.py:53:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
-************* Module terrasnek.api
-terrasnek/api.py:68:0: R0902: Too many instance attributes (52/50) (too-many-instance-attributes)
-terrasnek/api.py:306:4: C0111: Missing method docstring (missing-docstring)
 ************* Module terrasnek.invoices
 terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
-************* Module test.registry_modules_test
-test/registry_modules_test.py:36:4: R0914: Too many local variables (32/25) (too-many-locals)
+************* Module test.vcs_events_test
+test/vcs_events_test.py:35:2: W0511: TODO: test query parameters, as well as make this non-empty. (fixme)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
@@ -19,5 +16,5 @@ test/invoices_test.py:20:2: W0511: TODO: this will fail since I don't have any b
 test/audit_trails_test.py:46:2: W0511: TODO: audit trails aren't showing properly (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.96/10 (previous run: 9.96/10, +0.00)
+Your code has been rated at 9.97/10 (previous run: 9.97/10, +0.01)
 

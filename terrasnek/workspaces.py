@@ -172,7 +172,7 @@ class TFCWorkspaces(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-3>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
-        self._patch(url, data=payload)
+        return self._patch(url, data=payload)
 
     def unassign_ssh_key(self, workspace_id, payload):
         """

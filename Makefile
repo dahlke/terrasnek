@@ -3,7 +3,7 @@ CWD := $(shell pwd)
 
 DOCKER_HUB_USER=eklhad
 DOCKER_TEST_IMAGE_NAME=terrasnek-circleci
-DOCKER_TEST_IMAGE_VERSION=0.2
+DOCKER_TEST_IMAGE_VERSION=0.3
 
 ##########################
 # DEV HELPERS

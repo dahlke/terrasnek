@@ -5,10 +5,12 @@ Constants for default values on the TFC API endpoints
 from enum import Enum
 import logging
 
+
 # Default Config Items
 TFC_SAAS_HOSTNAME = "app.terraform.io"
 TFC_SAAS_URL = "https://app.terraform.io"
-API_LOG_LEVEL = logging.CRITICAL
+TERRASNEK_LOG_LEVEL = logging.CRITICAL
+TERRASNEK_VERSION = "0.1.3"
 MAX_PAGE_SIZE = 100
 
 # Common TFC API HTTP Codes

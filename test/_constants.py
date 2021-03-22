@@ -7,7 +7,7 @@ import sys
 import logging
 
 # Test Defaults
-API_LOG_LEVEL = logging.INFO
+TERRASNEK_LOG_LEVEL = logging.INFO
 
 
 # Configurable Constants

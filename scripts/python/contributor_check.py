@@ -6,9 +6,9 @@ define for coverage or linting. It is meant to be self contained.
 """
 
 import sys
+import argparse
 import git
 import requests
-import argparse
 import xml.etree.ElementTree as ET
 
 MIN_COVERAGE_SCORE = 0.9
@@ -101,6 +101,11 @@ def get_local_versions():
 
 
 def has_staged_or_modified_files():
+    """
+    Check to see if the local git repo has staged or modified files.
+
+    Returns true if it does.
+    """
     repo = git.Repo()
     count_modified_files = len(repo.index.diff(None))
     count_staged_files = len(repo.index.diff("HEAD"))
@@ -125,6 +130,8 @@ def main():
     meets_coverage = coverage_score >= MIN_COVERAGE_SCORE
     meets_lint = lint_score >= MIN_LINT_SCORE
     version_match = changelog_version == pypi_config_version == docs_version
+
+    # TODO: check all implementation files have docs?
 
     err_msg_list = []
     if not meets_coverage:

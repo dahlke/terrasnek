@@ -2,6 +2,8 @@
 Module for testing the Terraform Cloud API Endpoint: Workspaces.
 """
 
+import time
+
 from .base import TestTFCBaseTestCase
 
 

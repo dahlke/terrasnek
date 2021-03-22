@@ -45,14 +45,14 @@
         "implementation": true,
         "methods": [
             {
-                "description": "List all organizations",
+                "description": "List all Organizations",
                 "http-path": "GET /admin/organizations",
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "#list-all-organizations"
             },
             {
-                "description": "Show an organization",
+                "description": "Show an Organization",
                 "http-path": "GET /admin/organizations/:name",
                 "implementation-method-name": "show",
                 "implemented": true,
@@ -60,17 +60,31 @@
             },
             {
                 "description": "Update an Organization",
-                "http-path": "PATCH /admin/organizations/:organization_name",
-                "implementation-method-name": "update",
-                "implemented": true,
+                "http-path": "PATCH /admin/organizations/:name",
+                "implementation-method-name": null,
+                "implemented": false,
                 "permalink": "#update-an-organization"
             },
             {
-                "description": "Delete an organization",
+                "description": "Delete an Organization",
                 "http-path": "DELETE /admin/organizations/:name",
                 "implementation-method-name": "destroy",
                 "implemented": true,
                 "permalink": "#delete-an-organization"
+            },
+            {
+                "description": "List Module Consumers for an Organization",
+                "http-path": "GET /admin/organizations/:name/relationships/module-consumers",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#list-module-consumers-for-an-organization"
+            },
+            {
+                "description": "Update an Organization's Module Consumers",
+                "http-path": "PATCH /admin/organizations/:name/relationships/module-consumers",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#update-an-organization-39-s-module-consumers"
             }
         ],
         "test": true,
@@ -799,6 +813,13 @@
                 "implementation-method-name": "entitlements",
                 "implemented": true,
                 "permalink": "#show-the-entitlement-set"
+            },
+            {
+                "description": "Show Module Producers",
+                "http-path": "GET /organizations/:organization_name/relationships/module-producers",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#show-module-producers"
             }
         ],
         "test": true,
@@ -1553,15 +1574,17 @@
         "url": "https://www.terraform.io/docs/cloud/api/variables.html"
     },
     "vcs_events": {
+        "implementation": true,
         "methods": [
             {
                 "description": "List VCS events",
                 "http-path": "GET /organizations/:organization_name/vcs-events",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "#list-vcs-events"
             }
         ],
+        "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/vcs-events.html"
     },
     "workspace_vars": {

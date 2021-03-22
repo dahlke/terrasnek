@@ -1,3 +1,5 @@
+# pylint: disable=too-many-instance-attributes
+
 """
 Module for container class of all TFC endpoints and high level exceptions around
 API access.
@@ -8,7 +10,8 @@ import logging
 import requests
 import urllib3
 
-from ._constants import TFC_SAAS_URL, TFC_SAAS_HOSTNAME, HTTP_OK, API_LOG_LEVEL
+from ._constants import \
+    TFC_SAAS_URL, TFC_SAAS_HOSTNAME, HTTP_OK, TERRASNEK_LOG_LEVEL, TERRASNEK_VERSION
 from .exceptions import TFCHTTPNotFound
 
 from .account import TFCAccount
@@ -54,6 +57,7 @@ from .team_tokens import TFCTeamTokens
 from .users import TFCUsers
 from .user_tokens import TFCUserTokens
 from .vars import TFCVars
+from .vcs_events import TFCVCSEvents
 from .workspace_vars import TFCWorkspaceVars
 from .workspaces import TFCWorkspaces
 
@@ -120,12 +124,13 @@ class TFC():
             "users": TFCUsers,
             "user_tokens": TFCUserTokens,
             "vars": TFCVars,
+            "vcs_events": TFCVCSEvents,
             "workspace_vars": TFCWorkspaceVars,
             "workspaces": TFCWorkspaces
         }
     }
 
-    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True, log_level=API_LOG_LEVEL):
+    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True, log_level=TERRASNEK_LOG_LEVEL):
         if api_token is None:
             raise InvalidTFCTokenException
 
@@ -139,6 +144,8 @@ class TFC():
         self._token = api_token
         self._current_org = None
         self._verify = verify
+
+        self.version = TERRASNEK_VERSION
 
         self.admin_module_sharing: TFCAdminModuleSharing = None
         self.admin_orgs: TFCAdminOrgs = None
@@ -182,6 +189,7 @@ class TFC():
         self.users: TFCUsers = None
         self.user_tokens: TFCUserTokens = None
         self.vars: TFCVars = None
+        self.vcs_events: TFCVCSEvents = None
         self.workspace_vars: TFCWorkspaceVars = None
         self.workspaces: TFCWorkspaces = None
 
@@ -304,6 +312,9 @@ class TFC():
         return self._token
 
     def is_terraform_cloud(self):
+        """
+        Returns true if this API instance is configured for Terraform Cloud.
+        """
         return TFC_SAAS_HOSTNAME in self._instance_url
 
 

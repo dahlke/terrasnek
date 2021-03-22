@@ -22,7 +22,7 @@ from ._constants import \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, GITHUB_SECRET, \
     SSL_VERIFY, TEST_PASSWORD, MAX_TEST_TIMEOUT, \
-    DEFAULT_VCS_WORKING_DIR, API_LOG_LEVEL
+    DEFAULT_VCS_WORKING_DIR, TERRASNEK_LOG_LEVEL
 
 class TestTFCBaseTestCase(unittest.TestCase):
     """
@@ -37,17 +37,17 @@ class TestTFCBaseTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls._logger = logging.getLogger(cls.__class__.__name__)
-        cls._logger.setLevel(API_LOG_LEVEL)
+        cls._logger.setLevel(TERRASNEK_LOG_LEVEL)
         cls._tfc_url = TFC_URL
 
         cls._test_api_token = TFC_TOKEN
         cls._test_api_org_token = TFC_ORG_TOKEN
-        cls._api_log_level = API_LOG_LEVEL
+        cls._TERRASNEK_LOG_LEVEL = TERRASNEK_LOG_LEVEL
         cls._ssl_verify = SSL_VERIFY
 
         cls._api = TFC(\
             cls._test_api_token, url=cls._tfc_url, \
-                verify=cls._ssl_verify, log_level=cls._api_log_level)
+                verify=cls._ssl_verify, log_level=cls._TERRASNEK_LOG_LEVEL)
 
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL

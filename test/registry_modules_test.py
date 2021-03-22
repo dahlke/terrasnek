@@ -1,3 +1,5 @@
+# pylint: disable=too-many-locals
+
 """
 Module for Terraform Cloud API Endpoint: Registry Modules.
 """
