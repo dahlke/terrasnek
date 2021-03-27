@@ -148,6 +148,8 @@ class TFCEndpoint(ABC):
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
+        elif req.status_code == HTTP_NO_CONTENT:
+            pass
         else:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)

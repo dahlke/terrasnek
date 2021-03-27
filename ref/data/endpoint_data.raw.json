@@ -54,15 +54,15 @@
             {
                 "description": "Show an Organization",
                 "http-path": "GET /admin/organizations/:name",
-                "implementation-method-name": "show",
+                "implementation-method-name": "list_org_module_consumers",
                 "implemented": true,
                 "permalink": "#show-an-organization"
             },
             {
                 "description": "Update an Organization",
                 "http-path": "PATCH /admin/organizations/:name",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "#update-an-organization"
             },
             {
@@ -75,15 +75,15 @@
             {
                 "description": "List Module Consumers for an Organization",
                 "http-path": "GET /admin/organizations/:name/relationships/module-consumers",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_org_module_consumers",
+                "implemented": true,
                 "permalink": "#list-module-consumers-for-an-organization"
             },
             {
                 "description": "Update an Organization's Module Consumers",
                 "http-path": "PATCH /admin/organizations/:name/relationships/module-consumers",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_org_module_consumers",
+                "implemented": true,
                 "permalink": "#update-an-organization-39-s-module-consumers"
             }
         ],
@@ -817,8 +817,8 @@
             {
                 "description": "Show Module Producers",
                 "http-path": "GET /organizations/:organization_name/relationships/module-producers",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show_module_producers",
+                "implemented": true,
                 "permalink": "#show-module-producers"
             }
         ],

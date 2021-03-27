@@ -13,6 +13,8 @@ class TFCAdminModuleSharing(TFCEndpoint):
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/admin/organizations"
+        self._mod_consumers_api_v2_base_url = \
+            f"{self._org_api_v2_base_url}/{org_name}/relationships/module-consumers"
 
     def required_entitlements(self):
         return []

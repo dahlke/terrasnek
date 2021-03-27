@@ -84,6 +84,16 @@ class TFCOrgs(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._show(url)
 
+    def show_module_producers(self, org_name):
+        """
+        ``GET /organizations/:organization_name/relationships/module-producers``
+
+        `Orgs Show Module Producers API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/organizations.html#show-module-producers>`_
+        """
+        url = f"{self._org_api_v2_base_url}/{org_name}/relationships/module-producers"
+        return self._show(url)
+
     def update(self, org_name, payload):
         """
         ``PATCH /organizations/:organization_name``

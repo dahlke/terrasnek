@@ -19,6 +19,15 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
         self._created_org_name = created_org["attributes"]["name"]
         self._created_org_id = created_org["id"]
 
+    def tearDown(self):
+        try:
+            # Create a temp org to manipulate in the test
+            self._api.orgs.destroy(self._created_org_name)
+        except Exception as exc:
+            # In case the test fails below, this will ensure the created
+            # org gets cleaned up.
+            pass
+
     def test_admin_orgs(self):
         """
         Test the Admin Orgs API endpoints.
@@ -49,6 +58,23 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
         # Show the created org, confirm it matches the created org's ID
         shown_org = self._api.admin_orgs.show(self._created_org_name)["data"]
         self.assertEqual(self._created_org_id, shown_org["id"])
+
+        # TODO page and page_size
+        mod_consumers = self._api.admin_orgs.list_org_module_consumers(self._test_org_name)["data"]
+        self.assertEqual(len(mod_consumers), 0)
+
+        mod_consumer_update_payload = {
+            "data": [
+                {
+                    "id": self._created_org_name,
+                    "type": "organizations"
+                }
+            ]
+        }
+        self._api.admin_orgs.update_org_module_consumers(self._test_org_name, mod_consumer_update_payload)
+
+        mod_consumers = self._api.admin_orgs.list_org_module_consumers(self._test_org_name)["data"]
+        self.assertEqual(mod_consumers[0]["id"], self._created_org_name)
 
         # Destroy the org that we created, verify it's gone.
         self._api.admin_orgs.destroy(self._created_org_name)

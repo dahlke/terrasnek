@@ -44,6 +44,21 @@ class TFCAdminOrgs(TFCEndpoint):
         """
         return self._list(self._org_api_v2_base_url)
 
+    def list_org_module_consumers(self, org_name, page=None, page_size=None):
+        """
+        ``GET /admin/organizations/:name/relationships/module-consumers``
+
+        `Admin List Module Consumers for an Organization API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#list-module-consumers-for-an-organization>`_
+
+        Query Parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#query-parameters-1>`_):
+            - ``page`` (Optional)
+            - ``page_size`` (Optional)
+        """
+        url = f"{self._org_api_v2_base_url}/{org_name}/relationships/module-consumers"
+        return self._list(url, page=page, page_size=page_size)
+
     def show(self, org_name):
         """
         ``GET /admin/organizations/:name``
@@ -56,7 +71,7 @@ class TFCAdminOrgs(TFCEndpoint):
 
     def update(self, org_name, payload):
         """
-        ``PATCH /admin/organizations/:organization_name``
+        ``PATCH /admin/organizations/:name``
 
         `Admin Orgs Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#update-an-organization>`_
@@ -65,4 +80,19 @@ class TFCAdminOrgs(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#sample-payload>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
+        return self._update(url, payload)
+
+    def update_org_module_consumers(self, org_name, payload):
+        """
+        ``PATCH /admin/organizations/:name/relationships/module-consumers``
+
+        `Admin Orgs Update Module Consumers API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#update-an-organization-39-s-module-consumers>`_
+
+        `Update Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#sample-payload-1>`_
+        """
+
+        url = f"{self._org_api_v2_base_url}/{org_name}/relationships/module-consumers"
+
         return self._update(url, payload)

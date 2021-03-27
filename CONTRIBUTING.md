@@ -87,6 +87,22 @@ tar -zcvf terrasnek_unittest_config_version.tar.gz src/*
 tar -zcvf terrasnek_unittest_module.tar.gz src/*
 ```
 
+#### Getting Secrets
+
+There are example secrets files at `test/secrets/secrets.example.sh`.
+I (@eklhad) like to use the 1password CLI to populate mine like the below.
+
+```bash
+source test/secrets/secrets.op.sh
+```
+
+If testing against TFE, override some of the defaults in that file for TFE.
+
+```bash
+source test/secrets/secrets.op.sh
+source test/secrets/secrets.tfe.sh
+```
+
 #### Running Specific Tests
 
 The test suite takes a long time to execute fully, since there is a lot of async
@@ -98,6 +114,8 @@ a new implementation or change, use something like the below. You can replace
 source test/secrets/secrets.sh
 python3 -m unittest test/orgs_test.py
 ```
+
+_NOTE: Be sure to override the environment variables for TFE if required._
 
 #### Running the Full Test Suite
 
@@ -114,6 +132,8 @@ Enterprise instance._
 source test/secrets/secrets.sh
 make coverage
 ```
+
+_NOTE: Be sure to override the environment variables for TFE if required._
 
 #### Uploading Code Coverage
 

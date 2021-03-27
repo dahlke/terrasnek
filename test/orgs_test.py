@@ -47,6 +47,12 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         org = self._api.orgs.show(self._test_org_name)
         self.assertEqual(org["data"]["id"], self._test_org_name)
 
+        mod_producers = self._api.orgs.show_module_producers(self._test_org_name)
+        # Check that we receive a valid module producers response
+        self.assertIn("module-producers", mod_producers["links"]["self"])
+        # And that the newly created org has no module producers
+        self.assertEqual(len(mod_producers["data"]), 0)
+
         # Change the email address for the org, confirm the change.
         email_name = self._unittest_random_name()
         email_to_update_to = f"{email_name}@gmail.com"

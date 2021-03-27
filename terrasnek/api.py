@@ -77,6 +77,7 @@ class TFC():
     # This dict specifies which class should be used for each attribute of this API class,
     # which simplifies the initialization of each endpoint since they share the same initialization
     # values.
+
     _class_for_attr_dict = {
         "org-not-required": {
             "admin_orgs": TFCAdminOrgs,
