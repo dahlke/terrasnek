@@ -17,8 +17,7 @@ from ._constants import \
     HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED, \
         HTTP_FORBIDDEN, HTTP_NOT_FOUND, HTTP_CONFLICT, HTTP_PRECONDITION_FAILED, \
             HTTP_UNPROCESSABLE_ENTITY, HTTP_API_REQUEST_RATE_LIMIT_REACHED, \
-                HTTP_INTERNAL_SERVER_ERROR
-
+                HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE
 
 class TFCEndpoint(ABC):
     """
@@ -86,8 +85,66 @@ class TFCEndpoint(ABC):
 
         return results
 
-    def _get(self, url, return_raw=False, allow_redirects=False):
+    def _get(self, url, return_raw=None, allow_redirects=None, query=None, filters=None, \
+        page=None, page_size=None, search=None, include=None, sort=None, \
+        offset=None, limit=None, provider=None, namespace=None, verified=None, \
+        since=None):
+
         results = None
+
+        q_options = []
+
+        if query is not None:
+            q_options.append(f"q={query}")
+
+        if filters is not None:
+            for fil in filters:
+                filter_string = "filter"
+                for k in fil["keys"]:
+                    filter_string += f"[{k}]"
+                filter_string += f"={fil['value']}"
+                q_options.append(filter_string)
+
+        if page is not None:
+            q_options.append(f"page[number]={page}")
+
+        if page_size is not None:
+            q_options.append(f"page[size]={page_size}")
+
+        if search is not None:
+            q_options.append(f"page[name]={page_size}")
+
+        if include is not None:
+            joined_include = ",".join(include)
+            q_options.append(f"include={joined_include}")
+
+        if sort is not None:
+            q_options.append(f"sort={sort}")
+
+        if search is not None:
+            q_options.append(f"search[name]={search}")
+
+        if since is not None:
+            q_options.append(f"since={since}")
+
+        # V1 Modules API options
+        if offset is not None:
+            q_options.append(f"offset={offset}")
+
+        if limit is not None:
+            q_options.append(f"limit={limit}")
+
+        if provider is not None:
+            q_options.append(f"provider={provider}")
+
+        if namespace is not None:
+            q_options.append(f"namespace={namespace}")
+
+        if verified is not None:
+            q_options.append(f"verified={verified}")
+
+        if q_options:
+            url += "?" + "&".join(q_options)
 
         self._logger.debug(f"Trying HTTP GET to URL: {url} ...")
         req = requests.get(\
@@ -263,67 +320,51 @@ class TFCEndpoint(ABC):
         """
         Implementation of the common list resources pattern for the TFC API.
         """
+        return self._get(url, query=query, filters=filters, page=page, \
+            page_size=page_size, search=search, include=include, sort=sort, \
+                offset=offset, limit=limit, provider=provider, namespace=namespace, \
+                    verified=verified, since=since)
 
-        q_options = []
+    def _list_all(self, url, include=None, search=None, filters=None, query=None):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every workspace in an organization.
 
-        if query is not None:
-            q_options.append(f"q={query}")
+        Returns an object with two arrays of objects.
+        """
+        current_page_number = 1
+        list_resp = \
+            self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, include=include, search=search, filters=filters, query=query)
 
-        if filters is not None:
-            for fil in filters:
-                filter_string = "filter"
-                for k in fil["keys"]:
-                    filter_string += f"[{k}]"
-                filter_string += f"={fil['value']}"
-                q_options.append(filter_string)
+        if "meta" in list_resp:
+            total_pages = list_resp["meta"]["pagination"]["total-pages"]
+        elif "pagination" in list_resp:
+            total_pages = list_resp["pagination"]["total_pages"]
 
-        if page is not None:
-            q_options.append(f"page[number]={page}")
+        included = []
+        data = []
+        while current_page_number <= total_pages:
+            list_resp = \
+                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, include=include, search=search, filters=filters, query=query)
+            data += list_resp["data"]
 
-        if page_size is not None:
-            q_options.append(f"page[size]={page_size}")
+            if "included" in list_resp:
+                included += list_resp["included"]
 
-        if search is not None:
-            q_options.append(f"page[name]={page_size}")
+            current_page_number += 1
 
-        if include is not None:
-            q_options.append(f"include={include}")
+        return {
+            "data": data,
+            "included": included
+        }
 
-        if sort is not None:
-            q_options.append(f"sort={sort}")
-
-        if search is not None:
-            q_options.append(f"search[name]={search}")
-
-        if since is not None:
-            q_options.append(f"since={since}")
-
-        # V1 Modules API options
-        if offset is not None:
-            q_options.append(f"offset={offset}")
-
-        if limit is not None:
-            q_options.append(f"limit={limit}")
-
-        if provider is not None:
-            q_options.append(f"provider={provider}")
-
-        if namespace is not None:
-            q_options.append(f"namespace={namespace}")
-
-        if verified is not None:
-            q_options.append(f"verified={verified}")
-
-        if q_options:
-            url += "?" + "&".join(q_options)
-
-        return self._get(url)
-
-    def _show(self, url):
+    def _show(self, url, include=None):
         """
         Implementation of the common show resource pattern for the TFC API.
         """
-        return self._get(url)
+        return self._get(url, include=include)
 
     def _update(self, url, payload):
         """

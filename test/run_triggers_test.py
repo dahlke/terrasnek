@@ -70,7 +70,7 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
 
         # List all triggers and confirm there is one
         all_triggers = self._api.run_triggers.list_all(self._target_ws_id, filters=test_filters)
-        self.assertEqual(len(all_triggers), 1)
+        self.assertEqual(len(all_triggers["data"]), 1)
 
         # Show the run trigger by id, compare to our created ID
         shown_trigger = self._api.run_triggers.show(created_trigger_id)["data"]

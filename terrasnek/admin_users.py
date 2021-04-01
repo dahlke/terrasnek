@@ -63,7 +63,7 @@ class TFCAdminUsers(TFCEndpoint):
         url = f"{self._endpoint_base_url}/{user_id}/actions/impersonate"
         return self._post(url)
 
-    def list(self, query=None, filters=None, page=None, page_size=None):
+    def list(self, query=None, filters=None, page=None, page_size=None, include=None):
         """
         ``GET /admin/users``
 
@@ -71,7 +71,7 @@ class TFCAdminUsers(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/admin/users.html#list-all-users>`_
         """
         return self._list(\
-            self._endpoint_base_url, query=query, filters=filters, page=page, page_size=page_size)
+            self._endpoint_base_url, query=query, filters=filters, page=page, page_size=page_size, include=include)
 
     def revoke_admin(self, user_id):
         """

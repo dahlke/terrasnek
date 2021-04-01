@@ -50,15 +50,23 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
             }
         ]
         truncated_test_username = self._test_username[:5]
-        users_for_org = self._api.org_memberships.list_for_org(\
-            query=truncated_test_username, filters=test_filters, page=0, page_size=50)
-        num_users_in_org = len(users_for_org["data"])
+        users_for_org_include = self._api.org_memberships.list_for_org(\
+            query=truncated_test_username, filters=test_filters, page=0, page_size=50, \
+                include=["user", "teams"])
+        # Confirm we have our included resources
+        self.assertIn("included", users_for_org_include)
+
+        users_for_org = users_for_org_include["data"]
+        num_users_in_org = len(users_for_org_include["data"])
+
         # Only one cause we are filtering on the test username (inactive users)
         self.assertEqual(num_users_in_org, 1)
 
         all_users_for_org = self._api.org_memberships.list_all_for_org(\
-            query=truncated_test_username, filters=test_filters)
-        num_users_in_org = len(all_users_for_org)
+            query=truncated_test_username, filters=test_filters, include=["user"])
+        # Confirm we have our included resources
+        self.assertIn("included", all_users_for_org)
+        num_users_in_org = len(all_users_for_org["data"])
         # Only one cause we are filtering on the test username (inactive users)
         self.assertEqual(num_users_in_org, 1)
 

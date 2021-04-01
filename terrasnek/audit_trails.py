@@ -3,7 +3,6 @@ Module for Terraform Cloud API Endpoint: Audit Trails.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import MAX_PAGE_SIZE
 
 class TFCAuditTrails(TFCEndpoint):
     """
@@ -48,19 +47,6 @@ class TFCAuditTrails(TFCEndpoint):
         every page so users do not have to implement the paging logic every time they just
         want to list every audit trail in an organization.
 
-        Returns an array of objects.
+        Returns an object with two arrays of objects.
         """
-        current_page_number = 1
-        audit_trails_resp = \
-            self.list(page=current_page_number, page_size=MAX_PAGE_SIZE)
-        total_pages = audit_trails_resp["pagination"]["total_pages"]
-
-        audit_trails = []
-        while current_page_number <= total_pages:
-            audit_trails_resp = \
-                self._list(self._audit_trail_api_v2_base_url, \
-                    page=current_page_number, page_size=MAX_PAGE_SIZE)
-            audit_trails += audit_trails_resp["data"]
-            current_page_number += 1
-
-        return audit_trails
+        return self._list_all(self._audit_trail_api_v2_base_url)

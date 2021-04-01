@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: Runs.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import Entitlements, MAX_PAGE_SIZE
+from ._constants import Entitlements
 
 class TFCRuns(TFCEndpoint):
     """
@@ -25,7 +25,7 @@ class TFCRuns(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def list(self, workspace_id, page=None, page_size=None):
+    def list(self, workspace_id, page=None, page_size=None, include=None):
         """
         ``GET /workspaces/:workspace_id/runs``
 
@@ -39,34 +39,21 @@ class TFCRuns(TFCEndpoint):
         """
 
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"
-        return self._list(url, page=page, page_size=page_size)
+        return self._list(url, page=page, page_size=page_size, include=include)
 
-    def list_all(self, workspace_id):
+    def list_all(self, workspace_id, include=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
         every page so users do not have to implement the paging logic every time they just
         want to list every run for a workspace.
 
-        Returns an array of objects.
+        Returns an object with two arrays of objects.
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"
+        return self._list_all(url, include=include)
 
-        current_page_number = 1
-        runs_resp = self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE)
-        total_pages = runs_resp["meta"]["pagination"]["total-pages"]
-
-        runs = []
-        while current_page_number <= total_pages:
-            runs_resp = \
-                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE)
-            runs += runs_resp["data"]
-            current_page_number += 1
-
-        return runs
-
-
-    def show(self, run_id):
+    def show(self, run_id, include=None):
         """
         ``GET /runs/:run_id``
 
@@ -75,7 +62,7 @@ class TFCRuns(TFCEndpoint):
         """
 
         url = f"{self._runs_api_v2_base_url}/{run_id}"
-        return self._show(url)
+        return self._show(url, include=include)
 
     def create(self, payload):
         """

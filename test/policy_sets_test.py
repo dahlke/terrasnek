@@ -52,14 +52,12 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
             }
         ]
         some_policy_sets = self._api.policy_sets.list(\
-            filters=test_filters, page=0, page_size=50, \
-            include="policies", search=created_policy_set_name)["data"]
+            filters=test_filters, page=0, page_size=50, search=created_policy_set_name)["data"]
         self.assertEqual(len(some_policy_sets), 1)
 
         all_policy_sets = self._api.policy_sets.list_all(\
-            filters=test_filters, include="policies", \
-                search=created_policy_set_name)
-        self.assertEqual(len(all_policy_sets), 1)
+            filters=test_filters, search=created_policy_set_name)
+        self.assertEqual(len(all_policy_sets["data"]), 1)
 
         # Update the policy set, confirm the update took place
         desc_to_update_to = "foo"
@@ -79,7 +77,8 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         add_remove_policy_payload = {
             "data": [
                 {
-                    "id": self._policy_id, "type": "policies"
+                    "id": self._policy_id,
+                    "type": "policies"
                 },
             ]
         }
@@ -108,6 +107,15 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
             created_policy_set_id, attach_detach_to_workspace_payload)
         shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
         self.assertEqual(len(shown_policy_set["relationships"]["workspaces"]["data"]), 0)
+
+        some_policy_sets_raw = self._api.policy_sets.list(\
+            filters=test_filters, page=0, page_size=50, search=created_policy_set_name, include=["policies"])
+        self.assertIn("included", some_policy_sets_raw)
+
+        # Before removing the policy from the set, test the list function correctly returns
+        # included resources
+        all_policy_sets_raw = self._api.policy_sets.list(include=["policies"])
+        self.assertIn("included", all_policy_sets_raw)
 
         # Remove the policy from the set and confirm it has been removed
         self._api.policy_sets.remove_policies_from_set(\

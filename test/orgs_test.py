@@ -13,6 +13,8 @@ class TestTFCOrgs(TestTFCBaseTestCase):
     _unittest_name = "orgs"
     _endpoint_being_tested = "orgs"
 
+    # TODO create a class member in setup, set created org name to it, and then make sure it's deleted at the end.
+
     def test_orgs(self):
         """
         Test the Orgs API endpoints.
@@ -47,11 +49,13 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         org = self._api.orgs.show(self._test_org_name)
         self.assertEqual(org["data"]["id"], self._test_org_name)
 
-        mod_producers = self._api.orgs.show_module_producers(self._test_org_name)
-        # Check that we receive a valid module producers response
-        self.assertIn("module-producers", mod_producers["links"]["self"])
-        # And that the newly created org has no module producers
-        self.assertEqual(len(mod_producers["data"]), 0)
+        # NOTE: The module producers endpoint does not work on TFC.
+        if not self._api.is_terraform_cloud():
+            mod_producers = self._api.orgs.show_module_producers(self._test_org_name)
+            # Check that we receive a valid module producers response
+            self.assertIn("module-producers", mod_producers["links"]["self"])
+            # And that the newly created org has no module producers
+            self.assertEqual(len(mod_producers["data"]), 0)
 
         # Change the email address for the org, confirm the change.
         email_name = self._unittest_random_name()

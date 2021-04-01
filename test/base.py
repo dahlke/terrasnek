@@ -130,7 +130,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             f"Purging test org ({cls._test_org_name}) of all resources to start fresh...")
 
         cls._logger.info(f"Purging test org ({cls._test_org_name}) of workspaces...")
-        workspaces = cls._api.workspaces.list_all()
+        workspaces = cls._api.workspaces.list_all()["data"]
         for workspace in workspaces:
             cls._api.workspaces.destroy(workspace_id=workspace["id"])
         cls._logger.debug(f"Workspaces purged from test org ({cls._test_org_name}).")
@@ -140,13 +140,13 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.debug(f"Modules purged from test org ({cls._test_org_name}).")
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of policies...")
-        policies = cls._api.policies.list_all()
+        policies = cls._api.policies.list_all()["data"]
         for policy in policies:
             cls._api.policies.destroy(policy["id"])
         cls._logger.debug(f"Policies purged from test org ({cls._test_org_name}).")
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of policy sets...")
-        policy_sets = cls._api.policy_sets.list_all()
+        policy_sets = cls._api.policy_sets.list_all()["data"]
         for policy_set in policy_sets:
             cls._api.policy_sets.destroy(policy_set["id"])
         cls._logger.debug(f"Policy sets purged from test org ({cls._test_org_name}).")
@@ -174,7 +174,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.debug(f"Teams purged from test org ({cls._test_org_name}).")
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of org membership invites...")
-        org_memberships = cls._api.org_memberships.list_all_for_org()
+        org_memberships = cls._api.org_memberships.list_all_for_org()["data"]
         for org_memberships in org_memberships:
             membership_id = org_memberships["id"]
             member_status = org_memberships["attributes"]["status"]

@@ -50,4 +50,4 @@ class TestTFCAuditTrails(TestTFCBaseTestCase):
         self.assertEqual(len(audit_trails), 0)
 
         all_audit_trails = self._api.audit_trails.list_all()
-        self.assertEqual(len(all_audit_trails), 0)
+        self.assertEqual(len(all_audit_trails["data"]), 0)

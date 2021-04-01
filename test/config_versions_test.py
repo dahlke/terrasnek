@@ -17,8 +17,18 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())
         self._ws_id = self._ws["data"]["id"]
 
+        oauth_client = self._api.oauth_clients.create(self._get_oauth_client_create_payload())
+        self._oauth_client_id = oauth_client["data"]["id"]
+        oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
+
+        ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
+        self._ws_w_vcs = self._api.workspaces.create(ws_payload)
+        self._ws_w_vcs_id = self._ws_w_vcs["data"]["id"]
+
     def tearDown(self):
         self._api.workspaces.destroy(workspace_id=self._ws_id)
+        self._api.workspaces.destroy(workspace_id=self._ws_w_vcs_id)
+        self._api.oauth_clients.destroy(self._oauth_client_id)
 
     def test_config_versions(self):
         """
@@ -72,8 +82,18 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
 
                 all_config_versions = self._api.config_versions.list_all(self._ws_id)
                 found_conf_ver = False
-                for conf_ver in all_config_versions:
+                for conf_ver in all_config_versions["data"]:
                     if cv_id == conf_ver["id"]:
                         found_conf_ver = True
                         break
                 self.assertTrue(found_conf_ver)
+
+    def test_config_versions_includes(self):
+        """
+        Test the related resources for the Config Versions API endpoints (requires VCS).
+        """
+        config_versions_raw = self._api.config_versions.list(self._ws_w_vcs_id, include=["ingress-attributes"])
+        self.assertIn("included", config_versions_raw)
+
+        all_config_versions_raw = self._api.config_versions.list_all(self._ws_w_vcs_id, include=["ingress-attributes"])
+        self.assertIn("included", all_config_versions_raw)

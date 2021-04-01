@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: Policies.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import Entitlements, MAX_PAGE_SIZE
+from ._constants import Entitlements
 
 class TFCPolicies(TFCEndpoint):
     """
@@ -36,7 +36,7 @@ class TFCPolicies(TFCEndpoint):
         """
         return self._create(self._org_api_v2_base_url, payload)
 
-    def list(self, page=None, page_size=None, search=None):
+    def list(self, page=None, page_size=None, search=None, include=None):
         """
         ``GET /organizations/:organization_name/policies``
 
@@ -50,32 +50,20 @@ class TFCPolicies(TFCEndpoint):
             - ``search`` (Optional)
         """
         return self._list(\
-            self._org_api_v2_base_url, page=page, page_size=page_size, search=search)
+            self._org_api_v2_base_url, page=page, page_size=page_size, search=search, include=include)
 
-    def list_all(self, search=None):
+    def list_all(self, search=None, include=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
         every page so users do not have to implement the paging logic every time they just
         want to list every policy for an organization.
 
-        Returns an array of objects.
+        Returns an object with two arrays of objects.
         """
-        current_page_number = 1
-        policies_resp = \
-            self.list(page=current_page_number, page_size=MAX_PAGE_SIZE, search=search)
-        total_pages = policies_resp["meta"]["pagination"]["total-pages"]
+        return self._list_all(self._org_api_v2_base_url, include=include, search=search)
 
-        policies = []
-        while current_page_number <= total_pages:
-            policies_resp = \
-                self.list(page=current_page_number, page_size=MAX_PAGE_SIZE, search=search)
-            policies += policies_resp["data"]
-            current_page_number += 1
-
-        return policies
-
-    def show(self, policy_id):
+    def show(self, policy_id, include=None):
         """
         ``GET /policies/:policy_id``
 
@@ -83,7 +71,7 @@ class TFCPolicies(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/policies.html#show-a-policy>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}"
-        return self._show(url)
+        return self._show(url, include=include)
 
     def update(self, policy_id, payload):
         """
@@ -98,7 +86,7 @@ class TFCPolicies(TFCEndpoint):
         url = f"{self._endpoint_base_url}/{policy_id}"
         return self._update(url, payload)
 
-    def get_policy_text(self, policy_id):
+    def get_policy_text(self, policy_id, include=None):
         """
         ``GET /policies/:policy_id/download``
 
@@ -108,7 +96,7 @@ class TFCPolicies(TFCEndpoint):
         `show` function.
         """
         url = f"{self._endpoint_base_url}/{policy_id}/download"
-        byte_results = self._get(url, return_raw=True, allow_redirects=True)
+        byte_results = self._get(url, return_raw=True, allow_redirects=True, include=include)
         return byte_results.decode("utf-8")
 
     def upload(self, policy_id, payload):

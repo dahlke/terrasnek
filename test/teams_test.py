@@ -26,17 +26,28 @@ class TestTFCTeams(TestTFCBaseTestCase):
         new_team = self._api.teams.create(
             self._get_team_create_payload())["data"]
         new_team_id = new_team["id"]
-        all_teams = self._api.teams.list()["data"]
+
+        # Confirm we have our teams, as well as the included values
+        some_teams_raw = self._api.teams.list(include=["users"])
+        self.assertIn("included", some_teams_raw)
+
+        some_teams = some_teams_raw["data"]
         found_team = False
-        for team in all_teams:
+        for team in some_teams:
             if team["id"] == new_team_id:
                 found_team = True
                 break
         self.assertTrue(found_team)
 
         # Show the newly created team, assert that the response matches the ID we fed in.
-        shown_team = self._api.teams.show(new_team_id)["data"]
+        # TODO: show endpoints don't work with include for some reason
+        shown_team_raw = self._api.teams.show(new_team_id, include=["users"])
+        # Make sure that we have the included values
+        # self.assertIn("included", shown_team_raw)
+        shown_team = shown_team_raw["data"]
         self.assertEqual(shown_team["id"], new_team_id)
+
+        all_teams = self._api.teams.list_all(include=["users"])
 
         # Update the team to have VCS management access, confirm the changes took effect.
         update_payload = {
@@ -55,9 +66,9 @@ class TestTFCTeams(TestTFCBaseTestCase):
 
         # Destroy the team, confirm it's gone
         self._api.teams.destroy(new_team_id)
-        all_teams = self._api.teams.list()["data"]
+        some_teams = self._api.teams.list()["data"]
         found_team = False
-        for team in all_teams:
+        for team in some_teams:
             if team["id"] == new_team_id:
                 found_team = True
                 break

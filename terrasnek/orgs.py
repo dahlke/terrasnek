@@ -90,6 +90,8 @@ class TFCOrgs(TFCEndpoint):
 
         `Orgs Show Module Producers API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#show-module-producers>`_
+
+        # NOTE: this endpoint is not available in Terraform Cloud
         """
         url = f"{self._org_api_v2_base_url}/{org_name}/relationships/module-producers"
         return self._show(url)

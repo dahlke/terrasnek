@@ -23,7 +23,7 @@ class TFCAdminRuns(TFCEndpoint):
     def terraform_enterprise_only(self):
         return True
 
-    def list(self, query=None, filters=None, page=None, page_size=None):
+    def list(self, query=None, filters=None, page=None, page_size=None, include=None):
         """
         ``GET /admin/runs``
 
@@ -31,7 +31,7 @@ class TFCAdminRuns(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/admin/runs.html#list-all-runs>`_
         """
         return self._list(self._endpoint_base_url, \
-            query=query, filters=filters, page=page, page_size=page_size)
+            query=query, filters=filters, page=page, page_size=page_size, include=include)
 
     def force_cancel(self, run_id, data=None):
         """

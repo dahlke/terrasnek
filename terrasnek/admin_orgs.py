@@ -33,7 +33,7 @@ class TFCAdminOrgs(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._destroy(url)
 
-    def list(self):
+    def list(self, include=None):
         """
         ``GET /admin/organizations``
 
@@ -42,7 +42,7 @@ class TFCAdminOrgs(TFCEndpoint):
 
         This endpoint lists all organizations in the Terraform Cloud installation.
         """
-        return self._list(self._org_api_v2_base_url)
+        return self._list(self._org_api_v2_base_url, include=include)
 
     def list_org_module_consumers(self, org_name, page=None, page_size=None):
         """
@@ -59,7 +59,7 @@ class TFCAdminOrgs(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{org_name}/relationships/module-consumers"
         return self._list(url, page=page, page_size=page_size)
 
-    def show(self, org_name):
+    def show(self, org_name, include=None):
         """
         ``GET /admin/organizations/:name``
 
@@ -67,7 +67,7 @@ class TFCAdminOrgs(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#show-an-organization>`_
         """
         url = f"{self._org_api_v2_base_url}/{org_name}"
-        return self._show(url)
+        return self._show(url, include=include)
 
     def update(self, org_name, payload):
         """

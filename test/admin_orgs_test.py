@@ -23,7 +23,7 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
         try:
             # Create a temp org to manipulate in the test
             self._api.orgs.destroy(self._created_org_name)
-        except Exception as exc:
+        except Exception:
             # In case the test fails below, this will ensure the created
             # org gets cleaned up.
             pass
@@ -33,8 +33,12 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
         Test the Admin Orgs API endpoints.
         """
 
-        # List all the orgs, confirm the created one is present
-        all_orgs = self._api.admin_orgs.list()["data"]
+        # List all the orgs, confirm the created one is present. Confirm related resources
+        # are return.
+        all_orgs_raw = self._api.admin_orgs.list(include=["owners"])
+        self.assertIn("included", all_orgs_raw)
+
+        all_orgs = all_orgs_raw["data"]
         found_created_org = False
         for org in all_orgs:
             org_id = org["id"]
@@ -55,8 +59,12 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
         updated_org = self._api.admin_orgs.update(self._test_org_name, update_org_payload)["data"]
         self.assertTrue(updated_org["attributes"]["global-module-sharing"])
 
-        # Show the created org, confirm it matches the created org's ID
-        shown_org = self._api.admin_orgs.show(self._created_org_name)["data"]
+        # Show the created org, confirm it matches the created org's ID, confirm related
+        # resources are returned
+        shown_org_raw = self._api.admin_orgs.show(self._created_org_name, include=["owners"])
+        self.assertIn("included", all_orgs_raw)
+
+        shown_org = shown_org_raw["data"]
         self.assertEqual(self._created_org_id, shown_org["id"])
 
         # TODO page and page_size

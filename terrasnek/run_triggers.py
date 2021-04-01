@@ -3,7 +3,6 @@ Module for Terraform Cloud API Endpoint: Run Triggers.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import MAX_PAGE_SIZE
 
 class TFCRunTriggers(TFCEndpoint):
     """
@@ -70,23 +69,10 @@ class TFCRunTriggers(TFCEndpoint):
         every page so users do not have to implement the paging logic every time they just
         want to list every run trigger for a workspace.
 
-        Returns an array of objects.
+        Returns an object with two arrays of objects.
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
-
-        current_page_number = 1
-        run_triggers_resp = \
-            self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, filters=filters)
-        total_pages = run_triggers_resp["meta"]["pagination"]["total-pages"]
-
-        run_triggers = []
-        while current_page_number <= total_pages:
-            run_triggers_resp = \
-                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, filters=filters)
-            run_triggers += run_triggers_resp["data"]
-            current_page_number += 1
-
-        return run_triggers
+        return self._list_all(url, filters=filters)
 
     def show(self, run_trigger_id):
         """

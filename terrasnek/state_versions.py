@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: State Versions.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import Entitlements, MAX_PAGE_SIZE
+from ._constants import Entitlements
 
 class TFCStateVersions(TFCEndpoint):
     """
@@ -38,7 +38,7 @@ class TFCStateVersions(TFCEndpoint):
         url = f"{self._workspace_api_v2_base_url}/{workspace_id}/state-versions"
         return self._create(url, payload)
 
-    def get_current(self, workspace_id):
+    def get_current(self, workspace_id, include=None):
         """
         ``GET /workspaces/:workspace_id/current-state-version``
 
@@ -46,9 +46,9 @@ class TFCStateVersions(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/state-versions.html#fetch-the-current-state-version-for-a-workspace>`_
         """
         url = f"{self._workspace_api_v2_base_url}/{workspace_id}/current-state-version"
-        return self._get(url)
+        return self._get(url, include=include)
 
-    def list(self, filters, page=None, page_size=None):
+    def list(self, filters, page=None, page_size=None, include=None):
         """
         ``GET /state-versions``
 
@@ -78,34 +78,20 @@ class TFCStateVersions(TFCEndpoint):
             ]
         """
         url = f"{self._state_version_api_v2_base_url}"
-        return self._list(url, filters=filters, page=page, page_size=page_size)
+        return self._list(url, filters=filters, page=page, page_size=page_size, include=include)
 
-    def list_all(self, filters):
+    def list_all(self, filters, include=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
         every page so users do not have to implement the paging logic every time they just
         want to list every state version for a workspace.
 
-        Returns an array of objects.
+        Returns an object with two arrays of objects.
         """
-        url = self._state_version_api_v2_base_url
+        return self._list_all(self._state_version_api_v2_base_url, filters=filters, include=include)
 
-        current_page_number = 1
-        state_versions_resp = \
-            self._list(url, filters=filters, page=current_page_number, page_size=MAX_PAGE_SIZE)
-        total_pages = state_versions_resp["meta"]["pagination"]["total-pages"]
-
-        state_versions = []
-        while current_page_number <= total_pages:
-            state_versions_resp = \
-                self._list(url, filters=filters, page=current_page_number, page_size=MAX_PAGE_SIZE)
-            state_versions += state_versions_resp["data"]
-            current_page_number += 1
-
-        return state_versions
-
-    def show(self, state_version_id):
+    def show(self, state_version_id, include=None):
         """
         ``GET /state-versions/:state_version_id``
 
@@ -113,4 +99,4 @@ class TFCStateVersions(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/state-versions.html#show-a-state-version>`_
         """
         url = f"{self._state_version_api_v2_base_url}/{state_version_id}"
-        return self._show(url)
+        return self._show(url, include=include)

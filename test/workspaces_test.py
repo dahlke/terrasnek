@@ -32,7 +32,12 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         workspace = self._api.workspaces.create(
             self._get_ws_without_vcs_create_payload())["data"]
         ws_id = workspace["id"]
-        listed_ws = self._api.workspaces.list(page=0, page_size=50)["data"]
+
+        listed_ws_raw = self._api.workspaces.list(page=0, page_size=50, include=["organization"])
+        # Confirm we have the included values
+        self.assertIn("included", listed_ws_raw)
+
+        listed_ws = listed_ws_raw["data"]
         found_ws = False
         for workspace in listed_ws:
             if workspace["id"] == ws_id:
@@ -40,9 +45,12 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
                 break
         self.assertTrue(found_ws)
 
-        all_ws = self._api.workspaces.list_all()
+        all_ws = self._api.workspaces.list_all(include=["organization"])
+        # Confirm we have the included values
+        self.assertIn("included", all_ws)
+
         found_ws = False
-        for workspace in all_ws:
+        for workspace in all_ws["data"]:
             if workspace["id"] == ws_id:
                 found_ws = True
                 break
@@ -93,7 +101,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         # Show by ID, and make sure we get the right payload back. Also check for the
         # the newly assigned SSH key
-        ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)["data"]
+        ws_shown_by_id_raw = self._api.workspaces.show(workspace_id=ws_id, include=["organization"])
+        self.assertIn("included", ws_shown_by_id_raw)
+        ws_shown_by_id = ws_shown_by_id_raw["data"]
         self.assertEqual(ws_id, ws_shown_by_id["id"])
         self.assertIn("ssh-key", ws_shown_by_id["relationships"])
 
@@ -107,12 +117,14 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
             }
         }
         self._api.workspaces.unassign_ssh_key(ws_id, unassign_payload)
+        # TODO: include test when include works?
         ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)["data"]
         self.assertNotIn("ssh-key", ws_shown_by_id["relationships"])
 
         self._api.workspaces.destroy(
             workspace_name=updated_name)
-        listed_ws = self._api.workspaces.list()["data"]
+        listed_ws_raw = self._api.workspaces.list(include=["organization"])
+        listed_ws = listed_ws_raw["data"]
         found_ws = False
         for workspace in listed_ws:
             if workspace["id"] == ws_id:

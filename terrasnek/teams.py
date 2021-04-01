@@ -47,16 +47,33 @@ class TFCTeams(TFCEndpoint):
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._destroy(url)
 
-    def list(self):
+    def list(self, page=None, page_size=None, include=None):
         """
         ``GET organizations/:organization_name/teams``
 
         `Teams List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#list-teams>`_
-        """
-        return self._list(self._org_api_v2_base_url)
 
-    def show(self, team_id):
+        Query Parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/teams.html#query-parameters>`_):
+            - ``page`` (Optional)
+            - ``page_size`` (Optional)
+
+        """
+        return self._list(self._org_api_v2_base_url, page=page, page_size=page_size, include=include)
+
+    def list_all(self, include=None):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every run for a workspace.
+
+        Returns an object with two arrays of objects.
+        """
+        return self._list_all(self._org_api_v2_base_url, include=include)
+
+    def show(self, team_id, include=None):
         """
         ``GET /teams/:team_id``
 
@@ -64,7 +81,7 @@ class TFCTeams(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/teams.html#show-team-information>`_
         """
         url = f"{self._teams_api_v2_base_url}/{team_id}"
-        return self._show(url)
+        return self._show(url, include=include)
 
     def update(self, team_id, payload):
         """

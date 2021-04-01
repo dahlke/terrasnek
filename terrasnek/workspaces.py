@@ -3,7 +3,6 @@ Module for Terraform Cloud API Endpoint: Workspaces.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import MAX_PAGE_SIZE
 
 class TFCWorkspaces(TFCEndpoint):
     """
@@ -77,7 +76,7 @@ class TFCWorkspaces(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/lock"
         return self._post(url, data=payload)
 
-    def list(self, page=None, page_size=None):
+    def list(self, page=None, page_size=None, include=None):
         """
         ``GET /organizations/:organization_name/workspaces``
 
@@ -89,33 +88,20 @@ class TFCWorkspaces(TFCEndpoint):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """
-        return self._list(self._org_api_v2_base_url, page=page, page_size=page_size)
+        return self._list(self._org_api_v2_base_url, page=page, page_size=page_size, include=include)
 
-    def list_all(self):
+    def list_all(self, include=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
         every page so users do not have to implement the paging logic every time they just
         want to list every workspace in an organization.
 
-        Returns an array of objects.
+        Returns an object with two arrays of objects.
         """
-        current_page_number = 1
-        workspaces_resp = \
-            self.list(page=current_page_number, page_size=MAX_PAGE_SIZE)
-        total_pages = workspaces_resp["meta"]["pagination"]["total-pages"]
+        return self._list_all(self._org_api_v2_base_url, include=include)
 
-        workspaces = []
-        while current_page_number <= total_pages:
-            workspaces_resp = \
-                self._list(self._org_api_v2_base_url, \
-                    page=current_page_number, page_size=MAX_PAGE_SIZE)
-            workspaces += workspaces_resp["data"]
-            current_page_number += 1
-
-        return workspaces
-
-    def show(self, workspace_name=None, workspace_id=None):
+    def show(self, workspace_name=None, workspace_id=None, include=None):
         """
         ``GET /organizations/:organization_name/workspaces/:name``
         ``GET /workspaces/:workspace_id``
@@ -130,7 +116,7 @@ class TFCWorkspaces(TFCEndpoint):
         else:
             self._logger.error("Arguments workspace_name or workspace_id must be defined")
 
-        return self._show(url)
+        return self._show(url, include=include)
 
     def unlock(self, workspace_id):
         """

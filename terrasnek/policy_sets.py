@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: Policy Sets.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import Entitlements, MAX_PAGE_SIZE
+from ._constants import Entitlements
 
 class TFCPolicySets(TFCEndpoint):
     """
@@ -76,26 +76,11 @@ class TFCPolicySets(TFCEndpoint):
         every page so users do not have to implement the paging logic every time they just
         want to list every policy set for an organization.
 
-        Returns an array of objects.
+        Returns an object with two arrays of objects.
         """
-        current_page_number = 1
-        policy_sets_resp = \
-            self._list(self._org_api_v2_base_url, \
-                page=current_page_number, page_size=MAX_PAGE_SIZE, search=search)
-        total_pages = policy_sets_resp["meta"]["pagination"]["total-pages"]
+        return self._list_all(self._org_api_v2_base_url, include=include, search=search, filters=filters)
 
-        policy_sets = []
-        while current_page_number <= total_pages:
-            policy_sets_resp = \
-                self._list(\
-                    self._org_api_v2_base_url, page=current_page_number, page_size=MAX_PAGE_SIZE, \
-                        include=include, filters=filters, search=search)
-            policy_sets += policy_sets_resp["data"]
-            current_page_number += 1
-
-        return policy_sets
-
-    def show(self, policy_set_id):
+    def show(self, policy_set_id, include=None):
         """
         ``GET /policy-sets/:id``
 
@@ -103,7 +88,7 @@ class TFCPolicySets(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#show-a-policy-set>`_
         """
         url = f"{self._endpoint_base_url}/{policy_set_id}"
-        return self._show(url)
+        return self._show(url, include=include)
 
     def update(self, policy_set_id, payload):
         """

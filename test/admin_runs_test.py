@@ -57,9 +57,13 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
         Test all the Admin Runs API endpoints.
         """
 
-        # List all the runs confirm the one we created in the setup is there
-        all_runs = self._api.admin_runs.list(\
-            query=self._run_id, filters=[], page=0, page_size=50)["data"]
+        # List all the runs confirm the one we created in the setup is there, confirm we have
+        # the related resources.
+        all_runs_raw = self._api.admin_runs.list(\
+            query=self._run_id, filters=[], page=0, page_size=50, include=["workspace"])
+        self.assertIn("included", all_runs_raw)
+
+        all_runs = all_runs_raw["data"]
         found_run = False
         for run in all_runs:
             run_id = run["id"]

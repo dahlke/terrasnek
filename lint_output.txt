@@ -1,20 +1,79 @@
+************* Module terrasnek.run_triggers
+terrasnek/run_triggers.py:6:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
+************* Module terrasnek.org_memberships
+terrasnek/org_memberships.py:81:8: W0105: String statement has no effect (pointless-string-statement)
+terrasnek/org_memberships.py:6:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
+************* Module terrasnek.admin_users
+terrasnek/admin_users.py:74:0: C0301: Line too long (115/100) (line-too-long)
 ************* Module terrasnek.registry_modules
 terrasnek/registry_modules.py:41:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 terrasnek/registry_modules.py:53:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
+************* Module terrasnek.state_versions
+terrasnek/state_versions.py:6:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
+************* Module terrasnek.teams
+terrasnek/teams.py:63:0: C0301: Line too long (101/100) (line-too-long)
+************* Module terrasnek.endpoint
+terrasnek/endpoint.py:339:0: C0301: Line too long (140/100) (line-too-long)
+terrasnek/endpoint.py:346:0: C0301: Line too long (144/100) (line-too-long)
+terrasnek/endpoint.py:88:4: R0912: Too many branches (25/20) (too-many-branches)
+************* Module terrasnek.audit_trails
+terrasnek/audit_trails.py:53:0: C0304: Final newline missing (missing-final-newline)
+terrasnek/audit_trails.py:6:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
+************* Module terrasnek.policy_sets
+terrasnek/policy_sets.py:81:0: C0301: Line too long (105/100) (line-too-long)
+terrasnek/policy_sets.py:6:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
 ************* Module terrasnek.invoices
 terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
+************* Module terrasnek.runs
+terrasnek/runs.py:6:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
+************* Module terrasnek.policies
+terrasnek/policies.py:53:0: C0301: Line too long (102/100) (line-too-long)
+terrasnek/policies.py:6:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
+************* Module terrasnek.config_versions
+terrasnek/config_versions.py:7:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
+************* Module terrasnek.workspaces
+terrasnek/workspaces.py:92:0: C0301: Line too long (101/100) (line-too-long)
+terrasnek/workspaces.py:6:0: W0611: Unused MAX_PAGE_SIZE imported from _constants (unused-import)
+************* Module test.policies_test
+test/policies_test.py:5:0: W0611: Unused import time (unused-import)
 ************* Module test.vcs_events_test
 test/vcs_events_test.py:35:2: W0511: TODO: test query parameters, as well as make this non-empty. (fixme)
+************* Module test.config_versions_test
+test/config_versions_test.py:44:2: W0511: TODO: attach VCS to get included stuff (fixme)
+test/config_versions_test.py:43:0: C0301: Line too long (113/100) (line-too-long)
+************* Module test.teams_test
+test/teams_test.py:43:2: W0511: TODO: show endpoints don't work with include for some reason (fixme)
+test/teams_test.py:50:8: W0612: Unused variable 'all_teams' (unused-variable)
+************* Module test.orgs_test
+test/orgs_test.py:16:2: W0511: TODO create a class member in setup, set created org name to it, and then make sure it's deleted at the end. (fixme)
+test/orgs_test.py:16:0: C0301: Line too long (114/100) (line-too-long)
+************* Module test.state_versions_test
+test/state_versions_test.py:68:0: C0301: Line too long (101/100) (line-too-long)
+test/state_versions_test.py:74:0: C0301: Line too long (105/100) (line-too-long)
+test/state_versions_test.py:82:0: C0301: Line too long (106/100) (line-too-long)
+************* Module test.workspaces_test
+test/workspaces_test.py:120:2: W0511: TODO: include test when include works? (fixme)
+test/workspaces_test.py:5:0: W0611: Unused import time (unused-import)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:123:2: W0511: TODO: need to use a real twilio account to finish this test. (fixme)
+************* Module test.runs_test
+test/runs_test.py:70:0: C0301: Line too long (108/100) (line-too-long)
+************* Module test.state_version_outputs_test
+test/state_version_outputs_test.py:75:2: W0511: TODO: try not to have to use this sleep (fixme)
 ************* Module test.invoices_test
 test/invoices_test.py:20:2: W0511: TODO: this will fail since I don't have any billing info associated with the test org. (fixme)
+************* Module test.policy_sets_test
+test/policy_sets_test.py:90:0: C0301: Line too long (102/100) (line-too-long)
+************* Module test.admin_orgs_test
+test/admin_orgs_test.py:62:2: W0511: TODO page and page_size (fixme)
+test/admin_orgs_test.py:74:0: C0301: Line too long (106/100) (line-too-long)
+test/admin_orgs_test.py:26:15: W0703: Catching too general exception Exception (broad-except)
 ************* Module test.audit_trails_test
 test/audit_trails_test.py:46:2: W0511: TODO: audit trails aren't showing properly (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.97/10 (previous run: 9.97/10, +0.01)
+Your code has been rated at 9.86/10 (previous run: 9.85/10, +0.02)
 
