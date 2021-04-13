@@ -83,7 +83,14 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
             ]
         }
         self._api.policy_sets.add_policies_to_set(created_policy_set_id, add_remove_policy_payload)
-        shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
+
+        # Show the policy set, make sure we have the policy we added in it.
+        shown_policy_set_raw = self._api.policy_sets.show(created_policy_set_id, include=["policies"])
+
+        # Also confirm we received our related resources.
+        self.assertIn("included", shown_policy_set_raw)
+
+        shown_policy_set = shown_policy_set_raw["data"]
         shown_policies_in_set = shown_policy_set["relationships"]["policies"]["data"]
         self.assertEqual(len(shown_policies_in_set), 1)
 

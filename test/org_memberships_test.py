@@ -37,7 +37,9 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
 
         # Show a user'sc org membership using the org membership ID
         org_membership_id = invite["id"]
-        shown_membership = self._api.org_memberships.show(org_membership_id)
+        shown_membership = self._api.org_memberships.show(org_membership_id, include=["user"])
+        # Confirm we have the related resources
+        self.assertIn("included", shown_membership)
         shown_membership_id = shown_membership["data"]["id"]
         self.assertEqual(org_membership_id, shown_membership_id)
 

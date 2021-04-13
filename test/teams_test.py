@@ -33,21 +33,27 @@ class TestTFCTeams(TestTFCBaseTestCase):
 
         some_teams = some_teams_raw["data"]
         found_team = False
+        owners_team_id = None
         for team in some_teams:
             if team["id"] == new_team_id:
                 found_team = True
+            if team["attributes"]["name"] == "owners":
+                owners_team_id = team["id"]
+            if found_team and owners_team_id is not None:
                 break
         self.assertTrue(found_team)
 
-        # Show the newly created team, assert that the response matches the ID we fed in.
-        # TODO: show endpoints don't work with include for some reason
-        shown_team_raw = self._api.teams.show(new_team_id, include=["users"])
-        # Make sure that we have the included values
-        # self.assertIn("included", shown_team_raw)
+        # Show the owners team, assert that the response matches the ID we fed in
+        shown_team_raw = self._api.teams.show(owners_team_id, include=["users"])
+        # Make sure that we have the related resources
+        self.assertIn("included", shown_team_raw)
         shown_team = shown_team_raw["data"]
-        self.assertEqual(shown_team["id"], new_team_id)
+        self.assertEqual(shown_team["id"], owners_team_id)
 
+        # List all the teams, confirm we have the right number and the related resources
         all_teams = self._api.teams.list_all(include=["users"])
+        self.assertIn("included", all_teams)
+        self.assertEqual(len(all_teams["data"]), 2)
 
         # Update the team to have VCS management access, confirm the changes took effect.
         update_payload = {

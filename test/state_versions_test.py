@@ -85,6 +85,8 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         current_state_version = current_state_version_raw["data"]
         self.assertEqual(sv_id, current_state_version["id"])
 
-        # Show the state version by ID, confirm that they match
-        shown_state_version = self._api.state_versions.show(sv_id)["data"]
+        shown_state_version_raw = self._api.state_versions.show(sv_id, include=["outputs"])
+        # Confirm we have the related resources
+        shown_state_version = shown_state_version_raw["data"]
+        # Confirm the shown state version ID matches the input ID
         self.assertEqual(sv_id, shown_state_version["id"])
