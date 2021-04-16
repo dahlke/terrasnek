@@ -49,8 +49,8 @@ class TFCPolicies(TFCEndpoint):
             - ``page_size`` (Optional)
             - ``search`` (Optional)
         """
-        return self._list(\
-            self._org_api_v2_base_url, page=page, page_size=page_size, search=search, include=include)
+        return self._list(self._org_api_v2_base_url, \
+            page=page, page_size=page_size, search=search, include=include)
 
     def list_all(self, search=None, include=None):
         """

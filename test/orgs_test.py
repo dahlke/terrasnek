@@ -13,8 +13,6 @@ class TestTFCOrgs(TestTFCBaseTestCase):
     _unittest_name = "orgs"
     _endpoint_being_tested = "orgs"
 
-    # TODO create a class member in setup, set created org name to it, and then make sure it's deleted at the end.
-
     def test_orgs(self):
         """
         Test the Orgs API endpoints.

@@ -67,7 +67,8 @@ class TestTFCRuns(TestTFCBaseTestCase):
         self.assertRaises(
             KeyError, lambda: created_run["attributes"]["status-timestamps"]["applying-at"])
 
-        # List the runs, using the correct parameters, confirm it has been created and we have our includes.
+        # List the runs, using the correct parameters, confirm it has been created
+        # and we have our includes.
         some_runs_raw = self._api.runs.list(self._ws_id, page=0, page_size=50, include=["plan"])
         self.assertIn("included", some_runs_raw)
 

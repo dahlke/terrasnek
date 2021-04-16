@@ -85,7 +85,8 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         self._api.policy_sets.add_policies_to_set(created_policy_set_id, add_remove_policy_payload)
 
         # Show the policy set, make sure we have the policy we added in it.
-        shown_policy_set_raw = self._api.policy_sets.show(created_policy_set_id, include=["policies"])
+        shown_policy_set_raw = self._api.policy_sets.show(\
+            created_policy_set_id, include=["policies"])
 
         # Also confirm we received our related resources.
         self.assertIn("included", shown_policy_set_raw)
@@ -116,7 +117,8 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         self.assertEqual(len(shown_policy_set["relationships"]["workspaces"]["data"]), 0)
 
         some_policy_sets_raw = self._api.policy_sets.list(\
-            filters=test_filters, page=0, page_size=50, search=created_policy_set_name, include=["policies"])
+            filters=test_filters, page=0, page_size=50, search=created_policy_set_name, \
+                include=["policies"])
         self.assertIn("included", some_policy_sets_raw)
 
         # Before removing the policy from the set, test the list function correctly returns

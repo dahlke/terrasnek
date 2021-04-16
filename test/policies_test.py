@@ -2,8 +2,6 @@
 Module for testing the Terraform Cloud API Endpoint: Policies.
 """
 
-import time
-
 from .base import TestTFCBaseTestCase
 
 

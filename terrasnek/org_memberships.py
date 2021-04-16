@@ -72,15 +72,6 @@ class TFCOrgMemberships(TFCEndpoint):
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
         every page so users do not have to implement the paging logic every time they just
-        want to list every org membership for an organization.
-
-        Returns an array of objects.
-        """
-
-        """
-        This function does not correlate to an endpoint in the TFC API Docs specifically,
-        but rather is a helper function to wrap the `list` endpoint, which enumerates out
-        every page so users do not have to implement the paging logic every time they just
         want to list every run for a workspace.
 
         Returns an object with two arrays of objects.

@@ -465,11 +465,11 @@
         "implementation": true,
         "methods": [
             {
-                "description": "List Audit Trails",
+                "description": "List an organization's audit events",
                 "http-path": "GET /organization/audit-trail",
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "#list-audit-trails"
+                "permalink": "#list-an-organization-39-s-audit-events"
             }
         ],
         "test": true,

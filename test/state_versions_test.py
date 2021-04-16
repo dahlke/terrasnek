@@ -65,13 +65,15 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
             self._ws_id, self._get_state_version_create_payload())
         self._api.workspaces.unlock(self._ws_id)
 
-        state_versions_raw = self._api.state_versions.list(filters=test_filters, include=["outputs"])
+        state_versions_raw = self._api.state_versions.list(\
+            filters=test_filters, include=["outputs"])
         self.assertIn("included", state_versions_raw)
 
         state_versions = state_versions_raw["data"]
         self.assertNotEqual(len(state_versions), 0)
 
-        all_state_versions = self._api.state_versions.list_all(filters=test_filters, include=["outputs"])
+        all_state_versions = self._api.state_versions.list_all(\
+            filters=test_filters, include=["outputs"])
         self.assertIn("included", all_state_versions)
         self.assertNotEqual(len(all_state_versions["data"]), 0)
 
@@ -79,7 +81,8 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         state_version = state_versions[0]
         sv_id = state_version["id"]
 
-        current_state_version_raw = self._api.state_versions.get_current(self._ws_id, include=["outputs"])
+        current_state_version_raw = \
+            self._api.state_versions.get_current(self._ws_id, include=["outputs"])
         self.assertIn("included", current_state_version_raw)
 
         current_state_version = current_state_version_raw["data"]

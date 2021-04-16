@@ -88,7 +88,8 @@ class TFCWorkspaces(TFCEndpoint):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """
-        return self._list(self._org_api_v2_base_url, page=page, page_size=page_size, include=include)
+        return self._list(self._org_api_v2_base_url, \
+            page=page, page_size=page_size, include=include)
 
     def list_all(self, include=None):
         """

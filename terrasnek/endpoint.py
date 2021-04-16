@@ -336,7 +336,8 @@ class TFCEndpoint(ABC):
         """
         current_page_number = 1
         list_resp = \
-            self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, include=include, search=search, filters=filters, query=query)
+            self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, include=include, \
+                search=search, filters=filters, query=query)
 
         if "meta" in list_resp:
             total_pages = list_resp["meta"]["pagination"]["total-pages"]
@@ -347,7 +348,8 @@ class TFCEndpoint(ABC):
         data = []
         while current_page_number <= total_pages:
             list_resp = \
-                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, include=include, search=search, filters=filters, query=query)
+                self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, \
+                    include=include, search=search, filters=filters, query=query)
             data += list_resp["data"]
 
             if "included" in list_resp:

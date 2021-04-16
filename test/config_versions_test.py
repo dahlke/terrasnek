@@ -92,15 +92,17 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         """
         Test the related resources for the Config Versions API endpoints (requires VCS).
         """
-        config_versions_raw = self._api.config_versions.list(self._ws_w_vcs_id, include=["ingress-attributes"])
+        config_versions_raw = self._api.config_versions.list(self._ws_w_vcs_id, \
+            include=["ingress-attributes"])
         self.assertIn("included", config_versions_raw)
-
 
         # Grab the config version ID from the list, and show it.
         cv_id = config_versions_raw["data"][0]["id"]
-        shown_config_version_raw = self._api.config_versions.show(cv_id, include=["ingress_attributes"])
+        shown_config_version_raw = self._api.config_versions.show(cv_id, \
+            include=["ingress_attributes"])
         # Confirm we get the related resources.
         self.assertIn("included", shown_config_version_raw)
 
-        all_config_versions_raw = self._api.config_versions.list_all(self._ws_w_vcs_id, include=["ingress-attributes"])
+        all_config_versions_raw = self._api.config_versions.list_all(self._ws_w_vcs_id, \
+            include=["ingress-attributes"])
         self.assertIn("included", all_config_versions_raw)

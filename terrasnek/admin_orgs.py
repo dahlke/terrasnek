@@ -89,7 +89,7 @@ class TFCAdminOrgs(TFCEndpoint):
         `Admin Orgs Update Module Consumers API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#update-an-organization-39-s-module-consumers>`_
 
-        `Update Sample Payload \
+        `Update Org Module Consumers Sample Payload \
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#sample-payload-1>`_
         """
 

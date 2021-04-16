@@ -78,7 +78,8 @@ class TFCPolicySets(TFCEndpoint):
 
         Returns an object with two arrays of objects.
         """
-        return self._list_all(self._org_api_v2_base_url, include=include, search=search, filters=filters)
+        return self._list_all(self._org_api_v2_base_url, include=include, \
+            search=search, filters=filters)
 
     def show(self, policy_set_id, include=None):
         """

@@ -79,7 +79,8 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
                 }
             ]
         }
-        self._api.admin_orgs.update_org_module_consumers(self._test_org_name, mod_consumer_update_payload)
+        self._api.admin_orgs.update_org_module_consumers(\
+            self._test_org_name, mod_consumer_update_payload)
 
         mod_consumers = self._api.admin_orgs.list_org_module_consumers(self._test_org_name)["data"]
         self.assertEqual(mod_consumers[0]["id"], self._created_org_name)
