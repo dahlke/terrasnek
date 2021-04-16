@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.3] - 2021-04-15
+
+- Adding related resources to all endpoints that support them (`include`)
+- Create a shared `list_all` function in the endpoint class.
+- Adding in all the new module sharing endpoints.
+- Update requests to 2.22.0.
+- Added VCS Events endpoints.
+- Updated contributor docs and tables.
+- Updated CircleCI for new contributor requirements.
+- Fix some tests that failed intermittently.
+- Add Terrasnek version to the API object.
+- Cleaned up the information on contributing to `terrasnek`.
+- Higher threshold for "incompleteness" in CircleCI to keep up to date.
+- Adding a check for staged or modified files to the release check.
+
 ## [0.1.2] - 2021-03-16
 
 - Loosen install_requires entry for `requests`.

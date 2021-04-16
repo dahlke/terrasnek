@@ -26,5 +26,5 @@ test/admin_orgs_test.py:26:15: W0703: Catching too general exception Exception (
 test/audit_trails_test.py:46:2: W0511: TODO: audit trails aren't showing properly (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.95/10 (previous run: 9.94/10, +0.01)
+Your code has been rated at 9.95/10 (previous run: 9.95/10, +0.00)
 

@@ -146,6 +146,7 @@ class TFC():
         self._current_org = None
         self._verify = verify
 
+        self.__version__ = TERRASNEK_VERSION
         self.version = TERRASNEK_VERSION
 
         self.admin_module_sharing: TFCAdminModuleSharing = None

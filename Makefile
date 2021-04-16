@@ -62,7 +62,7 @@ release_check:
 	python3 scripts/python/contributor_check.py --release-check
 
 .PHONY: release
-release: lint api_comparison docs coverage release_check pip-package
+release: lint api_comparison docs release_check pip-package
 	make codecov;
 	make pip-publish;
 
