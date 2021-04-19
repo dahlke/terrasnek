@@ -1715,6 +1715,34 @@
                 "implementation-method-name": "assign_ssh_key",
                 "implemented": true,
                 "permalink": "#unassign-an-ssh-key-from-a-workspace"
+            },
+            {
+                "description": "Get Remote State Consumers",
+                "http-path": "GET /workspaces/:workspace_id/relationships/remote_state_consumers",
+                "implementation-method-name": "get_remote_state_consumers",
+                "implemented": true,
+                "permalink": "#get-remote-state-consumers"
+            },
+            {
+                "description": "Replace Remote State Consumers",
+                "http-path": "PATCH /workspaces/:workspace_id/relationships/remote_state_consumers",
+                "implementation-method-name": "replace_remote_state_consumers",
+                "implemented": true,
+                "permalink": "#replace-remote-state-consumers"
+            },
+            {
+                "description": "Add Remote State Consumers",
+                "http-path": "POST /workspaces/:workspace_id/relationships/remote_state_consumers",
+                "implementation-method-name": "add_remote_state_consumers",
+                "implemented": true,
+                "permalink": "#add-remote-state-consumers"
+            },
+            {
+                "description": "Delete Remote State Consumers",
+                "http-path": "DELETE /workspaces/:workspace_id/relationships/remote_state_consumers",
+                "implementation-method-name": "delete_remote_state_consumers",
+                "implemented": true,
+                "permalink": "#delete-remote-state-consumers"
             }
         ],
         "test": true,

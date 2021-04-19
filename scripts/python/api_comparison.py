@@ -143,7 +143,6 @@ def scrape_endpoint_info():
 
     return endpoints
 
-
 def check_contributor_requirements(endpoints):
     """
     With the endpoint info we scraped from the API docs, check that each endpoint

@@ -343,7 +343,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
                         "identifier": "dahlke/terrasnek-unittest-config",
                         "oauth-token-id": oauth_token_id,
                         "branch": "master"
-                    }
+                    },
+                    "global-remote-state": False
                 },
                 "type": "workspaces"
             }
@@ -354,7 +355,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "workspaces",
                 "attributes": {
-                    "name": self._unittest_random_name()
+                    "name": self._unittest_random_name(),
+                    "global-remote-state": False
                 }
             }
         }

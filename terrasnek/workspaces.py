@@ -173,3 +173,58 @@ class TFCWorkspaces(TFCEndpoint):
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/ssh-key"
         self._patch(url, data=payload)
+
+    def get_remote_state_consumers(self, workspace_id, page=None, page_size=None):
+        """
+        ``GET /workspaces/:workspace_id/relationships/remote_state_consumers``
+
+        `Get Remote State Consumers API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#get-remote-state-consumers>`_
+
+        Query Parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-1>`_):
+            - ``page`` (Optional)
+            - ``page_size`` (Optional)
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/remote-state-consumers"
+        return self._get(url, page=page, page_size=page_size)
+
+    def replace_remote_state_consumers(self, workspace_id, payload):
+        """
+        ``PATCH /workspaces/:workspace_id/relationships/remote_state_consumers``
+
+        `Replace Remote State Consumers API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#replace-remote-state-consumers>`_
+
+        `Replace Remote State Consumers Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-5>`_
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/remote-state-consumers"
+        return self._patch(url, data=payload)
+
+    def add_remote_state_consumers(self, workspace_id, payload):
+        """
+        ``POST /workspaces/:workspace_id/relationships/remote_state_consumers``
+
+        `Add Remote State Consumers API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#add-remote-state-consumers>`_
+
+        `Add Remote State Consumers Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-6>`_
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/remote-state-consumers"
+        return self._post(url, data=payload)
+
+    def delete_remote_state_consumers(self, workspace_id, payload):
+        """
+        ``DELETE /workspaces/:workspace_id/relationships/remote_state_consumers``
+
+        `Delete Remote State Consumers API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#delete-remote-state-consumers>`_
+
+        `Delete Remote State Consumers Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-7>`_
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/remote-state-consumers"
+        return self._delete(url, data=payload)
+

@@ -74,7 +74,6 @@ release-test: lint api_comparison docs coverage release_check pip-package
 ##########################
 # DOCKER TEST IMAGE HELPERS
 ##########################
-# TODO: why no phony?
 docker_build:
 	cp pip-reqs.txt .circleci/pip-reqs.txt;
 	docker build -t ${DOCKER_HUB_USER}/$(DOCKER_TEST_IMAGE_NAME):$(DOCKER_TEST_IMAGE_VERSION) .circleci/ && \
