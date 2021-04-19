@@ -62,7 +62,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                         break
                 self.assertTrue(found_conf_ver)
 
-                # Confirm the config version status is "pending" and the IDs match on show
+                # Confirm the config version status is pending and the IDs match on show
                 shown_config_version = self._api.config_versions.show(cv_id)["data"]
                 self.assertEqual(shown_config_version["attributes"]["status"], "pending")
                 self.assertEqual(shown_config_version["id"], cv_id)

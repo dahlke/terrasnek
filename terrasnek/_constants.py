@@ -10,7 +10,7 @@ import logging
 TFC_SAAS_HOSTNAME = "app.terraform.io"
 TFC_SAAS_URL = "https://app.terraform.io"
 TERRASNEK_LOG_LEVEL = logging.CRITICAL
-TERRASNEK_VERSION = "0.1.3"
+TERRASNEK_VERSION = "0.1.4"
 MAX_PAGE_SIZE = 100
 
 # Common TFC API HTTP Codes

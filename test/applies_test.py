@@ -34,6 +34,8 @@ class TestTFCApplies(TestTFCBaseTestCase):
             self._get_variable_create_payload(
                 "org_name", self._temp_org_name, self._ws_id),
             self._get_variable_create_payload(
+                "hostname", self._api.get_hostname(), self._ws_id),
+            self._get_variable_create_payload(
                 "TFE_TOKEN", self._test_api_token, self._ws_id, category="env", sensitive=True)
         ]
         for payload in variable_payloads:

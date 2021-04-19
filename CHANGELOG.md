@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - 2021-08-20
+
+- Implemented Workspace State Consumer endpoints
+- Implemented new Config Version endpoints
+- Implemented new Agent endpoints
+- Implemented new Workspace Tag endpoints
+- Implemented new ORg Tag endpoints
+- Added TFC API Changelog link in docs
+- Transitioned Registry Modules endpoints to new ones
+- Added Better exception handling
+- Updated example code in README
+- Upgraded CircleCI testing image
+- API script now detects deprecated endpoints and treats them as such
+- Fixed tests to handle new API behavior TODO
+
 ## [0.1.3] - 2021-04-15
 
 - Adding related resources to all endpoints that support them (`include`)

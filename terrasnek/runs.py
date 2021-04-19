@@ -33,7 +33,7 @@ class TFCRuns(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/run.html#list-runs-in-a-workspace>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/run.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/run.html#query-parameters>`__):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """

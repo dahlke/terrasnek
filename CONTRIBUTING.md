@@ -222,3 +222,20 @@ GitHub to match the newly published version so `readthedocs` can pick up
 versions of the documentation.
 
 Thank you for your help or just for using `terrasnek`.
+
+## TODO: Setting up TFE for testing
+
+- Upload cert and key
+- Set hostname
+- Upload license
+- Choose online
+- Set admin password
+- Confirm pre-flight checks
+- Choose demo mode, add an encryption password (switch from PMD to Demo mode in TF)
+- Create a user
+- Create an org
+- Get a user token
+- Get an org token
+- Create a user to invite in the tests (test / test@test.com / neilneilneil)
+- Update secrets.tfe.sh
+- Run the tests.

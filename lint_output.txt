@@ -11,8 +11,10 @@ terrasnek/endpoint.py:91:4: R0912: Too many branches (26/20) (too-many-branches)
 ************* Module terrasnek.invoices
 terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
+************* Module terrasnek.vcs_events
+terrasnek/vcs_events.py:22:2: W0511: TODO: change this once it is released in TFE. (fixme)
 ************* Module terrasnek.workspaces
-terrasnek/workspaces.py:7:0: R0904: Too many public methods (21/20) (too-many-public-methods)
+terrasnek/workspaces.py:7:0: R0904: Too many public methods (22/20) (too-many-public-methods)
 ************* Module test.vcs_events_test
 test/vcs_events_test.py:35:2: W0511: TODO: test query parameters, as well as make this non-empty. (fixme)
 ************* Module test.agents_test

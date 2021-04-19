@@ -5,6 +5,7 @@ Module for container class of all TFC endpoints and high level exceptions around
 API access.
 """
 
+from urllib.parse import urlparse
 import json
 import logging
 import requests
@@ -144,6 +145,10 @@ class TFC():
         self._logger.debug("Initializing the TFC API class...")
 
         self._instance_url = url
+
+        parsed_url = urlparse(url)
+        self._hostname = parsed_url.netloc
+
         self._token = api_token
         self._current_org = None
         self._verify = verify
@@ -250,6 +255,12 @@ class TFC():
         Allows for the user to retrieve the URL being hit from the API object.
         """
         return self._instance_url
+
+    def get_hostname(self):
+        """
+        Allows for the user to retrieve the hostname being hit from the API object.
+        """
+        return self._hostname
 
     def set_org(self, org_name):
         """

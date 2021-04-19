@@ -19,7 +19,8 @@ class TFCVCSEvents(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        return False
+        # TODO: change this once it is released in TFE.
+        return True
 
     def terraform_enterprise_only(self):
         return False
@@ -32,7 +33,7 @@ class TFCVCSEvents(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/vcs-events.html#list-vcs-events>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/vcs-events.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/vcs-events.html#query-parameters>`__):
             - ``page[number]`` (Optional)
             - ``page[size]`` (Optional)
             - ``filter[from]`` (Optional)

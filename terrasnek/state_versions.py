@@ -56,7 +56,7 @@ class TFCStateVersions(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/state-versions.html#list-state-versions-for-a-workspace>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`__):
             - ``filter[workspace][name]`` (Required)
             - ``filter[organization][name]`` (Required)
             - ``page`` (Optional)
@@ -100,11 +100,13 @@ class TFCStateVersions(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/state-versions.html#list-state-version-outputs>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`__):
             - ``filter[workspace][name]`` (Required)
             - ``filter[organization][name]`` (Required)
             - ``page`` (Optional)
             - ``page_size`` (Optional)
+
+        TODO: this is not yet supported in TFE?
 
         Example filter(s):
 

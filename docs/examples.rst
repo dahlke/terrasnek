@@ -74,7 +74,9 @@ Apply a Run on a Workspace
 --------------------------
 
 .. code:: python
-
-   applied_run = api.runs.apply(run_id)
+   apply_run_payload = {
+      # https://www.terraform.io/docs/cloud/api/run.html#sample-payload-1
+   }
+   applied_run = api.runs.apply(run_id, payload)
 
 *For more examples, see the ``./test`` directory in the repository.*

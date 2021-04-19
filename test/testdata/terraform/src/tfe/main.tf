@@ -1,20 +1,26 @@
-provider "tfe" {
-  hostname = "app.terraform.io"
-}
-
 variable "email" {
-  type = "string"
+  type = string
 }
 
 variable "org_name" {
-  type = "string"
+  type = string
 }
 
-resource "tfe_organization" "test" {
+variable "hostname" {
+  type = string
+  default = "app.terraform.io"
+}
+
+provider "tfe" {
+  hostname = var.hostname
+  ssl_skip_verify = true
+}
+
+resource "tfe_organization" "org" {
   email = "${var.email}"
   name = "${var.org_name}"
 }
 
 output "org_id" {
-  value = "${tfe_organization.test.id}"
+  value = "${tfe_organization.org.id}"
 }

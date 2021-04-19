@@ -334,7 +334,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "attributes": {
                     "name": self._unittest_random_name(),
-                    "terraform_version": "1.0.4",
+                    "terraform_version": "1.0.3",
                     "working-directory": working_dir,
                     "vcs-repo": {
                         "identifier": "dahlke/terrasnek-unittest-config",
