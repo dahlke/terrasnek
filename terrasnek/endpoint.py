@@ -79,7 +79,10 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
-            err = json.loads(req.content.decode("utf-8"))
+            try:
+                err = json.loads(req.content.decode("utf-8"))
+            except json.decoder.JSONDecodeError:
+                err = req.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -175,7 +178,10 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
-            err = json.loads(req.content.decode("utf-8"))
+            try:
+                err = json.loads(req.content.decode("utf-8"))
+            except json.decoder.JSONDecodeError:
+                err = req.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -208,7 +214,10 @@ class TFCEndpoint(ABC):
         elif req.status_code == HTTP_NO_CONTENT:
             pass
         else:
-            err = json.loads(req.content.decode("utf-8"))
+            try:
+                err = json.loads(req.content.decode("utf-8"))
+            except json.decoder.JSONDecodeError:
+                err = req.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -254,7 +263,10 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPInternalServerError(err)
         else:
-            err = json.loads(req.content.decode("utf-8"))
+            try:
+                err = json.loads(req.content.decode("utf-8"))
+            except json.decoder.JSONDecodeError:
+                err = req.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -280,7 +292,10 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
-            err = json.loads(req.content.decode("utf-8"))
+            try:
+                err = json.loads(req.content.decode("utf-8"))
+            except json.decoder.JSONDecodeError:
+                err = req.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -309,7 +324,10 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
-            err = json.loads(req.content.decode("utf-8"))
+            try:
+                err = json.loads(req.content.decode("utf-8"))
+            except json.decoder.JSONDecodeError:
+                err = req.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
