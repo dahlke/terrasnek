@@ -47,7 +47,7 @@ TFC_URL = os.getenv("TFC_URL", None)  # ex: https://app.terraform.io
 SSL_VERIFY = os.getenv("SSL_VERIFY", False)
 
 if __name__ == "__main__":
-    api = TFC(TFC_TOKEN, url=TFC_URL, ssl_verify=SSL_VERIFY)
+    api = TFC(TFC_TOKEN, url=TFC_URL, verify=SSL_VERIFY)
     api.set_org("YOUR_ORGANIZATION")
 ```
 
