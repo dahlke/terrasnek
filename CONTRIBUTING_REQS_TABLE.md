@@ -14,6 +14,7 @@
 | [Agents](https://www.terraform.io/docs/cloud/api/agents.html)                                     | `agents`                   | True                 | True       | False      |
 | [Applies](https://www.terraform.io/docs/cloud/api/applies.html)                                   | `applies`                  | True                 | True       | False      |
 | [Audit Trails](https://www.terraform.io/docs/cloud/api/audit-trails.html)                         | `audit_trails`             | True                 | True       | False      |
+| [Changelog](https://www.terraform.io/docs/cloud/api/changelog.html)                               | `changelog`                | False                | False      | False      |
 | [Config Versions](https://www.terraform.io/docs/cloud/api/configuration-versions.html)            | `config_versions`          | True                 | True       | False      |
 | [Cost Estimates](https://www.terraform.io/docs/cloud/api/cost-estimates.html)                     | `cost_estimates`           | True                 | True       | False      |
 | [Feature Sets](https://www.terraform.io/docs/cloud/api/feature-sets.html)                         | `feature_sets`             | True                 | True       | False      |

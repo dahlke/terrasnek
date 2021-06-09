@@ -423,6 +423,13 @@
                 "permalink": "#show-an-agent"
             },
             {
+                "description": "Delete an Agent",
+                "http-path": "DELETE /agents/:id",
+                "implementation-method-name": "destroy",
+                "implemented": true,
+                "permalink": "#delete-an-agent"
+            },
+            {
                 "description": "Create an Agent Pool",
                 "http-path": "POST /organizations/:organization_name/agent-pool",
                 "implementation-method-name": "create_pool",
@@ -439,7 +446,7 @@
             {
                 "description": "Delete an Agent Pool",
                 "http-path": "DELETE /agent-pools/:agent_pool_id",
-                "implementation-method-name": "destroy",
+                "implementation-method-name": "destroy_pool",
                 "implemented": true,
                 "permalink": "#delete-an-agent-pool"
             }
@@ -475,6 +482,10 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/audit-trails.html"
     },
+    "changelog": {
+        "methods": [],
+        "url": "https://www.terraform.io/docs/cloud/api/changelog.html"
+    },
     "config_versions": {
         "implementation": true,
         "methods": [
@@ -491,6 +502,20 @@
                 "implementation-method-name": "show",
                 "implemented": true,
                 "permalink": "#show-a-configuration-version"
+            },
+            {
+                "description": "Show a Configuration Version's Commit Information",
+                "http-path": "GET /configuration-versions/:configuration-id/ingress-attributes",
+                "implementation-method-name": "show_config_version_commit_info",
+                "implemented": true,
+                "permalink": "#show-a-configuration-version-39-s-commit-information"
+            },
+            {
+                "description": "Show a Configuration Version's Commit Information",
+                "http-path": "GET /configuration-versions/:configuration-id?include=ingress-attributes",
+                "implementation-method-name": "show_config_version_commit_info",
+                "implemented": true,
+                "permalink": "#show-a-configuration-version-39-s-commit-information"
             },
             {
                 "description": "Create a Configuration Version",

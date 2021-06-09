@@ -62,6 +62,28 @@ class TFCConfigVersions(TFCEndpoint):
         url = f"{self._config_version_api_v2_base_url}/{config_version_id}"
         return self._show(url, include=include)
 
+    def show_config_version_commit_info(self, config_version_id, include=None):
+        """
+        ``GET /configuration-versions/:configuration-id/ingress-attributes``
+        ``GET /configuration-versions/:configuration-id?include=ingress-attributes``
+
+        `Config Versions Show Commit Information API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#show-a-configuration-version-39-s-commit-information>`_
+        """
+        url = f"{self._config_version_api_v2_base_url}/{config_version_id}/ingress-attributes"
+        return self._show(url, include=include)
+
+    def show_config_version_commit_info(self, config_version_id, include=None):
+        """
+        ````
+
+        `Config Versions Show Commit Information API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#show-a-configuration-version-39-s-commit-information>`_
+        """
+        url = f"{self._config_version_api_v2_base_url}/{config_version_id}"
+        return self._show(url, include=include)
+
+
     def create(self, workspace_id, payload):
         """
         ``POST /workspaces/:workspace_id/configuration-versions``
