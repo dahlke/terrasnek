@@ -1134,59 +1134,66 @@
         "implementation": true,
         "methods": [
             {
-                "description": "Publish a Module from a VCS",
-                "http-path": "POST /registry-modules",
-                "implementation-method-name": "publish_from_vcs",
+                "description": "List Registry Modules for an organization",
+                "http-path": "GET /organizations/:organization_name/registry-modules",
+                "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "#publish-a-module-from-a-vcs"
+                "permalink": "#list-registry-modules-for-an-organization"
             },
             {
-                "description": "Create a Module",
-                "http-path": "POST /organizations/:organization_name/registry-modules",
-                "implementation-method-name": "create",
+                "description": "Publish a Private Module from a VCS",
+                "http-path": "POST /organizations/:organization_name/registry-modules/vcs",
+                "implementation-method-name": "publish_from_vcs",
                 "implemented": true,
-                "permalink": "#create-a-module"
+                "permalink": "#publish-a-private-module-from-a-vcs"
+            },
+            {
+                "description": "Create a Module (with no VCS connection)",
+                "http-path": "POST /organizations/:organization_name/registry-modules",
+                "implementation-method-name": "publish_from_vcs",
+                "implemented": true,
+                "permalink": "#create-a-module-with-no-vcs-connection-"
             },
             {
                 "description": "Create a Module Version",
-                "http-path": "POST /registry-modules/:organization_name/:name/:provider/versions",
+                "http-path": "POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions",
                 "implementation-method-name": "create_version",
                 "implemented": true,
                 "permalink": "#create-a-module-version"
             },
             {
-                "description": "Upload a Module Version",
+                "description": "Upload a Module Version (private module)",
                 "http-path": "PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>",
                 "implementation-method-name": "upload_version",
                 "implemented": true,
-                "permalink": "#upload-a-module-version"
+                "permalink": "#upload-a-module-version-private-module-"
             },
             {
-                "description": "Show a Module",
-                "http-path": "GET /registry-modules/show/:organization_name/:name/:provider",
+                "description": "GET a Module",
+                "http-path": "GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider",
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "#show-a-module"
+                "permalink": "#get-a-module"
             },
             {
                 "description": null,
-                "http-path": "POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version",
-                "implementation-method-name": "destroy",
-                "implemented": true,
+                "http-path": "DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version",
+                "implementation-method-name": null,
+                "implemented": false,
                 "permalink": null
             },
             {
                 "description": null,
-                "http-path": "POST /registry-modules/actions/delete/:organization_name/:name/:provider",
-                "implementation-method-name": "destroy",
-                "implemented": true,
+                "http-path": "DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider",
+                "implementation-method-name": null,
+                "implemented": false,
                 "permalink": null
             },
             {
                 "description": null,
-                "http-path": "POST /registry-modules/actions/delete/:organization_name/:name",
-                "implementation-method-name": "destroy",
-                "implemented": true,
+                "http-path": "DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name",
+                "implementation-method-name": null,
+                "implemented": false,
                 "permalink": null
             }
         ],

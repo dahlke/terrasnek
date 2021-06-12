@@ -200,10 +200,9 @@ class TestTFCBaseTestCase(unittest.TestCase):
     def _purge_module_registry(cls):
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of modules...")
         try:
-            registry_modules_resp = cls._api.registry_modules.list()
-            registry_modules = registry_modules_resp["modules"]
+            registry_modules = cls._api.registry_modules.list()["data"]
             for registry_module in registry_modules:
-                cls._api.registry_modules.destroy(registry_module["name"])
+                cls._api.registry_modules.destroy(registry_module["attributes"]["name"])
         except terrasnek.exceptions.TFCHTTPNotFound:
             cls._logger.debug("No modules exist in this org, skipping.")
 
