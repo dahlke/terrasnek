@@ -1178,22 +1178,22 @@
             {
                 "description": null,
                 "http-path": "DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": null
             },
             {
                 "description": null,
                 "http-path": "DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": null
             },
             {
                 "description": null,
                 "http-path": "DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": null
             }
         ],
