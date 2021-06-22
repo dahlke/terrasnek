@@ -109,7 +109,6 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
         self.assertIn("modules", listed_versions_resp)
         latest_listed_version = listed_versions_resp["modules"][-1]["versions"][0]["version"]
-        print("LATEST", latest_listed_version)
 
         # List the latest version for all providers, compare to the
         # published module version

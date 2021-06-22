@@ -75,8 +75,6 @@ class TFCRegistryModules(TFCEndpoint):
         new_url = f"{self._new_modules_v2_base_url}/{self._registry_name}/{self._namespace}/{module_name}/{provider}"
 
         url = f"{self._modules_v2_base_url}/show/{self._org_name}/{module_name}/{provider}"
-        print("old", url)
-        print("new", new_url)
         return self._show(new_url)
 
     def list_versions(self, name, provider):
