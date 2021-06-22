@@ -2,7 +2,7 @@ version: 2
 jobs:
   prepare_deploy:
     docker:
-      - image: eklhad/terrasnek-circleci:0.3
+      - image: eklhad/terrasnek-circleci:0.4
     working_directory: ~/terrasnek
     steps:
       - checkout
@@ -15,7 +15,7 @@ jobs:
             make contributor_check
   api_comparison:
     docker:
-      - image: eklhad/terrasnek-circleci:0.3
+      - image: eklhad/terrasnek-circleci:0.4
     working_directory: ~/terrasnek
     steps:
       - checkout
