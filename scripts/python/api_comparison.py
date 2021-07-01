@@ -126,24 +126,25 @@ def scrape_endpoint_info():
                     if potential_verb in HTTP_VERBS:
                         method_desc = None
                         method_permalink = None
+                        deprecated = False
 
                         method_header = codeblock.parent.find_previous_sibling('h2')
                         if method_header is not None:
                             method_desc = method_header.find('a')
+                        elif "Deprecation warning" in codeblock.parent.contents[0]:
+                            # If we can't find the method description, it is likely deprecated
+                            print("Skipping deprecated endpoint `%s`..." % contents)
+                            deprecated = True
 
-                        if method_header is None and \
-                            "Deprecation warning" in codeblock.parent.contents[0]:
-                            method_desc = "Deprecated"
-                            method_permalink = "N/A"
                         if method_desc is not None:
                             method_permalink = method_desc.get('href')
                             method_desc = method_header.contents[-1].replace("\n", "").strip()
-
-                        endpoint["methods"].append({
-                            "http-path": contents,
-                            "description": method_desc,
-                            "permalink": method_permalink
-                        })
+                        if not deprecated:
+                            endpoint["methods"].append({
+                                "http-path": contents,
+                                "description": method_desc,
+                                "permalink": method_permalink
+                            })
 
     return endpoints
 

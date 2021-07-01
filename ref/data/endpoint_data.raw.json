@@ -1137,13 +1137,6 @@
                 "permalink": "#list-registry-modules-for-an-organization"
             },
             {
-                "description": "Deprecated",
-                "http-path": "POST /registry-modules",
-                "implementation-method-name": "destroy",
-                "implemented": true,
-                "permalink": "N/A"
-            },
-            {
                 "description": "Publish a Private Module from a VCS",
                 "http-path": "POST /organizations/:organization_name/registry-modules/vcs",
                 "implementation-method-name": "publish_from_vcs",
@@ -1158,13 +1151,6 @@
                 "permalink": "#create-a-module-with-no-vcs-connection-"
             },
             {
-                "description": "Deprecated",
-                "http-path": "POST /registry-modules/:organization_name/:name/:provider/versions",
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "N/A"
-            },
-            {
                 "description": "Create a Module Version",
                 "http-path": "POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions",
                 "implementation-method-name": "create_version",
@@ -1177,13 +1163,6 @@
                 "implementation-method-name": "upload_version",
                 "implemented": true,
                 "permalink": "#upload-a-module-version-private-module-"
-            },
-            {
-                "description": "Deprecated",
-                "http-path": "GET /registry-modules/show/:organization_name/:name/:provider",
-                "implementation-method-name": "show",
-                "implemented": true,
-                "permalink": "N/A"
             },
             {
                 "description": "GET a Module",

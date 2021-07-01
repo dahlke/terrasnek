@@ -66,8 +66,10 @@ class TFCRegistryModules(TFCEndpoint):
 
     def show(self, module_name, provider):
         """
-        ``GET /registry-modules/show/:organization_name/:name/:provider``
         ``GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider``
+
+        **DEPRECATED**
+        ``GET /registry-modules/show/:organization_name/:name/:provider``
 
         `Registry Modules Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/modules.html#show-a-module>`_
