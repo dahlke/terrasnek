@@ -28,6 +28,7 @@ class TFCRegistryModules(TFCEndpoint):
         self._modules_v2_base_url = f"{self._api_v2_base_url}/registry-modules"
         self._modules_v1_base_url = f"{self._modules_v1_base_url}"
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations"
+        # TODO: get rid of the old one?
         self._new_modules_v2_base_url = f"{self._org_api_v2_base_url}/{self._org_name}/registry-modules"
 
     def required_entitlements(self):

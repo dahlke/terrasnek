@@ -96,7 +96,7 @@ def scrape_endpoint_info():
                 endpoint_name = "admin_" + endpoint_name
 
             # Ignore some of the links from the API that don't represent endpoints
-            if endpoint_name not in ["index", "stability_policy", "admin_index"]:
+            if endpoint_name not in ["index", "stability_policy", "admin_index", "changelog"]:
                 endpoints[endpoint_name] = {}
                 endpoints[endpoint_name]["url"] = f"{TFC_API_BASE_URL}{api_path}"
 
@@ -131,6 +131,10 @@ def scrape_endpoint_info():
                         if method_header is not None:
                             method_desc = method_header.find('a')
 
+                        if method_header is None and \
+                            "Deprecation warning" in codeblock.parent.contents[0]:
+                            method_desc = "Deprecated"
+                            method_permalink = "N/A"
                         if method_desc is not None:
                             method_permalink = method_desc.get('href')
                             method_desc = method_header.contents[-1].replace("\n", "").strip()
@@ -195,7 +199,6 @@ def check_methods_implementation(endpoints):
             method["implemented"] = False
             method["implementation-method-name"] = None
             most_recent_method_name = None
-
 
             for line in split_by_func_def:
                 if "def" in line:

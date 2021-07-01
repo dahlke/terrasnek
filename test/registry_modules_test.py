@@ -83,7 +83,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
                 time.sleep(1)
             return listed_modules, found_module
-        listed_modules, found_module = found_module_in_listed_modules_timeout(published_module_name)
+        _, found_module = found_module_in_listed_modules_timeout(published_module_name)
 
         self.assertTrue(found_module)
 
