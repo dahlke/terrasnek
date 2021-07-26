@@ -25,7 +25,7 @@ class TFCAdminRuns(TFCEndpoint):
 
     def list(self, query=None, filters=None, page=None, page_size=None, include=None):
         """
-        ``GET /admin/runs``
+        ``GET /api/v2/admin/runs``
 
         `Admin List Runs API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/runs.html#list-all-runs>`_

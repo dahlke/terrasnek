@@ -32,7 +32,7 @@ class TFCAdminWorkspaces(TFCEndpoint):
 
     def list(self, filters=None, page=None, page_size=None, sort=None, search=None, include=None):
         """
-        ``GET /admin/workspaces``
+        ``GET /api/v2/admin/workspaces``
 
         `Admin Workspaces List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#list-all-workspaces>`_
@@ -43,7 +43,7 @@ class TFCAdminWorkspaces(TFCEndpoint):
 
     def show(self, ws_id):
         """
-        ``GET /admin/workspaces/:id``
+        ``GET /api/v2/admin/workspaces/:id``
 
         `Admin Workspaces Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/workspaces.html#show-a-workspace>`_

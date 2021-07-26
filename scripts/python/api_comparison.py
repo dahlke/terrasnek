@@ -131,7 +131,10 @@ def scrape_endpoint_info():
                         method_header = codeblock.parent.find_previous_sibling('h2')
                         if method_header is not None:
                             method_desc = method_header.find('a')
-                        elif "Deprecation warning" in codeblock.parent.contents[0]:
+                        else:
+                            print(contents)
+
+                        if "Deprecation warning" in codeblock.parent.contents[0]:
                             # If we can't find the method description, it is likely deprecated
                             print("Skipping deprecated endpoint `%s`..." % contents)
                             deprecated = True

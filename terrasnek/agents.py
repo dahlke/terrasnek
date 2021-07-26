@@ -28,7 +28,7 @@ class TFCAgents(TFCEndpoint):
 
     def create_pool(self, payload):
         """
-        ``POST /organizations/:organization_name/agent-pool``
+        ``POST /organizations/:organization_name/agent-pools``
 
         `Agents Create Pool API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agents.html#create-an-agent-pool>`_

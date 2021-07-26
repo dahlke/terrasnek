@@ -46,14 +46,14 @@
         "methods": [
             {
                 "description": "List all Organizations",
-                "http-path": "GET /admin/organizations",
+                "http-path": "GET /api/v2/admin/organizations",
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "#list-all-organizations"
             },
             {
                 "description": "Show an Organization",
-                "http-path": "GET /admin/organizations/:name",
+                "http-path": "GET /api/v2/admin/organizations/:name",
                 "implementation-method-name": "list_org_module_consumers",
                 "implemented": true,
                 "permalink": "#show-an-organization"
@@ -74,7 +74,7 @@
             },
             {
                 "description": "List Module Consumers for an Organization",
-                "http-path": "GET /admin/organizations/:name/relationships/module-consumers",
+                "http-path": "GET /api/v2/admin/organizations/:name/relationships/module-consumers",
                 "implementation-method-name": "list_org_module_consumers",
                 "implemented": true,
                 "permalink": "#list-module-consumers-for-an-organization"
@@ -95,7 +95,7 @@
         "methods": [
             {
                 "description": "List all runs",
-                "http-path": "GET /admin/runs",
+                "http-path": "GET /api/v2/admin/runs",
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "#list-all-runs"
@@ -221,7 +221,7 @@
         "methods": [
             {
                 "description": "List all Terraform versions",
-                "http-path": "GET /admin/terraform-versions",
+                "http-path": "GET /api/v2/admin/terraform-versions",
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "#list-all-terraform-versions"
@@ -235,7 +235,7 @@
             },
             {
                 "description": "Show a Terraform version",
-                "http-path": "GET /admin/terraform-versions/:id",
+                "http-path": "GET /api/v2/admin/terraform-versions/:id",
                 "implementation-method-name": "show",
                 "implemented": true,
                 "permalink": "#show-a-terraform-version"
@@ -263,7 +263,7 @@
         "methods": [
             {
                 "description": "List all users",
-                "http-path": "GET /admin/users",
+                "http-path": "GET /api/v2/admin/users",
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "#list-all-users"
@@ -333,14 +333,14 @@
         "methods": [
             {
                 "description": "List all workspaces",
-                "http-path": "GET /admin/workspaces",
+                "http-path": "GET /api/v2/admin/workspaces",
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "#list-all-workspaces"
             },
             {
                 "description": "Show a workspace",
-                "http-path": "GET /admin/workspaces/:id",
+                "http-path": "GET /api/v2/admin/workspaces/:id",
                 "implementation-method-name": "show",
                 "implemented": true,
                 "permalink": "#show-a-workspace"
@@ -431,7 +431,7 @@
             },
             {
                 "description": "Create an Agent Pool",
-                "http-path": "POST /organizations/:organization_name/agent-pool",
+                "http-path": "POST /organizations/:organization_name/agent-pools",
                 "implementation-method-name": "create_pool",
                 "implemented": true,
                 "permalink": "#create-an-agent-pool"

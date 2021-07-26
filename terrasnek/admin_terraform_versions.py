@@ -16,7 +16,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
     def list(self, page=None, page_size=None):
         """
-        ``GET /admin/terraform-versions``
+        ``GET /api/v2/admin/terraform-versions``
 
         `Admin Terraform Versions List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html#list-all-terraform-versions>`_
@@ -43,7 +43,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
 
     def show(self, version_id):
         """
-        ``GET /admin/terraform-versions/:id``
+        ``GET /api/v2/admin/terraform-versions/:id``
 
         `Admin Terraform Versions Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/terraform-versions.html#show-a-terraform-version>`_

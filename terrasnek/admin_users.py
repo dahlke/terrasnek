@@ -65,7 +65,7 @@ class TFCAdminUsers(TFCEndpoint):
 
     def list(self, query=None, filters=None, page=None, page_size=None, include=None):
         """
-        ``GET /admin/users``
+        ``GET /api/v2/admin/users``
 
         `Admin Users List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/admin/users.html#list-all-users>`_
