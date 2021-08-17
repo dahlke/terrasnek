@@ -250,23 +250,21 @@ class TFCWorkspaces(TFCEndpoint):
         `Add Tags to a Workspace API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#add-tags-to-a-workspace>`_
 
-        `TODO: Add Tags to a Workspace API Doc Sample Payload \
-            <>`_
+        `Add Tags to a Workspace API Doc Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-8>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
         return self._post(url, data=payload)
 
     def remove_tags(self, workspace_id, payload):
         """
-        ``DELETE /workspaces/workspace-2/relationships/tags``
-
-        NOTE: this will be changed to `:workspace_id` when the docs are updated.
+        ``DELETE /workspaces/:workspace_id/relationships/tags``
 
         `Remove Tags from a Workspace API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#remove-tags-from-workspace>`_
 
-        `TODO: Remove Tags from a Workspace API Doc Sample Payload \
-            <>`_
+        `Remove Tags from a Workspace API Doc Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-9>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
         return self._delete(url, data=payload)

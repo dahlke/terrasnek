@@ -132,7 +132,7 @@ def scrape_endpoint_info():
                         if method_header is not None:
                             method_desc = method_header.find('a')
                         else:
-                            # print("NO HMETHOD HEADER", contents)
+                            # print("NO METHOD HEADER", contents)
                             pass
 
                         if "Deprecation warning" in codeblock.parent.contents[0]:

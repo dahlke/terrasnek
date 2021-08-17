@@ -1842,7 +1842,7 @@
             },
             {
                 "description": "Remove tags from workspace",
-                "http-path": "DELETE /workspaces/workspace-2/relationships/tags",
+                "http-path": "DELETE /workspaces/:workspace_id/relationships/tags",
                 "implementation-method-name": "remove_tags",
                 "implemented": true,
                 "permalink": "#remove-tags-from-workspace"
