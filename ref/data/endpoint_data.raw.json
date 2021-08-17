@@ -769,6 +769,39 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/organization-memberships.html"
     },
+    "org_tags": {
+        "methods": [
+            {
+                "description": "Get Tags",
+                "http-path": "GET /organizations/:organization_name/tags",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#get-tags"
+            },
+            {
+                "description": "Delete tags",
+                "http-path": "DELETE /organizations/:organization_name/tags",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#delete-tags"
+            },
+            {
+                "description": "Add workspaces to a tag",
+                "http-path": "POST /tags/:tag_id/relationships/workspaces",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#add-workspaces-to-a-tag"
+            },
+            {
+                "description": "Remove workspaces from a tag",
+                "http-path": "DELETE /tags/:tag_id/relationships/workspaces",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#remove-workspaces-from-a-tag"
+            }
+        ],
+        "url": "https://www.terraform.io/docs/cloud/api/organization-tags.html"
+    },
     "org_tokens": {
         "implementation": true,
         "methods": [
@@ -1792,6 +1825,27 @@
                 "implementation-method-name": "delete_remote_state_consumers",
                 "implemented": true,
                 "permalink": "#delete-remote-state-consumers"
+            },
+            {
+                "description": "Get Tags",
+                "http-path": "GET /workspaces/:workspace_id/relationships/tags",
+                "implementation-method-name": "get_tags",
+                "implemented": true,
+                "permalink": "#get-tags"
+            },
+            {
+                "description": "Add tags to a workspace",
+                "http-path": "POST /workspaces/:workspace_id/relationships/tags",
+                "implementation-method-name": "add_tags",
+                "implemented": true,
+                "permalink": "#add-tags-to-a-workspace"
+            },
+            {
+                "description": "Remove tags from workspace",
+                "http-path": "DELETE /workspaces/workspace-2/relationships/tags",
+                "implementation-method-name": "remove_tags",
+                "implemented": true,
+                "permalink": "#remove-tags-from-workspace"
             }
         ],
         "test": true,

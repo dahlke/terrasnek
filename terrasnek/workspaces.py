@@ -228,3 +228,45 @@ class TFCWorkspaces(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/remote-state-consumers"
         return self._delete(url, data=payload)
 
+    def get_tags(self, workspace_id, page=None, page_size=None):
+        """
+        ``GET /workspaces/:workspace_id/relationships/tags``
+
+        `Get Tags API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#get-tags>`_
+
+        Query Parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-2>`_):
+            - ``page`` (Optional)
+            - ``page_size`` (Optional)
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
+        return self._get(url, page=page, page_size=page_size)
+
+    def add_tags(self, workspace_id, payload):
+        """
+        ``POST /workspaces/:workspace_id/relationships/tags``
+
+        `Add Tags to a Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#add-tags-to-a-workspace>`_
+
+        `TODO: Add Tags to a Workspace API Doc Sample Payload \
+            <>`_
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
+        return self._post(url, data=payload)
+
+    def remove_tags(self, workspace_id, payload):
+        """
+        ``DELETE /workspaces/workspace-2/relationships/tags``
+
+        NOTE: this will be changed to `:workspace_id` when the docs are updated.
+
+        `Remove Tags from a Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#remove-tags-from-workspace>`_
+
+        `TODO: Remove Tags from a Workspace API Doc Sample Payload \
+            <>`_
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
+        return self._delete(url, data=payload)

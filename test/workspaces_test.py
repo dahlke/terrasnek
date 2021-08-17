@@ -33,8 +33,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
             self._get_ws_without_vcs_create_payload())["data"]
         ws_id = workspace["id"]
 
+        # TODO: use constants for the page sizes and number?
+        # List the workspaces, confirm we have the included values
         listed_ws_raw = self._api.workspaces.list(page=0, page_size=50, include=["organization"])
-        # Confirm we have the included values
         self.assertIn("included", listed_ws_raw)
 
         listed_ws = listed_ws_raw["data"]
@@ -45,8 +46,8 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
                 break
         self.assertTrue(found_ws)
 
+        # List all the workspaces, confirm we have the included values
         all_ws = self._api.workspaces.list_all(include=["organization"])
-        # Confirm we have the included values
         self.assertIn("included", all_ws)
 
         found_ws = False
@@ -121,8 +122,46 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)["data"]
         self.assertNotIn("ssh-key", ws_shown_by_id["relationships"])
 
-        self._api.workspaces.destroy(
-            workspace_name=updated_name)
+        # Add tags to the workspace
+        ws_add_tags_payload = {
+            "data": [
+                {
+                    "type": "tags",
+                    "attributes": {
+                        "name": "foo"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "attributes": {
+                        "name": "bar"
+                    }
+                }
+            ]
+        }
+        self._api.workspaces.add_tags(ws_id, ws_add_tags_payload)
+
+        # Get the tags and confirm that two were added to the workspace
+        added_ws_tags = self._api.workspaces.get_tags(ws_id)["data"]
+        self.assertEqual(len(added_ws_tags), len(ws_add_tags_payload["data"]))
+
+        # Remove one tag from the workspace
+        ws_remove_tags_payload = {
+            "data": [
+                {
+                    "type": "tags",
+                    "id": added_ws_tags[0]["id"]
+                }
+            ]
+
+        }
+        self._api.workspaces.remove_tags(ws_id, ws_remove_tags_payload)
+
+        # Get the tags and confirm the only tag left is the one we didn't remove.
+        current_ws_tags = self._api.workspaces.get_tags(ws_id)["data"]
+        self.assertEqual(current_ws_tags[0]["id"], added_ws_tags[-1]["id"])
+
+        self._api.workspaces.destroy(workspace_name=updated_name)
         listed_ws_raw = self._api.workspaces.list(include=["organization"])
         listed_ws = listed_ws_raw["data"]
         found_ws = False
