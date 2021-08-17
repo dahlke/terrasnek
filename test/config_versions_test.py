@@ -4,6 +4,8 @@ Module for testing the Terraform Cloud API Endpoint: Config Versions.
 
 from .base import TestTFCBaseTestCase
 
+import time
+
 
 class TestTFCConfigVersions(TestTFCBaseTestCase):
     """
@@ -60,13 +62,15 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                         break
                 self.assertTrue(found_conf_ver)
 
-                # Confirm the config version status is "pending" or "uploaded" as well
-                uploaded_or_pending = \
-                    config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
-                self.assertTrue(uploaded_or_pending)
-
                 # Test the show method on that same config version ID
                 shown_config_version = self._api.config_versions.show(cv_id)["data"]
+                # TODO: why is this getting stuck in pending?
+                while shown_config_version["attributes"]["status"] != "uploaded":
+                    shown_config_version = self._api.config_versions.show(cv_id)["data"]
+                    time.sleep(5)
+
+                # Confirm the config version status is "uploaded"
+                self.assertEqual(shown_config_version["atribtes"]["status"], "uploaded")
 
                 # Confirm the results match the same ID we looked up
                 self.assertEqual(shown_config_version["id"], cv_id)

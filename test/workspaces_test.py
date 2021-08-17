@@ -150,7 +150,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
             "data": [
                 {
                     "type": "tags",
-                    "id": "tag-Yfha4YpPievQ8wJw"
+                    "id": added_ws_tags[0]["id"]
                 }
             ]
 
