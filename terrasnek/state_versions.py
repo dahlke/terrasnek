@@ -91,6 +91,39 @@ class TFCStateVersions(TFCEndpoint):
         """
         return self._list_all(self._state_version_api_v2_base_url, filters=filters, include=include)
 
+
+    def list_state_version_outputs(self, state_version_id):
+        """
+        ``GET /state-versions/:state_version_id/outputs``
+
+        `List State Version Outputs API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#list-state-version-outputs>`_
+
+        Query Parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`_):
+            - ``filter[workspace][name]`` (Required)
+            - ``filter[organization][name]`` (Required)
+            - ``page`` (Optional)
+            - ``page_size`` (Optional)
+
+        Example filter(s):
+
+        .. code-block:: python
+
+            filters = [
+                {
+                    "keys": ["workspace", "name"],
+                    "value": "foo"
+                },
+                {
+                    "keys": ["organization", "name"],
+                    "value": "bar"
+                }
+            ]
+        """
+        url = f"{self._state_version_api_v2_base_url}/{state_version_id}/outputs"
+        return self._list(url)
+
     def show(self, state_version_id, include=None):
         """
         ``GET /state-versions/:state_version_id``

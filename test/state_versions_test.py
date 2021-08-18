@@ -81,6 +81,11 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         state_version = state_versions[0]
         sv_id = state_version["id"]
 
+        # List the state version outputs
+        sv_outputs = self._api.state_versions.list_state_version_outputs(sv_id)["data"]
+        self.assertEqual(sv_outputs[0]["attributes"]["name"], "org_id")
+
+        # Check the raw state version has the includes
         current_state_version_raw = \
             self._api.state_versions.get_current(self._ws_id, include=["outputs"])
         self.assertIn("included", current_state_version_raw)

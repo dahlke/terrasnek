@@ -47,9 +47,9 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
             with self.subTest():
 
                 # Create a new config version
-                config_version = self._api.config_versions.create(
+                created_config_version = self._api.config_versions.create(
                     self._ws_id, self._get_config_version_create_payload())["data"]
-                cv_id = config_version["id"]
+                cv_id = created_config_version["id"]
 
                 # List all of the config versions for the workspace
                 config_versions = self._api.config_versions.list(self._ws_id)["data"]
@@ -62,33 +62,17 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                         break
                 self.assertTrue(found_conf_ver)
 
-                # Confirm the config version status is "pending" or "uploaded" as well
-                # TODO: why aren't I getting an upload-url anymore?
-                uploaded_or_pending = \
-                    config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
-                self.assertTrue(uploaded_or_pending)
-
-                # Test the show method on that same config version ID
+                # Confirm the config version status is "pending" and the IDs match on show
                 shown_config_version = self._api.config_versions.show(cv_id)["data"]
-                # TODO: why is this getting stuck in pending?
-                while shown_config_version["attributes"]["status"] != "uploaded":
-                    shown_config_version = self._api.config_versions.show(cv_id)["data"]
-                    time.sleep(5)
-
-                # Confirm the config version status is "uploaded"
-                self.assertEqual(shown_config_version["atribtes"]["status"], "uploaded")
-
-                # Confirm the results match the same ID we looked up
+                self.assertEqual(shown_config_version["attributes"]["status"], "pending")
                 self.assertEqual(shown_config_version["id"], cv_id)
 
                 # Upload the .tf code and confirm it's been uploaded
-                upload_url = shown_config_version["attributes"]["upload-url"]
+                upload_url = created_config_version["attributes"]["upload-url"]
                 upload_handle(source, upload_url)
 
                 config_versions = self._api.config_versions.list(self._ws_id)["data"]
-                uploaded_or_pending = \
-                    config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
-                self.assertTrue(uploaded_or_pending)
+                self.assertEqual(config_versions[0]["attributes"]["status"], "uploaded")
 
                 all_config_versions = self._api.config_versions.list_all(self._ws_id)
                 found_conf_ver = False

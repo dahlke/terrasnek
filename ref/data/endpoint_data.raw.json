@@ -792,13 +792,6 @@
                 "implementation-method-name": "add_workspaces_to_tag",
                 "implemented": true,
                 "permalink": "#add-workspaces-to-a-tag"
-            },
-            {
-                "description": "Remove workspaces from a tag",
-                "http-path": "DELETE /tags/:tag_id/relationships/workspaces",
-                "implementation-method-name": "remove_workspaces_from_tag",
-                "implemented": true,
-                "permalink": "#remove-workspaces-from-a-tag"
             }
         ],
         "test": true,
@@ -1433,9 +1426,16 @@
             {
                 "description": "Show a State Version",
                 "http-path": "GET /state-versions/:state_version_id",
-                "implementation-method-name": "show",
+                "implementation-method-name": "list_state_version_outputs",
                 "implemented": true,
                 "permalink": "#show-a-state-version"
+            },
+            {
+                "description": "List State Version Outputs",
+                "http-path": "GET /state-versions/:state_version_id/outputs",
+                "implementation-method-name": "list_state_version_outputs",
+                "implemented": true,
+                "permalink": "#list-state-version-outputs"
             }
         ],
         "test": true,

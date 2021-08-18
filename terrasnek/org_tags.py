@@ -44,7 +44,7 @@ class TFCOrgTags(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/organization-tags.html#delete-tags>`_
 
         `Delete Tags API Doc Sample Payload \
-            <TODO: add to docs>`_
+            <https://www.terraform.io/docs/cloud/api/organization-tags.html#sample-payload>`_
         """
         return self._delete(self._org_tags_base_url, data=payload)
 
@@ -56,21 +56,24 @@ class TFCOrgTags(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/organization-tags.html#add-workspaces-to-a-tag>`_
 
         `Add Workspace to a Tag API Doc Sample Payload \
-            <TODO: add to docs>`_
+            <https://www.terraform.io/docs/cloud/api/organization-tags.html#sample-payload-1>`_
         """
         url = f"{self._tags_base_url}/{tag_id}/relationships/workspaces"
         return self._post(url, data=payload)
 
+    # NOTE: this endpoint has been temporarily removed
+    """
     def remove_workspaces_from_tag(self, tag_id, payload):
-        """
+        \"""
         ``DELETE /tags/:tag_id/relationships/workspaces``
 
         `Remove Workspaces from Tags API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-tags.html#remove-workspaces-from-a-tag>`_
 
         `Remove Workspaces from Tags API Doc Sample Payload \
-            <TODO: add to docs>`_
-        """
+            <>`_
+        \"""
         url = f"{self._tags_base_url}/{tag_id}/relationships/workspaces"
         print("REMOVE URL", url)
         return self._delete(url, data=payload)
+    """
