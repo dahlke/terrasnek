@@ -23,7 +23,7 @@
 | [Oauth Clients](https://www.terraform.io/docs/cloud/api/oauth-clients.html)                       | `oauth_clients`            | True                 | True       | False      |
 | [Oauth Tokens](https://www.terraform.io/docs/cloud/api/oauth-tokens.html)                         | `oauth_tokens`             | True                 | True       | False      |
 | [Org Memberships](https://www.terraform.io/docs/cloud/api/organization-memberships.html)          | `org_memberships`          | True                 | True       | False      |
-| [Org Tags](https://www.terraform.io/docs/cloud/api/organization-tags.html)                        | `org_tags`                 | False                | False      | False      |
+| [Org Tags](https://www.terraform.io/docs/cloud/api/organization-tags.html)                        | `org_tags`                 | True                 | True       | False      |
 | [Org Tokens](https://www.terraform.io/docs/cloud/api/organization-tokens.html)                    | `org_tokens`               | True                 | True       | False      |
 | [Orgs](https://www.terraform.io/docs/cloud/api/organizations.html)                                | `orgs`                     | True                 | True       | False      |
 | [Plan Exports](https://www.terraform.io/docs/cloud/api/plan-exports.html)                         | `plan_exports`             | True                 | True       | False      |

@@ -62,6 +62,12 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                         break
                 self.assertTrue(found_conf_ver)
 
+                # Confirm the config version status is "pending" or "uploaded" as well
+                # TODO: why aren't I getting an upload-url anymore?
+                uploaded_or_pending = \
+                    config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
+                self.assertTrue(uploaded_or_pending)
+
                 # Test the show method on that same config version ID
                 shown_config_version = self._api.config_versions.show(cv_id)["data"]
                 # TODO: why is this getting stuck in pending?

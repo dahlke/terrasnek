@@ -35,6 +35,7 @@ from .oauth_clients import TFCOAuthClients
 from .oauth_tokens import TFCOAuthTokens
 from .orgs import TFCOrgs
 from .org_memberships import TFCOrgMemberships
+from .org_tags import TFCOrgTags
 from .org_tokens import TFCOrgTokens
 from .plans import TFCPlans
 from .plan_exports import TFCPlanExports
@@ -103,6 +104,7 @@ class TFC():
             "oauth_clients": TFCOAuthClients,
             "oauth_tokens": TFCOAuthTokens,
             "org_memberships": TFCOrgMemberships,
+            "org_tags": TFCOrgTags,
             "org_tokens": TFCOrgTokens,
             "plans": TFCPlans,
             "plan_exports": TFCPlanExports,
@@ -170,6 +172,7 @@ class TFC():
         self.oauth_clients: TFCOAuthClients = None
         self.oauth_tokens: TFCOAuthTokens = None
         self.org_memberships: TFCOrgMemberships = None
+        self.org_tags: TFCOrgTags = None
         self.org_tokens: TFCOrgTokens = None
         self.plans: TFCPlans = None
         self.plan_exports: TFCPlanExports = None
