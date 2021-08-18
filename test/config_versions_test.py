@@ -61,6 +61,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                 self.assertTrue(found_conf_ver)
 
                 # Confirm the config version status is "pending" or "uploaded" as well
+                # TODO: why aren't I getting an upload-url anymore?
                 uploaded_or_pending = \
                     config_versions[0]["attributes"]["status"] in ["pending", "uploaded"]
                 self.assertTrue(uploaded_or_pending)

@@ -24,10 +24,8 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
         self._target_ws_name = self._target_ws["data"]["attributes"]["name"]
 
     def tearDown(self):
-        self._api.workspaces.destroy(
-            workspace_name=self._source_ws_name)
-        self._api.workspaces.destroy(
-            workspace_name=self._target_ws_name)
+        self._api.workspaces.destroy(workspace_name=self._source_ws_name)
+        self._api.workspaces.destroy(workspace_name=self._target_ws_name)
 
     def test_run_triggers(self):
         """

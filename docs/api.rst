@@ -32,6 +32,7 @@ API Spec
    oauth_tokens
    orgs
    org_memberships
+   org_tags
    org_tokens
    plan_exports
    plans

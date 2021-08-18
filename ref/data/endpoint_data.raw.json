@@ -770,36 +770,38 @@
         "url": "https://www.terraform.io/docs/cloud/api/organization-memberships.html"
     },
     "org_tags": {
+        "implementation": true,
         "methods": [
             {
                 "description": "Get Tags",
                 "http-path": "GET /organizations/:organization_name/tags",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "get_tags",
+                "implemented": true,
                 "permalink": "#get-tags"
             },
             {
                 "description": "Delete tags",
                 "http-path": "DELETE /organizations/:organization_name/tags",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "delete_tags",
+                "implemented": true,
                 "permalink": "#delete-tags"
             },
             {
                 "description": "Add workspaces to a tag",
                 "http-path": "POST /tags/:tag_id/relationships/workspaces",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_workspaces_to_tag",
+                "implemented": true,
                 "permalink": "#add-workspaces-to-a-tag"
             },
             {
                 "description": "Remove workspaces from a tag",
                 "http-path": "DELETE /tags/:tag_id/relationships/workspaces",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_workspaces_from_tag",
+                "implemented": true,
                 "permalink": "#remove-workspaces-from-a-tag"
             }
         ],
+        "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/organization-tags.html"
     },
     "org_tokens": {
