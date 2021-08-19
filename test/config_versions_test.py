@@ -71,6 +71,8 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                 upload_url = created_config_version["attributes"]["upload-url"]
                 upload_handle(source, upload_url)
 
+                # Give 2 seconds for the upload to register
+                time.sleep(2)
                 config_versions = self._api.config_versions.list(self._ws_id)["data"]
                 self.assertEqual(config_versions[0]["attributes"]["status"], "uploaded")
 
