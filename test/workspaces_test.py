@@ -2,8 +2,6 @@
 Module for testing the Terraform Cloud API Endpoint: Workspaces.
 """
 
-import time
-
 from .base import TestTFCBaseTestCase
 
 
@@ -30,7 +28,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         # Get the number of existing workspaces, then create one and compare them
         workspace = self._api.workspaces.create(
-            self._get_ws_without_vcs_create_payload())["data"]
+            self._get_ws_no_vcs_create_payload())["data"]
         ws_id = workspace["id"]
 
         # TODO: use constants for the page sizes and number?
@@ -142,8 +140,12 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         self._api.workspaces.add_tags(ws_id, ws_add_tags_payload)
 
         # Get the tags and confirm that two were added to the workspace
-        added_ws_tags = self._api.workspaces.get_tags(ws_id)["data"]
+        added_ws_tags = self._api.workspaces.list_tags(ws_id)["data"]
         self.assertEqual(len(added_ws_tags), len(ws_add_tags_payload["data"]))
+
+        # Also test the list all tags function
+        all_tags = self._api.workspaces.list_all_tags(ws_id)["data"]
+        self.assertEqual(len(all_tags), len(ws_add_tags_payload["data"]))
 
         # Remove one tag from the workspace
         ws_remove_tags_payload = {
@@ -158,7 +160,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         self._api.workspaces.remove_tags(ws_id, ws_remove_tags_payload)
 
         # Get the tags and confirm the only tag left is the one we didn't remove.
-        current_ws_tags = self._api.workspaces.get_tags(ws_id)["data"]
+        current_ws_tags = self._api.workspaces.list_tags(ws_id)["data"]
         self.assertEqual(current_ws_tags[0]["id"], added_ws_tags[-1]["id"])
 
         self._api.workspaces.destroy(workspace_name=updated_name)
@@ -178,9 +180,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         """
 
         # Create 3 workspaces, one to add a consumer to, one to update with.
-        workspace1_id = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())["data"]["id"]
-        workspace2_id = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())["data"]["id"]
-        workspace3_id = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())["data"]["id"]
+        workspace1_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
+        workspace2_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
+        workspace3_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
 
         gotten_consumers = self._api.workspaces.get_remote_state_consumers(workspace1_id)["data"]
         self.assertEqual(len(gotten_consumers), 0)

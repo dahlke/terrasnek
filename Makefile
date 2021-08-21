@@ -29,6 +29,22 @@ lint:
 docs:
 	cd docs/ && rm -rf _build/ && make html
 
+.PHONY: open_docs
+open_docs:
+	open docs/_build/html/index.html;
+
+.PHONY: todo
+todo:
+	@ag "TODO" --ignore Makefile
+
+.PHONY: note
+note:
+	@ag "NOTE" --ignore Makefile
+
+.PHONY: fixme
+fixme:
+	@ag "FIXME" --ignore Makefile
+
 .PHONY: api_comparison
 api_comparison:
 	python3 scripts/python/api_comparison.py
@@ -56,6 +72,14 @@ pip-test-publish: pip-package
 .PHONY: contributor_check
 contributor_check:
 	python3 scripts/python/contributor_check.py
+
+.PHONY: pre_release
+pre_release:
+	make lint;
+	make api_comparison;
+	make docs;
+	make coverage;
+	make codecov;
 
 .PHONY: release_check
 release_check:

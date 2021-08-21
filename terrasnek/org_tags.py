@@ -26,7 +26,7 @@ class TFCOrgTags(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def get_tags(self):
+    def list_tags(self):
         """
         ``GET /organizations/:organization_name/tags``
 

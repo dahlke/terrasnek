@@ -17,8 +17,12 @@ All Python requirements are outlined in `pip-reqs.txt`.
 
 Before contributing to `terrasnek` or publishing to PyPi, there are a few must-dos.
 
-- Each endpoint must have it's own implementation file, it's own test file, and
-corresponding doc file.
+Each endpoint must have it's own implementation file, it's own test file, and
+corresponding doc file. The docstring must also contain the sample payloads,
+target URLs, etc. that are present in all other functions currently. These help
+the users, and are used in automation to find missing functionality in
+`terrasnek`.
+
 - The Python code (implementation and test) must be linted.
 - All Markdown edits _should_ be linted
 ([markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
@@ -29,6 +33,31 @@ coverage, and all tests must pass.
 - The test coverage must be uploaded to CodeCov.
 
 The instructions for doing each of these can be found below.
+
+### Quick Contributions
+
+If you are already familiar with the below processes, and you want to execute
+them quickly, use the below. If you are not familiar, this will break and you
+will not be able to release.
+
+```bash
+source test/secrets/secrets.op.sh
+```
+
+If testing against TFE, override some of the defaults in that file for TFE.
+
+```bash
+source test/secrets/secrets.op.sh
+source test/secrets/secrets.tfe.sh
+```
+
+Then run the required processes..
+
+```bash
+make pre_release
+make release_check
+make release
+```
 
 ### Linting the Library Code
 
@@ -89,8 +118,9 @@ tar -zcvf terrasnek_unittest_module.tar.gz src/*
 
 #### Getting Secrets
 
-There are example secrets files at `test/secrets/secrets.example.sh`.
-I (@eklhad) like to use the 1password CLI to populate mine like the below.
+There is an example secret files at `test/secrets/secrets.example.sh`. You can view that and
+manually plug in the values that they need.  I (@eklhad) like to use the
+[1password CLI](https://1password.com/downloads/command-line/) to populate mine like below.
 
 ```bash
 source test/secrets/secrets.op.sh

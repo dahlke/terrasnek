@@ -46,7 +46,7 @@ class TFCPolicySets(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/policy-sets.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#query-parameters>`__):
             - ``filter[versioned]`` (Optional)
             - ``include`` (Optional)
             - ``page`` (Optional)

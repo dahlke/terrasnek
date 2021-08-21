@@ -45,7 +45,7 @@ class TFCOrgMemberships(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#list-memberships-for-an-organization>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters>`__):
             - ``query`` (Optional)
             - ``filter[status]`` (Optional)
             - ``page`` (Optional)

@@ -15,11 +15,11 @@ class TestTFCRunTriggers(TestTFCBaseTestCase):
     _endpoint_being_tested = "run_triggers"
 
     def setUp(self):
-        self._source_ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())
+        self._source_ws = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())
         self._source_ws_id = self._source_ws["data"]["id"]
         self._source_ws_name = self._source_ws["data"]["attributes"]["name"]
 
-        self._target_ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())
+        self._target_ws = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())
         self._target_ws_id = self._target_ws["data"]["id"]
         self._target_ws_name = self._target_ws["data"]["attributes"]["name"]
 

@@ -26,15 +26,10 @@ class TFCUserTokens(TFCEndpoint):
 
     def create(self, user_id, payload):
         """
-        ``POST /users/:user_id/authentication-tokens``
+        ``POST /api/v2/users/:user_id/authentication-tokens``
 
         `User Tokens Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#create-a-user-token>`_
-
-        NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
-        since it uses a different prefix than the majority of endpoints.
-
-        ``POST /api/v2/users/:user_id/authentication-tokens``
 
         `Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#sample-payload>`_
@@ -44,45 +39,32 @@ class TFCUserTokens(TFCEndpoint):
 
     def destroy(self, token_id):
         """
-        ``DELETE /authentication-tokens/:id``
+        ``DELETE /api/v2/authentication-tokens/:id``
 
         `User Tokens Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#destroy-a-user-token>`_
 
-        NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
-        since it uses a different prefix than the majority of endpoints.
-
-        ``DELETE /api/v2/authentication-tokens/:id``
         """
         url = f"{self._tokens_api_v2_base_url}/{token_id}"
         self._destroy(url)
 
     def list(self, user_id):
         """
-        ``GET /users/:user_id/authentication-tokens``
+        ``GET /api/v2/users/:user_id/authentication-tokens``
 
         `User Tokens List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#list-user-tokens>`_
 
-        NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
-        since it uses a different prefix than the majority of endpoints.
-
-        ``GET /api/v2/users/:user_id/authentication-tokens``
         """
         url = f"{self._users_api_v2_base_url}/{user_id}/authentication-tokens"
         return self._list(url)
 
     def show(self, token_id):
         """
-        ``GET /authentication-tokens/:id``
+        ``GET /api/v2/authentication-tokens/:id``
 
         `User Tokens Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#show-a-user-token>`_
-
-        NOTE: the following method descriptor is here for the ``api_comparison.py`` script to pass,
-        since it uses a different prefix than the majority of endpoints.
-
-        ``GET /api/v2/authentication-tokens/:id``
         """
         url = f"{self._tokens_api_v2_base_url}/{token_id}"
         return self._show(url)

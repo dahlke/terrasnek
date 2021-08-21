@@ -84,7 +84,7 @@ class TFCWorkspaces(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/workspaces.html#list-workspaces>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters>`__):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """
@@ -182,7 +182,7 @@ class TFCWorkspaces(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/workspaces.html#get-remote-state-consumers>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-1>`_):
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-1>`__):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """
@@ -228,7 +228,7 @@ class TFCWorkspaces(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/remote-state-consumers"
         return self._delete(url, data=payload)
 
-    def get_tags(self, workspace_id, page=None, page_size=None):
+    def list_tags(self, workspace_id, page=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/relationships/tags``
 
@@ -236,12 +236,24 @@ class TFCWorkspaces(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/workspaces.html#get-tags>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-2>`_):
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-2>`__):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
         return self._get(url, page=page, page_size=page_size)
+
+    def list_all_tags(self, workspace_id):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every workspace in an organization.
+
+        Returns an object with two arrays of objects.
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
+        return self._list_all(url)
 
     def add_tags(self, workspace_id, payload):
         """

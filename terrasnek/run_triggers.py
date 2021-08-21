@@ -44,7 +44,7 @@ class TFCRunTriggers(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#list-run-triggers>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`__):
             - ``filter[run-trigger][type]`` (Required)
             - ``page_size`` (Optional)
 

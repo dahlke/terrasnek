@@ -2,9 +2,9 @@
 Module for testing the Terraform Cloud API Endpoint: Config Versions.
 """
 
-from .base import TestTFCBaseTestCase
-
 import time
+
+from .base import TestTFCBaseTestCase
 
 
 class TestTFCConfigVersions(TestTFCBaseTestCase):
@@ -16,7 +16,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
     _endpoint_being_tested = "config_versions"
 
     def setUp(self):
-        self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())
+        self._ws = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())
         self._ws_id = self._ws["data"]["id"]
 
         oauth_client = self._api.oauth_clients.create(self._get_oauth_client_create_payload())
@@ -101,7 +101,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
 
         # Show the commit information for the config version
         shown_commit_info = self._api.config_versions.show_config_version_commit_info(cv_id)["data"]
-        self.assertEqual("github", shown_commit_info["attributes"]["source"])
+        self.assertIn("github", shown_commit_info["attributes"]["commit-url"])
 
         all_config_versions_raw = self._api.config_versions.list_all(self._ws_w_vcs_id, \
             include=["ingress-attributes"])

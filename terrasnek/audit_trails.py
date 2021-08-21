@@ -31,7 +31,7 @@ class TFCAuditTrails(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/audit-trails.html#list-audit-trails>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/audit-trails.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/audit-trails.html#query-parameters>`__):
             - ``since`` (Optional)
             - ``page_size`` (Optional)
             - ``page`` (Optional)

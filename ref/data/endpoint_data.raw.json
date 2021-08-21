@@ -775,7 +775,7 @@
             {
                 "description": "Get Tags",
                 "http-path": "GET /organizations/:organization_name/tags",
-                "implementation-method-name": "get_tags",
+                "implementation-method-name": "list_tags",
                 "implemented": true,
                 "permalink": "#get-tags"
             },
@@ -1831,7 +1831,7 @@
             {
                 "description": "Get Tags",
                 "http-path": "GET /workspaces/:workspace_id/relationships/tags",
-                "implementation-method-name": "get_tags",
+                "implementation-method-name": "list_tags",
                 "implemented": true,
                 "permalink": "#get-tags"
             },

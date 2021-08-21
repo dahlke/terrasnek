@@ -44,7 +44,7 @@ class TFCPolicies(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/policies.html#list-policies>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/policies.html#query-parameters>`_):
+            <https://www.terraform.io/docs/cloud/api/policies.html#query-parameters>`__):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
             - ``search`` (Optional)

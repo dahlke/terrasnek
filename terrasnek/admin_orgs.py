@@ -52,7 +52,7 @@ class TFCAdminOrgs(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/admin/organizations.html#list-module-consumers-for-an-organization>`_
 
         Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#query-parameters-1>`_):
+            <https://www.terraform.io/docs/cloud/api/admin/organizations.html#query-parameters-1>`__):
             - ``page`` (Optional)
             - ``page_size`` (Optional)
         """

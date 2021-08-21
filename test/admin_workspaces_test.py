@@ -15,7 +15,7 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
 
     def setUp(self):
         # Create a sample workspace to manipulate in the test.
-        self._ws = self._api.workspaces.create(self._get_ws_without_vcs_create_payload())["data"]
+        self._ws = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]
         self._created_ws_id = self._ws["id"]
         self._created_ws_name = self._ws["attributes"]["name"]
 

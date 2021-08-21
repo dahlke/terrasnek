@@ -323,7 +323,8 @@ indent-after-paren=4
 indent-string='    '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+# NOTE: 80-100 is preferred, but 120 is required due to embedding docs links / long var names.
+max-line-length=120
 
 # Maximum number of lines in a module.
 max-module-lines=1000

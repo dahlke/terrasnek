@@ -306,6 +306,7 @@ class TFC():
         self._token = token
         self._headers = {
             "Authorization": f"Bearer {token}",
+            "User-Agent": f"terrasnek-{self.version}",
             "Content-Type": "application/vnd.api+json"
         }
         self._initialize_endpoints()
