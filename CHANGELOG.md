@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implemented new Config Version endpoints
 - Implemented new Agent endpoints
 - Implemented new Workspace Tag endpoints
-- Implemented new ORg Tag endpoints
+- Implemented new Org Tag endpoints
 - Added TFC API Changelog link in docs
 - Transitioned Registry Modules endpoints to new ones
 - Added Better exception handling
