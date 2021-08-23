@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated example code in README
 - Upgraded CircleCI testing image
 - API script now detects deprecated endpoints and treats them as such
-- Fixed tests to handle new API behavior TODO
+- Fixed tests to handle new API behavior
 
 ## [0.1.4] - 2021-08-20
 
