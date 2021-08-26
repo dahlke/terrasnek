@@ -120,7 +120,7 @@ class TestTFCAdminSettings(TestTFCBaseTestCase):
         all_twilio = self._api.admin_settings.list_twilio()["data"]
         self.assertEqual("twilio-settings", all_twilio["type"])
 
-        # TODO: need to use a real twilio account to finish this test.
+        # TODO: need to use a real Twilio account to finish this test.
 
     def test_admin_settings_customization(self):
         """

@@ -6,10 +6,6 @@ from .endpoint import TFCEndpoint
 from ._constants import Entitlements
 
 
-# TODO: update the doc string references for all the changes
-# TODO: mixing the two API versions for registry modules has some weirdness, try to pin it down
-# TODO: slashes in search & list were behaving differently from TFE to TFC, retest w/ new endpoints
-
 class TFCRegistryModules(TFCEndpoint):
     """
     `Registry Modules API Docs (Private Registry) \

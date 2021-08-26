@@ -26,14 +26,13 @@ class TestTFCVCSEvents(TestTFCBaseTestCase):
         """
         Test the VCS Events API endpoints.
         """
-
         # NOTE: Currently, this feature is in beta, and only supports GitLab.
         # Since all of the testing is done with GitHub, this function is
         # provided, but you can see below that the test is not yet very good.
 
         # List the VCS events
-        # TODO: test query parameters, as well as make this non-empty.
         start_page = 0
         page_size = 50
+        # TODO: test filter / include parameters GitHub is supported.
         vcs_events = self._api.vcs_events.list(page=start_page, page_size=page_size)["data"]
         self.assertEqual(len(vcs_events), 0)

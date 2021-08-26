@@ -23,9 +23,10 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
         try:
             # Create a temp org to manipulate in the test
             self._api.orgs.destroy(self._created_org_name)
-        except Exception:
+        except Exception as err:
             # In case the test fails below, this will ensure the created
             # org gets cleaned up.
+            print(err)
             pass
 
     def test_admin_orgs(self):

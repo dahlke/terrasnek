@@ -28,6 +28,12 @@ workflows:
   test_and_deploy:
     jobs:
       - prepare_deploy
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
   check_api_completeness:
     triggers:
       - schedule:

@@ -57,7 +57,7 @@ class TFCVCSEvents(TFCEndpoint):
                 }
             ]
 
-        NOTE / TODO: Currently, this feature is in beta, and only supports GitLab.
+        NOTE: Currently, this feature is in beta, and only supports GitLab.
         Since all of the testing is done with GitHub, this function is
         provided, but is not well tested yet.
         """

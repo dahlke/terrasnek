@@ -87,20 +87,17 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
         self.assertTrue(found_module)
 
-        """
-        TODO: this is not working as expected anymore
-
         # Search for the module by name, confirm we got it back in the results.
         search_modules_resp = self._api.registry_modules.search(published_module_name)
         search_modules = search_modules_resp["modules"]
         found_module = False
-        print(published_module_name, search_modules)
+        # TODO: this is not working as expected on TFE anymore, works fine on TFC
+        # print(published_module_name, search_modules)
         for module in search_modules:
             if module["name"] == published_module_name:
                 found_module = True
                 break
         self.assertTrue(found_module)
-        """
 
         # List the module versions, confirm that we got an expected response.
         listed_versions_resp = \

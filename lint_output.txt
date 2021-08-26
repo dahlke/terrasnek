@@ -2,12 +2,9 @@
 terrasnek/org_tags.py:36:2: W0511: TODO: does this support pagination? (fixme)
 terrasnek/org_tags.py:65:4: W0105: String statement has no effect (pointless-string-statement)
 ************* Module terrasnek.registry_modules
-terrasnek/registry_modules.py:9:2: W0511: TODO: update the doc string references for all the changes (fixme)
-terrasnek/registry_modules.py:10:2: W0511: TODO: mixing the two API versions for registry modules has some weirdness, try to pin it down (fixme)
-terrasnek/registry_modules.py:11:2: W0511: TODO: slashes in search & list were behaving differently from TFE to TFC, retest w/ new endpoints (fixme)
-terrasnek/registry_modules.py:57:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
+terrasnek/registry_modules.py:53:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 ************* Module terrasnek.endpoint
-terrasnek/endpoint.py:91:4: R0912: Too many branches (26/20) (too-many-branches)
+terrasnek/endpoint.py:134:2: W0511: TODO: do I still need to support this? (fixme)
 ************* Module terrasnek.invoices
 terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
@@ -16,7 +13,7 @@ terrasnek/vcs_events.py:22:2: W0511: TODO: change this once it is released in TF
 ************* Module terrasnek.workspaces
 terrasnek/workspaces.py:7:0: R0904: Too many public methods (22/20) (too-many-public-methods)
 ************* Module test.vcs_events_test
-test/vcs_events_test.py:35:2: W0511: TODO: test query parameters, as well as make this non-empty. (fixme)
+test/vcs_events_test.py:36:2: W0511: TODO: test filter / include parameters GitHub is supported. (fixme)
 ************* Module test.agents_test
 test/agents_test.py:61:2: W0511: TODO: create an agent and delete it. (fixme)
 ************* Module test.org_tags_test
@@ -41,5 +38,5 @@ test/admin_orgs_test.py:26:15: W0703: Catching too general exception Exception (
 test/audit_trails_test.py:46:2: W0511: TODO: audit trails aren't showing properly (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.93/10 (previous run: 9.93/10, +0.00)
+Your code has been rated at 9.94/10 (previous run: 9.94/10, -0.00)
 
