@@ -223,10 +223,17 @@ versions of the documentation.
 
 Thank you for your help or just for using `terrasnek`.
 
-## TODO: Setting up TFE for testing
 
-- Upload cert and key
+## TODO: Nice to Have Documentation Tid-bits
+
+## Setting up TFE for testing
+
+When running the full test suite against a TFE installation, there are several
+steps that must be executed ahead of time. With a fresh TFE installation, the
+steps when presented with the install UI are:
+
 - Set hostname
+- Upload cert and key
 - Upload license
 - Choose online
 - Set admin password
@@ -239,3 +246,17 @@ Thank you for your help or just for using `terrasnek`.
 - Create a user to invite in the tests (test / test@test.com / neilneilneil)
 - Update secrets.tfe.sh
 - Run the tests.
+
+## Adding new endpoints
+
+- Create an endpoint file in the `./terrasnek/` directory with the format `<endpoint_name>.py`.
+  - TODO: docstrings.
+- Update the API class
+  - Import the newly create endpoint class
+  - Add it to the right org requirement in `_class_for_attr_dict` in the in the API class
+  - Define the new API class property for the new endpoint class in `__init__`
+- Create an test file in the `./test/` directory with the format `<endpoint_name>_test.py`.
+  - Test every endpoint that is implemented.
+  - TODO: If your test creates resources that might not get cleaned up in the event of a failure, add destroy logic to the `base.py` test file to purge everything.
+- TODO: Update Docs
+- TODO: Make sure tests work

@@ -46,6 +46,7 @@ from .policy_sets import TFCPolicySets
 from .policy_set_params import TFCPolicySetParams
 from .notification_configs import TFCNotificationConfigurations
 from .registry_modules import TFCRegistryModules
+from .run_tasks import TFCRunTasks
 from .run_triggers import TFCRunTriggers
 from .runs import TFCRuns
 from .state_versions import TFCStateVersions
@@ -115,6 +116,7 @@ class TFC():
             "policy_set_params": TFCPolicySetParams,
             "notification_configs": TFCNotificationConfigurations,
             "registry_modules": TFCRegistryModules,
+            "run_tasks": TFCRunTasks,
             "run_triggers": TFCRunTriggers,
             "runs": TFCRuns,
             "ssh_keys": TFCSSHKeys,
@@ -187,6 +189,7 @@ class TFC():
         self.policy_set_params: TFCPolicySetParams = None
         self.notification_configs: TFCNotificationConfigurations = None
         self.registry_modules: TFCRegistryModules = None
+        self.run_tasks: TFCRunTasks = None
         self.run_triggers: TFCRunTriggers = None
         self.runs: TFCRuns = None
         self.state_versions: TFCStateVersions = None

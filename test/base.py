@@ -151,6 +151,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._api.policy_sets.destroy(policy_set["id"])
         cls._logger.debug(f"Policy sets purged from test org ({cls._test_org_name}).")
 
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of run task event hooks...")
+        event_hooks = cls._api.run_tasks.list_all_event_hooks()["data"]
+        for event_hook in event_hooks:
+            cls._api.run_tasks.destroy_event_hook(event_hook["id"])
+        cls._logger.debug(f"Run task event hooks purged from test org ({cls._test_org_name}).")
+
         # Delete all the VCS adjacent resources before the VCS client
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of OAuth clients...")
         oauth_clients = cls._api.oauth_clients.list()["data"]
