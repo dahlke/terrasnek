@@ -74,6 +74,20 @@ class TFCRunTasks(TFCEndpoint):
         url = f"{self._event_hooks_base_url}/{event_hook_id}"
         return self._show(url)
 
+    def update_event_hook(self, event_hook_id, payload):
+        """
+        ``PATCH /event-hooks/:id``
+
+        `Run Tasks Update Event Hook API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#update-a-task>`_
+
+        `Update Event Hook Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-3>`_
+        """
+        url = f"{self._event_hooks_base_url}/{event_hook_id}"
+        print(url, payload)
+        return self._update(url, payload)
+
     def destroy_event_hook(self, event_hook_id):
         """
         ``DELETE /event-hooks/:id``

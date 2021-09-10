@@ -33,7 +33,7 @@
 | [Policy Set Params](https://www.terraform.io/docs/cloud/api/policy-set-params.html)               | `policy_set_params`        | True                 | True       | False      |
 | [Policy Sets](https://www.terraform.io/docs/cloud/api/policy-sets.html)                           | `policy_sets`              | True                 | True       | False      |
 | [Registry Modules](https://www.terraform.io/docs/cloud/api/modules.html)                          | `registry_modules`         | True                 | True       | False      |
-| [Run Tasks](https://www.terraform.io/docs/cloud/api/run-tasks.html)                               | `run_tasks`                | False                | False      | False      |
+| [Run Tasks](https://www.terraform.io/docs/cloud/api/run-tasks.html)                               | `run_tasks`                | True                 | True       | False      |
 | [Run Triggers](https://www.terraform.io/docs/cloud/api/run-triggers.html)                         | `run_triggers`             | True                 | True       | False      |
 | [Runs](https://www.terraform.io/docs/cloud/api/run.html)                                          | `runs`                     | True                 | True       | False      |
 | [Ssh Keys](https://www.terraform.io/docs/cloud/api/ssh-keys.html)                                 | `ssh_keys`                 | True                 | True       | False      |

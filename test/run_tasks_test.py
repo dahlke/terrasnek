@@ -58,8 +58,20 @@ class TestTFCRunTasks(TestTFCBaseTestCase):
         all_hooks = self._api.run_tasks.list_all_event_hooks()["data"]
         self.assertEqual(len(all_hooks), 1)
 
+        updated_hook_name = "new-example"
+        update_hook_payload = {
+            "data": {
+                "type": "event-hooks",
+                "attributes": {
+                    "name": updated_hook_name
+                }
+            }
+        }
+        updated_hook = self._api.run_tasks.update_event_hook(created_hook_id, update_hook_payload)["data"]
+        self.assertEqual(updated_hook["attributes"]["name"], updated_hook_name)
+
         # Attach the event hook as a task to a workspace
-        attach_payload = {
+        attach_hook_payload = {
             "data": {
                 "type": "tasks",
                 "attributes": {
@@ -75,7 +87,8 @@ class TestTFCRunTasks(TestTFCBaseTestCase):
                 }
             }
         }
-        attached_task = self._api.run_tasks.attach_event_hook_as_task(self._ws_id, attach_payload)["data"]
+        attached_task = \
+            self._api.run_tasks.attach_event_hook_as_task(self._ws_id, attach_hook_payload)["data"]
         attached_task_id = attached_task["id"]
         attached_task_hook_id = attached_task["relationships"]["event-hook"]["data"]["id"]
         self.assertEqual(created_hook_id, attached_task_hook_id)

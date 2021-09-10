@@ -1246,78 +1246,80 @@
         "url": "https://www.terraform.io/docs/cloud/api/modules.html"
     },
     "run_tasks": {
+        "implementation": true,
         "methods": [
             {
                 "description": "Create an Event Hook",
                 "http-path": "POST /organizations/:organization_name/event-hooks",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create_event_hook",
+                "implemented": true,
                 "permalink": "#create-an-event-hook"
             },
             {
                 "description": "List Event Hooks",
                 "http-path": "GET /organizations/:organization_name/event-hooks",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_event_hooks",
+                "implemented": true,
                 "permalink": "#list-event-hooks"
             },
             {
                 "description": "Show an Event Hook",
                 "http-path": "GET /event-hooks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show_event_hook",
+                "implemented": true,
                 "permalink": "#show-an-event-hook"
             },
             {
                 "description": "Update an Event Hook",
                 "http-path": "PATCH /event-hooks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_event_hook",
+                "implemented": true,
                 "permalink": "#update-an-event-hook"
             },
             {
                 "description": "Delete an Event Hook",
                 "http-path": "DELETE /event-hooks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy_event_hook",
+                "implemented": true,
                 "permalink": "#delete-an-event-hook"
             },
             {
                 "description": "Attach an Event Hook to a Workspace as a Task",
                 "http-path": "POST /workspaces/:workspace_id/tasks",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "attach_event_hook_as_task",
+                "implemented": true,
                 "permalink": "#attach-an-event-hook-to-a-workspace-as-a-task"
             },
             {
                 "description": "List Tasks",
                 "http-path": "GET /workspaces/:workspace_id/tasks",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "#list-tasks"
             },
             {
                 "description": "Show a Task",
                 "http-path": "GET /tasks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "#show-a-task"
             },
             {
                 "description": "Update a Task",
                 "http-path": "PATCH /tasks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "#update-a-task"
             },
             {
                 "description": "Delete a Task",
                 "http-path": "DELETE /tasks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "#delete-a-task"
             }
         ],
+        "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/run-tasks.html"
     },
     "run_triggers": {
