@@ -257,6 +257,6 @@ steps when presented with the install UI are:
   - Define the new API class property for the new endpoint class in `__init__`
 - Create an test file in the `./test/` directory with the format `<endpoint_name>_test.py`.
   - Test every endpoint that is implemented.
-  - TODO: If your test creates resources that might not get cleaned up in the event of a failure, add destroy logic to the `base.py` test file to purge everything.
+  - If your test creates resources that might not get cleaned up in the event of a failure, add destroy logic to the `base.py` test file in the `purge_organization` function.
 - TODO: Update Docs
 - TODO: Make sure tests work
