@@ -28,6 +28,7 @@ workflows:
   test_and_deploy:
     jobs:
       - prepare_deploy
+    triggers:
       - schedule:
           cron: "0 0 * * *"
           filters:
