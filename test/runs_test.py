@@ -6,6 +6,7 @@ import time
 
 from terrasnek.exceptions import TFCHTTPConflict
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCRuns(TestTFCBaseTestCase):
@@ -69,7 +70,7 @@ class TestTFCRuns(TestTFCBaseTestCase):
 
         # List the runs, using the correct parameters, confirm it has been created
         # and we have our includes.
-        some_runs_raw = self._api.runs.list(self._ws_id, page=0, page_size=50, include=["plan"])
+        some_runs_raw = self._api.runs.list(self._ws_id, page=PAGE_START, page_size=PAGE_SIZE, include=["plan"])
         self.assertIn("included", some_runs_raw)
 
         some_runs = some_runs_raw["data"]

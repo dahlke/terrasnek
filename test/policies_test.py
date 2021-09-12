@@ -3,6 +3,7 @@ Module for testing the Terraform Cloud API Endpoint: Policies.
 """
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCPolicies(TestTFCBaseTestCase):
@@ -49,7 +50,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         # List all the policies, search the policy we just created so
         # we can test out the list params
         some_policies_raw = self._api.policies.list(\
-            page=0, page_size=50, search=created_policy_name, include=["policy-sets"])
+            page=PAGE_START, page_size=PAGE_SIZE, search=created_policy_name, include=["policy-sets"])
 
         # Confirm that included resources are present
         self.assertIn("included", some_policies_raw)

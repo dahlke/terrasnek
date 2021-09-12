@@ -3,6 +3,7 @@ Module for testjkg the Terraform Cloud API Endpoint: State Versions.
 """
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCStateVersions(TestTFCBaseTestCase):
@@ -56,7 +57,7 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
             }
         ]
         state_versions = self._api.state_versions.list(\
-            filters=test_filters, page=0, page_size=50)["data"]
+            filters=test_filters, page=PAGE_START, page_size=PAGE_SIZE)["data"]
         self.assertEqual(len(state_versions), 0)
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
 

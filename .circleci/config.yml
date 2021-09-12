@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  prepare_deploy:
+  contributor_check:
     docker:
       - image: eklhad/terrasnek-circleci:0.4
     working_directory: ~/terrasnek
@@ -25,10 +25,10 @@ jobs:
             make api_comparison
 workflows:
   version: 2
-  test_and_deploy:
+  contributor_check:
     jobs:
-      - prepare_deploy
-  check_api_completeness:
+      - contributor_check
+  api_completeness_check:
     triggers:
       - schedule:
           cron: "0 0 * * *"

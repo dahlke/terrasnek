@@ -3,6 +3,7 @@ Module for testing the Terraform Cloud API Endpoint: Workspaces.
 """
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCWorkspaces(TestTFCBaseTestCase):
@@ -33,7 +34,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         # TODO: use constants for the page sizes and number?
         # List the workspaces, confirm we have the included values
-        listed_ws_raw = self._api.workspaces.list(page=0, page_size=50, include=["organization"])
+        listed_ws_raw = self._api.workspaces.list(page=PAGE_START, page_size=PAGE_SIZE, include=["organization"])
         self.assertIn("included", listed_ws_raw)
 
         listed_ws = listed_ws_raw["data"]

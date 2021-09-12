@@ -5,6 +5,7 @@ Module for testing the Terraform Cloud API Endpoint: Admin Runs.
 import time
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCAdminRuns(TestTFCBaseTestCase):
@@ -60,7 +61,7 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
         # List all the runs confirm the one we created in the setup is there, confirm we have
         # the related resources.
         all_runs_raw = self._api.admin_runs.list(\
-            query=self._run_id, filters=[], page=0, page_size=50, include=["workspace"])
+            query=self._run_id, filters=[], page=PAGE_START, page_size=PAGE_SIZE, include=["workspace"])
         self.assertIn("included", all_runs_raw)
 
         all_runs = all_runs_raw["data"]

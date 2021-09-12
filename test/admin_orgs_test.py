@@ -3,6 +3,7 @@ Module for testing the Terraform Cloud API Endpoint: Admin Orgs.
 """
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCAdminOrgs(TestTFCBaseTestCase):
@@ -27,7 +28,6 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
             # In case the test fails below, this will ensure the created
             # org gets cleaned up.
             print(err)
-            pass
 
     def test_admin_orgs(self):
         """
@@ -68,8 +68,8 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
         shown_org = shown_org_raw["data"]
         self.assertEqual(self._created_org_id, shown_org["id"])
 
-        # TODO page and page_size
-        mod_consumers = self._api.admin_orgs.list_org_module_consumers(self._test_org_name)["data"]
+        mod_consumers = self._api.admin_orgs.list_org_module_consumers(\
+            self._test_org_name, page=PAGE_START, page_size=PAGE_SIZE)["data"]
         self.assertEqual(len(mod_consumers), 0)
 
         mod_consumer_update_payload = {

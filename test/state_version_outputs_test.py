@@ -5,6 +5,7 @@ Module for testing the Terraform Cloud API Endpoint: State Version Outputs.
 import time
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
@@ -64,7 +65,7 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
             }
         ]
         state_versions = self._api.state_versions.list(\
-            filters=test_filters, page=0, page_size=50)["data"]
+            filters=test_filters, page=PAGE_START, page_size=PAGE_SIZE)["data"]
         state_version = state_versions[0]
         sv_id = state_version["id"]
 

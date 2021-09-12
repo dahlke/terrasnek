@@ -3,6 +3,7 @@ Module for testing the Terraform Cloud API Endpoint: Admin Workspaces.
 """
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
@@ -26,7 +27,7 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
 
         # List all the workspaces, confirm the one we created in the setup exists
         all_ws_raw = self._api.admin_workspaces.list(\
-            search=self._created_ws_name, filters=[], page=0, page_size=50, \
+            search=self._created_ws_name, filters=[], page=PAGE_START, page_size=PAGE_SIZE, \
                 sort="name", include=["organization"])
         self.assertIn("included", all_ws_raw)
 

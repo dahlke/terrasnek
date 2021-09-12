@@ -21,7 +21,7 @@ Each endpoint must have it's own implementation file, it's own test file, and
 corresponding doc file. The docstring must also contain the sample payloads,
 target URLs, etc. that are present in all other functions currently. These help
 the users, and are used in automation to find missing functionality in
-`terrasnek`.
+`terrasnek`. More detailed instructions below.
 
 ### Adding New Endpoints Details
 
@@ -244,10 +244,9 @@ versions of the documentation.
 
 Thank you for your help or just for using `terrasnek`.
 
+## Addendum
 
-## TODO: Nice to Have Documentation Tid-bits
-
-## Setting up TFE for testing
+### Setting up TFE for testing
 
 When running the full test suite against a TFE installation, there are several
 steps that must be executed ahead of time. With a fresh TFE installation, the
@@ -259,11 +258,11 @@ steps when presented with the install UI are:
 - Choose online
 - Set admin password
 - Confirm pre-flight checks
-- Choose demo mode, add an encryption password (switch from PMD to Demo mode in TF)
+- Choose demo mode, add an encryption password
 - Create a user
 - Create an org
 - Get a user token
 - Get an org token
-- Create a user to invite in the tests (test / test@test.com / neilneilneil)
+- Create a user to invite in the tests that matches `secrets.tfe.op.sh`
 - Update secrets.tfe.sh
-- Run the tests.
+- Run the tests

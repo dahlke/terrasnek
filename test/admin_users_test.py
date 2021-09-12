@@ -3,6 +3,7 @@ Module for testing the Terraform Cloud API Endpoint: Admin Users.
 """
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCAdminUsers(TestTFCBaseTestCase):
@@ -27,7 +28,7 @@ class TestTFCAdminUsers(TestTFCBaseTestCase):
         # List all the users through the admin users API, but query for our test
         # user
         listed_users = self._api.admin_users.list(\
-            query=self._test_username, page=0, page_size=50)["data"]
+            query=self._test_username, page=PAGE_START, page_size=PAGE_SIZE)["data"]
         found_user = False
         for user in listed_users:
             if self._test_username == user["attributes"]["username"]:

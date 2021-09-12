@@ -3,6 +3,7 @@ Module for testing the Terraform Cloud API Endpoint: Org Memberships.
 """
 
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCOrgMemberships(TestTFCBaseTestCase):
@@ -53,7 +54,7 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         ]
         truncated_test_username = self._test_username[:5]
         users_for_org_include = self._api.org_memberships.list_for_org(\
-            query=truncated_test_username, filters=test_filters, page=0, page_size=50, \
+            query=truncated_test_username, filters=test_filters, page=PAGE_START, page_size=PAGE_SIZE, \
                 include=["user", "teams"])
         # Confirm we have our included resources
         self.assertIn("included", users_for_org_include)
@@ -75,6 +76,6 @@ class TestTFCOrgMemberships(TestTFCBaseTestCase):
         # Remove the user, confirm that the user is gone when we filter on the username
         self._api.org_memberships.remove(org_membership_id)
         users_for_org = self._api.org_memberships.list_for_org(\
-            query=truncated_test_username, filters=test_filters, page=0, page_size=50)
+            query=truncated_test_username, filters=test_filters, page=PAGE_START, page_size=PAGE_SIZE)
         num_users_in_org = len(users_for_org["data"])
         self.assertEqual(num_users_in_org, 0)

@@ -4,6 +4,7 @@ Module for testing the Terraform Cloud API Endpoint: Policy Sets.
 
 import time
 from .base import TestTFCBaseTestCase
+from ._constants import PAGE_START, PAGE_SIZE
 
 
 class TestTFCPolicySets(TestTFCBaseTestCase):
@@ -52,7 +53,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
             }
         ]
         some_policy_sets = self._api.policy_sets.list(\
-            filters=test_filters, page=0, page_size=50, search=created_policy_set_name)["data"]
+            filters=test_filters, page=PAGE_START, page_size=PAGE_SIZE, search=created_policy_set_name)["data"]
         self.assertEqual(len(some_policy_sets), 1)
 
         all_policy_sets = self._api.policy_sets.list_all(\
@@ -117,7 +118,7 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         self.assertEqual(len(shown_policy_set["relationships"]["workspaces"]["data"]), 0)
 
         some_policy_sets_raw = self._api.policy_sets.list(\
-            filters=test_filters, page=0, page_size=50, search=created_policy_set_name, \
+            filters=test_filters, page=PAGE_START, page_size=PAGE_SIZE, search=created_policy_set_name, \
                 include=["policies"])
         self.assertIn("included", some_policy_sets_raw)
 
