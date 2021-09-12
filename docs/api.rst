@@ -42,6 +42,7 @@ API Spec
    policy_set_params
    registry_modules
    runs
+   run_tasks
    run_triggers
    ssh_keys
    state_versions

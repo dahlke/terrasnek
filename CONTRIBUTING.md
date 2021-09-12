@@ -23,6 +23,27 @@ target URLs, etc. that are present in all other functions currently. These help
 the users, and are used in automation to find missing functionality in
 `terrasnek`.
 
+### Adding New Endpoints Details
+
+- Each endpoint must have its own implementation file.
+  - The endpoint file should be in the `./terrasnek/` directory with the format `<endpoint_name>.py`.
+  - The docstrings for each function in the endpoint must follow the [docstring standard](TODO).
+- Update the API class
+  - Add an `import` for the new endpoint class.
+  - Add the imported class to the right org requirement in `_class_for_attr_dict`.
+  - Define the new API class property for the new endpoint class in `__init__`
+- Create an test file in the `./test/` directory with the format `<endpoint_name>_test.py`.
+  - Test every endpoint that is implemented.
+  - Be sure to clean up all resources in the event of failure (`base.py` / `purge_organization`).
+  - Make sure the tests do not fail.
+- Update the docs to pick up the new class.
+  - Create a new file in `./docs` with the format `<endpoint_name>.rst`.
+  - Add the new endpoint name to `api.rst` in alphabetical order.
+
+### `terrasnek` Docstring Standard Details
+
+### Other Details
+
 - The Python code (implementation and test) must be linted.
 - All Markdown edits _should_ be linted
 ([markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
@@ -246,17 +267,3 @@ steps when presented with the install UI are:
 - Create a user to invite in the tests (test / test@test.com / neilneilneil)
 - Update secrets.tfe.sh
 - Run the tests.
-
-## Adding new endpoints
-
-- Create an endpoint file in the `./terrasnek/` directory with the format `<endpoint_name>.py`.
-  - TODO: docstrings.
-- Update the API class
-  - Import the newly create endpoint class
-  - Add it to the right org requirement in `_class_for_attr_dict` in the in the API class
-  - Define the new API class property for the new endpoint class in `__init__`
-- Create an test file in the `./test/` directory with the format `<endpoint_name>_test.py`.
-  - Test every endpoint that is implemented.
-  - If your test creates resources that might not get cleaned up in the event of a failure, add destroy logic to the `base.py` test file in the `purge_organization` function.
-- TODO: Update Docs
-- TODO: Make sure tests work

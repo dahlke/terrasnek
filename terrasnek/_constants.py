@@ -38,6 +38,8 @@ class Entitlements(Enum):
     Enumeration of all the possible Terraform Cloud Entitlements, to be used
     on each endpoint to indicate the required entitlements to use that piece
     of the Terraform Cloud API.
+
+    [Entitlements Docs](https://www.terraform.io/docs/cloud/api/index.html)
     """
 
     AGENTS = "AGENTS"
