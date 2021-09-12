@@ -13,6 +13,16 @@ jobs:
             make docs
             make coverage
             make contributor_check
+  coverage:
+    docker:
+      - image: eklhad/terrasnek-circleci:0.4
+    working_directory: ~/terrasnek
+    steps:
+      - checkout
+      - run:
+          name: Run the full test suite.
+          command: |
+            make coverage
   api_comparison:
     docker:
       - image: eklhad/terrasnek-circleci:0.4
@@ -28,6 +38,16 @@ workflows:
   contributor_check:
     jobs:
       - contributor_check
+  coverage:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - coverage
   api_completeness_check:
     triggers:
       - schedule:
