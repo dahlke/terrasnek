@@ -4,7 +4,7 @@ terrasnek/org_tags.py:65:4: W0105: String statement has no effect (pointless-str
 ************* Module terrasnek.registry_modules
 terrasnek/registry_modules.py:53:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 ************* Module terrasnek.endpoint
-terrasnek/endpoint.py:134:2: W0511: TODO: do I still need to support this? (fixme)
+terrasnek/endpoint.py:134:2: W0511: TODO: do we still need to support this? (fixme)
 ************* Module terrasnek.invoices
 terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
@@ -30,12 +30,12 @@ test/admin_settings_test.py:123:2: W0511: TODO: need to use a real Twilio accoun
 ************* Module test.state_version_outputs_test
 test/state_version_outputs_test.py:76:2: W0511: TODO: try not to have to use this sleep (fixme)
 ************* Module test.invoices_test
-test/invoices_test.py:20:2: W0511: TODO: this will fail since I don't have any billing info associated with the test org. (fixme)
+test/invoices_test.py:20:2: W0511: TODO: this will fail since we don't have any billing info associated with the test org. (fixme)
 ************* Module test.admin_orgs_test
 test/admin_orgs_test.py:27:15: W0703: Catching too general exception Exception (broad-except)
 ************* Module test.audit_trails_test
 test/audit_trails_test.py:46:2: W0511: TODO: audit trails aren't showing properly (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.94/10 (previous run: 9.90/10, +0.05)
+Your code has been rated at 9.94/10 (previous run: 9.94/10, +0.00)
 

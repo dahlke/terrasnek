@@ -81,7 +81,7 @@ def scrape_endpoint_info():
             # If it's a valid API path, get the endpoint name from the end of the URL.
             endpoint_name = api_path.split("/")[-1].replace(".html", "").replace("-", "_")
 
-            # Replace the URL strings with the ones I used in the library for conciseness.
+            # Replace the URL strings with the ones we used in the library for conciseness.
             endpoint_name = endpoint_name.replace("organization", "org")
             endpoint_name = endpoint_name.replace("configuration", "config")
             endpoint_name = endpoint_name.replace("workspace_variables", "workspace_vars")

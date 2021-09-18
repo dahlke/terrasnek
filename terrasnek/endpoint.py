@@ -131,7 +131,7 @@ class TFCEndpoint(ABC):
             q_options.append(f"since={since}")
 
         # V1 Modules API options
-        # TODO: do I still need to support this?
+        # TODO: do we still need to support this?
         if offset is not None:
             q_options.append(f"offset={offset}")
             print("OFFSET")
