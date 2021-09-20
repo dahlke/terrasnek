@@ -134,11 +134,9 @@ class TFCEndpoint(ABC):
         # TODO: do we still need to support this?
         if offset is not None:
             q_options.append(f"offset={offset}")
-            print("OFFSET")
 
         if limit is not None:
             q_options.append(f"limit={limit}")
-            print("LIMIT")
 
         if provider is not None:
             q_options.append(f"provider={provider}")

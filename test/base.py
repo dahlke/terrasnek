@@ -209,7 +209,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
         try:
             registry_modules = cls._api.registry_modules.list()["data"]
             for registry_module in registry_modules:
-                print("PURGING MODULE", registry_module["attributes"]["name"])
                 cls._api.registry_modules.destroy(registry_module["attributes"]["name"])
         except terrasnek.exceptions.TFCHTTPNotFound:
             cls._logger.debug("No modules exist in this org, skipping.")

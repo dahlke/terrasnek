@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.6] - 2021-09-19
 
+- Implemented Run Tasks endpoints
+- Clarified CircleCI jobs
+- Updated docs on endpoint contribution and testing against TFE
+- Added notes on how to download docs as a PDF
+- Changed all tests to use constants for page and page sizes
+- Added separate coverage files for TFC and TFE
+
 ## [0.1.5] - 2021-08-23
 
 - Implemented Workspace State Consumer endpoints

@@ -74,6 +74,5 @@ class TFCOrgTags(TFCEndpoint):
             <>`_
         \"""
         url = f"{self._tags_base_url}/{tag_id}/relationships/workspaces"
-        print("REMOVE URL", url)
         return self._delete(url, data=payload)
     """
