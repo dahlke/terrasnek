@@ -186,7 +186,8 @@ source test/secrets/secrets.op.sh
 make coverage
 ```
 
-Against TFC:
+Against TFE:
+
 ```bash
 source test/secrets/secrets.op.sh
 source test/secrets/secrets.tfe.sh
