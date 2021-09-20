@@ -20,7 +20,8 @@ class TFCRunTasks(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        return False
+        # TODO: remove this once it goes to TFE GA
+        return True
 
     def terraform_enterprise_only(self):
         return False
@@ -85,7 +86,6 @@ class TFCRunTasks(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-3>`_
         """
         url = f"{self._event_hooks_base_url}/{event_hook_id}"
-        print(url, payload)
         return self._update(url, payload)
 
     def destroy_event_hook(self, event_hook_id):

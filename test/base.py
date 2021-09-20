@@ -151,12 +151,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._api.policy_sets.destroy(policy_set["id"])
         cls._logger.debug(f"Policy sets purged from test org ({cls._test_org_name}).")
 
-        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of run task event hooks...")
-        event_hooks = cls._api.run_tasks.list_all_event_hooks()["data"]
-        for event_hook in event_hooks:
-            cls._api.run_tasks.destroy_event_hook(event_hook["id"])
-        cls._logger.debug(f"Run task event hooks purged from test org ({cls._test_org_name}).")
-
         # Delete all the VCS adjacent resources before the VCS client
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of OAuth clients...")
         oauth_clients = cls._api.oauth_clients.list()["data"]
@@ -188,12 +182,19 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 cls._api.org_memberships.remove(membership_id)
         cls._logger.debug(f"Org member invites purged from test org ({cls._test_org_name}).")
 
+        # TODO: move these once they both go GA or make the tests smarter
         if cls._api.is_terraform_cloud():
             cls._logger.debug(f"Purging test org ({cls._test_org_name}) of agent pools...")
             agent_pools = cls._api.agents.list_pools()["data"]
             for agent_pool in agent_pools:
                 cls._api.agents.destroy(agent_pool["id"])
             cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
+
+            cls._logger.debug(f"Purging test org ({cls._test_org_name}) of run task event hooks...")
+            event_hooks = cls._api.run_tasks.list_all_event_hooks()["data"]
+            for event_hook in event_hooks:
+                cls._api.run_tasks.destroy_event_hook(event_hook["id"])
+            cls._logger.debug(f"Run task event hooks purged from test org ({cls._test_org_name}).")
 
         try:
             cls._logger.debug(f"Purging org token from test org ({cls._test_org_name})...")

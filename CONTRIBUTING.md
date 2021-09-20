@@ -127,7 +127,7 @@ _NOTE: If you are running against a Terraform Enterprise instance, be sure to
 have enabled Cost Estimates as well a create a user that can be used
 for team and organization memberships tests, a this cannot be done
 from the API currently. That user's username and email must match those
-provided in your `secrets.sh` file._
+provided in your `secrets.tfe.sh` file._
 
 #### Building Test Data
 
@@ -179,9 +179,18 @@ offering. In order for you to test or use all of the endpoints, you'll need
 the proper packages for Terraform Cloud or your own private Terraform
 Enterprise instance._
 
+Against TFC:
+
 ```bash
-source test/secrets/secrets.sh
+source test/secrets/secrets.op.sh
 make coverage
+```
+
+Against TFC:
+```bash
+source test/secrets/secrets.op.sh
+source test/secrets/secrets.tfe.sh
+make coverage_tfe
 ```
 
 _NOTE: Be sure to override the environment variables for TFE if required._

@@ -62,7 +62,8 @@ at any time.
 
 ### `terrasnek` Common Use Case Examples
 
-See the [`terrasnek` documentation](https://terrasnek.readthedocs.io/en/latest/).
+See the [`terrasnek` docs](https://terrasnek.readthedocs.io/en/latest/). You
+can download the docs as a PDF directly from `readthedocs.io`.
 
 ### Contributing to `terrasnek`
 
