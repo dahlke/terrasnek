@@ -7,9 +7,9 @@ define for coverage or linting. It is meant to be self contained.
 
 import sys
 import argparse
+import json
 import git
 import requests
-import xml.etree.ElementTree as ET
 
 MIN_COVERAGE_SCORE = 0.9
 MIN_LINT_SCORE = 0.9
@@ -20,11 +20,11 @@ def get_coverage_score():
     """
     Get the coverage score from the coverage output, return it.
     """
-    tree = ET.parse("./coverage.xml")
-    root = tree.getroot()
-    line_rate = float(root.attrib["line-rate"])
-    return line_rate
-
+    json_coverage = None
+    with open("./coverage.tfc.json", "r") as infile:
+        json_coverage = json.loads(infile.read())
+    percent_covered = json_coverage["totals"]["percent_covered"] / 100
+    return percent_covered
 
 def get_lint_score():
     """

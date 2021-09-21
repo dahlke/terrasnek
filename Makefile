@@ -15,18 +15,14 @@ test:
 .PHONY: coverage
 coverage:
 	coverage run -m unittest test/*_test.py;
-	coverage report -m;
 	coverage json -o coverage.tfc.json --pretty-print;
+	coverage report -m;
 
 
 .PHONY: coverage_tfe
 coverage_tfe:
 	coverage run -m unittest test/*_test.py;
 	coverage json -o coverage.tfe.json --pretty-print;
-	coverage report -m;
-
-.PHONY: coverage_report
-coverage_report:
 	coverage report -m;
 
 .PHONY: lint
