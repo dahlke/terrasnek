@@ -15,8 +15,9 @@ test:
 .PHONY: coverage
 coverage:
 	coverage run -m unittest test/*_test.py;
-	coverage json -o coverage.tfc.json --pretty-print;
 	coverage report -m;
+	coverage json -o coverage.tfc.json --pretty-print;
+
 
 .PHONY: coverage_tfe
 coverage_tfe:
