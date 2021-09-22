@@ -5,6 +5,8 @@ terrasnek/org_tags.py:65:4: W0105: String statement has no effect (pointless-str
 terrasnek/registry_modules.py:53:2: W0511: TODO: the slash here is behaving differently from TFE to TFC (fixme)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:134:2: W0511: TODO: do we still need to support this? (fixme)
+************* Module terrasnek.run_tasks
+terrasnek/run_tasks.py:23:2: W0511: TODO: remove this once it goes to TFE GA (fixme)
 ************* Module terrasnek.invoices
 terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
@@ -35,7 +37,9 @@ test/invoices_test.py:20:2: W0511: TODO: this will fail since we don't have any 
 test/admin_orgs_test.py:27:15: W0703: Catching too general exception Exception (broad-except)
 ************* Module test.audit_trails_test
 test/audit_trails_test.py:46:2: W0511: TODO: audit trails aren't showing properly (fixme)
+************* Module test.base
+test/base.py:185:2: W0511: TODO: move these once they both go GA or make the tests smarter (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.94/10 (previous run: 9.94/10, +0.00)
+Your code has been rated at 9.94/10 (previous run: 9.94/10, -0.01)
 
