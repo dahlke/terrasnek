@@ -10,8 +10,9 @@ import argparse
 import json
 import git
 import requests
+import xml.etree.ElementTree as ET
 
-MIN_COVERAGE_SCORE = 0.9
+MIN_COVERAGE_SCORE = 0.8
 MIN_LINT_SCORE = 0.9
 PYPI_XML_URL = "https://pypi.org/rss/project/terrasnek/releases.xml"
 
@@ -176,7 +177,8 @@ def main():
         print("\n".join(err_msg_list), "\nExiting.")
         sys.exit(1)
     else:
-        print("Coverage score and lint score both meet their thresholds.")
+        print(f"Coverage score meets the threshold of {MIN_COVERAGE_SCORE * 100}% at {round(coverage_score * 100, 2)}%.")
+        print(f"Lint score meets the threshold of {MIN_LINT_SCORE * 100}% at {round(lint_score * 100, 2)}%.")
         print("All of the versions match in the important files (CHANGELOG.md, setup.py, docs/conf.py).")
         if latest_published_version is not None and \
             latest_published_version < changelog_version and \

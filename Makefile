@@ -12,18 +12,23 @@ DOCKER_TEST_IMAGE_VERSION=0.4
 test:
 	python3 -m unittest test/*.py
 
+# coverage run -m unittest test/*_test.py;
 .PHONY: coverage
 coverage:
-	coverage run -m unittest test/*_test.py;
+	coverage run --omit 'venv/*' -m unittest test/*_test.py;
 	coverage json -o coverage.tfc.json --pretty-print;
 	coverage report -m;
 
-
+# coverage run -m unittest test/*_test.py;
 .PHONY: coverage_tfe
 coverage_tfe:
-	coverage run -m unittest test/*_test.py;
+	coverage run --omit 'venv/*' -m unittest test/*_test.py;
 	coverage json -o coverage.tfe.json --pretty-print;
 	coverage report -m;
+
+.PHONY: coverage_report
+coverage_report:
+	coverage report -m
 
 .PHONY: lint
 lint:
