@@ -1,6 +1,6 @@
 requests==2.22.0
 pylint==2.3.1
-coverage==4.5.4
+coverage==5.5
 coverage-badge==1.0.1
 twine==1.13.0
 wheel==0.33.4
