@@ -10,7 +10,7 @@ import timeout_decorator
 
 from terrasnek.exceptions import TFCHTTPNotFound
 from .base import TestTFCBaseTestCase
-from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_TEST_TIMEOUT
+from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_TEST_TIMEOUT, PAGE_START, PAGE_SIZE
 
 class TestTFCRegistryModules(TestTFCBaseTestCase):
     """
@@ -68,7 +68,8 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
         def found_module_in_listed_modules_timeout(name_to_check):
             found_module = False
-            listed_modules = self._api.registry_modules.list()["data"]
+            # TODO: test other parameters
+            listed_modules = self._api.registry_modules.list(page=PAGE_START, page_size=PAGE_SIZE)["data"]
 
             while True:
                 listed_modules = self._api.registry_modules.list()["data"]
@@ -86,6 +87,10 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         _, found_module = found_module_in_listed_modules_timeout(published_module_name)
 
         self.assertTrue(found_module)
+
+        # List all the modules, confirm there is only the one we created
+        all_listed_modules = self._api.registry_modules.list_all()["data"]
+        self.assertEqual(len(all_listed_modules), 1)
 
         # Search for the module by name, confirm we got it back in the results.
         search_modules_resp = self._api.registry_modules.search(published_module_name)
