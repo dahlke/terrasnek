@@ -33,15 +33,52 @@ class TFCRegistryModules(TFCEndpoint):
         return False
 
     # Public Registry API Endpoints
-    def list(self, offset=None, limit=None, provider=None, verified=None):
+    def list(self, offset=None, page=None, page_size=None, limit=None, \
+        provider=None, verified=None, filters=None):
         """
         ``GET /organizations/:organization_name/registry-modules``
 
         `Registry Modules List API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-modules>`_
+
+        Query Parameter(s) (`details \
+            <https://www.terraform.io/docs/cloud/api/modules.html#query-parameters>`__):
+            - ``filter[registry_name]`` (Optional)
+            - ``filter[provider]`` (Optional)
+            - ``filter[organization_name]`` (Optional)
+            - ``limit`` (Optional)
+            - ``page`` (Optional)
+            - ``page_size`` (Optional)
+            - ``provider`` (Optional)
+            - ``verified`` (Optional)
+
+        Example filter(s):
+
+        .. code-block:: python
+
+            filters = [
+                {
+                    "keys": ["provider"],
+                    "value": "aws"
+                }
+            ]
         """
         return self._list(\
-            self._mods_v2_base_url, offset=offset, limit=limit, provider=provider, verified=verified)
+            self._mods_v2_base_url, page=page, page_size=page_size, offset=offset, \
+                limit=limit, provider=provider, verified=verified)
+
+    def list_all(self):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every audit trail in an organization.
+
+        Returns an object with two arrays of objects.
+        """
+        # TODO: should this take parameters?
+        return self._list_all(self._mods_v2_base_url)
+
 
     def search(self, query, offset=None, limit=None, provider=None, verified=None):
         """
