@@ -11,8 +11,6 @@ class TFCRunTasks(TFCEndpoint):
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
-        # self._org_event_hooks_base_url = f"{self._api_v2_base_url}/organizations/{self._org_name}/event-hooks"
-        # self._event_hooks_base_url = f"{self._api_v2_base_url}/event-hooks"
         self._org_tasks_base_url = f"{self._api_v2_base_url}/organizations/{self._org_name}/tasks"
         self._tasks_base_url = f"{self._api_v2_base_url}/tasks"
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
@@ -27,7 +25,7 @@ class TFCRunTasks(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def create_task(self, payload):
+    def create(self, payload):
         """
         ``POST /organizations/:organization_name/tasks``
 
@@ -67,7 +65,7 @@ class TFCRunTasks(TFCEndpoint):
         """
         return self._list_all(self._org_tasks_base_url)
 
-    def show_task(self, task_id):
+    def show(self, task_id):
         """
         ``GET /tasks/:id``
 
@@ -78,7 +76,7 @@ class TFCRunTasks(TFCEndpoint):
         url = f"{self._tasks_base_url}/{task_id}"
         return self._show(url)
 
-    def update_task(self, task_id, payload):
+    def update(self, task_id, payload):
         """
         ``PATCH /tasks/:id``
 
@@ -91,7 +89,7 @@ class TFCRunTasks(TFCEndpoint):
         url = f"{self._tasks_base_url}/{task_id}"
         return self._update(url, payload)
 
-    def destroy_task(self, task_id):
+    def destroy(self, task_id):
         """
         ``DELETE /tasks/:id``
 
@@ -113,9 +111,10 @@ class TFCRunTasks(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-2>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks"
+        print("attach URL", url)
         return self._post(url, data=payload)
 
-    def list_on_workspace(self, workspace_id, page=None, page_size=None):
+    def list_tasks_on_workspace(self, workspace_id, page=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/tasks``
 
@@ -153,7 +152,7 @@ class TFCRunTasks(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-3>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks/{task_id}"
-        return self._patch(url, payload=payload)
+        return self._update(url, payload=payload)
 
     def remove_task_from_workspace(self, workspace_id, task_id):
         """
