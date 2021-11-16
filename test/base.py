@@ -190,11 +190,11 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 cls._api.agents.destroy(agent_pool["id"])
             cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
 
-            cls._logger.debug(f"Purging test org ({cls._test_org_name}) of run task event hooks...")
-            event_hooks = cls._api.run_tasks.list_all_event_hooks()["data"]
-            for event_hook in event_hooks:
-                cls._api.run_tasks.destroy_event_hook(event_hook["id"])
-            cls._logger.debug(f"Run task event hooks purged from test org ({cls._test_org_name}).")
+            cls._logger.debug(f"Purging test org ({cls._test_org_name}) of run tasks...")
+            run_tasks = cls._api.run_tasks.list_all()["data"]
+            for run_task in run_tasks:
+                cls._api.run_tasks.destroy(run_task["id"])
+            cls._logger.debug(f"Run tasks purged from test org ({cls._test_org_name}).")
 
         try:
             cls._logger.debug(f"Purging org token from test org ({cls._test_org_name})...")
