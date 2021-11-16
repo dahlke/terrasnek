@@ -1251,7 +1251,7 @@
             {
                 "description": "Create a Run Task",
                 "http-path": "POST /organizations/:organization_name/tasks",
-                "implementation-method-name": "create_task",
+                "implementation-method-name": "create",
                 "implemented": true,
                 "permalink": "#create-a-run-task"
             },
@@ -1265,22 +1265,22 @@
             {
                 "description": "Show a Run Task",
                 "http-path": "GET /tasks/:id",
-                "implementation-method-name": "show_task",
+                "implementation-method-name": "show",
                 "implemented": true,
                 "permalink": "#show-a-run-task"
             },
             {
                 "description": "Update a Run Task",
                 "http-path": "PATCH /tasks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "#update-a-run-task"
             },
             {
                 "description": "Delete a Run Task",
                 "http-path": "DELETE /tasks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "#delete-a-run-task"
             },
             {
@@ -1293,29 +1293,29 @@
             {
                 "description": "List Workspace Run Tasks",
                 "http-path": "GET /workspaces/:workspace_id/tasks",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_tasks_on_workspace",
+                "implemented": true,
                 "permalink": "#list-workspace-run-tasks"
             },
             {
                 "description": "Show Workspace Run Task",
                 "http-path": "GET /workspaces/:workspace_id/tasks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show_task_on_workspace",
+                "implemented": true,
                 "permalink": "#show-workspace-run-task"
             },
             {
                 "description": "Update Workspace Run Task",
                 "http-path": "PATCH /workspaces/:workspace_id/tasks/:id",
-                "implementation-method-name": "update_task",
+                "implementation-method-name": "update_task_on_workspace",
                 "implemented": true,
                 "permalink": "#update-workspace-run-task"
             },
             {
                 "description": "Delete Workspace Task",
                 "http-path": "DELETE /workspaces/:workspace_id/tasks/:id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_task_from_workspace",
+                "implemented": true,
                 "permalink": "#delete-workspace-task"
             }
         ],

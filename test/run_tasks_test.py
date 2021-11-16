@@ -25,101 +25,102 @@ class TestTFCRunTasks(TestTFCBaseTestCase):
         """
         Test the Run Tasks API endpoints.
         """
-        # List the event hooks, check that there are none
-        hooks = self._api.run_tasks.list_event_hooks(self._ws_id)["data"]
-        self.assertEqual(len(hooks), 0)
+        # List the run tasks, check that there are none
+        tasks = self._api.run_tasks.list(self._ws_id)["data"]
+        self.assertEqual(len(tasks), 0)
 
-        # Create an event hook
-        hook_name = "example"
-        create_hook_payload = {
+        # Create a run task
+        task_name = "example"
+        create_task_payload = {
             "data": {
-                "type": "event-hooks",
+                "type": "tasks",
                 "attributes": {
-                    "name": hook_name,
+                    "name": task_name,
                     "url": "http://example.com",
                     "hmac_key": "secret",
                     "category": "task"
                 }
             }
         }
-        created_hook = self._api.run_tasks.create_event_hook(create_hook_payload)["data"]
-        created_hook_id = created_hook["id"]
-        self.assertEqual(created_hook["attributes"]["name"], hook_name)
+        created_task = self._api.run_tasks.create(create_task_payload)["data"]
+        created_task_id = created_task["id"]
+        self.assertEqual(created_task["attributes"]["name"], task_name)
 
-        # Confirm an event hook was created
-        shown_hook = self._api.run_tasks.show_event_hook(created_hook_id)["data"]
-        self.assertEqual(shown_hook["attributes"]["name"], hook_name)
+        # Confirm a run task was created
+        shown_task = self._api.run_tasks.show(created_task_id)["data"]
+        self.assertEqual(shown_task["attributes"]["name"], task_name)
 
-        # List the event hooks, check that we get the one we created
-        listed_hooks = self._api.run_tasks.list_event_hooks()["data"]
-        self.assertEqual(len(listed_hooks), 1)
+        # List the run tasks, check that we get the one we created
+        listed_tasks = self._api.run_tasks.list()["data"]
+        self.assertEqual(len(listed_tasks), 1)
 
-        # List all the event hooks, check that we get the one we created
-        all_hooks = self._api.run_tasks.list_all_event_hooks()["data"]
-        self.assertEqual(len(all_hooks), 1)
+        # List all the run tasks, check that we get the one we created
+        all_tasks = self._api.run_tasks.list_all()["data"]
+        self.assertEqual(len(all_tasks), 1)
 
-        updated_hook_name = "new-example"
-        update_hook_payload = {
+        updated_task_name = "new-example"
+        update_task_payload = {
             "data": {
-                "type": "event-hooks",
+                "type": "tasks",
                 "attributes": {
-                    "name": updated_hook_name
+                    "name": updated_task_name
                 }
             }
         }
-        updated_hook = self._api.run_tasks.update_event_hook(created_hook_id, update_hook_payload)["data"]
-        self.assertEqual(updated_hook["attributes"]["name"], updated_hook_name)
+        updated_task = self._api.run_tasks.update(created_task_id, update_task_payload)["data"]
+        self.assertEqual(updated_task["attributes"]["name"], updated_task_name)
 
-        # Attach the event hook as a task to a workspace
-        attach_hook_payload = {
+        # Attach the run task to a workspace
+        attach_task_payload = {
             "data": {
                 "type": "tasks",
                 "attributes": {
                     "enforcement-level": "advisory"
                 },
                 "relationships": {
-                    "event-hook": {
+                    "task": {
                         "data": {
-                            "id": created_hook_id,
-                            "type": "event-hooks"
+                            "id": created_task_id,
+                            "type": "tasks"
                         }
                     }
                 }
             }
         }
         attached_task = \
-            self._api.run_tasks.attach_event_hook_as_task(self._ws_id, attach_hook_payload)["data"]
+            self._api.run_tasks.attach_task_to_workspace(self._ws_id, attach_task_payload)["data"]
+        attached_related_task_id = attached_task["relationships"]["task"]["data"]["id"]
         attached_task_id = attached_task["id"]
-        attached_task_hook_id = attached_task["relationships"]["event-hook"]["data"]["id"]
-        self.assertEqual(created_hook_id, attached_task_hook_id)
+        self.assertEqual(created_task_id, attached_related_task_id)
 
         # List the tasks, confirm we have one
-        listed_tasks = self._api.run_tasks.list(self._ws_id)["data"]
-        self.assertEqual(len(listed_tasks), 1)
+        listed_tasks_on_workspace = self._api.run_tasks.list_tasks_on_workspace(self._ws_id)["data"]
+        self.assertEqual(len(listed_tasks_on_workspace), 1)
 
-        # Confirm that the hook has been attached by showing the task and comparing IDs
-        shown_task = self._api.run_tasks.show(attached_task_id)["data"]
-        self.assertEqual(shown_task["id"], attached_task_id)
+        # Confirm that the run task has been attached by showing the task and comparing IDs
+        shown_task_on_workspace = self._api.run_tasks.show_task_on_workspace(self._ws_id, attached_task_id)["data"]
+        self.assertEqual(shown_task_on_workspace["id"], attached_task_id)
 
-        # Update the task
+        # Update the task on the workspace
         updated_enforcement_level = "mandatory"
-        update_task_payload = {
+        update_task_on_workspace_payload = {
             "data": {
-                "type": "tasks",
+                "type": "workspace-tasks",
                 "attributes": {
                     "enforcement-level": updated_enforcement_level
                 }
             }
         }
-        updated_task = self._api.run_tasks.update(attached_task_id, update_task_payload)["data"]
-        self.assertEqual(updated_task["attributes"]["enforcement-level"], updated_enforcement_level)
+        updated_task_on_workspace = \
+            self._api.run_tasks.update_task_on_workspace(self._ws_id, attached_task_id, update_task_on_workspace_payload)["data"]
+        self.assertEqual(updated_task_on_workspace["attributes"]["enforcement-level"], updated_enforcement_level)
 
-        # Destroy the task, confirm it's gone
-        self._api.run_tasks.destroy(attached_task_id)
-        listed_tasks = self._api.run_tasks.list(self._ws_id)["data"]
+        # Remove the task from the workspace, confirm it's gone
+        self._api.run_tasks.remove_task_from_workspace(self._ws_id, attached_task_id)
+        listed_tasks_on_workspace = self._api.run_tasks.list_tasks_on_workspace(self._ws_id)["data"]
+        self.assertEqual(len(listed_tasks_on_workspace), 0)
+
+        # Destroy the run task, confirm it's gone
+        self._api.run_tasks.destroy(created_task_id)
+        listed_tasks = self._api.run_tasks.list()["data"]
         self.assertEqual(len(listed_tasks), 0)
-
-        # Destroy the hook, confirm it's gone
-        self._api.run_tasks.destroy_event_hook(created_hook_id)
-        listed_hooks = self._api.run_tasks.list_event_hooks()["data"]
-        self.assertEqual(len(listed_hooks), 0)
