@@ -773,11 +773,11 @@
         "implementation": true,
         "methods": [
             {
-                "description": "Get Tags",
+                "description": "List Tags",
                 "http-path": "GET /organizations/:organization_name/tags",
                 "implementation-method-name": "list_tags",
                 "implemented": true,
-                "permalink": "#get-tags"
+                "permalink": "#list-tags"
             },
             {
                 "description": "Delete tags",
@@ -1158,7 +1158,7 @@
         "implementation": true,
         "methods": [
             {
-                "description": "List Registry Modules for an organization",
+                "description": "List Registry Modules for an Organization",
                 "http-path": "GET /organizations/:organization_name/registry-modules",
                 "implementation-method-name": "list",
                 "implemented": true,
@@ -1193,7 +1193,7 @@
                 "permalink": "#upload-a-module-version-private-module-"
             },
             {
-                "description": "GET a Module",
+                "description": "Get a Module",
                 "http-path": "GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider",
                 "implementation-method-name": "show",
                 "implemented": true,
@@ -1249,74 +1249,74 @@
         "implementation": true,
         "methods": [
             {
-                "description": "Create an Event Hook",
-                "http-path": "POST /organizations/:organization_name/event-hooks",
-                "implementation-method-name": "create_event_hook",
+                "description": "Create a Run Task",
+                "http-path": "POST /organizations/:organization_name/tasks",
+                "implementation-method-name": "create_task",
                 "implemented": true,
-                "permalink": "#create-an-event-hook"
+                "permalink": "#create-a-run-task"
             },
             {
-                "description": "List Event Hooks",
-                "http-path": "GET /organizations/:organization_name/event-hooks",
-                "implementation-method-name": "list_event_hooks",
-                "implemented": true,
-                "permalink": "#list-event-hooks"
-            },
-            {
-                "description": "Show an Event Hook",
-                "http-path": "GET /event-hooks/:id",
-                "implementation-method-name": "show_event_hook",
-                "implemented": true,
-                "permalink": "#show-an-event-hook"
-            },
-            {
-                "description": "Update an Event Hook",
-                "http-path": "PATCH /event-hooks/:id",
-                "implementation-method-name": "update_event_hook",
-                "implemented": true,
-                "permalink": "#update-an-event-hook"
-            },
-            {
-                "description": "Delete an Event Hook",
-                "http-path": "DELETE /event-hooks/:id",
-                "implementation-method-name": "destroy_event_hook",
-                "implemented": true,
-                "permalink": "#delete-an-event-hook"
-            },
-            {
-                "description": "Attach an Event Hook to a Workspace as a Task",
-                "http-path": "POST /workspaces/:workspace_id/tasks",
-                "implementation-method-name": "attach_event_hook_as_task",
-                "implemented": true,
-                "permalink": "#attach-an-event-hook-to-a-workspace-as-a-task"
-            },
-            {
-                "description": "List Tasks",
-                "http-path": "GET /workspaces/:workspace_id/tasks",
+                "description": "List Run Tasks",
+                "http-path": "GET /organizations/:organization_name/tasks",
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "#list-tasks"
+                "permalink": "#list-run-tasks"
             },
             {
-                "description": "Show a Task",
+                "description": "Show a Run Task",
                 "http-path": "GET /tasks/:id",
-                "implementation-method-name": "show",
+                "implementation-method-name": "show_task",
                 "implemented": true,
-                "permalink": "#show-a-task"
+                "permalink": "#show-a-run-task"
             },
             {
-                "description": "Update a Task",
+                "description": "Update a Run Task",
                 "http-path": "PATCH /tasks/:id",
-                "implementation-method-name": "update",
-                "implemented": true,
-                "permalink": "#update-a-task"
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#update-a-run-task"
             },
             {
-                "description": "Delete a Task",
+                "description": "Delete a Run Task",
                 "http-path": "DELETE /tasks/:id",
-                "implementation-method-name": "destroy",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#delete-a-run-task"
+            },
+            {
+                "description": "Attach a Run Task to a Workspace",
+                "http-path": "POST /workspaces/:workspace_id/tasks",
+                "implementation-method-name": "attach_task_to_workspace",
                 "implemented": true,
-                "permalink": "#delete-a-task"
+                "permalink": "#attach-a-run-task-to-a-workspace"
+            },
+            {
+                "description": "List Workspace Run Tasks",
+                "http-path": "GET /workspaces/:workspace_id/tasks",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#list-workspace-run-tasks"
+            },
+            {
+                "description": "Show Workspace Run Task",
+                "http-path": "GET /workspaces/:workspace_id/tasks/:id",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#show-workspace-run-task"
+            },
+            {
+                "description": "Update Workspace Run Task",
+                "http-path": "PATCH /workspaces/:workspace_id/tasks/:id",
+                "implementation-method-name": "update_task",
+                "implemented": true,
+                "permalink": "#update-workspace-run-task"
+            },
+            {
+                "description": "Delete Workspace Task",
+                "http-path": "DELETE /workspaces/:workspace_id/tasks/:id",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#delete-workspace-task"
             }
         ],
         "test": true,
@@ -1698,6 +1698,81 @@
         ],
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/users.html"
+    },
+    "variable_sets": {
+        "methods": [
+            {
+                "description": "Create a Variable Set",
+                "http-path": "POST organizations/:organization_name/varsets",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#create-a-variable-set"
+            },
+            {
+                "description": "Delete a Variable Set",
+                "http-path": "DELETE varsets/:varset_id",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#delete-a-variable-set"
+            },
+            {
+                "description": "Show Variable Set",
+                "http-path": "GET varsets/:varset_id",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#show-variable-set"
+            },
+            {
+                "description": "List Variable Set",
+                "http-path": "GET organizations/:organization_name/varsets",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#list-variable-set"
+            },
+            {
+                "description": "List Variable Set",
+                "http-path": "GET workspaces/:workspace_id/varsets",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#list-variable-set"
+            },
+            {
+                "description": "Add Variable",
+                "http-path": "POST varsets/:varset_external_id/relationships/vars",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#add-variable"
+            },
+            {
+                "description": "Update a Variable in a Variable Set",
+                "http-path": "PATCH varsets/:varset_id/relationships/vars/:var_id",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#update-a-variable-in-a-variable-set"
+            },
+            {
+                "description": "List Variables in a Variable Set",
+                "http-path": "GET varsets/:varset_id/relationships/vars",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#list-variables-in-a-variable-set"
+            },
+            {
+                "description": "Apply Variable Set to Workspaces",
+                "http-path": "POST varsets/:varset_id/relationships/workspaces",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#apply-variable-set-to-workspaces"
+            },
+            {
+                "description": "Remove a Variable Set from Workspaces",
+                "http-path": "DELETE varsets/:varset_id/relationships/workspaces",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#remove-a-variable-set-from-workspaces"
+            }
+        ],
+        "url": "https://www.terraform.io/docs/cloud/api/variable-sets.html"
     },
     "vars": {
         "implementation": true,

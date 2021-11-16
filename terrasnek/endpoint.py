@@ -17,7 +17,8 @@ from ._constants import \
     HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED, \
         HTTP_FORBIDDEN, HTTP_NOT_FOUND, HTTP_CONFLICT, HTTP_PRECONDITION_FAILED, \
             HTTP_UNPROCESSABLE_ENTITY, HTTP_API_REQUEST_RATE_LIMIT_REACHED, \
-                HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE
+                HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE, HTTP_MOVED_PERMANENTLY, \
+                    HTTP_MOVED_TEMPORARILY
 
 class TFCEndpoint(ABC):
     """
@@ -162,10 +163,14 @@ class TFCEndpoint(ABC):
         elif req.status_code == HTTP_NO_CONTENT:
             results = req.headers
         elif req.history:
+            # TODO: use this HTTP_MOVED_TEMPORARILY
+
             # NOTE: If we got redirected, run the get on the new URL, and fix the
             # URL to match the private module registry URL schema.
             url = req.url.replace("/v1/modules/", "/api/registry/v1/modules/")
             results = {"redirect-url": url}
+        elif req.status_code == HTTP_MOVED_PERMANENTLY:
+            print("TODO: REDIRECTING ORIGINAL", req.url)
         elif req.status_code == HTTP_UNAUTHORIZED:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)

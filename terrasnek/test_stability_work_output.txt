@@ -1,0 +1,170 @@
+ccd Last login: Thu Oct 28 16:23:36 on ttys000
+../%
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek-toolbox/update-all-sensitive-variables ‹master*›
+╰─$ ccd ../
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek-toolbox/update-all-sensitive-variables ‹master*›
+╰─$ cd                                                                                                                                                                                                                                        130 ↵
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek-toolbox/update-all-sensitive-variables ‹master*›
+╰─$ cd ../../                                                                                                                                                                                                                                 130 ↵
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke
+╰─$ ls
+Strava-local-heatmap                          eklhad-config                                 hashi-instruqt-analysis                       redcly                                        terrasnek-unittest-config
+api_playgrounds                               feature_bucketing                             hashi-pricing-scenarios                       scrape_tf_provider_creds                      tfc-demo
+consul-demo                                   field-demo-boundary-ssh-and-database          jsonresume-theme-classic                      terraform-aws-hc-se-omni-demo                 vault-demo
+dahlke                                        field-workshop-boundary-install-and-configure myNBA                                         terraform-tfe-terrasnek-unittest              yuleis_idea
+dahlke.github.io                              gcs-to-tfe                                    panw_repro                                    terrasnek
+eklhad                                        gdrive_shared_with                            private-terraform-enterprise                  terrasnek-toolbox
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke
+╰─$ cd terrasnek
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ ls
+CHANGELOG.md                           README.md                              coverage.tfc.json                      lint_output.txt                        setup.py
+CONTRIBUTING.md                        TERRASNEK_API_COVERAGE_COMPLETENESS.md coverage.tfe.json                      npm-reqs.txt                           terrasnek
+CONTRIBUTING_REQS_TABLE.md             api_endpoints_implemented.svg          coverage.xml                           pip-reqs.txt                           terrasnek.egg-info
+LICENSE                                build                                  dist                                   ref                                    test
+Makefile                               codecov.yml                            docs                                   scripts                                venv
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ code .
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ ls
+CHANGELOG.md                           README.md                              coverage.tfc.json                      lint_output.txt                        setup.py
+CONTRIBUTING.md                        TERRASNEK_API_COVERAGE_COMPLETENESS.md coverage.tfe.json                      npm-reqs.txt                           terrasnek
+CONTRIBUTING_REQS_TABLE.md             api_endpoints_implemented.svg          coverage.xml                           pip-reqs.txt                           terrasnek.egg-info
+LICENSE                                build                                  dist                                   ref                                    test
+Makefile                               codecov.yml                            docs                                   scripts                                venv
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ clear
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ gis
+On branch 0.1.7
+nothing to commit, working tree clean
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ clear
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ ls
+CHANGELOG.md                           README.md                              coverage.tfc.json                      lint_output.txt                        setup.py
+CONTRIBUTING.md                        TERRASNEK_API_COVERAGE_COMPLETENESS.md coverage.tfe.json                      npm-reqs.txt                           terrasnek
+CONTRIBUTING_REQS_TABLE.md             api_endpoints_implemented.svg          coverage.xml                           pip-reqs.txt                           terrasnek.egg-info
+LICENSE                                build                                  dist                                   ref                                    test
+Makefile                               codecov.yml                            docs                                   scripts                                venv
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ clear
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ ls
+CHANGELOG.md                           README.md                              coverage.tfc.json                      lint_output.txt                        setup.py
+CONTRIBUTING.md                        TERRASNEK_API_COVERAGE_COMPLETENESS.md coverage.tfe.json                      npm-reqs.txt                           terrasnek
+CONTRIBUTING_REQS_TABLE.md             api_endpoints_implemented.svg          coverage.xml                           pip-reqs.txt                           terrasnek.egg-info
+LICENSE                                build                                  dist                                   ref                                    test
+Makefile                               codecov.yml                            docs                                   scripts                                venv
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ ls
+CHANGELOG.md                           README.md                              coverage.tfc.json                      lint_output.txt                        setup.py
+CONTRIBUTING.md                        TERRASNEK_API_COVERAGE_COMPLETENESS.md coverage.tfe.json                      npm-reqs.txt                           terrasnek
+CONTRIBUTING_REQS_TABLE.md             api_endpoints_implemented.svg          coverage.xml                           pip-reqs.txt                           terrasnek.egg-info
+LICENSE                                build                                  dist                                   ref                                    test
+Makefile                               codecov.yml                            docs                                   scripts                                venv
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ clear
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ source test/secrets/secrets.op.sh
+Enter the password for neil.dahlke@gmail.com at my.1password.com:
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ make
+╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ source venv/bin/activate                                                                                                                                                                                                                  130 ↵
+(venv) ╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7›
+╰─$ make coverage
+coverage run --omit 'venv/*' -m unittest test/*_test.py;
+.ssssssss...E....................E....................
+======================================================================
+ERROR: test_config_versions (test.config_versions_test.TestTFCConfigVersions)
+Test the Config Versions API endpoints.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/neil/src/github.com/dahlke/terrasnek/test/config_versions_test.py", line 31, in tearDown
+    self._api.workspaces.destroy(workspace_id=self._ws_id)
+  File "/Users/neil/src/github.com/dahlke/terrasnek/terrasnek/workspaces.py", line 54, in destroy
+    return self._destroy(url)
+  File "/Users/neil/src/github.com/dahlke/terrasnek/terrasnek/endpoint.py", line 333, in _destroy
+    raise TFCHTTPUnclassified(err)
+terrasnek.exceptions.TFCHTTPUnclassified: {'errors': [{'status': '500', 'title': 'internal server error'}]}
+
+======================================================================
+ERROR: test_run_tasks (test.run_tasks_test.TestTFCRunTasks)
+Test the Run Tasks API endpoints.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/neil/src/github.com/dahlke/terrasnek/test/run_tasks_test.py", line 101, in test_run_tasks
+    shown_task = self._api.run_tasks.show(attached_task_id)["data"]
+  File "/Users/neil/src/github.com/dahlke/terrasnek/terrasnek/run_tasks.py", line 137, in show
+    return self._show(url)
+  File "/Users/neil/src/github.com/dahlke/terrasnek/terrasnek/endpoint.py", line 388, in _show
+    return self._get(url, include=include)
+  File "/Users/neil/src/github.com/dahlke/terrasnek/terrasnek/endpoint.py", line 176, in _get
+    raise TFCHTTPNotFound(err)
+terrasnek.exceptions.TFCHTTPNotFound: {'errors': [{'status': '404', 'title': 'not found'}]}
+
+----------------------------------------------------------------------
+Ran 46 tests in 632.769s
+
+FAILED (errors=2, skipped=8)
+make: *** [coverage] Error 1
+(venv) ╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7*›
+╰─$ make coverage                                                                                                                                                                                                                               2 ↵
+coverage run --omit 'venv/*' -m unittest test/*_test.py;
+.ssssssss........................E....................
+======================================================================
+ERROR: test_run_tasks (test.run_tasks_test.TestTFCRunTasks)
+Test the Run Tasks API endpoints.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/neil/src/github.com/dahlke/terrasnek/test/run_tasks_test.py", line 101, in test_run_tasks
+    shown_task = self._api.run_tasks.show(attached_task_id)["data"]
+  File "/Users/neil/src/github.com/dahlke/terrasnek/terrasnek/run_tasks.py", line 137, in show
+    return self._show(url)
+  File "/Users/neil/src/github.com/dahlke/terrasnek/terrasnek/endpoint.py", line 388, in _show
+    return self._get(url, include=include)
+  File "/Users/neil/src/github.com/dahlke/terrasnek/terrasnek/endpoint.py", line 176, in _get
+    raise TFCHTTPNotFound(err)
+terrasnek.exceptions.TFCHTTPNotFound: {'errors': [{'status': '404', 'title': 'not found'}]}
+
+----------------------------------------------------------------------
+Ran 46 tests in 654.607s
+
+FAILED (errors=1, skipped=8)
+make: *** [coverage] Error 1
+(venv) ╭─neil@neil-C02XL4XEJHD2 ~/src/github.com/dahlke/terrasnek ‹0.1.7*›
+╰─$ make coverage                                                                                                                                                                                                                               2 ↵
+coverage run --omit 'venv/*' -m unittest test/*_test.py;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
