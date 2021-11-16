@@ -11,8 +11,9 @@ class TFCRunTasks(TFCEndpoint):
     """
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
-        self._org_event_hooks_base_url = f"{self._api_v2_base_url}/organizations/{self._org_name}/event-hooks"
-        self._event_hooks_base_url = f"{self._api_v2_base_url}/event-hooks"
+        # self._org_event_hooks_base_url = f"{self._api_v2_base_url}/organizations/{self._org_name}/event-hooks"
+        # self._event_hooks_base_url = f"{self._api_v2_base_url}/event-hooks"
+        self._org_tasks_base_url = f"{self._api_v2_base_url}/organizations/{self._org_name}/tasks"
         self._tasks_base_url = f"{self._api_v2_base_url}/tasks"
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
 
@@ -26,25 +27,26 @@ class TFCRunTasks(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def create_event_hook(self, payload):
+    def create_task(self, payload):
         """
-        ``POST /organizations/:organization_name/event-hooks``
+        ``POST /organizations/:organization_name/tasks``
 
-        `Run Tasks Create Event Hook API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#create-an-event-hook>`_
+        `Run Tasks Create API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#create-a-run-task>`_
 
-        `Run Tasks Create Event Hook Sample Payload \
+        `Run Tasks Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload>`_
         """
-        return self._create(self._org_event_hooks_base_url, payload)
+        # TODO: handle the redirect on POST /organizations/:organization_name/event-hooks
+        return self._create(self._org_tasks_base_url, payload)
 
 
-    def list_event_hooks(self, page=None, page_size=None, include=None):
+    def list(self, page=None, page_size=None, include=None):
         """
-        ``GET /organizations/:organization_name/event-hooks``
+        ``GET /organizations/:organization_name/tasks``
 
-        `Run Tasks List Event Hooks API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#list-event-hooks>`_
+        `Run Tasks List API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#list-run-tasks>`_
 
         Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#query-parameters>`__):
@@ -52,9 +54,9 @@ class TFCRunTasks(TFCEndpoint):
             - ``page`` (Optional)
             - ``include`` (Optional)
         """
-        return self._list(self._org_event_hooks_base_url, page=page, page_size=page_size, include=include)
+        return self._list(self._org_tasks_base_url, page=page, page_size=page_size, include=include)
 
-    def list_all_event_hooks(self):
+    def list_all(self):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -63,60 +65,62 @@ class TFCRunTasks(TFCEndpoint):
 
         Returns an object with two arrays of objects.
         """
-        return self._list_all(self._org_event_hooks_base_url)
+        return self._list_all(self._org_tasks_base_url)
 
-    def show_event_hook(self, event_hook_id):
+    def show_task(self, task_id):
         """
-        ``GET /event-hooks/:id``
+        ``GET /tasks/:id``
 
-        `Run Tasks Show Event Hook API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#show-an-event-hook>`_
+        `Run Tasks Show API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#show-a-run-task>`_
         """
-        url = f"{self._event_hooks_base_url}/{event_hook_id}"
+        # TODO: support includes here
+        url = f"{self._tasks_base_url}/{task_id}"
         return self._show(url)
 
-    def update_event_hook(self, event_hook_id, payload):
+    def update_task(self, task_id, payload):
         """
-        ``PATCH /event-hooks/:id``
+        ``PATCH /tasks/:id``
 
-        `Run Tasks Update Event Hook API Doc Reference \
+        `Run Tasks Update API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#update-a-task>`_
 
-        `Update Event Hook Sample Payload \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-3>`_
+        `Update Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-1>`_
         """
-        url = f"{self._event_hooks_base_url}/{event_hook_id}"
+        url = f"{self._tasks_base_url}/{task_id}"
         return self._update(url, payload)
 
-    def destroy_event_hook(self, event_hook_id):
+    def destroy_task(self, task_id):
         """
-        ``DELETE /event-hooks/:id``
+        ``DELETE /tasks/:id``
 
-        `Run Tasks Destroy Event Hook API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#delete-an-event-hook>`_
+        `Run Tasks Destroy API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#delete-a-run-task>`_
         """
-        url = f"{self._event_hooks_base_url}/{event_hook_id}"
+        url = f"{self._tasks_base_url}/{task_id}"
         return self._destroy(url)
 
-    def attach_event_hook_as_task(self, workspace_id, payload):
+
+    def attach_task_to_workspace(self, workspace_id, payload):
         """
         ``POST /workspaces/:workspace_id/tasks``
 
-        `Run Tasks Attach Event Hook API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#attach-an-event-hook-to-a-workspace-as-a-task>`_
+        `Run Tasks Attach To Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#attach-a-run-task-to-a-workspace>`_
 
-        `Attach Event Hook Sample Payload \
+        `Attach Sample Payload \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-2>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks"
         return self._post(url, data=payload)
 
-    def list(self, workspace_id, page=None, page_size=None):
+    def list_on_workspace(self, workspace_id, page=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/tasks``
 
-        `Run Tasks List API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#list-tasks>`_
+        `Run Tasks List On Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#list-workspace-run-tasks>`_
 
         Query Parameter(s) (`details \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#query-parameters-1>`__):
@@ -124,37 +128,39 @@ class TFCRunTasks(TFCEndpoint):
             - ``page`` (Optional)
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks"
-        return self._list(url, page=page, page_size=page_size)
+        return self._get(url, page=page, page_size=page_size)
 
-    def show(self, task_id):
+    # TODO: list_all_on_workspace?
+
+    def show_task_on_workspace(self, workspace_id, task_id):
         """
-        ``GET /tasks/:id``
+        ``GET /workspaces/:workspace_id/tasks/:id ``
 
-        `Run Tasks Show API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#show-a-task>`_
+        `Run Tasks Show On Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#show-workspace-run-task>`_
         """
-        url = f"{self._tasks_base_url}/{task_id}"
-        return self._show(url)
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks/{task_id}"
+        return self._get(url)
 
-    def update(self, task_id, payload):
+    def update_task_on_workspace(self, workspace_id, task_id, payload):
         """
-        ``PATCH /tasks/:id``
+        ``PATCH /workspaces/:workspace_id/tasks/:id``
 
-        `Run Tasks Update API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#update-a-task>`_
+        `Run Tasks Update On Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#update-workspace-run-task>`_
 
-        `Run Tasks Update Sample Payload \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-response-7>`_
+        `Update On Workspace Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-3>`_
         """
-        url = f"{self._tasks_base_url}/{task_id}"
-        return self._update(url, payload)
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks/{task_id}"
+        return self._patch(url, payload=payload)
 
-    def destroy(self, task_id):
+    def remove_task_from_workspace(self, workspace_id, task_id):
         """
-        ``DELETE /tasks/:id``
+        ``DELETE /workspaces/:workspace_id/tasks/:id``
 
-        `Run Tasks Destroy API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#delete-a-task>`_
+        `Run Tasks Remove From Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#delete-workspace-task>`_
         """
-        url = f"{self._tasks_base_url}/{task_id}"
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks/{task_id}"
         return self._destroy(url)
