@@ -60,6 +60,7 @@ from .team_tokens import TFCTeamTokens
 from .users import TFCUsers
 from .user_tokens import TFCUserTokens
 from .vars import TFCVars
+from .var_sets import TFCVarSets
 from .vcs_events import TFCVCSEvents
 from .workspace_vars import TFCWorkspaceVars
 from .workspaces import TFCWorkspaces
@@ -130,6 +131,7 @@ class TFC():
             "users": TFCUsers,
             "user_tokens": TFCUserTokens,
             "vars": TFCVars,
+            "var_sets": TFCVarSets,
             "vcs_events": TFCVCSEvents,
             "workspace_vars": TFCWorkspaceVars,
             "workspaces": TFCWorkspaces
@@ -202,6 +204,7 @@ class TFC():
         self.users: TFCUsers = None
         self.user_tokens: TFCUserTokens = None
         self.vars: TFCVars = None
+        self.var_sets: TFCVarSets = None
         self.vcs_events: TFCVCSEvents = None
         self.workspace_vars: TFCWorkspaceVars = None
         self.workspaces: TFCWorkspaces = None
