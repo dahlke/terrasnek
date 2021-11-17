@@ -86,6 +86,7 @@ def scrape_endpoint_info():
             endpoint_name = endpoint_name.replace("configuration", "config")
             endpoint_name = endpoint_name.replace("workspace_variables", "workspace_vars")
             endpoint_name = endpoint_name.replace("variables", "vars")
+            endpoint_name = endpoint_name.replace("variable_sets", "var_sets")
             endpoint_name = endpoint_name.replace("team_members", "team_memberships")
             endpoint_name = endpoint_name.replace("modules", "registry_modules")
 

@@ -1699,79 +1699,81 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/users.html"
     },
-    "variable_sets": {
+    "var_sets": {
+        "implementation": true,
         "methods": [
             {
                 "description": "Create a Variable Set",
                 "http-path": "POST organizations/:organization_name/varsets",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "#create-a-variable-set"
             },
             {
                 "description": "Delete a Variable Set",
                 "http-path": "DELETE varsets/:varset_id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "#delete-a-variable-set"
             },
             {
                 "description": "Show Variable Set",
                 "http-path": "GET varsets/:varset_id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "#show-variable-set"
             },
             {
                 "description": "List Variable Set",
                 "http-path": "GET organizations/:organization_name/varsets",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_for_org",
+                "implemented": true,
                 "permalink": "#list-variable-set"
             },
             {
                 "description": "List Variable Set",
                 "http-path": "GET workspaces/:workspace_id/varsets",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_for_workspace",
+                "implemented": true,
                 "permalink": "#list-variable-set"
             },
             {
                 "description": "Add Variable",
                 "http-path": "POST varsets/:varset_external_id/relationships/vars",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_var_to_varset",
+                "implemented": true,
                 "permalink": "#add-variable"
             },
             {
                 "description": "Update a Variable in a Variable Set",
                 "http-path": "PATCH varsets/:varset_id/relationships/vars/:var_id",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_var_in_varset",
+                "implemented": true,
                 "permalink": "#update-a-variable-in-a-variable-set"
             },
             {
                 "description": "List Variables in a Variable Set",
                 "http-path": "GET varsets/:varset_id/relationships/vars",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_vars_in_varset",
+                "implemented": true,
                 "permalink": "#list-variables-in-a-variable-set"
             },
             {
                 "description": "Apply Variable Set to Workspaces",
                 "http-path": "POST varsets/:varset_id/relationships/workspaces",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "apply_varset_to_workspace",
+                "implemented": true,
                 "permalink": "#apply-variable-set-to-workspaces"
             },
             {
                 "description": "Remove a Variable Set from Workspaces",
                 "http-path": "DELETE varsets/:varset_id/relationships/workspaces",
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_varset_from_workspace",
+                "implemented": true,
                 "permalink": "#remove-a-variable-set-from-workspaces"
             }
         ],
+        "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/variable-sets.html"
     },
     "vars": {

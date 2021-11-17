@@ -55,6 +55,7 @@ API Spec
    user_tokens
    users
    vars
+   var_sets
    vcs_events
    workspace_vars
    workspaces
