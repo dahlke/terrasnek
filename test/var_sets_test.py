@@ -14,17 +14,15 @@ class TestTFCVarSets(TestTFCBaseTestCase):
     _endpoint_being_tested = "var_sets"
 
     def setUp(self):
-        # self._ws = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())
-        # self._ws_id = self._ws["data"]["id"]
-        # self._ws_name = self._ws["data"]["attributes"]["name"]
-        # self._variable_test_key = "terrasnek_unittest_key"
-        # self._variable_test_value = "terrasnek_unittest_value"
-        pass
+        self._ws = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())
+        self._ws_id = self._ws["data"]["id"]
+        self._ws_name = self._ws["data"]["attributes"]["name"]
+        self._variable_test_key = "terrasnek_unittest_key"
+        self._variable_test_value = "terrasnek_unittest_value"
 
     def tearDown(self):
-        # self._api.workspaces.destroy(
-            # workspace_name=self._ws["data"]["attributes"]["name"])
-        pass
+        self._api.workspaces.destroy(
+            workspace_name=self._ws["data"]["attributes"]["name"])
 
     def test_var_sets(self):
         """
@@ -36,8 +34,6 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         self.assertEqual(len(listed_org_var_sets), 0)
 
         # Setup a create payload that has no workspaces or variables attached.
-        # TODO: purge all varsets from the test org.
-        # TODO: create
         var_set_name = "terrasnek-unittest"
         create_payload = {
             "data": {
@@ -89,10 +85,37 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         self.assertEqual(new_var_set_name, shown_var_set["attributes"]["name"])
 
         # TODO: add_var_to_varset
+        add_var_to_varset_payload = {
+            "data": {
+                "type": "vars",
+                "attributes": {
+                    "key": self._variable_test_key,
+                    "value": self._variable_test_value,
+                    "description": "foo",
+                    "sensitive": False,
+                    "category": "terraform",
+                    "hcl": False
+                }
+            }
+        }
 
         # TODO: list_vars_in_varset
 
         # TODO: update_var_in_varset
+        updated_value = "foo"
+        update_var_in_varset_payload = {
+            "data": {
+                "type": "vars",
+                "attributes": {
+                    "key": self._variable_test_key,
+                    "value": updated_value,
+                    "description": "new cheeeese",
+                    "sensitive": False,
+                    "category": "terraform",
+                    "hcl": False
+                }
+            }
+        }
 
         # TODO: show_var_in_varset
 
