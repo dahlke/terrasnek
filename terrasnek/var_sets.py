@@ -6,167 +6,171 @@ from .endpoint import TFCEndpoint
 
 
 class TFCVarSets(TFCEndpoint):
-	"""
-	`Variable Sets API Docs \
-		<https://www.terraform.io/docs/cloud/api/variable-sets.html>`_
-	"""
+    """
+    `Variable Sets API Docs \
+        <https://www.terraform.io/docs/cloud/api/variable-sets.html>`_
+    """
 
-	def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
-		super().__init__(instance_url, org_name, headers,
-			  well_known_paths, verify, log_level)
-		self._org_varsets_base_url = f"{self._api_v2_base_url}/{self._org_name}/varsets"
-		self._endpoint_base_url = f"{self._api_v2_base_url}/varsets"
-		self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
+        self._org_varsets_base_url = f"{self._api_v2_base_url}/organizations/{self._org_name}/varsets"
+        self._endpoint_base_url = f"{self._api_v2_base_url}/varsets"
+        self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
 
-	def required_entitlements(self):
-		return []
+    def required_entitlements(self):
+        # TODO
+        return []
 
-	def terraform_cloud_only(self):
-		return False
+    def terraform_cloud_only(self):
+        # TODO
+        return False
 
-	def terraform_enterprise_only(self):
-		return False
+    def terraform_enterprise_only(self):
+        # TODO
+        return False
 
-	def create(self, payload):
-		"""
-		``POST organizations/:organization_name/varsets``
+    def create(self, payload):
+        """
+        ``POST organizations/:organization_name/varsets``
 
-		`Variable Sets Create API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#create-a-variable-set>`_
+        `Variable Sets Create API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#create-a-variable-set>`_
 
-		`Create Sample Payload \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload>`_
-		"""
-		return self._create(self._org_varsets_base_url, payload)
+        `Create Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload>`_
+        """
+        return self._create(self._org_varsets_base_url, payload)
 
-	def show(self, varset_id):
-		"""
-		``GET varsets/:varset_id``
+    def show(self, varset_id):
+        """
+        ``GET varsets/:varset_id``
 
-		`Variable Sets Show API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#show-variable-set>`_
-		"""
-		url = f"{self._org_varsets_base_url}/{varset_id}"
-		return self._show(url)
+        `Variable Sets Show API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#show-variable-set>`_
+        """
+        url = f"{self._org_varsets_base_url}/{varset_id}"
+        return self._show(url)
 
-	def list_for_org(self):
-		"""
-		``GET organizations/:organization_name/varsets``
+    def list_for_org(self):
+        """
+        ``GET organizations/:organization_name/varsets``
 
-		`Variable Sets List For Organization API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#list-variable-set>`_
+        `Variable Sets List For Organization API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#list-variable-set>`_
 
-		Query Parameter(s) (`details \
-			<>`__):
-			- ``filter[workspace][name]`` (Required)
-		"""
-		return self._list(self._org_varsets_base_url)
+        Query Parameter(s) (`details \
+            <TODO: pagination>`__):
+            - ``filter[workspace][name]`` (Required)
+        """
+        return self._list(self._org_varsets_base_url)
 
-	def list_for_workspace(self, workspace_id):
-		"""
-		``GET workspaces/:workspace_id/varsets``
+    # TODO: list_all_for_org?? Don't think it's supported
+    # TODO: list_all_for_workspace? Don't think it's supported
 
-		`Variable Sets List For Workspace API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#list-variable-set>`_
-		"""
-		url = f"{self._ws_api_v2_base_url}/{workspace_id}/varsets"
-		return self._list(url)
+    def list_for_workspace(self, workspace_id):
+        """
+        ``GET workspaces/:workspace_id/varsets``
 
-	def update(self, varset_id, payload):
-		"""
-		``PUT/PATCH varsets/:varset_id``
+        `Variable Sets List For Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#list-variable-set>`_
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/varsets"
+        return self._list(url)
 
-		`Variable Sets Update API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#update-a-variable-set>`_
+    def update(self, varset_id, payload):
+        """
+        ``PUT/PATCH varsets/:varset_id``
 
-		`Update Sample Payload \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-1>`_
-		"""
-		url = f"{self._org_varsets_base_url}/{varset_id}"
-		return self._update(url, payload)
+        `Variable Sets Update API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#update-a-variable-set>`_
 
-	def destroy(self, varset_id):
-		"""
-		``DELETE varsets/:varset_id``
+        `Update Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-1>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}"
+        print(url)
+        return self._update(url, payload)
 
-		`Variable Sets Destroy API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#delete-a-variable-set>`_
-		"""
-		url = f"{self._org_varsets_base_url}/{varset_id}"
-		return self._destroy(url)
+    def destroy(self, varset_id):
+        """
+        ``DELETE varsets/:varset_id``
 
-	# VARIABLE RELATIONSHIPS
-	def add_var_to_varset(self, varset_id, payload):
-		"""
-		``POST varsets/:varset_external_id/relationships/vars``
+        `Variable Sets Destroy API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#delete-a-variable-set>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}"
+        return self._destroy(url)
 
-		`Variable Sets Add Variable API Doc Reference \
-			<POST varsets/:varset_external_id/relationships/vars>`_
+    # VARIABLE RELATIONSHIPS
+    def add_var_to_varset(self, varset_id, payload):
+        """
+        ``POST varsets/:varset_external_id/relationships/vars``
 
-		`Add Variable To Variable Set Sample Payload \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-2>`_
-		"""
-		url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
-		return self._post(url, data=payload)
+        `Variable Sets Add Variable API Doc Reference \
+            <POST varsets/:varset_external_id/relationships/vars>`_
 
-	def update_var_in_varset(self, varset_id, var_id, payload):
-		"""
-		``PATCH varsets/:varset_id/relationships/vars/:var_id``
+        `Add Variable To Variable Set Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-2>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
+        return self._post(url, data=payload)
 
-		`Variable Sets Update Variable API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#update-a-variable-in-a-variable-set>`_
+    def update_var_in_varset(self, varset_id, var_id, payload):
+        """
+        ``PATCH varsets/:varset_id/relationships/vars/:var_id``
 
-		`Update Variable In Variable Set Sample Payload \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-3>`_
-		"""
-		url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars/{var_id}"
-		return self._update(url, payload)
+        `Variable Sets Update Variable API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#update-a-variable-in-a-variable-set>`_
 
-	def delete_var_from_varset(self, varset_id, var_id):
-		"""
-		``DELETEvarsets/:varset_id/relationships/vars/:var_id``
+        `Update Variable In Variable Set Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-3>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars/{var_id}"
+        return self._update(url, payload)
 
-		`Variable Sets Delete Variable API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#delete-a-variable-in-a-variable-set>`_
-		"""
-		url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars/{var_id}"
-		return self._destroy(url)
+    def delete_var_from_varset(self, varset_id, var_id):
+        """
+        ``DELETEvarsets/:varset_id/relationships/vars/:var_id``
 
-	def list_vars_in_varset(self, varset_id):
-		"""
-		``GET varsets/:varset_id/relationships/vars``
+        `Variable Sets Delete Variable API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#delete-a-variable-in-a-variable-set>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars/{var_id}"
+        return self._destroy(url)
 
-		`Variable Sets Update API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#list-variables-in-a-variable-set>`_
-		"""
-		url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
-		return self._list(url)
+    def list_vars_in_varset(self, varset_id):
+        """
+        ``GET varsets/:varset_id/relationships/vars``
 
-	# WORKSPACE RELATIONSHIPS
-	def apply_varset_to_workspace(self, varset_id, payload):
-		"""
-		``POST varsets/:varset_id/relationships/workspaces``
+        `Variable Sets Update API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#list-variables-in-a-variable-set>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
+        return self._list(url)
 
-		`Variable Sets Apply To Workspace API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#apply-variable-set-to-workspaces>`_
+    # WORKSPACE RELATIONSHIPS
+    def apply_varset_to_workspace(self, varset_id, payload):
+        """
+        ``POST varsets/:varset_id/relationships/workspaces``
 
-		`Apply Variable Set to Workspace Sample Payload \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-4>`_
-		"""
-		url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
-		return self._post(url, data=payload)
+        `Variable Sets Apply To Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#apply-variable-set-to-workspaces>`_
 
-	def remove_varset_from_workspace(self, varset_id, payload):
-		"""
-		``DELETE varsets/:varset_id/relationships/workspaces``
+        `Apply Variable Set to Workspace Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-4>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
+        return self._post(url, data=payload)
 
-		`Variable Sets Remove From Workspace API Doc Reference \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#remove-a-variable-set-from-workspaces>`_
+    def remove_varset_from_workspace(self, varset_id, payload):
+        """
+        ``DELETE varsets/:varset_id/relationships/workspaces``
 
-		`Remove Variable Set From Workspace Sample Payload \
-			<https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-5>`_
-		"""
-		url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
-		self._delete(url, data=payload)
-		# TODO: call the raw delete?
-		pass
+        `Variable Sets Remove From Workspace API Doc Reference \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#remove-a-variable-set-from-workspaces>`_
+
+        `Remove Variable Set From Workspace Sample Payload \
+            <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-5>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
+        self._delete(url, data=payload)
