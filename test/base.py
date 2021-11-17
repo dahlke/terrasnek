@@ -135,6 +135,13 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._api.workspaces.destroy(workspace_id=workspace["id"])
         cls._logger.debug(f"Workspaces purged from test org ({cls._test_org_name}).")
 
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of variable sets...")
+        var_sets = cls._api.var_sets.list_for_org()["data"]
+        for var_set in var_sets:
+            var_set_id = var_set["id"]
+            cls._api.var_sets.destroy(var_set_id)
+        cls._logger.debug(f"Variable sets purged from test org ({cls._test_org_name}).")
+
         cls._purge_module_registry()
 
         cls._logger.debug(f"Modules purged from test org ({cls._test_org_name}).")
@@ -175,9 +182,9 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of org membership invites...")
         org_memberships = cls._api.org_memberships.list_all_for_org()["data"]
-        for org_memberships in org_memberships:
-            membership_id = org_memberships["id"]
-            member_status = org_memberships["attributes"]["status"]
+        for org_membership in org_memberships:
+            membership_id = org_membership["id"]
+            member_status = org_membership["attributes"]["status"]
             if member_status == "invited":
                 cls._api.org_memberships.remove(membership_id)
         cls._logger.debug(f"Org member invites purged from test org ({cls._test_org_name}).")
