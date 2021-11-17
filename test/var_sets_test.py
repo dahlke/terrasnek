@@ -63,6 +63,7 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         created_var_set_id = created_var_set["id"]
         self.assertEqual(var_set_name, created_var_set["attributes"]["name"])
 
+        # Update the variable set and compare the names
         new_var_set_name = "terrasnek-unittest-updated"
         update_payload = {
             "data": {
@@ -83,7 +84,9 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         updated_var_set = self._api.var_sets.update(created_var_set_id, update_payload)["data"]
         self.assertEqual(new_var_set_name, updated_var_set["attributes"]["name"])
 
-        # TODO: show
+        # Show the variable set and compare the names
+        shown_var_set = self._api.var_sets.show(created_var_set_id)["data"]
+        self.assertEqual(new_var_set_name, shown_var_set["attributes"]["name"])
 
         # TODO: add_var_to_varset
 

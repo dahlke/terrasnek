@@ -48,7 +48,7 @@ class TFCVarSets(TFCEndpoint):
         `Variable Sets Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variable-sets.html#show-variable-set>`_
         """
-        url = f"{self._org_varsets_base_url}/{varset_id}"
+        url = f"{self._endpoint_base_url}/{varset_id}"
         return self._show(url)
 
     def list_for_org(self):
