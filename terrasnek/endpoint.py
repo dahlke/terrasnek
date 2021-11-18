@@ -116,11 +116,14 @@ class TFCEndpoint(ABC):
 
         if search is not None:
             q_options.append(f"page[name]={page_size}")
-
+        
         if include is not None:
-            joined_include = ",".join(include)
-            q_options.append(f"include={joined_include}")
-
+            if isinstance(include, str):
+                formatted_include = include
+            else:
+                formatted_include = ",".join(include)
+            q_options.append(f"include={formatted_include}")
+            
         if sort is not None:
             q_options.append(f"sort={sort}")
 
