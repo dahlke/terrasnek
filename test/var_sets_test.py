@@ -84,7 +84,7 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         shown_var_set = self._api.var_sets.show(created_var_set_id)["data"]
         self.assertEqual(new_var_set_name, shown_var_set["attributes"]["name"])
 
-        # TODO: add_var_to_varset
+        # Add a variable to the created variable set, confirm it's been added
         add_var_to_varset_payload = {
             "data": {
                 "type": "vars",
@@ -98,10 +98,15 @@ class TestTFCVarSets(TestTFCBaseTestCase):
                 }
             }
         }
+        added_var = self._api.var_sets.add_var_to_varset(created_var_set_id, add_var_to_varset_payload)["data"]
+        added_var_id = added_var["id"]
+        self.assertEqual(added_var["attributes"]["key"], self._variable_test_key)
 
-        # TODO: list_vars_in_varset
+        # List the variables in the variable set, confirm the one that was just added is present
+        listed_vars = self._api.var_sets.list_vars_in_varset(created_var_set_id)["data"]
+        self.assertEqual(listed_vars[0]["attributes"]["key"], self._variable_test_key)
 
-        # TODO: update_var_in_varset
+        # Update the value of the variable that was just added, confirm that the update took place
         updated_value = "foo"
         update_var_in_varset_payload = {
             "data": {
@@ -116,16 +121,52 @@ class TestTFCVarSets(TestTFCBaseTestCase):
                 }
             }
         }
+        self._api.var_sets.update_var_in_varset(created_var_set_id, added_var_id, update_var_in_varset_payload)["data"]
 
-        # TODO: show_var_in_varset
+        # Apply the variable set to the workspace
+        apply_varset_payload = {
+            "data": [
+                {
+                    "type": "workspaces",
+                    "id": self._ws_id
+                }
+            ]
+        }
+        # There is no response when we apply a varset to a workspace
+        self._api.var_sets.apply_varset_to_workspace(created_var_set_id, apply_varset_payload)
 
-        # TODO: apply_varset_to_workspace
+        # Confirm the applied variable set is present on the workspace
+        listed_workspace_varsets = self._api.var_sets.list_for_workspace(self._ws_id)["data"]
+        self.assertEqual(listed_workspace_varsets[0]["id"], created_var_set_id)
 
-        # TODO: remove_varset_from_workspace
+        # Remove the variable set from the workspace
+        remove_varset_payload = {
+            "data": [
+                {
+                    "type": "workspaces",
+                    "id": self._ws_id
+                }
+            ]
+        }
+        # There is no response when we remove a varset from a workspace
+        self._api.var_sets.remove_varset_from_workspace(created_var_set_id, remove_varset_payload)
 
-        # TODO: delete_var_from_varset
+        # Confirm that there are no longer any varsets attached to the workspace
+        listed_workspace_varsets = self._api.var_sets.list_for_workspace(self._ws_id)["data"]
+        self.assertEqual(len(listed_workspace_varsets), 0)
 
-        # TODO: show
+        # Delete the variable added from the variable set and confirm it's gone
+        self._api.var_sets.delete_var_from_varset(created_var_set_id, added_var_id)
 
-        # TODO: destroy
+        # Show the variable set and confirm there are no variables left in it
+        shown_var_set = self._api.var_sets.show(created_var_set_id)["data"]
+        self.assertEqual(len(shown_var_set["relationships"]["vars"]["data"]), 0)
+
+        # Destroy the variable set that was created earlier
+        # There is no response when we destroy a variable set
+        self._api.var_sets.destroy(created_var_set_id)
+
+        # Confirm we no longer have any varsets
+        listed_var_sets = self._api.var_sets.list_for_org()["data"]
+        self.assertEqual(len(listed_var_sets), 0)
 

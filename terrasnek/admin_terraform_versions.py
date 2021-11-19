@@ -23,6 +23,17 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         return self._list(self._endpoint_base_url, page=page, page_size=page_size)
 
+    def list_all(self, workspace_id):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every workspace in an organization.
+
+        Returns an object with two arrays of objects.
+        """
+        return self._list_all(self._endpoint_base_url)
+
     def required_entitlements(self):
         return []
 

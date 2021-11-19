@@ -88,7 +88,6 @@ class TFCVarSets(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{varset_id}"
-        print(url)
         return self._update(url, payload)
 
     def destroy(self, varset_id):
@@ -159,7 +158,7 @@ class TFCVarSets(TFCEndpoint):
         `Apply Variable Set to Workspace Sample Payload \
             <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-4>`_
         """
-        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/workspaces"
         return self._post(url, data=payload)
 
     def remove_varset_from_workspace(self, varset_id, payload):
@@ -172,5 +171,5 @@ class TFCVarSets(TFCEndpoint):
         `Remove Variable Set From Workspace Sample Payload \
             <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-5>`_
         """
-        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/workspaces"
         self._delete(url, data=payload)
