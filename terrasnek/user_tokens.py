@@ -26,7 +26,7 @@ class TFCUserTokens(TFCEndpoint):
 
     def create(self, user_id, payload):
         """
-        ``POST /api/v2/users/:user_id/authentication-tokens``
+        ``POST /users/:user_id/authentication-tokens``
 
         `User Tokens Create API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#create-a-user-token>`_
@@ -39,7 +39,7 @@ class TFCUserTokens(TFCEndpoint):
 
     def destroy(self, token_id):
         """
-        ``DELETE /api/v2/authentication-tokens/:id``
+        ``DELETE /authentication-tokens/:id``
 
         `User Tokens Destroy API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#destroy-a-user-token>`_
@@ -50,7 +50,7 @@ class TFCUserTokens(TFCEndpoint):
 
     def list(self, user_id):
         """
-        ``GET /api/v2/users/:user_id/authentication-tokens``
+        ``GET /users/:user_id/authentication-tokens``
 
         `User Tokens List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#list-user-tokens>`_
@@ -61,7 +61,7 @@ class TFCUserTokens(TFCEndpoint):
 
     def show(self, token_id):
         """
-        ``GET /api/v2/authentication-tokens/:id``
+        ``GET /authentication-tokens/:id``
 
         `User Tokens Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/user-tokens.html#show-a-user-token>`_

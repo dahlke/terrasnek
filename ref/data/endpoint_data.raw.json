@@ -1154,6 +1154,39 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/policy-sets.html"
     },
+    "providers": {
+        "methods": [
+            {
+                "description": "List public Terraform Registry Providers for an Organization",
+                "http-path": "GET /organizations/:organization_name/registry-providers",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#list-public-terraform-registry-providers-for-an-organization"
+            },
+            {
+                "description": "Create a Provider",
+                "http-path": "POST /organizations/:organization_name/registry-providers",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#create-a-provider"
+            },
+            {
+                "description": "Get a Provider",
+                "http-path": "GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#get-a-provider"
+            },
+            {
+                "description": null,
+                "http-path": "DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": null
+            }
+        ],
+        "url": "https://www.terraform.io/docs/cloud/api/providers.html"
+    },
     "registry_modules": {
         "implementation": true,
         "methods": [
@@ -1655,28 +1688,28 @@
         "methods": [
             {
                 "description": "List User Tokens",
-                "http-path": "GET /api/v2/users/:user_id/authentication-tokens",
+                "http-path": "GET /users/:user_id/authentication-tokens",
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "#list-user-tokens"
             },
             {
                 "description": "Show a User Token",
-                "http-path": "GET /api/v2/authentication-tokens/:id",
+                "http-path": "GET /authentication-tokens/:id",
                 "implementation-method-name": "show",
                 "implemented": true,
                 "permalink": "#show-a-user-token"
             },
             {
                 "description": "Create a User Token",
-                "http-path": "POST /api/v2/users/:user_id/authentication-tokens",
+                "http-path": "POST /users/:user_id/authentication-tokens",
                 "implementation-method-name": "create",
                 "implemented": true,
                 "permalink": "#create-a-user-token"
             },
             {
                 "description": "Destroy a User Token",
-                "http-path": "DELETE /api/v2/authentication-tokens/:id",
+                "http-path": "DELETE /authentication-tokens/:id",
                 "implementation-method-name": "destroy",
                 "implemented": true,
                 "permalink": "#destroy-a-user-token"

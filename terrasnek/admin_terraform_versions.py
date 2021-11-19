@@ -23,7 +23,7 @@ class TFCAdminTerraformVersions(TFCEndpoint):
         """
         return self._list(self._endpoint_base_url, page=page, page_size=page_size)
 
-    def list_all(self, workspace_id):
+    def list_all(self):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
