@@ -17,8 +17,7 @@ from ._constants import \
     HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED, \
         HTTP_FORBIDDEN, HTTP_NOT_FOUND, HTTP_CONFLICT, HTTP_PRECONDITION_FAILED, \
             HTTP_UNPROCESSABLE_ENTITY, HTTP_API_REQUEST_RATE_LIMIT_REACHED, \
-                HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE, HTTP_MOVED_PERMANENTLY, \
-                    HTTP_MOVED_TEMPORARILY
+                HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE, HTTP_MOVED_PERMANENTLY
 
 class TFCEndpoint(ABC):
     """
@@ -132,7 +131,7 @@ class TFCEndpoint(ABC):
             q_options.append(f"since={since}")
 
         # V1 Modules API options
-        # TODO: do we still need to support this?
+        # FIXME: This parameter needs to be deprecated and removed at some stage.
         if offset is not None:
             q_options.append(f"offset={offset}")
 
@@ -163,14 +162,15 @@ class TFCEndpoint(ABC):
         elif req.status_code == HTTP_NO_CONTENT:
             results = req.headers
         elif req.history:
-            # TODO: use this HTTP_MOVED_TEMPORARILY
+            # TODO: use HTTP_MOVED_TEMPORARILY
 
             # NOTE: If we got redirected, run the get on the new URL, and fix the
             # URL to match the private module registry URL schema.
             url = req.url.replace("/v1/modules/", "/api/registry/v1/modules/")
             results = {"redirect-url": url}
         elif req.status_code == HTTP_MOVED_PERMANENTLY:
-            print("TODO: REDIRECTING ORIGINAL", req.url)
+            # FIXME: this isn't doing anything now (this was found in using run-tasks from event-hooks)
+            print("REDIRECTING ORIGINAL", req.url)
         elif req.status_code == HTTP_UNAUTHORIZED:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)

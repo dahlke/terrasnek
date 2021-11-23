@@ -46,7 +46,7 @@ class TFCRegistryModules(TFCEndpoint):
         """
         return self._list(\
             self._mods_v2_base_url, page=page, page_size=page_size, offset=offset, \
-                limit=limit, provider=provider, verified=verified)
+                limit=limit, provider=provider, verified=verified, filters=filters)
 
     def list_all(self):
         """
@@ -57,7 +57,6 @@ class TFCRegistryModules(TFCEndpoint):
 
         Returns an object with two arrays of objects.
         """
-        # TODO: should this take parameters?
         return self._list_all(self._mods_v2_base_url)
 
 
@@ -68,7 +67,7 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Search API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#search-modules>`_
         """
-        # TODO: the slash here is behaving differently from TFE to TFC
+        # FIXME: the slash here is behaving differently from TFE to TFC
         url = f"{self._modules_v1_base_url}/search"
         return self._list(url, \
             query=query, offset=offset, limit=limit, provider=provider,\

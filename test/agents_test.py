@@ -58,8 +58,6 @@ class TestTFCAgents(TestTFCBaseTestCase):
         updated_agent_pool = self._api.agents.update(agent_pool_id, update_payload)
         self.assertEqual(updated_agent_pool_name, updated_agent_pool["data"]["attributes"]["name"])
 
-        # TODO: create an agent and delete it.
-
         # Destroy the agent pool, confirm that it's gone.
         self._api.agents.destroy_pool(agent_pool_id)
         agent_pools = self._api.agents.list_pools()["data"]

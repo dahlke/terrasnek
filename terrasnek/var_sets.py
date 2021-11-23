@@ -60,8 +60,7 @@ class TFCVarSets(TFCEndpoint):
         """
         return self._list(self._org_varsets_base_url)
 
-    # TODO: list_all_for_org?? Don't think it's supported
-    # TODO: list_all_for_workspace? Don't think it's supported
+    # FIXME: list_all_for_org when pagination is supported
 
     def list_for_workspace(self, workspace_id):
         """
@@ -72,6 +71,8 @@ class TFCVarSets(TFCEndpoint):
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/varsets"
         return self._list(url)
+
+    # FIXME: list_all_for_workspace when pagination is supported
 
     def update(self, varset_id, payload):
         """

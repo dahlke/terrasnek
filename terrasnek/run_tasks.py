@@ -35,7 +35,6 @@ class TFCRunTasks(TFCEndpoint):
         `Run Tasks Create Sample Payload \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload>`_
         """
-        # TODO: handle the redirect on POST /organizations/:organization_name/event-hooks
         return self._create(self._org_tasks_base_url, payload)
 
 
@@ -62,16 +61,15 @@ class TFCRunTasks(TFCEndpoint):
         """
         return self._list_all(self._org_tasks_base_url)
 
-    def show(self, task_id):
+    def show(self, task_id, include=None):
         """
         ``GET /tasks/:id``
 
         `Run Tasks Show API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#show-a-run-task>`_
         """
-        # TODO: support includes here
         url = f"{self._tasks_base_url}/{task_id}"
-        return self._show(url)
+        return self._show(url, include=include)
 
     def update(self, task_id, payload):
         """
@@ -123,7 +121,17 @@ class TFCRunTasks(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks"
         return self._get(url, page=page, page_size=page_size)
 
-    # TODO: list_all_on_workspace?
+    def list_all_tasks_on_workspace(self, workspace_id):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every policy for an organization.
+
+        Returns an object with two arrays of objects.
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks"
+        return self._list_all(url)
 
     def show_task_on_workspace(self, workspace_id, task_id):
         """

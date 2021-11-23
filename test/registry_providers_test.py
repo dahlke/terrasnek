@@ -60,4 +60,3 @@ class TestTFCRegistryProviders(TestTFCBaseTestCase):
         # List the providers and confirm there are none
         listed_providers = self._api.registry_providers.list()["data"]
         self.assertEqual(len(listed_providers), 0)
-

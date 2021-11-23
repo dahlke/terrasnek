@@ -32,7 +32,6 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
             self._get_ws_no_vcs_create_payload())["data"]
         ws_id = workspace["id"]
 
-        # TODO: use constants for the page sizes and number?
         # List the workspaces, confirm we have the included values
         listed_ws_raw = self._api.workspaces.list(page=PAGE_START, page_size=PAGE_SIZE, include=["organization"])
         self.assertIn("included", listed_ws_raw)
