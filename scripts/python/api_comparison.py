@@ -89,6 +89,7 @@ def scrape_endpoint_info():
             endpoint_name = endpoint_name.replace("variable_sets", "var_sets")
             endpoint_name = endpoint_name.replace("team_members", "team_memberships")
             endpoint_name = endpoint_name.replace("modules", "registry_modules")
+            endpoint_name = endpoint_name.replace("providers", "registry_providers")
 
             if endpoint_name == "run":
                 endpoint_name = "runs"

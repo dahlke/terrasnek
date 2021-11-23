@@ -32,30 +32,8 @@ class TFCVCSEvents(TFCEndpoint):
         `VCS Events List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/vcs-events.html#list-vcs-events>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/vcs-events.html#query-parameters>`__):
-            - ``page[number]`` (Optional)
-            - ``page[size]`` (Optional)
-            - ``filter[from]`` (Optional)
-            - ``filter[to]`` (Optional)
-            - ``filter[oauth_client_external_ids]`` (Optional)
-            - ``filter[levels]`` (Optional)
-            - ``include`` (Optional)
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["from"],
-                    "value": "foo"
-                },
-                {
-                    "keys": ["to"],
-                    "value": "bar"
-                }
-            ]
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/vcs-events.html#query-parameters>`__
 
         NOTE: Currently, this feature is in beta, and only supports GitLab.
         Since all of the testing is done with GitHub, this function is

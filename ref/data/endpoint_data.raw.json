@@ -1154,40 +1154,6 @@
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/policy-sets.html"
     },
-    "providers": {
-        "methods": [
-            {
-                "description": "List public Terraform Registry Providers for an Organization",
-                "http-path": "GET /organizations/:organization_name/registry-providers",
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "#list-public-terraform-registry-providers-for-an-organization"
-            },
-            {
-                "description": "Create a Provider",
-                "http-path": "POST /organizations/:organization_name/registry-providers",
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "#create-a-provider"
-            },
-            {
-                "description": "Get a Provider",
-                "http-path": "GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name",
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "#get-a-provider"
-            },
-            {
-                "description": null,
-                "http-path": "DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name",
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": null
-            }
-        ],
-        "test": true,
-        "url": "https://www.terraform.io/docs/cloud/api/providers.html"
-    },
     "registry_modules": {
         "implementation": true,
         "methods": [
@@ -1278,6 +1244,41 @@
         ],
         "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/modules.html"
+    },
+    "registry_providers": {
+        "implementation": true,
+        "methods": [
+            {
+                "description": "List public Terraform Registry Providers for an Organization",
+                "http-path": "GET /organizations/:organization_name/registry-providers",
+                "implementation-method-name": "list",
+                "implemented": true,
+                "permalink": "#list-public-terraform-registry-providers-for-an-organization"
+            },
+            {
+                "description": "Create a Provider",
+                "http-path": "POST /organizations/:organization_name/registry-providers",
+                "implementation-method-name": "create",
+                "implemented": true,
+                "permalink": "#create-a-provider"
+            },
+            {
+                "description": "Get a Provider",
+                "http-path": "GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name",
+                "implementation-method-name": "show",
+                "implemented": true,
+                "permalink": "#get-a-provider"
+            },
+            {
+                "description": null,
+                "http-path": "DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name",
+                "implementation-method-name": "destroy",
+                "implemented": true,
+                "permalink": null
+            }
+        ],
+        "test": true,
+        "url": "https://www.terraform.io/docs/cloud/api/providers.html"
     },
     "run_tasks": {
         "implementation": true,

@@ -43,22 +43,8 @@ class TFCRunTriggers(TFCEndpoint):
         `Run Triggers List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-triggers.html#list-run-triggers>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`__):
-            - ``filter[run-trigger][type]`` (Required)
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["run-trigger", "type"],
-                    "value": "foo"
-                }
-            ]
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/run-triggers.html#query-parameters>`__
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
         return self._list(url, filters=filters, page=page, page_size=page_size)

@@ -45,24 +45,8 @@ class TFCPolicySets(TFCEndpoint):
         `Policy Sets List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#list-policy-sets>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/policy-sets.html#query-parameters>`__):
-            - ``filter[versioned]`` (Optional)
-            - ``include`` (Optional)
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
-            - ``search`` (Optional)
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["versioned"],
-                    "value": "foo"
-                }
-            ]
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/policy-sets.html#query-parameters>`__
         """
         return self._list(\
             self._org_api_v2_base_url, \

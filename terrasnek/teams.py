@@ -54,11 +54,8 @@ class TFCTeams(TFCEndpoint):
         `Teams List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/teams.html#list-teams>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/teams.html#query-parameters>`__):
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
-
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/teams.html#query-parameters>`__
         """
         return self._list(\
             self._org_api_v2_base_url, page=page, page_size=page_size, include=include)

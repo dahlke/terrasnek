@@ -55,27 +55,8 @@ class TFCStateVersions(TFCEndpoint):
         `State Versions List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#list-state-versions-for-a-workspace>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`__):
-            - ``filter[workspace][name]`` (Required)
-            - ``filter[organization][name]`` (Required)
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["workspace", "name"],
-                    "value": "foo"
-                },
-                {
-                    "keys": ["organization", "name"],
-                    "value": "bar"
-                }
-            ]
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`__
         """
         url = f"{self._state_version_api_v2_base_url}"
         return self._list(url, filters=filters, page=page, page_size=page_size, include=include)
@@ -99,29 +80,9 @@ class TFCStateVersions(TFCEndpoint):
         `List State Version Outputs API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#list-state-version-outputs>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`__):
-            - ``filter[workspace][name]`` (Required)
-            - ``filter[organization][name]`` (Required)
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
-
         TODO: this is not yet supported in TFE?
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["workspace", "name"],
-                    "value": "foo"
-                },
-                {
-                    "keys": ["organization", "name"],
-                    "value": "bar"
-                }
-            ]
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`__
         """
         url = f"{self._state_version_api_v2_base_url}/{state_version_id}/outputs"
         return self._list(url)

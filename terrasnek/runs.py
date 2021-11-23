@@ -32,10 +32,8 @@ class TFCRuns(TFCEndpoint):
         `Runs List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run.html#list-runs-in-a-workspace>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/run.html#query-parameters>`__):
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/run.html#query-parameters>`__
         """
 
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"

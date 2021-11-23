@@ -32,10 +32,8 @@ class TFCConfigVersions(TFCEndpoint):
         `Config Versions List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/configuration-versions.html#list-configuration-versions>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#query-parameters>`__):
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/configuration-versions.html#query-parameters>`__
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
         return self._list(url, page=page, page_size=page_size, include=include)

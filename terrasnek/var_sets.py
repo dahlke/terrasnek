@@ -57,10 +57,6 @@ class TFCVarSets(TFCEndpoint):
 
         `Variable Sets List For Organization API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variable-sets.html#list-variable-set>`_
-
-        Query Parameter(s) (`details \
-            <TODO: pagination>`__):
-            - ``filter[workspace][name]`` (Required)
         """
         return self._list(self._org_varsets_base_url)
 
@@ -141,7 +137,7 @@ class TFCVarSets(TFCEndpoint):
         """
         ``GET varsets/:varset_id/relationships/vars``
 
-        `Variable Sets Update API Doc Reference \
+        `Variable Sets List In Variable Set API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variable-sets.html#list-variables-in-a-variable-set>`_
         """
         url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"

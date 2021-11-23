@@ -83,10 +83,8 @@ class TFCWorkspaces(TFCEndpoint):
         `Workspaces List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#list-workspaces>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters>`__):
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters>`__
         """
         return self._list(self._org_api_v2_base_url, \
             page=page, page_size=page_size, include=include)
@@ -181,10 +179,8 @@ class TFCWorkspaces(TFCEndpoint):
         `Get Remote State Consumers API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#get-remote-state-consumers>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-1>`__):
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-1>`__
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/remote-state-consumers"
         return self._get(url, page=page, page_size=page_size)
@@ -235,10 +231,8 @@ class TFCWorkspaces(TFCEndpoint):
         `Get Tags API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#get-tags>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-2>`__):
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters-2>`__
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
         return self._get(url, page=page, page_size=page_size)

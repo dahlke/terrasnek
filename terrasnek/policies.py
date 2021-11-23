@@ -43,11 +43,8 @@ class TFCPolicies(TFCEndpoint):
         `Policies List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policies.html#list-policies>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/policies.html#query-parameters>`__):
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
-            - ``search`` (Optional)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/policies.html#query-parameters>`__
         """
         return self._list(self._org_api_v2_base_url, \
             page=page, page_size=page_size, search=search, include=include)

@@ -41,27 +41,8 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules List API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-modules>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/modules.html#query-parameters>`__):
-            - ``filter[registry_name]`` (Optional)
-            - ``filter[provider]`` (Optional)
-            - ``filter[organization_name]`` (Optional)
-            - ``limit`` (Optional)
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
-            - ``provider`` (Optional)
-            - ``verified`` (Optional)
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["provider"],
-                    "value": "aws"
-                }
-            ]
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/modules.html#query-parameters>`__
         """
         return self._list(\
             self._mods_v2_base_url, page=page, page_size=page_size, offset=offset, \
