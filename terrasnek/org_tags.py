@@ -26,15 +26,14 @@ class TFCOrgTags(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def list_tags(self):
+    def list_tags(self, query=None, filters=None, page=None, page_size=None):
         """
         ``GET /organizations/:organization_name/tags``
 
         `Get Tags API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-tags.html#get-tags>`_
         """
-        # TODO: does this support pagination?
-        return self._get(self._org_tags_base_url)
+        return self._list(self._org_tags_base_url, query=query, filters=filters, page=page, page_size=page_size)
 
     def delete_tags(self, payload):
         """
@@ -62,6 +61,7 @@ class TFCOrgTags(TFCEndpoint):
         return self._post(url, data=payload)
 
     # NOTE: this endpoint has been temporarily removed
+    # (https://www.terraform.io/docs/cloud/api/organization-tags.html#remove-workspaces-from-a-tag)
     """
     def remove_workspaces_from_tag(self, tag_id, payload):
         \"""

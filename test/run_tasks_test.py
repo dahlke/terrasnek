@@ -97,6 +97,11 @@ class TestTFCRunTasks(TestTFCBaseTestCase):
         listed_tasks_on_workspace = self._api.run_tasks.list_tasks_on_workspace(self._ws_id)["data"]
         self.assertEqual(len(listed_tasks_on_workspace), 1)
 
+        # Test listing all on workspace
+        all_listed_tasks_on_workspace = self._api.run_tasks.list_all_tasks_on_workspace(self._ws_id)["data"]
+        self.assertEqual(len(all_listed_tasks_on_workspace), 1)
+
+
         # Confirm that the run task has been attached by showing the task and comparing IDs
         shown_task_on_workspace = self._api.run_tasks.show_task_on_workspace(self._ws_id, attached_task_id)["data"]
         self.assertEqual(shown_task_on_workspace["id"], attached_task_id)
@@ -112,7 +117,8 @@ class TestTFCRunTasks(TestTFCBaseTestCase):
             }
         }
         updated_task_on_workspace = \
-            self._api.run_tasks.update_task_on_workspace(self._ws_id, attached_task_id, update_task_on_workspace_payload)["data"]
+            self._api.run_tasks.update_task_on_workspace(\
+                self._ws_id, attached_task_id, update_task_on_workspace_payload)["data"]
         self.assertEqual(updated_task_on_workspace["attributes"]["enforcement-level"], updated_enforcement_level)
 
         # Remove the task from the workspace, confirm it's gone

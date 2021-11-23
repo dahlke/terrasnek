@@ -121,7 +121,9 @@ class TestTFCVarSets(TestTFCBaseTestCase):
                 }
             }
         }
-        self._api.var_sets.update_var_in_varset(created_var_set_id, added_var_id, update_var_in_varset_payload)["data"]
+        updated_var = self._api.var_sets.update_var_in_varset(\
+            created_var_set_id, added_var_id, update_var_in_varset_payload)["data"]
+        self.assertEqual(updated_var["attributes"]["value"], updated_value)
 
         # Apply the variable set to the workspace
         apply_varset_payload = {
@@ -169,4 +171,3 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         # Confirm we no longer have any varsets
         listed_var_sets = self._api.var_sets.list_for_org()["data"]
         self.assertEqual(len(listed_var_sets), 0)
-
