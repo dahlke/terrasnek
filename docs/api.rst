@@ -41,6 +41,7 @@ API Spec
    policy_sets
    policy_set_params
    registry_modules
+   registry_providers
    runs
    run_tasks
    run_triggers

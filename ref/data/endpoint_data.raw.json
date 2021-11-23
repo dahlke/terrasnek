@@ -1185,6 +1185,7 @@
                 "permalink": null
             }
         ],
+        "test": true,
         "url": "https://www.terraform.io/docs/cloud/api/providers.html"
     },
     "registry_modules": {

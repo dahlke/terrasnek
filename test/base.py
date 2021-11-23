@@ -143,6 +143,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.debug(f"Variable sets purged from test org ({cls._test_org_name}).")
 
         cls._purge_module_registry()
+        cls._purge_provider_registry()
 
         cls._logger.debug(f"Modules purged from test org ({cls._test_org_name}).")
 
@@ -212,13 +213,26 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
     @classmethod
     def _purge_module_registry(cls):
-        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of modules...")
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of registry modules...")
         try:
             registry_modules = cls._api.registry_modules.list()["data"]
             for registry_module in registry_modules:
                 cls._api.registry_modules.destroy(registry_module["attributes"]["name"])
         except terrasnek.exceptions.TFCHTTPNotFound:
-            cls._logger.debug("No modules exist in this org, skipping.")
+            cls._logger.debug("No registry modules exist in this org, skipping.")
+
+    @classmethod
+    def _purge_provider_registry(cls):
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of registry providers...")
+        try:
+            registry_providers = cls._api.registry_providers.list()["data"]
+            for registry_provider in registry_providers:
+                registry_name = registry_provider["attributes"]["registry-name"]
+                namespace = registry_provider["attributes"]["namespace"]
+                name = registry_provider["attributes"]["name"]
+                cls._api.registry_providers.destroy(registry_name, namespace, name)
+        except terrasnek.exceptions.TFCHTTPNotFound:
+            cls._logger.debug("No registry providers exist in this org, skipping.")
 
     @classmethod
     def _get_missing_entitlements(cls, endpoint_attr_name):
