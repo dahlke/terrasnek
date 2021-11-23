@@ -43,20 +43,8 @@ class TFCTeamAccess(TFCEndpoint):
         `Team Access List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/team-access.html#list-team-access-to-a-workspace>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/team-access.html#query-parameters>`__):
-            - ``filter[workspace][id]`` (Required)
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["workspace", "id"],
-                    "value": "foo"
-                }
-            ]
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/team-access.html#query-parameters>`__
         """
         return self._list(self._endpoint_base_url, filters=filters)
 

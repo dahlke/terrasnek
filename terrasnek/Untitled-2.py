@@ -43,8 +43,8 @@ class TFCProviders(TFCEndpoint):
         `Providers List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/providers.html#list-public-terraform-registry-providers-for-an-organization>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/providers.html#query-parameters>`__)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/providers.html#query-parameters>`__
         """
         return self._list(self._org_providers_base_url, page=page, page_size=page_size, include=include)
 

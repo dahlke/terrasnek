@@ -53,20 +53,8 @@ class TFCAgents(TFCEndpoint):
         `Agents List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/agents.html#list-agents>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/agents.html#query-parameters>`__):
-            - ``filter[last-ping-since]`` (Optional)
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["last-ping-since"],
-                    "value": "foo"
-                }
-            ]
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/agents.html#query-parameters>`__
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}/agents"
         return self._list(url, filters=filters)

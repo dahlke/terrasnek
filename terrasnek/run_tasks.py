@@ -46,11 +46,8 @@ class TFCRunTasks(TFCEndpoint):
         `Run Tasks List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#list-run-tasks>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#query-parameters>`__):
-            - ``page_size`` (Optional)
-            - ``page`` (Optional)
-            - ``include`` (Optional)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#query-parameters>`__
         """
         return self._list(self._org_tasks_base_url, page=page, page_size=page_size, include=include)
 
@@ -120,10 +117,8 @@ class TFCRunTasks(TFCEndpoint):
         `Run Tasks List On Workspace API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#list-workspace-run-tasks>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/run-tasks.html#query-parameters-1>`__):
-            - ``page_size`` (Optional)
-            - ``page`` (Optional)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/run-tasks.html#query-parameters-1>`__
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks"
         return self._get(url, page=page, page_size=page_size)
@@ -132,7 +127,7 @@ class TFCRunTasks(TFCEndpoint):
 
     def show_task_on_workspace(self, workspace_id, task_id):
         """
-        ``GET /workspaces/:workspace_id/tasks/:id ``
+        ``GET /workspaces/:workspace_id/tasks/:id``
 
         `Run Tasks Show On Workspace API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#show-workspace-run-task>`_

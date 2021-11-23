@@ -42,9 +42,8 @@ class TFCVars(TFCEndpoint):
         `Vars List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variables.html#list-variables>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/variables.html#query-parameters>`__):
-            - ``filter[workspace][name]`` (Required)
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/variables.html#query-parameters>`__
         """
         url = f"{self._endpoint_base_url}?filter[organization][name]={self._org_name}"
 

@@ -44,24 +44,8 @@ class TFCOrgMemberships(TFCEndpoint):
         `Org Memberships List for Org API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organization-memberships.html#list-memberships-for-an-organization>`_
 
-        Query Parameter(s) (`details \
-            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters>`__):
-            - ``query`` (Optional)
-            - ``filter[status]`` (Optional)
-            - ``page`` (Optional)
-            - ``page_size`` (Optional)
-
-        Example filter(s):
-
-        .. code-block:: python
-
-            filters = [
-                {
-                    "keys": ["status"],
-                    "value": "foo"
-                }
-            ]
-
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/docs/cloud/api/organization-memberships.html#query-parameters>`__
         """
         return self._list(\
             self._org_base_url, query=query, filters=filters, page=page, \
