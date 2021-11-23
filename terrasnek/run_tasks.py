@@ -111,7 +111,6 @@ class TFCRunTasks(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/run-tasks.html#sample-payload-2>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/tasks"
-        print("attach URL", url)
         return self._post(url, data=payload)
 
     def list_tasks_on_workspace(self, workspace_id, page=None, page_size=None):
