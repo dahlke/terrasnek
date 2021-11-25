@@ -15,7 +15,7 @@ test:
 # coverage run -m unittest test/*_test.py;
 .PHONY: coverage
 coverage:
-	coverage run --omit 'venv/*' -m unittest test/*_test.py;
+	coverage run --omit 'venv/*,test/*' -m unittest test/*_test.py;
 	coverage json -o coverage.tfc.json --pretty-print;
 	coverage report -m;
 
