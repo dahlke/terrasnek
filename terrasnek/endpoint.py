@@ -100,6 +100,7 @@ class TFCEndpoint(ABC):
         if query is not None:
             q_options.append(f"q={query}")
 
+        # TODO: compare list length instead
         if filters is not None:
             for fil in filters:
                 filter_string = "filter"
@@ -107,6 +108,10 @@ class TFCEndpoint(ABC):
                     filter_string += f"[{k}]"
                 filter_string += f"={fil['value']}"
                 q_options.append(filter_string)
+
+        if include is not None:
+            joined_include = ",".join(include)
+            q_options.append(f"include={joined_include}")
 
         if page is not None:
             q_options.append(f"page[number]={page}")
@@ -117,9 +122,6 @@ class TFCEndpoint(ABC):
         if search is not None:
             q_options.append(f"page[name]={page_size}")
 
-        if include is not None:
-            joined_include = ",".join(include)
-            q_options.append(f"include={joined_include}")
 
         if sort is not None:
             q_options.append(f"sort={sort}")
