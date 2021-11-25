@@ -42,5 +42,5 @@ test/admin_orgs_test.py:27:15: W0703: Catching too general exception Exception (
 test/base.py:193:2: W0511: TODO: move these once they both go GA or make the tests smarter (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.93/10 (previous run: 9.91/10, +0.03)
+Your code has been rated at 9.93/10 (previous run: 9.93/10, +0.00)
 
