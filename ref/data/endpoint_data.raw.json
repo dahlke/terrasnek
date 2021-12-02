@@ -1270,11 +1270,11 @@
                 "permalink": "#get-a-provider"
             },
             {
-                "description": null,
+                "description": "Delete a Provider",
                 "http-path": "DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name",
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": null
+                "permalink": "#delete-a-provider"
             }
         ],
         "test": true,
@@ -1501,6 +1501,13 @@
         "implementation": true,
         "methods": [
             {
+                "description": "List State Version Outputs",
+                "http-path": "GET /state-versions/:state_version_id/outputs",
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "#list-state-version-outputs"
+            },
+            {
                 "description": "Show a State Version Output",
                 "http-path": "GET /state-version-outputs/:state_version_output_id",
                 "implementation-method-name": "show",
@@ -1541,13 +1548,6 @@
                 "implementation-method-name": "list_state_version_outputs",
                 "implemented": true,
                 "permalink": "#show-a-state-version"
-            },
-            {
-                "description": "List State Version Outputs",
-                "http-path": "GET /state-versions/:state_version_id/outputs",
-                "implementation-method-name": "list_state_version_outputs",
-                "implemented": true,
-                "permalink": "#list-state-version-outputs"
             }
         ],
         "test": true,
