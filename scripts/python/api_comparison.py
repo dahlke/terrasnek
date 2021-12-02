@@ -177,9 +177,11 @@ def check_contributor_requirements(endpoints):
     # Check for an docs file for each endpoint
     docs_filenames = \
         get_valid_filenames_in_dir(DOCS_PATH, filename_ignore=[])
+
     for filename in docs_filenames:
-        if filename in endpoints:
-            endpoints[filename]["docs"] = True
+        stripped_filename = filename.replace(".rst", "")
+        if stripped_filename in endpoints:
+            endpoints[stripped_filename]["docs"] = True
 
     return endpoints
 

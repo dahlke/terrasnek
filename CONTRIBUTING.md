@@ -72,7 +72,7 @@ source test/secrets/secrets.op.sh
 source test/secrets/secrets.tfe.sh
 ```
 
-Then run the required processes..
+Then run the required processes.
 
 ```bash
 make pre_release
