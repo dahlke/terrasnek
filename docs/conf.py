@@ -22,11 +22,11 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'terrasnek'
-copyright = '2020, Neil Dahlke'
+copyright = '2021, Neil Dahlke'
 author = 'Neil Dahlke'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.6'
+release = '0.1.7'
 
 
 # -- General configuration ---------------------------------------------------

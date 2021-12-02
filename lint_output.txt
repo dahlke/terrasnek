@@ -7,9 +7,10 @@ terrasnek/var_sets.py:29:2: W0511: TODO (fixme)
 terrasnek/var_sets.py:63:2: W0511: FIXME: list_all_for_org when pagination is supported (fixme)
 terrasnek/var_sets.py:75:2: W0511: FIXME: list_all_for_workspace when pagination is supported (fixme)
 ************* Module terrasnek.endpoint
-terrasnek/endpoint.py:134:2: W0511: FIXME: This parameter needs to be deprecated and removed at some stage. (fixme)
-terrasnek/endpoint.py:165:2: W0511: TODO: use HTTP_MOVED_TEMPORARILY (fixme)
-terrasnek/endpoint.py:172:2: W0511: FIXME: this isn't doing anything now (this was found in using run-tasks from event-hooks) (fixme)
+terrasnek/endpoint.py:103:2: W0511: TODO: compare list length instead (fixme)
+terrasnek/endpoint.py:136:2: W0511: FIXME: This parameter needs to be deprecated and removed at some stage. (fixme)
+terrasnek/endpoint.py:167:2: W0511: TODO: use HTTP_MOVED_TEMPORARILY (fixme)
+terrasnek/endpoint.py:174:2: W0511: FIXME: this isn't doing anything now (this was found in using run-tasks from event-hooks) (fixme)
 ************* Module terrasnek.run_tasks
 terrasnek/run_tasks.py:22:2: W0511: TODO: remove this once it goes to TFE GA (fixme)
 ************* Module terrasnek.invoices
@@ -39,8 +40,8 @@ test/invoices_test.py:20:2: W0511: TODO: this will fail since we don't have any 
 ************* Module test.admin_orgs_test
 test/admin_orgs_test.py:27:15: W0703: Catching too general exception Exception (broad-except)
 ************* Module test.base
-test/base.py:193:2: W0511: TODO: move these once they both go GA or make the tests smarter (fixme)
+test/base.py:192:2: W0511: TODO: move these once they both go GA or make the tests smarter (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.93/10 (previous run: 9.93/10, +0.00)
+Your code has been rated at 9.93/10 (previous run: 9.93/10, -0.00)
 

@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.8] - TBD
+
+- TBD
+
+## [0.1.7] - 2021-12-02
+
+- Implemented Registry Providers.
+- Immplemented Variable Sets.
+- Adding a `list_all` helper to Terraform Versions.
+- Adding `list_all` to Registry Modules.
+- Adding new options to Registry Modules `list` function.
+- Updating the Run Tasks code to fit the new URLs (formerly Event Hooks). (BETA)
+- Updating docs copy.
+- Remove `GITHUB_SECRET` from the requirements for testing.
+- Change what gets reported on for code coverage.
+- Removing all params from docstrings, they change too much. Instead, relying on sharing the relevant link.
+- `api_comparison` properly reports missing docs pages now.
+- Clearing out TODOs.
+
 ## [0.1.6] - 2021-09-19
 
 - Implemented Run Tasks endpoints
