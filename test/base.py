@@ -134,13 +134,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._api.workspaces.destroy(workspace_id=workspace["id"])
         cls._logger.debug(f"Workspaces purged from test org ({cls._test_org_name}).")
 
-        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of variable sets...")
-        var_sets = cls._api.var_sets.list_for_org()["data"]
-        for var_set in var_sets:
-            var_set_id = var_set["id"]
-            cls._api.var_sets.destroy(var_set_id)
-        cls._logger.debug(f"Variable sets purged from test org ({cls._test_org_name}).")
-
         cls._purge_module_registry()
         cls._purge_provider_registry()
 
@@ -189,20 +182,26 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 cls._api.org_memberships.remove(membership_id)
         cls._logger.debug(f"Org member invites purged from test org ({cls._test_org_name}).")
 
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of agent pools...")
+        agent_pools = cls._api.agents.list_pools()["data"]
+        for agent_pool in agent_pools:
+            cls._api.agents.destroy_pool(agent_pool["id"])
+        cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
+
         # TODO: move these once they both go GA or make the tests smarter
         if cls._api.is_terraform_cloud():
-            cls._logger.debug(f"Purging test org ({cls._test_org_name}) of agent pools...")
-            agent_pools = cls._api.agents.list_pools()["data"]
-            for agent_pool in agent_pools:
-                cls._api.agents.destroy(agent_pool["id"])
-            cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
-
             cls._logger.debug(f"Purging test org ({cls._test_org_name}) of run tasks...")
             run_tasks = cls._api.run_tasks.list_all()["data"]
             for run_task in run_tasks:
                 cls._api.run_tasks.destroy(run_task["id"])
             cls._logger.debug(f"Run tasks purged from test org ({cls._test_org_name}).")
 
+            cls._logger.debug(f"Purging test org ({cls._test_org_name}) of variable sets...")
+            var_sets = cls._api.var_sets.list_for_org()["data"]
+            for var_set in var_sets:
+                var_set_id = var_set["id"]
+                cls._api.var_sets.destroy(var_set_id)
+            cls._logger.debug(f"Variable sets purged from test org ({cls._test_org_name}).")
         try:
             cls._logger.debug(f"Purging org token from test org ({cls._test_org_name})...")
             cls._api.org_tokens.destroy()
@@ -502,6 +501,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
+    # TODO: merge these helper functions
     @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
     def _created_run_timeout(self, run_id):
         """
@@ -517,3 +517,32 @@ class TestTFCBaseTestCase(unittest.TestCase):
             time.sleep(1)
         self._logger.debug("Plan successful.")
         return created_run
+
+    @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
+    def _published_module_timeout(self, published_module_name):
+        """
+        While running the tests, it's possible that a module is published, and it takes a while
+        til it is returned from the API. This would cause the test suite to stall indefinitely
+        until the queue is cleared. This function is meant to keep that to a minimum, and just fail
+        the test if we are waiting too long.
+        """
+        search_modules_resp = self._api.registry_modules.search(published_module_name)
+        search_modules = search_modules_resp["modules"]
+        search_index = 0
+        found_module = False
+        # TODO: this is not working as expected on TFE anymore, works fine on TFC
+        # print(published_module_name, search_modules)
+
+        while search_index < 5:
+            for module in search_modules:
+                if module["name"] == published_module_name:
+                    found_module = True
+                    self._logger.debug("Published module found.")
+
+                search_modules_resp = self._api.registry_modules.search(published_module_name)
+                search_modules = search_modules_resp["modules"]
+                search_index += 1
+                self._logger.debug("Waiting for published module to return in PI results...")
+                time.sleep(1)
+
+        return found_module

@@ -21,7 +21,7 @@ class TFCAgents(TFCEndpoint):
         return [Entitlements.AGENTS]
 
     def terraform_cloud_only(self):
-        return True
+        return False
 
     def terraform_enterprise_only(self):
         return False
@@ -100,6 +100,7 @@ class TFCAgents(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/agents.html#delete-an-agent>`_
         """
         url = f"{self._agents_api_v2_base_url}/{agent_id}"
+        print("DESTROY", url)
         return self._delete(url)
 
 

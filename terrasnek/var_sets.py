@@ -22,11 +22,11 @@ class TFCVarSets(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        # TODO
-        return False
+        # TODO: change when it gets released to TFE
+        return True
 
     def terraform_enterprise_only(self):
-        # TODO
+        # TODO: change when it gets released to TFE
         return False
 
     def create(self, payload):

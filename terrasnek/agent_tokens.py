@@ -20,10 +20,10 @@ class TFCAgentTokens(TFCEndpoint):
         return [Entitlements.AGENTS]
 
     def terraform_cloud_only(self):
-        return True
+        return False
 
     def terraform_enterprise_only(self):
-        return True
+        return False
 
     def create(self, agent_pool_id, payload):
         """
