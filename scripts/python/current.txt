@@ -1,0 +1,234 @@
+Account Get your account details
+Account Update your account info
+Account Change your password
+Admin Module Sharing Update an Organization's Module Consumers
+Admin Orgs List all Organizations
+Admin Orgs Show an Organization
+Admin Orgs Update an Organization
+Admin Orgs Delete an Organization
+Admin Orgs List Module Consumers for an Organization
+Admin Orgs Update an Organization's Module Consumers
+Admin Runs List all runs
+Admin Runs Force a run into the "cancelled" state
+Admin Settings List General Settings
+Admin Settings Update General Settings
+Admin Settings List Cost Estimation Settings
+Admin Settings Update Cost Estimation Settings
+Admin Settings List SAML Settings
+Admin Settings Update SAML Settings
+Admin Settings Revoke previous SAML IdP Certificate
+Admin Settings List SMTP Settings
+Admin Settings Update SMTP Settings
+Admin Settings List Twilio Settings
+Admin Settings Update Twilio Settings
+Admin Settings Verify Twilio Settings
+Admin Settings List Customization Settings
+Admin Settings Update Customization Settings
+Admin Terraform Versions List all Terraform versions
+Admin Terraform Versions Create a Terraform version
+Admin Terraform Versions Show a Terraform version
+Admin Terraform Versions Update a Terraform version
+Admin Terraform Versions Delete a Terraform version
+Admin Users List all users
+Admin Users Delete a user account
+Admin Users Suspend a user
+Admin Users Re-activate a suspended user
+Admin Users Grant a user administrative privileges
+Admin Users Revoke an user's administrative privileges
+Admin Users Disable a user's two-factor authentication
+Admin Users Impersonate another user
+Admin Users End an impersonation session
+Admin Workspaces List all workspaces
+Admin Workspaces Show a workspace
+Admin Workspaces Destroy a workspace
+Agent Tokens List Agent Tokens
+Agent Tokens Show an Agent Token
+Agent Tokens Create an Agent Token
+Agent Tokens Destroy an Agent Token
+Agents List Agent Pools
+Agents List Agents
+Agents Show an Agent Pool
+Agents Show an Agent
+Agents Delete an Agent
+Agents Create an Agent Pool
+Agents Update an Agent Pool
+Agents Delete an Agent Pool
+Applies Show an apply
+Audit Trails List an organization's audit events
+Config Versions List Configuration Versions
+Config Versions Show a Configuration Version
+Config Versions Show a Configuration Version's Commit Information
+Config Versions Show a Configuration Version's Commit Information
+Config Versions Create a Configuration Version
+Config Versions Upload Configuration Files
+Cost Estimates Show a cost estimate
+Feature Sets List Feature Sets
+Feature Sets List Feature Sets for Organization
+Invoices List Invoices
+Invoices Get Next Invoice
+Ip Ranges Get IP Ranges
+Notification Configs Create a Notification Configuration
+Notification Configs List Notification Configurations
+Notification Configs Show a Notification Configuration
+Notification Configs Update a Notification Configuration
+Notification Configs Verify a Notification Configuration
+Notification Configs Delete a Notification Configuration
+Oauth Clients List OAuth Clients
+Oauth Clients Show an OAuth Client
+Oauth Clients Create an OAuth Client
+Oauth Clients Update an OAuth Client
+Oauth Clients Destroy an OAuth Client
+Oauth Tokens List OAuth Tokens
+Oauth Tokens Show an OAuth Token
+Oauth Tokens Update an OAuth Token
+Oauth Tokens Destroy an OAuth Token
+Org Memberships Invite a User to an Organization
+Org Memberships List Memberships for an Organization
+Org Memberships List User's Own Memberships
+Org Memberships Show a Membership
+Org Memberships Remove User from Organization
+Org Tags List Tags
+Org Tags Delete tags
+Org Tags Add workspaces to a tag
+Org Tokens Generate a new organization token
+Org Tokens Delete the organization token
+Orgs List Organizations
+Orgs Show an Organization
+Orgs Create an Organization
+Orgs Update an Organization
+Orgs Destroy an Organization
+Orgs Show the Entitlement Set
+Orgs Show Module Producers
+Plan Exports Create a plan export
+Plan Exports Show a plan export
+Plan Exports Download exported plan data
+Plan Exports Delete exported plan data
+Plans Show a plan
+Plans Retrieve the JSON execution plan
+Plans Retrieve the JSON execution plan
+Policies Create a Policy
+Policies Show a Policy
+Policies Upload a Policy
+Policies Update a Policy
+Policies List Policies
+Policies Delete a Policy
+Policy Checks List Policy Checks
+Policy Checks Show Policy Check
+Policy Checks Override Policy
+Policy Set Params Create a Parameter
+Policy Set Params List Parameters
+Policy Set Params Update Parameters
+Policy Set Params Delete Parameters
+Policy Sets Create a Policy Set
+Policy Sets List Policy Sets
+Policy Sets Show a Policy Set
+Policy Sets Update a Policy Set
+Policy Sets Add Policies to the Policy Set
+Policy Sets Attach a Policy Set to workspaces
+Policy Sets Remove Policies from the Policy Set
+Policy Sets Detach the Policy Set from workspaces
+Policy Sets Delete a Policy Set
+Policy Sets Create a Policy Set Version
+Policy Sets Upload Policy Set Versions
+Policy Sets Show a Policy Set Version
+Registry Modules List Registry Modules for an Organization
+Registry Modules Publish a Private Module from a VCS
+Registry Modules Create a Module (with no VCS connection)
+Registry Modules Create a Module Version
+Registry Modules Upload a Module Version (private module)
+Registry Modules Get a Module
+Registry Providers List public Terraform Registry Providers for an Organization
+Registry Providers Create a Provider
+Registry Providers Get a Provider
+Registry Providers Delete a Provider
+Run Tasks Create a Run Task
+Run Tasks List Run Tasks
+Run Tasks Show a Run Task
+Run Tasks Update a Run Task
+Run Tasks Delete a Run Task
+Run Tasks Attach a Run Task to a Workspace
+Run Tasks List Workspace Run Tasks
+Run Tasks Show Workspace Run Task
+Run Tasks Update Workspace Run Task
+Run Tasks Delete Workspace Task
+Run Triggers Create a Run Trigger
+Run Triggers List Run Triggers
+Run Triggers Show a Run Trigger
+Run Triggers Delete a Run Trigger
+Runs Create a Run
+Runs Apply a Run
+Runs List Runs in a Workspace
+Runs Get run details
+Runs Discard a Run
+Runs Cancel a Run
+Runs Forcefully cancel a run
+Runs Forcefully execute a run
+Ssh Keys List SSH Keys
+Ssh Keys Get an SSH Key
+Ssh Keys Create an SSH Key
+Ssh Keys Update an SSH Key
+Ssh Keys Delete an SSH Key
+State Version Outputs List State Version Outputs
+State Version Outputs Show a State Version Output
+State Versions Create a State Version
+State Versions List State Versions for a Workspace
+State Versions Fetch the Current State Version for a Workspace
+State Versions Show a State Version
+Subscriptions Show Subscription For Organization
+Subscriptions Show Subscription By ID
+Team Access List Team Access to a Workspace
+Team Access Show a Team Access relationship
+Team Access Add Team Access to a Workspace
+Team Access Update Team Access to a Workspace
+Team Access Remove Team Access to a Workspace
+Team Memberships Add a User to Team
+Team Memberships Delete a User from Team
+Teams List teams
+Teams Create a Team
+Teams Show Team Information
+Teams Update a Team
+Teams Delete a Team
+User Tokens List User Tokens
+User Tokens Show a User Token
+User Tokens Create a User Token
+User Tokens Destroy a User Token
+Users Show a User
+Var Sets Create a Variable Set
+Var Sets Delete a Variable Set
+Var Sets Show Variable Set
+Var Sets List Variable Set
+Var Sets List Variable Set
+Var Sets Add Variable
+Var Sets Update a Variable in a Variable Set
+Var Sets List Variables in a Variable Set
+Var Sets Apply Variable Set to Workspaces
+Var Sets Remove a Variable Set from Workspaces
+Vars Create a Variable
+Vars List Variables
+Vars Update Variables
+Vars Delete Variables
+Vcs Events List VCS events
+Workspace Vars Create a Variable
+Workspace Vars List Variables
+Workspace Vars Update Variables
+Workspace Vars Delete Variables
+Workspaces Create a Workspace
+Workspaces Update a Workspace
+Workspaces Update a Workspace
+Workspaces List workspaces
+Workspaces Show workspace
+Workspaces Show workspace
+Workspaces Delete a workspace
+Workspaces Delete a workspace
+Workspaces Lock a workspace
+Workspaces Unlock a workspace
+Workspaces Force Unlock a workspace
+Workspaces Assign an SSH key to a workspace
+Workspaces Unassign an SSH key from a workspace
+Workspaces Get Remote State Consumers
+Workspaces Replace Remote State Consumers
+Workspaces Add Remote State Consumers
+Workspaces Delete Remote State Consumers
+Workspaces Get Tags
+Workspaces Add tags to a workspace
+Workspaces Remove tags from workspace

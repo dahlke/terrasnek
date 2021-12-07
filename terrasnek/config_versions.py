@@ -25,7 +25,7 @@ class TFCConfigVersions(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def list(self, workspace_id, page=None, page_size=None, include=None):
+    def list(self, workspace_id, page=None, page_size=None, include=[]):
         """
         ``GET /workspaces/:workspace_id/configuration-versions``
 
@@ -38,7 +38,7 @@ class TFCConfigVersions(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
         return self._list(url, page=page, page_size=page_size, include=include)
 
-    def list_all(self, workspace_id, include=None):
+    def list_all(self, workspace_id, include=[]):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -50,7 +50,7 @@ class TFCConfigVersions(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/configuration-versions"
         return self._list_all(url, include=include)
 
-    def show(self, config_version_id, include=None):
+    def show(self, config_version_id, include=[]):
         """
         ``GET /configuration-versions/:configuration-id``
 
@@ -60,7 +60,7 @@ class TFCConfigVersions(TFCEndpoint):
         url = f"{self._config_version_api_v2_base_url}/{config_version_id}"
         return self._show(url, include=include)
 
-    def show_config_version_commit_info(self, config_version_id, include=None):
+    def show_config_version_commit_info(self, config_version_id, include=[]):
         """
         ``GET /configuration-versions/:configuration-id/ingress-attributes``
         ``GET /configuration-versions/:configuration-id?include=ingress-attributes``

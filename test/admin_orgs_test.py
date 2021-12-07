@@ -4,6 +4,7 @@ Module for testing the Terraform Cloud API Endpoint: Admin Orgs.
 
 from .base import TestTFCBaseTestCase
 from ._constants import PAGE_START, PAGE_SIZE
+from terrasnek.exceptions import TFCHTTPNotFound
 
 
 class TestTFCAdminOrgs(TestTFCBaseTestCase):
@@ -23,12 +24,11 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
     def tearDown(self):
         try:
             # Create a temp org to manipulate in the test
-            self._api.orgs.destroy(self._created_org_name)
-        except Exception as err:
+            self._api.admin_orgs.destroy(self._created_org_name)
+        except TFCHTTPNotFound as err:
             # In case the test fails below, this will ensure the created
             # org gets cleaned up.
-            print("TODO: TOO GENERIC", err)
-            print(err)
+            self._logger.debug(err)
 
     def test_admin_orgs(self):
         """

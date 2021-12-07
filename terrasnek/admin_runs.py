@@ -23,7 +23,7 @@ class TFCAdminRuns(TFCEndpoint):
     def terraform_enterprise_only(self):
         return True
 
-    def list(self, query=None, filters=None, page=None, page_size=None, include=None):
+    def list(self, query=None, filters=None, page=None, page_size=None, include=[]):
         """
         ``GET /api/v2/admin/runs``
 

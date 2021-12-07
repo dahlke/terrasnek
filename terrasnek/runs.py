@@ -25,7 +25,7 @@ class TFCRuns(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def list(self, workspace_id, page=None, page_size=None, include=None):
+    def list(self, workspace_id, page=None, page_size=None, include=[]):
         """
         ``GET /workspaces/:workspace_id/runs``
 
@@ -39,7 +39,7 @@ class TFCRuns(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"
         return self._list(url, page=page, page_size=page_size, include=include)
 
-    def list_all(self, workspace_id, include=None):
+    def list_all(self, workspace_id, include=[]):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -51,7 +51,7 @@ class TFCRuns(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/runs"
         return self._list_all(url, include=include)
 
-    def show(self, run_id, include=None):
+    def show(self, run_id, include=[]):
         """
         ``GET /runs/:run_id``
 

@@ -202,11 +202,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 var_set_id = var_set["id"]
                 cls._api.var_sets.destroy(var_set_id)
             cls._logger.debug(f"Variable sets purged from test org ({cls._test_org_name}).")
+
         try:
             cls._logger.debug(f"Purging org token from test org ({cls._test_org_name})...")
             cls._api.org_tokens.destroy()
             cls._logger.debug(f"Org token purged from test org ({cls._test_org_name}).")
-        except terrasnek.exceptions.TFCHTTPUnclassified:
+        except terrasnek.exceptions.TFCHTTPNotFound:
             cls._logger.debug(f"No org token exists for test org ({cls._test_org_name})...")
 
     @classmethod
