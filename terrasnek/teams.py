@@ -47,7 +47,7 @@ class TFCTeams(TFCEndpoint):
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._destroy(url)
 
-    def list(self, page=None, page_size=None, include=None):
+    def list(self, page=None, page_size=None, include=[]):
         """
         ``GET organizations/:organization_name/teams``
 
@@ -60,7 +60,7 @@ class TFCTeams(TFCEndpoint):
         return self._list(\
             self._org_api_v2_base_url, page=page, page_size=page_size, include=include)
 
-    def list_all(self, include=None):
+    def list_all(self, include=[]):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -71,7 +71,7 @@ class TFCTeams(TFCEndpoint):
         """
         return self._list_all(self._org_api_v2_base_url, include=include)
 
-    def show(self, team_id, include=None):
+    def show(self, team_id, include=[]):
         """
         ``GET /teams/:team_id``
 

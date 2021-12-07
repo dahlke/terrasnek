@@ -36,7 +36,7 @@ class TFCPolicies(TFCEndpoint):
         """
         return self._create(self._org_api_v2_base_url, payload)
 
-    def list(self, page=None, page_size=None, search=None, include=None):
+    def list(self, page=None, page_size=None, search=None, include=[]):
         """
         ``GET /organizations/:organization_name/policies``
 
@@ -49,7 +49,7 @@ class TFCPolicies(TFCEndpoint):
         return self._list(self._org_api_v2_base_url, \
             page=page, page_size=page_size, search=search, include=include)
 
-    def list_all(self, search=None, include=None):
+    def list_all(self, search=None, include=[]):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -60,7 +60,7 @@ class TFCPolicies(TFCEndpoint):
         """
         return self._list_all(self._org_api_v2_base_url, include=include, search=search)
 
-    def show(self, policy_id, include=None):
+    def show(self, policy_id, include=[]):
         """
         ``GET /policies/:policy_id``
 
@@ -83,7 +83,7 @@ class TFCPolicies(TFCEndpoint):
         url = f"{self._endpoint_base_url}/{policy_id}"
         return self._update(url, payload)
 
-    def get_policy_text(self, policy_id, include=None):
+    def get_policy_text(self, policy_id, include=[]):
         """
         ``GET /policies/:policy_id/download``
 

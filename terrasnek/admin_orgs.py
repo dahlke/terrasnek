@@ -33,7 +33,7 @@ class TFCAdminOrgs(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{org_name}"
         return self._destroy(url)
 
-    def list(self, include=None):
+    def list(self, include=[]):
         """
         ``GET /api/v2/admin/organizations``
 
@@ -57,7 +57,7 @@ class TFCAdminOrgs(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{org_name}/relationships/module-consumers"
         return self._list(url, page=page, page_size=page_size)
 
-    def show(self, org_name, include=None):
+    def show(self, org_name, include=[]):
         """
         ``GET /api/v2/admin/organizations/:name``
 

@@ -38,7 +38,7 @@ class TFCStateVersions(TFCEndpoint):
         url = f"{self._workspace_api_v2_base_url}/{workspace_id}/state-versions"
         return self._create(url, payload)
 
-    def get_current(self, workspace_id, include=None):
+    def get_current(self, workspace_id, include=[]):
         """
         ``GET /workspaces/:workspace_id/current-state-version``
 
@@ -48,7 +48,7 @@ class TFCStateVersions(TFCEndpoint):
         url = f"{self._workspace_api_v2_base_url}/{workspace_id}/current-state-version"
         return self._get(url, include=include)
 
-    def list(self, filters, page=None, page_size=None, include=None):
+    def list(self, filters, page=None, page_size=None, include=[]):
         """
         ``GET /state-versions``
 
@@ -61,7 +61,7 @@ class TFCStateVersions(TFCEndpoint):
         url = f"{self._state_version_api_v2_base_url}"
         return self._list(url, filters=filters, page=page, page_size=page_size, include=include)
 
-    def list_all(self, filters, include=None):
+    def list_all(self, filters, include=[]):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -87,7 +87,7 @@ class TFCStateVersions(TFCEndpoint):
         url = f"{self._state_version_api_v2_base_url}/{state_version_id}/outputs"
         return self._list(url)
 
-    def show(self, state_version_id, include=None):
+    def show(self, state_version_id, include=[]):
         """
         ``GET /state-versions/:state_version_id``
 
