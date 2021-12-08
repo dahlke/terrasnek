@@ -80,7 +80,6 @@ class TFCStateVersions(TFCEndpoint):
         `List State Version Outputs API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#list-state-version-outputs>`_
 
-        TODO: this is not yet supported in TFE?
         `Query Parameter(s) Details \
             <https://www.terraform.io/docs/cloud/api/state-versions.html#query-parameters>`__
         """

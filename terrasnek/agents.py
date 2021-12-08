@@ -100,7 +100,6 @@ class TFCAgents(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/agents.html#delete-an-agent>`_
         """
         url = f"{self._agents_api_v2_base_url}/{agent_id}"
-        print("DESTROY", url)
         return self._delete(url)
 
 

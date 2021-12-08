@@ -24,11 +24,11 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
     def tearDown(self):
         try:
             # Create a temp org to manipulate in the test
-            self._api.orgs.destroy(self._created_org_name)
+            self._api.admin_orgs.destroy(self._created_org_name)
         except TFCHTTPNotFound as err:
             # In case the test fails below, this will ensure the created
             # org gets cleaned up.
-            print(err)
+            self._logger.debug(err)
 
     def test_admin_orgs(self):
         """

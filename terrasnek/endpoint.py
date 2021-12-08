@@ -79,6 +79,7 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
+            print("ERROR", req.status_code)
             try:
                 err = json.loads(req.content.decode("utf-8"))
             except json.decoder.JSONDecodeError:
@@ -333,6 +334,10 @@ class TFCEndpoint(ABC):
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
+        elif req.status_code == HTTP_NOT_FOUND:
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.debug(err)
+            raise TFCHTTPNotFound(err)
         else:
             try:
                 err = json.loads(req.content.decode("utf-8"))
