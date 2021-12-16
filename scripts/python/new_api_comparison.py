@@ -107,7 +107,10 @@ if __name__ == "__main__":
             # TODO: this has to handle deprecated codeblocks, like registry modules
             if code_block is not None:
                 split_block = code_block.text.split(" ")
-                if split_block[0] in HTTP_VERBS:
+                potential_http_verb = split_block[0]
+                # Check that the first word in the code block is an HTTP verb and isn't _just_
+                # an HTTP verb (like `PUT`).
+                if potential_http_verb in HTTP_VERBS and len(split_block) > 1:
                     method_descriptions.append(code_block.text)
 
         if len(method_names) != len(method_descriptions):
