@@ -80,7 +80,7 @@ if __name__ == "__main__":
                 "filename": filename,
                 "docs-url": docs_url,
                 "github-url": github_url,
-                "methods": []
+                "methods": {}
             }
 
     for ep_name in endpoints:
@@ -93,31 +93,50 @@ if __name__ == "__main__":
         md_html = markdown.markdown(req.text)
         soup = BeautifulSoup(md_html, features="html.parser")
         method_headers = soup.find_all("h2")
-        code_blocks = soup.find_all("code")
+        codeblocks = soup.find_all("code")
 
         for header in method_headers:
-            if "page_title" not in header.text and header.text not in SKIPPABLE_MD_HEADERS:
-                method_names.append(header.text)
+            method_header = header.text
+
+            if "page_title" not in method_header and \
+                method_header not in SKIPPABLE_MD_HEADERS and \
+                    method_header not in ep["methods"]:
+                ep["methods"][header.text] = {
+                    "http-path": "",
+                    "descriptions": [],
+                    "permalink": ""
+                }
             else:
                 # TODO: this print statement will show some inconsistencies
                 # print(ep_name, header)
                 pass
 
-        for code_block in code_blocks:
+        for codeblock in codeblocks:
             # TODO: this has to handle deprecated codeblocks, like registry modules
-            if code_block is not None:
-                split_block = code_block.text.split(" ")
+            if codeblock is not None:
+                split_block = codeblock.text.split(" ")
                 potential_http_verb = split_block[0]
+
                 # Check that the first word in the code block is an HTTP verb and isn't _just_
                 # an HTTP verb (like `PUT`).
                 if potential_http_verb in HTTP_VERBS and len(split_block) > 1:
-                    method_descriptions.append(code_block.text)
+                    prev_method_header = codeblock.parent.find_previous_sibling('h2')
 
-        if len(method_names) != len(method_descriptions):
-            print(ep["docs-url"], len(method_names), len(method_descriptions))
-            print(method_names, method_descriptions, "\n\n")
+                    # NOTE: this is specifically for the delete modules endpoint, which has some weird formatting
+                    # https://www.terraform.io/cloud-docs/api-docs/modules
+                    # If we can't find a previous header in this level of the HTML, try going up one more level
+                    if prev_method_header is None:
+                        prev_method_header = codeblock.parent.parent.find_previous_sibling('h2')
 
-    # print(endpoints)
+                    ep["methods"][prev_method_header.text]["descriptions"].append(codeblock.text)
+
+                    permalink_arg = prev_method_header.text.lower().replace(" ", "-")
+                    permalink = f"{ep['docs-url']}#{permalink_arg}"
+                    ep["methods"][prev_method_header.text]["permalink"] = permalink
+
+        # print(ep)
+
+    print(endpoints)
 
 
     main()
