@@ -102,17 +102,15 @@ if __name__ == "__main__":
                 method_header not in SKIPPABLE_MD_HEADERS and \
                     method_header not in ep["methods"]:
                 ep["methods"][header.text] = {
-                    "http-path": "",
-                    "descriptions": [],
+                    "http-paths": [],
                     "permalink": ""
                 }
             else:
-                # TODO: this print statement will show some inconsistencies
+                # NOTE: This print statement will show some inconsistencies, like the skippable MD headers
                 # print(ep_name, header)
                 pass
 
         for codeblock in codeblocks:
-            # TODO: this has to handle deprecated codeblocks, like registry modules
             if codeblock is not None:
                 split_block = codeblock.text.split(" ")
                 potential_http_verb = split_block[0]
@@ -122,21 +120,20 @@ if __name__ == "__main__":
                 if potential_http_verb in HTTP_VERBS and len(split_block) > 1:
                     prev_method_header = codeblock.parent.find_previous_sibling('h2')
 
-                    # NOTE: this is specifically for the delete modules endpoint, which has some weird formatting
-                    # https://www.terraform.io/cloud-docs/api-docs/modules
                     # If we can't find a previous header in this level of the HTML, try going up one more level
+                    # This is specifically for the delete modules endpoint, which has some weird formatting
+                    # https://www.terraform.io/cloud-docs/api-docs/modules
                     if prev_method_header is None:
                         prev_method_header = codeblock.parent.parent.find_previous_sibling('h2')
 
-                    ep["methods"][prev_method_header.text]["descriptions"].append(codeblock.text)
+                    ep["methods"][prev_method_header.text]["http-paths"].append(codeblock.text)
 
                     permalink_arg = prev_method_header.text.lower().replace(" ", "-")
                     permalink = f"{ep['docs-url']}#{permalink_arg}"
                     ep["methods"][prev_method_header.text]["permalink"] = permalink
 
-        # print(ep)
+        print(ep, "\n\n")
 
-    print(endpoints)
-
+    # print(endpoints)
 
     main()
