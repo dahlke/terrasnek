@@ -66,6 +66,8 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
             self._ws_id, self._get_state_version_create_payload())
         self._api.workspaces.unlock(self._ws_id)
 
+        # TODO: These "included" assertions don't always work in CircleCI. Always line 71.
+
         state_versions_raw = self._api.state_versions.list(\
             filters=test_filters, include=["outputs"])
         self.assertIn("included", state_versions_raw)

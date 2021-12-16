@@ -22,7 +22,6 @@ TEST_PATH = "./test"
 DOCS_PATH = "./docs"
 HTTP_VERBS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
-
 def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_ignore=[]):
     """
     List a directory, and return all filenames that don't start with a "." or "_",
@@ -64,7 +63,7 @@ def scrape_endpoint_info():
     soup = BeautifulSoup(req.text, features="html.parser")
 
     # Get the sidebar from the page, it has all the API endpoint names in it.
-    sidebar = soup.find(id="docs-sidebar")
+    sidebar = soup.find(id="sidebar")
 
     # Declare the endpoint map which we will add to below.
     endpoints = {}
