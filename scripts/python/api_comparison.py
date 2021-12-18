@@ -11,16 +11,57 @@ import sys
 import json
 import requests
 import anybadge
+import markdown
 
 from tabulate import tabulate
 from bs4 import BeautifulSoup
 
-TFC_API_BASE_URL = "https://www.terraform.io"
-TFC_API_PREFIX = "docs/cloud/api"
+# TODO: clean up the variable names in this script
+# TODO: expecting 240+ endpoints, nowhere near that right now - admin endpoints?
+# TODO: break this out into more files so it's moer consumable, and just generally clean it up
+# TODO: handling multiple http-paths need to be sorted out
+# TODO: add all sorts of comments here.
+
+# NOTE: This api_comparison tool was updated in v0.1.8.
+
+# Base URLs for scraping from GitHub
+GITHUB_DOCS_BASE_URL = "https://github.com/hashicorp/terraform-website/tree/master/content/cloud-docs/api-docs"
+GITHUB_DOCS_ADMIN_BASE_URL = "https://github.com/hashicorp/terraform-website/tree/master/content/cloud-docs/api-docs/admin"
+RAW_GITHUB_DOCS_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs"
+RAW_GITHUB_DOCS_ADMIN_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin"
+
+# Helpful constants for the parsing of the GitHub markdown docs
+TFC_API_BASE_URL = "https://www.terraform.io/cloud-docs/api-docs"
+HTTP_VERBS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+SKIPPABLE_GITHUB_TITLES = [
+    "admin",
+    "_template",
+    "Go to parent directory",
+    "changelog",
+    "index",
+    "stability_policy",
+    "admin_index"
+]
+SKIPPABLE_MD_HEADERS = [
+    "Attributes",
+    "IP Ranges Payload", # ip-ranges
+    "Terraform Cloud Registry Implementation", # modules
+    "Sample Response",
+    "Available Related Resources",
+    "Notification Triggers", # notification-configurations
+    "Notification Payload", # notification-configurations
+    "Notification Authenticity", # notification-configurations
+    "Notification Verification and Delivery Responses", # notification-configurations
+    "Relationships",
+    "Organization Membership", # team-members
+    "Required Permissions", # run-tasks
+]
+
+# Paths for checking against implementations, tests and docs
 IMPLEMENTATION_PATH = "./terrasnek"
 TEST_PATH = "./test"
 DOCS_PATH = "./docs"
-HTTP_VERBS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+
 
 def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_ignore=[]):
     """
@@ -47,40 +88,24 @@ def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_igno
 
     return valid_filenames
 
-def scrape_endpoint_info():
-    """
-    Scrape the Terraform Cloud API docs to get all of the published and documented
-    endpoints. Clean the URL slugs to match the file naming convention for this project.
-    Return a dict of the endpoint names and their URLs, as well as all of the methods for
-    the endpoint.
-
-    This method is the most brittle of everything here. If anything changes on the API
-    Docs website, this will stop working.
-    """
-
+def get_docs_from_github(is_admin=False):
     # Get the API index page, and pass it into Beautiful Soup
-    req = requests.get(f"{TFC_API_BASE_URL}/{TFC_API_PREFIX}/index.html")
+    # req = requests.get(f"{TFC_API_BASE_URL}/{TFC_API_PREFIX}/index.html")
+    url = GITHUB_DOCS_ADMIN_BASE_URL if is_admin else GITHUB_DOCS_BASE_URL
+    req = requests.get(f"{url}")
     soup = BeautifulSoup(req.text, features="html.parser")
-
-    # Get the sidebar from the page, it has all the API endpoint names in it.
-    sidebar = soup.find(id="sidebar")
-
-    # Declare the endpoint map which we will add to below.
     endpoints = {}
 
-    # Start looping through all the links in the sidebar.
-    for links in sidebar.find_all('a'):
-        # Get the URL that the link points to.
-        api_path = links.get('href')
+    row_headers = soup.find_all(role="rowheader")
 
-        # Check to see if it's an admin link, this is used later.
-        is_admin = "admin" in api_path
+    for row_header in row_headers:
+        link = row_header.find("a")
+        raw_filename = link.get("title")
+        filename = raw_filename.replace(".mdx", "")
 
-        if TFC_API_PREFIX in api_path:
-            # If it's a valid API path, get the endpoint name from the end of the URL.
-            endpoint_name = api_path.split("/")[-1].replace(".html", "").replace("-", "_")
+        endpoint_name = filename.replace("-", "_")
 
-            # Replace the URL strings with the ones we used in the library for conciseness.
+        if endpoint_name not in SKIPPABLE_GITHUB_TITLES:
             endpoint_name = endpoint_name.replace("organization", "org")
             endpoint_name = endpoint_name.replace("configuration", "config")
             endpoint_name = endpoint_name.replace("workspace_variables", "workspace_vars")
@@ -90,66 +115,77 @@ def scrape_endpoint_info():
             endpoint_name = endpoint_name.replace("modules", "registry_modules")
             endpoint_name = endpoint_name.replace("providers", "registry_providers")
 
+            # NOTE: The implementation uses "runs" and the documentation uses "run"
             if endpoint_name == "run":
                 endpoint_name = "runs"
 
             if is_admin:
+                github_url = f"{RAW_GITHUB_DOCS_BASE_URL}/admin/{raw_filename}"
+                docs_url = f"{TFC_API_BASE_URL}/admin/{filename}"
                 endpoint_name = "admin_" + endpoint_name
+            else:
+                github_url = f"{RAW_GITHUB_DOCS_BASE_URL}/{raw_filename}"
+                docs_url = f"{TFC_API_BASE_URL}/{filename}"
 
-            # Ignore some of the links from the API that don't represent endpoints
-            if endpoint_name not in ["index", "stability_policy", "admin_index", "changelog"]:
-                endpoints[endpoint_name] = {}
-                endpoints[endpoint_name]["url"] = f"{TFC_API_BASE_URL}{api_path}"
+            endpoints[endpoint_name] = {
+                "docs-url": docs_url,
+                "github-url": github_url,
+                "methods": {}
+            }
 
-    # Now with each endpoint named and mapped to a URL with the description
-    # of methods on the endpoint, we need to pull in the methods.
     for ep_name in endpoints:
-        endpoint = endpoints[ep_name]
-        url = endpoint["url"]
+        ep = endpoints[ep_name]
+        req = requests.get(ep["github-url"])
 
-        # Retrieve the API docs page for a specific endpoint, pass it into
-        # Beautiful Soup.
-        req = requests.get(url)
-        soup = BeautifulSoup(req.text, features="html.parser")
+        md_html = markdown.markdown(req.text)
+        soup = BeautifulSoup(md_html, features="html.parser")
+        method_headers = soup.find_all("h2")
+        codeblocks = soup.find_all("code")
 
-        # Comments
-        inner = soup.find(id="inner")
-        codeblocks = inner.find_all("code")
+        for header in method_headers:
+            method_header = header.text
 
-        endpoint["methods"] = []
+            if "page_title" not in method_header and \
+                method_header not in SKIPPABLE_MD_HEADERS and \
+                    method_header not in ep["methods"]:
+                ep["methods"][header.text] = {
+                    "http-paths": [],
+                    "permalink": ""
+                }
+            else:
+                # NOTE: This print statement will show some inconsistencies, like the skippable MD headers
+                # print(ep_name, header)
+                pass
+
         for codeblock in codeblocks:
-            contents = codeblock.contents[0]
-            if not callable(contents):
-                split_contents = contents.split(" ")
+            if codeblock is not None:
+                split_block = codeblock.text.split(" ")
+                potential_http_verb = split_block[0]
 
-                if split_contents is not None:
-                    potential_verb = split_contents[0]
-                    if potential_verb in HTTP_VERBS:
-                        method_desc = None
-                        method_permalink = None
-                        deprecated = False
+                # Check that the first word in the code block is an HTTP verb and isn't _just_
+                # an HTTP verb (like `PUT`).
+                if potential_http_verb in HTTP_VERBS and len(split_block) > 1:
+                    prev_method_header = codeblock.parent.find_previous_sibling('h2')
 
-                        method_header = codeblock.parent.find_previous_sibling('h2')
-                        if method_header is not None:
-                            method_desc = method_header.find('a')
-                        else:
-                            # print("NO METHOD HEADER", contents)
-                            pass
+                    # If we can't find a previous header in this level of the HTML, try going up one more level
+                    # This is specifically for the delete modules endpoint, which has some weird formatting
+                    # https://www.terraform.io/cloud-docs/api-docs/modules
+                    if prev_method_header is None:
+                        prev_method_header = codeblock.parent.parent.find_previous_sibling('h2')
 
-                        if "Deprecation warning" in codeblock.parent.contents[0]:
-                            # If we can't find the method description, it is likely deprecated
-                            print("Skipping deprecated endpoint `%s`..." % contents)
-                            deprecated = True
+                    ep["methods"][prev_method_header.text]["http-paths"].append(codeblock.text)
+                    permalink_arg = prev_method_header.text.lower().replace(" ", "-")
+                    docs_url = ep["docs-url"] if ep_name != "registry-modules" else "modules"
+                    permalink = f"{docs_url}#{permalink_arg}"
+                    ep["methods"][prev_method_header.text]["permalink"] = permalink
 
-                        if method_desc is not None:
-                            method_permalink = method_desc.get('href')
-                            method_desc = method_header.contents[-1].replace("\n", "").strip()
-                        if not deprecated:
-                            endpoint["methods"].append({
-                                "http-path": contents,
-                                "description": method_desc,
-                                "permalink": method_permalink
-                            })
+        for method_header in list(ep["methods"]):
+            method = ep["methods"][method_header]
+
+            # TODO: this may need to get re-worked later since it's just to get rid of false positives.
+            # If there is no matching HTTP path, then remove this method.
+            if len(method["http-paths"]) == 0:
+                del ep["methods"][method_header]
 
     return endpoints
 
@@ -197,25 +233,31 @@ def check_methods_implementation(endpoints):
         file_contents = ""
         split_by_func_def = []
 
+
         if os.path.exists(path):
             with open(path, "r") as infile:
                 file_contents = infile.read()
                 split_by_func_def = file_contents.split("\n")
 
-        for method in endpoint_methods:
-            path = method["http-path"]
-            method["implemented"] = False
-            method["implementation-method-name"] = None
-            most_recent_method_name = None
+        for method_header in endpoint_methods:
+            method = endpoint_methods[method_header]
 
-            for line in split_by_func_def:
-                if "def" in line:
-                    most_recent_method_name = line.split("(")[0].replace("def", "").strip()
+            if method["http-paths"]:
+                # TODO: manage where there are multiple http-paths
+                path = method["http-paths"][0]
+                method["implemented"] = False
+                method["implementation-method-name"] = None
+                most_recent_method_name = None
 
-                if path in line:
-                    method["implemented"] = True
-                    method["implementation-method-name"] = most_recent_method_name
-                    break
+                for line in split_by_func_def:
+                    if "def" in line:
+                        most_recent_method_name = line.split("(")[0].replace("def", "").strip()
+                    if path in line:
+                        method["implemented"] = True
+                        method["implementation-method-name"] = most_recent_method_name
+                        break
+            else:
+                print(method_header, method, "\n\n")
 
     return endpoints
 
@@ -242,7 +284,12 @@ def main():
     Main function to check the implemementation files herein this repo
     and what is specced out in the TFC API docs.
     """
-    endpoints = scrape_endpoint_info()
+    non_admin_endpoints = get_docs_from_github()
+    admin_endpoints = get_docs_from_github(is_admin=True)
+
+    # Merge the endpoint types
+    endpoints = non_admin_endpoints.copy()
+    endpoints.update(admin_endpoints)
     endpoints = check_contributor_requirements(endpoints)
     endpoints = check_methods_implementation(endpoints)
 
@@ -258,10 +305,12 @@ def main():
         "Has Docs"
     ]
     endpoint_rows = []
+
+    # TODO: make sure implementation and test and docs work
     for ep_name in endpoints:
         endpoint = endpoints[ep_name]
         endpoint_rows.append([
-            f'[{ep_name.replace("_", " ").title()}]({endpoint["url"]})',
+            f'[{ep_name.replace("_", " ").title()}]({endpoint["docs-url"]})',
             f'`{ep_name}`',
             "implementation" in endpoint,
             "test" in endpoint,
@@ -273,7 +322,7 @@ def main():
 
     md_method_headers = [
         "API Endpoint",
-        "Method Description",
+        "Endpoint Description",
         "HTTP Method",
         "Terrasnek Method",
         "Implemented"
@@ -281,16 +330,17 @@ def main():
     md_method_rows = []
     for ep_name in endpoints:
         endpoint = endpoints[ep_name]
-        for method in endpoint["methods"]:
+        for method_header in endpoint["methods"]:
+            method = endpoint["methods"][method_header]
             method_name = None
 
             if method["implementation-method-name"] is not None:
                 method_name = f'`{ep_name}.{method["implementation-method-name"]}`'
 
             md_method_row = [
-                ep_name.replace("_", " ").title(),
-                f'[{method["description"]}]({method["permalink"]})',
-                f'`{method["http-path"]}`',
+                ep_name.replace("_", " ").replace("-", " ").title(),
+                method["permalink"],
+                method["http-paths"][0],
                 method_name,
                 method["implemented"]
             ]
@@ -303,7 +353,7 @@ def main():
     # Build an RST table for the Sphinx Python Docs
     rst_method_headers = [
         "API Endpoint",
-        "Method Description",
+        "Endpoint Description",
         "HTTP Method",
         "Terrasnek Method",
         "Implemented",
@@ -312,18 +362,20 @@ def main():
     rst_method_rows = []
     for ep_name in endpoints:
         endpoint = endpoints[ep_name]
-        for method in endpoint["methods"]:
+        for method_header in endpoint["methods"]:
+            method = endpoint["methods"][method_header]
             method_name = None
+
             if method["implementation-method-name"] is not None:
                 method_name = f'`{ep_name}.{method["implementation-method-name"]}`'
 
             rst_method_row = [
                 ep_name.replace("_", " ").title(),
-                f'`{method["description"]}`',
-                f'`{method["http-path"]}`',
+                f'`{method_header}`',
+                f'`{method["http-paths"][0]}`',
                 method_name,
                 method["implemented"],
-                f'{endpoint["url"]}{method["permalink"]}'
+                method["permalink"]
             ]
             rst_method_rows.append(rst_method_row)
 
@@ -336,7 +388,8 @@ def main():
     num_total_methods = 0
     for ep_name in endpoints:
         endpoint = endpoints[ep_name]
-        for method in endpoint["methods"]:
+        for method_header in endpoint["methods"]:
+            method = endpoint["methods"][method_header]
             num_total_methods += 1
             if method["implemented"]:
                 num_methods_implemented += 1

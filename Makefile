@@ -58,10 +58,6 @@ fixme:
 api_comparison:
 	python3 scripts/python/api_comparison.py
 
-.PHONY: new_api_comparison
-new_api_comparison:
-	python3 scripts/python/new_api_comparison.py
-
 .PHONY: circleci_env
 circleci_env:
 	bash scripts/shell/upload_circleci_env_vars.sh
