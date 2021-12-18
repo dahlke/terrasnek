@@ -1291,7 +1291,7 @@
                 ],
                 "implementation-method-name": "publish_from_vcs",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#create-a-module-(with-no-vcs-connection)"
+                "permalink": "modules#create-a-module-(with-no-vcs-connection)"
             },
             "Create a Module Version": {
                 "http-paths": [
@@ -1300,7 +1300,7 @@
                 ],
                 "implementation-method-name": null,
                 "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#create-a-module-version"
+                "permalink": "modules#create-a-module-version"
             },
             "Delete a Module": {
                 "http-paths": [
@@ -1310,7 +1310,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#delete-a-module"
+                "permalink": "modules#delete-a-module"
             },
             "Get a Module": {
                 "http-paths": [
@@ -1319,7 +1319,7 @@
                 ],
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#get-a-module"
+                "permalink": "modules#get-a-module"
             },
             "List Registry Modules for an Organization": {
                 "http-paths": [
@@ -1327,7 +1327,7 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#list-registry-modules-for-an-organization"
+                "permalink": "modules#list-registry-modules-for-an-organization"
             },
             "Publish a Private Module from a VCS": {
                 "http-paths": [
@@ -1336,7 +1336,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#publish-a-private-module-from-a-vcs"
+                "permalink": "modules#publish-a-private-module-from-a-vcs"
             },
             "Upload a Module Version (private module)": {
                 "http-paths": [
@@ -1344,7 +1344,7 @@
                 ],
                 "implementation-method-name": "upload_version",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#upload-a-module-version-(private-module)"
+                "permalink": "modules#upload-a-module-version-(private-module)"
             }
         }
     },
@@ -1384,77 +1384,6 @@
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#list-public-terraform-registry-providers-for-an-organization"
-            }
-        }
-    },
-    "run": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run",
-        "filename": "run.mdx",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run.mdx",
-        "methods": {
-            "Apply a Run": {
-                "http-paths": [
-                    "POST /runs/:run_id/actions/apply"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#apply-a-run"
-            },
-            "Cancel a Run": {
-                "http-paths": [
-                    "POST /runs/:run_id/actions/cancel"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#cancel-a-run"
-            },
-            "Create a Run": {
-                "http-paths": [
-                    "POST /runs"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#create-a-run"
-            },
-            "Discard a Run": {
-                "http-paths": [
-                    "POST /runs/:run_id/actions/discard"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#discard-a-run"
-            },
-            "Forcefully cancel a run": {
-                "http-paths": [
-                    "POST /runs/:run_id/actions/force-cancel"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#forcefully-cancel-a-run"
-            },
-            "Forcefully execute a run": {
-                "http-paths": [
-                    "POST /runs/:run_id/actions/force-execute"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#forcefully-execute-a-run"
-            },
-            "Get run details": {
-                "http-paths": [
-                    "GET /runs/:run_id"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#get-run-details"
-            },
-            "List Runs in a Workspace": {
-                "http-paths": [
-                    "GET /workspaces/:workspace_id/runs"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#list-runs-in-a-workspace"
             }
         }
     },
@@ -1583,6 +1512,80 @@
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-triggers#show-a-run-trigger"
             }
         }
+    },
+    "runs": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/runs",
+        "filename": "run.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run.mdx",
+        "implementation": true,
+        "methods": {
+            "Apply a Run": {
+                "http-paths": [
+                    "POST /runs/:run_id/actions/apply"
+                ],
+                "implementation-method-name": "apply",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#apply-a-run"
+            },
+            "Cancel a Run": {
+                "http-paths": [
+                    "POST /runs/:run_id/actions/cancel"
+                ],
+                "implementation-method-name": "cancel",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#cancel-a-run"
+            },
+            "Create a Run": {
+                "http-paths": [
+                    "POST /runs"
+                ],
+                "implementation-method-name": "create",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#create-a-run"
+            },
+            "Discard a Run": {
+                "http-paths": [
+                    "POST /runs/:run_id/actions/discard"
+                ],
+                "implementation-method-name": "discard",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#discard-a-run"
+            },
+            "Forcefully cancel a run": {
+                "http-paths": [
+                    "POST /runs/:run_id/actions/force-cancel"
+                ],
+                "implementation-method-name": "force_cancel",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#forcefully-cancel-a-run"
+            },
+            "Forcefully execute a run": {
+                "http-paths": [
+                    "POST /runs/:run_id/actions/force-execute"
+                ],
+                "implementation-method-name": "force_execute",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#forcefully-execute-a-run"
+            },
+            "Get run details": {
+                "http-paths": [
+                    "GET /runs/:run_id"
+                ],
+                "implementation-method-name": "show",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#get-run-details"
+            },
+            "List Runs in a Workspace": {
+                "http-paths": [
+                    "GET /workspaces/:workspace_id/runs"
+                ],
+                "implementation-method-name": "list",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#list-runs-in-a-workspace"
+            }
+        },
+        "test": true
     },
     "ssh-keys": {
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys",

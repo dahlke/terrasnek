@@ -18,6 +18,11 @@ from bs4 import BeautifulSoup
 
 # TODO: clean up the variable names in this script
 # TODO: expecting 240+ endpoints, nowhere near that right now - admin endpoints?
+# TODO: break this out into more files so it's moer consumable, and just generally clean it up
+# TODO: handling multiple http-paths need to be sorted out
+# TODO: add all sorts of comments here.
+
+# NOTE: This api_comparison tool was updated in v0.1.8.
 
 # Base URLs for scraping from GitHub
 GITHUB_DOCS_BASE_URL = "https://github.com/hashicorp/terraform-website/tree/master/content/cloud-docs/api-docs"
@@ -28,7 +33,15 @@ RAW_GITHUB_DOCS_ADMIN_BASE_URL = "https://raw.githubusercontent.com/hashicorp/te
 # Helpful constants for the parsing of the GitHub markdown docs
 TFC_API_BASE_URL = "https://www.terraform.io/cloud-docs/api-docs"
 HTTP_VERBS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-SKIPPABLE_GITHUB_TITLES = ["admin", "_template", "Go to parent directory", "changelog", "index", "stability-policy", "admin-index"]
+SKIPPABLE_GITHUB_TITLES = [
+    "admin",
+    "_template",
+    "Go to parent directory",
+    "changelog",
+    "index",
+    "stability-policy",
+    "admin-index"
+]
 SKIPPABLE_MD_HEADERS = [
     "Attributes",
     "IP Ranges Payload", # ip-ranges
@@ -49,7 +62,6 @@ IMPLEMENTATION_PATH = "./terrasnek"
 TEST_PATH = "./test"
 DOCS_PATH = "./docs"
 
-# TODO: http-paths need to be sorted out
 
 def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_ignore=[]):
     """
@@ -91,7 +103,6 @@ def get_docs_from_github(is_admin=False):
         raw_filename = link.get("title")
         filename = raw_filename.replace(".mdx", "")
 
-        # TODO: modify the title names for admin and
         endpoint_name = filename
 
         if endpoint_name not in SKIPPABLE_GITHUB_TITLES:
@@ -104,8 +115,9 @@ def get_docs_from_github(is_admin=False):
             endpoint_name = endpoint_name.replace("modules", "registry-modules")
             endpoint_name = endpoint_name.replace("providers", "registry-providers")
 
-            # if endpoint_name = "run":
-                # endpoint_name = "runs"
+            # NOTE: The implementation uses "runs" and the documentation uses "run"
+            if endpoint_name == "run":
+                endpoint_name = "runs"
 
             if is_admin:
                 github_url = f"{RAW_GITHUB_DOCS_BASE_URL}/admin/{raw_filename}"
@@ -115,6 +127,7 @@ def get_docs_from_github(is_admin=False):
                 github_url = f"{RAW_GITHUB_DOCS_BASE_URL}/{raw_filename}"
                 docs_url = f"{TFC_API_BASE_URL}/{endpoint_name}"
 
+            # TODO: store formatted versions of the name here?
             endpoints[endpoint_name] = {
                 "filename": raw_filename,
                 "docs-url": docs_url,
@@ -164,7 +177,8 @@ def get_docs_from_github(is_admin=False):
 
                     ep["methods"][prev_method_header.text]["http-paths"].append(codeblock.text)
                     permalink_arg = prev_method_header.text.lower().replace(" ", "-")
-                    permalink = f"{ep['docs-url']}#{permalink_arg}"
+                    docs_url = ep["docs-url"] if ep_name != "registry-modules" else "modules"
+                    permalink = f"{docs_url}#{permalink_arg}"
                     ep["methods"][prev_method_header.text]["permalink"] = permalink
 
         for method_header in list(ep["methods"]):
@@ -294,6 +308,8 @@ def main():
         "Has Docs"
     ]
     endpoint_rows = []
+
+    # TODO: make sure implementation and test and docs work
     for ep_name in endpoints:
         endpoint = endpoints[ep_name]
         endpoint_rows.append([
@@ -322,12 +338,12 @@ def main():
             method_name = None
 
             if method["implementation-method-name"] is not None:
-                method_name = f'`{ep_name}.{method["implementation-method-name"]}`'
+                method_name = f'`{ep_name.replace("-", "_")}.{method["implementation-method-name"]}`'
 
             md_method_row = [
                 ep_name.replace("_", " ").replace("-", " ").title(),
-                f'[{method_header}]({endpoint["docs-url"]}{method["permalink"]})',
-                f'`{method["http-paths"][0]}`',
+                method["permalink"],
+                method["http-paths"][0],
                 method_name,
                 method["implemented"]
             ]
@@ -340,7 +356,7 @@ def main():
     # Build an RST table for the Sphinx Python Docs
     rst_method_headers = [
         "API Endpoint",
-        "Method Description",
+        "Endpoint Description",
         "HTTP Method",
         "Terrasnek Method",
         "Implemented",
@@ -354,7 +370,7 @@ def main():
             method_name = None
 
             if method["implementation-method-name"] is not None:
-                method_name = f'`{ep_name}.{method["implementation-method-name"]}`'
+                method_name = f'`{ep_name.replace("-", "_")}.{method["implementation-method-name"]}`'
 
             rst_method_row = [
                 ep_name.replace("_", " ").title(),

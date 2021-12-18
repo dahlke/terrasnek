@@ -36,7 +36,7 @@
 | [Registry-Providers](https://www.terraform.io/cloud-docs/api-docs/registry-providers)             | `registry-providers`       | False                | False      | False      |
 | [Run-Tasks](https://www.terraform.io/cloud-docs/api-docs/run-tasks)                               | `run-tasks`                | False                | False      | False      |
 | [Run-Triggers](https://www.terraform.io/cloud-docs/api-docs/run-triggers)                         | `run-triggers`             | False                | False      | False      |
-| [Run](https://www.terraform.io/cloud-docs/api-docs/run)                                           | `run`                      | False                | False      | False      |
+| [Runs](https://www.terraform.io/cloud-docs/api-docs/runs)                                         | `runs`                     | True                 | True       | True       |
 | [Ssh-Keys](https://www.terraform.io/cloud-docs/api-docs/ssh-keys)                                 | `ssh-keys`                 | False                | False      | False      |
 | [State-Version-Outputs](https://www.terraform.io/cloud-docs/api-docs/state-version-outputs)       | `state-version-outputs`    | False                | False      | False      |
 | [State-Versions](https://www.terraform.io/cloud-docs/api-docs/state-versions)                     | `state-versions`           | False                | False      | False      |
