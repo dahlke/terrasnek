@@ -33,10 +33,12 @@
         },
         "test": true
     },
-    "admin-module-sharing": {
+    "admin_module_sharing": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/module-sharing",
         "filename": "module-sharing.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/module-sharing.mdx",
+        "implementation": true,
         "methods": {
             "Update an Organization's Module Consumers": {
                 "http-paths": [
@@ -46,12 +48,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/module-sharing#update-an-organization's-module-consumers"
             }
-        }
+        },
+        "test": true
     },
-    "admin-orgs": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs",
+    "admin_orgs": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/organizations",
         "filename": "organizations.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/organizations.mdx",
+        "implementation": true,
         "methods": {
             "Delete an Organization": {
                 "http-paths": [
@@ -59,7 +64,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#delete-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/organizations#delete-an-organization"
             },
             "List Module Consumers for an Organization": {
                 "http-paths": [
@@ -67,7 +72,7 @@
                 ],
                 "implementation-method-name": "list_org_module_consumers",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#list-module-consumers-for-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/organizations#list-module-consumers-for-an-organization"
             },
             "List all Organizations": {
                 "http-paths": [
@@ -75,7 +80,7 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#list-all-organizations"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/organizations#list-all-organizations"
             },
             "Show an Organization": {
                 "http-paths": [
@@ -83,7 +88,7 @@
                 ],
                 "implementation-method-name": "list_org_module_consumers",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#show-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/organizations#show-an-organization"
             },
             "Update an Organization": {
                 "http-paths": [
@@ -91,7 +96,7 @@
                 ],
                 "implementation-method-name": "update",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#update-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/organizations#update-an-organization"
             },
             "Update an Organization's Module Consumers": {
                 "http-paths": [
@@ -99,14 +104,17 @@
                 ],
                 "implementation-method-name": "update_org_module_consumers",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#update-an-organization's-module-consumers"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/organizations#update-an-organization's-module-consumers"
             }
-        }
+        },
+        "test": true
     },
-    "admin-runs": {
+    "admin_runs": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/runs",
         "filename": "runs.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/runs.mdx",
+        "implementation": true,
         "methods": {
             "Force a run into the \"cancelled\" state": {
                 "http-paths": [
@@ -124,12 +132,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/runs#list-all-runs"
             }
-        }
+        },
+        "test": true
     },
-    "admin-settings": {
+    "admin_settings": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/settings",
         "filename": "settings.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/settings.mdx",
+        "implementation": true,
         "methods": {
             "List Cost Estimation Settings": {
                 "http-paths": [
@@ -243,12 +254,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#verify-twilio-settings"
             }
-        }
+        },
+        "test": true
     },
-    "admin-terraform-versions": {
+    "admin_terraform_versions": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions",
         "filename": "terraform-versions.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/terraform-versions.mdx",
+        "implementation": true,
         "methods": {
             "Create a Terraform version": {
                 "http-paths": [
@@ -290,12 +304,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions#update-a-terraform-version"
             }
-        }
+        },
+        "test": true
     },
-    "admin-users": {
+    "admin_users": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/users",
         "filename": "users.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/users.mdx",
+        "implementation": true,
         "methods": {
             "Delete a user account": {
                 "http-paths": [
@@ -369,12 +386,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#suspend-a-user"
             }
-        }
+        },
+        "test": true
     },
-    "admin-workspaces": {
+    "admin_workspaces": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/workspaces",
         "filename": "workspaces.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/workspaces.mdx",
+        "implementation": true,
         "methods": {
             "Destroy a workspace": {
                 "http-paths": [
@@ -400,12 +420,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/workspaces#show-a-workspace"
             }
-        }
+        },
+        "test": true
     },
-    "agent-tokens": {
+    "agent_tokens": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/agent-tokens",
         "filename": "agent-tokens.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/agent-tokens.mdx",
+        "implementation": true,
         "methods": {
             "Create an Agent Token": {
                 "http-paths": [
@@ -439,7 +462,8 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/agent-tokens#show-an-agent-token"
             }
-        }
+        },
+        "test": true
     },
     "agents": {
         "docs": true,
@@ -533,10 +557,12 @@
         },
         "test": true
     },
-    "audit-trails": {
+    "audit_trails": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/audit-trails",
         "filename": "audit-trails.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/audit-trails.mdx",
+        "implementation": true,
         "methods": {
             "List an organization's audit events": {
                 "http-paths": [
@@ -546,12 +572,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/audit-trails#list-an-organization's-audit-events"
             }
-        }
+        },
+        "test": true
     },
-    "config-versions": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/config-versions",
+    "config_versions": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions",
         "filename": "configuration-versions.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/configuration-versions.mdx",
+        "implementation": true,
         "methods": {
             "Create a Configuration Version": {
                 "http-paths": [
@@ -559,7 +588,7 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#create-a-configuration-version"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#create-a-configuration-version"
             },
             "List Configuration Versions": {
                 "http-paths": [
@@ -567,7 +596,7 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#list-configuration-versions"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#list-configuration-versions"
             },
             "Show a Configuration Version": {
                 "http-paths": [
@@ -575,7 +604,7 @@
                 ],
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#show-a-configuration-version"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#show-a-configuration-version"
             },
             "Show a Configuration Version's Commit Information": {
                 "http-paths": [
@@ -584,7 +613,7 @@
                 ],
                 "implementation-method-name": "show_config_version_commit_info",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#show-a-configuration-version's-commit-information"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#show-a-configuration-version's-commit-information"
             },
             "Upload Configuration Files": {
                 "http-paths": [
@@ -592,14 +621,17 @@
                 ],
                 "implementation-method-name": "upload",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#upload-configuration-files"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#upload-configuration-files"
             }
-        }
+        },
+        "test": true
     },
-    "cost-estimates": {
+    "cost_estimates": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/cost-estimates",
         "filename": "cost-estimates.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/cost-estimates.mdx",
+        "implementation": true,
         "methods": {
             "Show a cost estimate": {
                 "http-paths": [
@@ -609,12 +641,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/cost-estimates#show-a-cost-estimate"
             }
-        }
+        },
+        "test": true
     },
-    "feature-sets": {
+    "feature_sets": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/feature-sets",
         "filename": "feature-sets.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/feature-sets.mdx",
+        "implementation": true,
         "methods": {
             "List Feature Sets": {
                 "http-paths": [
@@ -632,7 +667,8 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/feature-sets#list-feature-sets-for-organization"
             }
-        }
+        },
+        "test": true
     },
     "invoices": {
         "docs": true,
@@ -660,10 +696,12 @@
         },
         "test": true
     },
-    "ip-ranges": {
+    "ip_ranges": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/ip-ranges",
         "filename": "ip-ranges.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/ip-ranges.mdx",
+        "implementation": true,
         "methods": {
             "Get IP Ranges": {
                 "http-paths": [
@@ -673,12 +711,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/ip-ranges#get-ip-ranges"
             }
-        }
+        },
+        "test": true
     },
-    "notification-configs": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/notification-configs",
+    "notification_configs": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/notification-configurations",
         "filename": "notification-configurations.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/notification-configurations.mdx",
+        "implementation": true,
         "methods": {
             "Create a Notification Configuration": {
                 "http-paths": [
@@ -686,7 +727,7 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#create-a-notification-configuration"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configurations#create-a-notification-configuration"
             },
             "Delete a Notification Configuration": {
                 "http-paths": [
@@ -694,7 +735,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#delete-a-notification-configuration"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configurations#delete-a-notification-configuration"
             },
             "List Notification Configurations": {
                 "http-paths": [
@@ -702,7 +743,7 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#list-notification-configurations"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configurations#list-notification-configurations"
             },
             "Show a Notification Configuration": {
                 "http-paths": [
@@ -710,7 +751,7 @@
                 ],
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#show-a-notification-configuration"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configurations#show-a-notification-configuration"
             },
             "Update a Notification Configuration": {
                 "http-paths": [
@@ -718,7 +759,7 @@
                 ],
                 "implementation-method-name": "update",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#update-a-notification-configuration"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configurations#update-a-notification-configuration"
             },
             "Verify a Notification Configuration": {
                 "http-paths": [
@@ -726,14 +767,17 @@
                 ],
                 "implementation-method-name": "verify",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#verify-a-notification-configuration"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configurations#verify-a-notification-configuration"
             }
-        }
+        },
+        "test": true
     },
-    "oauth-clients": {
+    "oauth_clients": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/oauth-clients",
         "filename": "oauth-clients.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/oauth-clients.mdx",
+        "implementation": true,
         "methods": {
             "Create an OAuth Client": {
                 "http-paths": [
@@ -775,12 +819,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-clients#update-an-oauth-client"
             }
-        }
+        },
+        "test": true
     },
-    "oauth-tokens": {
+    "oauth_tokens": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/oauth-tokens",
         "filename": "oauth-tokens.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/oauth-tokens.mdx",
+        "implementation": true,
         "methods": {
             "Destroy an OAuth Token": {
                 "http-paths": [
@@ -814,12 +861,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-tokens#update-an-oauth-token"
             }
-        }
+        },
+        "test": true
     },
-    "org-memberships": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/org-memberships",
+    "org_memberships": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/organization-memberships",
         "filename": "organization-memberships.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/organization-memberships.mdx",
+        "implementation": true,
         "methods": {
             "Invite a User to an Organization": {
                 "http-paths": [
@@ -827,7 +877,7 @@
                 ],
                 "implementation-method-name": "invite",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#invite-a-user-to-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-memberships#invite-a-user-to-an-organization"
             },
             "List Memberships for an Organization": {
                 "http-paths": [
@@ -835,7 +885,7 @@
                 ],
                 "implementation-method-name": "list_for_org",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#list-memberships-for-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-memberships#list-memberships-for-an-organization"
             },
             "List User's Own Memberships": {
                 "http-paths": [
@@ -843,7 +893,7 @@
                 ],
                 "implementation-method-name": "list_for_user",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#list-user's-own-memberships"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-memberships#list-user's-own-memberships"
             },
             "Remove User from Organization": {
                 "http-paths": [
@@ -851,7 +901,7 @@
                 ],
                 "implementation-method-name": "remove",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#remove-user-from-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-memberships#remove-user-from-organization"
             },
             "Show a Membership": {
                 "http-paths": [
@@ -859,14 +909,17 @@
                 ],
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#show-a-membership"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-memberships#show-a-membership"
             }
-        }
+        },
+        "test": true
     },
-    "org-tags": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/org-tags",
+    "org_tags": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/organization-tags",
         "filename": "organization-tags.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/organization-tags.mdx",
+        "implementation": true,
         "methods": {
             "Add workspaces to a tag": {
                 "http-paths": [
@@ -874,7 +927,7 @@
                 ],
                 "implementation-method-name": "add_workspaces_to_tag",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tags#add-workspaces-to-a-tag"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-tags#add-workspaces-to-a-tag"
             },
             "Delete tags": {
                 "http-paths": [
@@ -882,7 +935,7 @@
                 ],
                 "implementation-method-name": "delete_tags",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tags#delete-tags"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-tags#delete-tags"
             },
             "List Tags": {
                 "http-paths": [
@@ -890,14 +943,17 @@
                 ],
                 "implementation-method-name": "list_tags",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tags#list-tags"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-tags#list-tags"
             }
-        }
+        },
+        "test": true
     },
-    "org-tokens": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/org-tokens",
+    "org_tokens": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/organization-tokens",
         "filename": "organization-tokens.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/organization-tokens.mdx",
+        "implementation": true,
         "methods": {
             "Delete the organization token": {
                 "http-paths": [
@@ -905,7 +961,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tokens#delete-the-organization-token"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-tokens#delete-the-organization-token"
             },
             "Generate a new organization token": {
                 "http-paths": [
@@ -913,13 +969,14 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tokens#generate-a-new-organization-token"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organization-tokens#generate-a-new-organization-token"
             }
-        }
+        },
+        "test": true
     },
     "orgs": {
         "docs": true,
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/orgs",
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/organizations",
         "filename": "organizations.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/organizations.mdx",
         "implementation": true,
@@ -930,7 +987,7 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/orgs#create-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organizations#create-an-organization"
             },
             "Destroy an Organization": {
                 "http-paths": [
@@ -938,7 +995,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/orgs#destroy-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organizations#destroy-an-organization"
             },
             "List Organizations": {
                 "http-paths": [
@@ -946,7 +1003,7 @@
                 ],
                 "implementation-method-name": "entitlements",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/orgs#list-organizations"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organizations#list-organizations"
             },
             "Show Module Producers": {
                 "http-paths": [
@@ -954,7 +1011,7 @@
                 ],
                 "implementation-method-name": "show_module_producers",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/orgs#show-module-producers"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organizations#show-module-producers"
             },
             "Show an Organization": {
                 "http-paths": [
@@ -962,7 +1019,7 @@
                 ],
                 "implementation-method-name": "entitlements",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/orgs#show-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organizations#show-an-organization"
             },
             "Show the Entitlement Set": {
                 "http-paths": [
@@ -970,7 +1027,7 @@
                 ],
                 "implementation-method-name": "entitlements",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/orgs#show-the-entitlement-set"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organizations#show-the-entitlement-set"
             },
             "Update an Organization": {
                 "http-paths": [
@@ -978,15 +1035,17 @@
                 ],
                 "implementation-method-name": "update",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/orgs#update-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/organizations#update-an-organization"
             }
         },
         "test": true
     },
-    "plan-exports": {
+    "plan_exports": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/plan-exports",
         "filename": "plan-exports.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/plan-exports.mdx",
+        "implementation": true,
         "methods": {
             "Create a plan export": {
                 "http-paths": [
@@ -1020,7 +1079,8 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/plan-exports#show-a-plan-export"
             }
-        }
+        },
+        "test": true
     },
     "plans": {
         "docs": true,
@@ -1107,10 +1167,12 @@
         },
         "test": true
     },
-    "policy-checks": {
+    "policy_checks": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/policy-checks",
         "filename": "policy-checks.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/policy-checks.mdx",
+        "implementation": true,
         "methods": {
             "List Policy Checks": {
                 "http-paths": [
@@ -1136,12 +1198,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#show-policy-check"
             }
-        }
+        },
+        "test": true
     },
-    "policy-set-params": {
+    "policy_set_params": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/policy-set-params",
         "filename": "policy-set-params.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/policy-set-params.mdx",
+        "implementation": true,
         "methods": {
             "Create a Parameter": {
                 "http-paths": [
@@ -1175,12 +1240,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-set-params#update-parameters"
             }
-        }
+        },
+        "test": true
     },
-    "policy-sets": {
+    "policy_sets": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/policy-sets",
         "filename": "policy-sets.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/policy-sets.mdx",
+        "implementation": true,
         "methods": {
             "Add Policies to the Policy Set": {
                 "http-paths": [
@@ -1278,12 +1346,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#upload-policy-set-versions"
             }
-        }
+        },
+        "test": true
     },
-    "registry-modules": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/registry-modules",
+    "registry_modules": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/modules",
         "filename": "modules.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/modules.mdx",
+        "implementation": true,
         "methods": {
             "Create a Module (with no VCS connection)": {
                 "http-paths": [
@@ -1291,7 +1362,7 @@
                 ],
                 "implementation-method-name": "publish_from_vcs",
                 "implemented": true,
-                "permalink": "modules#create-a-module-(with-no-vcs-connection)"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/modules#create-a-module-(with-no-vcs-connection)"
             },
             "Create a Module Version": {
                 "http-paths": [
@@ -1300,7 +1371,7 @@
                 ],
                 "implementation-method-name": null,
                 "implemented": false,
-                "permalink": "modules#create-a-module-version"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/modules#create-a-module-version"
             },
             "Delete a Module": {
                 "http-paths": [
@@ -1310,7 +1381,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "modules#delete-a-module"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/modules#delete-a-module"
             },
             "Get a Module": {
                 "http-paths": [
@@ -1319,7 +1390,7 @@
                 ],
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "modules#get-a-module"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/modules#get-a-module"
             },
             "List Registry Modules for an Organization": {
                 "http-paths": [
@@ -1327,7 +1398,7 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "modules#list-registry-modules-for-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/modules#list-registry-modules-for-an-organization"
             },
             "Publish a Private Module from a VCS": {
                 "http-paths": [
@@ -1336,7 +1407,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "modules#publish-a-private-module-from-a-vcs"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/modules#publish-a-private-module-from-a-vcs"
             },
             "Upload a Module Version (private module)": {
                 "http-paths": [
@@ -1344,14 +1415,17 @@
                 ],
                 "implementation-method-name": "upload_version",
                 "implemented": true,
-                "permalink": "modules#upload-a-module-version-(private-module)"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/modules#upload-a-module-version-(private-module)"
             }
-        }
+        },
+        "test": true
     },
-    "registry-providers": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/registry-providers",
+    "registry_providers": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/providers",
         "filename": "providers.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/providers.mdx",
+        "implementation": true,
         "methods": {
             "Create a Provider": {
                 "http-paths": [
@@ -1359,7 +1433,7 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#create-a-provider"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/providers#create-a-provider"
             },
             "Delete a Provider": {
                 "http-paths": [
@@ -1367,7 +1441,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#delete-a-provider"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/providers#delete-a-provider"
             },
             "Get a Provider": {
                 "http-paths": [
@@ -1375,7 +1449,7 @@
                 ],
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#get-a-provider"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/providers#get-a-provider"
             },
             "List public Terraform Registry Providers for an Organization": {
                 "http-paths": [
@@ -1383,14 +1457,17 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#list-public-terraform-registry-providers-for-an-organization"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/providers#list-public-terraform-registry-providers-for-an-organization"
             }
-        }
+        },
+        "test": true
     },
-    "run-tasks": {
+    "run_tasks": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-tasks",
         "filename": "run-tasks.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run-tasks.mdx",
+        "implementation": true,
         "methods": {
             "Attach a Run Task to a Workspace": {
                 "http-paths": [
@@ -1472,12 +1549,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#update-a-run-task"
             }
-        }
+        },
+        "test": true
     },
-    "run-triggers": {
+    "run_triggers": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-triggers",
         "filename": "run-triggers.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run-triggers.mdx",
+        "implementation": true,
         "methods": {
             "Create a Run Trigger": {
                 "http-paths": [
@@ -1511,11 +1591,12 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-triggers#show-a-run-trigger"
             }
-        }
+        },
+        "test": true
     },
     "runs": {
         "docs": true,
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/runs",
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run",
         "filename": "run.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run.mdx",
         "implementation": true,
@@ -1526,7 +1607,7 @@
                 ],
                 "implementation-method-name": "apply",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#apply-a-run"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#apply-a-run"
             },
             "Cancel a Run": {
                 "http-paths": [
@@ -1534,7 +1615,7 @@
                 ],
                 "implementation-method-name": "cancel",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#cancel-a-run"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#cancel-a-run"
             },
             "Create a Run": {
                 "http-paths": [
@@ -1542,7 +1623,7 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#create-a-run"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#create-a-run"
             },
             "Discard a Run": {
                 "http-paths": [
@@ -1550,7 +1631,7 @@
                 ],
                 "implementation-method-name": "discard",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#discard-a-run"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#discard-a-run"
             },
             "Forcefully cancel a run": {
                 "http-paths": [
@@ -1558,7 +1639,7 @@
                 ],
                 "implementation-method-name": "force_cancel",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#forcefully-cancel-a-run"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#forcefully-cancel-a-run"
             },
             "Forcefully execute a run": {
                 "http-paths": [
@@ -1566,7 +1647,7 @@
                 ],
                 "implementation-method-name": "force_execute",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#forcefully-execute-a-run"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#forcefully-execute-a-run"
             },
             "Get run details": {
                 "http-paths": [
@@ -1574,7 +1655,7 @@
                 ],
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#get-run-details"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#get-run-details"
             },
             "List Runs in a Workspace": {
                 "http-paths": [
@@ -1582,15 +1663,17 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/runs#list-runs-in-a-workspace"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run#list-runs-in-a-workspace"
             }
         },
         "test": true
     },
-    "ssh-keys": {
+    "ssh_keys": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys",
         "filename": "ssh-keys.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/ssh-keys.mdx",
+        "implementation": true,
         "methods": {
             "Create an SSH Key": {
                 "http-paths": [
@@ -1632,12 +1715,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys#update-an-ssh-key"
             }
-        }
+        },
+        "test": true
     },
-    "state-version-outputs": {
+    "state_version_outputs": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/state-version-outputs",
         "filename": "state-version-outputs.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/state-version-outputs.mdx",
+        "implementation": true,
         "methods": {
             "List State Version Outputs": {
                 "http-paths": [
@@ -1655,12 +1741,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-version-outputs#show-a-state-version-output"
             }
-        }
+        },
+        "test": true
     },
-    "state-versions": {
+    "state_versions": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/state-versions",
         "filename": "state-versions.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/state-versions.mdx",
+        "implementation": true,
         "methods": {
             "Create a State Version": {
                 "http-paths": [
@@ -1694,7 +1783,8 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#show-a-state-version"
             }
-        }
+        },
+        "test": true
     },
     "subscriptions": {
         "docs": true,
@@ -1722,10 +1812,12 @@
         },
         "test": true
     },
-    "team-access": {
+    "team_access": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/team-access",
         "filename": "team-access.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/team-access.mdx",
+        "implementation": true,
         "methods": {
             "Add Team Access to a Workspace": {
                 "http-paths": [
@@ -1767,12 +1859,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-access#update-team-access-to-a-workspace"
             }
-        }
+        },
+        "test": true
     },
-    "team-memberships": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/team-memberships",
+    "team_memberships": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/team-members",
         "filename": "team-members.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/team-members.mdx",
+        "implementation": true,
         "methods": {
             "Add a User to Team": {
                 "http-paths": [
@@ -1780,7 +1875,7 @@
                 ],
                 "implementation-method-name": "add_user_to_team",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-memberships#add-a-user-to-team"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-members#add-a-user-to-team"
             },
             "Delete a User from Team": {
                 "http-paths": [
@@ -1788,15 +1883,19 @@
                 ],
                 "implementation-method-name": "remove_user_from_team",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-memberships#delete-a-user-from-team"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-members#delete-a-user-from-team"
             }
-        }
+        },
+        "test": true
     },
-    "team-tokens": {
+    "team_tokens": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/team-tokens",
         "filename": "team-tokens.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/team-tokens.mdx",
-        "methods": {}
+        "implementation": true,
+        "methods": {},
+        "test": true
     },
     "teams": {
         "docs": true,
@@ -1848,10 +1947,12 @@
         },
         "test": true
     },
-    "user-tokens": {
+    "user_tokens": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/user-tokens",
         "filename": "user-tokens.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/user-tokens.mdx",
+        "implementation": true,
         "methods": {
             "Create a User Token": {
                 "http-paths": [
@@ -1885,7 +1986,8 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/user-tokens#show-a-user-token"
             }
-        }
+        },
+        "test": true
     },
     "users": {
         "docs": true,
@@ -1905,10 +2007,12 @@
         },
         "test": true
     },
-    "var-sets": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/var-sets",
+    "var_sets": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/variable-sets",
         "filename": "variable-sets.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/variable-sets.mdx",
+        "implementation": true,
         "methods": {
             "Add Variable": {
                 "http-paths": [
@@ -1916,7 +2020,7 @@
                 ],
                 "implementation-method-name": "add_var_to_varset",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#add-variable"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#add-variable"
             },
             "Apply Variable Set to Workspaces": {
                 "http-paths": [
@@ -1924,7 +2028,7 @@
                 ],
                 "implementation-method-name": "apply_varset_to_workspace",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#apply-variable-set-to-workspaces"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#apply-variable-set-to-workspaces"
             },
             "Create a Variable Set": {
                 "http-paths": [
@@ -1932,7 +2036,7 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#create-a-variable-set"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#create-a-variable-set"
             },
             "Delete a Variable Set": {
                 "http-paths": [
@@ -1940,7 +2044,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#delete-a-variable-set"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#delete-a-variable-set"
             },
             "List Variable Set": {
                 "http-paths": [
@@ -1949,7 +2053,7 @@
                 ],
                 "implementation-method-name": "list_for_org",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#list-variable-set"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#list-variable-set"
             },
             "List Variables in a Variable Set": {
                 "http-paths": [
@@ -1957,7 +2061,7 @@
                 ],
                 "implementation-method-name": "list_vars_in_varset",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#list-variables-in-a-variable-set"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#list-variables-in-a-variable-set"
             },
             "Remove a Variable Set from Workspaces": {
                 "http-paths": [
@@ -1965,7 +2069,7 @@
                 ],
                 "implementation-method-name": "remove_varset_from_workspace",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#remove-a-variable-set-from-workspaces"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#remove-a-variable-set-from-workspaces"
             },
             "Show Variable Set": {
                 "http-paths": [
@@ -1973,7 +2077,7 @@
                 ],
                 "implementation-method-name": "show",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#show-variable-set"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#show-variable-set"
             },
             "Update a Variable in a Variable Set": {
                 "http-paths": [
@@ -1981,13 +2085,14 @@
                 ],
                 "implementation-method-name": "update_var_in_varset",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#update-a-variable-in-a-variable-set"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#update-a-variable-in-a-variable-set"
             }
-        }
+        },
+        "test": true
     },
     "vars": {
         "docs": true,
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/vars",
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/variables",
         "filename": "variables.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/variables.mdx",
         "implementation": true,
@@ -1998,7 +2103,7 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/vars#create-a-variable"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variables#create-a-variable"
             },
             "Delete Variables": {
                 "http-paths": [
@@ -2006,7 +2111,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/vars#delete-variables"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variables#delete-variables"
             },
             "List Variables": {
                 "http-paths": [
@@ -2014,7 +2119,7 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/vars#list-variables"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variables#list-variables"
             },
             "Update Variables": {
                 "http-paths": [
@@ -2022,15 +2127,17 @@
                 ],
                 "implementation-method-name": "update",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/vars#update-variables"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variables#update-variables"
             }
         },
         "test": true
     },
-    "vcs-events": {
+    "vcs_events": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/vcs-events",
         "filename": "vcs-events.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/vcs-events.mdx",
+        "implementation": true,
         "methods": {
             "List VCS events": {
                 "http-paths": [
@@ -2040,9 +2147,10 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/vcs-events#list-vcs-events"
             }
-        }
+        },
+        "test": true
     },
-    "workspace-resources": {
+    "workspace_resources": {
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/workspace-resources",
         "filename": "workspace-resources.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/workspace-resources.mdx",
@@ -2057,10 +2165,12 @@
             }
         }
     },
-    "workspace-vars": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars",
+    "workspace_vars": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/workspace-variables",
         "filename": "workspace-variables.mdx",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/workspace-variables.mdx",
+        "implementation": true,
         "methods": {
             "Create a Variable": {
                 "http-paths": [
@@ -2068,7 +2178,7 @@
                 ],
                 "implementation-method-name": "create",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars#create-a-variable"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-variables#create-a-variable"
             },
             "Delete Variables": {
                 "http-paths": [
@@ -2076,7 +2186,7 @@
                 ],
                 "implementation-method-name": "destroy",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars#delete-variables"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-variables#delete-variables"
             },
             "List Variables": {
                 "http-paths": [
@@ -2084,7 +2194,7 @@
                 ],
                 "implementation-method-name": "list",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars#list-variables"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-variables#list-variables"
             },
             "Update Variables": {
                 "http-paths": [
@@ -2092,9 +2202,10 @@
                 ],
                 "implementation-method-name": "update",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars#update-variables"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-variables#update-variables"
             }
-        }
+        },
+        "test": true
     },
     "workspaces": {
         "docs": true,

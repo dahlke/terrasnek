@@ -39,8 +39,8 @@ SKIPPABLE_GITHUB_TITLES = [
     "Go to parent directory",
     "changelog",
     "index",
-    "stability-policy",
-    "admin-index"
+    "stability_policy",
+    "admin_index"
 ]
 SKIPPABLE_MD_HEADERS = [
     "Attributes",
@@ -103,17 +103,17 @@ def get_docs_from_github(is_admin=False):
         raw_filename = link.get("title")
         filename = raw_filename.replace(".mdx", "")
 
-        endpoint_name = filename
+        endpoint_name = filename.replace("-", "_")
 
         if endpoint_name not in SKIPPABLE_GITHUB_TITLES:
             endpoint_name = endpoint_name.replace("organization", "org")
             endpoint_name = endpoint_name.replace("configuration", "config")
-            endpoint_name = endpoint_name.replace("workspace-variables", "workspace-vars")
+            endpoint_name = endpoint_name.replace("workspace_variables", "workspace_vars")
             endpoint_name = endpoint_name.replace("variables", "vars")
-            endpoint_name = endpoint_name.replace("variable-sets", "var-sets")
-            endpoint_name = endpoint_name.replace("team-members", "team-memberships")
-            endpoint_name = endpoint_name.replace("modules", "registry-modules")
-            endpoint_name = endpoint_name.replace("providers", "registry-providers")
+            endpoint_name = endpoint_name.replace("variable_sets", "var_sets")
+            endpoint_name = endpoint_name.replace("team_members", "team_memberships")
+            endpoint_name = endpoint_name.replace("modules", "registry_modules")
+            endpoint_name = endpoint_name.replace("providers", "registry_providers")
 
             # NOTE: The implementation uses "runs" and the documentation uses "run"
             if endpoint_name == "run":
@@ -121,13 +121,14 @@ def get_docs_from_github(is_admin=False):
 
             if is_admin:
                 github_url = f"{RAW_GITHUB_DOCS_BASE_URL}/admin/{raw_filename}"
-                docs_url = f"{TFC_API_BASE_URL}/admin/{endpoint_name}"
-                endpoint_name = "admin-" + endpoint_name
+                docs_url = f"{TFC_API_BASE_URL}/admin/{filename}"
+                endpoint_name = "admin_" + endpoint_name
             else:
                 github_url = f"{RAW_GITHUB_DOCS_BASE_URL}/{raw_filename}"
-                docs_url = f"{TFC_API_BASE_URL}/{endpoint_name}"
+                docs_url = f"{TFC_API_BASE_URL}/{filename}"
 
             # TODO: store formatted versions of the name here?
+
             endpoints[endpoint_name] = {
                 "filename": raw_filename,
                 "docs-url": docs_url,
@@ -231,8 +232,7 @@ def check_methods_implementation(endpoints):
     for ep_name in endpoints:
         endpoint = endpoints[ep_name]
         endpoint_methods = endpoint["methods"]
-        formatted_ep_name = ep_name.replace("-", "_")
-        path = f"{IMPLEMENTATION_PATH}/{formatted_ep_name}.py"
+        path = f"{IMPLEMENTATION_PATH}/{ep_name}.py"
         file_contents = ""
         split_by_func_def = []
 
@@ -338,7 +338,7 @@ def main():
             method_name = None
 
             if method["implementation-method-name"] is not None:
-                method_name = f'`{ep_name.replace("-", "_")}.{method["implementation-method-name"]}`'
+                method_name = f'`{ep_name}.{method["implementation-method-name"]}`'
 
             md_method_row = [
                 ep_name.replace("_", " ").replace("-", " ").title(),
@@ -370,7 +370,7 @@ def main():
             method_name = None
 
             if method["implementation-method-name"] is not None:
-                method_name = f'`{ep_name.replace("-", "_")}.{method["implementation-method-name"]}`'
+                method_name = f'`{ep_name}.{method["implementation-method-name"]}`'
 
             rst_method_row = [
                 ep_name.replace("_", " ").title(),
