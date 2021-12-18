@@ -339,7 +339,7 @@ def main():
 
             md_method_row = [
                 ep_name.replace("_", " ").replace("-", " ").title(),
-                method["permalink"],
+                f"[{method_header}]({method['permalink']})",
                 method["http-paths"][0],
                 method_name,
                 method["implemented"]
