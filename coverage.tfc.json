@@ -1,7 +1,11 @@
 {
     "meta": {
         "version": "5.5",
+<<<<<<< HEAD
         "timestamp": "2021-12-07T18:05:14.805529",
+=======
+        "timestamp": "2021-12-07T18:22:11.642973",
+>>>>>>> 0.1.8_new_api_parser
         "branch_coverage": false,
         "show_contexts": false
     },
