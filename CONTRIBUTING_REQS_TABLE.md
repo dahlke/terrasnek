@@ -1,4 +1,55 @@
 # `terrasnek` API Coverage Completeness
 
-| Endpoint   | Module   | Has Implementation   | Has Test   | Has Docs   |
-|------------|----------|----------------------|------------|------------|
+| Endpoint                                                                                          | Module                     | Has Implementation   | Has Test   | Has Docs   |
+|---------------------------------------------------------------------------------------------------|----------------------------|----------------------|------------|------------|
+| [Account](https://www.terraform.io/cloud-docs/api-docs/account)                                   | `account`                  | True                 | True       | True       |
+| [Admin-Module-Sharing](https://www.terraform.io/cloud-docs/api-docs/admin/module-sharing)         | `admin-module-sharing`     | False                | False      | False      |
+| [Admin-Orgs](https://www.terraform.io/cloud-docs/api-docs/admin/orgs)                             | `admin-orgs`               | False                | False      | False      |
+| [Admin-Runs](https://www.terraform.io/cloud-docs/api-docs/admin/runs)                             | `admin-runs`               | False                | False      | False      |
+| [Admin-Settings](https://www.terraform.io/cloud-docs/api-docs/admin/settings)                     | `admin-settings`           | False                | False      | False      |
+| [Admin-Terraform-Versions](https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions) | `admin-terraform-versions` | False                | False      | False      |
+| [Admin-Users](https://www.terraform.io/cloud-docs/api-docs/admin/users)                           | `admin-users`              | False                | False      | False      |
+| [Admin-Workspaces](https://www.terraform.io/cloud-docs/api-docs/admin/workspaces)                 | `admin-workspaces`         | False                | False      | False      |
+| [Agent-Tokens](https://www.terraform.io/cloud-docs/api-docs/agent-tokens)                         | `agent-tokens`             | False                | False      | False      |
+| [Agents](https://www.terraform.io/cloud-docs/api-docs/agents)                                     | `agents`                   | True                 | True       | True       |
+| [Applies](https://www.terraform.io/cloud-docs/api-docs/applies)                                   | `applies`                  | True                 | True       | True       |
+| [Audit-Trails](https://www.terraform.io/cloud-docs/api-docs/audit-trails)                         | `audit-trails`             | False                | False      | False      |
+| [Config-Versions](https://www.terraform.io/cloud-docs/api-docs/config-versions)                   | `config-versions`          | False                | False      | False      |
+| [Cost-Estimates](https://www.terraform.io/cloud-docs/api-docs/cost-estimates)                     | `cost-estimates`           | False                | False      | False      |
+| [Feature-Sets](https://www.terraform.io/cloud-docs/api-docs/feature-sets)                         | `feature-sets`             | False                | False      | False      |
+| [Invoices](https://www.terraform.io/cloud-docs/api-docs/invoices)                                 | `invoices`                 | True                 | True       | True       |
+| [Ip-Ranges](https://www.terraform.io/cloud-docs/api-docs/ip-ranges)                               | `ip-ranges`                | False                | False      | False      |
+| [Notification-Configs](https://www.terraform.io/cloud-docs/api-docs/notification-configs)         | `notification-configs`     | False                | False      | False      |
+| [Oauth-Clients](https://www.terraform.io/cloud-docs/api-docs/oauth-clients)                       | `oauth-clients`            | False                | False      | False      |
+| [Oauth-Tokens](https://www.terraform.io/cloud-docs/api-docs/oauth-tokens)                         | `oauth-tokens`             | False                | False      | False      |
+| [Org-Memberships](https://www.terraform.io/cloud-docs/api-docs/org-memberships)                   | `org-memberships`          | False                | False      | False      |
+| [Org-Tags](https://www.terraform.io/cloud-docs/api-docs/org-tags)                                 | `org-tags`                 | False                | False      | False      |
+| [Org-Tokens](https://www.terraform.io/cloud-docs/api-docs/org-tokens)                             | `org-tokens`               | False                | False      | False      |
+| [Orgs](https://www.terraform.io/cloud-docs/api-docs/orgs)                                         | `orgs`                     | True                 | True       | True       |
+| [Plan-Exports](https://www.terraform.io/cloud-docs/api-docs/plan-exports)                         | `plan-exports`             | False                | False      | False      |
+| [Plans](https://www.terraform.io/cloud-docs/api-docs/plans)                                       | `plans`                    | True                 | True       | True       |
+| [Policies](https://www.terraform.io/cloud-docs/api-docs/policies)                                 | `policies`                 | True                 | True       | True       |
+| [Policy-Checks](https://www.terraform.io/cloud-docs/api-docs/policy-checks)                       | `policy-checks`            | False                | False      | False      |
+| [Policy-Set-Params](https://www.terraform.io/cloud-docs/api-docs/policy-set-params)               | `policy-set-params`        | False                | False      | False      |
+| [Policy-Sets](https://www.terraform.io/cloud-docs/api-docs/policy-sets)                           | `policy-sets`              | False                | False      | False      |
+| [Registry-Modules](https://www.terraform.io/cloud-docs/api-docs/registry-modules)                 | `registry-modules`         | False                | False      | False      |
+| [Registry-Providers](https://www.terraform.io/cloud-docs/api-docs/registry-providers)             | `registry-providers`       | False                | False      | False      |
+| [Run-Tasks](https://www.terraform.io/cloud-docs/api-docs/run-tasks)                               | `run-tasks`                | False                | False      | False      |
+| [Run-Triggers](https://www.terraform.io/cloud-docs/api-docs/run-triggers)                         | `run-triggers`             | False                | False      | False      |
+| [Run](https://www.terraform.io/cloud-docs/api-docs/run)                                           | `run`                      | False                | False      | False      |
+| [Ssh-Keys](https://www.terraform.io/cloud-docs/api-docs/ssh-keys)                                 | `ssh-keys`                 | False                | False      | False      |
+| [State-Version-Outputs](https://www.terraform.io/cloud-docs/api-docs/state-version-outputs)       | `state-version-outputs`    | False                | False      | False      |
+| [State-Versions](https://www.terraform.io/cloud-docs/api-docs/state-versions)                     | `state-versions`           | False                | False      | False      |
+| [Subscriptions](https://www.terraform.io/cloud-docs/api-docs/subscriptions)                       | `subscriptions`            | True                 | True       | True       |
+| [Team-Access](https://www.terraform.io/cloud-docs/api-docs/team-access)                           | `team-access`              | False                | False      | False      |
+| [Team-Memberships](https://www.terraform.io/cloud-docs/api-docs/team-memberships)                 | `team-memberships`         | False                | False      | False      |
+| [Team-Tokens](https://www.terraform.io/cloud-docs/api-docs/team-tokens)                           | `team-tokens`              | False                | False      | False      |
+| [Teams](https://www.terraform.io/cloud-docs/api-docs/teams)                                       | `teams`                    | True                 | True       | True       |
+| [User-Tokens](https://www.terraform.io/cloud-docs/api-docs/user-tokens)                           | `user-tokens`              | False                | False      | False      |
+| [Users](https://www.terraform.io/cloud-docs/api-docs/users)                                       | `users`                    | True                 | True       | True       |
+| [Var-Sets](https://www.terraform.io/cloud-docs/api-docs/var-sets)                                 | `var-sets`                 | False                | False      | False      |
+| [Vars](https://www.terraform.io/cloud-docs/api-docs/vars)                                         | `vars`                     | True                 | True       | True       |
+| [Vcs-Events](https://www.terraform.io/cloud-docs/api-docs/vcs-events)                             | `vcs-events`               | False                | False      | False      |
+| [Workspace-Resources](https://www.terraform.io/cloud-docs/api-docs/workspace-resources)           | `workspace-resources`      | False                | False      | False      |
+| [Workspace-Vars](https://www.terraform.io/cloud-docs/api-docs/workspace-vars)                     | `workspace-vars`           | False                | False      | False      |
+| [Workspaces](https://www.terraform.io/cloud-docs/api-docs/workspaces)                             | `workspaces`               | True                 | True       | True       |
