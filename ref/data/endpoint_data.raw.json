@@ -42,8 +42,8 @@
                 "http-paths": [
                     "PATCH /admin/organizations/:name/module-consumers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/module-sharing#update-an-organization's-module-consumers"
             }
         }
@@ -57,48 +57,48 @@
                 "http-paths": [
                     "DELETE /admin/organizations/:name"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#delete-an-organization"
             },
             "List Module Consumers for an Organization": {
                 "http-paths": [
                     "GET /api/v2/admin/organizations/:name/relationships/module-consumers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_org_module_consumers",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#list-module-consumers-for-an-organization"
             },
             "List all Organizations": {
                 "http-paths": [
                     "GET /api/v2/admin/organizations"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#list-all-organizations"
             },
             "Show an Organization": {
                 "http-paths": [
                     "GET /api/v2/admin/organizations/:name"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_org_module_consumers",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#show-an-organization"
             },
             "Update an Organization": {
                 "http-paths": [
                     "PATCH /admin/organizations/:name"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#update-an-organization"
             },
             "Update an Organization's Module Consumers": {
                 "http-paths": [
                     "PATCH /admin/organizations/:name/relationships/module-consumers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_org_module_consumers",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/orgs#update-an-organization's-module-consumers"
             }
         }
@@ -112,16 +112,16 @@
                 "http-paths": [
                     "POST /admin/runs/:id/actions/force-cancel"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "force_cancel",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/runs#force-a-run-into-the-\"cancelled\"-state"
             },
             "List all runs": {
                 "http-paths": [
                     "GET /api/v2/admin/runs"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/runs#list-all-runs"
             }
         }
@@ -135,112 +135,112 @@
                 "http-paths": [
                     "GET /api/v2/admin/cost-estimation-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_cost_estimation",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#list-cost-estimation-settings"
             },
             "List Customization Settings": {
                 "http-paths": [
                     "GET /api/v2/admin/customization-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_customization",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#list-customization-settings"
             },
             "List General Settings": {
                 "http-paths": [
                     "GET /api/v2/admin/general-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_general",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#list-general-settings"
             },
             "List SAML Settings": {
                 "http-paths": [
                     "GET /api/v2/admin/saml-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_saml",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#list-saml-settings"
             },
             "List SMTP Settings": {
                 "http-paths": [
                     "GET /api/v2/admin/smtp-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_smtp",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#list-smtp-settings"
             },
             "List Twilio Settings": {
                 "http-paths": [
                     "GET /api/v2/admin/twilio-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_twilio",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#list-twilio-settings"
             },
             "Revoke previous SAML IdP Certificate": {
                 "http-paths": [
                     "POST /api/v2/admin/saml-settings/actions/revoke-old-certificate"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "revoke_previous_saml_idp_cert",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#revoke-previous-saml-idp-certificate"
             },
             "Update Cost Estimation Settings": {
                 "http-paths": [
                     "PATCH /api/v2/admin/cost-estimation-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_cost_estimation",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#update-cost-estimation-settings"
             },
             "Update Customization Settings": {
                 "http-paths": [
                     "PATCH /api/v2/admin/customization-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_customization",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#update-customization-settings"
             },
             "Update General Settings": {
                 "http-paths": [
                     "PATCH /api/v2/admin/general-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_general",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#update-general-settings"
             },
             "Update SAML Settings": {
                 "http-paths": [
                     "PATCH /api/v2/admin/saml-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_saml",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#update-saml-settings"
             },
             "Update SMTP Settings": {
                 "http-paths": [
                     "PATCH /api/v2/admin/smtp-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_smtp",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#update-smtp-settings"
             },
             "Update Twilio Settings": {
                 "http-paths": [
                     "PATCH /api/v2/admin/twilio-settings"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_twilio",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#update-twilio-settings"
             },
             "Verify Twilio Settings": {
                 "http-paths": [
                     "POST /api/v2/admin/twilio-settings/verify"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "verify_twilio",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/settings#verify-twilio-settings"
             }
         }
@@ -254,40 +254,40 @@
                 "http-paths": [
                     "POST /admin/terraform-versions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions#create-a-terraform-version"
             },
             "Delete a Terraform version": {
                 "http-paths": [
                     "DELETE /admin/terraform-versions/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions#delete-a-terraform-version"
             },
             "List all Terraform versions": {
                 "http-paths": [
                     "GET /api/v2/admin/terraform-versions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions#list-all-terraform-versions"
             },
             "Show a Terraform version": {
                 "http-paths": [
                     "GET /api/v2/admin/terraform-versions/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions#show-a-terraform-version"
             },
             "Update a Terraform version": {
                 "http-paths": [
                     "PATCH /admin/terraform-versions/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions#update-a-terraform-version"
             }
         }
@@ -301,72 +301,72 @@
                 "http-paths": [
                     "DELETE /admin/users/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#delete-a-user-account"
             },
             "Disable a user's two-factor authentication": {
                 "http-paths": [
                     "POST /admin/users/:id/actions/disable_two_factor"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "disable_two_factor",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#disable-a-user's-two-factor-authentication"
             },
             "End an impersonation session": {
                 "http-paths": [
                     "POST /admin/users/actions/unimpersonate"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "unimpersonate",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#end-an-impersonation-session"
             },
             "Grant a user administrative privileges": {
                 "http-paths": [
                     "POST /admin/users/:id/actions/grant_admin"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "grant_admin",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#grant-a-user-administrative-privileges"
             },
             "Impersonate another user": {
                 "http-paths": [
                     "POST /admin/users/:id/actions/impersonate"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "impersonate",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#impersonate-another-user"
             },
             "List all users": {
                 "http-paths": [
                     "GET /api/v2/admin/users"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#list-all-users"
             },
             "Re-activate a suspended user": {
                 "http-paths": [
                     "POST /admin/users/:id/actions/unsuspend"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "unsuspend",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#re-activate-a-suspended-user"
             },
             "Revoke an user's administrative privileges": {
                 "http-paths": [
                     "POST /admin/users/:id/actions/revoke_admin"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "revoke_admin",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#revoke-an-user's-administrative-privileges"
             },
             "Suspend a user": {
                 "http-paths": [
                     "POST /admin/users/:id/actions/suspend"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "suspend",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/users#suspend-a-user"
             }
         }
@@ -380,24 +380,24 @@
                 "http-paths": [
                     "DELETE /admin/workspaces/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/workspaces#destroy-a-workspace"
             },
             "List all workspaces": {
                 "http-paths": [
                     "GET /api/v2/admin/workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/workspaces#list-all-workspaces"
             },
             "Show a workspace": {
                 "http-paths": [
                     "GET /api/v2/admin/workspaces/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/admin/workspaces#show-a-workspace"
             }
         }
@@ -411,32 +411,32 @@
                 "http-paths": [
                     "POST /agent-pools/:agent_pool_id/authentication-tokens"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/agent-tokens#create-an-agent-token"
             },
             "Destroy an Agent Token": {
                 "http-paths": [
                     "DELETE /api/v2/authentication-tokens/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/agent-tokens#destroy-an-agent-token"
             },
             "List Agent Tokens": {
                 "http-paths": [
                     "GET /agent-pools/:agent_pool_id/authentication-tokens"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/agent-tokens#list-agent-tokens"
             },
             "Show an Agent Token": {
                 "http-paths": [
                     "GET /authentication-tokens/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/agent-tokens#show-an-agent-token"
             }
         }
@@ -542,8 +542,8 @@
                 "http-paths": [
                     "GET /organization/audit-trail"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/audit-trails#list-an-organization's-audit-events"
             }
         }
@@ -557,24 +557,24 @@
                 "http-paths": [
                     "POST /workspaces/:workspace_id/configuration-versions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#create-a-configuration-version"
             },
             "List Configuration Versions": {
                 "http-paths": [
                     "GET /workspaces/:workspace_id/configuration-versions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#list-configuration-versions"
             },
             "Show a Configuration Version": {
                 "http-paths": [
                     "GET /configuration-versions/:configuration-id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#show-a-configuration-version"
             },
             "Show a Configuration Version's Commit Information": {
@@ -582,16 +582,16 @@
                     "GET /configuration-versions/:configuration-id/ingress-attributes",
                     "GET /configuration-versions/:configuration-id?include=ingress-attributes"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show_config_version_commit_info",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#show-a-configuration-version's-commit-information"
             },
             "Upload Configuration Files": {
                 "http-paths": [
                     "PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "upload",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/config-versions#upload-configuration-files"
             }
         }
@@ -605,8 +605,8 @@
                 "http-paths": [
                     "GET /cost-estimates/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/cost-estimates#show-a-cost-estimate"
             }
         }
@@ -620,16 +620,16 @@
                 "http-paths": [
                     "GET /feature-sets"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/feature-sets#list-feature-sets"
             },
             "List Feature Sets for Organization": {
                 "http-paths": [
                     "GET /organizations/:organization_name/feature-sets"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_for_org",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/feature-sets#list-feature-sets-for-organization"
             }
         }
@@ -669,8 +669,8 @@
                 "http-paths": [
                     "GET /meta/ip-ranges"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/ip-ranges#get-ip-ranges"
             }
         }
@@ -684,48 +684,48 @@
                 "http-paths": [
                     "POST /workspaces/:workspace_id/notification-configurations"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#create-a-notification-configuration"
             },
             "Delete a Notification Configuration": {
                 "http-paths": [
                     "DELETE /notification-configurations/:notification-configuration-id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#delete-a-notification-configuration"
             },
             "List Notification Configurations": {
                 "http-paths": [
                     "GET /workspaces/:workspace_id/notification-configurations"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#list-notification-configurations"
             },
             "Show a Notification Configuration": {
                 "http-paths": [
                     "GET /notification-configurations/:notification-configuration-id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#show-a-notification-configuration"
             },
             "Update a Notification Configuration": {
                 "http-paths": [
                     "PATCH /notification-configurations/:notification-configuration-id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#update-a-notification-configuration"
             },
             "Verify a Notification Configuration": {
                 "http-paths": [
                     "POST /notification-configurations/:notification-configuration-id/actions/verify"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "verify",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/notification-configs#verify-a-notification-configuration"
             }
         }
@@ -739,40 +739,40 @@
                 "http-paths": [
                     "POST /organizations/:organization_name/oauth-clients"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-clients#create-an-oauth-client"
             },
             "Destroy an OAuth Client": {
                 "http-paths": [
                     "DELETE /oauth-clients/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-clients#destroy-an-oauth-client"
             },
             "List OAuth Clients": {
                 "http-paths": [
                     "GET /organizations/:organization_name/oauth-clients"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-clients#list-oauth-clients"
             },
             "Show an OAuth Client": {
                 "http-paths": [
                     "GET /oauth-clients/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-clients#show-an-oauth-client"
             },
             "Update an OAuth Client": {
                 "http-paths": [
                     "PATCH /oauth-clients/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-clients#update-an-oauth-client"
             }
         }
@@ -786,32 +786,32 @@
                 "http-paths": [
                     "DELETE /oauth-tokens/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-tokens#destroy-an-oauth-token"
             },
             "List OAuth Tokens": {
                 "http-paths": [
                     "GET /oauth-clients/:oauth_client_id/oauth-tokens"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-tokens#list-oauth-tokens"
             },
             "Show an OAuth Token": {
                 "http-paths": [
                     "GET /oauth-tokens/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-tokens#show-an-oauth-token"
             },
             "Update an OAuth Token": {
                 "http-paths": [
                     "PATCH /oauth-tokens/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/oauth-tokens#update-an-oauth-token"
             }
         }
@@ -825,40 +825,40 @@
                 "http-paths": [
                     "POST /organizations/:organization_name/organization-memberships"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "invite",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#invite-a-user-to-an-organization"
             },
             "List Memberships for an Organization": {
                 "http-paths": [
                     "GET /organizations/:organization_name/organization-memberships"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_for_org",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#list-memberships-for-an-organization"
             },
             "List User's Own Memberships": {
                 "http-paths": [
                     "GET /organization-memberships"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_for_user",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#list-user's-own-memberships"
             },
             "Remove User from Organization": {
                 "http-paths": [
                     "DELETE /organization-memberships/:organization_membership_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#remove-user-from-organization"
             },
             "Show a Membership": {
                 "http-paths": [
                     "GET /organization-memberships/:organization_membership_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-memberships#show-a-membership"
             }
         }
@@ -872,24 +872,24 @@
                 "http-paths": [
                     "POST /tags/:tag_id/relationships/workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_workspaces_to_tag",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tags#add-workspaces-to-a-tag"
             },
             "Delete tags": {
                 "http-paths": [
                     "DELETE /organizations/:organization_name/tags"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "delete_tags",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tags#delete-tags"
             },
             "List Tags": {
                 "http-paths": [
                     "GET /organizations/:organization_name/tags"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_tags",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tags#list-tags"
             }
         }
@@ -903,16 +903,16 @@
                 "http-paths": [
                     "DELETE /organizations/:organization/authentication-token"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tokens#delete-the-organization-token"
             },
             "Generate a new organization token": {
                 "http-paths": [
                     "POST /organizations/:organization_name/authentication-token"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/org-tokens#generate-a-new-organization-token"
             }
         }
@@ -992,32 +992,32 @@
                 "http-paths": [
                     "POST /plan-exports"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/plan-exports#create-a-plan-export"
             },
             "Delete exported plan data": {
                 "http-paths": [
                     "DELETE /plan-exports/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/plan-exports#delete-exported-plan-data"
             },
             "Download exported plan data": {
                 "http-paths": [
                     "GET /plan-exports/:id/download"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "download",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/plan-exports#download-exported-plan-data"
             },
             "Show a plan export": {
                 "http-paths": [
                     "GET /plan-exports/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/plan-exports#show-a-plan-export"
             }
         }
@@ -1116,24 +1116,24 @@
                 "http-paths": [
                     "GET /runs/:run_id/policy-checks"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#list-policy-checks"
             },
             "Override Policy": {
                 "http-paths": [
                     "POST /policy-checks/:id/actions/override"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "override",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#override-policy"
             },
             "Show Policy Check": {
                 "http-paths": [
                     "GET /policy-checks/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#show-policy-check"
             }
         }
@@ -1147,32 +1147,32 @@
                 "http-paths": [
                     "POST /policy-sets/:policy_set_id/parameters"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-set-params#create-a-parameter"
             },
             "Delete Parameters": {
                 "http-paths": [
                     "DELETE /policy-sets/:policy_set_id/parameters/:parameter_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-set-params#delete-parameters"
             },
             "List Parameters": {
                 "http-paths": [
                     "GET /policy-sets/:policy_set_id/parameters"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-set-params#list-parameters"
             },
             "Update Parameters": {
                 "http-paths": [
                     "PATCH /policy-sets/:policy_set_id/parameters/:parameter_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-set-params#update-parameters"
             }
         }
@@ -1186,96 +1186,96 @@
                 "http-paths": [
                     "POST /policy-sets/:id/relationships/policies"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_policies_to_set",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#add-policies-to-the-policy-set"
             },
             "Attach a Policy Set to workspaces": {
                 "http-paths": [
                     "POST /policy-sets/:id/relationships/workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "attach_policy_set_to_workspaces",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#attach-a-policy-set-to-workspaces"
             },
             "Create a Policy Set": {
                 "http-paths": [
                     "POST /organizations/:organization_name/policy-sets"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#create-a-policy-set"
             },
             "Create a Policy Set Version": {
                 "http-paths": [
                     "POST /policy-sets/:id/versions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create_policy_set_version",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#create-a-policy-set-version"
             },
             "Delete a Policy Set": {
                 "http-paths": [
                     "DELETE /policy-sets/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_policies_from_set",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#delete-a-policy-set"
             },
             "Detach the Policy Set from workspaces": {
                 "http-paths": [
                     "DELETE /policy-sets/:id/relationships/workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "detach_policy_set_from_workspaces",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#detach-the-policy-set-from-workspaces"
             },
             "List Policy Sets": {
                 "http-paths": [
                     "GET /organizations/:organization_name/policy-sets"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#list-policy-sets"
             },
             "Remove Policies from the Policy Set": {
                 "http-paths": [
                     "DELETE /policy-sets/:id/relationships/policies"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_policies_from_set",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#remove-policies-from-the-policy-set"
             },
             "Show a Policy Set": {
                 "http-paths": [
                     "GET /policy-sets/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#show-a-policy-set"
             },
             "Show a Policy Set Version": {
                 "http-paths": [
                     "GET /policy-set-versions/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show_policy_set_version",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#show-a-policy-set-version"
             },
             "Update a Policy Set": {
                 "http-paths": [
                     "PATCH /policy-sets/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#update-a-policy-set"
             },
             "Upload Policy Set Versions": {
                 "http-paths": [
                     "PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "upload",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#upload-policy-set-versions"
             }
         }
@@ -1289,8 +1289,8 @@
                 "http-paths": [
                     "POST /organizations/:organization_name/registry-modules"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "publish_from_vcs",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#create-a-module-(with-no-vcs-connection)"
             },
             "Create a Module Version": {
@@ -1308,8 +1308,8 @@
                     "DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider",
                     "DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#delete-a-module"
             },
             "Get a Module": {
@@ -1317,16 +1317,16 @@
                     "GET /registry-modules/show/:organization_name/:name/:provider",
                     "GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#get-a-module"
             },
             "List Registry Modules for an Organization": {
                 "http-paths": [
                     "GET /organizations/:organization_name/registry-modules"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#list-registry-modules-for-an-organization"
             },
             "Publish a Private Module from a VCS": {
@@ -1334,16 +1334,16 @@
                     "POST /registry-modules",
                     "POST /organizations/:organization_name/registry-modules/vcs"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#publish-a-private-module-from-a-vcs"
             },
             "Upload a Module Version (private module)": {
                 "http-paths": [
                     "PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "upload_version",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-modules#upload-a-module-version-(private-module)"
             }
         }
@@ -1357,32 +1357,32 @@
                 "http-paths": [
                     "POST /organizations/:organization_name/registry-providers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#create-a-provider"
             },
             "Delete a Provider": {
                 "http-paths": [
                     "DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#delete-a-provider"
             },
             "Get a Provider": {
                 "http-paths": [
                     "GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#get-a-provider"
             },
             "List public Terraform Registry Providers for an Organization": {
                 "http-paths": [
                     "GET /organizations/:organization_name/registry-providers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/registry-providers#list-public-terraform-registry-providers-for-an-organization"
             }
         }
@@ -1467,80 +1467,80 @@
                 "http-paths": [
                     "POST /workspaces/:workspace_id/tasks"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "attach_task_to_workspace",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#attach-a-run-task-to-a-workspace"
             },
             "Create a Run Task": {
                 "http-paths": [
                     "POST /organizations/:organization_name/tasks"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#create-a-run-task"
             },
             "Delete Workspace Task": {
                 "http-paths": [
                     "DELETE /workspaces/:workspace_id/tasks/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_task_from_workspace",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#delete-workspace-task"
             },
             "Delete a Run Task": {
                 "http-paths": [
                     "DELETE /tasks/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#delete-a-run-task"
             },
             "List Run Tasks": {
                 "http-paths": [
                     "GET /organizations/:organization_name/tasks"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#list-run-tasks"
             },
             "List Workspace Run Tasks": {
                 "http-paths": [
                     "GET /workspaces/:workspace_id/tasks"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_tasks_on_workspace",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#list-workspace-run-tasks"
             },
             "Show Workspace Run Task": {
                 "http-paths": [
                     "GET /workspaces/:workspace_id/tasks/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show_task_on_workspace",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#show-workspace-run-task"
             },
             "Show a Run Task": {
                 "http-paths": [
                     "GET /tasks/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#show-a-run-task"
             },
             "Update Workspace Run Task": {
                 "http-paths": [
                     "PATCH /workspaces/:workspace_id/tasks/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_task_on_workspace",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#update-workspace-run-task"
             },
             "Update a Run Task": {
                 "http-paths": [
                     "PATCH /tasks/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#update-a-run-task"
             }
         }
@@ -1554,32 +1554,32 @@
                 "http-paths": [
                     "POST /workspaces/:workspace_id/run-triggers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-triggers#create-a-run-trigger"
             },
             "Delete a Run Trigger": {
                 "http-paths": [
                     "DELETE /run-triggers/:run_trigger_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-triggers#delete-a-run-trigger"
             },
             "List Run Triggers": {
                 "http-paths": [
                     "GET /workspaces/:workspace_id/run-triggers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-triggers#list-run-triggers"
             },
             "Show a Run Trigger": {
                 "http-paths": [
                     "GET /run-triggers/:run_trigger_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-triggers#show-a-run-trigger"
             }
         }
@@ -1593,40 +1593,40 @@
                 "http-paths": [
                     "POST /organizations/:organization_name/ssh-keys"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys#create-an-ssh-key"
             },
             "Delete an SSH Key": {
                 "http-paths": [
                     "DELETE /ssh-keys/:ssh_key_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys#delete-an-ssh-key"
             },
             "Get an SSH Key": {
                 "http-paths": [
                     "GET /ssh-keys/:ssh_key_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys#get-an-ssh-key"
             },
             "List SSH Keys": {
                 "http-paths": [
                     "GET /organizations/:organization_name/ssh-keys"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys#list-ssh-keys"
             },
             "Update an SSH Key": {
                 "http-paths": [
                     "PATCH /ssh-keys/:ssh_key_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys#update-an-ssh-key"
             }
         }
@@ -1648,8 +1648,8 @@
                 "http-paths": [
                     "GET /state-version-outputs/:state_version_output_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-version-outputs#show-a-state-version-output"
             }
         }
@@ -1663,32 +1663,32 @@
                 "http-paths": [
                     "POST /workspaces/:workspace_id/state-versions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#create-a-state-version"
             },
             "Fetch the Current State Version for a Workspace": {
                 "http-paths": [
                     "GET /workspaces/:workspace_id/current-state-version"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "get_current",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#fetch-the-current-state-version-for-a-workspace"
             },
             "List State Versions for a Workspace": {
                 "http-paths": [
                     "GET /state-versions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#list-state-versions-for-a-workspace"
             },
             "Show a State Version": {
                 "http-paths": [
                     "GET /state-versions/:state_version_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_state_version_outputs",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#show-a-state-version"
             }
         }
@@ -1728,40 +1728,40 @@
                 "http-paths": [
                     "POST /team-workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_team_access",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-access#add-team-access-to-a-workspace"
             },
             "List Team Access to a Workspace": {
                 "http-paths": [
                     "GET /team-workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-access#list-team-access-to-a-workspace"
             },
             "Remove Team Access to a Workspace": {
                 "http-paths": [
                     "DELETE /team-workspaces/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_team_access",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-access#remove-team-access-to-a-workspace"
             },
             "Show a Team Access relationship": {
                 "http-paths": [
                     "GET /team-workspaces/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-access#show-a-team-access-relationship"
             },
             "Update Team Access to a Workspace": {
                 "http-paths": [
                     "PATCH /team-workspaces/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-access#update-team-access-to-a-workspace"
             }
         }
@@ -1775,16 +1775,16 @@
                 "http-paths": [
                     "POST /teams/:team_id/relationships/users"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_user_to_team",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-memberships#add-a-user-to-team"
             },
             "Delete a User from Team": {
                 "http-paths": [
                     "DELETE /teams/:team_id/relationships/users"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_user_from_team",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-memberships#delete-a-user-from-team"
             }
         }
@@ -1854,32 +1854,32 @@
                 "http-paths": [
                     "POST /users/:user_id/authentication-tokens"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/user-tokens#create-a-user-token"
             },
             "Destroy a User Token": {
                 "http-paths": [
                     "DELETE /authentication-tokens/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/user-tokens#destroy-a-user-token"
             },
             "List User Tokens": {
                 "http-paths": [
                     "GET /users/:user_id/authentication-tokens"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/user-tokens#list-user-tokens"
             },
             "Show a User Token": {
                 "http-paths": [
                     "GET /authentication-tokens/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/user-tokens#show-a-user-token"
             }
         }
@@ -1911,32 +1911,32 @@
                 "http-paths": [
                     "POST varsets/:varset_external_id/relationships/vars"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_var_to_varset",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#add-variable"
             },
             "Apply Variable Set to Workspaces": {
                 "http-paths": [
                     "POST varsets/:varset_id/relationships/workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "apply_varset_to_workspace",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#apply-variable-set-to-workspaces"
             },
             "Create a Variable Set": {
                 "http-paths": [
                     "POST organizations/:organization_name/varsets"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#create-a-variable-set"
             },
             "Delete a Variable Set": {
                 "http-paths": [
                     "DELETE varsets/:varset_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#delete-a-variable-set"
             },
             "List Variable Set": {
@@ -1944,40 +1944,40 @@
                     "GET organizations/:organization_name/varsets",
                     "GET workspaces/:workspace_id/varsets"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_for_org",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#list-variable-set"
             },
             "List Variables in a Variable Set": {
                 "http-paths": [
                     "GET varsets/:varset_id/relationships/vars"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_vars_in_varset",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#list-variables-in-a-variable-set"
             },
             "Remove a Variable Set from Workspaces": {
                 "http-paths": [
                     "DELETE varsets/:varset_id/relationships/workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_varset_from_workspace",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#remove-a-variable-set-from-workspaces"
             },
             "Show Variable Set": {
                 "http-paths": [
                     "GET varsets/:varset_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#show-variable-set"
             },
             "Update a Variable in a Variable Set": {
                 "http-paths": [
                     "PATCH varsets/:varset_id/relationships/vars/:var_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update_var_in_varset",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/var-sets#update-a-variable-in-a-variable-set"
             }
         }
@@ -2033,8 +2033,8 @@
                 "http-paths": [
                     "GET /organizations/:organization_name/vcs-events"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/vcs-events#list-vcs-events"
             }
         }
@@ -2063,32 +2063,32 @@
                 "http-paths": [
                     "POST /workspaces/:workspace_id/vars"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars#create-a-variable"
             },
             "Delete Variables": {
                 "http-paths": [
                     "DELETE /workspaces/:workspace_id/vars/:variable_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars#delete-variables"
             },
             "List Variables": {
                 "http-paths": [
                     "GET /workspaces/:workspace_id/vars"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars#list-variables"
             },
             "Update Variables": {
                 "http-paths": [
                     "PATCH /workspaces/:workspace_id/vars/:variable_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-vars#update-variables"
             }
         }

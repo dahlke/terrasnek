@@ -217,7 +217,8 @@ def check_methods_implementation(endpoints):
     for ep_name in endpoints:
         endpoint = endpoints[ep_name]
         endpoint_methods = endpoint["methods"]
-        path = f"{IMPLEMENTATION_PATH}/{ep_name}.py"
+        formatted_ep_name = ep_name.replace("-", "_")
+        path = f"{IMPLEMENTATION_PATH}/{formatted_ep_name}.py"
         file_contents = ""
         split_by_func_def = []
 
@@ -324,7 +325,7 @@ def main():
                 method_name = f'`{ep_name}.{method["implementation-method-name"]}`'
 
             md_method_row = [
-                ep_name.replace("_", " ").title(),
+                ep_name.replace("_", " ").replace("-", " ").title(),
                 f'[{method_header}]({endpoint["docs-url"]}{method["permalink"]})',
                 f'`{method["http-paths"][0]}`',
                 method_name,
