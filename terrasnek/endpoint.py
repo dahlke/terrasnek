@@ -89,7 +89,7 @@ class TFCEndpoint(ABC):
 
         return results
 
-    def _get(self, url, return_raw=None, allow_redirects=None, query=None, filters=None, \
+    def _get(self, url, return_raw=None, allow_redirects=None, query=None, filters=[], \
         page=None, page_size=None, search=None, include=[], sort=None, \
         offset=None, limit=None, provider=None, namespace=None, verified=None, \
         since=None):
@@ -101,14 +101,16 @@ class TFCEndpoint(ABC):
         if query is not None:
             q_options.append(f"q={query}")
 
-        # TODO: compare list length instead
-        if filters is not None:
-            for fil in filters:
-                filter_string = "filter"
-                for k in fil["keys"]:
-                    filter_string += f"[{k}]"
-                filter_string += f"={fil['value']}"
-                q_options.append(filter_string)
+        if isinstance(filters, list):
+            if filters:
+                for fil in filters:
+                    filter_string = "filter"
+                    for k in fil["keys"]:
+                        filter_string += f"[{k}]"
+                    filter_string += f"={fil['value']}"
+                    q_options.append(filter_string)
+        else:
+            raise TypeError("The `filters` parameter must be of `list` type.")
 
         if isinstance(include, list):
             if include:
@@ -346,7 +348,7 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
-    def _list(self, url, query=None, filters=None, \
+    def _list(self, url, query=None, filters=[], \
         page=None, page_size=None, search=None, include=[], sort=None, \
         offset=None, limit=None, provider=None, namespace=None, verified=None, \
         since=None):
@@ -358,7 +360,7 @@ class TFCEndpoint(ABC):
                 offset=offset, limit=limit, provider=provider, namespace=namespace, \
                     verified=verified, since=since)
 
-    def _list_all(self, url, include=[], search=None, filters=None, query=None):
+    def _list_all(self, url, include=[], search=None, filters=[], query=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out

@@ -2,7 +2,7 @@ Examples
 ========
 
 Below is a myriad of examples for commonly performed `terrasnek` actions. If there are examples you would like to see
-listed here, please file a [GitHub Issue](https://github.com/dahlke/terrasnek/issues) describing your use case.
+listed here, please file a `GitHub Issue <https://github.com/dahlke/terrasnek/issues>`_ describing your use case.
 
 Configure the API Class
 -----------------------
@@ -82,5 +82,3 @@ Apply a Run on a Workspace
       # https://www.terraform.io/docs/cloud/api/run.html#sample-payload-1
    }
    applied_run = api.runs.apply(run_id, payload)
-
-*For more examples, see the ``./test`` directory in the repository.*

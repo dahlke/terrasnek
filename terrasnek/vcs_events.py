@@ -25,7 +25,7 @@ class TFCVCSEvents(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def list(self, page=None, page_size=None, include=[], filters=None):
+    def list(self, page=None, page_size=None, include=[], filters=[]):
         """
         ``GET /organizations/:organization_name/vcs-events``
 

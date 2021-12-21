@@ -36,7 +36,7 @@ class TFCRunTriggers(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
         return self._create(url, payload)
 
-    def list(self, workspace_id, filters=None, page=None, page_size=None):
+    def list(self, workspace_id, filters=[], page=None, page_size=None):
         """
         ``GET /workspaces/:workspace_id/run-triggers``
 
@@ -49,7 +49,7 @@ class TFCRunTriggers(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/run-triggers"
         return self._list(url, filters=filters, page=page, page_size=page_size)
 
-    def list_all(self, workspace_id, filters=None):
+    def list_all(self, workspace_id, filters=[]):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out

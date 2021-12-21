@@ -16,4 +16,5 @@ Installation
    api
    getting_started
    examples
+   common_patterns
    api_completeness

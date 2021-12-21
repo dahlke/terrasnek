@@ -46,7 +46,7 @@ class TFCAgents(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{self._org_name}/agent-pools"
         return self._list(url)
 
-    def list(self, agent_pool_id, filters=None):
+    def list(self, agent_pool_id, filters=[]):
         """
         ``GET /agent-pools/:agent_pool_id/agents``
 

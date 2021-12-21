@@ -37,7 +37,7 @@ class TFCRegistryProviders(TFCEndpoint):
         return self._create(self._org_providers_base_url, payload)
 
 
-    def list(self, page=None, page_size=None, filters=None):
+    def list(self, page=None, page_size=None, filters=[]):
         """
         ``GET /organizations/:organization_name/registry-providers``
 

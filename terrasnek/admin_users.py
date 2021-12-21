@@ -63,7 +63,7 @@ class TFCAdminUsers(TFCEndpoint):
         url = f"{self._endpoint_base_url}/{user_id}/actions/impersonate"
         return self._post(url)
 
-    def list(self, query=None, filters=None, page=None, page_size=None, include=[]):
+    def list(self, query=None, filters=[], page=None, page_size=None, include=[]):
         """
         ``GET /api/v2/admin/users``
 

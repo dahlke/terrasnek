@@ -37,7 +37,7 @@ class TFCOrgMemberships(TFCEndpoint):
         """
         return self._create(self._org_base_url, payload)
 
-    def list_for_org(self, query=None, filters=None, page=None, page_size=None, include=[]):
+    def list_for_org(self, query=None, filters=[], page=None, page_size=None, include=[]):
         """
         ``GET /organizations/:organization_name/organization-memberships``
 
@@ -51,7 +51,7 @@ class TFCOrgMemberships(TFCEndpoint):
             self._org_base_url, query=query, filters=filters, page=page, \
                 page_size=page_size, include=include)
 
-    def list_all_for_org(self, query=None, filters=None, include=[]):
+    def list_all_for_org(self, query=None, filters=[], include=[]):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
