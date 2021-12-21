@@ -520,7 +520,30 @@ class TestTFCBaseTestCase(unittest.TestCase):
         return created_run
 
     @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
-    def _published_module_timeout(self, published_module_name):
+    def _found_module_in_listed_modules_timeout(self, name_to_check):
+        found_module = False
+        # TODO: test other parameters
+        listed_modules = self._api.registry_modules.list()["data"]
+        self._logger.debug("Searching for published module...")
+
+        while True:
+            listed_modules = self._api.registry_modules.list()["data"]
+
+            for module in listed_modules:
+                if module["attributes"]["name"] == name_to_check:
+                    found_module = True
+                    self._logger.debug("Published module found.")
+                    break
+
+            if found_module:
+                break
+
+            self._logger.debug("Waiting for published module to return in API results...")
+            time.sleep(1)
+        return listed_modules, found_module
+
+    @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
+    def _search_published_module_timeout(self, published_module_name):
         """
         While running the tests, it's possible that a module is published, and it takes a while
         til it is returned from the API. This would cause the test suite to stall indefinitely
@@ -533,17 +556,22 @@ class TestTFCBaseTestCase(unittest.TestCase):
         found_module = False
         # TODO: this is not working as expected on TFE anymore, works fine on TFC
         # print(published_module_name, search_modules)
+        self._logger.debug("Searching for published module...")
 
         while search_index < 5:
             for module in search_modules:
-                if module["name"] == published_module_name:
+                if module["namespace"] == published_module_name:
                     found_module = True
                     self._logger.debug("Published module found.")
+                    break
 
-                search_modules_resp = self._api.registry_modules.search(published_module_name)
-                search_modules = search_modules_resp["modules"]
-                search_index += 1
-                self._logger.debug("Waiting for published module to return in PI results...")
-                time.sleep(1)
+            if found_module:
+                break
+
+            self._logger.debug("Waiting for published module to return in API results...")
+            time.sleep(1)
+            search_modules_resp = self._api.registry_modules.search(published_module_name)
+            search_modules = search_modules_resp["modules"]
+            search_index += 1
 
         return found_module

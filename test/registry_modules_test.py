@@ -65,35 +65,16 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         # Test the listing of the modules, time out if it takes too long.
         # List all the modules for this org, confirm we found the one we
         # published.
-        @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
-        def found_module_in_listed_modules_timeout(name_to_check):
-            found_module = False
-            # TODO: test other parameters
-            listed_modules = self._api.registry_modules.list(page=PAGE_START, page_size=PAGE_SIZE)["data"]
+        _, found_module_in_loop = self._found_module_in_listed_modules_timeout(published_module_name)
 
-            while True:
-                listed_modules = self._api.registry_modules.list()["data"]
-
-                for module in listed_modules:
-                    if module["attributes"]["name"] == name_to_check:
-                        found_module = True
-                        break
-
-                if found_module:
-                    break
-
-                time.sleep(1)
-            return listed_modules, found_module
-        _, found_module = found_module_in_listed_modules_timeout(published_module_name)
-
-        self.assertTrue(found_module)
+        self.assertTrue(found_module_in_loop)
 
         # List all the modules, confirm there is only the one we created
         all_listed_modules = self._api.registry_modules.list_all()["data"]
         self.assertEqual(len(all_listed_modules), 1)
 
         # Search for the module by name, confirm we got it back in the results.
-        found_module = self._published_module_timeout(published_module_name)
+        found_module = self._search_published_module_timeout(published_module_name)
         self.assertTrue(found_module)
 
         # List the module versions, confirm that we got an expected response.
