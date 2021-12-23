@@ -6,11 +6,10 @@ Module for Terraform Cloud API Endpoint: Registry Modules.
 
 import time
 import os
-import timeout_decorator
 
 from terrasnek.exceptions import TFCHTTPNotFound
 from .base import TestTFCBaseTestCase
-from ._constants import TFE_MODULE_PROVIDER_TYPE, MAX_TEST_TIMEOUT, PAGE_START, PAGE_SIZE
+from ._constants import TFE_MODULE_PROVIDER_TYPE
 
 class TestTFCRegistryModules(TestTFCBaseTestCase):
     """

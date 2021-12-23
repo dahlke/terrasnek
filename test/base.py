@@ -188,7 +188,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._api.agents.destroy_pool(agent_pool["id"])
         cls._logger.debug(f"Agent pools purged from test org ({cls._test_org_name}).")
 
-        # TODO: move these once they both go GA or make the tests smarter
+        # FIXME: move these once they both go GA or make the tests smarter
         if cls._api.is_terraform_cloud():
             cls._logger.debug(f"Purging test org ({cls._test_org_name}) of run tasks...")
             run_tasks = cls._api.run_tasks.list_all()["data"]

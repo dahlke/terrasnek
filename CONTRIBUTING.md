@@ -139,9 +139,10 @@ tar -zcvf terrasnek_unittest_module.tar.gz src/*
 
 #### Getting Secrets
 
-There is an example secret files at `test/secrets/secrets.example.sh`. You can view that and
-manually plug in the values that they need.  I (@eklhad) like to use the
-[1password CLI](https://1password.com/downloads/command-line/) to populate mine like below.
+There is an example secret files at `test/secrets/secrets.example.sh`. You can
+view that and manually plug in the values that they need.  I (@eklhad) like to
+use the [1password CLI](https://1password.com/downloads/command-line/) to
+populate mine like below.
 
 ```bash
 source test/secrets/secrets.op.sh

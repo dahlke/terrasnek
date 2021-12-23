@@ -73,7 +73,6 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
         shown_state_version = self._api.state_versions.show(sv_id)["data"]
         state_version_outputs = shown_state_version["relationships"]["outputs"]["data"]
 
-        # TODO: try not to have to use this sleep
         time.sleep(3)
         state_version_output_id = state_version_outputs[0]["id"]
         shown_state_version_output = self._api.state_version_outputs.show(

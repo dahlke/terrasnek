@@ -21,7 +21,6 @@ class TFCRegistryProviders(TFCEndpoint):
         return True
 
     def terraform_enterprise_only(self):
-        # TODO: remove this once it goes to TFE GA
         return False
 
     def create(self, payload):
