@@ -222,7 +222,7 @@ class TFCWorkspaces(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-7>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/remote-state-consumers"
-        return self._delete(url, data=payload)
+        return self._destroy(url, data=payload)
 
     def list_tags(self, workspace_id, page=None, page_size=None):
         """
@@ -273,4 +273,4 @@ class TFCWorkspaces(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/workspaces.html#sample-payload-9>`_
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
-        return self._delete(url, data=payload)
+        return self._destroy(url, data=payload)

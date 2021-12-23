@@ -45,7 +45,7 @@ class TFCOrgTags(TFCEndpoint):
         `Delete Tags API Doc Sample Payload \
             <https://www.terraform.io/docs/cloud/api/organization-tags.html#sample-payload>`_
         """
-        return self._delete(self._org_tags_base_url, data=payload)
+        return self._destroy(self._org_tags_base_url, data=payload)
 
     def add_workspaces_to_tag(self, tag_id, payload):
         """
@@ -74,5 +74,5 @@ class TFCOrgTags(TFCEndpoint):
             <>`_
         \"""
         url = f"{self._tags_base_url}/{tag_id}/relationships/workspaces"
-        return self._delete(url, data=payload)
+        return self._destroy(url, data=payload)
     """

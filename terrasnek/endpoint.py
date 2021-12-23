@@ -323,11 +323,11 @@ class TFCEndpoint(ABC):
 
         return self._post(url, data=payload)
 
-    def _destroy(self, url):
+    def _destroy(self, url, data=None):
         """
         Implementation of the common destroy resource pattern for the TFC API.
         """
-        req = requests.delete(url, headers=self._headers, verify=self._verify)
+        req = requests.delete(url, data=data, headers=self._headers, verify=self._verify)
 
         valid_status_codes = [HTTP_OK, HTTP_NO_CONTENT]
         if req.status_code in valid_status_codes:

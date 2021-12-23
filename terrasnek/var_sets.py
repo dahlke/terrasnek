@@ -169,4 +169,4 @@ class TFCVarSets(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/variable-sets.html#sample-payload-5>`_
         """
         url = f"{self._endpoint_base_url}/{varset_id}/relationships/workspaces"
-        self._delete(url, data=payload)
+        self._destroy(url, data=payload)

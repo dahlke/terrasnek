@@ -185,7 +185,7 @@ class TFCRegistryModules(TFCEndpoint):
             if version:
                 url += f"/{version}"
 
-        return self._delete(url)
+        return self._destroy(url)
 
     def create(self, payload):
         """

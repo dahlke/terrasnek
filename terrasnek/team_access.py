@@ -56,7 +56,7 @@ class TFCTeamAccess(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/team-access.html#remove-team-access-to-a-workspace>`_
         """
         url = f"{self._endpoint_base_url}/{access_id}"
-        return self._delete(url)
+        return self._destroy(url)
 
     def show(self, access_id):
         """

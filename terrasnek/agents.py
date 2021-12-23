@@ -100,7 +100,7 @@ class TFCAgents(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/agents.html#delete-an-agent>`_
         """
         url = f"{self._agents_api_v2_base_url}/{agent_id}"
-        return self._delete(url)
+        return self._destroy(url)
 
 
     def destroy_pool(self, agent_pool_id):
@@ -111,4 +111,4 @@ class TFCAgents(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/agents.html#delete-an-agent-pool>`_
         """
         url = f"{self._agent_pools_api_v2_base_url}/{agent_pool_id}"
-        return self._delete(url)
+        return self._destroy(url)

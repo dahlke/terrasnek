@@ -48,4 +48,4 @@ class TFCTeamMemberships(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/team-members.html#sample-payload-1>`_
         """
         url = f"{self._endpoint_base_url}/{team_id}/relationships/users"
-        return self._delete(url, data=payload)
+        return self._destroy(url, data=payload)

@@ -135,7 +135,7 @@ class TFCPolicySets(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-4>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/policies"
-        return self._delete(url, data=payload)
+        return self._destroy(url, data=payload)
 
     def detach_policy_set_from_workspaces(self, policy_id, payload):
         """
@@ -148,7 +148,7 @@ class TFCPolicySets(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-5>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"
-        return self._delete(url, data=payload)
+        return self._destroy(url, data=payload)
 
     def create_policy_set_version(self, policy_set_id):
         """
