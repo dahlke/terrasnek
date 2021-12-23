@@ -34,7 +34,7 @@ class TFCRegistryModules(TFCEndpoint):
 
     # Public Registry API Endpoints
     def list(self, offset=None, page=None, page_size=None, limit=None, \
-        provider=None, verified=None, filters=[]):
+        provider=None, verified=None, filters=None):
         """
         ``GET /organizations/:organization_name/registry-modules``
 

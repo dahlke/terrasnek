@@ -61,7 +61,7 @@ class TestTFCAdminRuns(TestTFCBaseTestCase):
         # List all the runs confirm the one we created in the setup is there, confirm we have
         # the related resources.
         all_runs_raw = self._api.admin_runs.list(\
-            query=self._run_id, filters=[], page=PAGE_START, page_size=PAGE_SIZE, include=["workspace"])
+            query=self._run_id, filters=None, page=PAGE_START, page_size=PAGE_SIZE, include=["workspace"])
         self.assertIn("included", all_runs_raw)
 
         all_runs = all_runs_raw["data"]

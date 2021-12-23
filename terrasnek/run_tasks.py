@@ -38,7 +38,7 @@ class TFCRunTasks(TFCEndpoint):
         return self._create(self._org_tasks_base_url, payload)
 
 
-    def list(self, page=None, page_size=None, include=[]):
+    def list(self, page=None, page_size=None, include=None):
         """
         ``GET /organizations/:organization_name/tasks``
 
@@ -61,7 +61,7 @@ class TFCRunTasks(TFCEndpoint):
         """
         return self._list_all(self._org_tasks_base_url)
 
-    def show(self, task_id, include=[]):
+    def show(self, task_id, include=None):
         """
         ``GET /tasks/:id``
 

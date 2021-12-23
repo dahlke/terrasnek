@@ -89,8 +89,8 @@ class TFCEndpoint(ABC):
 
         return results
 
-    def _get(self, url, return_raw=None, allow_redirects=None, query=None, filters=[], \
-        page=None, page_size=None, search=None, include=[], sort=None, \
+    def _get(self, url, return_raw=None, allow_redirects=None, query=None, filters=None, \
+        page=None, page_size=None, search=None, include=None, sort=None, \
         offset=None, limit=None, provider=None, namespace=None, verified=None, \
         since=None):
 
@@ -101,23 +101,25 @@ class TFCEndpoint(ABC):
         if query is not None:
             q_options.append(f"q={query}")
 
-        if isinstance(filters, list):
-            if filters:
-                for fil in filters:
-                    filter_string = "filter"
-                    for k in fil["keys"]:
-                        filter_string += f"[{k}]"
-                    filter_string += f"={fil['value']}"
-                    q_options.append(filter_string)
-        else:
-            raise TypeError("The `filters` parameter must be of `list` type.")
+        if filters is not None:
+            if isinstance(filters, list):
+                if filters:
+                    for fil in filters:
+                        filter_string = "filter"
+                        for k in fil["keys"]:
+                            filter_string += f"[{k}]"
+                        filter_string += f"={fil['value']}"
+                        q_options.append(filter_string)
+            else:
+                raise TypeError("The `filters` parameter must be of `list` type.")
 
-        if isinstance(include, list):
-            if include:
-                joined_include = ",".join(include)
-                q_options.append(f"include={joined_include}")
-        else:
-            raise TypeError("The `include` parameter must be of `list` type.")
+        if include is not None:
+            if isinstance(include, list):
+                if include:
+                    joined_include = ",".join(include)
+                    q_options.append(f"include={joined_include}")
+            else:
+                raise TypeError("The `include` parameter must be of `list` type.")
 
         if page is not None:
             q_options.append(f"page[number]={page}")
@@ -348,8 +350,8 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
-    def _list(self, url, query=None, filters=[], \
-        page=None, page_size=None, search=None, include=[], sort=None, \
+    def _list(self, url, query=None, filters=None, \
+        page=None, page_size=None, search=None, include=None, sort=None, \
         offset=None, limit=None, provider=None, namespace=None, verified=None, \
         since=None):
         """
@@ -360,7 +362,7 @@ class TFCEndpoint(ABC):
                 offset=offset, limit=limit, provider=provider, namespace=namespace, \
                     verified=verified, since=since)
 
-    def _list_all(self, url, include=[], search=None, filters=[], query=None):
+    def _list_all(self, url, include=None, search=None, filters=None, query=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -397,7 +399,7 @@ class TFCEndpoint(ABC):
             "included": included
         }
 
-    def _show(self, url, include=[]):
+    def _show(self, url, include=None):
         """
         Implementation of the common show resource pattern for the TFC API.
         """

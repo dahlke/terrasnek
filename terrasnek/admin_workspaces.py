@@ -30,7 +30,7 @@ class TFCAdminWorkspaces(TFCEndpoint):
     def terraform_enterprise_only(self):
         return True
 
-    def list(self, filters=[], page=None, page_size=None, sort=None, search=None, include=[]):
+    def list(self, filters=None, page=None, page_size=None, sort=None, search=None, include=None):
         """
         ``GET /api/v2/admin/workspaces``
 

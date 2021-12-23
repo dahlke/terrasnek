@@ -76,7 +76,7 @@ class TFCWorkspaces(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/lock"
         return self._post(url, data=payload)
 
-    def list(self, page=None, page_size=None, include=[]):
+    def list(self, page=None, page_size=None, include=None):
         """
         ``GET /organizations/:organization_name/workspaces``
 
@@ -89,7 +89,7 @@ class TFCWorkspaces(TFCEndpoint):
         return self._list(self._org_api_v2_base_url, \
             page=page, page_size=page_size, include=include)
 
-    def list_all(self, include=[]):
+    def list_all(self, include=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -100,7 +100,7 @@ class TFCWorkspaces(TFCEndpoint):
         """
         return self._list_all(self._org_api_v2_base_url, include=include)
 
-    def show(self, workspace_name=None, workspace_id=None, include=[]):
+    def show(self, workspace_name=None, workspace_id=None, include=None):
         """
         ``GET /organizations/:organization_name/workspaces/:name``
         ``GET /workspaces/:workspace_id``

@@ -36,7 +36,7 @@ class TFCTeamAccess(TFCEndpoint):
         """
         return self._post(self._endpoint_base_url, data=payload)
 
-    def list(self, filters=[]):
+    def list(self, filters=None):
         """
         ``GET /team-workspaces``
 

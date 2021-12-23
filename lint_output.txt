@@ -2,15 +2,16 @@
 terrasnek/registry_modules.py:70:2: W0511: FIXME: the slash here is behaving differently from TFE to TFC (fixme)
 ************* Module terrasnek.var_sets
 terrasnek/var_sets.py:21:2: W0511: TODO (fixme)
-terrasnek/var_sets.py:25:2: W0511: TODO (fixme)
-terrasnek/var_sets.py:29:2: W0511: TODO (fixme)
+terrasnek/var_sets.py:25:2: W0511: TODO: change when it gets released to TFE (fixme)
+terrasnek/var_sets.py:29:2: W0511: TODO: change when it gets released to TFE (fixme)
 terrasnek/var_sets.py:63:2: W0511: FIXME: list_all_for_org when pagination is supported (fixme)
 terrasnek/var_sets.py:75:2: W0511: FIXME: list_all_for_workspace when pagination is supported (fixme)
 ************* Module terrasnek.endpoint
-terrasnek/endpoint.py:103:2: W0511: TODO: compare list length instead (fixme)
-terrasnek/endpoint.py:136:2: W0511: FIXME: This parameter needs to be deprecated and removed at some stage. (fixme)
-terrasnek/endpoint.py:167:2: W0511: TODO: use HTTP_MOVED_TEMPORARILY (fixme)
-terrasnek/endpoint.py:174:2: W0511: FIXME: this isn't doing anything now (this was found in using run-tasks from event-hooks) (fixme)
+terrasnek/endpoint.py:141:2: W0511: FIXME: This parameter needs to be deprecated and removed at some stage. (fixme)
+terrasnek/endpoint.py:172:2: W0511: TODO: use HTTP_MOVED_TEMPORARILY (fixme)
+terrasnek/endpoint.py:179:2: W0511: FIXME: this isn't doing anything now (this was found in using run-tasks from event-hooks) (fixme)
+terrasnek/endpoint.py:92:4: R0912: Too many branches (31/30) (too-many-branches)
+terrasnek/endpoint.py:92:4: R0915: Too many statements (76/75) (too-many-statements)
 ************* Module terrasnek.run_tasks
 terrasnek/run_tasks.py:22:2: W0511: TODO: remove this once it goes to TFE GA (fixme)
 ************* Module terrasnek.invoices
@@ -18,17 +19,22 @@ terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
 ************* Module terrasnek.registry_providers
 terrasnek/registry_providers.py:20:2: W0511: TODO: remove this once it goes to TFE GA (fixme)
+terrasnek/registry_providers.py:24:2: W0511: TODO: remove this once it goes to TFE GA (fixme)
 ************* Module terrasnek.vcs_events
 terrasnek/vcs_events.py:22:2: W0511: TODO: change this once it is released in TFE. (fixme)
 ************* Module terrasnek.workspaces
 terrasnek/workspaces.py:7:0: R0904: Too many public methods (22/20) (too-many-public-methods)
 ************* Module test.vcs_events_test
 test/vcs_events_test.py:36:2: W0511: TODO: test filter / include parameters GitHub is supported. (fixme)
+************* Module test.state_versions_test
+test/state_versions_test.py:69:2: W0511: TODO: These "included" assertions don't always work in CircleCI. Always line 71. (fixme)
 ************* Module test.workspaces_test
 test/workspaces_test.py:119:2: W0511: TODO: include test when include works? (fixme)
 ************* Module test.registry_modules_test
-test/registry_modules_test.py:71:2: W0511: TODO: test other parameters (fixme)
-test/registry_modules_test.py:99:2: W0511: TODO: this is not working as expected on TFE anymore, works fine on TFC (fixme)
+test/registry_modules_test.py:9:0: W0611: Unused import timeout_decorator (unused-import)
+test/registry_modules_test.py:13:0: W0611: Unused MAX_TEST_TIMEOUT imported from _constants (unused-import)
+test/registry_modules_test.py:13:0: W0611: Unused PAGE_START imported from _constants (unused-import)
+test/registry_modules_test.py:13:0: W0611: Unused PAGE_SIZE imported from _constants (unused-import)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
@@ -38,10 +44,13 @@ test/state_version_outputs_test.py:76:2: W0511: TODO: try not to have to use thi
 ************* Module test.invoices_test
 test/invoices_test.py:20:2: W0511: TODO: this will fail since we don't have any billing info associated with the test org. (fixme)
 ************* Module test.admin_orgs_test
-test/admin_orgs_test.py:27:15: W0703: Catching too general exception Exception (broad-except)
+test/admin_orgs_test.py:7:0: C0411: first party import "from terrasnek.exceptions import TFCHTTPNotFound" should be placed before "from .base import TestTFCBaseTestCase" (wrong-import-order)
 ************* Module test.base
-test/base.py:192:2: W0511: TODO: move these once they both go GA or make the tests smarter (fixme)
+test/base.py:191:2: W0511: TODO: move these once they both go GA or make the tests smarter (fixme)
+test/base.py:505:2: W0511: TODO: merge these helper functions (fixme)
+test/base.py:525:2: W0511: TODO: test other parameters (fixme)
+test/base.py:557:2: W0511: TODO: this is not working as expected on TFE anymore, works fine on TFC (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.93/10 (previous run: 9.93/10, -0.00)
+Your code has been rated at 9.91/10 (previous run: 9.76/10, +0.15)
 

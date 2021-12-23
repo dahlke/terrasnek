@@ -27,7 +27,7 @@ class TestTFCAdminWorkspaces(TestTFCBaseTestCase):
 
         # List all the workspaces, confirm the one we created in the setup exists
         all_ws_raw = self._api.admin_workspaces.list(\
-            search=self._created_ws_name, filters=[], page=PAGE_START, page_size=PAGE_SIZE, \
+            search=self._created_ws_name, filters=None, page=PAGE_START, page_size=PAGE_SIZE, \
                 sort="name", include=["organization"])
         self.assertIn("included", all_ws_raw)
 
