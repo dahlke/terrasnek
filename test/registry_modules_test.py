@@ -73,7 +73,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         self.assertEqual(len(all_listed_modules), 1)
 
         # Search for the module by name, confirm we got it back in the results.
-        found_module = self._search_published_module_timeout(published_module_name)
+        _, found_module = self._search_published_module_timeout(published_module_name)
         self.assertTrue(found_module)
 
         # List the module versions, confirm that we got an expected response.
@@ -96,6 +96,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
         # List the latest version for a specific provider, compare to the
         # published module version
+        # TODO: this is the test that fails the most often
         listed_latest_version_specific_provider = \
             self._api.registry_modules.list_versions(\
                 published_module_name, TFE_MODULE_PROVIDER_TYPE)

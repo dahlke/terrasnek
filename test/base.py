@@ -502,14 +502,12 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    # TODO: merge these helper functions
     @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
     def _created_run_timeout(self, run_id):
         """
-        While running the tests, it's possible that a run gets queued, which
-        would cause the test suite to stall indefinitely until the queue is cleared.
-        This function is meant to keep that to a minimum, and just fail the test
-        if we are waiting too long.
+        Due to eventual consistency in TFC, it can take a few seconds for the state returned
+        from the API to match the expected output. This function provides some time cushion for
+        terraform plans to occur after creating a run.
         """
         created_run = self._api.runs.show(run_id)["data"]
         while not created_run["attributes"]["actions"]["is-confirmable"]:
@@ -521,14 +519,17 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
     @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
     def _found_module_in_listed_modules_timeout(self, name_to_check):
+        """
+        Due to eventual consistency in TFC, it can take a few seconds for the state returned
+        from the API to match the expected output. This function provides some time cushion for
+        listing published modules.
+        """
         found_module = False
         # TODO: test other parameters
         listed_modules = self._api.registry_modules.list()["data"]
         self._logger.debug("Searching for published module...")
 
         while True:
-            listed_modules = self._api.registry_modules.list()["data"]
-
             for module in listed_modules:
                 if module["attributes"]["name"] == name_to_check:
                     found_module = True
@@ -540,25 +541,24 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
             self._logger.debug("Waiting for published module to return in API results...")
             time.sleep(1)
+
+            listed_modules = self._api.registry_modules.list()["data"]
+
         return listed_modules, found_module
 
     @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
     def _search_published_module_timeout(self, published_module_name):
         """
-        While running the tests, it's possible that a module is published, and it takes a while
-        til it is returned from the API. This would cause the test suite to stall indefinitely
-        until the queue is cleared. This function is meant to keep that to a minimum, and just fail
-        the test if we are waiting too long.
+        Due to eventual consistency in TFC, it can take a few seconds for the state returned
+        from the API to match the expected output. This function provides some time cushion for
+        searching for published modules in the private module registry.
         """
         search_modules_resp = self._api.registry_modules.search(published_module_name)
         search_modules = search_modules_resp["modules"]
-        search_index = 0
         found_module = False
-        # TODO: this is not working as expected on TFE anymore, works fine on TFC
-        # print(published_module_name, search_modules)
         self._logger.debug("Searching for published module...")
 
-        while search_index < 5:
+        while True:
             for module in search_modules:
                 if module["namespace"] == published_module_name:
                     found_module = True
@@ -572,6 +572,31 @@ class TestTFCBaseTestCase(unittest.TestCase):
             time.sleep(1)
             search_modules_resp = self._api.registry_modules.search(published_module_name)
             search_modules = search_modules_resp["modules"]
-            search_index += 1
 
-        return found_module
+        return search_modules, found_module
+
+    @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
+    def _state_versions_includes_timeout(self, filters, include=None, list_all=False):
+        """
+        Due to eventual consistency in TFC, it can take a few seconds for the state returned
+        from the API to match the expected output. This function provides some time cushion for
+        state versions to process the includes.
+        """
+        if list_all:
+            state_versions_raw = self._api.state_versions.list_all(filters=filters, include=include)
+        else:
+            state_versions_raw = self._api.state_versions.list(filters=filters, include=include)
+
+        found_includes = False
+
+        while not found_includes:
+            found_includes = "included" in state_versions_raw
+            self._logger.debug("Waiting for the includes to be returned with the state version API results...")
+            time.sleep(1)
+
+            if list_all:
+                state_versions_raw = self._api.state_versions.list_all(filters=filters, include=include)
+            else:
+                state_versions_raw = self._api.state_versions.list(filters=filters, include=include)
+
+        return state_versions_raw, found_includes

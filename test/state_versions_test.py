@@ -66,18 +66,16 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
             self._ws_id, self._get_state_version_create_payload())
         self._api.workspaces.unlock(self._ws_id)
 
-        # FIXME: These "included" assertions don't always work in CircleCI. Always line 71.
-        state_versions_raw = self._api.state_versions.list(\
-            filters=test_filters, include=["outputs"])
+        state_versions_raw, _ = self._state_versions_includes_timeout(filters=test_filters, include=["outputs"])
         self.assertIn("included", state_versions_raw)
 
         state_versions = state_versions_raw["data"]
         self.assertNotEqual(len(state_versions), 0)
 
-        all_state_versions = self._api.state_versions.list_all(\
-            filters=test_filters, include=["outputs"])
-        self.assertIn("included", all_state_versions)
-        self.assertNotEqual(len(all_state_versions["data"]), 0)
+        all_state_versions_raw, _ = self._state_versions_includes_timeout(\
+            filters=test_filters, include=["outputs"], list_all=True)
+        self.assertIn("included", all_state_versions_raw)
+        self.assertNotEqual(len(all_state_versions_raw["data"]), 0)
 
         # Get the most current state version, confirm it matches the one we created
         state_version = state_versions[0]

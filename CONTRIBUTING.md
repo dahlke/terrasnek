@@ -244,7 +244,7 @@ make release
 #### Releasing a New Version to PyPi Test Instance
 
 ```bash
-make pip-test-publish
+make pip_test_publish
 ```
 
 ### Final Notes

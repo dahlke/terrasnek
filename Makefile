@@ -66,16 +66,16 @@ circleci_env:
 codecov:
 	bash <(curl -s https://codecov.io/bash)
 
-.PHONY: pip-package
-pip-package: lint api_comparison contributor_check
+.PHONY: pip_package
+pip_package: lint api_comparison contributor_check
 	python3 setup.py sdist bdist_wheel;
 
-.PHONY: pip-publish
-pip-publish: pip-package
+.PHONY: pip_publish
+pip_publish: pip_package
 	python3 -m twine upload dist/* --verbose --skip-existing
 
-.PHONY: pip-test-publish
-pip-test-publish: pip-package
+.PHONY: pip_test_publish
+pip_test_publish: pip_package
 	python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/* --verbose --skip-existing
 
 .PHONY: contributor_check
