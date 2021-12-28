@@ -49,7 +49,7 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
 
         # Create a sample state version
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
-        self._api.state_versions.create(self._ws_id, self._get_state_version_create_payload())
+        self._api.state_versions.create(self._ws_id, self._get_state_version_create_payload())["data"]
         self._api.workspaces.unlock(self._ws_id)
 
         # Get the state version ID, using list instead of extracting from the create
@@ -68,6 +68,10 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
             filters=test_filters, page=PAGE_START, page_size=PAGE_SIZE)["data"]
         state_version = state_versions[0]
         sv_id = state_version["id"]
+
+        listed_state_version_outputs = self._api.state_version_outputs.list(sv_id, \
+            page=PAGE_START, page_size=PAGE_SIZE)["data"]
+        self.assertEqual(listed_state_version_outputs[0]["type"], "state-version-outputs")
 
         # Get the state version outputs ID, get the outputs, confirm they match the expected IDs
         shown_state_version = self._api.state_versions.show(sv_id)["data"]

@@ -1692,8 +1692,8 @@
                 "http-paths": [
                     "GET /state-versions/:state_version_id/outputs"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-version-outputs#list-state-version-outputs"
             },
             "Show a State Version Output": {

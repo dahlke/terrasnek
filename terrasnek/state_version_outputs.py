@@ -14,6 +14,7 @@ class TFCStateVersionOutputs(TFCEndpoint):
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/state-version-outputs"
+        self._state_versions_base_url = f"{self._api_v2_base_url}/state-versions"
 
     def required_entitlements(self):
         return [Entitlements.STATE_STORAGE]
@@ -23,6 +24,17 @@ class TFCStateVersionOutputs(TFCEndpoint):
 
     def terraform_enterprise_only(self):
         return False
+
+    def list(self, state_version_id, page=None, page_size=None):
+        """
+        ``GET /state-versions/:state_version_id/outputs``
+
+        `State Version Outputs List API Doc Reference \
+            <https://www.terraform.io/cloud-docs/api-docs/state-version-outputs#list-state-version-outputs>`_
+        """
+        url = f"{self._state_versions_base_url}/{state_version_id}/outputs"
+        return self._list(url, page=page, page_size=page_size)
+
 
     def show(self, state_version_output_id):
         """
