@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Clearing out TODOs
 - Type checking filters / include parameters (lists)
 - Adding documentation for new filter / include behavior
-- Forcing endpoint calls to go to the _destroy method, not _delete
+- Forcing endpoint calls to go to the `_destroy` method, not `_delete`
 - Fix the registry modules test.
 - New API docs parser that uses the GitHub repo Markdown and not the website
 - TFE tests passing reliably.
