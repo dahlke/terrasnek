@@ -26,7 +26,7 @@ copyright = '2021, Neil Dahlke'
 author = 'Neil Dahlke'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.7'
+release = '0.1.8'
 
 
 # -- General configuration ---------------------------------------------------

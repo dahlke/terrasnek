@@ -95,14 +95,14 @@ release_check:
 	python3 scripts/python/contributor_check.py --release-check
 
 .PHONY: release
-release: lint api_comparison docs release_check pip-package
+release: lint api_comparison docs release_check pip_package
 	make codecov;
-	make pip-publish;
+	make pip_publish;
 
 .PHONY: release-test
-release-test: lint api_comparison docs coverage release_check pip-package
+release-test: lint api_comparison docs coverage release_check pip_package
 	make codecov;
-	make pip-test-publish;
+	make pip_test_publish;
 
 ##########################
 # DOCKER TEST IMAGE HELPERS

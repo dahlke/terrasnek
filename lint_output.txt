@@ -33,6 +33,8 @@ test/registry_modules_test.py:99:2: W0511: TODO: this is the test that fails the
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:123:2: W0511: TODO: need to use a real Twilio account to finish this test. (fixme)
+************* Module test.state_version_outputs_test
+test/state_version_outputs_test.py:52:8: W0106: Expression "self._api.state_versions.create(self._ws_id, self._get_state_version_create_payload())['data']" is assigned to nothing (expression-not-assigned)
 ************* Module test.invoices_test
 test/invoices_test.py:20:2: W0511: TODO: this will fail since we don't have any billing info associated with the test org. (fixme)
 ************* Module test.admin_orgs_test
