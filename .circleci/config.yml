@@ -2,7 +2,7 @@ version: 2
 jobs:
   contributor_check:
     docker:
-      - image: eklhad/terrasnek-circleci:0.5
+      - image: eklhad/terrasnek-circleci:0.6
     working_directory: ~/terrasnek
     steps:
       - checkout
@@ -15,7 +15,7 @@ jobs:
             make contributor_check
   coverage:
     docker:
-      - image: eklhad/terrasnek-circleci:0.5
+      - image: eklhad/terrasnek-circleci:0.6
     working_directory: ~/terrasnek
     steps:
       - checkout
@@ -25,7 +25,7 @@ jobs:
             make coverage
   api_comparison:
     docker:
-      - image: eklhad/terrasnek-circleci:0.5
+      - image: eklhad/terrasnek-circleci:0.6
     working_directory: ~/terrasnek
     steps:
       - checkout
