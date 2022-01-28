@@ -31,10 +31,15 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         workspace = self._api.workspaces.create(
             self._get_ws_no_vcs_create_payload())["data"]
         ws_id = workspace["id"]
+        ws_name = workspace["attributes"]["name"]
 
         # List the workspaces, confirm we have the included values
         listed_ws_raw = self._api.workspaces.list(page=PAGE_START, page_size=PAGE_SIZE, include=["organization"])
         self.assertIn("included", listed_ws_raw)
+
+        # Test the search parameter on listing workspaces
+        search_listed_ws = self._api.workspaces.list(page=PAGE_START, page_size=PAGE_SIZE, search=ws_name)["data"]
+        self.assertTrue(len(search_listed_ws), 1)
 
         listed_ws = listed_ws_raw["data"]
         found_ws = False

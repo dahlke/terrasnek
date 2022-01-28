@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.9] - TBD
+
+- TODO
+
 ## [0.1.8] - 2022-01-01
 
 - Happy New Years!
@@ -18,7 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New API docs parser that uses the GitHub repo Markdown and not the website
 - TFE tests passing reliably.
 - Fixing an issue in the registry_module_test
-
 
 ## [0.1.7] - 2021-12-02
 

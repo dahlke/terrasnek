@@ -127,9 +127,6 @@ class TFCEndpoint(ABC):
         if page_size is not None:
             q_options.append(f"page[size]={page_size}")
 
-        if search is not None:
-            q_options.append(f"page[name]={page_size}")
-
         if sort is not None:
             q_options.append(f"sort={sort}")
 

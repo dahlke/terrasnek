@@ -76,7 +76,7 @@ class TFCWorkspaces(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/lock"
         return self._post(url, data=payload)
 
-    def list(self, page=None, page_size=None, include=None):
+    def list(self, page=None, page_size=None, include=None, search=None):
         """
         ``GET /organizations/:organization_name/workspaces``
 
@@ -87,7 +87,7 @@ class TFCWorkspaces(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/workspaces.html#query-parameters>`__
         """
         return self._list(self._org_api_v2_base_url, \
-            page=page, page_size=page_size, include=include)
+            page=page, page_size=page_size, include=include, search=search)
 
     def list_all(self, include=None):
         """
