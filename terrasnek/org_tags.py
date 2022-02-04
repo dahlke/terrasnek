@@ -59,20 +59,3 @@ class TFCOrgTags(TFCEndpoint):
         """
         url = f"{self._tags_base_url}/{tag_id}/relationships/workspaces"
         return self._post(url, data=payload)
-
-    # NOTE: this endpoint has been temporarily removed
-    # (https://www.terraform.io/docs/cloud/api/organization-tags.html#remove-workspaces-from-a-tag)
-    """
-    def remove_workspaces_from_tag(self, tag_id, payload):
-        \"""
-        ``DELETE /tags/:tag_id/relationships/workspaces``
-
-        `Remove Workspaces from Tags API Doc Reference \
-            <https://www.terraform.io/docs/cloud/api/organization-tags.html#remove-workspaces-from-a-tag>`_
-
-        `Remove Workspaces from Tags API Doc Sample Payload \
-            <>`_
-        \"""
-        url = f"{self._tags_base_url}/{tag_id}/relationships/workspaces"
-        return self._destroy(url, data=payload)
-    """

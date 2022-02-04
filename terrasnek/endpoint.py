@@ -60,11 +60,14 @@ class TFCEndpoint(ABC):
         return False
 
     def _delete(self, url, data=None):
-        results = None
         req = requests.delete(\
             url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
-        if req.status_code == HTTP_NO_CONTENT:
+        if req.status_code == HTTP_OK:
+            self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
+            pass
+        elif req.status_code == HTTP_NO_CONTENT:
+            self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
             pass
         elif req.status_code == HTTP_NOT_FOUND:
             err = json.loads(req.content.decode("utf-8"))
@@ -79,15 +82,12 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
-            print("ERROR", req.status_code)
             try:
                 err = json.loads(req.content.decode("utf-8"))
             except json.decoder.JSONDecodeError:
                 err = req.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
-
-        return results
 
     def _get(self, url, return_raw=None, allow_redirects=None, query=None, filters=None, \
         page=None, page_size=None, search=None, include=None, sort=None, \
@@ -326,26 +326,8 @@ class TFCEndpoint(ABC):
         """
         Implementation of the common destroy resource pattern for the TFC API.
         """
-        req = requests.delete(url, data=data, headers=self._headers, verify=self._verify)
-
-        valid_status_codes = [HTTP_OK, HTTP_NO_CONTENT]
-        if req.status_code in valid_status_codes:
-            self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
-        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.debug(err)
-            raise TFCHTTPAPIRequestRateLimit(err)
-        elif req.status_code == HTTP_NOT_FOUND:
-            err = json.loads(req.content.decode("utf-8"))
-            self._logger.debug(err)
-            raise TFCHTTPNotFound(err)
-        else:
-            try:
-                err = json.loads(req.content.decode("utf-8"))
-            except json.decoder.JSONDecodeError:
-                err = req.content
-            self._logger.debug(err)
-            raise TFCHTTPUnclassified(err)
+        # TODO: remove this since it's basically an alias?
+        self._delete(url, data=data)
 
     def _list(self, url, query=None, filters=None, \
         page=None, page_size=None, search=None, include=None, sort=None, \
