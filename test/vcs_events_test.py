@@ -33,6 +33,6 @@ class TestTFCVCSEvents(TestTFCBaseTestCase):
         # List the VCS events
         start_page = 0
         page_size = 50
-        # TODO: test filter / include parameters GitHub is supported.
+        # FIXME: Test filter / include parameters GitHub is supported.
         vcs_events = self._api.vcs_events.list(page=start_page, page_size=page_size)["data"]
         self.assertEqual(len(vcs_events), 0)

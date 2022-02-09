@@ -199,7 +199,7 @@ _NOTE: Be sure to override the environment variables for TFE if required._
 
 #### Uploading Code Coverage
 
-Once the tests have completed and there are *zero* errors, it's safe for us to
+Once the tests have completed and there are _zero_ errors, it's safe for us to
 upload the code coverage to `codecov.io`. If the tests fail, don't upload the
 results, as it's non-representative of the release since there will be no
 release with errors in the test suite.

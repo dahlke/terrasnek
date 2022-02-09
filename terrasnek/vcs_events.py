@@ -19,7 +19,7 @@ class TFCVCSEvents(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        # TODO: change this once it is released in TFE.
+        # FIXME: change this once it is released in TFE.
         return True
 
     def terraform_enterprise_only(self):

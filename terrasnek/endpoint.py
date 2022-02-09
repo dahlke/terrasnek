@@ -65,10 +65,8 @@ class TFCEndpoint(ABC):
 
         if req.status_code == HTTP_OK:
             self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
-            pass
         elif req.status_code == HTTP_NO_CONTENT:
             self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
-            pass
         elif req.status_code == HTTP_NOT_FOUND:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
@@ -89,6 +87,7 @@ class TFCEndpoint(ABC):
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
+    # pylint: disable=too-many-statements,too-many-branches
     def _get(self, url, return_raw=None, allow_redirects=None, query=None, filters=None, \
         page=None, page_size=None, search=None, include=None, sort=None, \
         offset=None, limit=None, provider=None, namespace=None, verified=None, \
@@ -137,7 +136,8 @@ class TFCEndpoint(ABC):
             q_options.append(f"since={since}")
 
         # V1 Modules API options
-        # FIXME: This parameter needs to be deprecated and removed at some stage.
+        # NOTE: The `offset` parameter is not in use very much now, but remains for
+        # backwards compatibility.
         if offset is not None:
             q_options.append(f"offset={offset}")
 
@@ -168,15 +168,14 @@ class TFCEndpoint(ABC):
         elif req.status_code == HTTP_NO_CONTENT:
             results = req.headers
         elif req.history:
-            # TODO: use HTTP_MOVED_TEMPORARILY
-
             # NOTE: If we got redirected, run the get on the new URL, and fix the
-            # URL to match the private module registry URL schema.
+            # URL to match the private module registry URL schema. At some point
+            # in the future, this may need to use HTTP_MOVED_TEMPORARILY.
             url = req.url.replace("/v1/modules/", "/api/registry/v1/modules/")
             results = {"redirect-url": url}
         elif req.status_code == HTTP_MOVED_PERMANENTLY:
-            # FIXME: this isn't doing anything now (this was found in using run-tasks from event-hooks)
-            print("REDIRECTING ORIGINAL", req.url)
+            # TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks)
+            pass
         elif req.status_code == HTTP_UNAUTHORIZED:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
@@ -198,6 +197,7 @@ class TFCEndpoint(ABC):
             raise TFCHTTPUnclassified(err)
 
         return results
+    # pylint: disable=too-many-statements,too-many-branches
 
     def _patch(self, url, data=None):
         results = None
@@ -325,8 +325,10 @@ class TFCEndpoint(ABC):
     def _destroy(self, url, data=None):
         """
         Implementation of the common destroy resource pattern for the TFC API.
+
+        NOTE: This is basically an alias to the _delete method, but is more
+        along the verbiage used in the docs.
         """
-        # TODO: remove this since it's basically an alias?
         self._delete(url, data=data)
 
     def _list(self, url, query=None, filters=None, \

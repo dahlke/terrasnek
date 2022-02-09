@@ -3,6 +3,7 @@ Module for Terraform Cloud API Endpoint: Invoices.
 """
 
 from .endpoint import TFCEndpoint
+from ._constants import Entitlements
 
 class TFCInvoices(TFCEndpoint):
     """
@@ -16,8 +17,7 @@ class TFCInvoices(TFCEndpoint):
             f"{self._api_v2_base_url}/organizations/{org_name}/invoices"
 
     def required_entitlements(self):
-        # TODO: self serve billing?
-        return []
+        return [Entitlements.SELF_SERVE_BILLING]
 
     def terraform_cloud_only(self):
         return True

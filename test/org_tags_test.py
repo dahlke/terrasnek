@@ -14,7 +14,6 @@ class TestTFCOrgTags(TestTFCBaseTestCase):
     _endpoint_being_tested = "org_tags"
 
     def setUp(self):
-        # TODO: rename these since we only need one workspace
         self._ws = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())
         self._ws_id = self._ws["data"]["id"]
         self._ws_name = self._ws["data"]["attributes"]["name"]

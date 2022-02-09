@@ -67,7 +67,6 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Search API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#search-modules>`_
         """
-        # FIXME: the slash here is behaving differently from TFE to TFC
         url = f"{self._modules_v1_base_url}/search"
         return self._list(url, \
             query=query, offset=offset, limit=limit, provider=provider,\

@@ -1,48 +1,31 @@
-************* Module terrasnek.registry_modules
-terrasnek/registry_modules.py:70:2: W0511: FIXME: the slash here is behaving differently from TFE to TFC (fixme)
 ************* Module terrasnek.var_sets
-terrasnek/var_sets.py:21:2: W0511: TODO (fixme)
-terrasnek/var_sets.py:25:2: W0511: TODO: change when it gets released to TFE (fixme)
-terrasnek/var_sets.py:29:2: W0511: TODO: change when it gets released to TFE (fixme)
-terrasnek/var_sets.py:63:2: W0511: FIXME: list_all_for_org when pagination is supported (fixme)
-terrasnek/var_sets.py:75:2: W0511: FIXME: list_all_for_workspace when pagination is supported (fixme)
+terrasnek/var_sets.py:24:2: W0511: TODO: change when it gets released to TFE (fixme)
+terrasnek/var_sets.py:61:2: W0511: FIXME: list_all_for_org when pagination is supported (fixme)
+terrasnek/var_sets.py:73:2: W0511: FIXME: list_all_for_workspace when pagination is supported (fixme)
 ************* Module terrasnek.endpoint
-terrasnek/endpoint.py:143:2: W0511: FIXME: This parameter needs to be deprecated and removed at some stage. (fixme)
-terrasnek/endpoint.py:174:2: W0511: TODO: use HTTP_MOVED_TEMPORARILY (fixme)
-terrasnek/endpoint.py:181:2: W0511: FIXME: this isn't doing anything now (this was found in using run-tasks from event-hooks) (fixme)
-terrasnek/endpoint.py:92:4: R0912: Too many branches (33/30) (too-many-branches)
-terrasnek/endpoint.py:92:4: R0915: Too many statements (78/75) (too-many-statements)
+terrasnek/endpoint.py:177:2: W0511: TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks) (fixme)
 ************* Module terrasnek.run_tasks
-terrasnek/run_tasks.py:22:2: W0511: TODO: remove this once it goes to TFE GA (fixme)
+terrasnek/run_tasks.py:22:2: W0511: FIXME: remove this once it goes to TFE GA (fixme)
 ************* Module terrasnek.invoices
-terrasnek/invoices.py:19:2: W0511: TODO: self serve billing? (fixme)
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
-************* Module terrasnek.registry_providers
-terrasnek/registry_providers.py:20:2: W0511: TODO: remove this once it goes to TFE GA (fixme)
 ************* Module terrasnek.vcs_events
-terrasnek/vcs_events.py:22:2: W0511: TODO: change this once it is released in TFE. (fixme)
+terrasnek/vcs_events.py:22:2: W0511: FIXME: change this once it is released in TFE. (fixme)
 ************* Module terrasnek.workspaces
 terrasnek/workspaces.py:7:0: R0904: Too many public methods (22/20) (too-many-public-methods)
 ************* Module test.vcs_events_test
-test/vcs_events_test.py:36:2: W0511: TODO: test filter / include parameters GitHub is supported. (fixme)
+test/vcs_events_test.py:36:2: W0511: FIXME: Test filter / include parameters GitHub is supported. (fixme)
 ************* Module test.workspaces_test
-test/workspaces_test.py:119:2: W0511: TODO: include test when include works? (fixme)
-************* Module test.registry_modules_test
-test/registry_modules_test.py:99:2: W0511: TODO: this is the test that fails the most often (fixme)
+test/workspaces_test.py:25:4: R0914: Too many local variables (26/25) (too-many-locals)
 ************* Module test.admin_settings_test
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:123:2: W0511: TODO: need to use a real Twilio account to finish this test. (fixme)
-************* Module test.state_version_outputs_test
-test/state_version_outputs_test.py:52:8: W0106: Expression "self._api.state_versions.create(self._ws_id, self._get_state_version_create_payload())['data']" is assigned to nothing (expression-not-assigned)
 ************* Module test.invoices_test
 test/invoices_test.py:20:2: W0511: TODO: this will fail since we don't have any billing info associated with the test org. (fixme)
-************* Module test.admin_orgs_test
-test/admin_orgs_test.py:6:0: C0411: first party import "from terrasnek.exceptions import TFCHTTPNotFound" should be placed before "from .base import TestTFCBaseTestCase" (wrong-import-order)
 ************* Module test.base
-test/base.py:191:2: W0511: FIXME: move these once they both go GA or make the tests smarter (fixme)
+test/base.py:191:2: W0511: FIXME: move these once they both go GA (fixme)
 test/base.py:528:2: W0511: TODO: test other parameters (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.93/10 (previous run: 9.93/10, +0.00)
+Your code has been rated at 9.96/10 (previous run: 9.96/10, +0.00)
 

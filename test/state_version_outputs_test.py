@@ -49,7 +49,7 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
 
         # Create a sample state version
         self._api.workspaces.lock(self._ws_id, {"reason": "Unit testing."})
-        self._api.state_versions.create(self._ws_id, self._get_state_version_create_payload())["data"]
+        _ = self._api.state_versions.create(self._ws_id, self._get_state_version_create_payload())["data"]
         self._api.workspaces.unlock(self._ws_id)
 
         # Get the state version ID, using list instead of extracting from the create

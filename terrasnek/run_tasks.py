@@ -19,7 +19,7 @@ class TFCRunTasks(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        # TODO: remove this once it goes to TFE GA
+        # FIXME: remove this once it goes to TFE GA
         return True
 
     def terraform_enterprise_only(self):

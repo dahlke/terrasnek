@@ -17,8 +17,7 @@ class TFCRegistryProviders(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        # TODO: remove this once it goes to TFE GA
-        return True
+        return False
 
     def terraform_enterprise_only(self):
         return False

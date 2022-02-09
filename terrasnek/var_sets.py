@@ -18,7 +18,6 @@ class TFCVarSets(TFCEndpoint):
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
 
     def required_entitlements(self):
-        # TODO
         return []
 
     def terraform_cloud_only(self):
@@ -26,7 +25,6 @@ class TFCVarSets(TFCEndpoint):
         return True
 
     def terraform_enterprise_only(self):
-        # TODO: change when it gets released to TFE
         return False
 
     def create(self, payload):

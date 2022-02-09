@@ -96,7 +96,6 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
 
         # List the latest version for a specific provider, compare to the
         # published module version
-        # TODO: this is the test that fails the most often
         listed_latest_version_specific_provider = \
             self._api.registry_modules.list_versions(\
                 published_module_name, TFE_MODULE_PROVIDER_TYPE)

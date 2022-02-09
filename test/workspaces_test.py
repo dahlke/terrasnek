@@ -121,9 +121,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
             }
         }
         self._api.workspaces.unassign_ssh_key(ws_id, unassign_payload)
-        # TODO: include test when include works?
-        ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id)["data"]
-        self.assertNotIn("ssh-key", ws_shown_by_id["relationships"])
+        raw_ws_shown_by_id = self._api.workspaces.show(workspace_id=ws_id, include=["organization", "readme"])
+        self.assertIn("included", raw_ws_shown_by_id)
+        self.assertNotIn("ssh-key", raw_ws_shown_by_id["data"]["relationships"])
 
         # Add tags to the workspace
         ws_add_tags_payload = {
