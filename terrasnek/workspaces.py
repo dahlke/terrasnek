@@ -89,7 +89,7 @@ class TFCWorkspaces(TFCEndpoint):
         return self._list(self._org_api_v2_base_url, \
             page=page, page_size=page_size, include=include, search=search)
 
-    def list_all(self, include=None):
+    def list_all(self, search=None, include=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -98,7 +98,7 @@ class TFCWorkspaces(TFCEndpoint):
 
         Returns an object with two arrays of objects.
         """
-        return self._list_all(self._org_api_v2_base_url, include=include)
+        return self._list_all(self._org_api_v2_base_url, search=None, include=include)
 
     def show(self, workspace_name=None, workspace_id=None, include=None):
         """
