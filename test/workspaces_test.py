@@ -41,6 +41,9 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         search_listed_ws = self._api.workspaces.list(page=PAGE_START, page_size=PAGE_SIZE, search=ws_name)["data"]
         self.assertTrue(len(search_listed_ws), 1)
 
+        # Ensure searched workspace is in the returned list
+        self.assertTrue(ws_name in [ws["attributes"]["name"] for ws in search_listed_ws])
+
         listed_ws = listed_ws_raw["data"]
         found_ws = False
         for workspace in listed_ws:
@@ -54,8 +57,11 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         self.assertIn("included", all_ws)
 
         # Test the search parameter on list all workspaces parameter
-        search_listed_ws = self._api.workspaces.list_all(page=PAGE_START, page_size=PAGE_SIZE, search=ws_name)["data"]
-        self.assertTrue(ws_name in [ws["attributes"]["name"] for ws in search_listed_ws])
+        search_listed_ws_all = self._api.workspaces.list_all(page=PAGE_START, page_size=PAGE_SIZE, search=ws_name)["data"]
+        self.assertTrue(len(search_listed_ws_all), 1)
+
+        # Ensure searched workspace is in the returned list
+        self.assertTrue(ws_name in [ws["attributes"]["name"] for ws in search_listed_ws_all])
 
         found_ws = False
         for workspace in all_ws["data"]:
