@@ -55,7 +55,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
 
         # Test the search parameter on list all workspaces parameter
         search_listed_ws = self._api.workspaces.list_all(page=PAGE_START, page_size=PAGE_SIZE, search=ws_name)["data"]
-        self.assertTrue(len(search_listed_ws), 1)
+        self.assertTrue(ws_name in [ws["attributes"]["name"] for ws in search_listed_ws])
 
         found_ws = False
         for workspace in all_ws["data"]:

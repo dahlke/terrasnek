@@ -98,7 +98,7 @@ class TFCWorkspaces(TFCEndpoint):
 
         Returns an object with two arrays of objects.
         """
-        return self._list_all(self._org_api_v2_base_url, search=None, include=include)
+        return self._list_all(self._org_api_v2_base_url, search=search, include=include)
 
     def show(self, workspace_name=None, workspace_id=None, include=None):
         """
