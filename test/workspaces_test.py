@@ -57,7 +57,7 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         self.assertIn("included", all_ws)
 
         # Test the search parameter on list all workspaces parameter
-        search_listed_ws_all = self._api.workspaces.list_all(page=PAGE_START, page_size=PAGE_SIZE, search=ws_name)["data"]
+        search_listed_ws_all = self._api.workspaces.list_all(search=ws_name)["data"]
         self.assertTrue(len(search_listed_ws_all), 1)
 
         # Ensure searched workspace is in the returned list
