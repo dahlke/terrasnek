@@ -162,6 +162,12 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         all_tags = self._api.workspaces.list_all_tags(ws_id)["data"]
         self.assertEqual(len(all_tags), len(ws_add_tags_payload["data"]))
 
+        ws_resources = self._api.workspaces.list_resources(ws_id)["data"]
+        self.assertEqual(len(ws_resources), 0)
+
+        all_ws_resources = self._api.workspaces.list_all_resources(ws_id)["data"]
+        self.assertEqual(len(all_ws_resources), 0)
+
         # Remove one tag from the workspace
         ws_remove_tags_payload = {
             "data": [

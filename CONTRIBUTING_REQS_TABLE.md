@@ -32,8 +32,7 @@
 | [Policy Checks](https://www.terraform.io/cloud-docs/api-docs/policy-checks)                       | `policy_checks`            | True                 | True       | True       |
 | [Policy Set Params](https://www.terraform.io/cloud-docs/api-docs/policy-set-params)               | `policy_set_params`        | True                 | True       | True       |
 | [Policy Sets](https://www.terraform.io/cloud-docs/api-docs/policy-sets)                           | `policy_sets`              | True                 | True       | True       |
-| [Registry Modules](https://www.terraform.io/cloud-docs/api-docs/modules)                          | `registry_modules`         | True                 | True       | True       |
-| [Registry Providers](https://www.terraform.io/cloud-docs/api-docs/providers)                      | `registry_providers`       | True                 | True       | True       |
+| [Private Registry](https://www.terraform.io/cloud-docs/api-docs/private-registry)                 | `private_registry`         | False                | False      | False      |
 | [Run Tasks](https://www.terraform.io/cloud-docs/api-docs/run-tasks)                               | `run_tasks`                | True                 | True       | True       |
 | [Run Triggers](https://www.terraform.io/cloud-docs/api-docs/run-triggers)                         | `run_triggers`             | True                 | True       | True       |
 | [Runs](https://www.terraform.io/cloud-docs/api-docs/run)                                          | `runs`                     | True                 | True       | True       |

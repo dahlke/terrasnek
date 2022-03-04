@@ -274,3 +274,28 @@ class TFCWorkspaces(TFCEndpoint):
         """
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/relationships/tags"
         return self._destroy(url, data=payload)
+
+    def list_resources(self, workspace_id, page=None, page_size=None):
+        """
+        ``GET /workspaces/:workspace_id/resources``
+
+        `Get Workspace Resources API Doc Reference \
+            <https://www.terraform.io/cloud-docs/api-docs/workspace-resources#list-workspace-resources>`_
+
+        `Query Parameter(s) Details \
+            <https://www.terraform.io/cloud-docs/api-docs/workspace-resources#query-parameters>`__
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/resources"
+        return self._get(url, page=page, page_size=page_size)
+
+    def list_all_resources(self, workspace_id):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every workspace in an organization.
+
+        Returns an object with two arrays of objects.
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/resources"
+        return self._list_all(url)
