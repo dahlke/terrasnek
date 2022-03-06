@@ -1,31 +1,29 @@
 """
-Module for testing the Terraform Cloud API Endpoint: Workspace Variables.
+Module for testing the Terraform Cloud API Endpoint: Workspace Resources.
 """
 
 from .base import TestTFCBaseTestCase
 
 
-class TestTFCWorkspaceVars(TestTFCBaseTestCase):
+class TestTFCWorkspaceResources(TestTFCBaseTestCase):
     """
-    Class for testing the Terraform Cloud API Endpoint: Workspace Variables.
+    Class for testing the Terraform Cloud API Endpoint: Workspace Resources.
     """
 
-    _unittest_name = "ws-vars"
-    _endpoint_being_tested = "workspace_vars"
+    _unittest_name = "ws-rsrc"
+    _endpoint_being_tested = "workspace_resources"
 
     def setUp(self):
         self._ws = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())
         self._ws_id = self._ws["data"]["id"]
-        self._ws_name = self._ws["data"]["attributes"]["name"]
 
     def tearDown(self):
-        self._api.workspaces.destroy(
-            workspace_name=self._ws_name)
+        self._api.workspaces.destroy(workspace_id=self._ws_id)
 
-    def test_workspace_variables(self):
+    def test_workspace_resources(self):
         """
-        Test the Workspace Variables API endpoints.
+        Test the Workspace Resources API endpoints.
         """
 
         listed_resources = self._api.workspace_resources.list(self._ws_id)["data"]
-        print(listed_resources)
+        self.assertEqual(len(listed_resources), 0)
