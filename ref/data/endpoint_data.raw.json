@@ -1997,18 +1997,21 @@
         "test": true
     },
     "workspace_resources": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/workspace-resources",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/workspace-resources.mdx",
+        "implementation": true,
         "methods": {
             "List Workspace Resources": {
                 "http-paths": [
                     "GET /workspaces/:workspace_id/resources"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspace-resources#list-workspace-resources"
             }
-        }
+        },
+        "test": true
     },
     "workspace_vars": {
         "docs": true,

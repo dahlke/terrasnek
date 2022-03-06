@@ -49,6 +49,6 @@
 | [Var Sets](https://www.terraform.io/cloud-docs/api-docs/variable-sets)                            | `var_sets`                 | True                 | True       | True       |
 | [Vars](https://www.terraform.io/cloud-docs/api-docs/variables)                                    | `vars`                     | True                 | True       | True       |
 | [Vcs Events](https://www.terraform.io/cloud-docs/api-docs/vcs-events)                             | `vcs_events`               | True                 | True       | True       |
-| [Workspace Resources](https://www.terraform.io/cloud-docs/api-docs/workspace-resources)           | `workspace_resources`      | False                | False      | False      |
+| [Workspace Resources](https://www.terraform.io/cloud-docs/api-docs/workspace-resources)           | `workspace_resources`      | True                 | True       | True       |
 | [Workspace Vars](https://www.terraform.io/cloud-docs/api-docs/workspace-variables)                | `workspace_vars`           | True                 | True       | True       |
 | [Workspaces](https://www.terraform.io/cloud-docs/api-docs/workspaces)                             | `workspaces`               | True                 | True       | True       |

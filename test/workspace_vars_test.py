@@ -21,8 +21,7 @@ class TestTFCWorkspaceVars(TestTFCBaseTestCase):
         self._variable_test_value = "terrasnek_unittest_value"
 
     def tearDown(self):
-        self._api.workspaces.destroy(
-            workspace_name=self._ws["data"]["attributes"]["name"])
+        self._api.workspaces.destroy(workspace_name=self._ws_name)
 
     def test_workspace_variables(self):
         """

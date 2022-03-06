@@ -64,6 +64,7 @@ from .vars import TFCVars
 from .var_sets import TFCVarSets
 from .vcs_events import TFCVCSEvents
 from .workspace_vars import TFCWorkspaceVars
+from .workspace_resources import TFCWorkspaceResources
 from .workspaces import TFCWorkspaces
 
 # Suppress insecure TLS warnings
@@ -136,6 +137,7 @@ class TFC():
             "var_sets": TFCVarSets,
             "vcs_events": TFCVCSEvents,
             "workspace_vars": TFCWorkspaceVars,
+            "workspace_resources": TFCWorkspaceResources,
             "workspaces": TFCWorkspaces
         }
     }
@@ -210,6 +212,7 @@ class TFC():
         self.var_sets: TFCVarSets = None
         self.vcs_events: TFCVCSEvents = None
         self.workspace_vars: TFCWorkspaceVars = None
+        self.workspace_resources: TFCWorkspaceResources = None
         self.workspaces: TFCWorkspaces = None
 
         self._token = None

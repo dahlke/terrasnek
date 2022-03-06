@@ -59,4 +59,5 @@ API Spec
    var_sets
    vcs_events
    workspace_vars
+   workspace_resources
    workspaces
