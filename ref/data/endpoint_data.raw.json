@@ -563,12 +563,53 @@
         },
         "test": true
     },
+    "comments": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/comments",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/comments.mdx",
+        "implementation": true,
+        "methods": {
+            "Create Comment": {
+                "http-paths": [
+                    "POST /runs/:id/comments"
+                ],
+                "implementation-method-name": "create_for_run",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/comments#create-comment"
+            },
+            "List Comments for a Run": {
+                "http-paths": [
+                    "GET /runs/:id/comments"
+                ],
+                "implementation-method-name": "list_for_run",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/comments#list-comments-for-a-run"
+            },
+            "Show a Comment": {
+                "http-paths": [
+                    "GET /comments/:id"
+                ],
+                "implementation-method-name": "show",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/comments#show-a-comment"
+            }
+        },
+        "test": true
+    },
     "config_versions": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/configuration-versions.mdx",
         "implementation": true,
         "methods": {
+            "Archive a Configuration Version": {
+                "http-paths": [
+                    "POST /configuration-versions/:configuration_version_id/actions/archive"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#archive-a-configuration-version"
+            },
             "Create a Configuration Version": {
                 "http-paths": [
                     "POST /workspaces/:workspace_id/configuration-versions"
@@ -576,6 +617,15 @@
                 "implementation-method-name": "create",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#create-a-configuration-version"
+            },
+            "Download Configuration Files": {
+                "http-paths": [
+                    "GET /configuration-versions/:configuration_version_id/download",
+                    "GET /runs/:run_id/configuration-version/download"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#download-configuration-files"
             },
             "List Configuration Versions": {
                 "http-paths": [
