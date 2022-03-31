@@ -124,7 +124,7 @@ class TFCVarSets(TFCEndpoint):
 
     def delete_var_from_varset(self, varset_id, var_id):
         """
-        ``DELETEvarsets/:varset_id/relationships/vars/:var_id``
+        ``DELETE varsets/:varset_id/relationships/vars/:var_id``
 
         `Variable Sets Delete Variable API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/variable-sets.html#delete-a-variable-in-a-variable-set>`_

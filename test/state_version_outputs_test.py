@@ -83,3 +83,6 @@ class TestTFCStateVersionOutputs(TestTFCBaseTestCase):
             state_version_output_id)["data"]
         self.assertEqual(state_version_output_id,
                          shown_state_version_output["id"])
+
+        current_state_version_outputs = self._api.state_version_outputs.show_current_for_workspace(self._ws_id)["data"]
+        self.assertEqual(current_state_version_outputs[0]["id"], state_version_output_id)

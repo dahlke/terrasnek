@@ -1640,6 +1640,14 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-version-outputs#list-state-version-outputs"
             },
+            "Show Current State Version Outputs for a Workspace": {
+                "http-paths": [
+                    "GET /workspaces/:workspace_id/current-state-version-outputs"
+                ],
+                "implementation-method-name": "show_current_for_workspace",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-version-outputs#show-current-state-version-outputs-for-a-workspace"
+            },
             "Show a State Version Output": {
                 "http-paths": [
                     "GET /state-version-outputs/:state_version_output_id"
@@ -1943,6 +1951,14 @@
                 "implementation-method-name": "destroy",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#delete-a-variable-set"
+            },
+            "Delete a Variable in a Variable Set": {
+                "http-paths": [
+                    "DELETE varsets/:varset_id/relationships/vars/:var_id"
+                ],
+                "implementation-method-name": "delete_var_from_varset",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#delete-a-variable-in-a-variable-set"
             },
             "List Variable Set": {
                 "http-paths": [

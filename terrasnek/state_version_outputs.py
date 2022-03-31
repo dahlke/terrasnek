@@ -15,6 +15,7 @@ class TFCStateVersionOutputs(TFCEndpoint):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._endpoint_base_url = f"{self._api_v2_base_url}/state-version-outputs"
         self._state_versions_base_url = f"{self._api_v2_base_url}/state-versions"
+        self._ws_base_url = f"{self._api_v2_base_url}/workspaces"
 
     def required_entitlements(self):
         return [Entitlements.STATE_STORAGE]
@@ -44,4 +45,15 @@ class TFCStateVersionOutputs(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/state-version-outputs.html#show-a-state-version-output>`_
         """
         url = f"{self._endpoint_base_url}/{state_version_output_id}"
+        return self._show(url)
+
+
+    def show_current_for_workspace(self, workspace_id):
+        """
+        ``GET /workspaces/:workspace_id/current-state-version-outputs``
+
+        `State Version Outputs Show Current for Workspace API Doc Reference \
+            <https://www.terraform.io/cloud-docs/api-docs/state-version-outputs#show-current-state-version-outputs-for-a-workspace>`_
+        """
+        url = f"{self._ws_base_url}/{workspace_id}/current-state-version-outputs"
         return self._show(url)
