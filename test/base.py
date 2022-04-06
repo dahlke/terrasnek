@@ -510,12 +510,43 @@ class TestTFCBaseTestCase(unittest.TestCase):
         terraform plans to occur after creating a run.
         """
         created_run = self._api.runs.show(run_id)["data"]
-        while not created_run["attributes"]["actions"]["is-confirmable"]:
+        while not created_run["attributes"]["status"] == "planned_and_finished" and \
+            not created_run["attributes"]["actions"]["is-confirmable"]:
             created_run = self._api.runs.show(run_id)["data"]
             self._logger.debug("Waiting for created run to finish planning...")
             time.sleep(1)
         self._logger.debug("Plan successful.")
         return created_run
+
+    @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
+    def _applied_run_timeout(self, run_id):
+        """
+        Due to eventual consistency in TFC, it can take a few seconds for the state returned
+        from the API to match the expected output. This function provides some time cushion for
+        terraform plans to occur after creating a run.
+        """
+        applied_run = self._api.runs.show(run_id)["data"]
+        while not applied_run["attributes"]["status"] == "applied":
+            applied_run = self._api.runs.show(run_id)["data"]
+            self._logger.debug("Waiting for created run to finish applying...")
+            time.sleep(1)
+        self._logger.debug("Apply successful.")
+        return applied_run
+
+    @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
+    def _locked_workspace_timeout(self, ws_id):
+        """
+        Due to eventual consistency in TFC, it can take a few seconds for the state returned
+        from the API to match the expected output. This function provides some time cushion for
+        terraform plans to occur after creating a run.
+        """
+        workspace = self._api.workspaces.show(workspace_id=ws_id)["data"]
+        while workspace["attributes"]["locked"]:
+            workspace = self._api.workspaces.show(workspace_id=ws_id)["data"]
+            self._logger.debug("Waiting for workspace to be unlocked...")
+            time.sleep(1)
+        self._logger.debug("Workspace unlocked.")
+        return workspace
 
     @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
     def _found_module_in_listed_modules_timeout(self, name_to_check):

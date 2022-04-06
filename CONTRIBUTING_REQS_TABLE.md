@@ -34,6 +34,7 @@
 | [Policy Set Params](https://www.terraform.io/cloud-docs/api-docs/policy-set-params)               | `policy_set_params`        | True                 | True       | True       |
 | [Policy Sets](https://www.terraform.io/cloud-docs/api-docs/policy-sets)                           | `policy_sets`              | True                 | True       | True       |
 | [Private Registry](https://www.terraform.io/cloud-docs/api-docs/private-registry)                 | `private_registry`         | False                | False      | False      |
+| [Run Tasks Integration](https://www.terraform.io/cloud-docs/api-docs/run-tasks-integration)       | `run_tasks_integration`    | True                 | False      | True       |
 | [Run Tasks](https://www.terraform.io/cloud-docs/api-docs/run-tasks)                               | `run_tasks`                | True                 | True       | True       |
 | [Run Triggers](https://www.terraform.io/cloud-docs/api-docs/run-triggers)                         | `run_triggers`             | True                 | True       | True       |
 | [Runs](https://www.terraform.io/cloud-docs/api-docs/run)                                          | `runs`                     | True                 | True       | True       |

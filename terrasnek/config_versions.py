@@ -2,6 +2,7 @@
 Module for Terraform Cloud API Endpoint: Config Versions.
 """
 import io
+from logging import config
 import tarfile
 from .endpoint import TFCEndpoint
 
@@ -15,6 +16,7 @@ class TFCConfigVersions(TFCEndpoint):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         self._ws_api_v2_base_url = f"{self._api_v2_base_url}/workspaces"
         self._config_version_api_v2_base_url = f"{self._api_v2_base_url}/configuration-versions"
+        self._runs_api_v2_base_url = f"{self._api_v2_base_url}/runs"
 
     def required_entitlements(self):
         return []
@@ -135,3 +137,28 @@ class TFCConfigVersions(TFCEndpoint):
 
         # upload the template
         return self._put(upload_url, data=targz_io.read())
+
+    def archive_version(self, config_version_id):
+        """
+        ``POST /configuration-versions/:configuration_version_id/actions/archive``
+
+        `Config Versions Archive Version API Doc Reference \
+            <https://www.terraform.io/cloud-docs/api-docs/configuration-versions#archive-a-configuration-version>`_
+        """
+        url = f"{self._config_version_api_v2_base_url}/{config_version_id}/actions/archive"
+        return self._post(url)
+
+    def download_version_files(self, config_version_id=None, run_id=None):
+        """
+        ``GET /configuration-versions/:configuration_version_id/download``
+        ``GET /runs/:run_id/configuration-version/download``
+
+        `Config Versions Download Files API Doc Reference \
+            <https://www.terraform.io/cloud-docs/api-docs/configuration-versions#download-configuration-files>`_
+        """
+        if config_version_id is not None:
+            url = f"{self._config_version_api_v2_base_url}/{config_version_id}/download"
+        elif run_id is not None:
+            url = f"{self._runs_api_v2_base_url}/{run_id}/configuration-version/download"
+
+        return self._get(url)

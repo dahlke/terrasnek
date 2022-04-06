@@ -606,8 +606,8 @@
                 "http-paths": [
                     "POST /configuration-versions/:configuration_version_id/actions/archive"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "archive_version",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#archive-a-configuration-version"
             },
             "Create a Configuration Version": {
@@ -623,8 +623,8 @@
                     "GET /configuration-versions/:configuration_version_id/download",
                     "GET /runs/:run_id/configuration-version/download"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "download_version_files",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#download-configuration-files"
             },
             "List Configuration Versions": {
@@ -1396,13 +1396,13 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#create-a-run-task"
             },
-            "Delete Workspace Task": {
+            "Delete Workspace Run Task": {
                 "http-paths": [
                     "DELETE /workspaces/:workspace_id/tasks/:id"
                 ],
                 "implementation-method-name": "remove_task_from_workspace",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#delete-workspace-task"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks#delete-workspace-run-task"
             },
             "Delete a Run Task": {
                 "http-paths": [
@@ -1462,6 +1462,30 @@
             }
         },
         "test": true
+    },
+    "run_tasks_integration": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-tasks-integration",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run-tasks-integration.mdx",
+        "implementation": true,
+        "methods": {
+            "Run Task Callback": {
+                "http-paths": [
+                    "PATCH :callback_url"
+                ],
+                "implementation-method-name": "callback",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks-integration#run-task-callback"
+            },
+            "Run Task Request": {
+                "http-paths": [
+                    "POST :url"
+                ],
+                "implementation-method-name": "request",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks-integration#run-task-request"
+            }
+        }
     },
     "run_triggers": {
         "docs": true,

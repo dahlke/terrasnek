@@ -17,7 +17,8 @@ from ._constants import \
     HTTP_OK, HTTP_CREATED, HTTP_ACCEPTED, HTTP_NO_CONTENT, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED, \
         HTTP_FORBIDDEN, HTTP_NOT_FOUND, HTTP_CONFLICT, HTTP_PRECONDITION_FAILED, \
             HTTP_UNPROCESSABLE_ENTITY, HTTP_API_REQUEST_RATE_LIMIT_REACHED, \
-                HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE, HTTP_MOVED_PERMANENTLY
+                HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE, HTTP_MOVED_PERMANENTLY, \
+                    HTTP_MOVED_TEMPORARILY
 
 class TFCEndpoint(ABC):
     """
@@ -173,6 +174,8 @@ class TFCEndpoint(ABC):
             # in the future, this may need to use HTTP_MOVED_TEMPORARILY.
             url = req.url.replace("/v1/modules/", "/api/registry/v1/modules/")
             results = {"redirect-url": url}
+        elif req.status_code == HTTP_MOVED_TEMPORARILY:
+            results = req.content.decode("utf-8")
         elif req.status_code == HTTP_MOVED_PERMANENTLY:
             # TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks)
             pass

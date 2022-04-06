@@ -44,6 +44,7 @@ API Spec
    registry_providers
    runs
    run_tasks
+   run_tasks_integration
    run_triggers
    ssh_keys
    state_versions

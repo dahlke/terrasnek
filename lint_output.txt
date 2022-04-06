@@ -6,13 +6,20 @@ terrasnek/var_sets.py:24:2: W0511: TODO: change when it gets released to TFE (fi
 terrasnek/var_sets.py:61:2: W0511: FIXME: list_all_for_org when pagination is supported (fixme)
 terrasnek/var_sets.py:73:2: W0511: FIXME: list_all_for_workspace when pagination is supported (fixme)
 ************* Module terrasnek.endpoint
-terrasnek/endpoint.py:177:2: W0511: TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks) (fixme)
+terrasnek/endpoint.py:180:2: W0511: TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks) (fixme)
 ************* Module terrasnek.run_tasks
 terrasnek/run_tasks.py:22:2: W0511: FIXME: remove this once it goes to TFE GA (fixme)
 ************* Module terrasnek.invoices
 terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
+************* Module terrasnek.run_tasks_integration
+terrasnek/run_tasks_integration.py:49:0: C0304: Final newline missing (missing-final-newline)
+terrasnek/run_tasks_integration.py:13:4: W0235: Useless super delegation in method '__init__' (useless-super-delegation)
+terrasnek/run_tasks_integration.py:35:17: E1101: Instance of 'TFCRunTasksIntegration' has no '_runs_base_url' member (no-member)
+terrasnek/run_tasks_integration.py:48:17: E1101: Instance of 'TFCRunTasksIntegration' has no '_endpoint_base_url' member (no-member)
 ************* Module terrasnek.vcs_events
 terrasnek/vcs_events.py:22:2: W0511: FIXME: change this once it is released in TFE. (fixme)
+************* Module terrasnek.config_versions
+terrasnek/config_versions.py:5:0: W0611: Unused config imported from logging (unused-import)
 ************* Module terrasnek.workspaces
 terrasnek/workspaces.py:301:0: C0304: Final newline missing (missing-final-newline)
 terrasnek/workspaces.py:7:0: R0904: Too many public methods (24/20) (too-many-public-methods)
@@ -26,12 +33,15 @@ test/workspaces_test.py:25:4: R0914: Too many local variables (29/25) (too-many-
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:123:2: W0511: TODO: need to use a real Twilio account to finish this test. (fixme)
+************* Module test.run_tasks_integrations_test
+test/run_tasks_integrations_test.py:28:2: W0511: TODO: These will be fairly difficult to create valuable tests for. (fixme)
+test/run_tasks_integrations_test.py:28:0: C0304: Final newline missing (missing-final-newline)
 ************* Module test.invoices_test
 test/invoices_test.py:20:2: W0511: TODO: this will fail since we don't have any billing info associated with the test org. (fixme)
 ************* Module test.base
 test/base.py:191:2: W0511: FIXME: move these once they both go GA (fixme)
-test/base.py:528:2: W0511: TODO: test other parameters (fixme)
+test/base.py:559:2: W0511: TODO: test other parameters (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.95/10 (previous run: 9.95/10, +0.00)
+Your code has been rated at 9.91/10 (previous run: 9.95/10, -0.04)
 
