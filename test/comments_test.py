@@ -3,7 +3,6 @@ Module for testing the Terraform Cloud API Endpoint: Comments.
 """
 
 import time
-from venv import create
 
 from .base import TestTFCBaseTestCase
 

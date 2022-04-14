@@ -2,7 +2,6 @@
 Module for Terraform Cloud API Endpoint: Config Versions.
 """
 import io
-from logging import config
 import tarfile
 from .endpoint import TFCEndpoint
 

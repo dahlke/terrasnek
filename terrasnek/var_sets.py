@@ -21,8 +21,7 @@ class TFCVarSets(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        # TODO: change when it gets released to TFE
-        return True
+        return False
 
     def terraform_enterprise_only(self):
         return False

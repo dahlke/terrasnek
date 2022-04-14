@@ -10,9 +10,6 @@ class TFCRunTasksIntegration(TFCEndpoint):
         <https://www.terraform.io/cloud-docs/api-docs/run-tasks-integration>`_
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
-
     def required_entitlements(self):
         return []
 
@@ -22,7 +19,7 @@ class TFCRunTasksIntegration(TFCEndpoint):
     def terraform_enterprise_only(self):
         return False
 
-    def request(self, run_id, payload):
+    def request(self, url):
         """
         ``POST :url``
 
@@ -32,10 +29,9 @@ class TFCRunTasksIntegration(TFCEndpoint):
         `Request Sample Payload \
             <https://www.terraform.io/cloud-docs/api-docs/run-tasks-integration#sample-payload>`_
         """
-        url = f"{self._runs_base_url}/{run_id}/comments"
-        return self._create(url, payload=payload)
+        return self._post(url)
 
-    def callback(self, comment_id):
+    def callback(self, callback_url):
         """
         ``PATCH :callback_url``
 
@@ -45,5 +41,4 @@ class TFCRunTasksIntegration(TFCEndpoint):
         `Callback Sample Payload \
             <https://www.terraform.io/cloud-docs/api-docs/run-tasks-integration#request-body-1>`_
         """
-        url = f"{self._endpoint_base_url}/{comment_id}"
-        return self._show(url)
+        return self._patch(callback_url)
