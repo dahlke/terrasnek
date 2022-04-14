@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.10] - 2022-04-13
+
+- Implemented the new Config Version endpoints
+- Implemented the new State Version endpoints
+- Implemented the Comments endpoints
+- Implemented the Workspace Resources endpoints
+- Implemented the new Run Task Integration endpoints
+- Fixed the docstring in `var_sets`
+- Added a `search` parameter to the Workspaces `list_all` method
+
 ## [0.1.9] - 2022-02-09
 
 - Linted and tested with coverage against TFC and TFE
