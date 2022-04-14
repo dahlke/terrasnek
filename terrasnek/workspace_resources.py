@@ -18,10 +18,9 @@ class TFCWorkspaceResources(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        return True
+        return False
 
     def terraform_enterprise_only(self):
-        # TODO: Update this once it releases to TFE.
         return False
 
     def list(self, workspace_id):

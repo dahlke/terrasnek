@@ -15,25 +15,14 @@ class TestTFCAdminOrgs(TestTFCBaseTestCase):
     _unittest_name = "adm-org"
     _endpoint_being_tested = "admin_orgs"
 
-    def setUp(self):
-        # Create a temp org to manipulate in the test
-        created_org = self._api.orgs.create(self._get_org_create_payload())["data"]
-        self._created_org_name = created_org["attributes"]["name"]
-        self._created_org_id = created_org["id"]
-
-    def tearDown(self):
-        try:
-            # Create a temp org to manipulate in the test
-            self._api.admin_orgs.destroy(self._created_org_name)
-        except TFCHTTPNotFound as err:
-            # In case the test fails below, this will ensure the created
-            # org gets cleaned up.
-            self._logger.debug(err)
-
     def test_admin_orgs(self):
         """
         Test the Admin Orgs API endpoints.
         """
+        # Create a temp org to manipulate in the test
+        created_org = self._api.orgs.create(self._get_org_create_payload())["data"]
+        self._created_org_name = created_org["attributes"]["name"]
+        self._created_org_id = created_org["id"]
 
         # List all the orgs, confirm the created one is present. Confirm related resources
         # are return.
