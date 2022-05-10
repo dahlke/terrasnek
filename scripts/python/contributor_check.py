@@ -12,6 +12,8 @@ import git
 import requests
 import xml.etree.ElementTree as ET
 
+from packaging import version
+
 MIN_COVERAGE_SCORE = 0.8
 MIN_LINT_SCORE = 0.9
 PYPI_XML_URL = "https://pypi.org/rss/project/terrasnek/releases.xml"
@@ -156,16 +158,15 @@ def main():
             err_msg_list.append(\
                 f"The versions do not match across the important files (CHANGELOG.md, setup.py, docs/conf.py).")
 
-        if latest_published_version >= changelog_version:
+        if version.parse(latest_published_version) >= version.parse(changelog_version):
             err_msg_list.append(\
                 f"The latest version in CHANGELOG.md is greater or equal to the latest in PyPi, do not release.")
 
-        if latest_published_version >= pypi_config_version:
+        if version.parse(latest_published_version) >= version.parse(pypi_config_version):
             err_msg_list.append(\
                 f"The latest version in the PyPi config is greater or equal to the latest in PyPi, do not release.")
 
-        # TODO: handle bugfix release numbers with lower numbers than the latest minor or major release)
-        if latest_published_version >= docs_version:
+        if version.parse(latest_published_version) >= version.parse(docs_version):
             err_msg_list.append(\
                 f"The latest version in docs config is greater or equal to the latest in PyPi, do not release.")
 
