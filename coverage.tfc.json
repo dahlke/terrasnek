@@ -1,7 +1,7 @@
 {
     "meta": {
         "version": "5.5",
-        "timestamp": "2022-04-21T20:58:20.593623",
+        "timestamp": "2022-05-10T11:39:26.822227",
         "branch_coverage": false,
         "show_contexts": false
     },
@@ -66,11 +66,12 @@
                 58,
                 59,
                 60,
-                61
+                61,
+                62
             ],
             "summary": {
-                "covered_lines": 42,
-                "num_statements": 42,
+                "covered_lines": 43,
+                "num_statements": 43,
                 "percent_covered": 100.0,
                 "missing_lines": 0,
                 "excluded_lines": 0
@@ -2898,9 +2899,9 @@
         }
     },
     "totals": {
-        "covered_lines": 1692,
-        "num_statements": 1955,
-        "percent_covered": 86.54731457800511,
+        "covered_lines": 1693,
+        "num_statements": 1956,
+        "percent_covered": 86.55419222903886,
         "missing_lines": 263,
         "excluded_lines": 0
     }

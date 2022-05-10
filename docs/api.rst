@@ -22,6 +22,7 @@ API Spec
    agent_tokens
    applies
    audit_trails
+   comments
    config_versions
    cost_estimates
    feature_sets
