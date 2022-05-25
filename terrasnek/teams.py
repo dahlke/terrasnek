@@ -47,7 +47,7 @@ class TFCTeams(TFCEndpoint):
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._destroy(url)
 
-    def list(self, page=None, page_size=None, include=None):
+    def list(self, page=None, page_size=None, filters=None):
         """
         ``GET organizations/:organization_name/teams``
 
@@ -58,7 +58,7 @@ class TFCTeams(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/teams.html#query-parameters>`__
         """
         return self._list(\
-            self._org_api_v2_base_url, page=page, page_size=page_size, include=include)
+            self._org_api_v2_base_url, page=page, page_size=page_size, filters=include)
 
     def list_all(self, include=None):
         """
