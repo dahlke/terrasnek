@@ -55,6 +55,16 @@ class TestTFCTeams(TestTFCBaseTestCase):
         self.assertIn("included", all_teams)
         self.assertEqual(len(all_teams["data"]), 2)
 
+        new_team_name = new_team["attributes"]["name"]
+        test_filters = [
+            {
+                "keys": ["names"],
+                "value": new_team_name
+            }
+        ]
+        filtered_teams = self._api.teams.list_all(filters=test_filters)["data"]
+        self.assertTrue(filtered_teams[0]["attributes"]["name"], new_team_name)
+
         # Update the team to have VCS management access, confirm the changes took effect.
         update_payload = {
             "data": {

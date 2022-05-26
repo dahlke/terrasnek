@@ -47,7 +47,7 @@ class TFCTeams(TFCEndpoint):
         url = f"{self._teams_api_v2_base_url}/{team_id}"
         return self._destroy(url)
 
-    def list(self, page=None, page_size=None, include=None):
+    def list(self, page=None, page_size=None, filters=None, include=None):
         """
         ``GET organizations/:organization_name/teams``
 
@@ -58,9 +58,9 @@ class TFCTeams(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/teams.html#query-parameters>`__
         """
         return self._list(\
-            self._org_api_v2_base_url, page=page, page_size=page_size, include=include)
+            self._org_api_v2_base_url, page=page, page_size=page_size, filters=filters, include=include)
 
-    def list_all(self, include=None):
+    def list_all(self, filters=None, include=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -69,7 +69,7 @@ class TFCTeams(TFCEndpoint):
 
         Returns an object with two arrays of objects.
         """
-        return self._list_all(self._org_api_v2_base_url, include=include)
+        return self._list_all(self._org_api_v2_base_url, filters=filters, include=include)
 
     def show(self, team_id, include=None):
         """
