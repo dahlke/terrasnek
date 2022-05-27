@@ -25,10 +25,11 @@ from bs4 import BeautifulSoup
 # NOTE: This api_comparison tool was updated in v0.1.8.
 
 # Base URLs for scraping from GitHub
-GITHUB_DOCS_BASE_URL = "https://github.com/hashicorp/terraform-website/tree/master/content/cloud-docs/api-docs"
-GITHUB_DOCS_ADMIN_BASE_URL = "https://github.com/hashicorp/terraform-website/tree/master/content/cloud-docs/api-docs/admin"
-RAW_GITHUB_DOCS_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs"
-RAW_GITHUB_DOCS_ADMIN_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin"
+GITHUB_DOCS_BASE_URL = "https://github.com/hashicorp/terraform-docs-common/tree/main/website/docs/cloud-docs/api-docs"
+
+GITHUB_DOCS_ADMIN_BASE_URL = "https://github.com/hashicorp/terraform-docs-common/tree/main/website/docs/cloud-docs/api-docs/admin"
+RAW_GITHUB_DOCS_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs"
+RAW_GITHUB_DOCS_ADMIN_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin"
 
 # Helpful constants for the parsing of the GitHub markdown docs
 TFC_API_BASE_URL = "https://www.terraform.io/cloud-docs/api-docs"

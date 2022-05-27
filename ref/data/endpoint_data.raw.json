@@ -2,7 +2,7 @@
     "account": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/account",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/account.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/account.mdx",
         "implementation": true,
         "methods": {
             "Change your password": {
@@ -35,7 +35,7 @@
     "admin_module_sharing": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/module-sharing",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/module-sharing.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin/module-sharing.mdx",
         "implementation": true,
         "methods": {
             "Update an Organization's Module Consumers": {
@@ -52,7 +52,7 @@
     "admin_orgs": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/organizations",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/organizations.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin/organizations.mdx",
         "implementation": true,
         "methods": {
             "Delete an Organization": {
@@ -109,7 +109,7 @@
     "admin_runs": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/runs",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/runs.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin/runs.mdx",
         "implementation": true,
         "methods": {
             "Force a run into the \"cancelled\" state": {
@@ -134,7 +134,7 @@
     "admin_settings": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/settings",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/settings.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin/settings.mdx",
         "implementation": true,
         "methods": {
             "List Cost Estimation Settings": {
@@ -255,7 +255,7 @@
     "admin_terraform_versions": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/terraform-versions",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/terraform-versions.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin/terraform-versions.mdx",
         "implementation": true,
         "methods": {
             "Create a Terraform version": {
@@ -304,7 +304,7 @@
     "admin_users": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/users",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/users.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin/users.mdx",
         "implementation": true,
         "methods": {
             "Delete a user account": {
@@ -385,7 +385,7 @@
     "admin_workspaces": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/admin/workspaces",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/admin/workspaces.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin/workspaces.mdx",
         "implementation": true,
         "methods": {
             "Destroy a workspace": {
@@ -418,7 +418,7 @@
     "agent_tokens": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/agent-tokens",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/agent-tokens.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/agent-tokens.mdx",
         "implementation": true,
         "methods": {
             "Create an Agent Token": {
@@ -459,7 +459,7 @@
     "agents": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/agents",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/agents.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/agents.mdx",
         "implementation": true,
         "methods": {
             "Create an Agent Pool": {
@@ -532,7 +532,7 @@
     "applies": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/applies",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/applies.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/applies.mdx",
         "implementation": true,
         "methods": {
             "Show an apply": {
@@ -549,7 +549,7 @@
     "audit_trails": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/audit-trails",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/audit-trails.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/audit-trails.mdx",
         "implementation": true,
         "methods": {
             "List an organization's audit events": {
@@ -566,7 +566,7 @@
     "comments": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/comments",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/comments.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/comments.mdx",
         "implementation": true,
         "methods": {
             "Create Comment": {
@@ -599,7 +599,7 @@
     "config_versions": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/configuration-versions.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/configuration-versions.mdx",
         "implementation": true,
         "methods": {
             "Archive a Configuration Version": {
@@ -666,7 +666,7 @@
     "cost_estimates": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/cost-estimates",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/cost-estimates.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/cost-estimates.mdx",
         "implementation": true,
         "methods": {
             "Show a cost estimate": {
@@ -683,7 +683,7 @@
     "feature_sets": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/feature-sets",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/feature-sets.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/feature-sets.mdx",
         "implementation": true,
         "methods": {
             "List Feature Sets": {
@@ -708,7 +708,7 @@
     "invoices": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/invoices",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/invoices.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/invoices.mdx",
         "implementation": true,
         "methods": {
             "Get Next Invoice": {
@@ -733,7 +733,7 @@
     "ip_ranges": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/ip-ranges",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/ip-ranges.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/ip-ranges.mdx",
         "implementation": true,
         "methods": {
             "Get IP Ranges": {
@@ -750,7 +750,7 @@
     "notification_configs": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/notification-configurations",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/notification-configurations.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/notification-configurations.mdx",
         "implementation": true,
         "methods": {
             "Create a Notification Configuration": {
@@ -807,7 +807,7 @@
     "oauth_clients": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/oauth-clients",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/oauth-clients.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/oauth-clients.mdx",
         "implementation": true,
         "methods": {
             "Create an OAuth Client": {
@@ -856,7 +856,7 @@
     "oauth_tokens": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/oauth-tokens",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/oauth-tokens.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/oauth-tokens.mdx",
         "implementation": true,
         "methods": {
             "Destroy an OAuth Token": {
@@ -897,7 +897,7 @@
     "org_memberships": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/organization-memberships",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/organization-memberships.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/organization-memberships.mdx",
         "implementation": true,
         "methods": {
             "Invite a User to an Organization": {
@@ -946,7 +946,7 @@
     "org_tags": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/organization-tags",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/organization-tags.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/organization-tags.mdx",
         "implementation": true,
         "methods": {
             "Add workspaces to a tag": {
@@ -979,7 +979,7 @@
     "org_tokens": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/organization-tokens",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/organization-tokens.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/organization-tokens.mdx",
         "implementation": true,
         "methods": {
             "Delete the organization token": {
@@ -1004,7 +1004,7 @@
     "orgs": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/organizations",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/organizations.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/organizations.mdx",
         "implementation": true,
         "methods": {
             "Create an Organization": {
@@ -1069,7 +1069,7 @@
     "plan_exports": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/plan-exports",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/plan-exports.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/plan-exports.mdx",
         "implementation": true,
         "methods": {
             "Create a plan export": {
@@ -1110,7 +1110,7 @@
     "plans": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/plans",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/plans.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/plans.mdx",
         "implementation": true,
         "methods": {
             "Retrieve the JSON execution plan": {
@@ -1136,7 +1136,7 @@
     "policies": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/policies",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/policies.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/policies.mdx",
         "implementation": true,
         "methods": {
             "Create a Policy": {
@@ -1193,7 +1193,7 @@
     "policy_checks": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/policy-checks",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/policy-checks.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/policy-checks.mdx",
         "implementation": true,
         "methods": {
             "List Policy Checks": {
@@ -1226,7 +1226,7 @@
     "policy_set_params": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/policy-set-params",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/policy-set-params.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/policy-set-params.mdx",
         "implementation": true,
         "methods": {
             "Create a Parameter": {
@@ -1267,7 +1267,7 @@
     "policy_sets": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/policy-sets",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/policy-sets.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/policy-sets.mdx",
         "implementation": true,
         "methods": {
             "Add Policies to the Policy Set": {
@@ -1371,13 +1371,13 @@
     },
     "private_registry": {
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/private-registry",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/private-registry",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/private-registry",
         "methods": {}
     },
     "run_tasks": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-tasks",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run-tasks.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/run-tasks.mdx",
         "implementation": true,
         "methods": {
             "Attach a Run Task to a Workspace": {
@@ -1466,7 +1466,7 @@
     "run_tasks_integration": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-tasks-integration",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run-tasks-integration.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/run-tasks-integration.mdx",
         "implementation": true,
         "methods": {
             "Run Task Callback": {
@@ -1490,7 +1490,7 @@
     "run_triggers": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-triggers",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run-triggers.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/run-triggers.mdx",
         "implementation": true,
         "methods": {
             "Create a Run Trigger": {
@@ -1531,7 +1531,7 @@
     "runs": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/run.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/run.mdx",
         "implementation": true,
         "methods": {
             "Apply a Run": {
@@ -1604,7 +1604,7 @@
     "ssh_keys": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/ssh-keys",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/ssh-keys.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/ssh-keys.mdx",
         "implementation": true,
         "methods": {
             "Create an SSH Key": {
@@ -1653,7 +1653,7 @@
     "state_version_outputs": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/state-version-outputs",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/state-version-outputs.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/state-version-outputs.mdx",
         "implementation": true,
         "methods": {
             "List State Version Outputs": {
@@ -1686,7 +1686,7 @@
     "state_versions": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/state-versions",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/state-versions.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/state-versions.mdx",
         "implementation": true,
         "methods": {
             "Create a State Version": {
@@ -1727,7 +1727,7 @@
     "subscriptions": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/subscriptions",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/subscriptions.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/subscriptions.mdx",
         "implementation": true,
         "methods": {
             "Show Subscription By ID": {
@@ -1752,7 +1752,7 @@
     "team_access": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/team-access",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/team-access.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/team-access.mdx",
         "implementation": true,
         "methods": {
             "Add Team Access to a Workspace": {
@@ -1801,7 +1801,7 @@
     "team_memberships": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/team-members",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/team-members.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/team-members.mdx",
         "implementation": true,
         "methods": {
             "Add a User to Team": {
@@ -1826,7 +1826,7 @@
     "team_tokens": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/team-tokens",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/team-tokens.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/team-tokens.mdx",
         "implementation": true,
         "methods": {},
         "test": true
@@ -1834,7 +1834,7 @@
     "teams": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/teams",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/teams.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/teams.mdx",
         "implementation": true,
         "methods": {
             "Create a Team": {
@@ -1883,7 +1883,7 @@
     "user_tokens": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/user-tokens",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/user-tokens.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/user-tokens.mdx",
         "implementation": true,
         "methods": {
             "Create a User Token": {
@@ -1924,7 +1924,7 @@
     "users": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/users",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/users.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/users.mdx",
         "implementation": true,
         "methods": {
             "Show a User": {
@@ -1941,7 +1941,7 @@
     "var_sets": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/variable-sets",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/variable-sets.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/variable-sets.mdx",
         "implementation": true,
         "methods": {
             "Add Variable": {
@@ -2031,7 +2031,7 @@
     "vars": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/variables",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/variables.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/variables.mdx",
         "implementation": true,
         "methods": {
             "Create a Variable": {
@@ -2072,7 +2072,7 @@
     "vcs_events": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/vcs-events",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/vcs-events.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/vcs-events.mdx",
         "implementation": true,
         "methods": {
             "List VCS events": {
@@ -2089,7 +2089,7 @@
     "workspace_resources": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/workspace-resources",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/workspace-resources.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/workspace-resources.mdx",
         "implementation": true,
         "methods": {
             "List Workspace Resources": {
@@ -2106,7 +2106,7 @@
     "workspace_vars": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/workspace-variables",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/workspace-variables.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/workspace-variables.mdx",
         "implementation": true,
         "methods": {
             "Create a Variable": {
@@ -2147,7 +2147,7 @@
     "workspaces": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/workspaces",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/cloud-docs/api-docs/workspaces.mdx",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/workspaces.mdx",
         "implementation": true,
         "methods": {
             "Add Remote State Consumers": {
