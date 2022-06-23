@@ -47,10 +47,14 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         self._api.policy_sets.add_policies_to_set(\
             self._created_policy_set_id, add_remove_policy_payload)
 
+        search_payload = {
+            "name": created_policy_name
+        }
+
         # List all the policies, search the policy we just created so
         # we can test out the list params
         some_policies_raw = self._api.policies.list(\
-            page=PAGE_START, page_size=PAGE_SIZE, search=created_policy_name, include=["policy-sets"])
+            page=PAGE_START, page_size=PAGE_SIZE, search=search_payload, include=["policy-sets"])
 
         # Confirm that included resources are present
         self.assertIn("included", some_policies_raw)
@@ -65,7 +69,7 @@ class TestTFCPolicies(TestTFCBaseTestCase):
         self.assertTrue(found_pol)
 
         all_policies = self._api.policies.list_all(\
-            search=created_policy_name, include=["policy-sets"])
+            search=search_payload, include=["policy-sets"])
         self.assertIn("included", all_policies)
 
         found_pol = False

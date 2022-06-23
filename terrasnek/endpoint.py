@@ -131,7 +131,11 @@ class TFCEndpoint(ABC):
             q_options.append(f"sort={sort}")
 
         if search is not None:
-            q_options.append(f"search[name]={search}")
+            if "name" in search:
+                q_options.append(f"search[name]={search['name']}")
+
+            if "tags" in search:
+                q_options.append(f"search[tags]={search['tags']}")
 
         if since is not None:
             q_options.append(f"since={since}")
