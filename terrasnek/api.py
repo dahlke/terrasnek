@@ -26,6 +26,7 @@ from .admin_workspaces import TFCAdminWorkspaces
 from .agents import TFCAgents
 from .agent_tokens import TFCAgentTokens
 from .applies import TFCApplies
+from .assessment_results import TFCAssessmentResults
 from .audit_trails import TFCAuditTrails
 from .comments import TFCComments
 from .config_versions import TFCConfigVersions
@@ -101,9 +102,10 @@ class TFC():
         },
         "org-required": {
             "account": TFCAccount,
-            "applies": TFCApplies,
             "agents": TFCAgents,
             "agent_tokens": TFCAgentTokens,
+            "applies": TFCApplies,
+            "assessment_results": TFCAssessmentResults,
             "comments": TFCComments,
             "config_versions": TFCConfigVersions,
             "cost_estimates": TFCCostEstimates,
@@ -168,6 +170,7 @@ class TFC():
         self.__version__ = TERRASNEK_VERSION
         self.version = TERRASNEK_VERSION
 
+        self.account: TFCAccount = None
         self.admin_module_sharing: TFCAdminModuleSharing = None
         self.admin_orgs: TFCAdminOrgs = None
         self.admin_runs: TFCAdminRuns = None
@@ -175,18 +178,18 @@ class TFC():
         self.admin_terraform_versions: TFCAdminTerraformVersions = None
         self.admin_users: TFCAdminUsers = None
         self.admin_workspaces: TFCAdminWorkspaces = None
-        self.audit_trails: TFCAuditTrails = None
-        self.invoices: TFCInvoices = None
-        self.ip_ranges: TFCIPRanges = None
-        self.feature_sets: TFCFeatureSets = None
-        self.orgs: TFCOrgs = None
-        self.account: TFCAccount = None
-        self.applies: TFCApplies = None
         self.agents: TFCAgents = None
         self.agent_tokens: TFCAgentTokens = None
+        self.applies: TFCApplies = None
+        self.assessment_results: TFCAssessmentResults = None
+        self.audit_trails: TFCAuditTrails = None
         self.comments: TFCComments = None
         self.config_versions: TFCConfigVersions = None
         self.cost_estimates: TFCCostEstimates = None
+        self.feature_sets: TFCFeatureSets = None
+        self.invoices: TFCInvoices = None
+        self.ip_ranges: TFCIPRanges = None
+        self.orgs: TFCOrgs = None
         self.oauth_clients: TFCOAuthClients = None
         self.oauth_tokens: TFCOAuthTokens = None
         self.org_memberships: TFCOrgMemberships = None

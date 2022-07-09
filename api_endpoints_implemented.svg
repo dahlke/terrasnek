@@ -13,11 +13,11 @@
         <path fill="url(#b)" d="M0 0h274v20H0z"/>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-        <text x="111.5" y="15" fill="#010101" fill-opacity=".3">228/228 API endpoints implemented</text>
-        <text x="110.5" y="14">228/228 API endpoints implemented</text>
+        <text x="111.5" y="15" fill="#010101" fill-opacity=".3">216/218 API endpoints implemented</text>
+        <text x="110.5" y="14">216/218 API endpoints implemented</text>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-        <text x="248.5" y="15" fill="#010101" fill-opacity=".3">100.0%</text>
-        <text x="247.5" y="14">100.0%</text>
+        <text x="248.5" y="15" fill="#010101" fill-opacity=".3">99.08%</text>
+        <text x="247.5" y="14">99.08%</text>
     </g>
 </svg>

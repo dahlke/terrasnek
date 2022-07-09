@@ -21,6 +21,7 @@ API Spec
    agents
    agent_tokens
    applies
+   assessment_results
    audit_trails
    comments
    config_versions
