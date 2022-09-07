@@ -25,8 +25,10 @@ class TestTFCAssessmentResults(TestTFCBaseTestCase):
         # Create a workspace using that token ID, save the workspace ID
         _ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
 
-        # NOTE: this test requires that you enable data.attributes.drift_detection
-        _ws_payload["data"]["attributes"]["drift_detection"] = True
+        # NOTE: this test requires that you enable data.attributes.assessments_enabled
+        # TODO: this is now assessments_enabled, not drift_detection
+
+        _ws_payload["data"]["attributes"]["assessments_enabled"] = True
         print(_ws_payload)
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
@@ -65,15 +67,12 @@ class TestTFCAssessmentResults(TestTFCBaseTestCase):
         # if the run is queued.
         created_run = self._created_run_timeout(self._run_id)
         created_plan_id = created_run["relationships"]["plan"]["data"]["id"]
-        print(created_plan_id)
 
         # Confirm the shown plan's ID matches the ID from the run
         plan = self._api.plans.show(created_plan_id)["data"]
         self.assertEqual(created_plan_id, plan["id"])
 
-        # TODO: create a workspace with data.attributes.drift_detection	enabled
-        # https://www.terraform.io/cloud-docs/api-docs/workspaces
+        # TODO: Will have to add an includes to show plan to get the assessment result id once
+        # the team has it finished. This will show the drift detection.
+        print(plan)
 
-        # TODO: Kick off a plan
-
-        # TODO: submit for assessments?
