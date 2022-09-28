@@ -1691,10 +1691,10 @@
         "methods": {
             "Add Remote State Consumers": {
                 "http-paths": [
-                    "POST /workspaces/:workspace_id/relationships/remote_state_consumers"
+                    "POST /workspaces/:workspace_id/relationships/remote-state-consumers"
                 ],
-                "implementation-method-name": "add_remote_state_consumers",
-                "implemented": true,
+                "implementation-method-name": null,
+                "implemented": false,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#add-remote-state-consumers"
             },
             "Add tags to a workspace": {
@@ -1723,10 +1723,10 @@
             },
             "Delete Remote State Consumers": {
                 "http-paths": [
-                    "DELETE /workspaces/:workspace_id/relationships/remote_state_consumers"
+                    "DELETE /workspaces/:workspace_id/relationships/remote-state-consumers"
                 ],
-                "implementation-method-name": "delete_remote_state_consumers",
-                "implemented": true,
+                "implementation-method-name": null,
+                "implemented": false,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#delete-remote-state-consumers"
             },
             "Delete a workspace": {
@@ -1748,10 +1748,10 @@
             },
             "Get Remote State Consumers": {
                 "http-paths": [
-                    "GET /workspaces/:workspace_id/relationships/remote_state_consumers"
+                    "GET /workspaces/:workspace_id/relationships/remote-state-consumers"
                 ],
-                "implementation-method-name": "get_remote_state_consumers",
-                "implemented": true,
+                "implementation-method-name": null,
+                "implemented": false,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#get-remote-state-consumers"
             },
             "Get Tags": {
@@ -1788,10 +1788,10 @@
             },
             "Replace Remote State Consumers": {
                 "http-paths": [
-                    "PATCH /workspaces/:workspace_id/relationships/remote_state_consumers"
+                    "PATCH /workspaces/:workspace_id/relationships/remote-state-consumers"
                 ],
-                "implementation-method-name": "replace_remote_state_consumers",
-                "implemented": true,
+                "implementation-method-name": null,
+                "implemented": false,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#replace-remote-state-consumers"
             },
             "Show workspace": {
