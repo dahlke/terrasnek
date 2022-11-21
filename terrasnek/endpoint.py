@@ -360,27 +360,27 @@ class TFCEndpoint(ABC):
         Returns an object with two arrays of objects.
         """
         current_page_number = 1
-        list_resp = \
-            self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, include=include, \
-                search=search, filters=filters, query=query)
-
-        if "meta" in list_resp:
-            total_pages = list_resp["meta"]["pagination"]["total-pages"]
-        elif "pagination" in list_resp:
-            total_pages = list_resp["pagination"]["total_pages"]
-
         included = []
         data = []
-        while current_page_number <= total_pages:
+
+        while current_page_number:
             list_resp = \
                 self._list(url, page=current_page_number, page_size=MAX_PAGE_SIZE, \
                     include=include, search=search, filters=filters, query=query)
             data += list_resp["data"]
 
+            if "meta" in list_resp:
+                total_pages = list_resp["meta"]["pagination"]["total-pages"]
+            elif "pagination" in list_resp:
+                total_pages = list_resp["pagination"]["total_pages"]
+
             if "included" in list_resp:
                 included += list_resp["included"]
 
             current_page_number += 1
+
+            if current_page_number > total_pages:
+                break
 
         return {
             "data": data,
