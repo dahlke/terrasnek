@@ -74,5 +74,12 @@ class TestTFCAssessmentResults(TestTFCBaseTestCase):
 
         # TODO: Will have to add an includes to show plan to get the assessment result id once
         # the team has it finished. This will show the drift detection.
-        print(plan)
+        # print(plan)
+
+        # TODO: To get this to work
+        # https://developer.hashicorp.com/terraform/cloud-docs/workspaces/health
+        # Upgrade to TF 1.3.0
+        # https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations#health
+        # Enable Health Assessments
+
 

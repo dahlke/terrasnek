@@ -129,6 +129,10 @@ for team and organization memberships tests, a this cannot be done
 from the API currently. That user's username and email must match those
 provided in your `secrets.tfe.sh` file._
 
+_NOTE: In order to test Drift Detection, or any other assessments, it is
+required that they are enabled across all workspaces in the test organization.
+TODO: add any other detail here._
+
 #### Building Test Data
 
 ```bash
