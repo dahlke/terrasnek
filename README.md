@@ -1,11 +1,11 @@
 # terrasnek
 
 [![CircleCI](https://circleci.com/gh/dahlke/terrasnek.svg?style=svg)](https://circleci.com/gh/dahlke/terrasnek)
-[![codecov](https://codecov.io/gh/dahlke/terrasnek/branch/master/graph/badge.svg)](https://codecov.io/gh/dahlke/terrasnek)
+[![codecov](https://codecov.io/gh/dahlke/terrasnek/branch/main/graph/badge.svg)](https://codecov.io/gh/dahlke/terrasnek)
 [![PyPI version](https://badge.fury.io/py/terrasnek.svg)](https://badge.fury.io/py/terrasnek)
 [![Documentation Status](https://readthedocs.org/projects/terrasnek/badge/)](https://terrasnek.readthedocs.io/en/latest/?badge=latest)
 [![GitHub issues](https://img.shields.io/github/issues/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/issues)
-[![GitHub license](https://img.shields.io/github/license/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/dahlke/terrasnek.svg)](https://github.com/dahlke/terrasnek/blob/main/LICENSE)
 [![API Method Support](./api_endpoints_implemented.svg)](./TERRASNEK_API_COVERAGE_COMPLETENESS.md)
 
 _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/cloud/api/index.html)._

@@ -49,7 +49,7 @@ the users, and are used in automation to find missing functionality in
 ([markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 [rules](https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md)).
 - The documentation must be rebuilt with any changes you added.
-- Before merging to master, it must run the full test suite and generate test
+- Before merging to `main`, it must run the full test suite and generate test
 coverage, and all tests must pass.
 - The test coverage must be uploaded to CodeCov.
 

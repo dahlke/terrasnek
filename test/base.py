@@ -365,7 +365,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "vcs-repo": {
                         "identifier": "dahlke/terrasnek-unittest-config",
                         "oauth-token-id": oauth_token_id,
-                        "branch": "master"
+                        "branch": "main"
                     },
                     "global-remote-state": False
                 },
@@ -429,7 +429,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "global": False,
                     "policies-path": "sentinel/",
                     "vcs-repo": {
-                        "branch": "master",
+                        "branch": "main",
                         "identifier": "dahlke/terrasnek-unittest-config",
                         "ingress-submodules": False,
                         "oauth-token-id": oauth_token_id

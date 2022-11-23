@@ -45,7 +45,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - coverage
   api_completeness_check:
@@ -55,6 +55,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - api_comparison

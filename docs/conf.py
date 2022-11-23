@@ -77,7 +77,7 @@ html_theme_options = {
 # html_static_path = ['_static']
 html_static_path = []
 
-# github_doc_root = 'https://github.com/dahlke/terrasnek/tree/master/docs/'
+# github_doc_root = 'https://github.com/dahlke/terrasnek/tree/main/docs/'
 # 'url_resolver': lambda url: github_doc_root + url,
 def setup(app):
     pass
