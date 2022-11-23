@@ -7,6 +7,8 @@ from abc import ABC, abstractmethod
 import json
 import logging
 from requests import Session
+from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
 
 from .exceptions import \
     TFCHTTPBadRequest, TFCHTTPUnauthorized, TFCHTTPForbidden, TFCHTTPNotFound, \
@@ -20,6 +22,14 @@ from ._constants import \
                 HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE, HTTP_MOVED_PERMANENTLY, \
                     HTTP_MOVED_TEMPORARILY
 
+_retry_strategy = Retry(
+        total=5,
+        method_whitelist=["HEAD", "GET", "PUT", "DELETE", "POST", "PATCH"],
+        backoff_factor=1,
+)
+
+_adapter = HTTPAdapter(max_retries=_retry_strategy)
+
 class TFCEndpoint(ABC):
     """
     Base class providing common CRUD operation implementations across all TFC Endpoints.
@@ -29,7 +39,6 @@ class TFCEndpoint(ABC):
             self, instance_url, org_name, headers, well_known_paths, verify, log_level,
             session=None, timeout=30
     ):
-
         self._session = session or Session()
         self._logger = logging.getLogger(self.__class__.__name__)
         self._logger.setLevel(log_level)
@@ -42,6 +51,8 @@ class TFCEndpoint(ABC):
         self._modules_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1'][:-1]}"
         self._headers = headers
         self._session.headers.update(headers)
+        self._session.mount("https://", _adapter)
+        self._session.mount("http://", _adapter)
         self._timeout = timeout
         self._org_name = org_name
         self._verify = verify

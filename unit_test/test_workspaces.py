@@ -4,6 +4,9 @@ Unit tests for the workspaces module.
 import json
 from unittest import TestCase, mock
 from unittest.mock import patch, call, PropertyMock
+
+from requests import HTTPError
+
 from terrasnek.api import TFC
 
 
@@ -700,3 +703,14 @@ class TestWorkspaces(TestCase):
                     ),
                 ]
             )
+
+    def test_get_retries(self):
+        """
+        Assert that our requests.Session object is using our default parameters for retries and backoff factor
+        """
+        assert self.api.workspaces._session.adapters["https://"].max_retries.total == 5
+        assert self.api.workspaces._session.adapters["https://"].max_retries.backoff_factor == 1
+        assert (
+                self.api.workspaces._session.adapters["https://"]
+                .max_retries.RETRY_AFTER_STATUS_CODES == frozenset({503, 413, 429})
+        )
