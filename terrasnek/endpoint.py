@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 
 import json
 import logging
-import requests
+from requests import Session
 
 from .exceptions import \
     TFCHTTPBadRequest, TFCHTTPUnauthorized, TFCHTTPForbidden, TFCHTTPNotFound, \
@@ -25,7 +25,9 @@ class TFCEndpoint(ABC):
     Base class providing common CRUD operation implementations across all TFC Endpoints.
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
+    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level, session=None):
+
+        self._session = session or Session()
         self._logger = logging.getLogger(self.__class__.__name__)
         self._logger.setLevel(log_level)
 
@@ -36,6 +38,7 @@ class TFCEndpoint(ABC):
         self._meta_base_url = f"{self._instance_url}/api/meta"
         self._modules_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1'][:-1]}"
         self._headers = headers
+        self._session.headers.update(headers)
         self._org_name = org_name
         self._verify = verify
 
@@ -61,7 +64,7 @@ class TFCEndpoint(ABC):
         return False
 
     def _delete(self, url, data=None):
-        req = requests.delete(\
+        req = self._session.delete(\
             url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
         if req.status_code == HTTP_OK:
@@ -89,7 +92,7 @@ class TFCEndpoint(ABC):
             raise TFCHTTPUnclassified(err)
 
     # pylint: disable=too-many-statements,too-many-branches
-    def _get(self, url, return_raw=None, allow_redirects=None, query=None, filters=None, \
+    def _get(self, url, return_raw=None, allow_redirects=False, query=None, filters=None, \
         page=None, page_size=None, search=None, include=None, sort=None, \
         offset=None, limit=None, provider=None, namespace=None, verified=None, \
         since=None):
@@ -162,7 +165,7 @@ class TFCEndpoint(ABC):
             url += "?" + "&".join(q_options)
 
         self._logger.debug(f"Trying HTTP GET to URL: {url} ...")
-        req = requests.get(\
+        req = self._session.get(\
             url, headers=self._headers, verify=self._verify, allow_redirects=allow_redirects)
 
         if req.status_code == HTTP_OK and not return_raw:
@@ -210,7 +213,7 @@ class TFCEndpoint(ABC):
         results = None
 
         self._logger.debug(f"Trying HTTP PATCH to URL: {url} ...")
-        req = requests.patch(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
+        req = self._session.patch(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
         if req.status_code == HTTP_OK:
             results = json.loads(req.content)
@@ -246,7 +249,7 @@ class TFCEndpoint(ABC):
         results = None
 
         self._logger.debug(f"Trying HTTP POST to URL: {url} ...")
-        req = requests.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
+        req = self._session.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
         if req.status_code in [HTTP_OK, HTTP_CREATED]:
             results = json.loads(req.content)
@@ -300,7 +303,7 @@ class TFCEndpoint(ABC):
             data = bytes(data, "utf-8")
 
         self._logger.debug(f"Trying HTTP PUT to URL: {url} ...")
-        req = requests.put(url, data=data, headers=headers, verify=self._verify)
+        req = self._session.put(url, data=data, headers=headers, verify=self._verify)
 
         if req.status_code == HTTP_OK:
             if octet:
