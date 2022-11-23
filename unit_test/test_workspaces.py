@@ -22,6 +22,7 @@ class TestWorkspaces(TestCase):
                 "Content-Type": "application/vnd.api+json",
             },
             "verify": True,
+            "timeout": 30,
         }
 
     def test_workspace_create(self):

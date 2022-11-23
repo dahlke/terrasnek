@@ -25,7 +25,10 @@ class TFCEndpoint(ABC):
     Base class providing common CRUD operation implementations across all TFC Endpoints.
     """
 
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level, session=None):
+    def __init__(
+            self, instance_url, org_name, headers, well_known_paths, verify, log_level,
+            session=None, timeout=30
+    ):
 
         self._session = session or Session()
         self._logger = logging.getLogger(self.__class__.__name__)
@@ -39,6 +42,7 @@ class TFCEndpoint(ABC):
         self._modules_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1'][:-1]}"
         self._headers = headers
         self._session.headers.update(headers)
+        self._timeout = timeout
         self._org_name = org_name
         self._verify = verify
 
@@ -65,7 +69,7 @@ class TFCEndpoint(ABC):
 
     def _delete(self, url, data=None):
         req = self._session.delete(\
-            url, data=json.dumps(data), headers=self._headers, verify=self._verify)
+            url, data=json.dumps(data), headers=self._headers, verify=self._verify, timeout=self._timeout)
 
         if req.status_code == HTTP_OK:
             self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
@@ -166,7 +170,7 @@ class TFCEndpoint(ABC):
 
         self._logger.debug(f"Trying HTTP GET to URL: {url} ...")
         req = self._session.get(\
-            url, headers=self._headers, verify=self._verify, allow_redirects=allow_redirects)
+            url, headers=self._headers, verify=self._verify, allow_redirects=allow_redirects, timeout=self._timeout)
 
         if req.status_code == HTTP_OK and not return_raw:
             results = json.loads(req.content)
@@ -213,7 +217,8 @@ class TFCEndpoint(ABC):
         results = None
 
         self._logger.debug(f"Trying HTTP PATCH to URL: {url} ...")
-        req = self._session.patch(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
+        req = self._session.patch(url, data=json.dumps(data), headers=self._headers, verify=self._verify,
+                                  timeout=self._timeout)
 
         if req.status_code == HTTP_OK:
             results = json.loads(req.content)
@@ -249,7 +254,8 @@ class TFCEndpoint(ABC):
         results = None
 
         self._logger.debug(f"Trying HTTP POST to URL: {url} ...")
-        req = self._session.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
+        req = self._session.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify,
+                                 timeout=self._timeout)
 
         if req.status_code in [HTTP_OK, HTTP_CREATED]:
             results = json.loads(req.content)
@@ -303,7 +309,7 @@ class TFCEndpoint(ABC):
             data = bytes(data, "utf-8")
 
         self._logger.debug(f"Trying HTTP PUT to URL: {url} ...")
-        req = self._session.put(url, data=data, headers=headers, verify=self._verify)
+        req = self._session.put(url, data=data, headers=headers, verify=self._verify, timeout=self._timeout)
 
         if req.status_code == HTTP_OK:
             if octet:
