@@ -177,6 +177,29 @@ class TestWorkspaces(TestCase):
                         {
                             "meta": {
                                 "pagination": {
+                                    "current-page": 1,
+                                    "next-page": 2,
+                                    "prev-page": None,
+                                    "total-pages": 2,
+                                    "total-count": 2,
+                                },
+                            },
+                            "data": [
+                                {
+                                    "id": "ws-123456",
+                                    "type": "workspaces",
+                                    "attributes": {
+                                        "name": "test_workspace",
+                                        "created-at": "2020",
+                                    },
+                                }
+                            ],
+                        },
+                    ),
+                    json.dumps(
+                        {
+                            "meta": {
+                                "pagination": {
                                     "current-page": 2,
                                     "next-page": None,
                                     "prev-page": 1,
