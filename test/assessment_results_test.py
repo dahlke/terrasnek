@@ -29,7 +29,6 @@ class TestTFCAssessmentResults(TestTFCBaseTestCase):
         # TODO: this is now assessments_enabled, not drift_detection
 
         _ws_payload["data"]["attributes"]["assessments_enabled"] = True
-        print(_ws_payload)
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
 
