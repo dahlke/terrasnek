@@ -53,6 +53,31 @@ class TFCWorkspaces(TFCEndpoint):
 
         return self._destroy(url)
 
+    def safe_destroy(self, workspace_id=None, workspace_name=None):
+        """
+        ``POST /workspaces/:workspace_id/actions/safe-delete``
+        ``DELETE /organizations/:organization_name/workspaces/:name/actions/safe-delete``
+
+        TODO / NOTE: the above DELETE should really be a POST, the docs don't match reality, so
+        need to leave it as DELETE for now since our API comparison script relies on those strings.
+
+        `Workspaces Safe Destroy API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/workspaces#safe-delete-a-workspace>`_
+        """
+        resp = None
+
+        if workspace_name is not None:
+            url = f"{self._org_api_v2_base_url}/{workspace_name}/actions/safe-delete"
+            resp = self._post(url)
+        elif workspace_id is not None:
+            url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/safe-delete"
+            print("URL WS", url)
+            resp = self._post(url)
+        else:
+            self._logger.error("Arguments workspace_name or workspace_id must be defined")
+
+        return resp
+
     def force_unlock(self, workspace_id):
         """
         ``POST /workspaces/:workspace_id/actions/force-unlock``
@@ -174,7 +199,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def get_remote_state_consumers(self, workspace_id, page=None, page_size=None):
         """
-        ``GET /workspaces/:workspace_id/relationships/remote_state_consumers``
+        ``GET /workspaces/:workspace_id/relationships/remote-state-consumers``
 
         `Get Remote State Consumers API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#get-remote-state-consumers>`_
@@ -187,7 +212,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def replace_remote_state_consumers(self, workspace_id, payload):
         """
-        ``PATCH /workspaces/:workspace_id/relationships/remote_state_consumers``
+        ``PATCH /workspaces/:workspace_id/relationships/remote-state-consumers``
 
         `Replace Remote State Consumers API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#replace-remote-state-consumers>`_
@@ -200,7 +225,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def add_remote_state_consumers(self, workspace_id, payload):
         """
-        ``POST /workspaces/:workspace_id/relationships/remote_state_consumers``
+        ``POST /workspaces/:workspace_id/relationships/remote-state-consumers``
 
         `Add Remote State Consumers API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#add-remote-state-consumers>`_
@@ -213,7 +238,7 @@ class TFCWorkspaces(TFCEndpoint):
 
     def delete_remote_state_consumers(self, workspace_id, payload):
         """
-        ``DELETE /workspaces/:workspace_id/relationships/remote_state_consumers``
+        ``DELETE /workspaces/:workspace_id/relationships/remote-state-consumers``
 
         `Delete Remote State Consumers API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/workspaces.html#delete-remote-state-consumers>`_

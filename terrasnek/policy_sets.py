@@ -128,7 +128,7 @@ class TFCPolicySets(TFCEndpoint):
         """
         ``DELETE /policy-sets/:id/relationships/policies``
 
-        `Policy Sets Remove Policies From Set API Doc Reference \
+        `Policy Sets Remove Policies from Set API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#remove-policies-from-the-policy-set>`_
 
         `Remove Policies from Set Sample Payload \
@@ -144,7 +144,7 @@ class TFCPolicySets(TFCEndpoint):
         `Policy Sets Detach Set from Workspaces API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#detach-the-policy-set-from-workspaces>`_
 
-        `Detach Policy Set From Workspaces Sample Payload \
+        `Detach Policy Set from Workspaces Sample Payload \
             <https://www.terraform.io/docs/cloud/api/policy-sets.html#sample-payload-5>`_
         """
         url = f"{self._endpoint_base_url}/{policy_id}/relationships/workspaces"

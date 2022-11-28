@@ -852,16 +852,16 @@
                 "http-paths": [
                     "GET /task-stages/:task_stage_id/policy-evaluations"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_policy_evals_in_task_stage",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#list-policy-evaluations-in-the-task-stage"
             },
             "List Policy Outcomes": {
                 "http-paths": [
                     "GET /policy-evaluations/:policy_evaluation_id/policy-set-outcomes"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list_policy_outcomes",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#list-policy-outcomes"
             },
             "Override Policy": {
@@ -884,8 +884,8 @@
                 "http-paths": [
                     "GET /policy-set-outcomes/:policy_set_outcome_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show_policy_outcome",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#show-a-policy-outcome"
             }
         },
@@ -1371,8 +1371,8 @@
                 "http-paths": [
                     "POST /teams/:team_id/relationships/organization-memberships"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_user_to_team_with_org_id",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-members#add-a-user-to-team-(with-organization-membership-id)"
             },
             "Add a User to Team (With user ID)": {
@@ -1387,8 +1387,8 @@
                 "http-paths": [
                     "DELETE /teams/:team_id/relationships/organization-memberships"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_user_from_team_with_org_id",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/team-members#delete-a-user-from-team-(with-organization-membership-id)"
             },
             "Delete a User from Team (With user ID)": {
@@ -1733,8 +1733,8 @@
                 "http-paths": [
                     "POST /workspaces/:workspace_id/relationships/remote-state-consumers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_remote_state_consumers",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#add-remote-state-consumers"
             },
             "Add tags to a workspace": {
@@ -1765,8 +1765,8 @@
                 "http-paths": [
                     "DELETE /workspaces/:workspace_id/relationships/remote-state-consumers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "delete_remote_state_consumers",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#delete-remote-state-consumers"
             },
             "Force Delete a workspace": {
@@ -1790,8 +1790,8 @@
                 "http-paths": [
                     "GET /workspaces/:workspace_id/relationships/remote-state-consumers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "get_remote_state_consumers",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#get-remote-state-consumers"
             },
             "Get Tags": {
@@ -1830,8 +1830,8 @@
                 "http-paths": [
                     "PATCH /workspaces/:workspace_id/relationships/remote-state-consumers"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "replace_remote_state_consumers",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#replace-remote-state-consumers"
             },
             "Safe Delete a workspace": {
@@ -1839,8 +1839,8 @@
                     "POST /workspaces/:workspace_id/actions/safe-delete",
                     "DELETE /organizations/:organization_name/workspaces/:name/actions/safe-delete"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "safe_destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/workspaces#safe-delete-a-workspace"
             },
             "Show workspace": {

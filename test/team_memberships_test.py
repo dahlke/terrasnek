@@ -3,6 +3,7 @@ Module for testing the Terraform Cloud API Endpoint: Team Memberships.
 """
 
 from .base import TestTFCBaseTestCase
+import time
 
 
 class TestTFCTeamMemberships(TestTFCBaseTestCase):
@@ -55,3 +56,21 @@ class TestTFCTeamMemberships(TestTFCBaseTestCase):
             self._team_id, membership_payload)
         shown_team = self._api.teams.show(self._team_id)["data"]
         self.assertEqual(len(shown_team["relationships"]["users"]["data"]), 0)
+
+        # Now add the user to the team via the org membership ID, then remove it via the org membership ID
+        membership_via_org_payload = {
+            "data": [
+                {
+                    "type": "organization-memberships",
+                    "id": self._org_membership_id
+                }
+            ]
+        }
+
+        # TODO: figure out a way to use a member that has already accepted the org invite
+        # If the result is None for both the add and remove, consider it successful (the user has to accept the org invite first)
+        add_result = self._api.team_memberships.add_user_to_team_with_org_id(self._team_id, membership_via_org_payload)
+        self.assertIsNone(add_result)
+
+        remove_result = self._api.team_memberships.remove_user_from_team_with_org_id(self._team_id, membership_via_org_payload)
+        self.assertIsNone(remove_result)

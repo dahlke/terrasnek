@@ -204,50 +204,69 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         """
 
         # Create 3 workspaces, one to add a consumer to, one to update with.
-        workspace1_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
-        workspace2_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
-        workspace3_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
+        ws1_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
+        ws2_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
+        ws3_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
 
-        gotten_consumers = self._api.workspaces.get_remote_state_consumers(workspace1_id)["data"]
+        gotten_consumers = self._api.workspaces.get_remote_state_consumers(ws1_id)["data"]
         self.assertEqual(len(gotten_consumers), 0)
 
         # Add the second workspace as a consumer to the first workspace
         add_payload = {
             "data": [
                 {
-                    "id": workspace2_id,
+                    "id": ws2_id,
                     "type": "workspaces"
                 }
             ]
         }
-        self._api.workspaces.add_remote_state_consumers(workspace1_id, add_payload)
+        self._api.workspaces.add_remote_state_consumers(ws1_id, add_payload)
 
         # Confirm the consumers
-        gotten_consumers = self._api.workspaces.get_remote_state_consumers(workspace1_id)["data"]
-        self.assertIn(workspace2_id, gotten_consumers[0]["relationships"]["remote-state-consumers"]["links"]["related"])
+        gotten_consumers = self._api.workspaces.get_remote_state_consumers(ws1_id)["data"]
+        self.assertIn(ws2_id, gotten_consumers[0]["relationships"]["remote-state-consumers"]["links"]["related"])
 
         # Update to add the third workspace as a consumer of the first workspace
         replace_delete_payload = {
             "data": [
                 {
-                    "id": workspace3_id,
+                    "id": ws3_id,
                     "type": "workspaces"
                 }
             ]
         }
-        self._api.workspaces.replace_remote_state_consumers(workspace1_id, replace_delete_payload)
+        self._api.workspaces.replace_remote_state_consumers(ws1_id, replace_delete_payload)
 
         # Confirm the consumers
-        gotten_consumers = self._api.workspaces.get_remote_state_consumers(workspace1_id)["data"]
-        self.assertIn(workspace3_id, gotten_consumers[0]["relationships"]["remote-state-consumers"]["links"]["related"])
+        gotten_consumers = self._api.workspaces.get_remote_state_consumers(ws1_id)["data"]
+        self.assertIn(ws3_id, gotten_consumers[0]["relationships"]["remote-state-consumers"]["links"]["related"])
 
-        self._api.workspaces.delete_remote_state_consumers(workspace1_id, replace_delete_payload)
+        self._api.workspaces.delete_remote_state_consumers(ws1_id, replace_delete_payload)
 
         # Confirm the consumers
-        gotten_consumers = self._api.workspaces.get_remote_state_consumers(workspace1_id)["data"]
+        gotten_consumers = self._api.workspaces.get_remote_state_consumers(ws1_id)["data"]
         self.assertEqual(len(gotten_consumers), 0)
 
         # Destroy all workspaces
-        self._api.workspaces.destroy(workspace_id=workspace1_id)
-        self._api.workspaces.destroy(workspace_id=workspace2_id)
-        self._api.workspaces.destroy(workspace_id=workspace3_id)
+        self._api.workspaces.destroy(workspace_id=ws1_id)
+        self._api.workspaces.destroy(workspace_id=ws2_id)
+        self._api.workspaces.destroy(workspace_id=ws3_id)
+
+    def test_workspaces_safe_destroy(self):
+        """
+        Test the Workspaces API safe destroy endpoints.
+        """
+
+        # Create 3 workspaces, one to add a consumer to, one to update with.
+        ws1_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
+        ws2_name = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["attributes"]["name"]
+
+        print("NAmE", ws2_name)
+
+        # Safe destroy the workspaces that should not have any resources under management
+        self._api.workspaces.safe_destroy(workspace_id=ws1_id)
+        self._api.workspaces.safe_destroy(workspace_name=ws2_name)
+
+        # Confirm both of the workspaces with no resources were safe destroyed.
+        listed_ws = self._api.workspaces.list()["data"]
+        self.assertEqual(len(listed_ws), 0)
