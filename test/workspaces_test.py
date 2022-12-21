@@ -41,7 +41,8 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         search_payload = {
             "name": ws_name
         }
-        search_listed_ws = self._api.workspaces.list(page=PAGE_START, page_size=PAGE_SIZE, search=search_payload)["data"]
+        search_listed_ws = \
+            self._api.workspaces.list(page=PAGE_START, page_size=PAGE_SIZE, search=search_payload)["data"]
         self.assertTrue(len(search_listed_ws), 1)
 
         # Ensure searched workspace is in the returned list
@@ -260,8 +261,6 @@ class TestTFCWorkspaces(TestTFCBaseTestCase):
         # Create 3 workspaces, one to add a consumer to, one to update with.
         ws1_id = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["id"]
         ws2_name = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]["attributes"]["name"]
-
-        print("NAmE", ws2_name)
 
         # Safe destroy the workspaces that should not have any resources under management
         self._api.workspaces.safe_destroy(workspace_id=ws1_id)

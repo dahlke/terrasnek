@@ -71,7 +71,6 @@ class TFCWorkspaces(TFCEndpoint):
             resp = self._post(url)
         elif workspace_id is not None:
             url = f"{self._ws_api_v2_base_url}/{workspace_id}/actions/safe-delete"
-            print("URL WS", url)
             resp = self._post(url)
         else:
             self._logger.error("Arguments workspace_name or workspace_id must be defined")

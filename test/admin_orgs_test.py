@@ -2,7 +2,6 @@
 Module for testing the Terraform Cloud API Endpoint: Admin Orgs.
 """
 
-from terrasnek.exceptions import TFCHTTPNotFound
 from .base import TestTFCBaseTestCase
 from ._constants import PAGE_START, PAGE_SIZE
 

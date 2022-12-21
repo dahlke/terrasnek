@@ -76,6 +76,9 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         _, found_module = self._search_published_module_timeout(published_module_name)
         self.assertTrue(found_module)
 
+        # Allow a couple seconds for the VCS and TFE to sync up
+        time.sleep(3)
+
         # List the module versions, confirm that we got an expected response.
         listed_versions_resp = \
             self._api.registry_modules.list_versions(\
