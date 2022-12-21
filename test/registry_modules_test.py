@@ -22,8 +22,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
     def setUp(self):
         # Create an OAuth client for the test and extract it's the token ID
         # Store the OAuth client ID to remove it at the end.
-        oauth_client = self._api.oauth_clients.create(\
-            self._get_oauth_client_create_payload())["data"]
+        oauth_client = self._api.oauth_clients.create(self._get_oauth_client_create_payload())["data"]
         self._oauth_client_id = oauth_client["id"]
         self._oauth_token_id = \
             oauth_client["relationships"]["oauth-tokens"]["data"][0]["id"]
@@ -76,14 +75,15 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         _, found_module = self._search_published_module_timeout(published_module_name)
         self.assertTrue(found_module)
 
-        # Allow a couple seconds for the VCS and TFE to sync up
-        time.sleep(3)
+        # Allow even longer for the module versions to sync up, this can take up to 30 seconds as
+        # of most recent testing.
+        # NOTE: This takes a lot longer on TFC than it does on TFE.
+        time.sleep(15)
 
         # List the module versions, confirm that we got an expected response.
         listed_versions_resp = \
             self._api.registry_modules.list_versions(\
                 published_module_name, TFE_MODULE_PROVIDER_TYPE)
-
         self.assertIn("modules", listed_versions_resp)
         latest_listed_version = listed_versions_resp["modules"][-1]["versions"][0]["version"]
 

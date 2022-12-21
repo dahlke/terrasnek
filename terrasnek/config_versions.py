@@ -4,6 +4,7 @@ Module for Terraform Cloud API Endpoint: Config Versions.
 import io
 import tarfile
 from .endpoint import TFCEndpoint
+from ._constants import TFC_SAAS_URL
 
 class TFCConfigVersions(TFCEndpoint):
     """

@@ -12,7 +12,7 @@ import requests
 import urllib3
 
 from ._constants import \
-    TFC_SAAS_URL, TFC_SAAS_HOSTNAME, HTTP_OK, TERRASNEK_LOG_LEVEL, TERRASNEK_VERSION
+    TFC_SAAS_URL, TFC_SAAS_HOSTNAME, HTTP_OK, TERRASNEK_LOG_LEVEL, TERRASNEK_VERSION, PROJECT_NAME
 from .exceptions import TFCHTTPNotFound
 
 from .account import TFCAccount
@@ -169,6 +169,7 @@ class TFC():
 
         self.__version__ = TERRASNEK_VERSION
         self.version = TERRASNEK_VERSION
+        self.package_name = PROJECT_NAME
 
         self.account: TFCAccount = None
         self.admin_module_sharing: TFCAdminModuleSharing = None
@@ -232,6 +233,7 @@ class TFC():
         self._logger.debug("TFC API well known paths retrieved.")
 
         self.set_token(api_token)
+        self._check_version()
         self._initialize_endpoints()
 
     def _get(self, url):
@@ -239,16 +241,33 @@ class TFC():
         Simplified HTTP GET function for usage only with this API module.
         """
         results = None
-        req = requests.get(url, headers=self._headers, verify=self._verify)
+        r = requests.get(url, headers=self._headers, verify=self._verify)
 
-        if req.status_code == HTTP_OK:
-            results = json.loads(req.content)
+        if r.status_code == HTTP_OK:
+            results = json.loads(r.content)
             self._logger.debug(f"GET to {url} successful")
         else:
-            err = json.loads(req.content.decode("utf-8"))
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
 
         return results
+
+    def _check_version(self):
+        # Make a GET request to the PyPI JSON API to get information about the package
+        r = requests.get(f'https://pypi.org/pypi/{self.package_name}/json')
+        data = r.json()
+
+        # Extract the latest version number from the response
+        latest_version = data['info']['version']
+        is_latest = False
+
+        # Compare the input version with the latest version
+        if self.version == latest_version:
+            is_latest = True
+        else:
+            self._logger.warn(f"{self.version} is not the latest version. The latest version is {latest_version}")
+
+        return is_latest
 
     def _initialize_endpoints(self):
         self._logger.debug("Initializing endpoints that don't require an org to be set...")

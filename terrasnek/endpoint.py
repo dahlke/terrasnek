@@ -18,7 +18,7 @@ from ._constants import \
         HTTP_FORBIDDEN, HTTP_NOT_FOUND, HTTP_CONFLICT, HTTP_PRECONDITION_FAILED, \
             HTTP_UNPROCESSABLE_ENTITY, HTTP_API_REQUEST_RATE_LIMIT_REACHED, \
                 HTTP_INTERNAL_SERVER_ERROR, MAX_PAGE_SIZE, HTTP_MOVED_PERMANENTLY, \
-                    HTTP_MOVED_TEMPORARILY
+                    HTTP_MOVED_TEMPORARILY, TFC_SAAS_HOSTNAME
 
 class TFCEndpoint(ABC):
     """
@@ -29,15 +29,17 @@ class TFCEndpoint(ABC):
         self._logger = logging.getLogger(self.__class__.__name__)
         self._logger.setLevel(log_level)
 
-        # Remove the slack at the end if someone adds it.
         self._instance_url = \
             instance_url if instance_url[-1] != "/" else instance_url[:-1]
         self._api_v2_base_url = f"{self._instance_url}{well_known_paths['tfe.v2'][:-1]}"
         self._meta_base_url = f"{self._instance_url}/api/meta"
-        self._modules_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1'][:-1]}"
+        self._mods_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1'][:-1]}"
+        # TODO: support the public registry workflows?
+        # self._public_registry_v1_url = "https://registry.terraform.io/v1/modules"
         self._headers = headers
         self._org_name = org_name
         self._verify = verify
+
 
     @abstractmethod
     def required_entitlements(self):
@@ -60,31 +62,37 @@ class TFCEndpoint(ABC):
         """
         return False
 
+    def is_terraform_cloud(self):
+        """
+        Returns true if this API instance is configured for Terraform Cloud.
+        """
+        return TFC_SAAS_HOSTNAME in self._instance_url
+
     def _delete(self, url, data=None):
-        req = requests.delete(\
+        r = requests.delete(\
             url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
-        if req.status_code == HTTP_OK:
+        if r.status_code == HTTP_OK:
             self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
-        elif req.status_code == HTTP_NO_CONTENT:
+        elif r.status_code == HTTP_NO_CONTENT:
             self._logger.debug(f"Terraform Cloud resource at URL [{url}] destroyed.")
-        elif req.status_code == HTTP_NOT_FOUND:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_NOT_FOUND:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPNotFound(err)
-        elif req.status_code == HTTP_FORBIDDEN:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_FORBIDDEN:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPForbidden(err)
-        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
             try:
-                err = json.loads(req.content.decode("utf-8"))
+                err = json.loads(r.content.decode("utf-8"))
             except json.decoder.JSONDecodeError:
-                err = req.content
+                err = r.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -162,44 +170,44 @@ class TFCEndpoint(ABC):
             url += "?" + "&".join(q_options)
 
         self._logger.debug(f"Trying HTTP GET to URL: {url} ...")
-        req = requests.get(\
+        r = requests.get(\
             url, headers=self._headers, verify=self._verify, allow_redirects=allow_redirects)
 
-        if req.status_code == HTTP_OK and not return_raw:
-            results = json.loads(req.content)
+        if r.status_code == HTTP_OK and not return_raw:
+            results = json.loads(r.content)
             self._logger.debug(f"GET to {url} successful")
-        elif req.status_code == HTTP_OK and return_raw:
-            results = req.content
-        elif req.status_code == HTTP_NO_CONTENT:
-            results = req.headers
-        elif req.history:
+        elif r.status_code == HTTP_OK and return_raw:
+            results = r.content
+        elif r.status_code == HTTP_NO_CONTENT:
+            results = r.headers
+        elif r.history:
             # NOTE: If we got redirected, run the get on the new URL, and fix the
             # URL to match the private module registry URL schema. At some point
             # in the future, this may need to use HTTP_MOVED_TEMPORARILY.
-            url = req.url.replace("/v1/modules/", "/api/registry/v1/modules/")
+            url = r.url.replace("/v1/modules/", "/api/registry/v1/modules/")
             results = {"redirect-url": url}
-        elif req.status_code == HTTP_MOVED_TEMPORARILY:
-            results = req.content.decode("utf-8")
-        elif req.status_code == HTTP_MOVED_PERMANENTLY:
+        elif r.status_code == HTTP_MOVED_TEMPORARILY:
+            results = r.content.decode("utf-8")
+        elif r.status_code == HTTP_MOVED_PERMANENTLY:
             # TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks)
             pass
-        elif req.status_code == HTTP_UNAUTHORIZED:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_UNAUTHORIZED:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPUnauthorized(err)
-        elif req.status_code == HTTP_NOT_FOUND:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_NOT_FOUND:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPNotFound(err)
-        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
             try:
-                err = json.loads(req.content.decode("utf-8"))
+                err = json.loads(r.content.decode("utf-8"))
             except json.decoder.JSONDecodeError:
-                err = req.content
+                err = r.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -210,33 +218,33 @@ class TFCEndpoint(ABC):
         results = None
 
         self._logger.debug(f"Trying HTTP PATCH to URL: {url} ...")
-        req = requests.patch(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
+        r = requests.patch(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
-        if req.status_code == HTTP_OK:
-            results = json.loads(req.content)
-        elif req.status_code == HTTP_BAD_REQUEST:
-            err = json.loads(req.content.decode("utf-8"))
+        if r.status_code == HTTP_OK:
+            results = json.loads(r.content)
+        elif r.status_code == HTTP_BAD_REQUEST:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPBadRequest(err)
-        elif req.status_code == HTTP_UNAUTHORIZED:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_UNAUTHORIZED:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPUnauthorized(err)
-        elif req.status_code == HTTP_UNPROCESSABLE_ENTITY:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_UNPROCESSABLE_ENTITY:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPUnprocessableEntity(err)
-        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
-        elif req.status_code == HTTP_NO_CONTENT:
+        elif r.status_code == HTTP_NO_CONTENT:
             pass
         else:
             try:
-                err = json.loads(req.content.decode("utf-8"))
+                err = json.loads(r.content.decode("utf-8"))
             except json.decoder.JSONDecodeError:
-                err = req.content
+                err = r.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -246,46 +254,46 @@ class TFCEndpoint(ABC):
         results = None
 
         self._logger.debug(f"Trying HTTP POST to URL: {url} ...")
-        req = requests.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
+        r = requests.post(url, data=json.dumps(data), headers=self._headers, verify=self._verify)
 
-        if req.status_code in [HTTP_OK, HTTP_CREATED]:
-            results = json.loads(req.content)
+        if r.status_code in [HTTP_OK, HTTP_CREATED]:
+            results = json.loads(r.content)
             self._logger.debug(f"POST to {url} successful")
-        elif req.status_code in [HTTP_ACCEPTED, HTTP_NO_CONTENT]:
+        elif r.status_code in [HTTP_ACCEPTED, HTTP_NO_CONTENT]:
             self._logger.debug(f"POST to {url} successful")
-        elif req.status_code == HTTP_BAD_REQUEST:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_BAD_REQUEST:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPBadRequest(err)
-        elif req.status_code == HTTP_NOT_FOUND:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_NOT_FOUND:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPNotFound(err)
-        elif req.status_code == HTTP_CONFLICT:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_CONFLICT:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPConflict(err)
-        elif req.status_code == HTTP_PRECONDITION_FAILED:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_PRECONDITION_FAILED:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPPreconditionFailed(err)
-        elif req.status_code == HTTP_UNPROCESSABLE_ENTITY:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_UNPROCESSABLE_ENTITY:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPUnprocessableEntity(err)
-        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
-        elif req.status_code == HTTP_INTERNAL_SERVER_ERROR:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_INTERNAL_SERVER_ERROR:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPInternalServerError(err)
         else:
             try:
-                err = json.loads(req.content.decode("utf-8"))
+                err = json.loads(r.content.decode("utf-8"))
             except json.decoder.JSONDecodeError:
-                err = req.content
+                err = r.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 
@@ -300,21 +308,21 @@ class TFCEndpoint(ABC):
             data = bytes(data, "utf-8")
 
         self._logger.debug(f"Trying HTTP PUT to URL: {url} ...")
-        req = requests.put(url, data=data, headers=headers, verify=self._verify)
+        r = requests.put(url, data=data, headers=headers, verify=self._verify)
 
-        if req.status_code == HTTP_OK:
+        if r.status_code == HTTP_OK:
             if octet:
-                results = json.loads(req.content)
+                results = json.loads(r.content)
             self._logger.debug(f"PUT to {url} successful")
-        elif req.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
-            err = json.loads(req.content.decode("utf-8"))
+        elif r.status_code == HTTP_API_REQUEST_RATE_LIMIT_REACHED:
+            err = json.loads(r.content.decode("utf-8"))
             self._logger.debug(err)
             raise TFCHTTPAPIRequestRateLimit(err)
         else:
             try:
-                err = json.loads(req.content.decode("utf-8"))
+                err = json.loads(r.content.decode("utf-8"))
             except json.decoder.JSONDecodeError:
-                err = req.content
+                err = r.content
             self._logger.debug(err)
             raise TFCHTTPUnclassified(err)
 

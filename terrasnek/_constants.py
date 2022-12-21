@@ -7,6 +7,7 @@ import logging
 
 
 # Default Config Items
+PROJECT_NAME = "terrasnek"
 TFC_SAAS_HOSTNAME = "app.terraform.io"
 TFC_SAAS_URL = "https://app.terraform.io"
 TERRASNEK_LOG_LEVEL = logging.CRITICAL

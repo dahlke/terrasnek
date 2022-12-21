@@ -4,6 +4,7 @@ Module for Terraform Cloud API Endpoint: Registry Modules.
 
 from .endpoint import TFCEndpoint
 from ._constants import Entitlements
+import time
 
 
 class TFCRegistryModules(TFCEndpoint):
@@ -18,10 +19,15 @@ class TFCRegistryModules(TFCEndpoint):
     def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
         super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
         # Helper vars to help clarify how the URLs translate to docs below
-        self._reg_name = "private"
         self._namespace = self._org_name
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations"
         self._mods_v2_base_url = f"{self._org_api_v2_base_url}/{self._org_name}/registry-modules"
+        """
+        https://app.terraform.io/api/registry/v1/modules/terrasnek-unittest/terrasnek-unittest/tfe/versions
+        True
+        /api/v2/organizations/terrasnek-unittest/registry-modules/private/terrasnek-unittest/terrasnek-unittest/tfe
+        {self._org_api_v2_base_url}/{reg_name}/{self._org_name}/{MOD NAME}/{PROVIDER}
+        """
 
     def required_entitlements(self):
         return [Entitlements.PRIVATE_MODULE_REGISTRY]
@@ -67,12 +73,12 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Search API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#search-modules>`_
         """
-        url = f"{self._modules_v1_base_url}/search"
+        url = f"{self._mods_v1_base_url}/search"
         return self._list(url, \
             query=query, offset=offset, limit=limit, provider=provider,\
             verified=verified)
 
-    def show(self, module_name, provider):
+    def show(self, module_name, provider, reg_name="private"):
         """
         ``GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider``
 
@@ -84,17 +90,18 @@ class TFCRegistryModules(TFCEndpoint):
         """
         # NOTE: Future - this may be modded to support non-private registries.
         # NOTE: File a GH issue if you need non-private registry support.
-        url = f"{self._mods_v2_base_url}/{self._reg_name}/{self._namespace}/{module_name}/{provider}"
+        url = f"{self._mods_v2_base_url}/{reg_name}/{self._namespace}/{module_name}/{provider}"
+
         return self._show(url)
 
-    def list_versions(self, name, provider):
+    def list_versions(self, name, provider, reg_name="private"):
         """
         ``GET <base_url>/:namespace/:name/:provider/versions``
 
         `Registry Modules List Versions API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-available-versions-for-a-specific-module>`_
         """
-        url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/versions"
+        url = f"{self._mods_v1_base_url}/{self._org_name}/{name}/{provider}/versions"
         return self._get(url)
 
     def list_latest_version_all_providers(self, name, offset=None, limit=None):
@@ -104,7 +111,7 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules List Latest Version All Providers API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#list-latest-version-of-module-for-all-providers>`_
         """
-        url = f"{self._modules_v1_base_url}/{self._org_name}/{name}"
+        url = f"{self._mods_v1_base_url}/{self._org_name}/{name}"
         return self._list(url, offset=offset, limit=limit)
 
     def list_latest_version_specific_provider(self, name, provider):
@@ -114,7 +121,7 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules List Latest Version Specific Provider API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#latest-version-for-a-specific-module-provider>`_
         """
-        url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}"
+        url = f"{self._mods_v1_base_url}/{self._org_name}/{name}/{provider}"
         return self._get(url)
 
     def get(self, name, provider, version):
@@ -124,7 +131,7 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Get API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#get-a-specific-module>`_
         """
-        url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}"
+        url = f"{self._mods_v1_base_url}/{self._org_name}/{name}/{provider}/{version}"
         return self._get(url)
 
     def download_version_source(self, name, provider, version, target_path):
@@ -134,7 +141,7 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Download Version Source API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#download-source-code-for-a-specific-module-version>`_
         """
-        url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/{version}/download"
+        url = f"{self._mods_v1_base_url}/{self._org_name}/{name}/{provider}/{version}/download"
         return self._download(url, target_path, header_with_url="X-Terraform-Get")
 
     def download_latest_source(self, name, provider, target_path):
@@ -144,7 +151,7 @@ class TFCRegistryModules(TFCEndpoint):
         `Registry Modules Download Latest Source API Doc Reference \
             <https://www.terraform.io/docs/registry/api.html#download-the-latest-version-of-a-module>`_
         """
-        url = f"{self._modules_v1_base_url}/{self._org_name}/{name}/{provider}/download"
+        url = f"{self._mods_v1_base_url}/{self._org_name}/{name}/{provider}/download"
         return self._download(\
             url, target_path, header_with_url="X-Terraform-Get", allow_redirects=True)
 
@@ -162,7 +169,7 @@ class TFCRegistryModules(TFCEndpoint):
         with_vcs_url = f"{self._mods_v2_base_url}/vcs"
         return self._post(with_vcs_url, data=payload)
 
-    def destroy(self, module_name, provider=None, version=None):
+    def destroy(self, module_name, reg_name="private", provider=None, version=None):
         """
         ``DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version``
         ``DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider``
@@ -177,7 +184,7 @@ class TFCRegistryModules(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/modules.html#delete-a-module>`_
         """
         # NOTE: Namespace param is the org name for a private registry, and we only support private registries (for now)
-        url = f"{self._mods_v2_base_url}/{self._reg_name}/{self._namespace}/{module_name}/"
+        url = f"{self._mods_v2_base_url}/{reg_name}/{self._namespace}/{module_name}/"
 
         if provider:
             url += f"/{provider}"
@@ -201,7 +208,7 @@ class TFCRegistryModules(TFCEndpoint):
         return self._post(url, data=payload)
 
 
-    def create_version(self, module_name, provider, payload):
+    def create_version(self, module_name, provider, payload, reg_name="private"):
         """
         ``POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions``
 
@@ -212,7 +219,7 @@ class TFCRegistryModules(TFCEndpoint):
             <https://www.terraform.io/docs/cloud/api/modules.html#request-body-2>`_
         """
         # NOTE: In the future, this may be modified to support non-private registries. File an issue if you need this.
-        url = f"{self._mods_v2_base_url}/{self._reg_name}/{self._namespace}/{module_name}/{provider}/versions"
+        url = f"{self._mods_v2_base_url}/{reg_name}/{self._namespace}/{module_name}/{provider}/versions"
         return self._post(url, data=payload)
 
     def upload_version(self, path_to_tarball, upload_url):

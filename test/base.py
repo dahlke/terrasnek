@@ -174,6 +174,21 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.debug(f"Teams purged from test org ({cls._test_org_name}).")
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of org membership invites...")
+        org_tags = cls._api.org_tags.list_tags()["data"]
+        if len(org_tags) > 0:
+            delete_tags_payload = {
+                "data": []
+            }
+            for org_tag in org_tags:
+                delete_tags_payload["data"].append({
+                    "type": "tags",
+                    "id": org_tag["id"]
+
+                })
+            cls._api.org_tags.delete_tags(delete_tags_payload)
+        cls._logger.debug(f"Org tags purged from test org ({cls._test_org_name}).")
+
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of org tags...")
         org_memberships = cls._api.org_memberships.list_all_for_org()["data"]
         for org_membership in org_memberships:
             membership_id = org_membership["id"]
@@ -181,6 +196,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             if member_status == "invited":
                 cls._api.org_memberships.remove(membership_id)
         cls._logger.debug(f"Org member invites purged from test org ({cls._test_org_name}).")
+
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of agent pools...")
         agent_pools = cls._api.agents.list_pools()["data"]
@@ -354,8 +370,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_ws_with_vcs_create_payload(self, oauth_token_id, working_dir=DEFAULT_VCS_WORKING_DIR):
-        # NB: Needs to be TF > v0.12 for Cost Estimation to work
+    def _get_ws_with_vcs_create_payload(self, oauth_token_id, branch="main", working_dir=DEFAULT_VCS_WORKING_DIR):
+        # NOTE: Needs to be TF > v0.12 for Cost Estimation to work
         return {
             "data": {
                 "attributes": {
@@ -365,7 +381,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "vcs-repo": {
                         "identifier": "dahlke/terrasnek-unittest-config",
                         "oauth-token-id": oauth_token_id,
-                        "branch": "main"
+                        "branch": branch
                     },
                     "global-remote-state": False
                 },
@@ -509,12 +525,15 @@ class TestTFCBaseTestCase(unittest.TestCase):
         from the API to match the expected output. This function provides some time cushion for
         terraform plans to occur after creating a run.
         """
+        iterations_waited = 0
         created_run = self._api.runs.show(run_id)["data"]
         while not created_run["attributes"]["status"] == "planned_and_finished" and \
-            not created_run["attributes"]["actions"]["is-confirmable"]:
+            not created_run["attributes"]["actions"]["is-confirmable"] and \
+                iterations_waited != 20:
             created_run = self._api.runs.show(run_id)["data"]
             self._logger.debug("Waiting for created run to finish planning...")
             time.sleep(1)
+            iterations_waited += 1
         self._logger.debug("Plan successful.")
         return created_run
 

@@ -12,6 +12,9 @@ _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/clo
 
 ---
 
+![terrasnek logo](/img/tsnk1_md.png)
+
+
 ## Overview
 
 The goal of this project is to support all endpoints available in the Terraform

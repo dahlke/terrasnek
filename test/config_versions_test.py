@@ -23,7 +23,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         self._oauth_client_id = oauth_client["data"]["id"]
         oauth_token_id = oauth_client["data"]["relationships"]["oauth-tokens"]["data"][0]["id"]
 
-        ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
+        ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id, working_dir="tfe")
         self._ws_w_vcs = self._api.workspaces.create(ws_payload)
         self._ws_w_vcs_id = self._ws_w_vcs["data"]["id"]
 
