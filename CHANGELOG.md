@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.11] - 2022-12-24
+
+- Implemented the Assessment Results endpoints
+- Add filters to list_all() in Workspace, Team endpoints, included tests
+- Update the API comparison tool
+- Update comment strings on Workspace endpoints that were messing up the API completion calculator
+- Adding the "ASSESSMENTS" entitlement.
+- Fixing broken tests for TFC and TFE.
+- Adding new Team Membership API endpoints for adding / removing via Org ID
+- Adding new safe delete Workspace API endpoints
+
 ## [0.1.10] - 2022-05-10
 
 - Implemented the new Config Version endpoints
