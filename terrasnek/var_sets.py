@@ -57,7 +57,16 @@ class TFCVarSets(TFCEndpoint):
         """
         return self._list(self._org_varsets_base_url)
 
-    # FIXME: list_all_for_org when pagination is supported
+    def list_all_for_org(self):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every variable set in an organization.
+
+        Returns an object with two arrays of objects.
+        """
+        return self._list_all(self._org_varsets_base_url)
 
     def list_for_workspace(self, workspace_id):
         """
@@ -69,7 +78,17 @@ class TFCVarSets(TFCEndpoint):
         url = f"{self._ws_api_v2_base_url}/{workspace_id}/varsets"
         return self._list(url)
 
-    # FIXME: list_all_for_workspace when pagination is supported
+    def list_all_for_workspace(self, workspace_id):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every variable set in a workspace.
+
+        Returns an object with two arrays of objects.
+        """
+        url = f"{self._ws_api_v2_base_url}/{workspace_id}/varsets"
+        return self._list_all(url)
 
     def update(self, varset_id, payload):
         """
@@ -140,6 +159,18 @@ class TFCVarSets(TFCEndpoint):
         """
         url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
         return self._list(url)
+
+    def list_all_vars_in_varset(self, varset_id):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every variable in a variable set.
+
+        Returns an object with two arrays of objects.
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/vars"
+        return self._list_all(url)
 
     # WORKSPACE RELATIONSHIPS
     def apply_varset_to_workspace(self, varset_id, payload):

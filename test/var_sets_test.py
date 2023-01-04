@@ -3,7 +3,7 @@ Module for testing the Terraform Cloud API Endpoint: Variable Sets.
 """
 
 from .base import TestTFCBaseTestCase
-
+from ._constants import PAGE_SIZE
 
 class TestTFCVarSets(TestTFCBaseTestCase):
     """
@@ -59,6 +59,14 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         created_var_set_id = created_var_set["id"]
         self.assertEqual(var_set_name, created_var_set["attributes"]["name"])
 
+        # Create a full page of additional varsets and validate more than 1 page is returned.
+        var_set_ids = list()
+        for i in range(PAGE_SIZE):
+            create_payload["data"]["attributes"]["name"] = f"{var_set_name}{i}"
+            var_set_ids.append(self._api.var_sets.create(create_payload)["data"]["id"])
+        listed_all_org_var_sets = self._api.var_sets.list_all_for_org()["data"]
+        self.assertEqual(len(var_set_ids) + 1, len(listed_all_org_var_sets))
+
         # Update the variable set and compare the names
         new_var_set_name = "terrasnek-unittest-updated"
         update_payload = {
@@ -106,6 +114,16 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         listed_vars = self._api.var_sets.list_vars_in_varset(created_var_set_id)["data"]
         self.assertEqual(listed_vars[0]["attributes"]["key"], self._variable_test_key)
 
+        # Add a full page of additional variables to the varset and validate more than 1 page is returned.
+        var_ids = list()
+        for i in range(PAGE_SIZE):
+            add_var_to_varset_payload["data"]["attributes"]["key"] = f"{self._variable_test_key}{i}"
+            add_var_to_varset_payload["data"]["attributes"]["value"] = f"{self._variable_test_value}{i}"
+            var_ids.append(self._api.var_sets.add_var_to_varset(
+                created_var_set_id, add_var_to_varset_payload)["data"]["id"])
+        listed_all_vars = self._api.var_sets.list_all_vars_in_varset(created_var_set_id)["data"]
+        self.assertEqual(len(var_ids) + 1, len(listed_all_vars))
+
         # Update the value of the variable that was just added, confirm that the update took place
         updated_value = "foo"
         update_var_in_varset_payload = {
@@ -141,6 +159,12 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         listed_workspace_varsets = self._api.var_sets.list_for_workspace(self._ws_id)["data"]
         self.assertEqual(listed_workspace_varsets[0]["id"], created_var_set_id)
 
+        # Add a full page of additional varsets to the workspace and validate more than 1 page is returned.
+        for var_set_id in var_set_ids:
+            self._api.var_sets.apply_varset_to_workspace(var_set_id, apply_varset_payload)
+        listed_all_workspace_varsets = self._api.var_sets.list_all_for_workspace(self._ws_id)["data"]
+        self.assertEqual(len(var_set_ids) + 1, len(listed_all_workspace_varsets))
+
         # Remove the variable set from the workspace
         remove_varset_payload = {
             "data": [
@@ -153,12 +177,20 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         # There is no response when we remove a varset from a workspace
         self._api.var_sets.remove_varset_from_workspace(created_var_set_id, remove_varset_payload)
 
+        # Remove bulk varsets from the workspace.
+        for var_set_id in var_set_ids:
+            self._api.var_sets.remove_varset_from_workspace(var_set_id, remove_varset_payload)
+
         # Confirm that there are no longer any varsets attached to the workspace
         listed_workspace_varsets = self._api.var_sets.list_for_workspace(self._ws_id)["data"]
         self.assertEqual(len(listed_workspace_varsets), 0)
 
         # Delete the variable added from the variable set and confirm it's gone
         self._api.var_sets.delete_var_from_varset(created_var_set_id, added_var_id)
+
+        # Delete bulk variables from the variable set.
+        for var_id in var_ids:
+            self._api.var_sets.delete_var_from_varset(created_var_set_id, var_id)
 
         # Show the variable set and confirm there are no variables left in it
         shown_var_set = self._api.var_sets.show(created_var_set_id)["data"]
@@ -167,6 +199,10 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         # Destroy the variable set that was created earlier
         # There is no response when we destroy a variable set
         self._api.var_sets.destroy(created_var_set_id)
+
+        # Destroy the bulk variable sets.
+        for var_set_id in var_set_ids:
+            self._api.var_sets.destroy(var_set_id)
 
         # Confirm we no longer have any varsets
         listed_var_sets = self._api.var_sets.list_for_org()["data"]
