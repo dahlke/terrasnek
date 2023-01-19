@@ -125,6 +125,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
     @classmethod
     def _purge_organization(cls):
+        # TODO: change as many of these to list_all as possible
         cls._logger.info(\
             f"Purging test org ({cls._test_org_name}) of all resources to start fresh...")
 
@@ -164,9 +165,19 @@ class TestTFCBaseTestCase(unittest.TestCase):
             cls._api.ssh_keys.destroy(ssh_key["id"])
         cls._logger.debug(f"SSH keys purged from test org ({cls._test_org_name}).")
 
+        # Deleting all the projects
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of projects...")
+        projects = cls._api.projects.list_all()["data"]
+        for project in projects:
+            project_name = project["attributes"]["name"]
+            if project_name != "Default Project":
+                project_id = project["id"]
+                cls._api.projects.destroy(project["id"])
+        cls._logger.debug(f"Projects purged from test org ({cls._test_org_name}).")
+
         # Deleting the teams will delete all team memberships, and team tokens
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of teams...")
-        teams = cls._api.teams.list()["data"]
+        teams = cls._api.teams.list_all()["data"]
         for team in teams:
             team_name = team["attributes"]["name"]
             if team_name != "owners":
@@ -514,6 +525,16 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "http-url": "https://github.com",
                     "api-url": "https://api.github.com",
                     "oauth-token-string": GITHUB_TOKEN
+                }
+            }
+        }
+
+    def _get_project_create_payload(self):
+        return {
+            "data": {
+                "type": "projects",
+                "attributes": {
+                    "name": self._unittest_random_name(ran_str_len=4)
                 }
             }
         }

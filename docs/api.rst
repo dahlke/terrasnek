@@ -42,6 +42,7 @@ API Spec
    policy_checks
    policy_sets
    policy_set_params
+   projects
    registry_modules
    registry_providers
    runs

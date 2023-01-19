@@ -18,7 +18,8 @@ class TFCPolicySets(TFCEndpoint):
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/policy-sets"
 
     def required_entitlements(self):
-        return [Entitlements.SENTINEL]
+        # NOTE: Entitlements.SENTINEL has been deprecated, using Policy Enforcement instead.
+        return [Entitlements.POLICY_ENFORCEMENT]
 
     def terraform_cloud_only(self):
         return False

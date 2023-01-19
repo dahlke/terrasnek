@@ -20,7 +20,8 @@ class TFCPolicyChecks(TFCEndpoint):
         self._runs_api_v2_base_url = f"{self._api_v2_base_url}/runs"
 
     def required_entitlements(self):
-        return [Entitlements.SENTINEL]
+        # NOTE: Entitlements.SENTINEL has been deprecated, using Policy Enforcement instead.
+        return [Entitlements.POLICY_ENFORCEMENT]
 
     def terraform_cloud_only(self):
         return False
@@ -60,7 +61,7 @@ class TFCPolicyChecks(TFCEndpoint):
 
     def list_policy_evals_in_task_stage(self, task_stage_id):
         """
-        ``GET /task-stages/:task_stage_id/policy-evaluations`
+        ``GET /task-stages/:task_stage_id/policy-evaluations``
 
         `Policy Checks List Policy Evaluations API Doc Reference \
             <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-checks#list-policy-evaluations-in-the-task-stage>`_

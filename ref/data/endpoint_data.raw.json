@@ -1042,6 +1042,101 @@
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/private-registry",
         "methods": {}
     },
+    "project_team_access": {
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/project-team-access",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/project-team-access.mdx",
+        "methods": {
+            "Add Team Access to a Project": {
+                "http-paths": [
+                    "POST /team-projects"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#add-team-access-to-a-project"
+            },
+            "List Team Access to a Project": {
+                "http-paths": [
+                    "GET /team-projects"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#list-team-access-to-a-project"
+            },
+            "Remove Team Access from a Project": {
+                "http-paths": [
+                    "DELETE /team-projects/:id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#remove-team-access-from-a-project"
+            },
+            "Show a Team Access relationship": {
+                "http-paths": [
+                    "GET /team-projects/:id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#show-a-team-access-relationship"
+            },
+            "Update Team Access to a Project": {
+                "http-paths": [
+                    "PATCH /team-projects/:id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#update-team-access-to-a-project"
+            }
+        }
+    },
+    "projects": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/projects",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/projects.mdx",
+        "implementation": true,
+        "methods": {
+            "Create a Project": {
+                "http-paths": [
+                    "POST /organizations/:organization_name/projects"
+                ],
+                "implementation-method-name": "create",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#create-a-project"
+            },
+            "Delete a project": {
+                "http-paths": [
+                    "DELETE /projects/:project_id"
+                ],
+                "implementation-method-name": "destroy",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#delete-a-project"
+            },
+            "List projects": {
+                "http-paths": [
+                    "GET /organizations/:organization_name/projects"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#list-projects"
+            },
+            "Show project": {
+                "http-paths": [
+                    "GET /projects/:project_id"
+                ],
+                "implementation-method-name": "show",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#show-project"
+            },
+            "Update a Project": {
+                "http-paths": [
+                    "PATCH /projects/:project_id"
+                ],
+                "implementation-method-name": "update",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#update-a-project"
+            }
+        },
+        "test": true
+    },
     "run_tasks": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-tasks",
@@ -1275,6 +1370,14 @@
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#list-state-versions-for-a-workspace"
+            },
+            "Rollback to a Previous State Version": {
+                "http-paths": [
+                    "PATCH /workspaces/:workspace_id/state-versions"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#rollback-to-a-previous-state-version"
             },
             "Show a State Version": {
                 "http-paths": [
@@ -1837,7 +1940,7 @@
             "Safe Delete a workspace": {
                 "http-paths": [
                     "POST /workspaces/:workspace_id/actions/safe-delete",
-                    "DELETE /organizations/:organization_name/workspaces/:name/actions/safe-delete"
+                    "POST /organizations/:organization_name/workspaces/:name/actions/safe-delete"
                 ],
                 "implementation-method-name": "safe_destroy",
                 "implemented": true,

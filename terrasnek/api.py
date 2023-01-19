@@ -46,6 +46,7 @@ from .policies import TFCPolicies
 from .policy_checks import TFCPolicyChecks
 from .policy_sets import TFCPolicySets
 from .policy_set_params import TFCPolicySetParams
+from .projects import TFCProjects
 from .notification_configs import TFCNotificationConfigurations
 from .registry_modules import TFCRegistryModules
 from .registry_providers import TFCRegistryProviders
@@ -122,6 +123,7 @@ class TFC():
             "policy_checks": TFCPolicyChecks,
             "policy_sets": TFCPolicySets,
             "policy_set_params": TFCPolicySetParams,
+            "projects": TFCProjects,
             "notification_configs": TFCNotificationConfigurations,
             "registry_modules": TFCRegistryModules,
             "registry_providers": TFCRegistryProviders,
@@ -202,6 +204,7 @@ class TFC():
         self.policy_checks: TFCPolicyChecks = None
         self.policy_sets: TFCPolicySets = None
         self.policy_set_params: TFCPolicySetParams = None
+        self.projects: TFCProjects = None
         self.registry_providers: TFCRegistryProviders = None
         self.notification_configs: TFCNotificationConfigurations = None
         self.registry_modules: TFCRegistryModules = None
