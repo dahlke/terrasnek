@@ -152,7 +152,9 @@ class TFC():
         }
     }
 
-    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True, log_level=TERRASNEK_LOG_LEVEL):
+    def __init__(self, api_token, url=TFC_SAAS_URL, verify=True, \
+            log_level=TERRASNEK_LOG_LEVEL, skip_version_check=False):
+
         if api_token is None:
             raise InvalidTFCTokenException
 
@@ -239,7 +241,10 @@ class TFC():
         self._logger.debug("TFC API well known paths retrieved.")
 
         self.set_token(api_token)
-        self._check_version()
+
+        if not skip_version_check:
+            self._check_version()
+
         self._initialize_endpoints()
 
     def _get(self, url):

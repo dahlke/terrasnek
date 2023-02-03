@@ -7,8 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.12] - TBD
 
-- Adding Projects API endpoints
-- Using `POLICY_ENFORCEMENT` entitlement since `SENTINEL` entitlment is being deprecated
+- Implemented the new Projects API endpoints
+- Implemented the new Project Team Access API endpoints
+- Using `POLICY_ENFORCEMENT` entitlement since `SENTINEL` entitlement is being deprecated
 
 ## [0.1.11] - 2022-12-24
 
