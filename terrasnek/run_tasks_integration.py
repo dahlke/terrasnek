@@ -14,6 +14,7 @@ class TFCRunTasksIntegration(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
+        # TODO: check how real this is.
         return True
 
     def terraform_enterprise_only(self):

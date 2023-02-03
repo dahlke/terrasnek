@@ -505,7 +505,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             "data": {
                 "type": "organizations",
                 "attributes": {
-                    "name": self._unittest_random_name(),
+                    "name": self._unittest_random_name(ran_str_len=4),
                     "organization-access": {
                         "manage-workspaces": True,
                         "manage-policies": True,

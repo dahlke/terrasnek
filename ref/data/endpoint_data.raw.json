@@ -1043,50 +1043,53 @@
         "methods": {}
     },
     "project_team_access": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/project-team-access",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/project-team-access.mdx",
+        "implementation": true,
         "methods": {
             "Add Team Access to a Project": {
                 "http-paths": [
                     "POST /team-projects"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "add_project_team_access",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#add-team-access-to-a-project"
             },
             "List Team Access to a Project": {
                 "http-paths": [
                     "GET /team-projects"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#list-team-access-to-a-project"
             },
             "Remove Team Access from a Project": {
                 "http-paths": [
                     "DELETE /team-projects/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_project_team_access",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#remove-team-access-from-a-project"
             },
             "Show a Team Access relationship": {
                 "http-paths": [
                     "GET /team-projects/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#show-a-team-access-relationship"
             },
             "Update Team Access to a Project": {
                 "http-paths": [
                     "PATCH /team-projects/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/project-team-access#update-team-access-to-a-project"
             }
-        }
+        },
+        "test": true
     },
     "projects": {
         "docs": true,

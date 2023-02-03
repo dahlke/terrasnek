@@ -28,7 +28,7 @@
 | [Policy Set Params](https://www.terraform.io/cloud-docs/api-docs/policy-set-params)              | `policy_set_params`     | True                 | True       | True       |
 | [Policy Sets](https://www.terraform.io/cloud-docs/api-docs/policy-sets)                          | `policy_sets`           | True                 | True       | True       |
 | [Private Registry](https://www.terraform.io/cloud-docs/api-docs/private-registry)                | `private_registry`      | False                | False      | False      |
-| [Project Team Access](https://www.terraform.io/cloud-docs/api-docs/project-team-access)          | `project_team_access`   | False                | False      | False      |
+| [Project Team Access](https://www.terraform.io/cloud-docs/api-docs/project-team-access)          | `project_team_access`   | True                 | True       | True       |
 | [Projects](https://www.terraform.io/cloud-docs/api-docs/projects)                                | `projects`              | True                 | True       | True       |
 | [Run Tasks](https://www.terraform.io/cloud-docs/api-docs/run-tasks)                              | `run_tasks`             | True                 | True       | True       |
 | [Run Triggers](https://www.terraform.io/cloud-docs/api-docs/run-triggers)                        | `run_triggers`          | True                 | True       | True       |

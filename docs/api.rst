@@ -43,6 +43,7 @@ API Spec
    policy_sets
    policy_set_params
    projects
+   project_team_access
    registry_modules
    registry_providers
    runs

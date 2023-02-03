@@ -17,10 +17,13 @@ _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/clo
 
 ## Overview
 
-The goal of this project is to support all endpoints available in the Terraform
-Cloud API. It's possible that some of these endpoints won't work if you're
-working against an older version of
-[Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
+The goal of this project is to support all endpoints available in the
+[Terraform Cloud API](https://developer.hashicorp.com/terraform/cloud-docs/api-docs)
+and [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html) API.
+In general, `terrasnek` is developed against the Terraform Cloud APIs first (as
+most features are released there first and may not be available in Terraform
+Enterprise), but all endpoints are loved equally and this project intends to
+support both types of users.
 
 _Note: This project is tested against Terraform Enterprise often, but the code coverage
 represented in this repo will always represent coverage against Terraform Cloud
