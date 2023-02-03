@@ -1,29 +1,15 @@
 ************* Module terrasnek.project_team_access
-terrasnek/project_team_access.py:19:2: W0511: TODO: add entitlements if they are required? (fixme)
-terrasnek/project_team_access.py:23:2: W0511: TODO (fixme)
-terrasnek/project_team_access.py:27:2: W0511: TODO (fixme)
-terrasnek/project_team_access.py:6:0: W0611: Unused Entitlements imported from _constants (unused-import)
+terrasnek/project_team_access.py:25:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module terrasnek.registry_modules
-terrasnek/registry_modules.py:97:44: W0613: Unused argument 'reg_name' (unused-argument)
-terrasnek/registry_modules.py:7:0: W0611: Unused import time (unused-import)
-terrasnek/registry_modules.py:7:0: C0411: standard import "import time" should be placed before "from .endpoint import TFCEndpoint" (wrong-import-order)
+terrasnek/registry_modules.py:96:44: W0613: Unused argument 'reg_name' (unused-argument)
 ************* Module terrasnek.var_sets
 terrasnek/var_sets.py:60:2: W0511: FIXME: list_all_for_org when pagination is supported (fixme)
 terrasnek/var_sets.py:72:2: W0511: FIXME: list_all_for_workspace when pagination is supported (fixme)
 ************* Module terrasnek.api
-terrasnek/api.py:155:4: R0915: Too many statements (79/75) (too-many-statements)
-terrasnek/api.py:250:8: C0103: Variable name "r" doesn't conform to snake_case naming style (invalid-name)
-terrasnek/api.py:263:8: C0103: Variable name "r" doesn't conform to snake_case naming style (invalid-name)
-terrasnek/api.py:274:12: W1505: Using deprecated method warn() (deprecated-method)
-terrasnek/api.py:274:12: W1505: Using deprecated method warn() (deprecated-method)
+terrasnek/api.py:155:4: R0915: Too many statements (80/75) (too-many-statements)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:37:2: W0511: TODO: support the public registry workflows? (fixme)
 terrasnek/endpoint.py:192:2: W0511: TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks) (fixme)
-terrasnek/endpoint.py:72:8: C0103: Variable name "r" doesn't conform to snake_case naming style (invalid-name)
-terrasnek/endpoint.py:173:8: C0103: Variable name "r" doesn't conform to snake_case naming style (invalid-name)
-terrasnek/endpoint.py:221:8: C0103: Variable name "r" doesn't conform to snake_case naming style (invalid-name)
-terrasnek/endpoint.py:257:8: C0103: Variable name "r" doesn't conform to snake_case naming style (invalid-name)
-terrasnek/endpoint.py:311:8: C0103: Variable name "r" doesn't conform to snake_case naming style (invalid-name)
 ************* Module terrasnek.assessment_results
 terrasnek/assessment_results.py:18:2: W0511: TODO: It's TFCB only - do I need to add a definition for this across the board? (fixme)
 terrasnek/assessment_results.py:22:2: W0511: TODO (fixme)
@@ -48,51 +34,6 @@ test/config_versions_test.py:108:16: W0106: Expression "self._api.config_version
 test/team_memberships_test.py:69:2: W0511: TODO: figure out a way to use a member that has already accepted the org invite (fixme)
 ************* Module test.projects_test
 test/projects_test.py:40:2: W0511: TODO: test the filters param once permissions API is in place for terrasnek (fixme)
-test/projects_test.py:9:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:13:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:14:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:16:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:17:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:22:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:23:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:26:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:27:0: C0330: Wrong hanging indentation (remove 4 spaces).
-			self._get_project_create_payload())["data"]
-                    |   ^ (bad-continuation)
-test/projects_test.py:28:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:29:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:32:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:33:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:34:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:37:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:38:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:41:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:42:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:43:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:46:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:47:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:48:0: C0330: Wrong hanging indentation (remove 4 spaces).
-			"data": {
-                    |   ^ (bad-continuation)
-test/projects_test.py:49:0: C0330: Wrong hanging indentation (remove 4 spaces).
-				"type": "projects",
-                            |   ^ (bad-continuation)
-test/projects_test.py:50:0: C0330: Wrong hanging indentation (remove 4 spaces).
-				"attributes": {
-                            |   ^ (bad-continuation)
-test/projects_test.py:51:0: C0330: Wrong hanging indentation (remove 4 spaces).
-					"name": new_project_name
-                                    |   ^ (bad-continuation)
-test/projects_test.py:55:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:56:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:59:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:60:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:61:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:62:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:63:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:64:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:65:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
-test/projects_test.py:66:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
 ************* Module test.policy_checks_test
 test/policy_checks_test.py:100:2: W0511: TODO: add tests for list_policy_evals_in_task_stage, list_policy_outcomes, and show_policy_outcome (fixme)
 ************* Module test.admin_settings_test
@@ -120,5 +61,5 @@ test/base.py:189:11: C1801: Do not use `len(SEQUENCE)` to determine if a sequenc
 test/base.py:174:16: W0612: Unused variable 'project_id' (unused-variable)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.80/10 (previous run: 9.91/10, -0.11)
+Your code has been rated at 9.91/10 (previous run: 9.88/10, +0.03)
 

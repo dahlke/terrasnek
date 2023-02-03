@@ -91,9 +91,9 @@ def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_igno
 
 def get_docs_from_github(is_admin=False):
     # Get the API index page, and pass it into Beautiful Soup
-    # r = requests.get(f"{TFC_API_BASE_URL}/{TFC_API_PREFIX}/index.html")
+    # req = requests.get(f"{TFC_API_BASE_URL}/{TFC_API_PREFIX}/index.html")
     url = GITHUB_DOCS_ADMIN_BASE_URL if is_admin else GITHUB_DOCS_BASE_URL
-    r = requests.get(f"{url}")
+    req = requests.get(f"{url}")
     soup = BeautifulSoup(r.text, features="html.parser")
     endpoints = {}
 
@@ -136,7 +136,7 @@ def get_docs_from_github(is_admin=False):
 
     for ep_name in endpoints:
         ep = endpoints[ep_name]
-        r = requests.get(ep["github-url"])
+        req = requests.get(ep["github-url"])
 
         md_html = markdown.markdown(r.text)
         soup = BeautifulSoup(md_html, features="html.parser")

@@ -252,21 +252,21 @@ class TFC():
         Simplified HTTP GET function for usage only with this API module.
         """
         results = None
-        r = requests.get(url, headers=self._headers, verify=self._verify)
+        req = requests.get(url, headers=self._headers, verify=self._verify)
 
-        if r.status_code == HTTP_OK:
-            results = json.loads(r.content)
+        if req.status_code == HTTP_OK:
+            results = json.loads(req.content)
             self._logger.debug(f"GET to {url} successful")
         else:
-            err = json.loads(r.content.decode("utf-8"))
+            err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)
 
         return results
 
     def _check_version(self):
         # Make a GET request to the PyPI JSON API to get information about the package
-        r = requests.get(f'https://pypi.org/pypi/{self.package_name}/json')
-        data = r.json()
+        req = requests.get(f'https://pypi.org/pypi/{self.package_name}/json')
+        data = req.json()
 
         # Extract the latest version number from the response
         latest_version = data['info']['version']
@@ -276,7 +276,7 @@ class TFC():
         if self.version == latest_version:
             is_latest = True
         else:
-            self._logger.warn(f"{self.version} is not the latest version. The latest version is {latest_version}")
+            self._logger.warning(f"{self.version} is not the latest version. The latest version is {latest_version}")
 
         return is_latest
 

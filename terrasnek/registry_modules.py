@@ -4,7 +4,6 @@ Module for Terraform Cloud API Endpoint: Registry Modules.
 
 from .endpoint import TFCEndpoint
 from ._constants import Entitlements
-import time
 
 
 class TFCRegistryModules(TFCEndpoint):

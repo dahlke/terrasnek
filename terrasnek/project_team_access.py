@@ -3,7 +3,7 @@ Module for Terraform Cloud API Endpoint: Project Team Access.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import Entitlements
+
 
 class TFCProjectTeamAccess(TFCEndpoint):
     """
@@ -16,15 +16,13 @@ class TFCProjectTeamAccess(TFCEndpoint):
         self._endpoint_base_url = f"{self._api_v2_base_url}/team-projects"
 
     def required_entitlements(self):
-		# TODO: add entitlements if they are required?
         return []
 
     def terraform_cloud_only(self):
-		# TODO
-        return False
+        return True
 
     def terraform_enterprise_only(self):
-		# TODO
+		# FIXME: Once it's released to TFE, remove this
         return False
 
     def add_project_team_access(self, payload):

@@ -51,8 +51,8 @@ def get_pypi_latest_published_version():
 
     NOTE: this is a brittle function as we grab the first version from the XML.
     """
-    r = requests.get(PYPI_XML_URL)
-    tree = ET.fromstring(r.content)
+    req = requests.get(PYPI_XML_URL)
+    tree = ET.fromstring(req.content)
     latest_published_version = None
 
     for i, item in enumerate(tree.iter("title")):
