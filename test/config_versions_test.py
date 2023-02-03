@@ -105,7 +105,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
                 self.assertIn("redirected", download_config_version_run)
 
                 # Create a second config version so that we can archive the first one
-                self._api.config_versions.create(self._ws_id, self._get_config_version_create_payload())["data"]
+                self._api.config_versions.create(self._ws_id, self._get_config_version_create_payload())
                 self._api.config_versions.archive_version(cv_id)
                 config_versions = self._api.config_versions.list(self._ws_id)["data"]
                 self.assertEqual(config_versions[-1]["attributes"]["status"], "archived")

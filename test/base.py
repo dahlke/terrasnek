@@ -95,20 +95,28 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         # Check to see if this test can be run with the current entitlments
         missing_entitlements = cls._get_missing_entitlements(cls._endpoint_being_tested)
+        print("MISSING ENTITLEMENTS", missing_entitlements)
 
         if missing_entitlements:
+            print("SKEIP")
+            cls._logger.debug(\
+                "Missing required Terraform Cloud Entitlements for test: %s", \
+                    missing_entitlements)
             raise unittest.SkipTest(\
-                "Missing required Terraform Cloud Entitlments for test", \
+                "Missing required Terraform Cloud Entitlements for test", \
                     cls._unittest_name, missing_entitlements)
 
         endpoint_to_test = getattr(cls._api, cls._endpoint_being_tested)
 
         if cls._api.is_terraform_cloud() and endpoint_to_test.terraform_enterprise_only():
+            print(1)
+            print("SKEIP")
             raise unittest.SkipTest(\
                 (f"Skipping Test (%s), since we're testing against Terraform Cloud." % \
                     cls._endpoint_being_tested))
 
         if not cls._api.is_terraform_cloud() and endpoint_to_test.terraform_cloud_only():
+            print(2)
             raise unittest.SkipTest(\
                 (f"Skipping Test (%s), since we're testing against Terraform Enterprise." % \
                     cls._endpoint_being_tested))
@@ -171,7 +179,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
         for project in projects:
             project_name = project["attributes"]["name"]
             if project_name != "Default Project":
-                project_id = project["id"]
                 cls._api.projects.destroy(project["id"])
         cls._logger.debug(f"Projects purged from test org ({cls._test_org_name}).")
 

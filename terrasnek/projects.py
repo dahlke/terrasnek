@@ -4,7 +4,6 @@ Module for Terraform Cloud API Endpoint: Projects.
 """
 
 from .endpoint import TFCEndpoint
-from ._constants import Entitlements
 
 class TFCProjects(TFCEndpoint):
     """
@@ -18,15 +17,13 @@ class TFCProjects(TFCEndpoint):
         self._org_api_v2_base_url = f"{self._api_v2_base_url}/organizations/{org_name}/projects"
 
     def required_entitlements(self):
-        # TODO
-        return [Entitlements.TEAMS]
+        return []
 
     def terraform_cloud_only(self):
-        # TODO
-        return False
+        return True
 
     def terraform_enterprise_only(self):
-        # TODO
+        # FIXME: Once it's released to TFE, remove this
         return False
 
     def create(self, payload):

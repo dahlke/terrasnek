@@ -189,8 +189,9 @@ class TFCEndpoint(ABC):
         elif req.status_code == HTTP_MOVED_TEMPORARILY:
             results = req.content.decode("utf-8")
         elif req.status_code == HTTP_MOVED_PERMANENTLY:
-            # TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks)
-            pass
+            self._logger.info("HTTP_MOVED_PERMANENTLY, this is unexpected and should be investigated.")
+            err = json.loads(req.content.decode("utf-8"))
+            self._logger.debug(err)
         elif req.status_code == HTTP_UNAUTHORIZED:
             err = json.loads(req.content.decode("utf-8"))
             self._logger.debug(err)

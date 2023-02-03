@@ -20,6 +20,7 @@ class TFCInvoices(TFCEndpoint):
         return [Entitlements.SELF_SERVE_BILLING]
 
     def terraform_cloud_only(self):
+        # NOTE: This is a TFC-only endpoint
         return True
 
     def terraform_enterprise_only(self):

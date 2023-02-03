@@ -91,7 +91,8 @@ class TestTFCProjectTeamAccess(TestTFCBaseTestCase):
                 }
             }
         }
-        updated_proj_team_access = self._api.project_team_access.update(proj_team_access_id, update_proj_team_access_payload)["data"]
+        updated_proj_team_access = \
+            self._api.project_team_access.update(proj_team_access_id, update_proj_team_access_payload)["data"]
         self.assertEqual(updated_proj_team_access["attributes"]["access"], "admin")
 
         # Remove the team access, confirm it's gone

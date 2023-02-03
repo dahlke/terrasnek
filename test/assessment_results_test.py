@@ -26,8 +26,6 @@ class TestTFCAssessmentResults(TestTFCBaseTestCase):
         _ws_payload = self._get_ws_with_vcs_create_payload(oauth_token_id)
 
         # NOTE: this test requires that you enable data.attributes.assessments_enabled
-        # TODO: this is now assessments_enabled, not drift_detection
-
         _ws_payload["data"]["attributes"]["assessments_enabled"] = True
         workspace = self._api.workspaces.create(_ws_payload)["data"]
         self._ws_id = workspace["id"]
@@ -80,5 +78,3 @@ class TestTFCAssessmentResults(TestTFCBaseTestCase):
         # Upgrade to TF 1.3.0
         # https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations#health
         # Enable Health Assessments
-
-

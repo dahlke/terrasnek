@@ -2,34 +2,22 @@
 terrasnek/project_team_access.py:25:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module terrasnek.registry_modules
 terrasnek/registry_modules.py:96:44: W0613: Unused argument 'reg_name' (unused-argument)
-************* Module terrasnek.var_sets
-terrasnek/var_sets.py:60:2: W0511: FIXME: list_all_for_org when pagination is supported (fixme)
-terrasnek/var_sets.py:72:2: W0511: FIXME: list_all_for_workspace when pagination is supported (fixme)
 ************* Module terrasnek.api
 terrasnek/api.py:155:4: R0915: Too many statements (80/75) (too-many-statements)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:37:2: W0511: TODO: support the public registry workflows? (fixme)
-terrasnek/endpoint.py:192:2: W0511: TODO: this isn't doing anything now? (this was found in using run-tasks from event-hooks) (fixme)
 ************* Module terrasnek.assessment_results
-terrasnek/assessment_results.py:18:2: W0511: TODO: It's TFCB only - do I need to add a definition for this across the board? (fixme)
-terrasnek/assessment_results.py:22:2: W0511: TODO (fixme)
-terrasnek/assessment_results.py:26:2: W0511: TODO (fixme)
+terrasnek/assessment_results.py:21:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module terrasnek.invoices
-terrasnek/invoices.py:35:2: W0511: TODO: cursor pagination (fixme)
+terrasnek/invoices.py:36:2: W0511: TODO: cursor pagination (fixme)
 ************* Module terrasnek.projects
-terrasnek/projects.py:21:2: W0511: TODO (fixme)
-terrasnek/projects.py:25:2: W0511: TODO (fixme)
-terrasnek/projects.py:29:2: W0511: TODO (fixme)
+terrasnek/projects.py:26:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module terrasnek.run_tasks_integration
-terrasnek/run_tasks_integration.py:17:2: W0511: TODO: check how real this is. (fixme)
+terrasnek/run_tasks_integration.py:20:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module terrasnek.vcs_events
-terrasnek/vcs_events.py:22:2: W0511: FIXME: change this once it is released in TFE. (fixme)
-************* Module terrasnek.config_versions
-terrasnek/config_versions.py:7:0: W0611: Unused TFC_SAAS_URL imported from _constants (unused-import)
+terrasnek/vcs_events.py:22:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module test.vcs_events_test
 test/vcs_events_test.py:36:2: W0511: FIXME: Test filter / include parameters GitHub is supported. (fixme)
-************* Module test.config_versions_test
-test/config_versions_test.py:108:16: W0106: Expression "self._api.config_versions.create(self._ws_id, self._get_config_version_create_payload())['data']" is assigned to nothing (expression-not-assigned)
 ************* Module test.team_memberships_test
 test/team_memberships_test.py:69:2: W0511: TODO: figure out a way to use a member that has already accepted the org invite (fixme)
 ************* Module test.projects_test
@@ -40,26 +28,21 @@ test/policy_checks_test.py:100:2: W0511: TODO: add tests for list_policy_evals_i
 test/admin_settings_test.py:95:2: W0511: TODO: revoke_previous_saml_idp_cert (fixme)
 test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server to finish this test. (fixme)
 test/admin_settings_test.py:123:2: W0511: TODO: need to use a real Twilio account to finish this test. (fixme)
-************* Module test.project_team_access_test
-test/project_team_access_test.py:94:0: C0301: Line too long (133/120) (line-too-long)
-test/project_team_access_test.py:100:0: C0304: Final newline missing (missing-final-newline)
 ************* Module test.run_tasks_integrations_test
 test/run_tasks_integrations_test.py:28:2: W0511: TODO: These will be fairly difficult to create valuable tests for. (fixme)
 ************* Module test.assessment_results_test
-test/assessment_results_test.py:29:2: W0511: TODO: this is now assessments_enabled, not drift_detection (fixme)
-test/assessment_results_test.py:74:2: W0511: TODO: Will have to add an includes to show plan to get the assessment result id once (fixme)
-test/assessment_results_test.py:78:2: W0511: TODO: To get this to work (fixme)
-test/assessment_results_test.py:84:0: C0305: Trailing newlines (trailing-newlines)
+test/assessment_results_test.py:72:2: W0511: TODO: Will have to add an includes to show plan to get the assessment result id once (fixme)
+test/assessment_results_test.py:76:2: W0511: TODO: To get this to work (fixme)
 ************* Module test.invoices_test
-test/invoices_test.py:20:2: W0511: TODO: this will fail since we don't have any billing info associated with the test org. (fixme)
+test/invoices_test.py:22:8: W1503: Redundant use of assertTrue with constant value False (redundant-unittest-assert)
+test/invoices_test.py:21:8: W0612: Unused variable 'invoices' (unused-variable)
 ************* Module test.base
-test/base.py:128:2: W0511: TODO: change as many of these to list_all as possible (fixme)
-test/base.py:218:2: W0511: FIXME: move these once they both go GA (fixme)
-test/base.py:599:2: W0511: TODO: test other parameters (fixme)
-test/base.py:127:4: R0914: Too many local variables (32/30) (too-many-locals)
-test/base.py:189:11: C1801: Do not use `len(SEQUENCE)` to determine if a sequence is empty (len-as-condition)
-test/base.py:174:16: W0612: Unused variable 'project_id' (unused-variable)
+test/base.py:136:2: W0511: TODO: change as many of these to list_all as possible (fixme)
+test/base.py:225:2: W0511: FIXME: move these once they both go GA (fixme)
+test/base.py:606:2: W0511: TODO: test other parameters (fixme)
+test/base.py:135:4: R0914: Too many local variables (31/30) (too-many-locals)
+test/base.py:196:11: C1801: Do not use `len(SEQUENCE)` to determine if a sequence is empty (len-as-condition)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.91/10 (previous run: 9.88/10, +0.03)
+Your code has been rated at 9.94/10 (previous run: 9.95/10, -0.00)
 

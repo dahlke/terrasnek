@@ -15,15 +15,13 @@ class TFCAssessmentResults(TFCEndpoint):
         self._endpoint_base_url = f"{self._api_v2_base_url}/assessment-results"
 
     def required_entitlements(self):
-        # TODO: It's TFCB only - do I need to add a definition for this across the board?
         return []
 
     def terraform_cloud_only(self):
-        # TODO
-        return False
+        # FIXME: Once it's released to TFE, remove this
+        return True
 
     def terraform_enterprise_only(self):
-        # TODO
         return False
 
     def show(self, assessment_result_id):

@@ -4,7 +4,6 @@ Module for testing the Terraform Cloud API Endpoint: Team Access.
 
 from .base import TestTFCBaseTestCase
 
-
 class TestTFCTeamAccess(TestTFCBaseTestCase):
     """
     Class for testing the Terraform Cloud API Endpoint: Team Access.

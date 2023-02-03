@@ -33,6 +33,9 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         listed_org_var_sets = self._api.var_sets.list_for_org()["data"]
         self.assertEqual(len(listed_org_var_sets), 0)
 
+        all_listed_org_var_sets = self._api.var_sets.list_all_for_org()["data"]
+        self.assertEqual(len(all_listed_org_var_sets), 0)
+
         # Setup a create payload that has no workspaces or variables attached.
         var_set_name = "terrasnek-unittest"
         create_payload = {
@@ -140,6 +143,9 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         # Confirm the applied variable set is present on the workspace
         listed_workspace_varsets = self._api.var_sets.list_for_workspace(self._ws_id)["data"]
         self.assertEqual(listed_workspace_varsets[0]["id"], created_var_set_id)
+
+        all_listed_workspace_varsets = self._api.var_sets.list_all_for_workspace(self._ws_id)["data"]
+        self.assertEqual(all_listed_workspace_varsets[0]["id"], created_var_set_id)
 
         # Remove the variable set from the workspace
         remove_varset_payload = {

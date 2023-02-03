@@ -7,8 +7,7 @@ import sys
 import logging
 
 # Test Defaults
-TERRASNEK_LOG_LEVEL = logging.INFO
-
+TERRASNEK_LOG_LEVEL = logging.DEBUG
 
 # Configurable Constants
 TFC_URL = os.getenv("TFC_URL", None)
