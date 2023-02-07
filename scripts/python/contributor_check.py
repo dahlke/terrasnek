@@ -1,8 +1,8 @@
 #!/bin/python3
 """
-This script is used in pre-commit hooks as well as the CircleCI tests to make
-sure that we fail out if we don't meet the minimum percentage threshold we
-define for coverage or linting. It is meant to be self contained.
+This script is used in pre-commit hooks as well as the GitHub Actions tests
+to make sure that we fail out if we don't meet the minimum percentage
+threshold we define for coverage or linting. It is meant to be self contained.
 """
 
 import sys

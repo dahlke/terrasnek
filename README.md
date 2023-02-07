@@ -1,6 +1,6 @@
 # terrasnek
 
-[![CircleCI](https://circleci.com/gh/dahlke/terrasnek.svg?style=svg)](https://circleci.com/gh/dahlke/terrasnek)
+[![GitHub Actions]()](https://github.com/dahlke/terrasnek/actions)
 [![codecov](https://codecov.io/gh/dahlke/terrasnek/branch/main/graph/badge.svg)](https://codecov.io/gh/dahlke/terrasnek)
 [![PyPI version](https://badge.fury.io/py/terrasnek.svg)](https://badge.fury.io/py/terrasnek)
 [![Documentation Status](https://readthedocs.org/projects/terrasnek/badge/)](https://terrasnek.readthedocs.io/en/latest/?badge=latest)

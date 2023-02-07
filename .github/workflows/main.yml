@@ -1,0 +1,65 @@
+name: CI
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "add-gh-actions" ]
+  pull_request:
+    branches: [ "add-gh-actions" ]
+
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # Run at 5PM every day
+    - cron: "0 19 * * *"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    container:
+      image: eklhad/terrasnek-gh-actions-amd64:0.1
+    steps:
+    - run: uname -a
+    - run: cat /etc/alpine-release
+    - run: touch /hello
+    - run: ls /
+  api_comparison:
+    runs-on: ubuntu-latest
+    container:
+      image: eklhad/terrasnek-gh-actions-amd64:0.1
+    steps:
+      - uses: actions/checkout@v3
+      - name: Compare API docs against implemented endpoints, identify gaps.
+        run: |
+          make api_comparison
+  coverage:
+    runs-on: ubuntu-latest
+    # environment: "Terraform Cloud"
+    container:
+      image: eklhad/terrasnek-gh-actions-amd64:0.1
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run the full suite of of tests and report coverage against Terraform Cloud
+        env:
+          TFC_URL : ${{  secrets.TFC_URL  }}
+          TFC_TOKEN : ${{  secrets.TFC_TOKEN  }}
+          TFC_ORG_TOKEN : ${{  secrets.TFC_ORG_TOKEN  }}
+          SSL_VERIFY : ${{  secrets.SSL_VERIFY  }}
+          AWS_ACCESS_KEY_ID : ${{  secrets.AWS_ACCESS_KEY_ID  }}
+          AWS_SECRET_ACCESS_KEY : ${{  secrets.AWS_SECRET_ACCESS_KEY  }}
+          GITHUB_TOKEN : ${{  secrets.GITHUB_TOKEN  }}
+          GITHUB_SECRET : ${{  secrets.GITHUB_SECRET  }}
+          TWILIO_ACCOUNT_SID : ${{  secrets.TWILIO_ACCOUNT_SID  }}
+          TWILIO_AUTH_TOKEN : ${{  secrets.TWILIO_AUTH_TOKEN  }}
+          SMTP_HOST : ${{  secrets.SMTP_HOST  }}
+          SMTP_PORT : ${{  secrets.SMTP_PORT  }}
+          SMTP_USERNAME : ${{  secrets.SMTP_USERNAME  }}
+          SMTP_PASSWORD : ${{  secrets.SMTP_PASSWORD  }}
+          TEST_EMAIL : ${{  secrets.TEST_EMAIL  }}
+          TEST_ORG_NAME : ${{  secrets.TEST_ORG_NAME  }}
+          TEST_USERNAME : ${{  secrets.TEST_USERNAME  }}
+          TEST_TEAM_NAME : ${{  secrets.TEST_TEAM_NAME  }}
+          TEST_PASSWORD : ${{  secrets.TEST_PASSWORD  }}
+          CODECOV_TOKEN : ${{  secrets.CODECOV_TOKEN  }}
+        run: |
+          make coverage

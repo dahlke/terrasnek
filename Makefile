@@ -2,8 +2,8 @@ SHELL := /bin/bash
 CWD := $(shell pwd)
 
 DOCKER_HUB_USER=eklhad
-DOCKER_TEST_IMAGE_NAME=terrasnek-circleci
-DOCKER_TEST_IMAGE_VERSION=0.6
+DOCKER_TEST_IMAGE_NAME=terrasnek-gh-actions-amd64
+DOCKER_TEST_IMAGE_VERSION=0.1
 
 ##########################
 # DEV HELPERS
@@ -58,10 +58,6 @@ fixme:
 api_comparison:
 	python3 scripts/python/api_comparison.py
 
-.PHONY: circleci_env
-circleci_env:
-	bash scripts/shell/upload_circleci_env_vars.sh
-
 .PHONY: codecov
 codecov:
 	bash <(curl -s https://codecov.io/bash)
@@ -107,9 +103,10 @@ release-test: lint api_comparison docs coverage release_check pip_package
 ##########################
 # DOCKER TEST IMAGE HELPERS
 ##########################
+# GitHub Actions requires that the image be linux/amd64
 docker_build:
-	cp pip-reqs.txt .circleci/pip-reqs.txt;
-	docker build -t ${DOCKER_HUB_USER}/$(DOCKER_TEST_IMAGE_NAME):$(DOCKER_TEST_IMAGE_VERSION) .circleci/ && \
+	cp pip-reqs.txt .github/workflows/pip-reqs.txt;
+	docker buildx build --platform linux/amd64 -t ${DOCKER_HUB_USER}/$(DOCKER_TEST_IMAGE_NAME):$(DOCKER_TEST_IMAGE_VERSION) .github/workflows/ && \
 	docker tag ${DOCKER_HUB_USER}/$(DOCKER_TEST_IMAGE_NAME):$(DOCKER_TEST_IMAGE_VERSION) ${DOCKER_HUB_USER}/$(DOCKER_TEST_IMAGE_NAME):$(DOCKER_TEST_IMAGE_VERSION) && \
 	docker tag ${DOCKER_HUB_USER}/$(DOCKER_TEST_IMAGE_NAME):$(DOCKER_TEST_IMAGE_VERSION) ${DOCKER_HUB_USER}/$(DOCKER_TEST_IMAGE_NAME):latest
 

@@ -9,7 +9,6 @@ To make full usage of all the tools and commands here, you should have installed
 - [`coverage`](https://coverage.readthedocs.io/en/coverage-5.1/)
 - [`make`](https://www.man7.org/linux/man-pages/man1/make.1.html)
 - [`pylint`](https://www.pylint.org/)
-- [`circleci`](https://circleci.com/docs/local-cli/)
 
 All Python requirements are outlined in `pip-reqs.txt`.
 
@@ -98,8 +97,8 @@ make api_comparison
 
 ### Building the Docs
 
-The docs are built using [Sphinx](https://www.sphinx-doc.org/en/master/). They
-are built upon push by CircleCI, but can be built at any time manually using:
+The docs are built using [Sphinx](https://www.sphinx-doc.org/en/master/).
+They can be built at any time manually using:
 
 ```bash
 make docs

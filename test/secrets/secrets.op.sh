@@ -38,6 +38,3 @@ export TEST_PASSWORD=""
 
 # CodeCov Credentials
 export CODECOV_TOKEN=$(op get item CodeCov | jq -r '.details.sections[1].fields[0].v')
-
-# Variable used for uploading the above variables to CircleCI
-export CIRCLECI_TOKEN=$(op get item CircleCI | jq -r '.details.sections[1].fields[0].v')

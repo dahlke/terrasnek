@@ -1,0 +1,15 @@
+requests==2.22.0
+pylint==2.3.1
+coverage==5.5
+coverage-badge==1.0.1
+twine==1.13.0
+wheel==0.33.4
+setuptools==41.1.0
+sphinx==3.0.3
+beautifulsoup4==4.9.1
+tabulate==0.8.7
+timeout-decorator==0.4.1
+anybadge==1.7.0
+sphinx-rtd-theme==0.5.1
+GitPython==3.1.14
+Markdown==3.3.6
