@@ -48,7 +48,7 @@ class TFCProjects(TFCEndpoint):
         url = f"{self._projects_api_v2_base_url}/{project_id}"
         return self._destroy(url)
 
-    def list(self, page=None, page_size=None, filters=None):
+    def list(self, query=None, filters=None, page=None, page_size=None):
         """
         ``GET organizations/:organization_name/projects``
 
@@ -59,7 +59,7 @@ class TFCProjects(TFCEndpoint):
             <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/projects#query-parameters>`__
         """
         return self._list(\
-            self._org_api_v2_base_url, page=page, page_size=page_size, filters=filters)
+            self._org_api_v2_base_url, query=None, filters=filters, page=page, page_size=page_size)
 
     def list_all(self, filters=None):
         """
