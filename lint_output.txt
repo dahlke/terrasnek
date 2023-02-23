@@ -37,12 +37,12 @@ test/assessment_results_test.py:76:2: W0511: TODO: To get this to work (fixme)
 test/invoices_test.py:22:8: W1503: Redundant use of assertTrue with constant value False (redundant-unittest-assert)
 test/invoices_test.py:21:8: W0612: Unused variable 'invoices' (unused-variable)
 ************* Module test.base
-test/base.py:136:2: W0511: TODO: change as many of these to list_all as possible (fixme)
-test/base.py:225:2: W0511: FIXME: move these once they both go GA (fixme)
-test/base.py:606:2: W0511: TODO: test other parameters (fixme)
-test/base.py:135:4: R0914: Too many local variables (31/30) (too-many-locals)
-test/base.py:196:11: C1801: Do not use `len(SEQUENCE)` to determine if a sequence is empty (len-as-condition)
+test/base.py:131:2: W0511: TODO: change as many of these to list_all as possible (fixme)
+test/base.py:220:2: W0511: FIXME: move these once they both go GA (fixme)
+test/base.py:601:2: W0511: TODO: test other parameters (fixme)
+test/base.py:130:4: R0914: Too many local variables (31/30) (too-many-locals)
+test/base.py:191:11: C1801: Do not use `len(SEQUENCE)` to determine if a sequence is empty (len-as-condition)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.94/10 (previous run: 9.95/10, -0.00)
+Your code has been rated at 9.94/10 (previous run: 9.94/10, -0.00)
 
