@@ -48,7 +48,7 @@ class TFCProjects(TFCEndpoint):
         url = f"{self._projects_api_v2_base_url}/{project_id}"
         return self._destroy(url)
 
-    def list(self, query=None, filters=None, page=None, page_size=None):
+    def list(self, page=None, page_size=None, filters=None, query=None):
         """
         ``GET organizations/:organization_name/projects``
 
@@ -59,9 +59,9 @@ class TFCProjects(TFCEndpoint):
             <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/projects#query-parameters>`__
         """
         return self._list(\
-            self._org_api_v2_base_url, query=None, filters=filters, page=page, page_size=page_size)
+            self._org_api_v2_base_url, page=page, page_size=page_size, filters=filters, query=query)
 
-    def list_all(self, filters=None):
+    def list_all(self, filters=None, query=None):
         """
         This function does not correlate to an endpoint in the TFC API Docs specifically,
         but rather is a helper function to wrap the `list` endpoint, which enumerates out
@@ -70,7 +70,7 @@ class TFCProjects(TFCEndpoint):
 
         Returns an object with two arrays of objects.
         """
-        return self._list_all(self._org_api_v2_base_url, filters=filters)
+        return self._list_all(self._org_api_v2_base_url, filters=filters, query=query)
 
     def show(self, project_id):
         """
