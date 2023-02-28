@@ -4,7 +4,6 @@ Module for Terraform Cloud API Endpoint: Project Team Access.
 
 from .endpoint import TFCEndpoint
 
-
 class TFCProjectTeamAccess(TFCEndpoint):
     """
     `Project Team Access API Docs \
@@ -43,7 +42,8 @@ class TFCProjectTeamAccess(TFCEndpoint):
 
         `Project Team Access List API Doc Reference \
             <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/project-team-access#list-team-access-to-a-project>`_
-Query Parameter(s) Details \
+
+        Query Parameter(s) Details \
             <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/project-team-access#query-parameters>`__
         """
         return self._list(self._endpoint_base_url, filters=filters)

@@ -94,7 +94,7 @@ def get_docs_from_github(is_admin=False):
     # req = requests.get(f"{TFC_API_BASE_URL}/{TFC_API_PREFIX}/index.html")
     url = GITHUB_DOCS_ADMIN_BASE_URL if is_admin else GITHUB_DOCS_BASE_URL
     req = requests.get(f"{url}")
-    soup = BeautifulSoup(r.text, features="html.parser")
+    soup = BeautifulSoup(req.text, features="html.parser")
     endpoints = {}
 
     row_headers = soup.find_all(role="rowheader")
@@ -138,7 +138,7 @@ def get_docs_from_github(is_admin=False):
         ep = endpoints[ep_name]
         req = requests.get(ep["github-url"])
 
-        md_html = markdown.markdown(r.text)
+        md_html = markdown.markdown(req.text)
         soup = BeautifulSoup(md_html, features="html.parser")
         method_headers = soup.find_all("h2")
         codeblocks = soup.find_all("code")

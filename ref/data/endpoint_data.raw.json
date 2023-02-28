@@ -1117,8 +1117,8 @@
                 "http-paths": [
                     "GET /organizations/:organization_name/projects"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#list-projects"
             },
             "Show project": {

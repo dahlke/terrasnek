@@ -5,11 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.12] - TBD
+## [0.1.12] - 2023-02-27
 
 - Implemented the new Projects API endpoints
 - Implemented the new Project Team Access API endpoints
 - Using `POLICY_ENFORCEMENT` entitlement since `SENTINEL` entitlement is being deprecated
+- Add argument to skip the version check
+- Adding the query parameter to Projects API list and list_all
+- Adding search and filter support to Runs API list and list_all
+- Adding list_all Variable Sets API for Organizations and Workspaces
 
 ## [0.1.11] - 2022-12-24
 

@@ -1,5 +1,6 @@
 """
 Constants for default values on the TFC API endpoints
+
 """
 
 from enum import Enum
@@ -11,7 +12,7 @@ PROJECT_NAME = "terrasnek"
 TFC_SAAS_HOSTNAME = "app.terraform.io"
 TFC_SAAS_URL = "https://app.terraform.io"
 TERRASNEK_LOG_LEVEL = logging.CRITICAL
-TERRASNEK_VERSION = "0.1.11"
+TERRASNEK_VERSION = "0.1.12"
 MAX_PAGE_SIZE = 100
 
 # Common TFC API HTTP Codes

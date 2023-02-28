@@ -46,7 +46,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         cls._api = TFC(\
             cls._test_api_token, url=cls._tfc_url, \
-                verify=cls._ssl_verify, log_level=cls._TERRASNEK_LOG_LEVEL)
+                verify=cls._ssl_verify, log_level=cls._TERRASNEK_LOG_LEVEL, skip_version_check=True)
 
         cls._test_username = TEST_USERNAME
         cls._test_email = TEST_EMAIL

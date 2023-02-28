@@ -14,6 +14,7 @@
 # Blog post modeled from
 # https://medium.com/@eikonomega/getting-started-with-sphinx-autodoc-part-1-2cebbbca5365
 
+
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
@@ -22,7 +23,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'terrasnek'
-copyright = '2021, Neil Dahlke'
+copyright = '2023, Neil Dahlke'
 author = 'Neil Dahlke'
 
 # The full version, including alpha/beta/rc tags

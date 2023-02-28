@@ -50,7 +50,7 @@ class TFCProjects(TFCEndpoint):
 
     def list(self, page=None, page_size=None, filters=None, query=None):
         """
-        ``GET organizations/:organization_name/projects``
+        ``GET /organizations/:organization_name/projects``
 
         `Projects List API Doc Reference \
             <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/projects#list-projects>`_
