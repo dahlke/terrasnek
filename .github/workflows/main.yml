@@ -2,9 +2,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "add-gh-actions" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "add-gh-actions" ]
+    branches: [ "main" ]
 
   schedule:
     # * is a special character in YAML so you have to quote this string
