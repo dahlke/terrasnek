@@ -145,6 +145,15 @@ class TFCEndpoint(ABC):
             if "tags" in search:
                 q_options.append(f"search[tags]={search['tags']}")
 
+            if "user" in search:
+                q_options.append(f"search[user]={search['user']}")
+
+            if "commit" in search:
+                q_options.append(f"search[commit]={search['commit']}")
+
+            if "basic" in search:
+                q_options.append(f"search[basic]={search['basic']}")
+
         if since is not None:
             q_options.append(f"since={since}")
 
