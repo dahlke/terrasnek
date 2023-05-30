@@ -349,6 +349,28 @@
         },
         "test": true
     },
+    "github_app_installations": {
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/github-app-installations",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/github-app-installations.mdx",
+        "methods": {
+            "List Installations": {
+                "http-paths": [
+                    "GET /github-app/installations"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/github-app-installations#list-installations"
+            },
+            "Show Installation": {
+                "http-paths": [
+                    "GET /github-app/installation/:gh_app_installation_id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/github-app-installations#show-installation"
+            }
+        }
+    },
     "invoices": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/invoices",
@@ -390,6 +412,36 @@
             }
         },
         "test": true
+    },
+    "no_code_provisioning": {
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/no-code-provisioning.mdx",
+        "methods": {
+            "Allow No-Code Provisioning of a Module within an Organization": {
+                "http-paths": [
+                    "POST /organizations/:organization_name/no-code-modules"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#allow-no-code-provisioning-of-a-module-within-an-organization"
+            },
+            "Read a No-Code Module's Properties": {
+                "http-paths": [
+                    "GET /no-code-modules/:id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#read-a-no-code-module's-properties"
+            },
+            "Update No-Code Provisioning Settings for a Module": {
+                "http-paths": [
+                    "PATCH /no-code-modules/:id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#update-no-code-provisioning-settings-for-a-module"
+            }
+        }
     },
     "notification_configs": {
         "docs": true,
@@ -1637,6 +1689,14 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#add-variable"
             },
+            "Apply Variable Set to Projects": {
+                "http-paths": [
+                    "POST varsets/:varset_id/relationships/projects"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#apply-variable-set-to-projects"
+            },
             "Apply Variable Set to Workspaces": {
                 "http-paths": [
                     "POST varsets/:varset_id/relationships/workspaces"
@@ -1669,14 +1729,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#delete-a-variable-in-a-variable-set"
             },
-            "List Variable Set": {
+            "List Variable Sets": {
                 "http-paths": [
                     "GET organizations/:organization_name/varsets",
+                    "GET projects/:project_id/varsets",
                     "GET workspaces/:workspace_id/varsets"
                 ],
                 "implementation-method-name": "list_for_org",
                 "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#list-variable-set"
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#list-variable-sets"
             },
             "List Variables in a Variable Set": {
                 "http-paths": [
@@ -1685,6 +1746,14 @@
                 "implementation-method-name": "list_vars_in_varset",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#list-variables-in-a-variable-set"
+            },
+            "Remove a Variable Set from Projects": {
+                "http-paths": [
+                    "DELETE varsets/:varset_id/relationships/projects"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#remove-a-variable-set-from-projects"
             },
             "Remove a Variable Set from Workspaces": {
                 "http-paths": [
