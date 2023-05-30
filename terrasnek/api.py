@@ -34,6 +34,7 @@ from .cost_estimates import TFCCostEstimates
 from .feature_sets import TFCFeatureSets
 from .ip_ranges import TFCIPRanges
 from .invoices import TFCInvoices
+from .no_code_provisioning import TFCNoCodeProvisioning
 from .oauth_clients import TFCOAuthClients
 from .oauth_tokens import TFCOAuthTokens
 from .orgs import TFCOrgs
@@ -113,6 +114,7 @@ class TFC():
             "cost_estimates": TFCCostEstimates,
             "feature_sets": TFCFeatureSets,
             "invoices": TFCInvoices,
+            "no_code_provisioning": TFCNoCodeProvisioning,
             "oauth_clients": TFCOAuthClients,
             "oauth_tokens": TFCOAuthTokens,
             "org_memberships": TFCOrgMemberships,
@@ -196,6 +198,7 @@ class TFC():
         self.feature_sets: TFCFeatureSets = None
         self.invoices: TFCInvoices = None
         self.ip_ranges: TFCIPRanges = None
+        self.no_code_provisioning: TFCNoCodeProvisioning = None
         self.orgs: TFCOrgs = None
         self.oauth_clients: TFCOAuthClients = None
         self.oauth_tokens: TFCOAuthTokens = None

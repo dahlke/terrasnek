@@ -21,7 +21,7 @@ from ._constants import \
     TFC_TOKEN, TFC_ORG_TOKEN, TFC_URL, TEST_EMAIL, \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
     GITHUB_TOKEN, SSL_VERIFY, TEST_PASSWORD, MAX_TEST_TIMEOUT, \
-    DEFAULT_VCS_WORKING_DIR, TERRASNEK_LOG_LEVEL
+    DEFAULT_VCS_WORKING_DIR, TERRASNEK_LOG_LEVEL, TFE_MODULE_PROVIDER_TYPE
 
 class TestTFCBaseTestCase(unittest.TestCase):
     """
@@ -618,6 +618,33 @@ class TestTFCBaseTestCase(unittest.TestCase):
             listed_modules = self._api.registry_modules.list()["data"]
 
         return listed_modules, found_module
+
+    @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
+    def _setup_published_module_version_timeout(self, published_module_name, provider_type):
+        """
+        Due to eventual consistency in TFC, it can take a few seconds for the state returned
+        from the API to match the expected output. This function provides some time cushion for
+        searching for published modules in the private module registry.
+        """
+        shown_module = self._api.registry_modules.show(published_module_name, provider_type)["data"]
+        module_is_setup = False
+        self._logger.debug("Waiting for published module to sync with VCS and be setup...")
+
+        while True:
+            if shown_module["attributes"]["status"] == "setup_complete":
+                module_is_setup = True
+                self._logger.debug("Published module has been setup.")
+                break
+
+            if module_is_setup:
+                break
+
+            self._logger.debug("Waiting for published module to sync with VCS and be setup...")
+            time.sleep(1)
+            shown_module = self._api.registry_modules.show(published_module_name, TFE_MODULE_PROVIDER_TYPE)["data"]
+
+        return shown_module, module_is_setup
+
 
     @timeout_decorator.timeout(MAX_TEST_TIMEOUT)
     def _search_published_module_timeout(self, published_module_name):
