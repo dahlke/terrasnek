@@ -15,7 +15,7 @@
 | [Github App Installations](https://www.terraform.io/cloud-docs/api-docs/github-app-installations) | `github_app_installations` | False                | False      | False      |
 | [Invoices](https://www.terraform.io/cloud-docs/api-docs/invoices)                                 | `invoices`                 | True                 | True       | True       |
 | [Ip Ranges](https://www.terraform.io/cloud-docs/api-docs/ip-ranges)                               | `ip_ranges`                | True                 | True       | True       |
-| [No Code Provisioning](https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning)         | `no_code_provisioning`     | False                | False      | False      |
+| [No Code Provisioning](https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning)         | `no_code_provisioning`     | True                 | True       | True       |
 | [Notification Configs](https://www.terraform.io/cloud-docs/api-docs/notification-configurations)  | `notification_configs`     | True                 | True       | True       |
 | [Oauth Clients](https://www.terraform.io/cloud-docs/api-docs/oauth-clients)                       | `oauth_clients`            | True                 | True       | True       |
 | [Oauth Tokens](https://www.terraform.io/cloud-docs/api-docs/oauth-tokens)                         | `oauth_tokens`             | True                 | True       | True       |

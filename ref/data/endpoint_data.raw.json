@@ -414,34 +414,37 @@
         "test": true
     },
     "no_code_provisioning": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/no-code-provisioning.mdx",
+        "implementation": true,
         "methods": {
             "Allow No-Code Provisioning of a Module within an Organization": {
                 "http-paths": [
                     "POST /organizations/:organization_name/no-code-modules"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "enable",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#allow-no-code-provisioning-of-a-module-within-an-organization"
             },
             "Read a No-Code Module's Properties": {
                 "http-paths": [
                     "GET /no-code-modules/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#read-a-no-code-module's-properties"
             },
             "Update No-Code Provisioning Settings for a Module": {
                 "http-paths": [
                     "PATCH /no-code-modules/:id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#update-no-code-provisioning-settings-for-a-module"
             }
-        }
+        },
+        "test": true
     },
     "notification_configs": {
         "docs": true,
