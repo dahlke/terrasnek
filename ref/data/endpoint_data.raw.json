@@ -1433,8 +1433,8 @@
                 "http-paths": [
                     "PATCH /workspaces/:workspace_id/state-versions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "rollback",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#rollback-to-a-previous-state-version"
             },
             "Show a State Version": {

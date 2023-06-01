@@ -95,3 +95,16 @@ class TFCStateVersions(TFCEndpoint):
         """
         url = f"{self._state_version_api_v2_base_url}/{state_version_id}"
         return self._show(url, include=include)
+
+    def rollback(self, workspace_id, payload):
+        """
+        ``PATCH /workspaces/:workspace_id/state-versions``
+
+        `State Versions Rollback API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/state-versions#rollback-to-a-previous-state-version>`_
+
+        `Rollback Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/state-versions#sample-payload-1>`_
+        """
+        url = f"{self._workspace_api_v2_base_url}/{workspace_id}/state-versions"
+        return self._patch(url, data=payload)
