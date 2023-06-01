@@ -1,4 +1,4 @@
-# pylint: disable=too-many-instance-attributes
+# pylint: disable=too-many-instance-attributes,too-many-statements
 
 """
 Module for container class of all TFC endpoints and high level exceptions around

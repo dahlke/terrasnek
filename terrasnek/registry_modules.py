@@ -93,7 +93,7 @@ class TFCRegistryModules(TFCEndpoint):
 
         return self._show(url)
 
-    def list_versions(self, name, provider, reg_name="private"):
+    def list_versions(self, name, provider): # reg_name="private"
         """
         ``GET <base_url>/:namespace/:name/:provider/versions``
 

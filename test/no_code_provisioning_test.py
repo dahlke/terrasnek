@@ -2,8 +2,6 @@
 Module for testing the Terraform Cloud API Endpoint: No Code Provisioning.
 """
 
-import time
-
 from .base import TestTFCBaseTestCase
 from ._constants import TFE_MODULE_PROVIDER_TYPE
 

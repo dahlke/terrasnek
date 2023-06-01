@@ -188,7 +188,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of org membership invites...")
         org_tags = cls._api.org_tags.list_tags()["data"]
-        if len(org_tags) > 0:
+        if len(org_tags):
             delete_tags_payload = {
                 "data": []
             }

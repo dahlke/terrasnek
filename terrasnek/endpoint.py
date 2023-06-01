@@ -405,7 +405,7 @@ class TFCEndpoint(ABC):
             data += list_resp["data"]
 
             if "included" in list_resp:
-                    included += list_resp["included"]
+                included += list_resp["included"]
 
             current_page_number += 1
 

@@ -1,16 +1,9 @@
 ************* Module terrasnek.project_team_access
 terrasnek/project_team_access.py:24:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
-************* Module terrasnek.registry_modules
-terrasnek/registry_modules.py:96:44: W0613: Unused argument 'reg_name' (unused-argument)
 ************* Module terrasnek.no_code_provisioning
-terrasnek/no_code_provisioning.py:23:2: W0511: TODO (fixme)
-terrasnek/no_code_provisioning.py:27:2: W0511: TODO (fixme)
-terrasnek/no_code_provisioning.py:31:2: W0511: TODO (fixme)
-************* Module terrasnek.api
-terrasnek/api.py:157:4: R0915: Too many statements (81/75) (too-many-statements)
+terrasnek/no_code_provisioning.py:29:2: W0511: TODO: Change this once it's released for TFE (fixme)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:38:2: W0511: TODO: support the public registry workflows? (fixme)
-terrasnek/endpoint.py:408:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
 ************* Module terrasnek.assessment_results
 terrasnek/assessment_results.py:21:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module terrasnek.invoices
@@ -27,8 +20,6 @@ test/vcs_events_test.py:36:2: W0511: FIXME: Test filter / include parameters Git
 test/team_memberships_test.py:69:2: W0511: TODO: figure out a way to use a member that has already accepted the org invite (fixme)
 ************* Module test.projects_test
 test/projects_test.py:40:2: W0511: TODO: test the filters param once permissions API is in place for terrasnek (fixme)
-************* Module test.state_versions_test
-test/state_versions_test.py:121:0: C0301: Line too long (121/120) (line-too-long)
 ************* Module test.policy_checks_test
 test/policy_checks_test.py:100:2: W0511: TODO: add tests for list_policy_evals_in_task_stage, list_policy_outcomes, and show_policy_outcome (fixme)
 ************* Module test.admin_settings_test
@@ -37,14 +28,9 @@ test/admin_settings_test.py:112:2: W0511: TODO: need to use a real SMTP server t
 test/admin_settings_test.py:123:2: W0511: TODO: need to use a real Twilio account to finish this test. (fixme)
 ************* Module test.run_tasks_integrations_test
 test/run_tasks_integrations_test.py:28:2: W0511: TODO: These will be fairly difficult to create valuable tests for. (fixme)
-************* Module test.no_code_provisioning_test
-test/no_code_provisioning_test.py:5:0: W0611: Unused import time (unused-import)
 ************* Module test.assessment_results_test
 test/assessment_results_test.py:72:2: W0511: TODO: Will have to add an includes to show plan to get the assessment result id once (fixme)
 test/assessment_results_test.py:76:2: W0511: TODO: To get this to work (fixme)
-************* Module test.invoices_test
-test/invoices_test.py:22:8: W1503: Redundant use of assertTrue with constant value False (redundant-unittest-assert)
-test/invoices_test.py:21:8: W0612: Unused variable 'invoices' (unused-variable)
 ************* Module test.base
 test/base.py:131:2: W0511: TODO: change as many of these to list_all as possible (fixme)
 test/base.py:220:2: W0511: FIXME: move these once they both go GA (fixme)
@@ -53,5 +39,5 @@ test/base.py:130:4: R0914: Too many local variables (31/30) (too-many-locals)
 test/base.py:191:11: C1801: Do not use `len(SEQUENCE)` to determine if a sequence is empty (len-as-condition)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.93/10 (previous run: 9.93/10, +0.00)
+Your code has been rated at 9.95/10 (previous run: 9.95/10, +0.00)
 

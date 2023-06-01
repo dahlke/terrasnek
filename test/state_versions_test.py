@@ -118,5 +118,6 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         rolled_back_state_version = \
             self._api.state_versions.rollback(self._ws_id, rollback_payload)["data"]
         self._api.workspaces.unlock(self._ws_id)
-        rolled_back_state_version_id = rolled_back_state_version["relationships"]["rollback-state-version"]["data"]["id"]
+        rolled_back_state_version_id = \
+            rolled_back_state_version["relationships"]["rollback-state-version"]["data"]["id"]
         self.assertEqual(sv_id, rolled_back_state_version_id)

@@ -20,15 +20,13 @@ class TFCNoCodeProvisioning(TFCEndpoint):
             f"{self._api_v2_base_url}/no-code-modules"
 
     def required_entitlements(self):
-    # TODO
         return []
 
     def terraform_cloud_only(self):
-    # TODO
-        return False
+        return True
 
     def terraform_enterprise_only(self):
-    # TODO
+        # TODO: Change this once it's released for TFE
         return False
 
     def enable(self, payload):
