@@ -20,6 +20,9 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         self._variable_test_key = "terrasnek_unittest_key"
         self._variable_test_value = "terrasnek_unittest_value"
 
+        self._project = self._api.projects.create(self._get_project_create_payload())
+        self._project_id = self._project["data"]["id"]
+
     def tearDown(self):
         self._api.workspaces.destroy(
             workspace_name=self._ws["data"]["attributes"]["name"])
@@ -129,7 +132,7 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         self.assertEqual(updated_var["attributes"]["value"], updated_value)
 
         # Apply the variable set to the workspace
-        apply_varset_payload = {
+        apply_varset_ws_payload = {
             "data": [
                 {
                     "type": "workspaces",
@@ -138,7 +141,7 @@ class TestTFCVarSets(TestTFCBaseTestCase):
             ]
         }
         # There is no response when we apply a varset to a workspace
-        self._api.var_sets.apply_varset_to_workspace(created_var_set_id, apply_varset_payload)
+        self._api.var_sets.apply_varset_to_workspace(created_var_set_id, apply_varset_ws_payload)
 
         # Confirm the applied variable set is present on the workspace
         listed_workspace_varsets = self._api.var_sets.list_for_workspace(self._ws_id)["data"]
@@ -166,9 +169,24 @@ class TestTFCVarSets(TestTFCBaseTestCase):
         # Delete the variable added from the variable set and confirm it's gone
         self._api.var_sets.delete_var_from_varset(created_var_set_id, added_var_id)
 
-        # Show the variable set and confirm there are no variables left in it
+        # Apply the variable set to a project
+        varset_proj_payload = {
+            "data": [
+                {
+                    "type": "projects",
+                    "id": self._project_id
+                }
+            ]
+        }
+        self._api.var_sets.apply_varset_to_project(created_var_set_id, varset_proj_payload)
+        # Confirm the variable set is attached to the project
         shown_var_set = self._api.var_sets.show(created_var_set_id)["data"]
-        self.assertEqual(len(shown_var_set["relationships"]["vars"]["data"]), 0)
+        self.assertEqual(len(shown_var_set["relationships"]["projects"]["data"]), 1)
+        # Remove the variable set from the project
+        self._api.var_sets.remove_varset_from_project(created_var_set_id, varset_proj_payload)
+        # Confirm the variable set is no longer attached to the project
+        shown_var_set = self._api.var_sets.show(created_var_set_id)["data"]
+        self.assertEqual(len(shown_var_set["relationships"]["projects"]["data"]), 0)
 
         # Destroy the variable set that was created earlier
         # There is no response when we destroy a variable set

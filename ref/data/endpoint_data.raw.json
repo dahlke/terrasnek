@@ -1696,8 +1696,8 @@
                 "http-paths": [
                     "POST varsets/:varset_id/relationships/projects"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "apply_varset_to_project",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#apply-variable-set-to-projects"
             },
             "Apply Variable Set to Workspaces": {
@@ -1754,8 +1754,8 @@
                 "http-paths": [
                     "DELETE varsets/:varset_id/relationships/projects"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "remove_varset_from_project",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/variable-sets#remove-a-variable-set-from-projects"
             },
             "Remove a Variable Set from Workspaces": {

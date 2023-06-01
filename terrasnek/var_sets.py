@@ -184,3 +184,31 @@ class TFCVarSets(TFCEndpoint):
         """
         url = f"{self._endpoint_base_url}/{varset_id}/relationships/workspaces"
         self._destroy(url, data=payload)
+
+
+    # PROJECT RELATIONSHIPS
+    def apply_varset_to_project(self, varset_id, payload):
+        """
+        ``POST varsets/:varset_id/relationships/projects``
+
+        `Variable Sets Apply To Project API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/variable-sets#apply-variable-set-to-projects>`_
+
+        `Apply Variable Set to Project Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/variable-sets#sample-payload-6>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/projects"
+        return self._post(url, data=payload)
+
+    def remove_varset_from_project(self, varset_id, payload):
+        """
+        ``DELETE varsets/:varset_id/relationships/projects``
+
+        `Variable Sets Remove From Project API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/variable-sets#remove-a-variable-set-from-projects>`_
+
+        `Remove Variable Set From Project Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/variable-sets#sample-payload-7>`_
+        """
+        url = f"{self._endpoint_base_url}/{varset_id}/relationships/projects"
+        self._destroy(url, data=payload)
