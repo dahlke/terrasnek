@@ -23,10 +23,9 @@ class TFCNoCodeProvisioning(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        return True
+        return False
 
     def terraform_enterprise_only(self):
-        # TODO: Change this once it's released for TFE
         return False
 
     def enable(self, payload):

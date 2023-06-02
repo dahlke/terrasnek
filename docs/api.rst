@@ -27,6 +27,7 @@ API Spec
    config_versions
    cost_estimates
    feature_sets
+   github_apps
    invoices
    ip_ranges
    no_code_provisioning

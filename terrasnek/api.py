@@ -32,6 +32,7 @@ from .comments import TFCComments
 from .config_versions import TFCConfigVersions
 from .cost_estimates import TFCCostEstimates
 from .feature_sets import TFCFeatureSets
+from .github_apps import TFCGitHubApps
 from .ip_ranges import TFCIPRanges
 from .invoices import TFCInvoices
 from .no_code_provisioning import TFCNoCodeProvisioning
@@ -113,6 +114,7 @@ class TFC():
             "config_versions": TFCConfigVersions,
             "cost_estimates": TFCCostEstimates,
             "feature_sets": TFCFeatureSets,
+            "github_apps": TFCGitHubApps,
             "invoices": TFCInvoices,
             "no_code_provisioning": TFCNoCodeProvisioning,
             "oauth_clients": TFCOAuthClients,
@@ -196,6 +198,7 @@ class TFC():
         self.config_versions: TFCConfigVersions = None
         self.cost_estimates: TFCCostEstimates = None
         self.feature_sets: TFCFeatureSets = None
+        self.github_apps: TFCGitHubApps = None
         self.invoices: TFCInvoices = None
         self.ip_ranges: TFCIPRanges = None
         self.no_code_provisioning: TFCNoCodeProvisioning = None
