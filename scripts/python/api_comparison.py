@@ -115,6 +115,7 @@ def get_docs_from_github(is_admin=False):
             endpoint_name = endpoint_name.replace("team_members", "team_memberships")
             endpoint_name = endpoint_name.replace("modules", "registry_modules")
             endpoint_name = endpoint_name.replace("providers", "registry_providers")
+            endpoint_name = endpoint_name.replace("github_app_installations", "github_apps")
 
             # NOTE: The implementation uses "runs" and the documentation uses "run"
             if endpoint_name == "run":
@@ -233,7 +234,6 @@ def check_methods_implementation(endpoints):
         path = f"{IMPLEMENTATION_PATH}/{ep_name}.py"
         file_contents = ""
         split_by_func_def = []
-
 
         if os.path.exists(path):
             with open(path, "r") as infile:

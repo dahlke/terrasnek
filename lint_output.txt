@@ -1,7 +1,7 @@
 ************* Module terrasnek.project_team_access
 terrasnek/project_team_access.py:24:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
-************* Module terrasnek.no_code_provisioning
-terrasnek/no_code_provisioning.py:29:2: W0511: TODO: Change this once it's released for TFE (fixme)
+************* Module terrasnek.github_apps
+terrasnek/github_apps.py:13:4: W0235: Useless super delegation in method '__init__' (useless-super-delegation)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:38:2: W0511: TODO: support the public registry workflows? (fixme)
 ************* Module terrasnek.assessment_results

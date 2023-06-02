@@ -349,27 +349,30 @@
         },
         "test": true
     },
-    "github_app_installations": {
+    "github_apps": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/github-app-installations",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/github-app-installations.mdx",
+        "implementation": true,
         "methods": {
             "List Installations": {
                 "http-paths": [
                     "GET /github-app/installations"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/github-app-installations#list-installations"
             },
             "Show Installation": {
                 "http-paths": [
                     "GET /github-app/installation/:gh_app_installation_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/github-app-installations#show-installation"
             }
-        }
+        },
+        "test": true
     },
     "invoices": {
         "docs": true,
