@@ -190,7 +190,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of org membership invites...")
         org_tags = cls._api.org_tags.list_tags()["data"]
-        if not org_tags:
+
+        if org_tags:
             delete_tags_payload = {
                 "data": []
             }
@@ -386,7 +387,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_ws_with_vcs_create_payload(self, oauth_token_id, branch="main", working_dir=DEFAULT_VCS_WORKING_DIR):
+    def _get_ws_with_vcs_create_payload(self, oauth_token_id, auto_apply=False, branch="main", working_dir=DEFAULT_VCS_WORKING_DIR):
         # NOTE: Needs to be TF > v0.12 for Cost Estimation to work
         return {
             "data": {
@@ -394,6 +395,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "name": self._unittest_random_name(),
                     "terraform_version": "1.3.2",
                     "working-directory": working_dir,
+                    "auto-apply": auto_apply,
                     "vcs-repo": {
                         "identifier": "dahlke/terrasnek-unittest-config",
                         "oauth-token-id": oauth_token_id,
