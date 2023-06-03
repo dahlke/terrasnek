@@ -14,10 +14,9 @@ class TFCRunTasksIntegration(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        return True
+        return False
 
     def terraform_enterprise_only(self):
-        # FIXME: Once it's released to TFE, remove this
         return False
 
     def request(self, url):

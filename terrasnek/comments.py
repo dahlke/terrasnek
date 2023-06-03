@@ -19,7 +19,7 @@ class TFCComments(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        return True
+        return False
 
     def terraform_enterprise_only(self):
         return False

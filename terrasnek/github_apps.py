@@ -7,11 +7,8 @@ from .endpoint import TFCEndpoint
 class TFCGitHubApps(TFCEndpoint):
     """
     `GitHub Apps API Docs \
-        <>`_
+        <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/github-app-installations>`_
     """
-
-    def __init__(self, instance_url, org_name, headers, well_known_paths, verify, log_level):
-        super().__init__(instance_url, org_name, headers, well_known_paths, verify, log_level)
 
     def required_entitlements(self):
         return []

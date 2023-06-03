@@ -223,7 +223,6 @@ class TFCEndpoint(ABC):
             raise TFCHTTPUnclassified(err)
 
         return results
-    # pylint: disable=too-many-statements,too-many-branches
 
     def _patch(self, url, data=None):
         results = None

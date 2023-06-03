@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.13] - TBD
+
+- Updating completeness.
+- Implemented GitHub App API endpoints
+- Implemented Var Sets w/ Projects API endpoints
+- Implemented Rollback State Version API endpoint
+- Updating entitlements
+- Updating secret reads from 1password
+- Adding new search options
+- Changing the GH action branch to main
+- Switch to using GitHub Actions instead of CircleCI
+- Remove the CircleCI badge from the README and replace with a GitHub
+- Actions Badge
+
 ## [0.1.12] - 2023-02-27
 
 - Implemented the new Projects API endpoints

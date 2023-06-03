@@ -19,8 +19,7 @@ class TFCVCSEvents(TFCEndpoint):
         return []
 
     def terraform_cloud_only(self):
-        # FIXME: Once it's released to TFE, remove this
-        return True
+        return False
 
     def terraform_enterprise_only(self):
         return False

@@ -1,19 +1,7 @@
-************* Module terrasnek.project_team_access
-terrasnek/project_team_access.py:24:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
-************* Module terrasnek.github_apps
-terrasnek/github_apps.py:13:4: W0235: Useless super delegation in method '__init__' (useless-super-delegation)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:38:2: W0511: TODO: support the public registry workflows? (fixme)
-************* Module terrasnek.assessment_results
-terrasnek/assessment_results.py:21:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module terrasnek.invoices
 terrasnek/invoices.py:36:2: W0511: TODO: cursor pagination (fixme)
-************* Module terrasnek.projects
-terrasnek/projects.py:26:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
-************* Module terrasnek.run_tasks_integration
-terrasnek/run_tasks_integration.py:20:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
-************* Module terrasnek.vcs_events
-terrasnek/vcs_events.py:22:2: W0511: FIXME: Once it's released to TFE, remove this (fixme)
 ************* Module test.vcs_events_test
 test/vcs_events_test.py:36:2: W0511: FIXME: Test filter / include parameters GitHub is supported. (fixme)
 ************* Module test.team_memberships_test
@@ -32,12 +20,8 @@ test/run_tasks_integrations_test.py:28:2: W0511: TODO: These will be fairly diff
 test/assessment_results_test.py:72:2: W0511: TODO: Will have to add an includes to show plan to get the assessment result id once (fixme)
 test/assessment_results_test.py:76:2: W0511: TODO: To get this to work (fixme)
 ************* Module test.base
-test/base.py:131:2: W0511: TODO: change as many of these to list_all as possible (fixme)
-test/base.py:220:2: W0511: FIXME: move these once they both go GA (fixme)
-test/base.py:601:2: W0511: TODO: test other parameters (fixme)
-test/base.py:130:4: R0914: Too many local variables (31/30) (too-many-locals)
-test/base.py:191:11: C1801: Do not use `len(SEQUENCE)` to determine if a sequence is empty (len-as-condition)
+test/base.py:604:2: W0511: TODO: test other parameters (fixme)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.95/10 (previous run: 9.95/10, +0.00)
+Your code has been rated at 9.97/10 (previous run: 9.97/10, +0.00)
 
