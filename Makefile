@@ -34,6 +34,10 @@ coverage_report:
 lint:
 	pylint terrasnek test | tee lint_output.txt;
 
+.PHONY: ruff_lint
+ruff_lint:
+	pylint terrasnek test | tee lint_output.txt;
+
 .PHONY: docs
 docs:
 	cd docs/ && rm -rf _build/ && make html
