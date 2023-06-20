@@ -78,7 +78,7 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         # Allow even longer for the module versions to sync up, this can take up to 30 seconds as
         # of most recent testing.
         # NOTE: This takes a lot longer on TFC than it does on TFE.
-        time.sleep(15)
+        time.sleep(20)
 
         # List the module versions, confirm that we got an expected response.
         listed_versions_resp = \
