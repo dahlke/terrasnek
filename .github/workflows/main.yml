@@ -47,8 +47,8 @@ jobs:
           SSL_VERIFY : ${{  secrets.SSL_VERIFY  }}
           AWS_ACCESS_KEY_ID : ${{  secrets.AWS_ACCESS_KEY_ID  }}
           AWS_SECRET_ACCESS_KEY : ${{  secrets.AWS_SECRET_ACCESS_KEY  }}
-          GITHUB_TOKEN : ${{  secrets.GITHUB_TOKEN  }}
-          GITHUB_SECRET : ${{  secrets.GITHUB_SECRET  }}
+          GH_TOKEN : ${{  secrets.GH_TOKEN  }}
+          GH_SECRET : ${{  secrets.GH_SECRET  }}
           TWILIO_ACCOUNT_SID : ${{  secrets.TWILIO_ACCOUNT_SID  }}
           TWILIO_AUTH_TOKEN : ${{  secrets.TWILIO_AUTH_TOKEN  }}
           SMTP_HOST : ${{  secrets.SMTP_HOST  }}

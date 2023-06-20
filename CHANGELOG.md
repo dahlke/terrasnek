@@ -80,7 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adding new options to Registry Modules `list` function.
 - Updating the Run Tasks code to fit the new URLs (formerly Event Hooks). (BETA)
 - Updating docs copy.
-- Remove `GITHUB_SECRET` from the requirements for testing.
+- Remove `GH_SECRET` from the requirements for testing.
 - Change what gets reported on for code coverage.
 - Removing all params from docstrings, they change too much. Instead, relying on sharing the relevant link.
 - `api_comparison` properly reports missing docs pages now.

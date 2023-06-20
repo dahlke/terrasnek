@@ -12,7 +12,7 @@ export AWS_ACCESS_KEY_ID=""
 export AWS_SECRET_ACCESS_KEY=""
 
 # GitHub Secrets for VCS OAuth
-export GITHUB_TOKEN=""
+export GH_TOKEN=""
 
 # Twilio Secrets for Admin Settings Testing
 export TWILIO_ACCOUNT_SID=""

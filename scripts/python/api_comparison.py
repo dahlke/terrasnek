@@ -25,16 +25,16 @@ from bs4 import BeautifulSoup
 # NOTE: This api_comparison tool was updated in v0.1.8.
 
 # Base URLs for scraping from GitHub
-GITHUB_DOCS_BASE_URL = "https://github.com/hashicorp/terraform-docs-common/tree/main/website/docs/cloud-docs/api-docs"
+GH_DOCS_BASE_URL = "https://github.com/hashicorp/terraform-docs-common/tree/main/website/docs/cloud-docs/api-docs"
 
-GITHUB_DOCS_ADMIN_BASE_URL = "https://github.com/hashicorp/terraform-docs-common/tree/main/website/docs/cloud-docs/api-docs/admin"
-RAW_GITHUB_DOCS_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs"
-RAW_GITHUB_DOCS_ADMIN_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin"
+GH_DOCS_ADMIN_BASE_URL = "https://github.com/hashicorp/terraform-docs-common/tree/main/website/docs/cloud-docs/api-docs/admin"
+RAW_GH_DOCS_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs"
+RAW_GH_DOCS_ADMIN_BASE_URL = "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/admin"
 
 # Helpful constants for the parsing of the GitHub markdown docs
 TFC_API_BASE_URL = "https://www.terraform.io/cloud-docs/api-docs"
 HTTP_VERBS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-SKIPPABLE_GITHUB_TITLES = [
+SKIPPABLE_GH_TITLES = [
     "admin",
     "_template",
     "Go to parent directory",
@@ -92,7 +92,7 @@ def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_igno
 def get_docs_from_github(is_admin=False):
     # Get the API index page, and pass it into Beautiful Soup
     # req = requests.get(f"{TFC_API_BASE_URL}/{TFC_API_PREFIX}/index.html")
-    url = GITHUB_DOCS_ADMIN_BASE_URL if is_admin else GITHUB_DOCS_BASE_URL
+    url = GH_DOCS_ADMIN_BASE_URL if is_admin else GH_DOCS_BASE_URL
     req = requests.get(f"{url}")
     soup = BeautifulSoup(req.text, features="html.parser")
     endpoints = {}
@@ -106,7 +106,7 @@ def get_docs_from_github(is_admin=False):
 
         endpoint_name = filename.replace("-", "_")
 
-        if endpoint_name not in SKIPPABLE_GITHUB_TITLES:
+        if endpoint_name not in SKIPPABLE_GH_TITLES:
             endpoint_name = endpoint_name.replace("organization", "org")
             endpoint_name = endpoint_name.replace("configuration", "config")
             endpoint_name = endpoint_name.replace("workspace_variables", "workspace_vars")
@@ -122,11 +122,11 @@ def get_docs_from_github(is_admin=False):
                 endpoint_name = "runs"
 
             if is_admin:
-                github_url = f"{RAW_GITHUB_DOCS_BASE_URL}/admin/{raw_filename}"
+                github_url = f"{RAW_GH_DOCS_BASE_URL}/admin/{raw_filename}"
                 docs_url = f"{TFC_API_BASE_URL}/admin/{filename}"
                 endpoint_name = "admin_" + endpoint_name
             else:
-                github_url = f"{RAW_GITHUB_DOCS_BASE_URL}/{raw_filename}"
+                github_url = f"{RAW_GH_DOCS_BASE_URL}/{raw_filename}"
                 docs_url = f"{TFC_API_BASE_URL}/{filename}"
 
             endpoints[endpoint_name] = {

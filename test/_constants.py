@@ -27,7 +27,7 @@ SMTP_PORT = os.getenv("SMTP_PORT", None)
 SMTP_USERNAME = os.getenv("SMTP_USERNAME", None)
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", None)
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
+GH_TOKEN = os.getenv("GH_TOKEN", None)
 
 # NOTE: This is an optional env var, if not provided a random test org will be generated
 TEST_ORG_NAME = os.getenv("TEST_ORG_NAME", None)
@@ -67,8 +67,8 @@ if SMTP_USERNAME is None:
 if SMTP_PASSWORD is None:
     sys.exit("Environment variable SMTP_PASSWORD must be set.")
 
-if GITHUB_TOKEN is None:
-    sys.exit("Environment variable GITHUB_TOKEN must be set.")
+if GH_TOKEN is None:
+    sys.exit("Environment variable GH_TOKEN must be set.")
 
 if TEST_EMAIL is None:
     sys.exit("Environment variable TEST_EMAIL must be set.")

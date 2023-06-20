@@ -22,7 +22,7 @@ from terrasnek._constants import Entitlements
 from ._constants import \
     TFC_TOKEN, TFC_ORG_TOKEN, TFC_URL, TEST_EMAIL, \
     TEST_ORG_NAME, TEST_USERNAME, TEST_TEAM_NAME, \
-    GITHUB_TOKEN, SSL_VERIFY, TEST_PASSWORD, MAX_TEST_TIMEOUT, \
+    GH_TOKEN, SSL_VERIFY, TEST_PASSWORD, MAX_TEST_TIMEOUT, \
     DEFAULT_VCS_WORKING_DIR, TERRASNEK_LOG_LEVEL, TFE_MODULE_PROVIDER_TYPE
 
 class TestTFCBaseTestCase(unittest.TestCase):
@@ -531,7 +531,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
                     "service-provider": "github",
                     "http-url": "https://github.com",
                     "api-url": "https://api.github.com",
-                    "oauth-token-string": GITHUB_TOKEN
+                    "oauth-token-string": GH_TOKEN
                 }
             }
         }
