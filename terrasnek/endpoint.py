@@ -34,7 +34,7 @@ class TFCEndpoint(ABC):
             instance_url if instance_url[-1] != "/" else instance_url[:-1]
         self._api_v2_base_url = f"{self._instance_url}{well_known_paths['tfe.v2'] if well_known_paths['tfe.v2'][-1] != '/' else well_known_paths['tfe.v2'][:-1]}"
         self._meta_base_url = f"{self._instance_url}/api/meta"
-        self._mods_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1'][:-1]}"
+        self._mods_v1_base_url = f"{self._instance_url}{well_known_paths['modules.v1'] if well_known_paths['modules.v1'][-1] != '/' else well_known_paths['modules.v1'][:-1]}"
         # TODO: support the public registry workflows?
         # self._public_registry_v1_url = "https://registry.terraform.io/v1/modules"
         self._headers = headers
