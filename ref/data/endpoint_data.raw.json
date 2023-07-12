@@ -375,50 +375,53 @@
         "test": true
     },
     "gpg_keys": {
+        "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/private-registry/gpg-keys",
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/private-registry/gpg-keys.mdx",
+        "implementation": true,
         "methods": {
             "Add a GPG Key": {
                 "http-paths": [
                     "POST /api/registry/:registry_name/v2/gpg-keys"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "create",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/gpg-keys#add-a-gpg-key"
             },
             "Delete a GPG Key": {
                 "http-paths": [
                     "DELETE /api/registry/:registry_name/v2/gpg-keys/:namespace/:key_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "destroy",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/gpg-keys#delete-a-gpg-key"
             },
             "Get GPG Key": {
                 "http-paths": [
                     "GET /api/registry/:registry_name/v2/gpg-keys/:namespace/:key_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "show",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/gpg-keys#get-gpg-key"
             },
             "List GPG Keys": {
                 "http-paths": [
                     "GET /api/registry/:registry_name/v2/gpg-keys"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "list",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/gpg-keys#list-gpg-keys"
             },
             "Update a GPG Key": {
                 "http-paths": [
                     "PATCH /api/registry/:registry_name/v2/gpg-keys/:namespace/:key_id"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/gpg-keys#update-a-gpg-key"
             }
-        }
+        },
+        "test": true
     },
     "invoices": {
         "docs": true,

@@ -13,7 +13,7 @@
 | [Cost Estimates](https://www.terraform.io/cloud-docs/api-docs/cost-estimates)                                            | `cost_estimates`              | True                 | True       | True       |
 | [Feature Sets](https://www.terraform.io/cloud-docs/api-docs/feature-sets)                                                | `feature_sets`                | True                 | True       | True       |
 | [Github Apps](https://www.terraform.io/cloud-docs/api-docs/github-app-installations)                                     | `github_apps`                 | True                 | True       | True       |
-| [Gpg Keys](https://www.terraform.io/cloud-docs/api-docs/private-registry/gpg-keys)                                       | `gpg_keys`                    | False                | False      | False      |
+| [Gpg Keys](https://www.terraform.io/cloud-docs/api-docs/private-registry/gpg-keys)                                       | `gpg_keys`                    | True                 | True       | True       |
 | [Invoices](https://www.terraform.io/cloud-docs/api-docs/invoices)                                                        | `invoices`                    | True                 | True       | True       |
 | [Ip Ranges](https://www.terraform.io/cloud-docs/api-docs/ip-ranges)                                                      | `ip_ranges`                   | True                 | True       | True       |
 | [No Code Provisioning](https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning)                                | `no_code_provisioning`        | True                 | True       | True       |
