@@ -45,17 +45,17 @@ SKIPPABLE_GH_TITLES = [
 ]
 SKIPPABLE_MD_HEADERS = [
     "Attributes",
-    "IP Ranges Payload", # ip-ranges
-    "Terraform Cloud Registry Implementation", # modules
+    "IP Ranges Payload",  # ip-ranges
+    "Terraform Cloud Registry Implementation",  # modules
     "Sample Response",
     "Available Related Resources",
-    "Notification Triggers", # notification-configurations
-    "Notification Payload", # notification-configurations
-    "Notification Authenticity", # notification-configurations
-    "Notification Verification and Delivery Responses", # notification-configurations
+    "Notification Triggers",  # notification-configurations
+    "Notification Payload",  # notification-configurations
+    "Notification Authenticity",  # notification-configurations
+    "Notification Verification and Delivery Responses",  # notification-configurations
     "Relationships",
-    "Organization Membership", # team-members
-    "Required Permissions", # run-tasks
+    "Organization Membership",  # team-members
+    "Required Permissions",  # run-tasks
 ]
 
 # Paths for checking against implementations, tests and docs
@@ -89,42 +89,55 @@ def get_valid_filenames_in_dir(dir_name, prefix_ignore=[".", "_"], filename_igno
 
     return valid_filenames
 
-def get_docs_from_github(is_admin=False):
+
+def get_docs_from_github(nested_folder=None): # ["private-registry", "run-tasks"]
     # Get the API index page, and pass it into Beautiful Soup
     # req = requests.get(f"{TFC_API_BASE_URL}/{TFC_API_PREFIX}/index.html")
-    url = GH_DOCS_ADMIN_BASE_URL if is_admin else GH_DOCS_BASE_URL
+    url = GH_DOCS_BASE_URL
+    if nested_folder is not None:
+        url += f"/{nested_folder}"
+    print(url)
+
     req = requests.get(f"{url}")
-    soup = BeautifulSoup(req.text, features="html.parser")
+
+    if nested_folder == "admin":
+        print(json.loads(req.text))
+
+    repo_data = json.loads(req.text)["payload"]["tree"]["items"]
+    # print(json.dumps(repo_data, indent=4))
     endpoints = {}
 
-    row_headers = soup.find_all(role="rowheader")
-
-    for row_header in row_headers:
-        link = row_header.find("a")
-        raw_filename = link.get("title")
+    for repo_line in repo_data:
+        raw_filename = repo_line["name"]
         filename = raw_filename.replace(".mdx", "")
-
         endpoint_name = filename.replace("-", "_")
+        # github_path = repo_line["path"]
 
         if endpoint_name not in SKIPPABLE_GH_TITLES:
             endpoint_name = endpoint_name.replace("organization", "org")
             endpoint_name = endpoint_name.replace("configuration", "config")
-            endpoint_name = endpoint_name.replace("workspace_variables", "workspace_vars")
+            endpoint_name = endpoint_name.replace(
+                "workspace_variables", "workspace_vars")
             endpoint_name = endpoint_name.replace("variables", "vars")
             endpoint_name = endpoint_name.replace("variable_sets", "var_sets")
-            endpoint_name = endpoint_name.replace("team_members", "team_memberships")
-            endpoint_name = endpoint_name.replace("modules", "registry_modules")
-            endpoint_name = endpoint_name.replace("providers", "registry_providers")
-            endpoint_name = endpoint_name.replace("github_app_installations", "github_apps")
+            endpoint_name = endpoint_name.replace(
+                "team_members", "team_memberships")
+            endpoint_name = endpoint_name.replace(
+                "modules", "registry_modules")
+            endpoint_name = endpoint_name.replace(
+                "providers", "registry_providers")
+            endpoint_name = endpoint_name.replace(
+                "github_app_installations", "github_apps")
 
             # NOTE: The implementation uses "runs" and the documentation uses "run"
             if endpoint_name == "run":
                 endpoint_name = "runs"
 
-            if is_admin:
-                github_url = f"{RAW_GH_DOCS_BASE_URL}/admin/{raw_filename}"
-                docs_url = f"{TFC_API_BASE_URL}/admin/{filename}"
-                endpoint_name = "admin_" + endpoint_name
+            if nested_folder is not None:
+                github_url = f"{RAW_GH_DOCS_BASE_URL}/{nested_folder}/{raw_filename}"
+                docs_url = f"{TFC_API_BASE_URL}/{nested_folder}/{filename}"
+                if nested_folder == "admin":
+                    endpoint_name = "admin_" + endpoint_name
             else:
                 github_url = f"{RAW_GH_DOCS_BASE_URL}/{raw_filename}"
                 docs_url = f"{TFC_API_BASE_URL}/{filename}"
@@ -167,15 +180,18 @@ def get_docs_from_github(is_admin=False):
                 # Check that the first word in the code block is an HTTP verb and isn't _just_
                 # an HTTP verb (like `PUT`).
                 if potential_http_verb in HTTP_VERBS and len(split_block) > 1:
-                    prev_method_header = codeblock.parent.find_previous_sibling('h2')
+                    prev_method_header = codeblock.parent.find_previous_sibling(
+                        'h2')
 
                     # If we can't find a previous header in this level of the HTML, try going up one more level
                     # This is specifically for the delete modules endpoint, which has some weird formatting
                     # https://www.terraform.io/cloud-docs/api-docs/modules
                     if prev_method_header is None:
-                        prev_method_header = codeblock.parent.parent.find_previous_sibling('h2')
+                        prev_method_header = codeblock.parent.parent.find_previous_sibling(
+                            'h2')
 
-                    ep["methods"][prev_method_header.text]["http-paths"].append(codeblock.text)
+                    ep["methods"][prev_method_header.text]["http-paths"].append(
+                        codeblock.text)
                     permalink_arg = prev_method_header.text.lower().replace(" ", "-")
                     docs_url = ep["docs-url"] if ep_name != "registry-modules" else "modules"
                     permalink = f"{docs_url}#{permalink_arg}"
@@ -191,6 +207,7 @@ def get_docs_from_github(is_admin=False):
 
     return endpoints
 
+
 def check_contributor_requirements(endpoints):
     """
     With the endpoint info we scraped from the API docs, check that each endpoint
@@ -198,15 +215,16 @@ def check_contributor_requirements(endpoints):
     """
     # Check for an implementation file for each endpoint
     implementation_filenames = \
-        get_valid_filenames_in_dir(IMPLEMENTATION_PATH, \
-            filename_ignore=["endpoint", "api", "exceptions"])
+        get_valid_filenames_in_dir(IMPLEMENTATION_PATH,
+                                   filename_ignore=["endpoint", "api", "exceptions"])
     for filename in implementation_filenames:
         if filename in endpoints:
             endpoints[filename]["implementation"] = True
 
     # Check for an test file for each endpoint
     tests_filenames = \
-        get_valid_filenames_in_dir(TEST_PATH, filename_ignore=["secrets", "base", "index"])
+        get_valid_filenames_in_dir(TEST_PATH, filename_ignore=[
+                                   "secrets", "base", "index"])
     for filename in tests_filenames:
         if filename in endpoints:
             endpoints[filename]["test"] = True
@@ -221,6 +239,7 @@ def check_contributor_requirements(endpoints):
             endpoints[stripped_filename]["docs"] = True
 
     return endpoints
+
 
 def check_methods_implementation(endpoints):
     """
@@ -252,7 +271,8 @@ def check_methods_implementation(endpoints):
 
                 for line in split_by_func_def:
                     if "def" in line:
-                        most_recent_method_name = line.split("(")[0].replace("def", "").strip()
+                        most_recent_method_name = line.split(
+                            "(")[0].replace("def", "").strip()
                     if path in line:
                         method["implemented"] = True
                         method["implementation-method-name"] = most_recent_method_name
@@ -261,6 +281,7 @@ def check_methods_implementation(endpoints):
                 print(method_header, method, "\n\n")
 
     return endpoints
+
 
 def write_table_to_file(path, rows, headers, tablefmt):
     """
@@ -272,25 +293,33 @@ def write_table_to_file(path, rows, headers, tablefmt):
         outfile.write(table_data)
         outfile.write("\n")
 
+
 def write_pretty_json_to_file(path, data):
     """
     Helper function to write pretty JSON to a file.
     """
     with open(path, "w") as outfile:
-        pretty_json = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
+        pretty_json = json.dumps(data, sort_keys=True,
+                                 indent=4, separators=(',', ': '))
         outfile.write(pretty_json)
+
 
 def main():
     """
     Main function to check the implemementation files herein this repo
     and what is specced out in the TFC API docs.
     """
-    non_admin_endpoints = get_docs_from_github()
-    admin_endpoints = get_docs_from_github(is_admin=True)
+    top_level_endpoints = get_docs_from_github()
+    registry_endpoints = get_docs_from_github(nested_folder="private-registry")
+    run_task_endpoints = get_docs_from_github(nested_folder="run-tasks")
+    # TODO: this probably shouldn't have been removed
+    # admin_endpoints = get_docs_from_github(nested_folder="admin")
 
     # Merge the endpoint types
-    endpoints = non_admin_endpoints.copy()
-    endpoints.update(admin_endpoints)
+    endpoints = top_level_endpoints.copy()
+    endpoints.update(registry_endpoints)
+    endpoints.update(run_task_endpoints)
+    # endpoints.update(admin_endpoints)
     endpoints = check_contributor_requirements(endpoints)
     endpoints = check_methods_implementation(endpoints)
 
@@ -319,7 +348,8 @@ def main():
         ])
 
     endpoint_rows.sort(key=lambda x: x[0])
-    write_table_to_file("./CONTRIBUTING_REQS_TABLE.md", endpoint_rows, endpoint_headers, "github")
+    write_table_to_file("./CONTRIBUTING_REQS_TABLE.md",
+                        endpoint_rows, endpoint_headers, "github")
 
     md_method_headers = [
         "API Endpoint",
@@ -348,8 +378,8 @@ def main():
             md_method_rows.append(md_method_row)
 
     md_method_rows.sort(key=lambda x: x[0])
-    write_table_to_file("./TERRASNEK_API_COVERAGE_COMPLETENESS.md", \
-        md_method_rows, md_method_headers, "github")
+    write_table_to_file("./TERRASNEK_API_COVERAGE_COMPLETENESS.md",
+                        md_method_rows, md_method_headers, "github")
 
     # Build an RST table for the Sphinx Python Docs
     rst_method_headers = [
@@ -381,8 +411,8 @@ def main():
             rst_method_rows.append(rst_method_row)
 
     rst_method_rows.sort(key=lambda x: x[0])
-    write_table_to_file("./docs/TERRASNEK_API_COVERAGE_COMPLETENESS.rst", \
-        rst_method_rows, rst_method_headers, "rst")
+    write_table_to_file("./docs/TERRASNEK_API_COVERAGE_COMPLETENESS.rst",
+                        rst_method_rows, rst_method_headers, "rst")
 
     # Write a badge for the # of implemented methods vs the total # of method endpoints
     num_methods_implemented = 0
@@ -397,13 +427,16 @@ def main():
 
     badge_text = f"{num_methods_implemented}/{num_total_methods} API endpoints implemented"
     print(badge_text)
-    implemented_pct = round(((num_methods_implemented / num_total_methods) * 100), 2)
-    badge = anybadge.Badge(badge_text, f"{implemented_pct}%", default_color="lightgrey")
+    implemented_pct = round(
+        ((num_methods_implemented / num_total_methods) * 100), 2)
+    badge = anybadge.Badge(
+        badge_text, f"{implemented_pct}%", default_color="lightgrey")
     badge.write_badge("api_endpoints_implemented.svg", overwrite=True)
 
     # We want this to error if we fall below 99% coverage so we know we have to do work
     if implemented_pct <= 97:
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

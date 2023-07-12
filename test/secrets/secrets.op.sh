@@ -16,8 +16,8 @@ export AWS_ACCESS_KEY_ID=$(op item get Amazon --format=json | jq -r '.fields[3].
 export AWS_SECRET_ACCESS_KEY=$(op item get Amazon --format=json | jq -r '.fields[4].value')
 
 # GitHub Secrets for VCS OAuth
-export GITHUB_TOKEN=$(op item get GitHub --format=json | jq -r '.fields[3].value')
-export GITHUB_SECRET=$(op item get GitHub --format=json | jq -r '.fields[4].value')
+export GH_TOKEN=$(op item get GitHub --format=json | jq -r '.fields[3].value')
+export GH_SECRET=$(op item get GitHub --format=json | jq -r '.fields[4].value')
 
 # Twilio Secrets for Admin Settings Testing
 export TWILIO_ACCOUNT_SID=$(op item get Twilio --format=json | jq -r '.fields[3].value')
