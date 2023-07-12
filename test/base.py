@@ -188,6 +188,13 @@ class TestTFCBaseTestCase(unittest.TestCase):
                 cls._api.teams.destroy(team["id"])
         cls._logger.debug(f"Teams purged from test org ({cls._test_org_name}).")
 
+        cls._logger.debug(f"Purging test org ({cls._test_org_name}) of GPG keys...")
+        # TODO: implment list_all for gpg keys
+        gpg_keys = cls._api.gpg_keys.list()["data"]
+        for key in gpg_keys:
+            cls._api.gpg_keys.destroy(key["attributes"]["key-id"])
+        cls._logger.debug(f"GPG keys purged from test org ({cls._test_org_name}).")
+
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of org membership invites...")
         org_tags = cls._api.org_tags.list_tags()["data"]
 

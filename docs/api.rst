@@ -28,6 +28,7 @@ API Spec
    cost_estimates
    feature_sets
    github_apps
+   gpg_keys
    invoices
    ip_ranges
    no_code_provisioning
