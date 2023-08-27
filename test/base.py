@@ -189,8 +189,7 @@ class TestTFCBaseTestCase(unittest.TestCase):
         cls._logger.debug(f"Teams purged from test org ({cls._test_org_name}).")
 
         cls._logger.debug(f"Purging test org ({cls._test_org_name}) of GPG keys...")
-        # TODO: implment list_all for gpg keys
-        gpg_keys = cls._api.gpg_keys.list()["data"]
+        gpg_keys = cls._api.gpg_keys.list_all()["data"]
         for key in gpg_keys:
             cls._api.gpg_keys.destroy(key["attributes"]["key-id"])
         cls._logger.debug(f"GPG keys purged from test org ({cls._test_org_name}).")
@@ -394,7 +393,8 @@ class TestTFCBaseTestCase(unittest.TestCase):
             }
         }
 
-    def _get_ws_with_vcs_create_payload(self, oauth_token_id, auto_apply=False, branch="main", working_dir=DEFAULT_VCS_WORKING_DIR):
+    def _get_ws_with_vcs_create_payload(self, oauth_token_id, auto_apply=False, branch="main", \
+                                        working_dir=DEFAULT_VCS_WORKING_DIR):
         # NOTE: Needs to be TF > v0.12 for Cost Estimation to work
         return {
             "data": {

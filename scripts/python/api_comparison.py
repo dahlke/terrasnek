@@ -309,17 +309,14 @@ def main():
     Main function to check the implemementation files herein this repo
     and what is specced out in the TFC API docs.
     """
-    top_level_endpoints = get_docs_from_github()
-    registry_endpoints = get_docs_from_github(nested_folder="private-registry")
-    run_task_endpoints = get_docs_from_github(nested_folder="run-tasks")
-    # TODO: this probably shouldn't have been removed
-    # admin_endpoints = get_docs_from_github(nested_folder="admin")
+    # The enddpoints
+    endpoints = get_docs_from_github()
+    nested_folders = ["private-registry", "run-tasks"] # "admin"
 
-    # Merge the endpoint types
-    endpoints = top_level_endpoints.copy()
-    endpoints.update(registry_endpoints)
-    endpoints.update(run_task_endpoints)
-    # endpoints.update(admin_endpoints)
+    # Merge all the endpoint types
+    for nested in nested_folders:
+        endpoints.update(get_docs_from_github(nested_folder=nested))
+
     endpoints = check_contributor_requirements(endpoints)
     endpoints = check_methods_implementation(endpoints)
 

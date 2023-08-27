@@ -55,6 +55,24 @@ class TFCGPGKeys(TFCEndpoint):
             ]
         return self._list(self._gpg_keys_base_url, page=page, page_size=page_size, filters=filters)
 
+    def list_all(self, filters=None):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every workspace in an organization.
+
+        Returns an object with two arrays of objects.
+        """
+        if filters is None:
+            filters = [
+                {
+                    "keys": ["namespace"],
+                    "value": self._namespace
+                }
+            ]
+        return self._list_all(self._gpg_keys_base_url, filters=filters)
+
     def show(self, key_id):
         """
         ``GET /api/registry/:registry_name/v2/gpg-keys/:namespace/:key_id``
@@ -75,7 +93,7 @@ class TFCGPGKeys(TFCEndpoint):
         `Update Sample Payload \
             <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/private-registry/gpg-keys#sample-payload-1>`_
         """
-        url = f"{self._gpg_keys_base_url}/v2/gpg-keys/{namespace}/{key_id}"
+        url = f"{self._gpg_keys_base_url}/v2/gpg-keys/{self._namespace}/{key_id}"
         return self._update(url, payload)
 
     def destroy(self, key_id):

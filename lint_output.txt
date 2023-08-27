@@ -1,3 +1,5 @@
+************* Module terrasnek.gpg_keys
+terrasnek/gpg_keys.py:27:2: W0511: TODO: once it's released in TFE (fixme)
 ************* Module terrasnek.endpoint
 terrasnek/endpoint.py:38:2: W0511: TODO: support the public registry workflows? (fixme)
 ************* Module terrasnek.invoices
@@ -21,10 +23,21 @@ test/run_tasks_integrations_test.py:28:2: W0511: TODO: These will be fairly diff
 ************* Module test.assessment_results_test
 test/assessment_results_test.py:72:2: W0511: TODO: Will have to add an includes to show plan to get the assessment result id once (fixme)
 test/assessment_results_test.py:76:2: W0511: TODO: To get this to work (fixme)
+************* Module test.gpg_keys_test
+test/gpg_keys_test.py:36:0: C0330: Wrong hanging indentation (add 4 spaces).
+                "namespace": self._test_org_name,
+                ^   | (bad-continuation)
+test/gpg_keys_test.py:37:0: C0330: Wrong hanging indentation (add 4 spaces).
+                "ascii-armor": gpg_key_contents
+                ^   | (bad-continuation)
+test/gpg_keys_test.py:54:0: C0305: Trailing newlines (trailing-newlines)
+test/gpg_keys_test.py:28:58: C0103: Variable name "f" doesn't conform to snake_case naming style (invalid-name)
+test/gpg_keys_test.py:5:0: W0611: Unused TFCHTTPUnprocessableEntity imported from terrasnek.exceptions (unused-import)
 ************* Module test.base
-test/base.py:606:2: W0511: TODO: test other parameters (fixme)
-test/base.py:390:0: C0301: Line too long (132/120) (line-too-long)
+test/base.py:192:2: W0511: TODO: implment list_all for gpg keys (fixme)
+test/base.py:613:2: W0511: TODO: test other parameters (fixme)
+test/base.py:397:0: C0301: Line too long (132/120) (line-too-long)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.97/10 (previous run: 9.97/10, +0.00)
+Your code has been rated at 9.95/10 (previous run: 9.94/10, +0.01)
 

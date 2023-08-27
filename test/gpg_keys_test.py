@@ -42,6 +42,11 @@ class TestTFCGPGKeys(TestTFCBaseTestCase):
         self.assertEqual(created_key["type"], "gpg-keys")
 
         # Update the GPG key
+        # NOTE: no test for this as I do not want to move GPG keys around namespaces, which is
+        # all this supports right now
+
+        all_gpg_keys = self._api.gpg_keys.list_all()["data"]
+        self.assertEqual(1, len(all_gpg_keys))
 
         # Delete the GPG key
         self._api.gpg_keys.destroy(created_key["attributes"]["key-id"])

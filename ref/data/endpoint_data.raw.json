@@ -1053,6 +1053,14 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#add-policies-to-the-policy-set"
             },
+            "Attach a Policy Set to projects": {
+                "http-paths": [
+                    "POST /policy-sets/:id/relationships/projects"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#attach-a-policy-set-to-projects"
+            },
             "Attach a Policy Set to workspaces": {
                 "http-paths": [
                     "POST /policy-sets/:id/relationships/workspaces"
@@ -1084,6 +1092,14 @@
                 "implementation-method-name": "remove_policies_from_set",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#delete-a-policy-set"
+            },
+            "Detach a Policy Set from projects": {
+                "http-paths": [
+                    "DELETE /policy-sets/:id/relationships/projects"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#detach-a-policy-set-from-projects"
             },
             "Detach the Policy Set from workspaces": {
                 "http-paths": [
@@ -1227,6 +1243,14 @@
                 "implementation-method-name": "list",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#list-projects"
+            },
+            "Move workspaces into a project": {
+                "http-paths": [
+                    "POST /projects/:project_id/relationships/workspaces"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#move-workspaces-into-a-project"
             },
             "Show project": {
                 "http-paths": [
