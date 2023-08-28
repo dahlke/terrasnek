@@ -1,9 +1,7 @@
 venv/
 .vscode/
 __pycache__/
-test/secrets/secrets.sh
-test/secrets/secrets.op.sh
-test/secrets/secrets.tfe.sh
+scripts/shell/secrets*
 htmlcov/
 .coverage/
 docs/_build/

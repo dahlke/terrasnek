@@ -61,14 +61,14 @@ them quickly, use the below. If you are not familiar, this will break and you
 will not be able to release.
 
 ```bash
-source test/secrets/secrets.op.sh
+source scripts/shell/secrets.op.sh
 ```
 
 If testing against TFE, override some of the defaults in that file for TFE.
 
 ```bash
-source test/secrets/secrets.op.sh
-source test/secrets/secrets.tfe.sh
+source scripts/shell/secrets.op.sh
+source scripts/shell/secrets.tfe.sh
 ```
 
 Then run the required processes.
@@ -116,7 +116,7 @@ Since this library serves a small number of users, and smaller number of
 contributors, for the time being I (@dahlke) will handle unit testing any
 changes that are submitted to the project from the community. If the project
 grows, we'll consider a more streamlined process for others to test. If you
-_want_ to run tests, see `test/secrets/secrets.example.sh` to understand all
+_want_ to run tests, see `scripts/shell/secrets.example.sh` to understand all
 the environment variables you will need to consider. You will need to use a
 privileged [User Token](https://www.terraform.io/docs/cloud/users-teams-organizations/api-tokens.html#user-api-tokens)
 for everything to work as expected. If you have any trouble just drop me
@@ -142,20 +142,20 @@ tar -zcvf terrasnek_unittest_module.tar.gz src/*
 
 #### Getting Secrets
 
-There is an example secret files at `test/secrets/secrets.example.sh`. You can
+There is an example secret files at `scripts/shell/secrets.example.sh`. You can
 view that and manually plug in the values that they need.  I (@eklhad) like to
 use the [1password CLI](https://1password.com/downloads/command-line/) to
 populate mine like below.
 
 ```bash
-source test/secrets/secrets.op.sh
+source scripts/shell/secrets.op.sh
 ```
 
 If testing against TFE, override some of the defaults in that file for TFE.
 
 ```bash
-source test/secrets/secrets.op.sh
-source test/secrets/secrets.tfe.sh
+source scripts/shell/secrets.op.sh
+source scripts/shell/secrets.tfe.sh
 ```
 
 #### Running Specific Tests
@@ -166,7 +166,7 @@ a new implementation or change, use something like the below. You can replace
 `test/orgs_test.py` with the test you want to run.
 
 ```bash
-source test/secrets/secrets.sh
+source scripts/shell/secrets.sh
 python3 -m unittest test/orgs_test.py
 ```
 
@@ -186,16 +186,28 @@ Enterprise instance._
 Against TFC:
 
 ```bash
-source test/secrets/secrets.op.sh
+source scripts/shell/secrets.op.sh
 make coverage
 ```
 
 Against TFE:
 
 ```bash
-source test/secrets/secrets.op.sh
-source test/secrets/secrets.tfe.sh
+source scripts/shell/secrets.op.sh
+source scripts/shell/secrets.tfe.sh
 make coverage_tfe
+```
+
+
+#### Running in GitHub Actions
+
+If the tests are being run in GitHub Actions, the same set of variables and secrets
+will need to be present there. You can easily upload those using the below. Make
+sure the secrets listed in that file match everything in the relevant secrets
+file.
+
+```bash
+source scripts/shell/set_gh_action_vars_secrets.sh
 ```
 
 _NOTE: Be sure to override the environment variables for TFE if required._

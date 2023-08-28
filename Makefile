@@ -62,6 +62,10 @@ api_comparison:
 codecov:
 	bash <(curl -s https://codecov.io/bash)
 
+.PHONY: set_gh_actions
+set_gh_actions:
+	./scripts/shell/set_gh_actions_vars_secrets.sh
+
 .PHONY: pip_package
 pip_package: lint api_comparison contributor_check
 	python3 setup.py sdist bdist_wheel;
