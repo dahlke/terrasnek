@@ -22,9 +22,9 @@ class TestTFCOrgs(TestTFCBaseTestCase):
         created_org = self._api.orgs.create(self._get_org_create_payload())["data"]
         created_org_id = created_org["id"]
         created_org_name = created_org["attributes"]["name"]
-        all_orgs = self._api.orgs.list()["data"]
+        orgs = self._api.orgs.list()["data"]
         self.assertNotEqual(
-            len(all_orgs), 0, msg="No organizations found for TFC token.")
+            len(orgs), 0, msg="No organizations found for TFC token.")
 
         # List entitlements, confirm expected response
         ent = self._api.orgs.entitlements(self._test_org_name)["data"]
@@ -70,6 +70,10 @@ class TestTFCOrgs(TestTFCBaseTestCase):
             self._test_org_name, update_org_payload)
         self.assertEqual(updated_org["data"] \
                          ["attributes"]["email"], email_to_update_to)
+
+        all_orgs = self._api.orgs.list_all()["data"]
+        self.assertNotEqual(
+            len(all_orgs), 0, msg="No organizations found for TFC token.")
 
         # Destroy the org, confirm it's gone
         self._api.orgs.destroy(created_org_name)

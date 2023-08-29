@@ -6,6 +6,11 @@ import os
 import sys
 import logging
 
+# To Protect Against Malfeasance in the Test Suite
+# NOTE: these may need to change if duplicate orgs are ever supported by some higher
+# level RBAC mechanism in TFC/E.
+UNTOUCHABLE_ORGS = ["eklhad", "terrasnek-unittest"]
+
 # Test Defaults
 TERRASNEK_LOG_LEVEL = logging.DEBUG
 

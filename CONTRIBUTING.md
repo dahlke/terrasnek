@@ -132,6 +132,9 @@ _NOTE: In order to test Drift Detection, or any other assessments, it is
 required that they are enabled across all workspaces in the test organization.
 TODO: add any other detail here._
 
+_DANGER: This test harness will delete all organizations that match the pattern
+`terrasnek-test-orgs-XXXXXXXX` associated with your user account, so beware._
+
 #### Building Test Data
 
 ```bash
@@ -182,6 +185,7 @@ teams and organizations. Not all endpoints are available in the free Terraform C
 offering. In order for you to test or use all of the endpoints, you'll need
 the proper packages for Terraform Cloud or your own private Terraform
 Enterprise instance._
+
 
 Against TFC:
 

@@ -65,14 +65,26 @@ class TFCOrgs(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{org_name}/subscription"
         return self._get(url)
 
-    def list(self):
+    def list(self, query=None, page=None, page_size=None):
         """
         ``GET /organizations``
 
         `Orgs List API Doc Reference \
             <https://www.terraform.io/docs/cloud/api/organizations.html#list-organizations>`_
         """
-        return self._list(self._org_api_v2_base_url)
+        return self._list(self._org_api_v2_base_url, query=query, page=page, page_size=page_size)
+
+    def list_all(self, query=None):
+        """
+        This function does not correlate to an endpoint in the TFC API Docs specifically,
+        but rather is a helper function to wrap the `list` endpoint, which enumerates out
+        every page so users do not have to implement the paging logic every time they just
+        want to list every run trigger for a workspace.
+
+        Returns an object with two arrays of objects.
+        """
+        return self._list_all(self._org_api_v2_base_url, query=query)
+
 
     def show(self, org_name):
         """
