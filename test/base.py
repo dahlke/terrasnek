@@ -151,7 +151,6 @@ class TestTFCBaseTestCase(unittest.TestCase):
 
             if org_id not in UNTOUCHABLE_ORGS:
                 if cls._check_is_test_org(TEST_ORG_NAME_REGEX_PATTERN, org_id):
-                    # TODO: add some confirmation logic here, unless being run through automation.
                     cls._api.orgs.destroy(org_id)
 
         cls._logger.info(f"Purging test org ({cls._test_org_name}) of workspaces...")

@@ -1045,7 +1045,7 @@
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/policy-sets.mdx",
         "implementation": true,
         "methods": {
-            "Add Policies to the Policy Set": {
+            "Add policies to the policy set": {
                 "http-paths": [
                     "POST /policy-sets/:id/relationships/policies"
                 ],
@@ -1053,7 +1053,7 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#add-policies-to-the-policy-set"
             },
-            "Attach a Policy Set to projects": {
+            "Attach a policy set to projects": {
                 "http-paths": [
                     "POST /policy-sets/:id/relationships/projects"
                 ],
@@ -1061,7 +1061,7 @@
                 "implemented": false,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#attach-a-policy-set-to-projects"
             },
-            "Attach a Policy Set to workspaces": {
+            "Attach a policy set to workspaces": {
                 "http-paths": [
                     "POST /policy-sets/:id/relationships/workspaces"
                 ],
@@ -1069,7 +1069,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#attach-a-policy-set-to-workspaces"
             },
-            "Create a Policy Set": {
+            "Create a policy pet version": {
+                "http-paths": [
+                    "POST /policy-sets/:id/versions"
+                ],
+                "implementation-method-name": "create_policy_set_version",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#create-a-policy-pet-version"
+            },
+            "Create a policy set": {
                 "http-paths": [
                     "POST /organizations/:organization_name/policy-sets"
                 ],
@@ -1077,15 +1085,7 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#create-a-policy-set"
             },
-            "Create a Policy Set Version": {
-                "http-paths": [
-                    "POST /policy-sets/:id/versions"
-                ],
-                "implementation-method-name": "create_policy_set_version",
-                "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#create-a-policy-set-version"
-            },
-            "Delete a Policy Set": {
+            "Delete a policy set": {
                 "http-paths": [
                     "DELETE /policy-sets/:id"
                 ],
@@ -1093,7 +1093,7 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#delete-a-policy-set"
             },
-            "Detach a Policy Set from projects": {
+            "Detach a policy set from projects": {
                 "http-paths": [
                     "DELETE /policy-sets/:id/relationships/projects"
                 ],
@@ -1101,7 +1101,7 @@
                 "implemented": false,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#detach-a-policy-set-from-projects"
             },
-            "Detach the Policy Set from workspaces": {
+            "Detach the policy set from workspaces": {
                 "http-paths": [
                     "DELETE /policy-sets/:id/relationships/workspaces"
                 ],
@@ -1109,7 +1109,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#detach-the-policy-set-from-workspaces"
             },
-            "List Policy Sets": {
+            "Exclude a workspace from a policy set": {
+                "http-paths": [
+                    "POST /policy-sets/:id/relationships/workspace-exclusions"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#exclude-a-workspace-from-a-policy-set"
+            },
+            "List policy sets": {
                 "http-paths": [
                     "GET /organizations/:organization_name/policy-sets"
                 ],
@@ -1117,7 +1125,15 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#list-policy-sets"
             },
-            "Remove Policies from the Policy Set": {
+            "Reinclude a workspace to a policy set": {
+                "http-paths": [
+                    "DELETE /policy-sets/:id/relationships/workspace-exclusions"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#reinclude-a-workspace-to-a-policy-set"
+            },
+            "Remove policies from the policy set": {
                 "http-paths": [
                     "DELETE /policy-sets/:id/relationships/policies"
                 ],
@@ -1125,7 +1141,7 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#remove-policies-from-the-policy-set"
             },
-            "Show a Policy Set": {
+            "Show a policy set": {
                 "http-paths": [
                     "GET /policy-sets/:id"
                 ],
@@ -1133,7 +1149,7 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#show-a-policy-set"
             },
-            "Show a Policy Set Version": {
+            "Show a policy set version": {
                 "http-paths": [
                     "GET /policy-set-versions/:id"
                 ],
@@ -1141,7 +1157,7 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#show-a-policy-set-version"
             },
-            "Update a Policy Set": {
+            "Update a policy set": {
                 "http-paths": [
                     "PATCH /policy-sets/:id"
                 ],
@@ -1149,7 +1165,7 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#update-a-policy-set"
             },
-            "Upload Policy Set Versions": {
+            "Upload policy set versions": {
                 "http-paths": [
                     "PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>"
                 ],
@@ -1844,6 +1860,14 @@
                 "implementation-method-name": "list_state_version_outputs",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#show-a-state-version"
+            },
+            "Upload State and JSON State": {
+                "http-paths": [
+                    "PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#upload-state-and-json-state"
             }
         },
         "test": true
