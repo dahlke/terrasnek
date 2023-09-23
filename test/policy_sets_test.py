@@ -22,6 +22,12 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         self._ws_id = workspace["id"]
         self._ws_name = workspace["attributes"]["name"]
 
+        # Create a new project, confirm that it has been created
+        project = self._api.projects.create(
+            self._get_project_create_payload())["data"]
+        self._project_id = project["id"]
+        self._project_name = project["attributes"]["name"]
+
         # Set up a policy to add and remove from the set
         policy = self._api.policies.create(self._get_policy_create_payload())["data"]
         self._policy_id = policy["id"]
@@ -30,7 +36,9 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         # Destroy the workspace and policy we created
         self._api.workspaces.destroy(
             workspace_name=self._ws_name)
+        self._api.projects.destroy(self._project_id)
         self._api.policies.destroy(self._policy_id)
+
 
     def test_policy_sets(self):
         """
@@ -106,7 +114,8 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         attach_detach_to_workspace_payload = {
             "data": [
                 {
-                    "id": self._ws_id, "type": "workspaces"
+                    "id": self._ws_id,
+                    "type": "workspaces"
                 },
             ]
         }
@@ -139,6 +148,46 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
         shown_policies_in_set = shown_policy_set["relationships"]["policies"]["data"]
         self.assertEqual(len(shown_policies_in_set), 0)
+
+        # Test the exclude /re-include workspaces functions, confirm they work
+        exclude_include_workspace_payload = {
+            "data": [
+                {
+                    "id": self._ws_id,
+                    "type": "workspaces"
+                },
+            ]
+        }
+        excluded_ws = self._api.policy_sets.exclude_workspaces(\
+            created_policy_set_id, exclude_include_workspace_payload)
+        self.assertIsNone(excluded_ws)
+        reincluded_ws = self._api.policy_sets.reinclude_workspaces(\
+            created_policy_set_id, exclude_include_workspace_payload)
+        self.assertIsNone(reincluded_ws)
+
+        # Attach the policy set to a project, confirm it's attached
+        attach_detach_to_project_payload = {
+            "data": [
+                {
+                    "id": self._project_id,
+                    "type": "projcts"
+                },
+            ]
+        }
+        self._api.policy_sets.attach_policy_set_to_projects(\
+            created_policy_set_id, attach_detach_to_project_payload)
+        shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
+        shown_projects_attached_to = \
+            shown_policy_set["relationships"]["projects"]["data"]
+        self.assertEqual(len(shown_projects_attached_to), 1)
+
+        # Detach the policy set to a project, confirm it's detached
+        self._api.policy_sets.detach_policy_set_from_projects(\
+            created_policy_set_id, attach_detach_to_project_payload)
+        shown_policy_set = self._api.policy_sets.show(created_policy_set_id)["data"]
+        shown_projects_attached_to = \
+            shown_policy_set["relationships"]["projects"]["data"]
+        self.assertEqual(len(shown_projects_attached_to), 0)
 
         # Delete the policy set, confirm it's been deleted
         self._api.policy_sets.destroy(created_policy_set_id)

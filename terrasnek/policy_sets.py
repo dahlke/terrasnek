@@ -185,3 +185,55 @@ class TFCPolicySets(TFCEndpoint):
             data = data_bytes.read()
 
         return self._put(url, data=data)
+
+    def exclude_workspaces(self, policy_set_id, payload):
+        """
+        ``POST /policy-sets/:id/relationships/workspace-exclusions``
+
+        `Policy Sets Exclude Workspace API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-sets#exclude-a-workspace-from-a-policy-set>`_
+
+        `Policy Sets Exclude Workspace Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-sets#sample-payload-5>`_
+        """
+        url = f"{self._endpoint_base_url}/{policy_set_id}/relationships/workspace-exclusions"
+        return self._post(url, data=payload)
+
+    def reinclude_workspaces(self, policy_set_id, payload):
+        """
+        ``DELETE /policy-sets/:id/relationships/workspace-exclusions``
+
+        `Policy Sets Re-Include Workspace API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-sets#reinclude-a-workspace-to-a-policy-set>`_
+
+        `Policy Sets Re-Include Workspace Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-sets#reinclude-a-workspace-to-a-policy-set>`_
+        """
+        url = f"{self._endpoint_base_url}/{policy_set_id}/relationships/workspace-exclusions"
+        return self._destroy(url, data=payload)
+
+    def attach_policy_set_to_projects(self, policy_id, payload):
+        """
+        ``POST /policy-sets/:id/relationships/projects``
+
+        `Policy Sets Attach Set to Projects API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-sets#attach-a-policy-set-to-projects>`_
+
+        `Attach Policy Set to Projects Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-sets#sample-payload-3>`_
+        """
+        url = f"{self._endpoint_base_url}/{policy_id}/relationships/projects"
+        return self._post(url, data=payload)
+
+    def detach_policy_set_from_projects(self, policy_id, payload):
+        """
+        ``DELETE /policy-sets/:id/relationships/projects``
+
+        `Policy Sets Detach Set from Projects API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-sets#detach-a-policy-set-from-projects>`_
+
+        `Detach Policy Set from Projects Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-sets#sample-payload-7>`_
+        """
+        url = f"{self._endpoint_base_url}/{policy_id}/relationships/projects"
+        return self._destroy(url, data=payload)

@@ -152,6 +152,14 @@
         "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/applies.mdx",
         "implementation": true,
         "methods": {
+            "Recover a failed state upload after applying": {
+                "http-paths": [
+                    "GET /applies/:id/errored-state"
+                ],
+                "implementation-method-name": "errored_state",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/applies#recover-a-failed-state-upload-after-applying"
+            },
             "Show an apply": {
                 "http-paths": [
                     "GET /applies/:id"
@@ -1057,8 +1065,8 @@
                 "http-paths": [
                     "POST /policy-sets/:id/relationships/projects"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "attach_policy_set_to_projects",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#attach-a-policy-set-to-projects"
             },
             "Attach a policy set to workspaces": {
@@ -1097,8 +1105,8 @@
                 "http-paths": [
                     "DELETE /policy-sets/:id/relationships/projects"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "detach_policy_set_from_projects",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#detach-a-policy-set-from-projects"
             },
             "Detach the policy set from workspaces": {
@@ -1113,8 +1121,8 @@
                 "http-paths": [
                     "POST /policy-sets/:id/relationships/workspace-exclusions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "exclude_workspaces",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#exclude-a-workspace-from-a-policy-set"
             },
             "List policy sets": {
@@ -1129,8 +1137,8 @@
                 "http-paths": [
                     "DELETE /policy-sets/:id/relationships/workspace-exclusions"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "reinclude_workspaces",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-sets#reinclude-a-workspace-to-a-policy-set"
             },
             "Remove policies from the policy set": {

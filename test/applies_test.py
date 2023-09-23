@@ -92,3 +92,6 @@ class TestTFCApplies(TestTFCBaseTestCase):
             time.sleep(1)
         self.assertEqual("finished", shown_apply["attributes"]["status"])
         self._logger.debug("Apply finished.")
+
+        # NOTE: this is difficult to test because it requires a failed upload
+        # self._api.applies.errored_state(apply_id)

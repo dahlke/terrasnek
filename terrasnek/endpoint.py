@@ -256,7 +256,7 @@ class TFCEndpoint(ABC):
         elif req.status_code == HTTP_NO_CONTENT:
             pass
         else:
-            print(req.status_code)
+            # print(req.status_code)
             try:
                 err = json.loads(req.content.decode("utf-8"))
             except json.decoder.JSONDecodeError:
