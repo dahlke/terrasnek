@@ -93,3 +93,17 @@ class TFCProjects(TFCEndpoint):
         """
         url = f"{self._projects_api_v2_base_url}/{project_id}"
         return self._update(url, payload)
+
+    def move_workspaces_into_project(self, project_id, payload):
+        """
+        ``POST /projects/:project_id/relationships/workspaces``
+
+        `Projects Move Workspaces Into Project API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/projects#move-workspaces-into-a-projectj>`_
+
+        `Move Workspaces Into Project Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/projects#sample-payload-2>`_
+        """
+        url = f"{self._projects_api_v2_base_url}/{project_id}/relationships/workspaces"
+        print(url, payload)
+        return self._post(url, data=payload)

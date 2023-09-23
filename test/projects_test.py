@@ -55,6 +55,24 @@ class TestTFCProjects(TestTFCBaseTestCase):
         updated_project = self._api.projects.update(new_project_id, update_payload)["data"]
         self.assertEqual(new_project_name, updated_project["attributes"]["name"])
 
+
+        # Set up a workspace to move, then move it and confirm it works
+        workspace = self._api.workspaces.create(self._get_ws_no_vcs_create_payload())["data"]
+        ws_id = workspace["id"]
+        move_workspace_payload = {
+            "data": [
+                {
+                    "type": "workspaces",
+                    "id": ws_id
+                }
+            ]
+        }
+        moved_workspace = self._api.projects.move_workspaces_into_project(new_project_id, move_workspace_payload)
+        self.assertIsNone(moved_workspace)
+
+        # Delete the workspace that was created so the project can be destroyed
+        self._api.workspaces.destroy(workspace_id=ws_id)
+
         # Destroy the project, confirm it's gone
         self._api.projects.destroy(new_project_id)
         some_projects = self._api.projects.list()["data"]

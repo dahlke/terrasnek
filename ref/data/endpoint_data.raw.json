@@ -1272,8 +1272,8 @@
                 "http-paths": [
                     "POST /projects/:project_id/relationships/workspaces"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "move_workspaces_into_project",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/projects#move-workspaces-into-a-project"
             },
             "Show project": {

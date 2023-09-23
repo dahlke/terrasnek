@@ -39,7 +39,6 @@ class TestTFCPolicySets(TestTFCBaseTestCase):
         self._api.projects.destroy(self._project_id)
         self._api.policies.destroy(self._policy_id)
 
-
     def test_policy_sets(self):
         """
         Test the Policy Sets API endpoints.
