@@ -85,10 +85,8 @@ class TestTFCPolicyChecks(TestTFCBaseTestCase):
             time.sleep(1)
         self._logger.debug("Plan successful.")
 
-        run_id = created_run["id"]
-
         # List the policy checks, make sure we only have one and that it failed
-        pol_checks = self._api.policy_checks.list(run_id)["data"]
+        pol_checks = self._api.policy_checks.list(self._run_id)["data"]
         self.assertEqual(len(pol_checks), 1)
         self.assertFalse(pol_checks[0]["attributes"]["result"]["result"])
 

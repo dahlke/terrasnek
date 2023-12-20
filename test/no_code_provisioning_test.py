@@ -2,6 +2,8 @@
 Module for testing the Terraform Cloud API Endpoint: No Code Provisioning.
 """
 
+import time
+
 from .base import TestTFCBaseTestCase
 from ._constants import TFE_MODULE_PROVIDER_TYPE
 
@@ -25,8 +27,9 @@ class TestTFCNoCodeProvisioning(TestTFCBaseTestCase):
 
     def tearDown(self):
         # Delete all the modules before deleting the OAuth client, otherwise
-        # you might not be able to delete it after the oauth client is purged.
-        self._purge_module_registry()
+        ## you might not be able to delete it after the oauth client is purged.
+        # TODO
+        # self._purge_module_registry()
         self._api.oauth_clients.destroy(self._oauth_client_id)
 
     def test_no_code_provisioning(self):
@@ -75,9 +78,6 @@ class TestTFCNoCodeProvisioning(TestTFCBaseTestCase):
                             "id": shown_reg_mod_id,
                             "type": "registry-module"
                         }
-                    },
-                    "variable-options": {
-                        "data": []
                     }
                 }
             }
@@ -97,3 +97,90 @@ class TestTFCNoCodeProvisioning(TestTFCBaseTestCase):
         shown_mod = self._api.no_code_provisioning.show(enabled_mod_id)["data"]
         shown_mod_id = shown_mod["id"]
         self.assertEqual(shown_mod_id, updated_mod_id)
+
+        # Deploying the No Code Module, confirm the workspace is created
+        # TODO: change the email address then compare them after updating
+        deploy_payload = {
+            "data": {
+                "type": "workspaces",
+                "attributes": {
+                    "name":  self._unittest_random_name(),
+                    "description": "A workspace to demonstrate the No-Code provisioning workflow.",
+                    "auto_apply": True
+                },
+                "relationships": {
+                    "vars": {
+                        "data": [
+                            {
+                                "type": "vars",
+                                "attributes": {
+                                    "key": "email",
+                                    "value": "foo@bar.com",
+                                    "category": "terraform",
+                                    "hcl": False,
+                                    "sensitive": False,
+                                }
+                            },
+                            {
+                                "type": "vars",
+                                "attributes": {
+                                    "key": "org_name",
+                                    "value": self._test_org_name,
+                                    "category": "terraform",
+                                    "hcl": False,
+                                    "sensitive": False,
+                                }
+                            },
+                            {
+                                "type": "vars",
+                                "attributes": {
+                                    "key": "TFE_TOKEN",
+                                    "value": self._test_api_token,
+                                    "category": "env",
+                                    "hcl": False,
+                                    "sensitive": True,
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+        deployed_mod_ws = self._api.no_code_provisioning.deploy(enabled_mod_id, deploy_payload)["data"]
+        deployed_mod_ws_id = deployed_mod_ws["id"]
+        self.assertIsNotNone(deployed_mod_ws_id)
+
+        """
+        # TODO: test update_settings_upgrade, read_upgrade_stats and confirm_apply_upgrade
+
+        print("wait for the workspace to be created, sleep")
+        time.sleep(60)
+        print("done waiting for the workspace to be created")
+
+        update_settings_payload = {
+            "data": {
+                "type": "workspaces",
+                "relationships": {
+                    "vars": {
+                        "data": [
+                            {
+                                "type": "vars",
+                                "attributes": {
+                                    "key": "email",
+                                    "value": "foo@baz.com",
+                                    "category": "terraform",
+                                    "hcl": False,
+                                    "sensitive": False,
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+        print("update payload", update_settings_payload)
+        updated_mod_ws = self._api.no_code_provisioning.update_settings_upgrade(enabled_mod_id, deployed_mod_ws_id, update_settings_payload)["data"]
+        print("updated", updated_mod_ws)
+        """
+
+        self._api.workspaces.destroy(workspace_id=deployed_mod_ws_id)

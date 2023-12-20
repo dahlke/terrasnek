@@ -137,14 +137,14 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
         latest_version_all_providers = \
             self._api.registry_modules.list_latest_version_all_providers(published_module_name)
         tfe_provider_data = latest_version_all_providers["modules"][0]
-        self.assertEqual(tfe_provider_data["version"], "0.0.3")
+        self.assertEqual(tfe_provider_data["version"], "0.0.7")
         self.assertEqual(tfe_provider_data["provider"], expected_provider)
 
         # Confirm the latest version for specific providers endpoint works as expected
         latest_version_tfe_provider = \
             self._api.registry_modules.list_latest_version_specific_provider(\
                 published_module_name, expected_provider)
-        self.assertEqual(latest_version_tfe_provider["version"], "0.0.3")
+        self.assertEqual(latest_version_tfe_provider["version"], "0.0.7")
         self.assertEqual(latest_version_tfe_provider["provider"], expected_provider)
 
         shown_module = \

@@ -287,6 +287,30 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#list-configuration-versions"
             },
+            "Mark a Configuration Version for Garbage Collection": {
+                "http-paths": [
+                    "POST /api/v2/configuration-versions/:configuration-id/actions/soft_delete_backing_data"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#mark-a-configuration-version-for-garbage-collection"
+            },
+            "Permanently Delete a Configuration Version": {
+                "http-paths": [
+                    "POST /api/v2/configuration-versions/:configuration-id/actions/permanently_delete_backing_data"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#permanently-delete-a-configuration-version"
+            },
+            "Restore Configuration Versions Marked for Garbage Collection": {
+                "http-paths": [
+                    "POST /api/v2/configuration-versions/:configuration-id/actions/restore_backing_data"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#restore-configuration-versions-marked-for-garbage-collection"
+            },
             "Show a Configuration Version": {
                 "http-paths": [
                     "GET /configuration-versions/:configuration-id"
@@ -486,6 +510,38 @@
                 "implementation-method-name": "enable",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#allow-no-code-provisioning-of-a-module-within-an-organization"
+            },
+            "Confirm and Apply a Workspace Upgrade Plan": {
+                "http-paths": [
+                    "POST /no-code-modules/:no_code_module_id/workspaces/:workspace_id/upgrade/:id"
+                ],
+                "implementation-method-name": "confirm_apply_upgrade",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#confirm-and-apply-a-workspace-upgrade-plan"
+            },
+            "Create a Workspace and Deploy Resources": {
+                "http-paths": [
+                    "POST /no-code-modules/:id/workspaces"
+                ],
+                "implementation-method-name": "deploy",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#create-a-workspace-and-deploy-resources"
+            },
+            "Initiate a Workspace Update to new No-Code provisioning settings": {
+                "http-paths": [
+                    "POST /no-code-modules/:no_code_module_id/workspaces/:id"
+                ],
+                "implementation-method-name": "update_settings_upgrade",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#initiate-a-workspace-update-to-new-no-code-provisioning-settings"
+            },
+            "Read Workspace Upgrade Plan Status": {
+                "http-paths": [
+                    "GET /no-code-modules/:no_code_module_id/workspaces/:workspace_id/upgrade/:id"
+                ],
+                "implementation-method-name": "read_upgrade_status",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/no-code-provisioning#read-workspace-upgrade-plan-status"
             },
             "Read a No-Code Module's Properties": {
                 "http-paths": [
@@ -963,22 +1019,6 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#list-policy-checks"
             },
-            "List Policy Evaluations in the Task Stage": {
-                "http-paths": [
-                    "GET /task-stages/:task_stage_id/policy-evaluations"
-                ],
-                "implementation-method-name": "list_policy_evals_in_task_stage",
-                "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#list-policy-evaluations-in-the-task-stage"
-            },
-            "List Policy Outcomes": {
-                "http-paths": [
-                    "GET /policy-evaluations/:policy_evaluation_id/policy-set-outcomes"
-                ],
-                "implementation-method-name": "list_policy_outcomes",
-                "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#list-policy-outcomes"
-            },
             "Override Policy": {
                 "http-paths": [
                     "POST /policy-checks/:id/actions/override"
@@ -994,17 +1034,39 @@
                 "implementation-method-name": "show",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#show-policy-check"
+            }
+        },
+        "test": true
+    },
+    "policy_evaluations": {
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/policy-evaluations",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/policy-evaluations.mdx",
+        "methods": {
+            "List Policy Evaluations in the Task Stage": {
+                "http-paths": [
+                    "GET /task-stages/:task_stage_id/policy-evaluations"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-evaluations#list-policy-evaluations-in-the-task-stage"
+            },
+            "List Policy Outcomes": {
+                "http-paths": [
+                    "GET /policy-evaluations/:policy_evaluation_id/policy-set-outcomes"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-evaluations#list-policy-outcomes"
             },
             "Show a Policy Outcome": {
                 "http-paths": [
                     "GET /policy-set-outcomes/:policy_set_outcome_id"
                 ],
-                "implementation-method-name": "show_policy_outcome",
-                "implemented": true,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-checks#show-a-policy-outcome"
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/policy-evaluations#show-a-policy-outcome"
             }
-        },
-        "test": true
+        }
     },
     "policy_set_params": {
         "docs": true,
@@ -1431,6 +1493,14 @@
                 "implementation-method-name": "destroy",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/modules#publish-a-private-module-from-a-vcs"
+            },
+            "Update a Private Registry Module": {
+                "http-paths": [
+                    "PATCH /organizations/:organization_name/registry-modules/private/:namespace/:name/:provider/"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/modules#update-a-private-registry-module"
             }
         },
         "test": true
@@ -1853,6 +1923,30 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#list-state-versions-for-a-workspace"
             },
+            "Mark a State Version for Garbage Collection": {
+                "http-paths": [
+                    "POST /api/v2/state-versions/:state_version_id/actions/soft_delete_backing_data"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#mark-a-state-version-for-garbage-collection"
+            },
+            "Permanently Delete a State Version": {
+                "http-paths": [
+                    "POST /api/v2/state-versions/:state_version_id/actions/permanently_delete_backing_data"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#permanently-delete-a-state-version"
+            },
+            "Restore a State Version Marked for Garbage Collection": {
+                "http-paths": [
+                    "POST /api/v2/state-versions/:state_version_id/actions/restore_backing_data"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#restore-a-state-version-marked-for-garbage-collection"
+            },
             "Rollback to a Previous State Version": {
                 "http-paths": [
                     "PATCH /workspaces/:workspace_id/state-versions"
@@ -2051,6 +2145,100 @@
             }
         },
         "test": true
+    },
+    "tests": {
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/private-registry/tests.mdx",
+        "methods": {
+            "Cancel a Test": {
+                "http-paths": [
+                    "POST /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/test-runs/:test_run_id/cancel"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#cancel-a-test"
+            },
+            "Create a Configuration Version for a test": {
+                "http-paths": [
+                    "POST /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/test-runs/configuration-versions"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#create-a-configuration-version-for-a-test"
+            },
+            "Create a Test Run": {
+                "http-paths": [
+                    "POST /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/test-runs"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#create-a-test-run"
+            },
+            "Create an Environment Variable for module tests": {
+                "http-paths": [
+                    "POST /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/vars"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#create-an-environment-variable-for-module-tests"
+            },
+            "Delete Test Variable for a Module": {
+                "http-paths": [
+                    "DELETE /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/vars/variable_id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#delete-test-variable-for-a-module"
+            },
+            "Forcefully cancel a Test": {
+                "http-paths": [
+                    "POST /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/test-runs/:test_run_id/force-cancel"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#forcefully-cancel-a-test"
+            },
+            "Get Test Details": {
+                "http-paths": [
+                    "GET /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/test-runs/:test_run_id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#get-test-details"
+            },
+            "List Test Variables for a Module": {
+                "http-paths": [
+                    "GET /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/vars"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#list-test-variables-for-a-module"
+            },
+            "List tests for a module": {
+                "http-paths": [
+                    "GET /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/test-runs/"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#list-tests-for-a-module"
+            },
+            "Update Test Variables for a Module": {
+                "http-paths": [
+                    "PATCH /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/vars/variable_id"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#update-test-variables-for-a-module"
+            },
+            "Upload Configuration Files for a Test": {
+                "http-paths": [
+                    "PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>"
+                ],
+                "implementation-method-name": null,
+                "implemented": false,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#upload-configuration-files-for-a-test"
+            }
+        }
     },
     "user_tokens": {
         "docs": true,

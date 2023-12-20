@@ -63,6 +63,7 @@ class TestTFCApplies(TestTFCBaseTestCase):
         # Timeout if the plan doesn't reach confirmable, this can happen
         # if the run is queued.
         self._created_run_timeout(self._run_id)
+        self._api.runs.show(self._run_id)["data"]
 
         # Apply the plan
         apply_payload = {

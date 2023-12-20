@@ -28,6 +28,7 @@
 | [Plans](https://www.terraform.io/cloud-docs/api-docs/plans)                                                              | `plans`                       | True                 | True       | True       |
 | [Policies](https://www.terraform.io/cloud-docs/api-docs/policies)                                                        | `policies`                    | True                 | True       | True       |
 | [Policy Checks](https://www.terraform.io/cloud-docs/api-docs/policy-checks)                                              | `policy_checks`               | True                 | True       | True       |
+| [Policy Evaluations](https://www.terraform.io/cloud-docs/api-docs/policy-evaluations)                                    | `policy_evaluations`          | False                | False      | False      |
 | [Policy Set Params](https://www.terraform.io/cloud-docs/api-docs/policy-set-params)                                      | `policy_set_params`           | True                 | True       | True       |
 | [Policy Sets](https://www.terraform.io/cloud-docs/api-docs/policy-sets)                                                  | `policy_sets`                 | True                 | True       | True       |
 | [Private Registry](https://www.terraform.io/cloud-docs/api-docs/private-registry)                                        | `private_registry`            | False                | False      | False      |
@@ -49,6 +50,7 @@
 | [Team Memberships](https://www.terraform.io/cloud-docs/api-docs/team-members)                                            | `team_memberships`            | True                 | True       | True       |
 | [Team Tokens](https://www.terraform.io/cloud-docs/api-docs/team-tokens)                                                  | `team_tokens`                 | True                 | True       | True       |
 | [Teams](https://www.terraform.io/cloud-docs/api-docs/teams)                                                              | `teams`                       | True                 | True       | True       |
+| [Tests](https://www.terraform.io/cloud-docs/api-docs/private-registry/tests)                                             | `tests`                       | False                | False      | False      |
 | [User Tokens](https://www.terraform.io/cloud-docs/api-docs/user-tokens)                                                  | `user_tokens`                 | True                 | True       | True       |
 | [Users](https://www.terraform.io/cloud-docs/api-docs/users)                                                              | `users`                       | True                 | True       | True       |
 | [Var Sets](https://www.terraform.io/cloud-docs/api-docs/variable-sets)                                                   | `var_sets`                    | True                 | True       | True       |

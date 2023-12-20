@@ -284,6 +284,7 @@ class TFCEndpoint(ABC):
             raise TFCHTTPBadRequest(err)
         elif req.status_code == HTTP_NOT_FOUND:
             err = json.loads(req.content.decode("utf-8"))
+            print(err)
             self._logger.debug(err)
             raise TFCHTTPNotFound(err)
         elif req.status_code == HTTP_CONFLICT:
