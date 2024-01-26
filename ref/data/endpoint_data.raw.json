@@ -1546,44 +1546,6 @@
         },
         "test": true
     },
-    "run_task_stages_and_results": {
-        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results",
-        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/run-tasks/run-task-stages-and-results.mdx",
-        "methods": {
-            "List the Run Task Stages in a Run": {
-                "http-paths": [
-                    "GET /runs/:run_id/task-stages"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results#list-the-run-task-stages-in-a-run"
-            },
-            "Override a Task Stage": {
-                "http-paths": [
-                    "POST /task-stages/:task_stage_id/actions/override"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results#override-a-task-stage"
-            },
-            "Show a Run Task Result": {
-                "http-paths": [
-                    "GET /task-results/:task_result_id"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results#show-a-run-task-result"
-            },
-            "Show a Run Task Stage": {
-                "http-paths": [
-                    "GET /task-stages/:task_stage_id"
-                ],
-                "implementation-method-name": null,
-                "implemented": false,
-                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results#show-a-run-task-stage"
-            }
-        }
-    },
     "run_tasks": {
         "docs": true,
         "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-tasks",
@@ -1695,7 +1657,49 @@
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-tasks-integration#run-task-request"
             }
-        }
+        },
+        "test": true
+    },
+    "run_tasks_stages_results": {
+        "docs": true,
+        "docs-url": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results",
+        "github-url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/cloud-docs/api-docs/run-tasks/run-task-stages-and-results.mdx",
+        "implementation": true,
+        "methods": {
+            "List the Run Task Stages in a Run": {
+                "http-paths": [
+                    "GET /runs/:run_id/task-stages"
+                ],
+                "implementation-method-name": "list_stages",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results#list-the-run-task-stages-in-a-run"
+            },
+            "Override a Task Stage": {
+                "http-paths": [
+                    "POST /task-stages/:task_stage_id/actions/override"
+                ],
+                "implementation-method-name": "override_stage",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results#override-a-task-stage"
+            },
+            "Show a Run Task Result": {
+                "http-paths": [
+                    "GET /task-results/:task_result_id"
+                ],
+                "implementation-method-name": "show_result",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results#show-a-run-task-result"
+            },
+            "Show a Run Task Stage": {
+                "http-paths": [
+                    "GET /task-stages/:task_stage_id"
+                ],
+                "implementation-method-name": "show_stage",
+                "implemented": true,
+                "permalink": "https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results#show-a-run-task-stage"
+            }
+        },
+        "test": true
     },
     "run_triggers": {
         "docs": true,
@@ -2166,7 +2170,7 @@
                 "implemented": false,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/tests#create-a-configuration-version-for-a-test"
             },
-            "Create a Test Run": {
+            "Create a test Run": {
                 "http-paths": [
                     "POST /organizations/:organization_name/tests/registry-modules/private/:namespace/:name/:provider/test-runs"
                 ],

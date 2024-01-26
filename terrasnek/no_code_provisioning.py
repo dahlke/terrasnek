@@ -87,7 +87,6 @@ class TFCNoCodeProvisioning(TFCEndpoint):
         <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/no-code-provisioning#sample-payload-3>`_
         """
         url = f"{self._org_base_url}/{module_id}/workspaces/{workspace_id}"
-        print(url)
         return self._post(url, data=payload)
 
     def read_upgrade_status(self, module_id, workspace_id, upgrade_id):

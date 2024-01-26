@@ -56,6 +56,7 @@ from .registry_modules import TFCRegistryModules
 from .registry_providers import TFCRegistryProviders
 from .run_tasks import TFCRunTasks
 from .run_tasks_integration import TFCRunTasksIntegration
+from .run_tasks_stages_results import TFCRunTasksStagesResults
 from .run_triggers import TFCRunTriggers
 from .runs import TFCRuns
 from .state_versions import TFCStateVersions
@@ -137,6 +138,7 @@ class TFC():
             "registry_providers": TFCRegistryProviders,
             "run_tasks": TFCRunTasks,
             "run_tasks_integration": TFCRunTasksIntegration,
+            "run_tasks_stages_results": TFCRunTasksStagesResults,
             "run_triggers": TFCRunTriggers,
             "runs": TFCRuns,
             "ssh_keys": TFCSSHKeys,
@@ -224,6 +226,7 @@ class TFC():
         self.registry_modules: TFCRegistryModules = None
         self.run_tasks: TFCRunTasks = None
         self.run_tasks_integration: TFCRunTasksIntegration = None
+        self.run_tasks_stages_results: TFCRunTasksStagesResults = None
         self.run_triggers: TFCRunTriggers = None
         self.runs: TFCRuns = None
         self.state_versions: TFCStateVersions = None

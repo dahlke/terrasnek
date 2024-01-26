@@ -37,8 +37,8 @@
 | [Provider Versions Platforms](https://www.terraform.io/cloud-docs/api-docs/private-registry/provider-versions-platforms) | `provider_versions_platforms` | False                | False      | False      |
 | [Registry Modules](https://www.terraform.io/cloud-docs/api-docs/private-registry/modules)                                | `registry_modules`            | True                 | True       | True       |
 | [Registry Providers](https://www.terraform.io/cloud-docs/api-docs/private-registry/providers)                            | `registry_providers`          | True                 | True       | True       |
-| [Run Task Stages And Results](https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results)        | `run_task_stages_and_results` | False                | False      | False      |
-| [Run Tasks Integration](https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-tasks-integration)                    | `run_tasks_integration`       | True                 | False      | True       |
+| [Run Tasks Integration](https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-tasks-integration)                    | `run_tasks_integration`       | True                 | True       | True       |
+| [Run Tasks Stages Results](https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-task-stages-and-results)           | `run_tasks_stages_results`    | True                 | True       | True       |
 | [Run Tasks](https://www.terraform.io/cloud-docs/api-docs/run-tasks/run-tasks)                                            | `run_tasks`                   | True                 | True       | True       |
 | [Run Triggers](https://www.terraform.io/cloud-docs/api-docs/run-triggers)                                                | `run_triggers`                | True                 | True       | True       |
 | [Runs](https://www.terraform.io/cloud-docs/api-docs/run)                                                                 | `runs`                        | True                 | True       | True       |

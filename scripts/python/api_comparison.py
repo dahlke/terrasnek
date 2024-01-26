@@ -96,7 +96,6 @@ def get_docs_from_github(nested_folder=None): # ["private-registry", "run-tasks"
     url = GH_DOCS_BASE_URL
     if nested_folder is not None:
         url += f"/{nested_folder}"
-    print(url)
 
     req = requests.get(f"{url}")
 
@@ -128,6 +127,9 @@ def get_docs_from_github(nested_folder=None): # ["private-registry", "run-tasks"
                 "providers", "registry_providers")
             endpoint_name = endpoint_name.replace(
                 "github_app_installations", "github_apps")
+            endpoint_name = endpoint_name.replace("run_task_stages_and_results",
+                "run_tasks_stages_results")
+
 
             # NOTE: The implementation uses "runs" and the documentation uses "run"
             if endpoint_name == "run":

@@ -52,6 +52,7 @@ API Spec
    runs
    run_tasks
    run_tasks_integration
+   run_tasks_stages_results
    run_triggers
    ssh_keys
    state_versions

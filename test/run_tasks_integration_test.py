@@ -21,7 +21,7 @@ class TestTFCRunTaskIntegration(TestTFCBaseTestCase):
     def tearDown(self):
         self._api.workspaces.destroy(workspace_name=self._ws_name)
 
-    def test_run_tasks(self):
+    def test_run_tasks_integration(self):
         """
         Test the Run Tasks Integration API endpoints.
         """
