@@ -91,7 +91,12 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         self.assertIn("included", current_state_version_raw)
 
         current_state_version = current_state_version_raw["data"]
-        self.assertEqual(sv_id, current_state_version["id"])
+        current_sv_id = current_state_version["id"]
+        self.assertEqual(sv_id, current_sv_id)
+
+        # TODO: these are only available on the TFE API, so we can't test them yet
+        # marked = self._api.state_versions.mark_for_garbage_collection(current_sv_id)["data"]
+        # unmarked = self._api.state_versions.restore_marked_for_garbage_collection(current_sv_id)["data"]
 
         shown_state_version_raw = self._api.state_versions.show(sv_id, include=["outputs"])
         # Confirm we have the related resources

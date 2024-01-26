@@ -1931,24 +1931,24 @@
                 "http-paths": [
                     "POST /api/v2/state-versions/:state_version_id/actions/soft_delete_backing_data"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "mark_for_garbage_collection",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#mark-a-state-version-for-garbage-collection"
             },
             "Permanently Delete a State Version": {
                 "http-paths": [
                     "POST /api/v2/state-versions/:state_version_id/actions/permanently_delete_backing_data"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "permanently_delete_state_version",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#permanently-delete-a-state-version"
             },
             "Restore a State Version Marked for Garbage Collection": {
                 "http-paths": [
                     "POST /api/v2/state-versions/:state_version_id/actions/restore_backing_data"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "restore_marked_for_garbage_collection",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#restore-a-state-version-marked-for-garbage-collection"
             },
             "Rollback to a Previous State Version": {

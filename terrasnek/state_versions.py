@@ -108,3 +108,35 @@ class TFCStateVersions(TFCEndpoint):
         """
         url = f"{self._workspace_api_v2_base_url}/{workspace_id}/state-versions"
         return self._patch(url, data=payload)
+
+    def mark_for_garbage_collection(self, state_version_id):
+        """
+        ``POST /api/v2/state-versions/:state_version_id/actions/soft_delete_backing_data``
+
+        `State Versions Mark for Garbage Collection API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/state-versions#mark-a-state-version-for-garbage-collection>`_
+        """
+        url = f"{self._state_version_api_v2_base_url}/{state_version_id}/actions/soft_delete_backing_data"
+        print("marked", url)
+        return self._post(url)
+
+    def restore_marked_for_garbage_collection(self, state_version_id):
+        """
+        ``POST /api/v2/state-versions/:state_version_id/actions/restore_backing_data``
+
+        `State Versions Restore Marked for Garbage Collection API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/state-versions#restore-a-state-version-marked-for-garbage-collection>`_
+        """
+        url = f"{self._state_version_api_v2_base_url}/{state_version_id}/actions/restore_backing_data"
+        print("unmarked", url)
+        return self._post(url)
+
+    def permanently_delete_state_version(self, state_version_id):
+        """
+        ``POST /api/v2/state-versions/:state_version_id/actions/permanently_delete_backing_data``
+
+        `State Versions Permanently Delete API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/state-versions#permanently-delete-a-state-version>`_
+        """
+        url = f"{self._state_version_api_v2_base_url}/{state_version_id}/actions/permanently_delete_backing_data"
+        return self._post(url)
