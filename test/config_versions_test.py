@@ -130,6 +130,11 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         # Confirm we get the related resources.
         self.assertIn("included", shown_config_version_raw)
 
+        # TODO: these are only available on the TFE API, so we can't test them yet
+        # marked = self._api.config_versions.mark_for_garbage_collection(cv_id)["data"]
+        # unmarked = self._api.config_versions.restore_marked_for_garbage_collection(cv_id)["data"]
+        # permanently_deleted = self._api.config_versions.permanently_delete_config_version(cv_id)["data"]
+
         # Show the commit information for the config version
         shown_commit_info = self._api.config_versions.show_commit_info(cv_id)["data"]
         self.assertIn("github", shown_commit_info["attributes"]["commit-url"])

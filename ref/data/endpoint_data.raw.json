@@ -1498,8 +1498,8 @@
                 "http-paths": [
                     "PATCH /organizations/:organization_name/registry-modules/private/:namespace/:name/:provider/"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "update",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/private-registry/modules#update-a-private-registry-module"
             }
         },

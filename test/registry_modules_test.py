@@ -132,6 +132,25 @@ class TestTFCRegistryModules(TestTFCBaseTestCase):
                 published_module_name, TFE_MODULE_PROVIDER_TYPE, latest_listed_version)
         self.assertEqual(published_module_name, gotten_module["name"])
 
+        # Update the module to enable tests, confirm the update was successful.
+        update_payload = {
+            "data": {
+                "attributes": {
+                    "vcs-repo": {
+                        "branch": "main",
+                        "tags": False
+                    },
+                "test-config": {
+                    "tests-enabled": True
+                }
+                },
+                "type": "registry-modules"
+            }
+        }
+        updated_module = self._api.registry_modules.update(\
+            published_module_name, TFE_MODULE_PROVIDER_TYPE, update_payload)["data"]
+        self.assertTrue(updated_module["attributes"]["test-config"]["tests-enabled"])
+
         # List all the provider versions for the module, confirm they are as expected.
         expected_provider = "tfe"
         latest_version_all_providers = \

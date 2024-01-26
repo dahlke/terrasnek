@@ -206,6 +206,19 @@ class TFCRegistryModules(TFCEndpoint):
         url = f"{self._org_api_v2_base_url}/{self._org_name}/registry-modules"
         return self._post(url, data=payload)
 
+    def update(self, module_name, provider, payload, reg_name="private"):
+        """
+        ``PATCH /organizations/:organization_name/registry-modules/private/:namespace/:name/:provider/``
+
+        `Registry Modules Update API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/private-registry/modules#update-a-private-registry-module>`_
+
+        `Update Sample Payload \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/private-registry/modules#sample-payload-2>`_
+        """
+
+        url = f"{self._mods_v2_base_url}/{reg_name}/{self._namespace}/{module_name}/{provider}"
+        return self._patch(url, data=payload)
 
     def create_version(self, module_name, provider, payload, reg_name="private"):
         """
