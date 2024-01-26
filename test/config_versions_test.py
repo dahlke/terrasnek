@@ -131,7 +131,7 @@ class TestTFCConfigVersions(TestTFCBaseTestCase):
         self.assertIn("included", shown_config_version_raw)
 
         # Show the commit information for the config version
-        shown_commit_info = self._api.config_versions.show_config_version_commit_info(cv_id)["data"]
+        shown_commit_info = self._api.config_versions.show_commit_info(cv_id)["data"]
         self.assertIn("github", shown_commit_info["attributes"]["commit-url"])
 
         all_config_versions_raw = self._api.config_versions.list_all(self._ws_w_vcs_id, \

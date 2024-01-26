@@ -291,24 +291,24 @@
                 "http-paths": [
                     "POST /api/v2/configuration-versions/:configuration-id/actions/soft_delete_backing_data"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "mark_for_garbage_collection",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#mark-a-configuration-version-for-garbage-collection"
             },
             "Permanently Delete a Configuration Version": {
                 "http-paths": [
                     "POST /api/v2/configuration-versions/:configuration-id/actions/permanently_delete_backing_data"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "permanently_delete",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#permanently-delete-a-configuration-version"
             },
             "Restore Configuration Versions Marked for Garbage Collection": {
                 "http-paths": [
                     "POST /api/v2/configuration-versions/:configuration-id/actions/restore_backing_data"
                 ],
-                "implementation-method-name": null,
-                "implemented": false,
+                "implementation-method-name": "restore_marked_for_garbage_collection",
+                "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#restore-configuration-versions-marked-for-garbage-collection"
             },
             "Show a Configuration Version": {
@@ -324,7 +324,7 @@
                     "GET /configuration-versions/:configuration-id/ingress-attributes",
                     "GET /configuration-versions/:configuration-id?include=ingress-attributes"
                 ],
-                "implementation-method-name": "show_config_version_commit_info",
+                "implementation-method-name": "show_commit_info",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/configuration-versions#show-a-configuration-version's-commit-information"
             },
@@ -1939,7 +1939,7 @@
                 "http-paths": [
                     "POST /api/v2/state-versions/:state_version_id/actions/permanently_delete_backing_data"
                 ],
-                "implementation-method-name": "permanently_delete_state_version",
+                "implementation-method-name": "permanently_delete",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#permanently-delete-a-state-version"
             },
@@ -1963,7 +1963,7 @@
                 "http-paths": [
                     "GET /state-versions/:state_version_id"
                 ],
-                "implementation-method-name": "list_state_version_outputs",
+                "implementation-method-name": "list_outputs",
                 "implemented": true,
                 "permalink": "https://www.terraform.io/cloud-docs/api-docs/state-versions#show-a-state-version"
             },

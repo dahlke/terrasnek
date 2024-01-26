@@ -73,7 +73,7 @@ class TFCStateVersions(TFCEndpoint):
         return self._list_all(self._state_version_api_v2_base_url, filters=filters, include=include)
 
 
-    def list_state_version_outputs(self, state_version_id):
+    def list_outputs(self, state_version_id):
         """
         ``GET /state-versions/:state_version_id/outputs``
 
@@ -131,7 +131,7 @@ class TFCStateVersions(TFCEndpoint):
         print("unmarked", url)
         return self._post(url)
 
-    def permanently_delete_state_version(self, state_version_id):
+    def permanently_delete(self, state_version_id):
         """
         ``POST /api/v2/state-versions/:state_version_id/actions/permanently_delete_backing_data``
 

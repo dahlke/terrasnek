@@ -62,7 +62,7 @@ class TFCConfigVersions(TFCEndpoint):
         url = f"{self._config_version_api_v2_base_url}/{config_version_id}"
         return self._show(url, include=include)
 
-    def show_config_version_commit_info(self, config_version_id, include=None):
+    def show_commit_info(self, config_version_id, include=None):
         """
         ``GET /configuration-versions/:configuration-id/ingress-attributes``
         ``GET /configuration-versions/:configuration-id?include=ingress-attributes``
@@ -162,3 +162,35 @@ class TFCConfigVersions(TFCEndpoint):
             url = f"{self._runs_api_v2_base_url}/{run_id}/configuration-version/download"
 
         return self._get(url)
+
+    def mark_for_garbage_collection(self, config_version_id):
+        """
+        ``POST /api/v2/configuration-versions/:configuration-id/actions/soft_delete_backing_data``
+
+        `Config Versions Mark for Garbage Collection API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/configuration-versions#mark-a-configuration-version-for-garbage-collection>`_
+        """
+        url = f"{self._config_version_api_v2_base_url}/{config_version_id}/actions/soft_delete_backing_data"
+        print("marked", url)
+        return self._post(url)
+
+    def restore_marked_for_garbage_collection(self, config_version_id):
+        """
+        ``POST /api/v2/configuration-versions/:configuration-id/actions/restore_backing_data``
+
+        `Config Versions Restore Marked for Garbage Collection API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/configuration-versions#restore-configuration-versions-marked-for-garbage-collectionj>`_
+        """
+        url = f"{self._config_version_api_v2_base_url}/{config_version_id}/actions/restore_backing_data"
+        print("unmarked", url)
+        return self._post(url)
+
+    def permanently_delete(self, config_version_id):
+        """
+        ``POST /api/v2/configuration-versions/:configuration-id/actions/permanently_delete_backing_data``
+
+        `Config Versions Permanently Delete API Doc Reference \
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/configuration-versions#permanently-delete-a-configuration-version>`_
+        """
+        url = f"{self._config_version_api_v2_base_url}/{config_version_id}/actions/permanently_delete_backing_data"
+        return self._post(url)

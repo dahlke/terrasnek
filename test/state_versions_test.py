@@ -82,7 +82,7 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         sv_id = state_version["id"]
 
         # List the state version outputs
-        sv_outputs = self._api.state_versions.list_state_version_outputs(sv_id)["data"]
+        sv_outputs = self._api.state_versions.list_outputs(sv_id)["data"]
         self.assertEqual(sv_outputs[0]["attributes"]["name"], "org_id")
 
         # Check the raw state version has the includes
@@ -97,6 +97,7 @@ class TestTFCStateVersions(TestTFCBaseTestCase):
         # TODO: these are only available on the TFE API, so we can't test them yet
         # marked = self._api.state_versions.mark_for_garbage_collection(current_sv_id)["data"]
         # unmarked = self._api.state_versions.restore_marked_for_garbage_collection(current_sv_id)["data"]
+        # permanently_deleted = self._api.state_versions.permanently_delete_config_version(current_sv_id)["data"]
 
         shown_state_version_raw = self._api.state_versions.show(sv_id, include=["outputs"])
         # Confirm we have the related resources
