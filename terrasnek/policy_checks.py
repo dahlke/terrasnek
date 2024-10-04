@@ -64,9 +64,9 @@ class TFCPolicyChecks(TFCEndpoint):
         ``GET /task-stages/:task_stage_id/policy-evaluations``
 
         `Policy Checks List Policy Evaluations API Doc Reference \
-            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-checks#list-policy-evaluations-in-the-task-stage>`_
+            <https://developer.hashicorp.com/terraform/cloud-docs/api-docs/policy-evaluations#list-policy-evaluations-in-the-task-stage>`_
         """
-        url = f"{self._task_stages_url}/{task_stage_id}/policy-checks"
+        url = f"{self._task_stages_url}/{task_stage_id}/policy-evaluations"
         return self._list(url)
 
     def list_policy_outcomes(self, policy_eval_id):
