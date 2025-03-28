@@ -1,5 +1,11 @@
 # terrasnek
 
+*⚠️ Project Deprecated – No Longer Maintained ⚠️*
+
+*_I no longer work at HashiCorp and no longer have access to the full set of APIs required to support this project. As a result, *this repository is no longer maintained*. You’re welcome to fork and adapt it as needed. Thanks to everyone who found it useful!_*
+
+
+
 [![GitHub Actions](https://github.com/dahlke/terrasnek/actions/workflows/main.yml/badge.svg)](https://github.com/dahlke/terrasnek/actions)
 [![codecov](https://codecov.io/gh/dahlke/terrasnek/branch/main/graph/badge.svg)](https://codecov.io/gh/dahlke/terrasnek)
 [![PyPI version](https://badge.fury.io/py/terrasnek.svg)](https://badge.fury.io/py/terrasnek)
@@ -12,8 +18,8 @@ _A Python Client for the [Terraform Cloud API](https://www.terraform.io/docs/clo
 
 ---
 
-![terrasnek logo](/img/tsnk1_md.png)
 
+![terrasnek logo](/img/tsnk1_md.png)
 
 ## Overview
 
