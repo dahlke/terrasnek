@@ -2,9 +2,9 @@
 
 *⚠️ Project Deprecated – No Longer Maintained ⚠️*
 
-*_I no longer work at HashiCorp and no longer have access to the full set of APIs required to support this project. As a result, *this repository is no longer maintained*. You’re welcome to fork and adapt it as needed. Thanks to everyone who found it useful!_*
+*_I no longer work at HashiCorp and no longer have access to the full set of APIs required to support this project. As a result, *this repository is no longer maintained*. You’re welcome to fork this repository and continue development, but please note that I can no longer guarantee compatibility or support._*
 
-
+**Looking for the maintained SDK? Please use [`hashicorp/python-tfe`](https://github.com/hashicorp/python-tfe) instead of this repository.**
 
 [![GitHub Actions](https://github.com/dahlke/terrasnek/actions/workflows/main.yml/badge.svg)](https://github.com/dahlke/terrasnek/actions)
 [![codecov](https://codecov.io/gh/dahlke/terrasnek/branch/main/graph/badge.svg)](https://codecov.io/gh/dahlke/terrasnek)
@@ -83,7 +83,7 @@ If you'd like to contribute to `terrasnek`, review [`CONTRIBUTING.md`](CONTRIBUT
 
 ### Relevant Blogs
 - [Migrating a Lot of State with Python and the Terraform Cloud API](https://medium.com/hashicorp-engineering/migrating-a-lot-of-state-with-python-and-the-terraform-cloud-api-997ec798cd11)
-- [The Power of the Terraform API: How to Easily Migrate Any Data Between Enterprise and Cloud ](https://medium.com/hashicorp-engineering/the-power-of-the-terraform-api-how-to-easily-migrate-any-data-between-enterprise-and-cloud-596e7023eb7f)
+- [The Power of the Terraform API: How to Easily Migrate Any Data Between Enterprise and Cloud ](https://medium.com/hashicorp-engineering/the-power-of-the-terraform-api-how-to-easily-migrate-any-data-between-enterprise-and-cloud-dd3f8e35f83b)
 
 ---
 
